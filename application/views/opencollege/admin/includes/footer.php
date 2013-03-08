@@ -5,11 +5,6 @@
   </div>
 <!--  Footer Div End   --->  
 </div>
-<?
-// Main Assets Path Define 
-$asstes_path = base_url().'assets/opencollege/admin/';
-
-?>
 <!--  Main Div End   --->
 <div class="background_changer dropdown">
   <div class="dropdown" id="colors_pallete"> 
@@ -48,46 +43,46 @@ $asstes_path = base_url().'assets/opencollege/admin/';
 <!-- Le javascript
     ================================================== --> 
 <!-- General scripts --> 
-<script src="<?=$asstes_path?>js/jquery.js" type="text/javascript"> </script> 
-<script src="<?=$asstes_path?>js/plugins/enquire.min.js" type="text/javascript"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/jquery.sparkline.min.js"></script> 
-<script src="<?=$asstes_path?>js/plugins/excanvas.compiled.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-transition.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-alert.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-modal.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-dropdown.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-scrollspy.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-tab.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-tooltip.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-popover.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-button.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-collapse.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-carousel.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-typeahead.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/bootstrap-affix.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/fileinput.jquery.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script> 
-<script src="<?=$asstes_path?>js/jquery.touchdown.js" type="text/javascript"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/jquery.uniform.min.js"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/jquery.tinyscrollbar.min.js"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/jnavigate.jquery.min.js"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/jquery.touchSwipe.min.js"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/jquery.peity.min.js"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/jquery.js" type="text/javascript"> </script> 
+<script src="<?=base_url().ASSETS_PATH?>js/plugins/enquire.min.js" type="text/javascript"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/jquery.sparkline.min.js"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/plugins/excanvas.compiled.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-transition.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-alert.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-modal.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-dropdown.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-scrollspy.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-tab.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-tooltip.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-popover.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-button.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-collapse.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-carousel.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-typeahead.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/bootstrap-affix.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/fileinput.jquery.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/jquery.touchdown.js" type="text/javascript"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/jquery.uniform.min.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/jquery.tinyscrollbar.min.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/jnavigate.jquery.min.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/jquery.touchSwipe.min.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/jquery.peity.min.js"></script> 
 
 <!-- Flot charts --> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/flot/jquery.flot.js"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/flot/jquery.flot.stack.js"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/flot/jquery.flot.pie.js"></script> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/flot/jquery.flot.resize.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/flot/jquery.flot.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/flot/jquery.flot.stack.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/flot/jquery.flot.pie.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/flot/jquery.flot.resize.js"></script> 
 
 <!-- Data tables --> 
-<script type="text/javascript" language="javascript" src="<?=$asstes_path?>js/plugins/datatables/js/jquery.dataTables.js"></script> 
+<script type="text/javascript" language="javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/datatables/js/jquery.dataTables.js"></script> 
 
 <!-- Task plugin --> 
-<script language="javascript" type="text/javascript" src="<?=$asstes_path?>js/plugins/knockout-2.0.0.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/knockout-2.0.0.js"></script> 
 
 <!-- Custom made scripts for this template --> 
-<script src="<?=$asstes_path?>js/scripts.js" type="text/javascript"></script> 
+<script src="<?=base_url().ASSETS_PATH?>js/scripts.js" type="text/javascript"></script> 
 <script type="text/javascript">
   /**** Specific JS for this page ****/
 /* Todo Plugin */

@@ -6,16 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<?
-// Main Assets Path Define 
-$asstes_path = base_url().'assets/opencollege/admin/';
-
-?>
-<link rel="shortcut icon" href="<?=$asstes_path?>css/images/favicon.png">
+<link rel="shortcut icon" href="<?=base_url().ASSETS_PATH?>css/images/favicon.png">
 </head>
 <body>
     <div id="loading">
-    	<img src="<?=$asstes_path?>img/ajax-loader.gif">
+    	<img src="<?=base_url().ASSETS_PATH?>img/ajax-loader.gif">
     </div>
     <div id="responsive_part">
       <div class="logo"> <a href="index.html"><span>Start</span><span class="icon"></span></a> </div>

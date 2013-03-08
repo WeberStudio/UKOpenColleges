@@ -1,8 +1,3 @@
-<?
-// Main Assets Path Define 
-$asstes_path = base_url().'assets/opencollege/admin/';
-
-?>
 <div id="main">
   <div class="container">
     <div class="header row-fluid">
@@ -11,7 +6,7 @@ $asstes_path = base_url().'assets/opencollege/admin/';
         <ul class="nav nav_menu">
           <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html">
             <div class="title"><span class="name">George</span><span class="subtitle">Future Buyer</span></div>
-            <span class="icon"><img src="<?=$asstes_path?>img/thumbnail_george.jpg"></span></a>
+            <span class="icon"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george.jpg"></span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li><a href="profile.html"><i class=" icon-user"></i> My Profile</a></li>
               <li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>
@@ -93,7 +88,7 @@ $asstes_path = base_url().'assets/opencollege/admin/';
             <!-- End .span6 -->
             <div class="span6">
               <div class=" box color_26 height_medium paint_hover">
-                <div class="content icon big_icon"> <a href="#" ><img align="center" src="<?=$asstes_path?>img/general/contacts_icon.png" /></a>
+                <div class="content icon big_icon"> <a href="#" ><img align="center" src="<?=base_url().ASSETS_PATH?>img/general/contacts_icon.png" /></a>
                   <div class="description">CONTACTS</div>
                 </div>
               </div>
@@ -250,7 +245,7 @@ $asstes_path = base_url().'assets/opencollege/admin/';
                 </div>
               </div>
             </div>
-            <div class="span1 stick top right result height_medium2"> <img src="<?=$asstes_path?>img/arrows_up.png">
+            <div class="span1 stick top right result height_medium2"> <img src="<?=base_url().ASSETS_PATH?>img/arrows_up.png">
               <div class="description mt15" >Good</div>
             </div>
           </div>
@@ -307,7 +302,7 @@ $asstes_path = base_url().'assets/opencollege/admin/';
                 </div>
               </div>
             </div>
-            <div class="span1 stick top right result height_medium2"> <img src="<?=$asstes_path?>img/arrows_down.png">
+            <div class="span1 stick top right result height_medium2"> <img src="<?=base_url().ASSETS_PATH?>img/arrows_down.png">
               <div class="description mt15" > &nbsp;&nbsp;Bad</div>
             </div>
           </div>
@@ -368,7 +363,7 @@ $asstes_path = base_url().'assets/opencollege/admin/';
             <!-- End .title -->
             <div class="content row-fluid">
               <ul class="messages_layout">
-                <li class="from_user left"> <a href="#" class="avatar"><img src="<?=$asstes_path?>img/message_avatar2.png"/></a>
+                <li class="from_user left"> <a href="#" class="avatar"><img src="<?=base_url().ASSETS_PATH?>img/message_avatar2.png"/></a>
                   <div class="message_wrap"> <span class="arrow"></span>
                     <div class="info"> <a class="name">Celeste Holm</a> <span class="time">1 hour ago</span>
                       <div class="options_arrow">
@@ -384,7 +379,7 @@ $asstes_path = base_url().'assets/opencollege/admin/';
                     <div class="text"> All I want is to be a monkey of moderate intelligence who wears a suit… that's why I'm transferring to business school! I had more, but you go ahead.  Dissect its brain! </div>
                   </div>
                 </li>
-                <li class="by_myself right"> <a href="#" class="avatar"><img src="<?=$asstes_path?>img/message_avatar4.png"/></a>
+                <li class="by_myself right"> <a href="#" class="avatar"><img src="<?=base_url().ASSETS_PATH?>img/message_avatar4.png"/></a>
                   <div class="message_wrap"> <span class="arrow"></span>
                     <div class="info"> <a class="name">Bender (myself) </a> <span class="time">4 hours ago</span>
                       <div class="options_arrow">
@@ -400,7 +395,7 @@ $asstes_path = base_url().'assets/opencollege/admin/';
                     <div class="text"> Man, I'm sore all over. </div>
                   </div>
                 </li>
-                <li class="from_user left"> <a href="#" class="avatar"><img src="<?=$asstes_path?>img/message_avatar2.png"/></a>
+                <li class="from_user left"> <a href="#" class="avatar"><img src="<?=base_url().ASSETS_PATH?>img/message_avatar2.png"/></a>
                   <div class="message_wrap"> <span class="arrow"></span>
                     <div class="info"> <a class="name">Celeste Holm </a> <span class="time">1 Day ago</span>
                       <div class="options_arrow">
