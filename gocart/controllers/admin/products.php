@@ -18,6 +18,7 @@ class Products extends Admin_Controller {
 		$user_info = $this->auth->admin_info();
 		$this->admin_id = $user_info['id'];
 		$this->admin_email = $user_info['email'];
+		$this->admin_access = $user_info['access'];
 		//print_r($admin_info);
 	}
 
@@ -510,7 +511,6 @@ class Products extends Admin_Controller {
 		$this->load->helper('download_helper');
 		$donwload_path = 'http://127.0.0.1/UKOpenColleges/downloads/oc_courses.csv';
 		$data = file_get_contents($donwload_path); // Read the file's contents
-		//print_r($data);exit;
 		$name = 'courses_upload_template.csv';
 		force_download_content($name, $data);
 		redirect($this->config->item('admin_folder').'/products');
@@ -521,7 +521,7 @@ class Products extends Admin_Controller {
 		$status = "";
 		$msg = "";
 		$data = array();
-		//print_r($_FILES);
+		$array_missing_field = array();
 		$filename = $_FILES['product_file']['name'];
 		$filename = time().preg_replace('/\s/', '_', $filename);
 		
@@ -533,7 +533,6 @@ class Products extends Admin_Controller {
 		$config['max_size']  = 1024 * 8;
 		//$config['encrypt_name'] = TRUE;
 		$this->upload->initialize($config);
-		//print_r($config);
 		$name = 'product_file';
 		$retrive_data = $this->upload->do_upload($name);
 		if (!$retrive_data)
@@ -548,7 +547,8 @@ class Products extends Admin_Controller {
 			$data = $this->getcsv->set_file_path(realpath(".").'/uploads/'.$filename)->get_array();
 			if(!isset($data) || empty($data)) // IF File Is Empty
 			{
-				
+					$this->session->set_flashdata('file_error', 'There is no product in uploaded template.');
+					redirect($this->config->item('admin_folder').'/products');
 			}
 			else // IF File Is Not Empty
 			{
@@ -559,15 +559,37 @@ class Products extends Admin_Controller {
 					$this->session->set_flashdata('file_error', 'File does not match with given template.');
 					redirect($this->config->item('admin_folder').'/products');
 				 }
-				 else // IF File Have Corrent Data
+				 else // IF File Have Correct Data
 				 {
-					echo 'Match'; 	
+					$count_products = count($data);
+					
+					for($i = 0; $i<$count_products; $i++)
+					{
+						if(empty($data[$i]['name']) || empty($data[$i]['price'])) // IF Two Fields Empty
+						{
+							$j = $i;
+							$array_missing_field[] = 'Product number '.($j+1). ' please check either product name or price is missing.';
+							$j = 0;
+						}		
+						else
+						{
+							$this->save_bulk_products_each($data[$i]);
+						}					
+											
+					}
+					if(!empty($array_missing_field))
+					{
+						$this->session->set_flashdata('upload_error', $array_missing_field);					
+					}
+					//echo '<pre>';print_r($array_missing_field);exit;
 				 }
 			}		
 			//echo '<pre>';print_r($data);exit;
 			//echo  'good';
-		}       
+		} 
+		redirect($this->config->item('admin_folder').'/products');      
 	}
+	
 	
 	
 	function is_asso($array){
@@ -601,6 +623,67 @@ class Products extends Admin_Controller {
     	
 	}
 	
+	function  save_bulk_products_each($course_data)
+	{
+		
+			$this->load->helper('text');
+			
+			//first check the slug field
+			$slug = $course_data['slug'];
+			//echo '<pre>';print_r($course_data);
+			if(empty($slug) || $slug=='')
+			{
+				$slug = $course_data['name'];
+			}
+			
+			$slug	= url_title(convert_accented_characters($slug), 'dash', TRUE);
+			
+			//validate the slug
+			$this->load->model('Routes_model');
+
+			$slug	= $this->Routes_model->validate_slug($slug);
+			$route['slug']	= $slug;	
+			$route_id	= $this->Routes_model->save($route);
+			
+			
+			$save['name']				=  $course_data['name'];
+			$save['slug']				=  $slug;
+			$save['description']		=  $course_data['description'];
+			$save['excerpt']			=  $course_data['excerpt'];
+			$save['price']				=  $course_data['price'];
+			$save['saleprice']			=  $course_data['saleprice'];
+			$save['publish_by']			=  $this->admin_access;
+			$save['seo_title']			=  $course_data['seo_title'];
+			$save['meta']				=  $course_data['meta'];
+			$save['enabled']			=  $course_data['enabled'];			
+			$save['admin_id']			=  $this->admin_id;
+			$save['route_id']			=  $route_id;
+			//echo '<pre>';print_r($save);exit;
+			
+			
+			//save categories
+			
+			$categories = array();
+			$categories	= $course_data['category_id'];
+			if(!$categories)
+			{
+				$categories	= array();
+			}
+			
+			
+			// save product 
+			$product_id	= $this->Product_model->save_uploaded_bulk_courses($save, $categories);
+			
+			//save the route
+			$route['id']	= $route_id;
+			$route['slug']	= $slug;
+			$route['route']	= 'cart/product/'.$product_id;
+			
+			$this->Routes_model->save($route);
+			
+			return true;
+	
+	} 	
 	function delete($id = false)
 	{
 		if ($id)

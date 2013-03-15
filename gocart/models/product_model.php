@@ -308,6 +308,27 @@ Class Product_model extends CI_Model
 		return $id;
 	}
 	
+	function save_uploaded_bulk_courses($product, $options=false, $categories=false)
+	{
+		
+		$this->db->insert('products', $product);
+		$id	= $this->db->insert_id();
+		
+		
+		if($categories !== false)
+		{
+			
+				//new product add them all
+				foreach($categories as $c)
+				{
+					$this->db->insert('category_products', array('product_id'=>$id,'category_id'=>$c));
+				}
+		}
+		
+		//return the product id
+		return $id;
+	}
+	
 	function delete_product($id)
 	{
 		// delete product 

@@ -22,8 +22,8 @@
         <li class="accordion-group color_7"> <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse1"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Catalog</span></a>
           <ul id="collapse1" class="accordion-body collapse">
             <li><a href="<?=base_url().ADMIN_PATH?>categories">Categories</a></li>
-            <li><a href="<?=base_url().ADMIN_PATH?>products">Products</a></li>
-            <li><a href="<?=base_url().ADMIN_PATH?>digital_products">Digital Products</a></li>
+            <li><a href="<?=base_url().ADMIN_PATH?>products">Courses</a></li>
+            <!--<li><a href="<?=base_url().ADMIN_PATH?>digital_products">Digital Products</a></li>-->
           </ul>
         </li>
         <li class="accordion-group color_3"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Sales</span></a>

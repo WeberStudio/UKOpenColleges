@@ -126,6 +126,14 @@ function areyousure()
 				{
 					echo $this->session->flashdata('file_error');
 				}
+				if($this->session->flashdata('upload_error'))
+				{
+					$upload_error_array  = $this->session->flashdata('upload_error');
+					foreach($upload_error_array as $ers)
+					{
+						echo 'ERROR: '.$ers."<br>";
+					}
+				}
 		  ?>
         </div>
          <div class="title">
@@ -133,11 +141,19 @@ function areyousure()
         </div>
         
         <div class="form-row control-group row-fluid">
-          <div class="controls span7">
+          <div style="margin-left:50px;" class="controls span7">
             <div class="input-append row-fluid">
             <?php echo form_open($this->config->item('admin_folder').'/products/save_bulk_products', array('enctype'=>'multipart/form-data'));?>
-              <input type="file" name="product_file" class="spa1n6 fileinput" id="search-input">
-              <input type="submit" class="btn" name="upload_course" value="Upload" />
+              <table  id="datatable_example" class="responsive table table-striped table-bordered">
+              	<tr>
+                	<td>
+                    	<input type="file" name="product_file" class="spa1n6 fileinput" id="search-input">
+                    </td>
+                    <td>
+              		<input type="submit" class="btn" name="upload_course" value="Save" />
+                    </td>
+                 </tr>
+               </table>
               </form>
             </div>
           </div>
@@ -165,11 +181,11 @@ function areyousure()
                 <th class="jv no_sort"><label class="checkbox ">
                   <input type="checkbox">
                   </label></th>
-                <th><?php echo sort_url('sku', 'sku', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
+                <?php /*?><th><?php echo sort_url('sku', 'sku', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th><?php */?>
                 <th><?php echo sort_url('name', 'name', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
                 <th><?php echo sort_url('price', 'price', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
                 <th><?php echo sort_url('saleprice', 'saleprice', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
-                <th><?php echo sort_url('quantity', 'quantity', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
+                <?php /*?><th><?php echo sort_url('quantity', 'quantity', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th><?php */?>
                 <th><?php echo sort_url('enabled', 'enabled', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
                 <th class="ms no_sort ">Actions</th>
               </tr>
@@ -182,11 +198,11 @@ function areyousure()
                   <input type="checkbox">
                   </label>
                 </td>
-                <td><?php echo form_input(array('name'=>'product['.$product->id.'][sku]','value'=>form_decode($product->sku), 'class'=>'span7'));?></td>
+                <?php /*?><td><?php echo form_input(array('name'=>'product['.$product->id.'][sku]','value'=>form_decode($product->sku), 'class'=>'span7'));?></td><?php */?>
                 <td><?php echo form_input(array('name'=>'product['.$product->id.'][name]','value'=>form_decode($product->name), 'class'=>'span12'));?></td>
                 <td><?php echo form_input(array('name'=>'product['.$product->id.'][price]', 'value'=>set_value('price', $product->price), 'class'=>'span7'));?></td>
                 <td><?php echo form_input(array('name'=>'product['.$product->id.'][saleprice]', 'value'=>set_value('saleprice', $product->saleprice), 'class'=>'span7'));?></td>
-                <td><?php echo ((bool)$product->track_stock)?form_input(array('name'=>'product['.$product->id.'][quantity]', 'value'=>set_value('quantity', $product->quantity), 'class'=>'span7')):'N/A';?></td>
+                <?php /*?><td><?php echo ((bool)$product->track_stock)?form_input(array('name'=>'product['.$product->id.'][quantity]', 'value'=>set_value('quantity', $product->quantity), 'class'=>'span7')):'N/A';?></td><?php */?>
                 <td><?php
 					 	$options = array(
 			                  '1'	=> lang('enabled'),
