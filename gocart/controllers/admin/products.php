@@ -505,34 +505,100 @@ class Products extends Admin_Controller {
 		$this->load->view($this->config->item('admin_folder').'/iframe/product_image_uploader', $data);
 	}
 	
+	function download_csv_template()
+	{
+		$this->load->helper('download_helper');
+		$donwload_path = 'http://127.0.0.1/UKOpenColleges/downloads/oc_courses.csv';
+		$data = file_get_contents($donwload_path); // Read the file's contents
+		//print_r($data);exit;
+		$name = 'courses_upload_template.csv';
+		force_download_content($name, $data);
+		redirect($this->config->item('admin_folder').'/products');
+	}
+	
 	function save_bulk_products()
 	{
 		$status = "";
 		$msg = "";
-		$filename = $_FILES['userfile']['name'];
+		$data = array();
+		//print_r($_FILES);
+		$filename = $_FILES['product_file']['name'];
 		$filename = time().preg_replace('/\s/', '_', $filename);
 		
 	   	$this->load->library('upload');
 		$this->load->library('getcsv');
 		$config['file_name'] = $filename; 
-		$config['upload_path'] = realpath(".").'/uploads/'; 
+		$config['upload_path'] = 'uploads'; 
 		$config['allowed_types'] = 'csv';
 		$config['max_size']  = 1024 * 8;
 		//$config['encrypt_name'] = TRUE;
-		$this->upload->initialize($config); 
-		$retrive_img = $this->upload->do_upload();
-		if (!$retrive_img)
+		$this->upload->initialize($config);
+		//print_r($config);
+		$name = 'product_file';
+		$retrive_data = $this->upload->do_upload($name);
+		if (!$retrive_data)
 		{
-			echo 'false';
+			
+			$this->session->set_flashdata('file_error', $this->upload->display_errors());
+			redirect($this->config->item('admin_folder').'/products');
 		}
 		else
 		{
 			$data = $this->upload->data();
 			$data = $this->getcsv->set_file_path(realpath(".").'/uploads/'.$filename)->get_array();
-			echo '<pre>';print_r($data);
-		
+			if(!isset($data) || empty($data)) // IF File Is Empty
+			{
+				
+			}
+			else // IF File Is Not Empty
+			{
+				 
+				 
+				 if($this->is_asso($data)=='0') //IF File Does Not Mach With Template
+				 {
+					$this->session->set_flashdata('file_error', 'File does not match with given template.');
+					redirect($this->config->item('admin_folder').'/products');
+				 }
+				 else // IF File Have Corrent Data
+				 {
+					echo 'Match'; 	
+				 }
+			}		
+			//echo '<pre>';print_r($data);exit;
 			//echo  'good';
 		}       
+	}
+	
+	
+	function is_asso($array){
+    	
+		$default_array = array(
+								"0" => "name",								
+								"1" => "slug",
+								"2" => "description",
+								"3" => "excerpt",
+								"4" => "price",
+								"5" => "saleprice",
+								"6" => "publish_by",
+								"7" => "seo_title",
+								"8" => "meta",
+								"9" => "enabled",
+								"10" => "category_id");
+		
+		foreach($array as $key => $val)
+		 {
+		 	$values = array_keys($val);
+			//echo '<pre>';print_r($values);
+			if(!array_diff($values, $default_array) && !array_diff($default_array, $values)) 
+			{
+				return '1';
+			}
+			else
+			{
+				return '0';	
+			}
+		 }
+    	
 	}
 	
 	function delete($id = false)

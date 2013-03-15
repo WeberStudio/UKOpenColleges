@@ -38,6 +38,7 @@ class Getcsv {
         $this->get_handle();
 
         $row = 0;
+		$result = array();
         while (($data = fgetcsv($this->handle, 0, ",")) !== FALSE) 
         {
             if($row == 0)

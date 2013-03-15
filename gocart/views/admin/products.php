@@ -40,12 +40,10 @@ function sort_url($lang, $by, $sort, $sorder, $code, $admin_folder)
 if(!empty($term)):
 	$term = json_decode($term);
 	if(!empty($term->term) || !empty($term->category_id)):?>
-		<div class="alert alert-info">
-			<?php echo sprintf(lang('search_returned'), intval($total));?>
-		</div>
-	<?php endif;?>
-<?php endif;?>
 
+<div class="alert alert-info"> <?php echo sprintf(lang('search_returned'), intval($total));?> </div>
+<?php endif;?>
+<?php endif;?>
 <script type="text/javascript">
 function areyousure()
 {
@@ -58,46 +56,42 @@ function areyousure()
 		margin-top:-3px;
 	}
 </style>
-
-
 <div id="main" style="min-height:1000px">
-  <div class="container">
-    <div class="header row-fluid">
-      <div class="logo"> <a href="index.html"><span>Start</span><span class="icon"></span></a> </div>
-      <div class="top_right">
-        <ul class="nav nav_menu">
-          <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html">
-            <div class="title"><span class="name">George</span><span class="subtitle">Future Buyer</span></div>
-            <span class="icon"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george.jpg"></span></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <li><a href="profile.html"><i class=" icon-user"></i> My Profile</a></li>
-              <li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>
-              <li><a href="index2.html"><i class=" icon-unlock"></i>Log Out</a></li>
-              <li><a href="search.html"><i class=" icon-flag"></i>Help</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <!-- End top-right --> 
+<div class="container">
+  <div class="header row-fluid">
+    <div class="logo"> <a href="index.html"><span>Start</span><span class="icon"></span></a> </div>
+    <div class="top_right">
+      <ul class="nav nav_menu">
+        <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html">
+          <div class="title"><span class="name">George</span><span class="subtitle">Future Buyer</span></div>
+          <span class="icon"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george.jpg"></span></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><a href="profile.html"><i class=" icon-user"></i> My Profile</a></li>
+            <li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>
+            <li><a href="index2.html"><i class=" icon-unlock"></i>Log Out</a></li>
+            <li><a href="search.html"><i class=" icon-flag"></i>Help</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <div class="box paint color_18">
-            <div class="title">
-              <h4> <i class="icon-book"></i><span>Search Products</span> </h4>
-            </div>
-            <div class="content">
-             
-              <?php echo form_open($this->config->item('admin_folder').'/products/index', 'class="form-horizontal row-fluid" ');?>
-                <div class="form-row control-group row-fluid">
-                  <div class="controls span4">
-                    <input type="text" id="with-tooltip" rel="tooltip" data-placement="top" name="term" data-original-title="Search By Product Name, Sku, Keyword" placeholder="<?php echo lang('search_term');?>" class="row-fluid">
-                  </div>
-                  <?php
+    <!-- End top-right -->
+  </div>
+  <div class="box paint color_18">
+    <div class="title">
+      <h4> <i class="icon-book"></i><span>Search Courses</span> </h4>
+    </div>
+    <div class="content"> <?php echo form_open($this->config->item('admin_folder').'/products/index', 'class="form-horizontal row-fluid" ');?>
+      <div class="form-row control-group row-fluid">
+        <div class="controls span4">
+          <input type="text" id="with-tooltip" rel="tooltip" data-placement="top" name="term" data-original-title="Search By Course Name, Sku, Keyword" placeholder="<?php echo lang('search_term');?>" class="row-fluid">
+        </div>
+        <?php
 						
 						function list_categories($cats, $product_categories, $sub='') {
 
 							foreach ($cats as $cat):?>
-							<option value="<?php echo $cat['category']->id;?>"><?php echo  $sub.$cat['category']->name; ?></option>
-							<?php
+        <option value="<?php echo $cat['category']->id;?>"><?php echo  $sub.$cat['category']->name; ?></option>
+        <?php
 							if (sizeof($cat['children']) > 0)
 							{
 								$sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
@@ -116,66 +110,84 @@ function areyousure()
 							
 						}
 					?>
-					
-						
-                   <button class="btn btn-inverse " rel="tooltip" data-placement="top" data-original-title="Search" name="submit" value="search"><?php echo lang('search')?></button>
-                  <a class="btn btn-inverse " rel="tooltip" data-placement="top" data-original-title="Reset" href="<?php echo site_url($this->config->item('admin_folder').'/products/index');?>">Reset</a>
-                    
-                </div>
-                
+        <button class="btn btn-inverse " rel="tooltip" data-placement="top" data-original-title="Search" name="submit" value="search"><?php echo lang('search')?></button>
+        <a class="btn btn-inverse " rel="tooltip" data-placement="top" data-original-title="Reset" href="<?php echo site_url($this->config->item('admin_folder').'/products/index');?>">Reset</a> </div>
+      </form>
+    </div>
+  </div>
+  <!--=======Upload Panel Start=======-->
+  <div id="main_container">
+    <div class="row-fluid">
+      <div class="box paint color_18">
+        <div class="title">
+          <h4> <span>Upload Courses Panel <small>(CSV File)</small></span> </h4>
+          <?php
+          		if($this->session->flashdata('file_error'))
+				{
+					echo $this->session->flashdata('file_error');
+				}
+		  ?>
+        </div>
+         <div class="title">
+          <h4><small><a href="products/download_csv_template" title="Sample Template">Download Sample CSV File</a></small></span> </h4>
+        </div>
+        
+        <div class="form-row control-group row-fluid">
+          <div class="controls span7">
+            <div class="input-append row-fluid">
+            <?php echo form_open($this->config->item('admin_folder').'/products/save_bulk_products', array('enctype'=>'multipart/form-data'));?>
+              <input type="file" name="product_file" class="spa1n6 fileinput" id="search-input">
+              <input type="submit" class="btn" name="upload_course" value="Upload" />
               </form>
             </div>
           </div>
-    <div id="main_container">
-      <div class="row-fluid">
-        <div class="box paint color_18">
-          <div class="title">
-            <h4> <span>Manage Products<small>(column sorting, live search, pagination)</small></span> </h4>
-          </div>
-          <!-- End .title -->
-          
-          <div class="span4">
-				<?php echo $this->pagination->create_links();?>	&nbsp;
-		  </div>
-          <!-- Paginatin End -->
-          <div class="content top">
-          <?php echo form_open($this->config->item('admin_folder').'/products/bulk_save', array('id'=>'bulk_form'));?>
-            <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
-              <thead>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--=======Upload Panel End=======-->
+  <div id="main_container">
+    <div class="row-fluid">
+      <div class="box paint color_18">
+        <div class="title">
+          <h4> <span>Manage Courses<small>(column sorting, live search, pagination)</small></span> </h4>
+        </div>
+        <!-- End .title -->
+        <div class="span4"> <?php echo $this->pagination->create_links();?> &nbsp; </div>
+        <!-- Paginatin End -->
+        <div class="content top"> <?php echo form_open($this->config->item('admin_folder').'/products/bulk_save', array('id'=>'bulk_form'));?>
+          <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
+            <thead>
               <tr><span class="btn-group pull-right">
-						<button class="btn" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save');?></button>
-						<a class="btn" style="font-weight:normal;"href="<?php echo site_url($this->config->item('admin_folder').'/products/form');?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_product');?></a>
-					</span></tr>
-                <tr>
-                  <th class="jv no_sort"><label class="checkbox ">
-                      <input type="checkbox">
-                    </label></th>
-                        <th><?php echo sort_url('sku', 'sku', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
-                        <th><?php echo sort_url('name', 'name', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
-                        <th><?php echo sort_url('price', 'price', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
-                        <th><?php echo sort_url('saleprice', 'saleprice', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
-                        <th><?php echo sort_url('quantity', 'quantity', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
-                        <th><?php echo sort_url('enabled', 'enabled', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
-                        <th class="ms no_sort ">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                 <?php echo (count($products) < 1)?'<tr><td style="text-align:center;" colspan="7">'.lang('no_products').'</td></tr>':''?>
-	<?php foreach ($products as $product):?>
-			<tr>
-				<td>
-                  	<label class="checkbox ">
-                      <input type="checkbox">
-                    </label>
+                <button class="btn" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save');?></button>
+                <a class="btn" style="font-weight:normal;"href="<?php echo site_url($this->config->item('admin_folder').'/products/form');?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_product');?></a> </span></tr>
+              <tr>
+                <th class="jv no_sort"><label class="checkbox ">
+                  <input type="checkbox">
+                  </label></th>
+                <th><?php echo sort_url('sku', 'sku', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
+                <th><?php echo sort_url('name', 'name', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
+                <th><?php echo sort_url('price', 'price', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
+                <th><?php echo sort_url('saleprice', 'saleprice', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
+                <th><?php echo sort_url('quantity', 'quantity', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
+                <th><?php echo sort_url('enabled', 'enabled', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
+                <th class="ms no_sort ">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr> <?php echo (count($products) < 1)?'<tr><td style="text-align:center;" colspan="7">'.lang('no_products').'</td></tr>':''?>
+                <?php foreach ($products as $product):?>
+              <tr>
+                <td><label class="checkbox ">
+                  <input type="checkbox">
+                  </label>
                 </td>
                 <td><?php echo form_input(array('name'=>'product['.$product->id.'][sku]','value'=>form_decode($product->sku), 'class'=>'span7'));?></td>
-				<td><?php echo form_input(array('name'=>'product['.$product->id.'][name]','value'=>form_decode($product->name), 'class'=>'span12'));?></td>
-				<td><?php echo form_input(array('name'=>'product['.$product->id.'][price]', 'value'=>set_value('price', $product->price), 'class'=>'span7'));?></td>
-				<td><?php echo form_input(array('name'=>'product['.$product->id.'][saleprice]', 'value'=>set_value('saleprice', $product->saleprice), 'class'=>'span7'));?></td>
-				<td><?php echo ((bool)$product->track_stock)?form_input(array('name'=>'product['.$product->id.'][quantity]', 'value'=>set_value('quantity', $product->quantity), 'class'=>'span7')):'N/A';?></td>
-				<td>
-					<?php
+                <td><?php echo form_input(array('name'=>'product['.$product->id.'][name]','value'=>form_decode($product->name), 'class'=>'span12'));?></td>
+                <td><?php echo form_input(array('name'=>'product['.$product->id.'][price]', 'value'=>set_value('price', $product->price), 'class'=>'span7'));?></td>
+                <td><?php echo form_input(array('name'=>'product['.$product->id.'][saleprice]', 'value'=>set_value('saleprice', $product->saleprice), 'class'=>'span7'));?></td>
+                <td><?php echo ((bool)$product->track_stock)?form_input(array('name'=>'product['.$product->id.'][quantity]', 'value'=>set_value('quantity', $product->quantity), 'class'=>'span7')):'N/A';?></td>
+                <td><?php
 					 	$options = array(
 			                  '1'	=> lang('enabled'),
 			                  '0'	=> lang('disabled')
@@ -183,35 +195,19 @@ function areyousure()
 
 						echo form_dropdown('product['.$product->id.'][enabled]', $options, set_value('enabled',$product->enabled), 'class="span12"');
 					?>
-				</td>
-                <td class="ms">
-                	<div class="btn-group1"> 
-                    	<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id);?>">
-                        	<i class="gicon-edit"></i>
-                        </a> 
-                        <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View">
-                        	<i class="gicon-eye-open"></i>
-                        </a>
-                        <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="<?php echo lang('copy');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id.'/1');?>">
-                        	<i class="gicon-copy"></i>
-                        </a>                        
-                        <a class="btn  btn-small" rel="tooltip" data-placement="bottom" data-original-title="<?php echo lang('delete');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/delete/'.$product->id);?>" onclick="return areyousure();">
-                        	<i class="gicon-remove "></i>
-                        </a>
-                    </div>
                 </td>
-            </tr>
-           <?php endforeach; ?>
-          </tbody>
-        </table>
-        </form>
-          </div>
-          <!-- End .content --> 
+                <td class="ms"><div class="btn-group1"> <a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id);?>"> <i class="gicon-edit"></i> </a> <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View"> <i class="gicon-eye-open"></i> </a> <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="<?php echo lang('copy');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id.'/1');?>"> <i class="gicon-copy"></i> </a> <a class="btn  btn-small" rel="tooltip" data-placement="bottom" data-original-title="<?php echo lang('delete');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/delete/'.$product->id);?>" onclick="return areyousure();"> <i class="gicon-remove "></i> </a> </div></td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+          </form>
         </div>
-        <!-- End box --> 
+        <!-- End .content -->
       </div>
-      <!-- End .row-fluid --> 
-      
+      <!-- End box -->
     </div>
-    <!-- End #container --> 
+    <!-- End .row-fluid -->
   </div>
+  <!-- End #container -->
+</div>
