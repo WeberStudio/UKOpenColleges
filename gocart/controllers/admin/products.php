@@ -505,6 +505,36 @@ class Products extends Admin_Controller {
 		$this->load->view($this->config->item('admin_folder').'/iframe/product_image_uploader', $data);
 	}
 	
+	function save_bulk_products()
+	{
+		$status = "";
+		$msg = "";
+		$filename = $_FILES['userfile']['name'];
+		$filename = time().preg_replace('/\s/', '_', $filename);
+		
+	   	$this->load->library('upload');
+		$this->load->library('getcsv');
+		$config['file_name'] = $filename; 
+		$config['upload_path'] = realpath(".").'/uploads/'; 
+		$config['allowed_types'] = 'csv';
+		$config['max_size']  = 1024 * 8;
+		//$config['encrypt_name'] = TRUE;
+		$this->upload->initialize($config); 
+		$retrive_img = $this->upload->do_upload();
+		if (!$retrive_img)
+		{
+			echo 'false';
+		}
+		else
+		{
+			$data = $this->upload->data();
+			$data = $this->getcsv->set_file_path(realpath(".").'/uploads/'.$filename)->get_array();
+			echo '<pre>';print_r($data);
+		
+			//echo  'good';
+		}       
+	}
+	
 	function delete($id = false)
 	{
 		if ($id)
