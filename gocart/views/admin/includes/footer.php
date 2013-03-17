@@ -43,7 +43,7 @@
 <!-- Le javascript
     ================================================== --> 
 <!-- General scripts --> 
-<script src="<?=base_url().ASSETS_PATH?>js/jquery.js" type="text/javascript"> </script> 
+
 <script src="<?=base_url().ASSETS_PATH?>js/plugins/enquire.min.js" type="text/javascript"></script> 
 <script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/jquery.sparkline.min.js"></script> 
 <script src="<?=base_url().ASSETS_PATH?>js/plugins/excanvas.compiled.js" type="text/javascript"></script> 

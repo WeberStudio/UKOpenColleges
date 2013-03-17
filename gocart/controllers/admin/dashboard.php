@@ -15,7 +15,7 @@ class Dashboard extends Admin_Controller {
 		$this->load->model('Customer_model');
 		$this->load->helper('date');		
 		$this->lang->load('dashboard');
-		$this->load->library('load_assets');
+		
 	}
 	
 	function index()
@@ -31,7 +31,7 @@ class Dashboard extends Admin_Controller {
 
 		// get 5 latest customers
 		//$data['customers'] = $this->Customer_model->get_customers(5);
-		$this->load_assets->get_assets();
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
 		$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/dashboard', $data);
 		$this->load->view($this->config->item('admin_folder').'/includes/footer');		
