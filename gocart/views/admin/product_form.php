@@ -19,9 +19,9 @@
     <!-- End top-right -->
   </div>
     <div id="main_container">
+     <form class="form-horizontal" action="#">
       <div class="row-fluid">
-      
-      <div class="span8">
+        <div class="span8">
           <div class="box paint color_3">
             <div class="title">
               <div class="row-fluid">
@@ -38,36 +38,116 @@
                 <li><a href="#images" data-toggle="tab">Images</a></li>
               </ul>
               <div class="tab-content">
+                <!--TAB ONE START-->
                 <div class="tab-pane fade in active" id="details">
-                  <p>As an interesting side note, as a head without a body, I envy the dead. There's one way and only one way to determine if an animal is intelligent. Dissect its brain! Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor.</p>
+                  <div class="content">
+                    <div class="form-row control-group row-fluid">
+                      <div class="controls span14">
+                        <input type="text" id="normal-field" name="name" class="row-fluid" placeholder="Product Name">
+                      </div>
+                    </div>
+                    <div class="form-row control-group row-fluid">
+                      <div class="controls span14">
+                        <textarea name="description" cols="40" rows="10" class="row-fluid autogrow" id="elastic-textarea"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-row control-group row-fluid">
+                      <div class="controls span14">
+                        <textarea name="excerpt" cols="40" rows="5" class="row-fluid autogrow" id="elastic-textarea" placeholder="Add Excerpt Here...."></textarea>
+                      </div>
+                    </div>
+                    <h1>SEO Information</h1>
+                    <div class="form-row control-group row-fluid">
+                      <div class="controls span14">
+                        <label for="slug">URL Keyword </label>
+                        <input type="text" name="slug" value="" class="span8">
+                        <label for="seo_title">Title Tag </label>
+                        <input type="text" name="seo_title" value="" class="span8">
+                        <label for="meta">Meta Tags <i>ex. &lt;meta name="description" content="We sell products that help you" /&gt;</i></label>
+                        <textarea name="meta" cols="40" rows="10"  cols="40" rows="10" class="row-fluid autogrow" id="elastic-textarea">
+                        </textarea>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <!-- TAB ONE END-->
+                <!-- TAB TWO START-->
                 <div class="tab-pane fade" id="categories">
-                  <p>All I want is to be a monkey of moderate intelligence who wears a suit… that's why I'm transferring to business school! I had more, but you go ahead. Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. File not found.</p>
+                  <div class="content">
+                    <div class="form-row control-group row-fluid">
+                      <label class="control-label span3" for="inputEmail"><span class="help-block"></span></label>
+                      <div class="controls span14">
+                        <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" name="category_list" multiple="" tabindex="5">
+                          <option value="United States">United States</option>
+                          <option value="United Kingdom">United Kingdom</option>
+                          <option value="Afghanistan">Afghanistan</option>
+                          <option value="Albania">Albania</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <!-- TAB TWO END-->
+                <!-- TAB THREE START-->
                 <div class="tab-pane fade" id="options">
-                  <p>All I want is to be a monkey of moderate intelligence who wears a suit… that's why I'm transferring to business school! I had more, but you go ahead. Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. File not found.</p>
+                  <div class="content">
+                    <div class="form-row control-group row-fluid">
+                      <div class="controls span14">
+                        <select data-placeholder="Choose Multiple Related Courses" class="chzn-select" name="product_list" multiple="" tabindex="5">
+                          <option value="United States">United States</option>
+                          <option value="United Kingdom">United Kingdom</option>
+                          <option value="Afghanistan">Afghanistan</option>
+                          <option value="Albania">Albania</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <!-- TAB THREE END-->
+                <!-- TAB FOUR START-->
                 <div class="tab-pane fade" id="related-products">
-                  <p>All I want is to be a monkey of moderate intelligence who wears a suit… that's why I'm transferring to business school! I had more, but you go ahead. Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. File not found.</p>
-                </div>                
-                <div class="tab-pane fade" id="images">
-                  <p>All I want is to be a monkey of moderate intelligence who wears a suit… that's why I'm transferring to business school! I had more, but you go ahead. Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. File not found.</p>
+                  <div class="content">
+                    <div class="form-row control-group row-fluid">
+                      <div class="controls span14">
+                        <select data-placeholder="Choose Multiple Related Courses" class="chzn-select" name="product_list" multiple="" tabindex="5">
+                          <option value="United States">United States</option>
+                          <option value="United Kingdom">United Kingdom</option>
+                          <option value="Afghanistan">Afghanistan</option>
+                          <option value="Albania">Albania</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                
+                <!-- TAB FOUR END-->
+                <!-- TAB FIVE START-->
+                <div class="tab-pane fade" id="images">
+                  <div class="content">
+                    <form action="http://localhost/ukopen/admin/products/product_image_upload" class="form-horizontal row-fluid" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                      <div class="form-row control-group row-fluid">
+                        <label class="control-label span3" for="search-input">File upload</label>
+                        <div class="controls span7">
+                          <div class="input-append row-fluid">
+                            <input type="file" class="spa1n6 fileinput" name="userfile" value="" id="search-input">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- TAB FIVE END-->
               </div>
             </div>
-            <!-- End .content --> 
+            <!-- End .content -->
           </div>
-          <!-- End  .box --> 
+          <!-- End  .box -->
         </div>
-        <div class="span4">
-          
+        <div class="span3">
           <div class="box paint color_2">
             <div class="title">
               <h4><span>Options</span> </h4>
             </div>
-            <div class="content ">
-              <form class="form-horizontal" action="#">
+            <div class="content ">             
                 <div class="form-row control-group row-fluid">
                   <div class="controls span12">
                     <select  class="chzn-select" id="default-select">
@@ -80,30 +160,14 @@
                 </div>
                 <div class="form-row control-group row-fluid">
                   <div class="controls span12">
-                    <select  class="chzn-select">
-                      <option value="Afghanistan">Afghanistan</option>
-                      <option value="Albania">Albania</option>
-                      <option value="Algeria">Algeria</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-row control-group row-fluid">
-                  <div class="controls span12">
                     <input class="span12" type="text" placeholder="Price">
                   </div>
                 </div>
-                
-              </form>
             </div>
           </div>
-         
         </div>
-        
       </div>
+      </form>
     </div>
     <!-- End #container --> 
   </div>
-  <div id="footer">
-    <p> &copy; Start - Admin Template 2012 </p>
-    <span class="company_logo"><a href="../../../www.pixelgrade.com/default.htm"></a></span> </div>
-</div>

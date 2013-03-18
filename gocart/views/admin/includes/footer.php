@@ -1,6 +1,6 @@
 <!--  Footer Div Start   ---> 
  <div id="footer">
-    <p> &copy; Start - Admin Template 2012 </p>
+    <p>&copy; Uk Open-College Admin Template 2013 </p>
     <span class="company_logo"><a href="#">Logo</a></span> 
   </div>
 <!--  Footer Div End   --->  
@@ -312,6 +312,40 @@ function TaskListViewModel() {
     // End Fundraiser chart
 });
 
+
+
+
+</script>
+<script type="text/javascript">
+  /**** Specific JS for this page ****/
+ $(document).ready(function () {
+       
+        $('textarea.autogrow').autogrow();
+        var elem = $("#chars");
+        $("#text").limiter(100, elem);
+        // Mask plugin http://digitalbush.com/projects/masked-input-plugin/
+        $("#mask-phone").mask("(999) 999-9999");
+        $("#mask-date").mask("99-99-9999");
+        $("#mask-int-phone").mask("+33 999 999 999");
+        $("#mask-tax-id").mask("99-9999999");
+        $("#mask-percent").mask("99%");
+        // Editor plugin https://github.com/jhollingworth/bootstrap-wysihtml5/
+        $('#editor1').wysihtml5({
+          "image": false,
+          "link": false
+          });
+        // Chosen select plugin
+        $(".chzn-select").chosen({
+          disable_search_threshold: 10
+        });
+        // Datepicker
+        $('#datepicker1').datepicker({
+          format: 'mm-dd-yyyy'
+        });
+        $('#datepicker2').datepicker();
+        $('.colorpicker').colorpicker()
+        $('#colorpicker3').colorpicker();
+    });
 
 
 
