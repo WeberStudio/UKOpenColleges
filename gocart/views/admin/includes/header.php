@@ -31,10 +31,10 @@
 $(document).ready(function(){
 	
 	
-	$('.redactor').redactor({
+	/*$('.redactor').redactor({
 		focus: true,
 		plugins: ['fileBrowser']
-	});
+	});    */
 });
 </script>
 <?php endif;?>
