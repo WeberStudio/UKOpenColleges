@@ -331,7 +331,7 @@ class Products extends Admin_Controller {
 			$this->load->view($this->config->item('admin_folder').'/includes/header');
 			$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 			$this->load->view($this->config->item('admin_folder').'/product_form', $data);
-			$this->load->view($this->config->item('admin_folder').'/includes/footer');
+			$this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 			
 			
 		}
