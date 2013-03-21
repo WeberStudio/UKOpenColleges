@@ -93,7 +93,7 @@ class Products extends Admin_Controller {
 		$this->load->view($this->config->item('admin_folder').'/includes/header');
 		$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/products', $data);
-		$this->load->view($this->config->item('admin_folder').'/includes/footer');
+		$this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 	
 	//basic category search
@@ -185,7 +185,11 @@ class Products extends Admin_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		//$data['categories']		= $this->Category_model->get_categories_tierd();
 		//$data['product_list']	= $this->Product_model->get_products();
-		$data['file_list']		= $this->Digital_Product_model->get_list();
+		
+		$data['all_categories']		= $this->Category_model->get_all_categories();
+		$data['all_products']		= $this->Product_model->get_all_products_array();
+		//echo "<pre>";print_r($data['all_products']);exit;
+		//$data['file_list']		= $this->Digital_Product_model->get_list();
 
 		$data['page_title']		= lang('product_form');
 
@@ -230,6 +234,7 @@ class Products extends Admin_Controller {
 			// get product & options data
 			
 			$data['product_options']	= $this->Option_model->get_product_options($id);
+			
 			$product					= $this->Product_model->get_product($id);
 			
 			//if the product does not exist, redirect them to the product list with an error

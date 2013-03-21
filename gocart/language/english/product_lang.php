@@ -7,6 +7,8 @@ Admin Product Language
 $lang['products']					= 'Products';
 $lang['search_term']				= 'Search Term';
 $lang['product_form']				= 'Product Form';
+
+$lang['related_courses']			= 'Related Courses';
 $lang['sku']						= 'SKU';
 $lang['value']						= 'Value';
 $lang['limit']						= 'Limit';
@@ -71,6 +73,8 @@ $lang['add_item']					= 'Add Option Item';
 $lang['select_a_product']			= 'Search for a related product.';
 $lang['add_related_product']		= 'Add Related Product';
 $lang['product_name']				= 'Product Name';
+$lang['course_registration_form']	= 'Info Form';
+
 
 //product images
 $lang['primary']					= 'Main Image';

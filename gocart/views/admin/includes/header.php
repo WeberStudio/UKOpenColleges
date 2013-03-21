@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html class="sidebar_hover  no-js" lang="en">
+<html class="sidebar_hover  no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Admin Open College</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -19,25 +19,12 @@
 <link href="<?=base_url()?>assets/opencollege/admin/css/base.css" rel="stylesheet">
 <link href="<?=base_url()?>assets/opencollege/admin/css/twitter/responsive.css" rel="stylesheet">
 <link href="<?=base_url()?>assets/opencollege/admin/css/jquery-ui-1.8.23.custom.css" rel="stylesheet">
-<link type="text/css" href="<?php echo base_url('assets/css/redactor.css');?>" rel="stylesheet" />
-<link type="text/css" href="<?php echo base_url('assets/css/file-browser.css');?>" rel="stylesheet" />
+<link type="text/css" href="<?=base_url().ASSETS_PATH?>css/redactor.css" rel="stylesheet" />
+<link type="text/css" href="<?=base_url().ASSETS_PATH?>css/file-browser.css" rel="stylesheet" />
 <script src="<?=base_url().ASSETS_PATH?>js/jquery.js" type="text/javascript"> </script> 
 <script src="<?=base_url()?>assets/opencollege/admin/js/plugins/modernizr.custom.32549.js"></script>   
-<script type="text/javascript" src="<?php echo base_url('assets/js/redactor.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/file-browser.js');?>"></script>
-<?php if($this->auth->is_logged_in(false, false)):?>
 
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	
-	/*$('.redactor').redactor({
-		focus: true,
-		plugins: ['fileBrowser']
-	});    */
-});
-</script>
-<?php endif;?>
+
 </head>
 <body>
     <div id="loading">

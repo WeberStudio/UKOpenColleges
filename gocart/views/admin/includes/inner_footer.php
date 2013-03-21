@@ -83,6 +83,8 @@
 <script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/bootstrap-colorpicker.js"></script>
 <!-- Custom made scripts for this template -->
 <script src="<?=base_url().ASSETS_PATH?>js/scripts.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/redactor.min.js"></script>
+<script type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/file-browser.js"></script>
 <script type="text/javascript">
   /**** Specific JS for this page ****/
  $(document).ready(function () {
@@ -112,6 +114,11 @@
         $('#datepicker2').datepicker();
         $('.colorpicker').colorpicker()
         $('#colorpicker3').colorpicker();
+		$('.redactor').redactor({
+		focus: true,
+		plugins: ['fileBrowser']
+		
+	});    
     });
 
 

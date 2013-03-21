@@ -85,10 +85,26 @@ Class Product_model extends CI_Model
 		}
 	}
 	
+	function get_all_products_array()
+	{
+		//sort by alphabetically by default
+		$this->db->order_by('name', 'ASC');
+		$this->db->where('enabled', '1');
+		$result	= $this->db->get('products');
+		$return = $result->result_array();
+		if(count($return))
+		{
+			return $return;
+		}
+		return false;
+	}
+	
+	
 	function get_all_products()
 	{
 		//sort by alphabetically by default
 		$this->db->order_by('name', 'ASC');
+		$this->db->where('enabled', '1');
 		$result	= $this->db->get('products');
 		//apply group discount
 		$return = $result->result();
