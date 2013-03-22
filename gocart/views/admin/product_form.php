@@ -23,7 +23,7 @@ $GLOBALS['option_value_count']		= 0;
     <!-- End top-right -->
   </div>
     <div id="main_container">
-     <form class="form-horizontal" action="<?=$this->config->item('admin_folder').'/products/form/'.$id?>" method="post">
+     <form class="form-horizontal" action="<?=base_url().$this->config->item('admin_folder').'/products/form/'.$id?>" method="post">
       <div class="row-fluid">
         <div class="span12">
           <div class="box paint color_3">
@@ -84,10 +84,10 @@ $GLOBALS['option_value_count']		= 0;
                     <div class="row-fluid">
                       <div class="pull-left">
                         <label class="radio off">
-                          <input type="radio" name="toggle" id="toggle1-off" value="off" checked="">
+                          <input type="radio" name="enabled" id="toggle1-off" value="off" >
                         </label>
                         <label class="radio on">
-                          <input type="radio" name="toggle" id="toggle1-on" value="on">
+                          <input type="radio" name="enabled" id="toggle1-on" value="on" checked="true">
                         </label>
                         <div class="toggle">
                           <div class="yes"> ON </div>
@@ -107,7 +107,7 @@ $GLOBALS['option_value_count']		= 0;
                     <div class="form-row control-group row-fluid">
                       <label class="control-label span3" for="inputEmail"><span class="help-block"></span></label>
                       <div class="controls span14">
-                        <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" name="category_list" multiple="" tabindex="5">
+                        <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" name="categories[]" multiple="true" tabindex="5">
                         <? if(isset($all_categories)){  ?>
                         <?php  foreach ($all_categories as $file):?>
                           	<option value="<?=$file['id']?>"><?=$file['name']?></option>
@@ -165,7 +165,7 @@ $GLOBALS['option_value_count']		= 0;
                   <div class="content">
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
-                        <select data-placeholder="Choose Multiple Related Courses" class="chzn-select" name="product_list" multiple="" tabindex="5">
+                        <select data-placeholder="Choose Multiple Related Courses" class="chzn-select" name="related_products[]" multiple="" tabindex="5">
 							<? if(isset($all_products)){  ?>
 							<?php  foreach ($all_products as $file):?>
                                 	<option value="<?=$file['id']?>"><?=$file['name']?></option>
@@ -180,7 +180,6 @@ $GLOBALS['option_value_count']		= 0;
                 <!-- TAB FIVE START-->
                 <div class="tab-pane fade" id="images">
                   <div class="content">
-                    <form action="http://localhost/ukopen/admin/products/product_image_upload" class="form-horizontal row-fluid" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                       <div class="form-row control-group row-fluid">
                         <label class="control-label span3" for="search-input">File upload</label>
                         <div class="controls span7">
@@ -189,7 +188,6 @@ $GLOBALS['option_value_count']		= 0;
                           </div>
                         </div>
                       </div>
-                    </form>
                   </div>
                 </div>
                 <!-- TAB FIVE END-->

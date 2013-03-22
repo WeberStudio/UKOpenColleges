@@ -179,6 +179,7 @@ class Products extends Admin_Controller {
 	function form($id = false, $duplicate = false)
 	{
 		$this->product_id	= $id;
+		//$this->show->pe($_POST);
 		$this->load->library('form_validation');
 		$this->load->model(array('Option_model', 'Category_model', 'Digital_Product_model'));
 		$this->lang->load('digital_product');
@@ -387,7 +388,15 @@ class Products extends Admin_Controller {
 			$save['quantity']			= $this->input->post('quantity');
 			$save['shippable']			= $this->input->post('shippable');
 			$save['taxable']			= $this->input->post('taxable');
-			$save['enabled']			= $this->input->post('enabled');
+			if($this->input->post('images')=='on')
+			{
+				$save['enabled']			= '1';
+			}
+			else
+			{
+				$save['enabled']			= '0';
+			}
+			
 			$post_images				= $this->input->post('images');
 			
 			$save['slug']				= $slug;
