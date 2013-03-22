@@ -2,6 +2,25 @@
 Class Category_model extends CI_Model
 {
 
+	
+	function get_all_categories()
+	{
+		
+		$this->db->select('*');
+		$this->db->order_by('name', 'ASC');
+		$this->db->where('status', '1');
+		$this->db->where('delete', '0');
+		$result	= $this->db->get('categories');
+		if(count($result)>0)
+		{
+			return $result->result_array();
+		}
+		else
+		{
+			return false;
+		}	
+	}
+	
 	function get_categories($parent = false)
 	{
 		if ($parent !== false)

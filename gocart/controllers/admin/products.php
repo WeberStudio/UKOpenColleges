@@ -8,24 +8,24 @@ class Products extends Admin_Controller {
 		parent::__construct();
 		remove_ssl();
 
-		$this->auth->check_access('Admin', true);
-		
+		$this->auth->check_access('Admin', true);		
 		$this->load->model('Product_model');
+		$this->load->model('Routes_model');
 		$this->load->helper('form');
 		$this->lang->load('product');
-		$this->load->library('load_assets');
+		
+		/*** Get User Info***/
 		//$admin_info = $this->admin_session->userdata('admin');
 		$user_info = $this->auth->admin_info();
 		$this->admin_id = $user_info['id'];
 		$this->admin_email = $user_info['email'];
 		$this->admin_access = $user_info['access'];
-		//print_r($admin_info);
+		/*** Get User Info***/
 	}
 
 	function index($order_by="name", $sort_order="ASC", $code=0, $page=0, $rows=15)
 	{
 		
-		$this->load_assets->get_assets();
 		$data['page_title']	= lang('products');
 		
 		$data['code']		= $code;
@@ -89,11 +89,11 @@ class Products extends Admin_Controller {
 		$config['next_tag_close']	= '</li>';
 		
 		$this->pagination->initialize($config);
+		
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
 		$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/products', $data);
-		$this->load->view($this->config->item('admin_folder').'/includes/footer');
-		
-		//$this->load->view($this->config->item('admin_folder').'/products', $data);
+		$this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 	
 	//basic category search
@@ -123,7 +123,42 @@ class Products extends Admin_Controller {
 	
 	function bulk_save()
 	{
+		
+		//echo"<pre>";print_r($_REQUEST);exit;
 		$products	= $this->input->post('product');
+		$remove_products	= $this->input->post('remove_products');
+		$courses = $this->input->post('courses');
+		
+		if($remove_products)
+		{
+			if(isset($courses) && count($courses)>0)
+			{
+				
+				//if the product does not exist, redirect them to the customer list with an error
+				foreach($courses as $course)
+				{
+				
+					$product	= $this->Product_model->get_product($course);
+					//echo "<pre>";print_r($product);exit;
+					if ($product)
+					{
+		
+						// remove the slug
+						$this->Routes_model->remove('('.$product->slug.')');
+		
+						//if the product is legit, delete them
+						$this->Product_model->delete_product($course);
+		
+					}
+				}
+				redirect($this->config->item('admin_folder').'/products');
+			}
+			else
+			{
+				$this->session->set_flashdata('remove_product_err',  'Please select atleast one product to remove.');
+				redirect($this->config->item('admin_folder').'/products');
+			}
+		}
 		
 		if(!$products)
 		{
@@ -144,13 +179,18 @@ class Products extends Admin_Controller {
 	function form($id = false, $duplicate = false)
 	{
 		$this->product_id	= $id;
+		//$this->show->pe($_POST);
 		$this->load->library('form_validation');
 		$this->load->model(array('Option_model', 'Category_model', 'Digital_Product_model'));
 		$this->lang->load('digital_product');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		//$data['categories']		= $this->Category_model->get_categories_tierd();
 		//$data['product_list']	= $this->Product_model->get_products();
-		$data['file_list']		= $this->Digital_Product_model->get_list();
+		
+		$data['all_categories']		= $this->Category_model->get_all_categories();
+		$data['all_products']		= $this->Product_model->get_all_products_array();
+		//echo "<pre>";print_r($data['all_products']);exit;
+		//$data['file_list']		= $this->Digital_Product_model->get_list();
 
 		$data['page_title']		= lang('product_form');
 
@@ -195,6 +235,7 @@ class Products extends Admin_Controller {
 			// get product & options data
 			
 			$data['product_options']	= $this->Option_model->get_product_options($id);
+			
 			$product					= $this->Product_model->get_product($id);
 			
 			//if the product does not exist, redirect them to the product list with an error
@@ -293,7 +334,11 @@ class Products extends Admin_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 			
+			$this->load->view($this->config->item('admin_folder').'/includes/header');
+			$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 			$this->load->view($this->config->item('admin_folder').'/product_form', $data);
+			$this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+			
 			
 		}
 		else
@@ -312,7 +357,7 @@ class Products extends Admin_Controller {
 			$slug	= url_title(convert_accented_characters($slug), 'dash', TRUE);
 			
 			//validate the slug
-			$this->load->model('Routes_model');
+			
 
 			if($id)
 			{
@@ -343,7 +388,15 @@ class Products extends Admin_Controller {
 			$save['quantity']			= $this->input->post('quantity');
 			$save['shippable']			= $this->input->post('shippable');
 			$save['taxable']			= $this->input->post('taxable');
-			$save['enabled']			= $this->input->post('enabled');
+			if($this->input->post('images')=='on')
+			{
+				$save['enabled']			= '1';
+			}
+			else
+			{
+				$save['enabled']			= '0';
+			}
+			
 			$post_images				= $this->input->post('images');
 			
 			$save['slug']				= $slug;
@@ -575,7 +628,6 @@ class Products extends Admin_Controller {
 						{
 							$this->save_bulk_products_each($data[$i]);
 						}					
-											
 					}
 					if(!empty($array_missing_field))
 					{
@@ -639,7 +691,7 @@ class Products extends Admin_Controller {
 			$slug	= url_title(convert_accented_characters($slug), 'dash', TRUE);
 			
 			//validate the slug
-			$this->load->model('Routes_model');
+			
 
 			$slug	= $this->Routes_model->validate_slug($slug);
 			$route['slug']	= $slug;	
@@ -670,9 +722,8 @@ class Products extends Admin_Controller {
 				$categories	= array();
 			}
 			
-			
 			// save product 
-			$product_id	= $this->Product_model->save_uploaded_bulk_courses($save, $categories);
+			$product_id	= $this->Product_model->save_uploaded_bulk_courses($save,'', $categories);
 			
 			//save the route
 			$route['id']	= $route_id;
@@ -699,7 +750,7 @@ class Products extends Admin_Controller {
 			{
 
 				// remove the slug
-				$this->load->model('Routes_model');
+				
 				$this->Routes_model->remove('('.$product->slug.')');
 
 				//if the product is legit, delete them

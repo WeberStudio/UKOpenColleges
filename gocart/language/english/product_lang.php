@@ -7,6 +7,8 @@ Admin Product Language
 $lang['products']					= 'Products';
 $lang['search_term']				= 'Search Term';
 $lang['product_form']				= 'Product Form';
+
+$lang['related_courses']			= 'Related Courses';
 $lang['sku']						= 'SKU';
 $lang['value']						= 'Value';
 $lang['limit']						= 'Limit';
@@ -31,6 +33,7 @@ $lang['related_products']			= 'Related Products';
 $lang['images']						= 'Images';
 $lang['meta_example']				= 'ex. &lt;meta name="description" content="We sell products that help you" /&gt;';
 $lang['bulk_save']					= 'Bulk Save';
+$lang['bulk_remove']				= 'Bulk Remove';
 $lang['add_new_product']			= 'Add New Product';
 $lang['no_products']				= 'There are currently no products.';
 $lang['track_stock']				= 'Track Stock';
@@ -70,6 +73,8 @@ $lang['add_item']					= 'Add Option Item';
 $lang['select_a_product']			= 'Search for a related product.';
 $lang['add_related_product']		= 'Add Related Product';
 $lang['product_name']				= 'Product Name';
+$lang['course_registration_form']	= 'Info Form';
+
 
 //product images
 $lang['primary']					= 'Main Image';

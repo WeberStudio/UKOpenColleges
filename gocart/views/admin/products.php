@@ -49,6 +49,32 @@ function areyousure()
 {
 	return confirm('<?php echo lang('confirm_delete_product');?>');
 }
+ 
+function selectGroup(childs)
+{
+	   var checkbox = document.getElementById('check_all_courses');
+	   if(childs!=0)
+	   {
+			if(checkbox.checked)
+			{
+				 for(i=1; i<=childs; i++)
+				 {
+					  //alert(document.getElementById("child_"+i).value);
+					 // document.getElementById("child_"+i).checked=true;
+					  $('.checker > span').addClass('checked');
+					  $("#child_"+i).attr('checked','checked');
+				 }
+			}
+			else
+			{
+				 for(i=1; i<=childs; i++)
+				 {
+					  $('.checker > span').removeClass('checked');
+					  $("#child_"+i).removeAttr('checked','checked');
+				 }
+			}
+  	   }
+}  
 </script>
 <style type="text/css">
 	.pagination {
@@ -172,15 +198,22 @@ function areyousure()
         <div class="span4"> <?php echo $this->pagination->create_links();?> &nbsp; </div>
         <!-- Paginatin End -->
         <div class="content top"> <?php echo form_open($this->config->item('admin_folder').'/products/bulk_save', array('id'=>'bulk_form'));?>
+        	<?php
+            	if($this->session->flashdata('remove_product_err'))
+				{
+					echo $this->session->flashdata('remove_product_err');
+				}			
+			?>
           <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
             <thead>
               <tr><span class="btn-group pull-right">
-                <button class="btn" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save');?></button>
+              	<button class="btn" href="#"><i class="icon-remove-sign"></i> <?php echo lang('bulk_remove');?></button>
+                <button  class="btn" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save');?></button>                
                 <a class="btn" style="font-weight:normal;"href="<?php echo site_url($this->config->item('admin_folder').'/products/form');?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_product');?></a> </span></tr>
               <tr>
-                <th class="jv no_sort"><label class="checkbox ">
-                  <input type="checkbox">
-                  </label></th>
+                <th class="jv no_sort">
+                	<label class="checkbox "><input type="checkbox" onclick="selectGroup(<?=count($products)?>)" id="check_all_courses" name="remove_products" value="remove_products"></label>
+                </th>
                 <?php /*?><th><?php echo sort_url('sku', 'sku', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th><?php */?>
                 <th><?php echo sort_url('name', 'name', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
                 <th><?php echo sort_url('price', 'price', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
@@ -191,11 +224,12 @@ function areyousure()
               </tr>
             </thead>
             <tbody>
-              <tr> <?php echo (count($products) < 1)?'<tr><td style="text-align:center;" colspan="7">'.lang('no_products').'</td></tr>':''?>
+              <tr><? $i = 0;?> <?php echo (count($products) < 1)?'<tr><td style="text-align:center;" colspan="7">'.lang('no_products').'</td></tr>':''?>
                 <?php foreach ($products as $product):?>
+                <? $i++;?>
               <tr>
                 <td><label class="checkbox ">
-                  <input type="checkbox">
+                  <input type="checkbox" id="child_<?=$i?>" name="courses[]"  value="<?=$product->id?>">
                   </label>
                 </td>
                 <?php /*?><td><?php echo form_input(array('name'=>'product['.$product->id.'][sku]','value'=>form_decode($product->sku), 'class'=>'span7'));?></td><?php */?>
@@ -212,7 +246,7 @@ function areyousure()
 						echo form_dropdown('product['.$product->id.'][enabled]', $options, set_value('enabled',$product->enabled), 'class="span12"');
 					?>
                 </td>
-                <td class="ms"><div class="btn-group1"> <a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id);?>"> <i class="gicon-edit"></i> </a> <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View"> <i class="gicon-eye-open"></i> </a> <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="<?php echo lang('copy');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id.'/1');?>"> <i class="gicon-copy"></i> </a> <a class="btn  btn-small" rel="tooltip" data-placement="bottom" data-original-title="<?php echo lang('delete');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/delete/'.$product->id);?>" onclick="return areyousure();"> <i class="gicon-remove "></i> </a> </div></td>
+                <td class="ms"><div class="btn-group1"> <a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id);?>"> <i class="gicon-edit"></i> </a> <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View"> <i class="gicon-eye-open"></i> </a> <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="<?php echo lang('copy');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id.'/1');?>"> <i class="gicon-file"></i> </a> <a class="btn  btn-small" rel="tooltip" data-placement="bottom" data-original-title="<?php echo lang('delete');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/delete/'.$product->id);?>" onclick="return areyousure();"> <i class="gicon-remove "></i> </a> </div></td>
               </tr>
               <?php endforeach; ?>
             </tbody>

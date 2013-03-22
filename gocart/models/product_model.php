@@ -85,10 +85,26 @@ Class Product_model extends CI_Model
 		}
 	}
 	
+	function get_all_products_array()
+	{
+		//sort by alphabetically by default
+		$this->db->order_by('name', 'ASC');
+		$this->db->where('enabled', '1');
+		$result	= $this->db->get('products');
+		$return = $result->result_array();
+		if(count($return))
+		{
+			return $return;
+		}
+		return false;
+	}
+	
+	
 	function get_all_products()
 	{
 		//sort by alphabetically by default
 		$this->db->order_by('name', 'ASC');
+		$this->db->where('enabled', '1');
 		$result	= $this->db->get('products');
 		//apply group discount
 		$return = $result->result();
@@ -311,18 +327,24 @@ Class Product_model extends CI_Model
 	function save_uploaded_bulk_courses($product, $options=false, $categories=false)
 	{
 		
+		//echo '-----'.$categories;
 		$this->db->insert('products', $product);
 		$id	= $this->db->insert_id();
-		
-		
 		if($categories !== false)
 		{
-			
+			if(is_array($categories))
+			{
 				//new product add them all
 				foreach($categories as $c)
 				{
 					$this->db->insert('category_products', array('product_id'=>$id,'category_id'=>$c));
 				}
+								
+			}
+			else
+			{
+				$this->db->insert('category_products', array('product_id'=>$id,'category_id'=>$categories));
+			}
 		}
 		
 		//return the product id

@@ -62,11 +62,13 @@
 		margin-top:0px;
 	}
 </style>
+
 <div class="navbar navbar-inverse">
 	<div class="navbar-inner">
 		<div class="container-fluid">
 			<ul class="nav">
 				<?php
+				
 				if(!empty($root))
 				{
 					echo '<li><a href="'.site_url(config_item('admin_folder').'/media').'"><i class="icon-home icon-white"></i> '.lang('goedit_root').'</a></li>';
