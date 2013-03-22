@@ -18,8 +18,8 @@
                     <li><a href="portfoliotile-small.html" title="Portfolio"><span>Tile - Small</span></a></li>
                     <li><a href="portfoliolist.html" title="Portfolio"><span>Portfolio List</span></a></li>
                     <li><a href="singleportfolio.html" title="Portfolio"><span>Single Item</span></a></li>
-                </ul>
-            </li>
+                </ul>  
+            </li>  
             <!-- Menu Item 3 -->
             <li><a href="#" title="Blog"><span>Blog</span></a>
                 <ul>
@@ -44,6 +44,4 @@
             <li><a href="contact.html" title="Contact"><span>Contact</span></a></li>
         </ul>
     </nav>
-    <!-- END NAVIGATION -->
-</header>
-<!-- END HEADER -->
+    <!-- END NAVIGATION --> 
