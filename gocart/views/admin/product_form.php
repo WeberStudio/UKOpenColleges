@@ -57,12 +57,12 @@ $GLOBALS['option_value_count']		= 0;
                     </div>
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
-                        <textarea name="description" cols="40" rows="15"  class="redactor" id="elastic-textarea"></textarea>
+                        <textarea name="description" cols="40" rows="15"  class="redactor" id="elastic-textarea"><?=set_value('description', $description)?></textarea>
                       </div>
                     </div>
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
-                        <textarea name="excerpt" cols="40" rows="5" class="row-fluid autogrow" id="elastic-textarea" placeholder="Add Excerpt Here...."></textarea>
+                        <textarea name="excerpt" cols="40" rows="5" class="row-fluid autogrow" id="elastic-textarea" placeholder="Add Excerpt Here...."><?=set_value('excerpt', $excerpt)?></textarea>
                       </div>
                     </div>
                     <h1>SEO Information</h1>
@@ -107,12 +107,32 @@ $GLOBALS['option_value_count']		= 0;
                     <div class="form-row control-group row-fluid">
                       <label class="control-label span3" for="inputEmail"><span class="help-block"></span></label>
                       <div class="controls span14">
+                      <? 
+					  	//$this->show->pe($product_categories);
+						//echo $product_categories[0]->category_id.'----------'.$product_categories[1]->category_id;
+					  ?>
                         <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" name="categories[]" multiple="true" tabindex="5">
                         <? if(isset($all_categories)){  ?>
-                        <?php  foreach ($all_categories as $file):?>
-                          	<option value="<?=$file['id']?>"><?=$file['name']?></option>
-                         <?php endforeach; ?>
-                         <? } ?>
+                        <?php  foreach ($all_categories as $file){
+						$flag = 0;
+								for($i = 0; $i<count($product_categories); $i++){
+									if(isset($product_categories[$i]->category_id) && $product_categories[$i]->category_id==$file['id']){ 
+									$flag = 1;
+						?>
+                          			<option selected="selected" value="<?=$file['id']?>"><?=$file['name']?></option>
+                            
+                         <?php //$i++;
+						 			break;
+									}
+									
+						  		}
+								if($flag==1)
+								{?>
+									<option  value="<?=$file['id']?>"><?=$file['name']?></option>
+							<?	}
+						 	}
+						} 
+						 ?>
                         </select>
                       </div>
                     </div>
@@ -123,8 +143,7 @@ $GLOBALS['option_value_count']		= 0;
                 <div class="tab-pane fade" id="options">
                   <div class="content">
                     <div class="form-row control-group row-fluid">
-                      <div class="controls span14">
-                      
+                       <div class="controls span10">
                        <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" id="option_options" >
 								<option value=""><?php echo lang('select_option_type')?></option>
 								<option value="checklist"><?php echo lang('checklist');?></option>
@@ -133,7 +152,10 @@ $GLOBALS['option_value_count']		= 0;
 								<option value="textfield"><?php echo lang('textfield');?></option>
 								<option value="textarea"><?php echo lang('textarea');?></option>                                
                         </select>
+                        </div>
+                        <div class="controls span2">
                         <input id="add_option" class="btn" type="button" value="<?php echo lang('add_option');?>" style="margin:0px;"/>
+                        </div>
                       </div>
                       <div class="row">
                             <div class="span8">
@@ -158,7 +180,6 @@ $GLOBALS['option_value_count']		= 0;
                         </div>                    
                     </div>
                   </div>
-                </div>
                 <!-- TAB THREE END-->
                 <!-- TAB FOUR START-->
                 <div class="tab-pane fade" id="related-products">
@@ -337,16 +358,16 @@ function add_option($po, $count)
 		<td>
 			<a class="handle btn btn-mini"><i class="icon-align-justify"></i></a>
 			<strong><a class="option_title" href="#option-form-<?php echo $count;?>"><?php echo $po->type;?> <?php echo (!empty($po->name))?' : '.$po->name:'';?></a></strong>
-			<button type="button" class="btn btn-mini btn-danger pull-right" onClick="remove_option(<?php echo $count ?>);"><i class="icon-trash icon-white"></i></button>
+			<button type="button" class="btn btn-mini btn-danger pull-right" onClick="remove_option(<?php echo $count ?>);"><i class="gicon-trash"></i></button>
 			<input type="hidden" name="option[<?php echo $count;?>][type]" value="<?php echo $po->type;?>" />
 			<div class="option-form" id="option-form-<?php echo $count;?>">
 				<div class="row-fluid">
 				
-					<div class="span10">
+					<div class="span5">
 						<input type="text" class="span10" placeholder="<?php echo lang('option_name');?>" name="option[<?php echo $count;?>][name]" value="<?php echo $po->name;?>"/>
 					</div>
 					
-					<div class="span2" style="text-align:right;">
+					<div class="span3" style="text-align:right;">
 						<input class="checkbox" type="checkbox" name="option[<?php echo $count;?>][required]" value="1" <?php echo ($po->required)?'checked="checked"':'';?>/> <?php echo lang('required');?>
 					</div>
 				</div>
@@ -363,10 +384,8 @@ function add_option($po, $count)
 						<?php if($po->type!='textarea' && $po->type!='textfield'):?>
 						<div class="span1">&nbsp;</div>
 						<?php endif;?>
-						<div class="span3"><strong>&nbsp;&nbsp;<?php echo lang('name');?></strong></div>
-						<div class="span2"><strong>&nbsp;<?php echo lang('value');?></strong></div>
-						<div class="span2"><strong>&nbsp;<?php echo lang('weight');?></strong></div>
-						<div class="span2"><strong>&nbsp;<?php echo lang('price');?></strong></div>
+						<div class="span5"><strong>&nbsp;&nbsp;<?php echo lang('name');?></strong></div>
+						<div class="span4"><strong>&nbsp;<?php echo lang('value');?></strong></div>
 						<div class="span2"><strong>&nbsp;<?php echo ($po->type=='textfield')?lang('limit'):'';?></strong></div>
 					</div>
 					<div class="option-items" id="option-items-<?php echo $count;?>">
@@ -400,14 +419,12 @@ function add_option_value($po, $count, $valcount, $value)
 	<div class="option-values-form">
 		<div class="row-fluid">
 			<?php if($po->type!='textarea' && $po->type!='textfield'):?><div class="span1"><a class="handle btn btn-mini" style="float:left;"><i class="icon-align-justify"></i></a></div><?php endif;?>
-			<div class="span3"><input type="text" class="span12" name="option[<?php echo $count;?>][values][<?php echo $valcount ?>][name]" value="<?php echo $value->name ?>" /></div>
-			<div class="span2"><input type="text" class="span12" name="option[<?php echo $count;?>][values][<?php echo $valcount ?>][value]" value="<?php echo $value->value ?>" /></div>
-			<div class="span2"><input type="text" class="span12" name="option[<?php echo $count;?>][values][<?php echo $valcount ?>][weight]" value="<?php echo $value->weight ?>" /></div>
-			<div class="span2"><input type="text" class="span12" name="option[<?php echo $count;?>][values][<?php echo $valcount ?>][price]" value="<?php echo $value->price ?>" /></div>
+			<div class="span5"><input type="text" class="span12" name="option[<?php echo $count;?>][values][<?php echo $valcount ?>][name]" value="<?php echo $value->name ?>" /></div>
+			<div class="span3"><input type="text" class="span12" name="option[<?php echo $count;?>][values][<?php echo $valcount ?>][value]" value="<?php echo $value->value ?>" /></div>
 			<div class="span2">
 			<?php if($po->type=='textfield'):?><input class="span12" type="text" name="option[<?php echo $count;?>][values][<?php echo $valcount ?>][limit]" value="<?php echo $value->limit ?>" />
 			<?php elseif($po->type!='textarea' && $po->type!='textfield'):?>
-				<a class="delete-option-value btn btn-danger btn-mini pull-right"><i class="icon-trash icon-white"></i></a>
+				<a class="delete-option-value btn btn-danger btn-mini pull-right"><i class="gicon-trash"></i></a>
 			<?php endif;?>
 			</div>
 		</div>
