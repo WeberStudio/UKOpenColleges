@@ -29,12 +29,12 @@
   <?php if (!empty($error)): ?>
   <div class="alert alert-error"> <a class="close" data-dismiss="alert">×</a> <?php echo $error; ?> </div>
   <?php endif; ?>
-
+  <div id="main_container">
   <div class="row-fluid fluid">
     <div class="span5"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george2.jpg"/></div>
     <div class="span7">
       <div class="title"><span class="name">Login</span><span class="subtitle"></span></div>
-      <?php echo form_open($this->config->item('admin_folder').'/login') ?>
+      <?php echo form_open($this->config->item('admin_folder').'/login',array('class' => 'form-search')) ;?>
       <div class="input-append row-fluid"> <?php echo form_input(array('name'=>'email', 'class'=>'row-fluid search-query', 'placeholder'=>lang('email'))); ?> </div>
       <div>
         <div class="input-append row-fluid"> <?php echo form_password(array('name'=>'password', 'class'=>'row-fluid search-query', 'placeholder'=>lang('password'))); ?>
@@ -59,4 +59,4 @@
   </div>
   <!-- End #login -->
   <!-- <img src="img/ajax-loader.gif"> -->
-</div>
+</div>   </div>

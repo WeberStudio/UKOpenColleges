@@ -1,4 +1,3 @@
-<?php //include('header.php'); ?>
 <script type="text/javascript">
 function areyousure()
 {
@@ -7,7 +6,8 @@ function areyousure()
 </script>
 
 <div style="text-align:right;">
-	<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/admin/form'); ?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_admin');?></a>
+	<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/admin/form'); ?>" >
+    <i class="icon-plus-sign"></i> <?php echo lang('add_new_admin');?></a>
 </div>
 
 <table class="table table-striped">
