@@ -9787,7 +9787,7 @@ color:#333
 #login a:hover {
 	text-decoration:none
 }
-#login form a {
+/*#login form a {
 	background:url(../img/login_arrow.png) 5px 4px no-repeat;
 	text-indent:-9999px;
 	padding:9px;
@@ -9798,7 +9798,7 @@ color:#333
 	right:2px;
 	top:2px;
 	z-index:99
-}
+}*/
 
 #login form #submit_btn{
 background: url(../img/login_arrow.png) 5px 4px no-repeat;
