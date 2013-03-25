@@ -50,7 +50,7 @@
           <input type="hidden" value="submitted" name="submitted"/>
           <b></b> </div>
         <div>
-          <button type="submit" class="btn"><a class="btn btn-primary" href="<?=$this->config->item('admin_folder').'/admin_signup';?>">Sign Up</a></button>
+          <a class="btn btn-secondary"   href="<?=base_url().$this->config->item('admin_folder').'/admin_signup';?>">Sign Up</a>
           <button type="button" class="btn btn-secondary">Forget Password</button>
         </div>
         </form>
