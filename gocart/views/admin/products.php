@@ -1,5 +1,17 @@
 <?php
+function list_categories($cats, $product_categories, $sub='') {
 
+	foreach ($cats as $cat):?>
+        <option value="<?php echo $cat['category']->id;?>"><?php echo  $sub.$cat['category']->name; ?></option>
+        <?php
+			if (sizeof($cat['children']) > 0)
+			{
+				$sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
+				$sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
+				list_categories($cat['children'], $product_categories, $sub2);
+			}
+			endforeach;
+}
 //set "code" for searches
 if(!$code)
 {
@@ -94,7 +106,7 @@ function selectGroup(childs)
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <li><a href="profile.html"><i class=" icon-user"></i> My Profile</a></li>
             <li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>
-            <li><a href="index2.html"><i class=" icon-unlock"></i>Log Out</a></li>
+            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/login/logout');?>"><i class=" icon-unlock"></i><?php echo lang('common_log_out') ?></a></li>
             <li><a href="search.html"><i class=" icon-flag"></i>Help</a></li>
           </ul>
         </li>
@@ -102,45 +114,36 @@ function selectGroup(childs)
     </div>
     <!-- End top-right -->
   </div>
+  <!--=======Search Panel Start=======-->
   <div class="box paint color_18">
     <div class="title">
       <h4> <i class="icon-book"></i><span>Search Courses</span> </h4>
     </div>
     <div class="content"> <?php echo form_open($this->config->item('admin_folder').'/products/index', 'class="form-horizontal row-fluid" ');?>
       <div class="form-row control-group row-fluid">
-        <div class="controls span4">
+        <div class="controls span5">
           <input type="text" id="with-tooltip" rel="tooltip" data-placement="top" name="term" data-original-title="Search By Course Name, Sku, Keyword" placeholder="<?php echo lang('search_term');?>" class="row-fluid">
         </div>
+        <div class="controls span5">
         <?php
-						
-						function list_categories($cats, $product_categories, $sub='') {
-
-							foreach ($cats as $cat):?>
-        <option value="<?php echo $cat['category']->id;?>"><?php echo  $sub.$cat['category']->name; ?></option>
-        <?php
-							if (sizeof($cat['children']) > 0)
-							{
-								$sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
-								$sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
-								list_categories($cat['children'], $product_categories, $sub2);
-							}
-							endforeach;
-						}
-						
-						if(!empty($categories))
-						{
-							echo '<select name="category_id"   data-placeholder="Filter By Category..." class="chzn-select" id="default-select">';
-							echo '<option value="">'.lang('filter_by_category').'</option>';
-							list_categories($categories);
-							echo '</select>';
-							
-						}
-					?>
-        <button class="btn btn-inverse " rel="tooltip" data-placement="top" data-original-title="Search" name="submit" value="search"><?php echo lang('search')?></button>
-        <a class="btn btn-inverse " rel="tooltip" data-placement="top" data-original-title="Reset" href="<?php echo site_url($this->config->item('admin_folder').'/products/index');?>">Reset</a> </div>
+				if(!empty($categories))
+				{
+					echo '<select name="category_id"   data-placeholder="Filter By Category..." class="chzn-select" id="default-select">';
+					echo '<option value="">'.lang('filter_by_category').'</option>';
+					list_categories($categories);
+					echo '</select>';
+					
+				}
+		?>
+        </div>
+        <div class="controls span2">
+            <button class="btn" rel="tooltip" data-placement="top" data-original-title="Search" name="submit" value="search"><?php echo lang('search')?></button>
+            <a class="btn" rel="tooltip" data-placement="top" data-original-title="Reset" href="<?php echo site_url($this->config->item('admin_folder').'/products/index');?>">Reset</a> 
+        </div>
       </form>
     </div>
   </div>
+  <!--=======Search Panel End=======-->
   <!--=======Upload Panel Start=======-->
   <div id="main_container">
     <div class="row-fluid">

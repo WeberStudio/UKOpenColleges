@@ -10,6 +10,14 @@ class Categories extends Admin_Controller {
 		$this->auth->check_access('Admin', true);
 		$this->lang->load('category');
 		$this->load->model('Category_model');
+		
+		/*** Get User Info***/
+		//$admin_info = $this->admin_session->userdata('admin');
+		$user_info = $this->auth->admin_info();
+		$this->admin_id = $user_info['id'];
+		$this->admin_email = $user_info['email'];
+		$this->admin_access = $user_info['access'];
+		/*** Get User Info***/
 	}
 	
 	function index()
@@ -20,7 +28,12 @@ class Categories extends Admin_Controller {
 		$data['page_title']	= lang('categories');
 		$data['categories']	= $this->Category_model->get_categories_tierd();
 		
+		
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+		$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/categories', $data);
+		$this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+		
 	}
 	
 	//basic category search
@@ -82,6 +95,8 @@ class Categories extends Admin_Controller {
 	function form($id = false)
 	{
 		
+		
+		
 		$config['upload_path']		= 'uploads/images/full';
 		$config['allowed_types']	= 'gif|jpg|png';
 		$config['max_size']			= $this->config->item('size_limit');
@@ -101,6 +116,8 @@ class Categories extends Admin_Controller {
 		
 		//default values are empty if the customer is new
 		$data['id']				= '';
+		$data['admin_id']		= '';
+		$data['publish_by']		= '';
 		$data['name']			= '';
 		$data['slug']			= '';
 		$data['description']	= '';
@@ -111,6 +128,8 @@ class Categories extends Admin_Controller {
 		$data['meta']			= '';
 		$data['parent_id']		= 0;
 		$data['error']			= '';
+		$data['status']			= '';	
+		$data['delete']			= '';	
 		
 		//create the photos array for later use
 		$data['photos']		= array();
@@ -132,6 +151,8 @@ class Categories extends Admin_Controller {
 			//set values to db values
 			$data['id']				= $category->id;
 			$data['name']			= $category->name;
+			$data['admin_id']		= $this->admin_id;
+			$data['publish_by']		= $this->admin_access;			
 			$data['slug']			= $category->slug;
 			$data['description']	= $category->description;
 			$data['excerpt']		= $category->excerpt;
@@ -140,6 +161,8 @@ class Categories extends Admin_Controller {
 			$data['image']			= $category->image;
 			$data['seo_title']		= $category->seo_title;
 			$data['meta']			= $category->meta;
+			$data['status']			= $category->status;	
+			$data['delete']			= $category->delete;	
 			
 		}
 		
@@ -157,7 +180,12 @@ class Categories extends Admin_Controller {
 		// validate the form
 		if ($this->form_validation->run() == FALSE)
 		{
+			
+			
+			$this->load->view($this->config->item('admin_folder').'/includes/header');
+			$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 			$this->load->view($this->config->item('admin_folder').'/category_form', $data);
+			$this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 		}
 		else
 		{
@@ -274,18 +302,27 @@ class Categories extends Admin_Controller {
 				$route_id	= $this->Routes_model->save($route);
 			}
 			
-			$save['id']				= $id;
+			$save['id']				= $id;			
 			$save['name']			= $this->input->post('name');
+			$save['admin_id']		= $this->admin_id;
+			$save['publish_by']		= $this->admin_access;	
 			$save['description']	= $this->input->post('description');
 			$save['excerpt']		= $this->input->post('excerpt');
 			$save['parent_id']		= intval($this->input->post('parent_id'));
 			$save['sequence']		= intval($this->input->post('sequence'));
 			$save['seo_title']		= $this->input->post('seo_title');
 			$save['meta']			= $this->input->post('meta');
-
 			$save['route_id']		= intval($route_id);
 			$save['slug']			= $slug;
-			
+			$save['delete']			= '0';	
+			if($this->input->post('enabled')=='on')
+			{
+				$save['status']		= '1';
+			}
+			else
+			{
+				$save['status']		= '0';
+			}
 			$category_id	= $this->Category_model->save($save);
 			
 			//save the route

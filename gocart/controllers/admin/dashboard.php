@@ -6,6 +6,13 @@ class Dashboard extends Admin_Controller {
 		parent::__construct();
 		remove_ssl();
 		
+		/*** Get User Info***/
+		//$admin_info = $this->admin_session->userdata('admin');
+		$user_info = $this->auth->admin_info();
+		$this->admin_id = $user_info['id'];
+		$this->admin_email = $user_info['email'];
+		$this->admin_access = $user_info['access'];
+		/*** Get User Info***/
 		if($this->auth->check_access('Orders'))
 		{
 			redirect($this->config->item('admin_folder').'/orders');

@@ -179,7 +179,7 @@ class Products extends Admin_Controller {
 	function form($id = false, $duplicate = false)
 	{
 		$this->product_id	= $id;
-		//$this->show->pe($_POST);
+		
 		$this->load->library('form_validation');
 		$this->load->model(array('Option_model', 'Category_model', 'Digital_Product_model'));
 		$this->lang->load('digital_product');
@@ -235,7 +235,6 @@ class Products extends Admin_Controller {
 			// get product & options data
 			
 			$data['product_options']	= $this->Option_model->get_product_options($id);
-			
 			$product					= $this->Product_model->get_product($id);
 			
 			//if the product does not exist, redirect them to the product list with an error
@@ -291,7 +290,7 @@ class Products extends Admin_Controller {
 		$this->form_validation->set_rules('caption', 'Caption');
 		$this->form_validation->set_rules('primary_photo', 'Primary');
 
-		$this->form_validation->set_rules('sku', 'lang:sku', 'trim');
+		//$this->form_validation->set_rules('sku', 'lang:sku', 'trim');
 		$this->form_validation->set_rules('seo_title', 'lang:seo_title', 'trim');
 		$this->form_validation->set_rules('meta', 'lang:meta_data', 'trim');
 		$this->form_validation->set_rules('name', 'lang:name', 'trim|required|max_length[64]');
@@ -299,15 +298,8 @@ class Products extends Admin_Controller {
 		$this->form_validation->set_rules('description', 'lang:description', 'trim');
 		$this->form_validation->set_rules('excerpt', 'lang:excerpt', 'trim');
 		$this->form_validation->set_rules('price', 'lang:price', 'trim|numeric|floatval');
-		$this->form_validation->set_rules('saleprice', 'lang:saleprice', 'trim|numeric|floatval');
-		$this->form_validation->set_rules('weight', 'lang:weight', 'trim|numeric|floatval');
-		$this->form_validation->set_rules('track_stock', 'lang:track_stock', 'trim|numeric');
-		$this->form_validation->set_rules('quantity', 'lang:quantity', 'trim|numeric');
-		$this->form_validation->set_rules('shippable', 'lang:shippable', 'trim|numeric');
-		$this->form_validation->set_rules('taxable', 'lang:taxable', 'trim|numeric');
-		$this->form_validation->set_rules('fixed_quantity', 'lang:fixed_quantity', 'trim|numeric');
-		$this->form_validation->set_rules('enabled', 'lang:enabled', 'trim|numeric');
-
+		$this->form_validation->set_rules('enabled', 'lang:enabled', 'trim');
+		
 		/*
 		if we've posted already, get the photo stuff and organize it
 		if validation comes back negative, we feed this info back into the system
@@ -330,10 +322,10 @@ class Products extends Admin_Controller {
 			$data['product_files']		= $this->input->post('downloads');
 			
 		}
-		
+		//$this->show->pe($_POST);
 		if ($this->form_validation->run() == FALSE)
 		{
-			
+			//$this->show->pe($data['product_categories']);
 			$this->load->view($this->config->item('admin_folder').'/includes/header');
 			$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 			$this->load->view($this->config->item('admin_folder').'/product_form', $data);
@@ -388,7 +380,7 @@ class Products extends Admin_Controller {
 			$save['quantity']			= $this->input->post('quantity');
 			$save['shippable']			= $this->input->post('shippable');
 			$save['taxable']			= $this->input->post('taxable');
-			if($this->input->post('images')=='on')
+			if($this->input->post('enabled')=='on')
 			{
 				$save['enabled']			= '1';
 			}
@@ -449,6 +441,7 @@ class Products extends Admin_Controller {
 			}	
 			
 			// save product 
+			//$this->show->pe($_POST);
 			$product_id	= $this->Product_model->save($save, $options, $categories);
 			
 			// add file associations

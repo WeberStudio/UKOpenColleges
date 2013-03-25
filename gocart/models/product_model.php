@@ -284,7 +284,7 @@ Class Product_model extends CI_Model
 			{
 				//get all the categories that the product is in
 				$cats	= $this->get_product_categories($id);
-				
+				//$this->show->pe($categories);
 				//generate cat_id array
 				$ids	= array();
 				foreach($cats as $c)
