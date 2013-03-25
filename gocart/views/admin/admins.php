@@ -1,4 +1,4 @@
-<?php //include('header.php'); ?>
+<?php include('header.php'); ?>
 <script type="text/javascript">
 function areyousure()
 {
@@ -34,7 +34,7 @@ function areyousure()
 					$current_admin	= $this->session->userdata('admin');
 					$margin			= 30;
 					if ($current_admin['id'] != $admin->id): ?>
-					<a class="btn btn-danger" href="<?php echo site_url($this->config->item('admin_folder').'/admin/delete/'.$admin->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
+					<a class="btn btn-danger" href="<?php echo site_url($this->config->item('admin_folder').'/admin/delete/'.$admin->id); ?>" onClick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
 					<?php endif; ?>
 				</div>
 			</td>
