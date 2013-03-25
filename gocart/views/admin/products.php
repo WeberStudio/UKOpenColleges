@@ -106,7 +106,7 @@ function selectGroup(childs)
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <li><a href="profile.html"><i class=" icon-user"></i> My Profile</a></li>
             <li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>
-            <li><a href="index2.html"><i class=" icon-unlock"></i>Log Out</a></li>
+            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/login/logout');?>"><i class=" icon-unlock"></i><?php echo lang('common_log_out') ?></a></li>
             <li><a href="search.html"><i class=" icon-flag"></i>Help</a></li>
           </ul>
         </li>
