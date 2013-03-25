@@ -1,5 +1,5 @@
 <?php
-class Admin extends Admin_Controller
+class Admin extends CI_Controller
 {
 	//these are used when editing, adding or deleting an admin
 	var $admin_id		= false;
@@ -17,6 +17,7 @@ class Admin extends Admin_Controller
 
 	function index()
 	{
+        echo "test"; exit;
 		$data['page_title']	= lang('admins');
 		$data['admins']		= $this->auth->get_admin_list();
 
