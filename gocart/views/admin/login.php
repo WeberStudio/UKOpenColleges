@@ -30,23 +30,7 @@
   <div class="alert alert-error"> <a class="close" data-dismiss="alert">×</a> <?php echo $error; ?> </div>
   <?php endif; ?>
   <div id="main_container">
-  <div class="row-fluid fluid">
-    <div class="span5"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george2.jpg"/></div>
-    <div class="span7">
-      <div class="title"><span class="name">Login</span><span class="subtitle"></span></div>
-      <?php echo form_open($this->config->item('admin_folder').'/login',array('class' => 'form-search')) ;?>
-      <div class="input-append row-fluid"> <?php echo form_input(array('name'=>'email', 'class'=>'row-fluid search-query', 'placeholder'=>lang('email'))); ?> </div>
-      <div>
-    <div id="js_error_container" class="alert alert-error" style="display:none;">
-      <p id="js_error"></p>
-    </div>
-    <div id="js_note_container" class="alert alert-note" style="display:none;"> </div>
-    <?php if (!empty($message)): ?>
-    <div class="alert alert-success"> <a class="close" data-dismiss="alert">×</a> <?php echo $message; ?> </div>
-    <?php endif; ?>
-    <?php if (!empty($error)): ?>
-    <div class="alert alert-error"> <a class="close" data-dismiss="alert">×</a> <?php echo $error; ?> </div>
-    <?php endif; ?>
+
     <div class="row-fluid fluid">
       <div class="span5"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george2.jpg"/></div>
       <div class="span7">
@@ -54,7 +38,6 @@
         <? $attributes = array('class' => 'bs-docs-example form-horizontal');?>
         <?php echo form_open($this->config->item('admin_folder').'/login',$attributes) ?>
         <div class="input-append row-fluid"> <?php echo form_input(array('name'=>'email', 'class'=>'row-fluid search-query', 'placeholder'=>lang('email'))); ?> </div>
->>>>>>> 803759508917c6b6016a9b22698d4059056a2581
         <div class="input-append row-fluid"> <?php echo form_password(array('name'=>'password', 'class'=>'row-fluid search-query', 'placeholder'=>lang('password'))); ?>
           <input class="btn color_4" id="submit_btn" type="submit" value="<?php echo lang('login');?>"/>
           Go </div>

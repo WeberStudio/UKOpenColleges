@@ -18,10 +18,14 @@ class Admin extends Admin_Controller
 	function index()
 	{
         //echo "test"; exit;
+       // data['sessions'] = $this->admin_session->userdata('admin'));
 		$data['page_title']	= lang('admins');
-		$data['admins']		= $this->auth->get_admin_list();
-
+		$data['admins']		= $this->auth->get_admin_list(); 
+   // print_r($data['admins'])  ; exit;
+        $this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/admins', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer'); 
 	}
 	function delete($id)
 	{
