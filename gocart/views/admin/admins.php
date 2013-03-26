@@ -59,7 +59,7 @@ foreach ($admins as $admin){?>
                         <i class="icon-plus-sign"></i> <?php echo lang('add_new_admin');?></a>
                        </span></h4>
                  </div>           <!-- End .title --> 
-                          <div class="content top">
+      <div class="content top">
      <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
      <thead>
          <tr>
@@ -103,4 +103,4 @@ foreach ($admins as $admin){?>
     </div>
     <!-- End .row-fluid -->
   </div>
-<?php include('footer.php'); ?>
+

@@ -90,7 +90,10 @@ class Admin extends Admin_Controller
 		
 		if ($this->form_validation->run() == FALSE)
 		{
+            $this->load->view($this->config->item('admin_folder').'/includes/header');
+            $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 			$this->load->view($this->config->item('admin_folder').'/admin_form', $data);
+            $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');  
 		}
 		else
 		{
