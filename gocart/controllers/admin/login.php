@@ -160,4 +160,42 @@ class Login extends CI_Controller {
 			return TRUE;
 		}
 	}
+	
+	function forgot_password()
+	{
+		//$this->show->pe($_POST);
+		$this->load->helper('form');
+		$data['page_title']	= lang('forgot_password');
+		$submitted = $this->input->post('submitted');
+		$email = $this->input->post('email');
+		$data = array();
+		if (isset($submitted) && !empty($email))
+		{
+			$reset = $this->auth->reset_password($email);
+			if (isset($reset))
+			{						
+				$this->session->set_flashdata('message', lang('message_new_password'));
+				redirect($this->config->item('admin_folder').'/login');
+			}
+			else
+			{
+				$this->session->set_flashdata('error', lang('error_no_account_record'));
+				$this->load->view($this->config->item('admin_folder').'/includes/header');
+				$this->load->view($this->config->item('admin_folder').'/forgot_password',$data);
+				$this->load->view($this->config->item('admin_folder').'/includes/footer');
+			}
+			
+		}
+		else
+		{
+			
+			$this->session->set_flashdata('error', lang('error_no_account_record'));
+			$this->load->view($this->config->item('admin_folder').'/includes/header');
+			$this->load->view($this->config->item('admin_folder').'/forgot_password',$data);
+			$this->load->view($this->config->item('admin_folder').'/includes/footer');
+			
+			
+		}
+	}
+	
 }

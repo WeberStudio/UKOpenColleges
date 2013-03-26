@@ -30,27 +30,16 @@
   <div class="alert alert-error"> <a class="close" data-dismiss="alert">×</a> <?php echo $error; ?> </div>
   <?php endif; ?>
   <div id="main_container">
-
+	 <div class="row-fluid fluid"><h1>Forgot Password</h1></div>
     <div class="row-fluid fluid">
-      <div class="span5"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george2.jpg"/></div>
-      <div class="span7">
-        <div class="title"><span class="name">Login</span><span class="subtitle"></span></div>
+      <div class="span7">      
         <? $attributes = array('class' => 'bs-docs-example form-horizontal');?>
-        <?php echo form_open($this->config->item('admin_folder').'/login',$attributes) ?>
+        <?php echo form_open($this->config->item('admin_folder').'/login/forgot_password',$attributes) ?>
         <div class="input-append row-fluid"> <?php echo form_input(array('name'=>'email', 'class'=>'row-fluid search-query', 'placeholder'=>lang('email'))); ?> </div>
-        <div class="input-append row-fluid"> <?php echo form_password(array('name'=>'password', 'class'=>'row-fluid search-query', 'placeholder'=>lang('password'))); ?>
-          <input class="btn color_4" id="submit_btn" type="submit" value="<?php echo lang('login');?>"/>
-          Go </div>
-        <div class="form-row control-group row-fluid ">
-          <div class="controls span8">
-            <label class="checkbox"> <?php echo form_checkbox(array('name'=>'remember', 'value'=>'true', 'id'=>'inlineCheckbox1'))?> <?php echo lang('stay_logged_in');?> </label>
-          </div>
-        </div>
-        <input type="hidden" value="<?php echo $redirect; ?>" name="redirect"/>
-        <input type="hidden" value="submitted" name="submitted"/>
-        <b></b>
-        <div> <a class="btn btn-secondary"   href="<?=base_url().$this->config->item('admin_folder').'/login/admin_signup';?>">Sign Up</a>
-        	  <a class="btn btn-secondary"   href="<?=base_url().$this->config->item('admin_folder').'/login/forgot_password';?>">Forget Password</a>
+            <div class="input-append row-fluid">
+                <input type="hidden" value="submitted" name="submitted">
+                <input type="submit" value="Reset Password" name="submit" class="btn btn-primary">
+            </div>  
         </div>
         </form>
       </div>

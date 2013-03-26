@@ -5,29 +5,28 @@ function areyousure()
 }
 </script>
 <?php define('ADMIN_FOLDER', $this->config->item('admin_folder'));
-function list_admin($admins, $sub='') { 
-  //  print_r($admins);    exit;
-foreach ($admins as $admin){?>
-        <tr>
-            <td><?php  echo $admin->firstname; ?></td>
-            <td><?php echo $admin->lastname; ?></td>
-            <td><a href="mailto:<?php echo $admin->email;?>"><?php echo $admin->email; ?></a></td>
-            <td><?php echo $admin->access; ?></td>             
-             <td>
-            <? /*  This code is not working pleaase check it  <div class="btn-group" style="float:left;">                                               
-                    <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/admin/form/'.$ad->id);?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>    
-                    <?php                                
-                    $current_admin    = $this->session->userdata('admin');
-                    $margin            = 30;
-                    if ($current_admin['id'] != $admin->id){ ?>
-                    <a class="btn btn-danger" href="<?php echo site_url($this->config->item('admin_folder').'/admin/delete/'.$admin->id); ?>" onClick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
-                    <?php } ?>
-                </div> */?>
-            </td>  
-        </tr>
-<?php 
-                    }            
-                }
+function list_admin($admins, $current_admin_id) 
+{ 
+	foreach ($admins as $admin){
+	?>
+			<tr>
+				<td><?php  echo $admin->firstname;?></td>
+				<td><?php echo $admin->lastname; ?></td>
+				<td><a href="mailto:<?php echo $admin->email;?>"><?php echo $admin->email; ?></a></td>
+				<td><?php echo $admin->access; ?></td>             
+				<td>
+                    <div class="btn-group" style="float:left;">
+                    	<a class="btn" href="<?php echo site_url(ADMIN_FOLDER.'/admin/form/'.$admin->id);?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>    
+						<?php                                
+                        if ($current_admin_id != $admin->id){ ?>
+                        <a class="btn btn-danger" href="<?php echo site_url(ADMIN_FOLDER.'/admin/delete/'.$admin->id); ?>" onClick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
+                            <?php } ?>
+                    </div> 
+				</td>  
+			</tr>
+	<?php 
+	  }            
+}
 ?>
 <div id="main" style="min-height:1000px">
   <div class="container">
@@ -67,13 +66,14 @@ foreach ($admins as $admin){?>
             <th class="no_sort to_hide_phone"><?php echo lang('lastname');?></th>
             <th class="ue no_sort"><?php echo lang('email');?></th>
             <th class="ue no_sort"><?php echo lang('access');?></th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
     <?php
-          list_admin($admins);
-            //print_r("$min");
+		$current_admin    = $this->session->userdata('admin');
+		$current_admin_id = $current_admin['id'];
+		list_admin($admins, $current_admin_id);
     ?>
     </tbody>
 </table>
@@ -103,4 +103,3 @@ foreach ($admins as $admin){?>
     </div>
     <!-- End .row-fluid -->
   </div>
-
