@@ -239,7 +239,7 @@ class Auth
 	*/
 	function save($admin)
 	{
-		if ($admin['id'])
+		if (isset($admin['id']) && $admin['id']!='')
 		{
 			$this->CI->db->where('id', $admin['id']);
 			$this->CI->db->update('admin', $admin);
@@ -301,7 +301,7 @@ class Auth
 		$this->CI->db->select('email');
 		$this->CI->db->from('admin');
 		$this->CI->db->where('email', $str);
-		if ($id)
+		if (isset($id))
 		{
 			$this->CI->db->where('id !=', $id);
 		}

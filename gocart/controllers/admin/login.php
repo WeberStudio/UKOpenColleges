@@ -70,7 +70,7 @@ class Login extends CI_Controller {
 	{
 		
 		force_ssl();
-		
+		//$this->show->pe($_POST);
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -78,23 +78,23 @@ class Login extends CI_Controller {
 		$data['page_title']		= lang('admin_form');
 		
 		//default values are empty if the customer is new
-		$data['id']		= '';
+		$data['company']		= '';
 		$data['firstname']	= '';
 		$data['lastname']	= '';
 		$data['email']		= '';
 		$data['access']		= '';	
 		$data['phone']		= '';
-		$data['address1']	= '';
-		$data['address2']	= '';
-		$data['city']		= '';
-		$data['state']		= '';
-		$data['zip']		= '';
+		$data['password']	= '';
+		$data['confirm']	= '';
+		$data['url']		= '';
+		
+		
 		
 		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]');
 		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('lastname', 'Last Name', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]|callback_check_email');
-		$this->form_validation->set_rules('access', 'lang:access', 'trim|required');
+		$this->form_validation->set_rules('url', 'lang:url', 'trim|required');
 		$this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|sha1');
 		$this->form_validation->set_rules('confirm', 'Confirm Password', 'required|matches[password]');
@@ -102,12 +102,11 @@ class Login extends CI_Controller {
 		
 		
 		//if this is a new account require a password, or if they have entered either a password or a password confirmation
-		if ($this->input->post('password') != '' || $this->input->post('confirm') != '' || !$id)
+		if ($this->input->post('password') != '' || $this->input->post('confirm') != '')
 		{
 			$this->form_validation->set_rules('password', 'lang:password', 'required|min_length[6]|sha1');
 			$this->form_validation->set_rules('confirm', 'lang:confirm_password', 'required|matches[password]');
 		}
-		
 		if ($this->form_validation->run() == FALSE)
 		{
 			
@@ -118,27 +117,26 @@ class Login extends CI_Controller {
 		}
 		else
 		{
-			$save['id']		= $id;
+			
 			$save['firstname']	= $this->input->post('firstname');
 			$save['lastname']	= $this->input->post('lastname');
 			$save['email']		= $this->input->post('email');
-			$save['access']		= $this->input->post('access');
-			$save['phone']				= $this->input->post('phone');
+			$save['access']		= 'Admin';
+			$save['phone']			= $this->input->post('phone');
 			$save['company']			= $this->input->post('company');
-			$save['active']				= $this->config->item('new_admin_status');
-			$save['email_subscribe']	= intval((bool)$this->input->post('email_subscribe'));			
 			$save['password']			= $this->input->post('password');
+			$save['status']			= '1';
 			
 			
 			
-			if ($this->input->post('password') != '' || !$id)
+			if ($this->input->post('password') != '')
 			{
 				$save['password']	= $this->input->post('password');
 			}
 			
 			$this->auth->save($save);
 			
-			$this->session->set_flashdata('message', lang('message_user_saved'));
+			$this->session->set_flashdata('message', 'You have Signup Successfully.');
 			
 			//go back to the customer list
 			redirect($this->config->item('admin_folder').'/login');
@@ -147,5 +145,19 @@ class Login extends CI_Controller {
 	
 	
 	}
-
+	
+	function check_email($email)
+	{
+	
+		$email_result = $this->auth->check_email($email);
+		if ($email_result)
+       	{
+			$this->form_validation->set_message('check_email', lang('error_email'));
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 }
