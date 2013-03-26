@@ -17,7 +17,7 @@ class Admin extends Admin_Controller
 
 	function index()
 	{
-        echo "test"; exit;
+        //echo "test"; exit;
 		$data['page_title']	= lang('admins');
 		$data['admins']		= $this->auth->get_admin_list();
 
