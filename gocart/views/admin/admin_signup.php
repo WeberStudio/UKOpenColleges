@@ -87,7 +87,7 @@
                 <div class="form-actions row-fluid">
                   <div class="span7 offset3">
                     <button type="submit" class="btn btn-primary">Register</button>
-                    <button type="button" class="btn btn-secondary">Cancel</button>
+                    <button type="button" class="btn btn-secondary" onClick="history.go(-1)">Back</button>
                   </div>
                 </div>
               </form>

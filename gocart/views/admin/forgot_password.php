@@ -38,7 +38,8 @@
         <div class="input-append row-fluid"> <?php echo form_input(array('name'=>'email', 'class'=>'row-fluid search-query', 'placeholder'=>lang('email'))); ?> </div>
             <div class="input-append row-fluid">
                 <input type="hidden" value="submitted" name="submitted">
-                <input type="submit" value="Reset Password" name="submit" class="btn btn-primary">
+                <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
+                <button type="button" class="btn btn-secondary" onClick="history.go(-1)">Back</button>
             </div>  
         </div>
         </form>
