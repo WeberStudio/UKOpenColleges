@@ -57,8 +57,10 @@ class Customers extends Admin_Controller {
 		$data['page']	= $page;
 		$data['field']	= $field;
 		$data['by']		= $by;
-		
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/customers', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');   
 	}
 	
 	function export_xml()
@@ -144,8 +146,11 @@ class Customers extends Admin_Controller {
 		
 				
 		if ($this->form_validation->run() == FALSE)
-		{
+		{    
+            $this->load->view($this->config->item('admin_folder').'/includes/header');
+            $this->load->view($this->config->item('admin_folder').'/includes/leftbar');  
 			$this->load->view($this->config->item('admin_folder').'/customer_form', $data);
+            $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 		}
 		else
 		{
@@ -188,8 +193,10 @@ class Customers extends Admin_Controller {
 		$data['addresses'] = $this->Customer_model->get_address_list($id);
 		
 		$data['page_title']	= sprintf(lang('addresses_for'), $data['customer']->firstname.' '.$data['customer']->lastname);
-		
+		 $this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/customer_addresses', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 	
 	function delete($id = false)
@@ -408,7 +415,10 @@ class Customers extends Admin_Controller {
 		
 		if ($this->form_validation->run() == FALSE)
 		{
+                     $this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 			$this->load->view($this->config->item('admin_folder').'/customer_address_form', $data);
+                    $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');  
 		}
 		else
 		{
