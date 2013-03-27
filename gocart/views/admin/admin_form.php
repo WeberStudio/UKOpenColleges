@@ -85,7 +85,8 @@
                   
         <div class="form-actions">
             <input class="btn btn-primary" type="submit" value="<?php echo lang('save');?>"/>
-        </div>                             </div>
+        </div>                             
+            </div>
                 </div>
     
 </form> 

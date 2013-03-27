@@ -12,7 +12,7 @@ function list_admin($admins, $current_admin_id)
 			<tr>
 				<td><?php  echo $admin->firstname;?></td>
 				<td><?php echo $admin->lastname; ?></td>
-				<td><a href="mailto:<?php echo $admin->email;?>"><?php echo $admin->email; ?></a></td>
+				<td><?php echo $admin->email; ?></td>
 				<td><?php echo $admin->access; ?></td>             
 				<td>
                     <div class="btn-group" style="float:left;">
