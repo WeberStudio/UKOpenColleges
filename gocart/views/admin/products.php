@@ -198,7 +198,7 @@ function selectGroup(childs)
           <h4> <span>Manage Courses<small>(column sorting, live search, pagination)</small></span> </h4>
         </div>
         <!-- End .title -->
-        <div class="span4"> <?php echo $this->pagination->create_links();?> &nbsp; </div>
+       <?php /*?> <div class="span4"> <?php echo $this->pagination->create_links();?> &nbsp; </div><?php */?>
         <!-- Paginatin End -->
         <div class="content top"> <?php echo form_open($this->config->item('admin_folder').'/products/bulk_save', array('id'=>'bulk_form'));?>
         	<?php
@@ -207,12 +207,16 @@ function selectGroup(childs)
 					echo $this->session->flashdata('remove_product_err');
 				}			
 			?>
+            <div class="form-row control-group row-fluid">
+            <div class="btn-group pull-right">
+              		<button class="btn" href="#"><i class="icon-remove-sign"></i> <?php echo lang('bulk_remove');?></button>
+                	<button  class="btn" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save');?></button>                
+                	<a class="btn" style="font-weight:normal;"href="<?php echo site_url($this->config->item('admin_folder').'/products/form');?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_product');?></a>
+           &nbsp;
+           </div>
+           </div>
           <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
-            <thead>
-              <tr><span class="btn-group pull-right">
-              	<button class="btn" href="#"><i class="icon-remove-sign"></i> <?php echo lang('bulk_remove');?></button>
-                <button  class="btn" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save');?></button>                
-                <a class="btn" style="font-weight:normal;"href="<?php echo site_url($this->config->item('admin_folder').'/products/form');?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_product');?></a> </span></tr>
+            <thead>             	
               <tr>
                 <th class="jv no_sort">
                 	<label class="checkbox "><input type="checkbox" onclick="selectGroup(<?=count($products)?>)" id="check_all_courses" name="remove_products" value="remove_products"></label>

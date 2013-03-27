@@ -188,8 +188,11 @@ class Login extends CI_Controller {
 		}
 		else
 		{
+			if (isset($submitted) && !empty($submitted))
+			{
+				$this->session->set_flashdata('error', lang('error_no_account_record'));
+			}
 			
-			$this->session->set_flashdata('error', lang('error_no_account_record'));
 			$this->load->view($this->config->item('admin_folder').'/includes/header');
 			$this->load->view($this->config->item('admin_folder').'/forgot_password',$data);
 			$this->load->view($this->config->item('admin_folder').'/includes/footer');
