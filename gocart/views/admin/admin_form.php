@@ -54,11 +54,14 @@
         </div>
         <div class="form-row control-group row-fluid"> 
         <label class="control-label span3"><?php echo lang('access');?></label>
-       <div class="controls span7"> <?php
-        $options = array(    'Admin'        => 'Admin',
-                            'Orders'    => 'Orders'
-                        );
-        echo form_dropdown('access', $options, set_value('phone', $access));
+       <div class="controls span7"><?php
+       $data    = array('name'=>'Admin', 'value'=>set_value('Admin','Admin'));
+        echo form_input($data);
+        
+       // $options = array(    'Admin'        => 'Admin',
+         //                   'Orders'    => 'Orders'
+           //             );
+        //echo form_dropdown('access', $options, set_value('phone', $access));
         ?>
         </div>
         </div>

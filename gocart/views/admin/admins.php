@@ -11,7 +11,7 @@ foreach ($admins as $admin){?>
         <tr>
             <td><?php  echo $admin->firstname; ?></td>
             <td><?php echo $admin->lastname; ?></td>
-            <td><a href="mailto:<?php echo $admin->email;?>"><?php echo $admin->email; ?></a></td>
+            <td><?php echo $admin->email; ?></td>
             <td><?php echo $admin->access; ?></td>             
              <td>
             <? /*  This code is not working pleaase check it  <div class="btn-group" style="float:left;">                                               
@@ -67,6 +67,7 @@ foreach ($admins as $admin){?>
             <th class="no_sort to_hide_phone"><?php echo lang('lastname');?></th>
             <th class="ue no_sort"><?php echo lang('email');?></th>
             <th class="ue no_sort"><?php echo lang('access');?></th>
+            <th class="ue no_sort"><?php echo lang('status');?></th>
             <th></th>
         </tr>
     </thead>
