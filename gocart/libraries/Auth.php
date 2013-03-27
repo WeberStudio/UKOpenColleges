@@ -190,14 +190,14 @@ class Auth
 	function reset_password($email)
 	{
 		$admin = $this->get_admin_by_email($email);
-		if ($admin)
+		if (isset($admin) && !empty($admin))
 		{
 			$this->CI->load->helper('string');
 			$this->CI->load->library('email');
 			
 			$new_password		= random_string('alnum', 8);
 			$admin['password']	= sha1($new_password);
-			$this->save_admin($admin);
+			$this->save($admin);
 			
 			$this->CI->email->from($this->CI->config->item('email'), $this->CI->config->item('site_name'));
 			$this->CI->email->to($email);
