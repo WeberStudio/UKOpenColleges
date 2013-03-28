@@ -26,10 +26,15 @@ Class Category_model extends CI_Model
 		if ($parent !== false)
 		{
 			$this->db->where('parent_id', $parent);
+			
 		}
+		
 		$this->db->select('id');
 		$this->db->order_by('categories.sequence', 'ASC');
-		
+		$this->db->where('admin_id', $this->admin_id);
+		//$this->db->where('publish_by', 'Admin');
+		//$this->db->where('status', '1');
+		//$this->db->where('delete', '0');
 		//this will alphabetize them if there is no sequence
 		$this->db->order_by('name', 'ASC');
 		$result	= $this->db->get('categories');

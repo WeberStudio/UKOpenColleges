@@ -13,9 +13,9 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 				<td><?php echo  $cat['category']->id; ?></td>
 				<td><?php echo  $sub.$cat['category']->name; ?></td>
                 <td>10</td>
-                <td>Published</td>
+                <td><?php if($cat['category']->publish_by_super=='1'){ echo  'Published';}else{ echo  'In Process'; } ?></td>
                 <td></td>
-                <td>03-23-2013</td>
+                <td><?php echo  $cat['category']->publish_date; ?></td>
                 <td>
 					<div class="btn-group" style="float:right">
 
