@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Mar 25, 2013 at 11:15 AM
+-- Generation Time: Mar 29, 2013 at 07:47 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -26,14 +26,31 @@ CREATE TABLE `oc_admin` (
   `email` varchar(128) NOT NULL,
   `access` varchar(11) NOT NULL,
   `password` varchar(40) NOT NULL,
+  `company` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `status` enum('1','0') NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 -- 
 -- Dumping data for table `oc_admin`
 -- 
 
-INSERT INTO `oc_admin` VALUES (1, NULL, NULL, 'khalil.junaid@gmail.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692');
+INSERT INTO `oc_admin` VALUES (1, 'super', 'super', 'khalil.junaid@gmail.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'weber', 'www.google.com', '23636363636', '1');
+INSERT INTO `oc_admin` VALUES (2, 'junaid', 'khalil', 'khalil.junaid123@gmail.com', 'Admin', '6c75f2a70c892301254da6a2d83cc0b37bf5a5d7', 'junaidkhalil', '', 'khalil.junaid123@gmail.com', '1');
+INSERT INTO `oc_admin` VALUES (3, 'junaid', 'khalil', 'khalil.junaid01@gmail.com', 'Admin', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'junaidkhalil', '', '0326599999', '1');
+INSERT INTO `oc_admin` VALUES (4, 'junaid', 'khalil', 'khalil.junaid121@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '1212121212121', '1');
+INSERT INTO `oc_admin` VALUES (5, 'junaid', 'khalil', 'khalil.junaid1212@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '1212121212121', '1');
+INSERT INTO `oc_admin` VALUES (6, 'junaid', 'khalil', 'khalil.junaiad@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '111111', '1');
+INSERT INTO `oc_admin` VALUES (7, 'junaid', 'khalil', 'khalil.junaid@gmail.comq', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '22323232', '1');
+INSERT INTO `oc_admin` VALUES (8, 'junaid', 'khalil', 'khalil.junaidqqq@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '232323232', '1');
+INSERT INTO `oc_admin` VALUES (9, 'junaid', 'khalil', 'khalil.junaid22@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', 'khalil.junaid@gmail.com', '1');
+INSERT INTO `oc_admin` VALUES (10, 'junaid', 'khalil', 'khalil.junaid2q2@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', 'khalil.junaid@gmail.com', '1');
+INSERT INTO `oc_admin` VALUES (11, 'junaid', 'khalil', 'khalil.junaid2q2w@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', 'khalil.junaid@gmail.com', '1');
+INSERT INTO `oc_admin` VALUES (12, 'junaid', 'khalil', 'khalil.junaid0101@gmail.com', 'Admin', '7c222fb2927d828af22f592134e8932480637c0d', 'junaidkhalil', '', '235696969', '1');
+INSERT INTO `oc_admin` VALUES (13, 'jooojo', 'Rahat', 'r@r.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Jhon', '', '25252525', '1');
+INSERT INTO `oc_admin` VALUES (14, 'Weber', 'Pro', 'weber@gmail.com', 'Superadmin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WeberPro', 'http://www.weber.com', '445555555555', '1');
 
 -- --------------------------------------------------------
 
@@ -116,8 +133,8 @@ INSERT INTO `oc_canned_messages` VALUES (8, 0, 'order', 'Digital Download Notifi
 CREATE TABLE `oc_categories` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `admin_id` int(10) NOT NULL,
-  `publish_by` varchar(50) NOT NULL,
-  `unpublish_by` varchar(50) NOT NULL,
+  `publish_by_admin` enum('1','0') NOT NULL,
+  `publish_by_super` enum('0','1') NOT NULL,
   `parent_id` int(10) unsigned NOT NULL,
   `name` varchar(64) NOT NULL,
   `slug` varchar(64) NOT NULL,
@@ -128,21 +145,22 @@ CREATE TABLE `oc_categories` (
   `image` varchar(255) default NULL,
   `seo_title` text NOT NULL,
   `meta` text NOT NULL,
-  `status` enum('0','1') NOT NULL,
+  `publish_date` datetime NOT NULL,
   `delete` enum('0','1') NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- 
 -- Dumping data for table `oc_categories`
 -- 
 
-INSERT INTO `oc_categories` VALUES (1, 1, '', '', 0, 'Information Technology', 'information-technology', 1, '<p>sfasfasfsafqqeqweqew</p>', '', 0, NULL, '', '', '1', '0');
-INSERT INTO `oc_categories` VALUES (2, 1, '', '', 0, 'Human Resource123', 'human-resource', 3, '<img src="http://localhost/UKOpenColleges/uploads/wysiwyg/junaidkhalil/frr.jpg" alt="frr.jpg">ssfsdfsdfdsfdsfsdfsdfdsfdsfsdf', '', 0, NULL, 'dedecaif', '<meta name="description" content="We sell products that help you" />', '1', '0');
-INSERT INTO `oc_categories` VALUES (3, 1, '', '', 1, 'Me Child', 'me-child', 4, 'adasdasdasdadad', '', 0, NULL, '', '', '1', '0');
-INSERT INTO `oc_categories` VALUES (4, 0, '', '', 0, 'Testing', 'gobottest', 14, '<p>afaasdadasd</p>', 'adadadadadad', 0, NULL, '', '', '0', '0');
-INSERT INTO `oc_categories` VALUES (5, 1, 'Admin', '', 0, 'SuperFun', 'superfun', 15, '<p>asdadadadasdadadasdad</p>', '', 0, NULL, '', '', '1', '0');
-INSERT INTO `oc_categories` VALUES (6, 1, 'Admin', '', 0, 'WithImage', 'with-image', 16, '<p>adasdasdasdasdasdasdasdasd</p>', 'asdasdadadad', 0, '9573a72d974e84ca836d78bce5a579c6.jpg', '', '', '1', '0');
+INSERT INTO `oc_categories` VALUES (1, 1, '1', '0', 0, 'Information Technology', 'information-technology', 1, '<p>sfasfasfsafqqeqweqew</p>', '', 0, NULL, '', '', '0000-00-00 00:00:00', '0');
+INSERT INTO `oc_categories` VALUES (2, 1, '1', '0', 0, 'Human Resource123', 'human-resource', 3, '<img src="http://localhost/UKOpenColleges/uploads/wysiwyg/junaidkhalil/frr.jpg" alt="frr.jpg">ssfsdfsdfdsfdsfsdfsdfdsfdsfsdf', '', 0, NULL, 'dedecaif', '<meta name="description" content="We sell products that help you" />', '2013-03-28 01:01:40', '1');
+INSERT INTO `oc_categories` VALUES (3, 1, '', '', 1, 'Me Child', 'me-child', 4, 'adasdasdasdadad', '', 0, NULL, '', '', '0000-00-00 00:00:00', '0');
+INSERT INTO `oc_categories` VALUES (4, 0, '1', '0', 0, 'Testing', 'gobottest', 14, '<p>afaasdadasd</p>', 'adadadadadad', 0, NULL, '', '', '0000-00-00 00:00:00', '0');
+INSERT INTO `oc_categories` VALUES (5, 1, '1', '0', 0, 'SuperFunWord', 'superfun', 15, '<p>this is testing</p>', '', 0, NULL, '', '', '2013-03-28 01:01:42', '0');
+INSERT INTO `oc_categories` VALUES (7, 1, '1', '0', 0, 'Newcat', 'newcat1', 18, '<p>this is testing for new fields</p>', '', 0, NULL, '', '', '2013-03-28 01:01:40', '0');
+INSERT INTO `oc_categories` VALUES (8, 13, '1', '0', 0, 'ArTAr', 'rut', 19, '<p>this is admin 7 and his category</p>', 'hjhkhkjhkhjhkj', 1, NULL, 'sdfsdf', '', '2013-03-28 01:01:54', '0');
 
 -- --------------------------------------------------------
 
@@ -168,7 +186,7 @@ INSERT INTO `oc_category_products` VALUES (5, 1, 2);
 INSERT INTO `oc_category_products` VALUES (6, 2, 0);
 INSERT INTO `oc_category_products` VALUES (1, 1, 1);
 INSERT INTO `oc_category_products` VALUES (6, 3, 1);
-INSERT INTO `oc_category_products` VALUES (4, 1, 0);
+INSERT INTO `oc_category_products` VALUES (2, 5, 0);
 INSERT INTO `oc_category_products` VALUES (5, 3, 0);
 INSERT INTO `oc_category_products` VALUES (5, 2, 0);
 
@@ -4497,13 +4515,14 @@ CREATE TABLE `oc_customers_address_bank` (
   `entry_name` varchar(20) default NULL,
   `field_data` text,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- 
 -- Dumping data for table `oc_customers_address_bank`
 -- 
 
 INSERT INTO `oc_customers_address_bank` VALUES (1, 1, NULL, 'a:14:{s:7:"company";s:12:"junaidkhalil";s:9:"firstname";s:6:"junaid";s:8:"lastname";s:6:"khalil";s:5:"email";s:23:"khalil.junaid@gmail.com";s:5:"phone";s:12:"923454318345";s:8:"address1";s:6:"lahore";s:8:"address2";s:6:"lahore";s:4:"city";s:6:"lahore";s:3:"zip";s:5:"54000";s:7:"zone_id";s:4:"2457";s:10:"country_id";s:3:"162";s:4:"zone";s:1:"B";s:7:"country";s:8:"Pakistan";s:12:"country_code";s:2:"PK";}');
+INSERT INTO `oc_customers_address_bank` VALUES (2, 1, NULL, 'a:14:{s:7:"company";s:6:"adsasd";s:9:"firstname";s:4:"dasd";s:8:"lastname";s:6:"asdasd";s:5:"email";s:25:"khalil.junaid22@gmail.com";s:5:"phone";s:12:"923454318345";s:8:"address1";s:6:"lahore";s:8:"address2";s:6:"lahore";s:4:"city";s:6:"lahore";s:3:"zip";s:5:"54000";s:7:"zone_id";s:4:"2372";s:10:"country_id";s:3:"154";s:4:"zone";s:2:"LE";s:7:"country";s:9:"Nicaragua";s:12:"country_code";s:2:"NI";}');
 
 -- --------------------------------------------------------
 
@@ -4808,8 +4827,8 @@ CREATE TABLE `oc_products` (
   `excerpt` text,
   `price` float(10,2) NOT NULL default '0.00',
   `saleprice` float(10,2) NOT NULL default '0.00',
-  `publish_by` varchar(50) default NULL,
-  `unpublish_by` varchar(50) default NULL,
+  `publish_by_admin` enum('1','0') default NULL,
+  `publish_by_super` enum('1','0') default NULL,
   `free_shipping` tinyint(1) NOT NULL default '0',
   `shippable` tinyint(1) NOT NULL default '1',
   `taxable` tinyint(1) NOT NULL default '1',
@@ -4829,12 +4848,11 @@ CREATE TABLE `oc_products` (
 -- Dumping data for table `oc_products`
 -- 
 
-INSERT INTO `oc_products` VALUES (1, 1, NULL, 'Top ID', 'junaid-khalil2', 7, 'asdasdasd', 'asdasdasd', 10.00, 12.00, 'Admin', NULL, 0, 1, 1, 0, '0', 0, 0, NULL, NULL, '', '', 1);
-INSERT INTO `oc_products` VALUES (2, 1, NULL, 'Simple Course', 'simple-course', 8, 'dasdadadadad', 'adadadada', 52.00, 12.00, 'Admin', NULL, 0, 1, 1, 0, '0', 0, 0, NULL, NULL, '', '', 1);
-INSERT INTO `oc_products` VALUES (3, 1, NULL, 'Proudct Admin Id', 'proudct-admin-id', 9, 'asdaadad', 'asdasdasdada', 10.00, 12.00, 'Admin', NULL, 0, 1, 1, 0, '0', 0, 0, NULL, NULL, '', '', 1);
-INSERT INTO `oc_products` VALUES (4, 1, '', 'OOP', 'junaid-khalil11', 10, 'sdfsdf', 'sdfsdfsd', 50.00, 12.00, 'Admin', NULL, 0, 1, 1, 0, '0', 0, 0, '', 'false', 'sdfsfsdfsd', 'sdfsdfsdf', 1);
-INSERT INTO `oc_products` VALUES (5, 1, '0', 'junaidkhalil', 'junaid-khalil3', 11, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/phpdev.jpg" alt="phpdev.jpg" style=""><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/phpdev.jpg" alt="phpdev.jpg">asdasdasdaasdasd</p>', 'asdasdasdasdasdasd', 10.00, 0.00, NULL, NULL, 0, 0, 0, 0, '0', 0, 0, '', 'false', 'sdfsfsdfsd', 'asdadasd', 1);
-INSERT INTO `oc_products` VALUES (6, 1, '0', 'March22', 'march-221', 13, '', '', 44.00, 0.00, NULL, NULL, 0, 0, 0, 0, '0', 0, 0, '["6","4"]', 'false', 'mhhh', 'adsasd', 1);
+INSERT INTO `oc_products` VALUES (1, 13, NULL, 'Top ID', 'junaid-khalil2', 7, 'asdasdasd', 'asdasdasd', 10.00, 12.00, '1', NULL, 0, 1, 1, 0, '0', 0, 0, NULL, NULL, '', '', 1);
+INSERT INTO `oc_products` VALUES (2, 13, '0', 'Simple Course', 'simple-course', 8, 'dasdadadadad', 'adadadada', 52.00, 0.00, '1', '0', 0, 0, 0, 0, '0', 0, 0, '', 'false', '', '', 1);
+INSERT INTO `oc_products` VALUES (3, 1, NULL, 'Proudct Admin Id', 'proudct-admin-id', 9, 'asdaadad', 'asdasdasdada', 10.00, 12.00, '1', NULL, 0, 1, 1, 0, '0', 0, 0, NULL, NULL, '', '', 1);
+INSERT INTO `oc_products` VALUES (5, 1, '0', 'junaidkhalil', 'junaid-khalil3', 11, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/phpdev.jpg" alt="phpdev.jpg" style=""><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/phpdev.jpg" alt="phpdev.jpg">asdasdasdaasdasd</p>', 'asdasdasdasdasdasd', 10.00, 0.00, '1', NULL, 0, 0, 0, 0, '0', 0, 0, '', 'false', 'sdfsfsdfsd', 'asdadasd', 0);
+INSERT INTO `oc_products` VALUES (6, 1, '0', 'March22', 'march-221', 13, '', '', 44.00, 0.00, '1', NULL, 0, 0, 0, 0, '0', 0, 0, '["6","4"]', 'false', 'mhhh', 'adsasd', 1);
 
 -- --------------------------------------------------------
 
@@ -4864,7 +4882,7 @@ CREATE TABLE `oc_routes` (
   `slug` varchar(255) NOT NULL,
   `route` varchar(32) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 -- 
 -- Dumping data for table `oc_routes`
@@ -4885,7 +4903,9 @@ INSERT INTO `oc_routes` VALUES (12, 'march-22', NULL);
 INSERT INTO `oc_routes` VALUES (13, 'march-221', 'cart/product/6');
 INSERT INTO `oc_routes` VALUES (14, 'gobottest', 'cart/category/4');
 INSERT INTO `oc_routes` VALUES (15, 'superfun', 'cart/category/5');
-INSERT INTO `oc_routes` VALUES (16, 'with-image', 'cart/category/6');
+INSERT INTO `oc_routes` VALUES (17, 'newcat', NULL);
+INSERT INTO `oc_routes` VALUES (18, 'newcat1', 'cart/category/7');
+INSERT INTO `oc_routes` VALUES (19, 'rut', 'cart/category/8');
 
 -- --------------------------------------------------------
 
@@ -5317,10 +5337,101 @@ INSERT INTO `oc_sessions` VALUES ('0177d07486de971d82d9f6b7ba3c4f40', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('5e170ef500a478ce54b89bb5fea2e54a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364112310, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:new:redirect";s:16:"/admin/dashboard";}');
 INSERT INTO `oc_sessions` VALUES ('3aed9eab4ff102fb271c0f634bfe39c1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364112791, '');
 INSERT INTO `oc_sessions` VALUES ('27d394b5e5466afcba8cfb6870861d83', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364112791, 'a:1:{s:9:"user_data";s:0:"";}');
-INSERT INTO `oc_sessions` VALUES ('356f21fec528049be16f048e5ba7534d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364191606, '');
+INSERT INTO `oc_sessions` VALUES ('68587431e895f4fc0fa1324ad3024daf', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364192836, '');
 INSERT INTO `oc_sessions` VALUES ('9b77f3f6113b87aedc9685192a400ffe', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364155077, '');
-INSERT INTO `oc_sessions` VALUES ('b3e5f00e7551070ec5856b1e6a7835d1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364191606, 'a:1:{s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364198806;}}');
+INSERT INTO `oc_sessions` VALUES ('5e07d241380cfc6cb306190e057a5585', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364199235, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364199835;}}');
+INSERT INTO `oc_sessions` VALUES ('32d45cf0e0618f783169a1937b2b0a16', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364199235, '');
+INSERT INTO `oc_sessions` VALUES ('e4c550cb9e190108ba61aab970557fc1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364192836, '');
 INSERT INTO `oc_sessions` VALUES ('c6245fc7d5d9c6eaf72d1d27e5f89539', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364154839, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364155510;}}');
+INSERT INTO `oc_sessions` VALUES ('413ae7e3b1be0fd5620e4c88ddff66be', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364199657, 'a:1:{s:17:"flash:old:message";s:25:"You have been logged out.";}');
+INSERT INTO `oc_sessions` VALUES ('1f9ddd5ce2b7d2d0088f92320f823f67', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364199657, '');
+INSERT INTO `oc_sessions` VALUES ('4e42e361f4d7a3ee1b54a21806819f76', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364200833, '');
+INSERT INTO `oc_sessions` VALUES ('dd8fee9d5a14fce0f69648de9c843c4e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364200833, '');
+INSERT INTO `oc_sessions` VALUES ('2bf891cf3f64d3d1eddb2db85f97bb8b', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364200848, '');
+INSERT INTO `oc_sessions` VALUES ('734ac440c6f1d9b4088951ed3c9cd87a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364200848, 'a:1:{s:9:"user_data";s:0:"";}');
+INSERT INTO `oc_sessions` VALUES ('e2c20c5330048a8fa15c04f75ff2591d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364203221, '');
+INSERT INTO `oc_sessions` VALUES ('58fec697a40fc88c113e92635aee6413', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364203221, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364210421;}}');
+INSERT INTO `oc_sessions` VALUES ('37da9936c458b302f2523d949091e53e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364207905, '');
+INSERT INTO `oc_sessions` VALUES ('1b466181be8ba9db3a276fd24332526d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364207905, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:old:redirect";s:15:"/admin/products";}');
+INSERT INTO `oc_sessions` VALUES ('a5e97111ed3fec5a00fe71182df8ebeb', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364212714, '');
+INSERT INTO `oc_sessions` VALUES ('1826c1c6cb469ec1e58709c7e5f9dfee', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364212715, '');
+INSERT INTO `oc_sessions` VALUES ('0df42fc61c90d8bed382bb395af85055', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364213127, '');
+INSERT INTO `oc_sessions` VALUES ('ec9ef3317403406dd19f80c239effcf0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364213127, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364220327;}}');
+INSERT INTO `oc_sessions` VALUES ('8be03a6fcd03de139c5b6f813a09d0bd', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364242731, '');
+INSERT INTO `oc_sessions` VALUES ('1442b918c26d7b731e0a3933a277c9fa', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364242871, '');
+INSERT INTO `oc_sessions` VALUES ('115fcf38017841d9875cf435d333add3', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364242731, '');
+INSERT INTO `oc_sessions` VALUES ('b03d8037ff0b7b44de7f174b942f63cf', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364242871, '');
+INSERT INTO `oc_sessions` VALUES ('66be426e5a462a0fa5240897204aab0a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364242931, '');
+INSERT INTO `oc_sessions` VALUES ('e8f8e40ec0c3e6a28ab68db8befd9f8a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364242932, 'a:1:{s:9:"user_data";s:0:"";}');
+INSERT INTO `oc_sessions` VALUES ('d2f6c9f01789a7a6359627754495022a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364245726, 'a:1:{s:17:"flash:old:message";s:29:"You have Signup Successfully.";}');
+INSERT INTO `oc_sessions` VALUES ('b2d1887ebf8968fdfd52e53f38ac05f5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364245726, '');
+INSERT INTO `oc_sessions` VALUES ('08ddb91c35d07b9fb4d838bf90afc84c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364275697, '');
+INSERT INTO `oc_sessions` VALUES ('f57c7c341c7c12d30aeab58d10d42296', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364275697, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:old:redirect";s:7:"/admin/";}');
+INSERT INTO `oc_sessions` VALUES ('37e577d7f00a9af87f9c5d02a687b8c4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364276397, '');
+INSERT INTO `oc_sessions` VALUES ('ffd1de2c505b21a429eb4a662a39bc88', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364276397, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364283597;}}');
+INSERT INTO `oc_sessions` VALUES ('770f65732b18c581773f82bf8549127e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364275926, '');
+INSERT INTO `oc_sessions` VALUES ('14da64425aaf0ce9a0107e046726b4ee', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364275926, '');
+INSERT INTO `oc_sessions` VALUES ('07dc7953031b0f1737400c493146ee06', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364276039, '');
+INSERT INTO `oc_sessions` VALUES ('84ca368b18c542264982503694e1feba', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364276039, '');
+INSERT INTO `oc_sessions` VALUES ('b978a2564ee1172683083dc14a99c26c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364276621, '');
+INSERT INTO `oc_sessions` VALUES ('e6ca37edf8457e7b0904c37364bd6d00', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364276621, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:old:redirect";s:15:"/admin/products";}');
+INSERT INTO `oc_sessions` VALUES ('9677809a0ce826ca426044d1222d218e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364292579, '');
+INSERT INTO `oc_sessions` VALUES ('d83f123d38b1bfdf8e9c8b60774275c7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364292466, '');
+INSERT INTO `oc_sessions` VALUES ('a633874700db3d029c95c4c78e5d77a0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364292579, 'a:1:{s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364299779;}}');
+INSERT INTO `oc_sessions` VALUES ('ea01d2c70148f319f7058db073b855c8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364292466, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:new:redirect";s:17:"/admin/categories";}');
+INSERT INTO `oc_sessions` VALUES ('6ee3bd886e459e4017e01fd5f4919fc0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299300, '');
+INSERT INTO `oc_sessions` VALUES ('8559826c1362b9626cad3c90cbe9d3d8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299301, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364299951;}}');
+INSERT INTO `oc_sessions` VALUES ('28aaf91d0b21f21a0965a8fb17a9de76', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299573, '');
+INSERT INTO `oc_sessions` VALUES ('c73719214dcf8965c2a5c907ebe940cf', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299573, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364306773;}}');
+INSERT INTO `oc_sessions` VALUES ('17b85933a0e2072311d081c98cfc0b23', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299594, '');
+INSERT INTO `oc_sessions` VALUES ('d45e82926ae72428f17bf9415f1317e1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299594, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:old:redirect";s:23:"/admin/customers/form/1";}');
+INSERT INTO `oc_sessions` VALUES ('6240a596d74e329d41602834c8ed9b57', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299605, '');
+INSERT INTO `oc_sessions` VALUES ('623fbc5d66945c89f89d930d38868c70', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299605, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:old:redirect";s:31:"/admin/customers/address_form/1";}');
+INSERT INTO `oc_sessions` VALUES ('b4932c1eaed25b9aa8e569dbf9d44ee4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299609, 'a:1:{s:9:"user_data";s:0:"";}');
+INSERT INTO `oc_sessions` VALUES ('0b4283772cc24719188e6a5c1a53adf2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364299609, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364300362;}}');
+INSERT INTO `oc_sessions` VALUES ('628aca6426c9b7412a896b0526dcfb8d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364307026, '');
+INSERT INTO `oc_sessions` VALUES ('9981027c6215360106f49fbf1110aa00', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364307949, '');
+INSERT INTO `oc_sessions` VALUES ('2ff9fb561ed01516ba92375b3a6acc1c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364307026, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364314226;}}');
+INSERT INTO `oc_sessions` VALUES ('292d130edc8ae853fd5ab7af1cbc21f4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364307949, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";N;s:8:"lastname";N;s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364315149;}}');
+INSERT INTO `oc_sessions` VALUES ('4de93b97b81e280ddd112017f4943c59', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364309684, '');
+INSERT INTO `oc_sessions` VALUES ('a01ee80a0a2d903786466234a9a84814', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364309684, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364310480;}}');
+INSERT INTO `oc_sessions` VALUES ('7f5f32b62a24948810ea1225e4a3b144', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364311859, 'a:1:{s:17:"flash:old:message";s:25:"You have been logged out.";}');
+INSERT INTO `oc_sessions` VALUES ('3eef571fd3cd3f53d73d8bebb32d4d71', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364311859, '');
+INSERT INTO `oc_sessions` VALUES ('695bc75dd2a0fc57040486440eabffd5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364311897, '');
+INSERT INTO `oc_sessions` VALUES ('e5fe0d4c4a1d597876206da48c62c346', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364311897, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364312587;}}');
+INSERT INTO `oc_sessions` VALUES ('7d9c4899720d7bb07fd0192264a4ce37', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364313322, '');
+INSERT INTO `oc_sessions` VALUES ('7400d2da2442f57f703792948e0f62bc', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364313322, '');
+INSERT INTO `oc_sessions` VALUES ('279556461d240fb708e0d6da9cab500f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364313520, '');
+INSERT INTO `oc_sessions` VALUES ('c82aca62a68848a1f52a9691fe521165', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364313520, '');
+INSERT INTO `oc_sessions` VALUES ('03d4531b19e093eeed225e99155d1d9c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364327557, '');
+INSERT INTO `oc_sessions` VALUES ('68de8cfff54dcb1cadd5f52066a3ee3e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364322002, '');
+INSERT INTO `oc_sessions` VALUES ('b20cb1c574dc442cb5b4f06cd7085cb0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364327557, 'a:1:{s:18:"flash:old:redirect";s:15:"/admin/products";}');
+INSERT INTO `oc_sessions` VALUES ('6985f941bda864479115f3fd01630a30', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364322002, 'a:1:{s:9:"user_data";s:0:"";}');
+INSERT INTO `oc_sessions` VALUES ('2a5b7134c3fe197f71036a353a00ecce', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364327568, '');
+INSERT INTO `oc_sessions` VALUES ('49b07849dcc95c0bcb5ea44f638c8482', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364327568, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364328221;}}');
+INSERT INTO `oc_sessions` VALUES ('28f56fb9196f0d2a6e33f0ac0389e8d3', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364399562, '');
+INSERT INTO `oc_sessions` VALUES ('b3e2ef23dcbe636cfe2f11e40f130de1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364399562, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364406762;}}');
+INSERT INTO `oc_sessions` VALUES ('c50890679af0c9b80590ad39bbf42e3c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364365553, '');
+INSERT INTO `oc_sessions` VALUES ('1238d26cdd0b8714c526d6de2bae1a36', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364365553, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364366172;}}');
+INSERT INTO `oc_sessions` VALUES ('7b72395c3fe8db3eb4d2a16a57c695f8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364368714, '');
+INSERT INTO `oc_sessions` VALUES ('662f0e2aad7525fbbedcf2920c1714d8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364368714, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364375914;}}');
+INSERT INTO `oc_sessions` VALUES ('1df4cfb44a130cce81b9aaec539cffcf', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364369072, '');
+INSERT INTO `oc_sessions` VALUES ('2056a25be6c65ed6e752682a4db81f3c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364369072, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364376273;}}');
+INSERT INTO `oc_sessions` VALUES ('43c5f003135c7c7f0d1b65f857ac3fe0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364369212, '');
+INSERT INTO `oc_sessions` VALUES ('090e6909a4e25f79b64f49f8355cfbb9', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364369212, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364376412;}}');
+INSERT INTO `oc_sessions` VALUES ('bfe796e334deced41a59ecf809095a88', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364369213, '');
+INSERT INTO `oc_sessions` VALUES ('e605e584aeebc7f87810e924cbcfa66f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364369213, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:new:redirect";s:15:"/admin/products";}');
+INSERT INTO `oc_sessions` VALUES ('271415c2d586f710c56681f9fb213b2c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364370802, '');
+INSERT INTO `oc_sessions` VALUES ('ac8dcac0eae77179ebe2f071a1a57019', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1', 1364370802, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364378002;}}');
+INSERT INTO `oc_sessions` VALUES ('9ef989593f8fc10352bb26fb7f2d6e0e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364399601, '');
+INSERT INTO `oc_sessions` VALUES ('c695f299dbc07ffc8f967c1f99416ac1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364399601, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364400236;}}');
+INSERT INTO `oc_sessions` VALUES ('49315751ae8db76ef4082cb6e4f8f674', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364550359, '');
+INSERT INTO `oc_sessions` VALUES ('4912cb757737c89d642faebe3da6d49e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364406650, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364413851;}}');
+INSERT INTO `oc_sessions` VALUES ('be91de9a297931978a6a1d6d2e787d10', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568343, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364575543;}}');
+INSERT INTO `oc_sessions` VALUES ('436a0b4c251f86652185af6bb3114cf8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568308, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:new:redirect";s:6:"/admin";}');
+INSERT INTO `oc_sessions` VALUES ('c2228dfd237abf8c45a5666842ac6ec0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568343, '');
+INSERT INTO `oc_sessions` VALUES ('c4c71f79c2cad3e44ceb7b72b0618227', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364550359, '');
+INSERT INTO `oc_sessions` VALUES ('398493698798182df6a1c40b5b5cb211', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568307, '');
 
 -- --------------------------------------------------------
 
