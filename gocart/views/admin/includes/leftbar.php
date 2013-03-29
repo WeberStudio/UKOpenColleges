@@ -38,6 +38,7 @@
           <ul id="collapse2" class="accordion-body collapse">
             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
+            <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Provider</a></li>
            <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
             <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
             <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>

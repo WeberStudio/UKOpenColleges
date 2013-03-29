@@ -117,7 +117,8 @@ class Categories extends Admin_Controller {
 		//default values are empty if the customer is new
 		$data['id']				= '';
 		$data['admin_id']		= '';
-		$data['publish_by']		= '';
+		$data['publish_by_admin']		= '1';
+		$data['publish_by_super']		= '0';
 		$data['name']			= '';
 		$data['slug']			= '';
 		$data['description']	= '';
@@ -128,8 +129,8 @@ class Categories extends Admin_Controller {
 		$data['meta']			= '';
 		$data['parent_id']		= 0;
 		$data['error']			= '';
-		$data['status']			= '';	
-		$data['delete']			= '';	
+		$data['publish_date']	= '';	
+		$data['delete']			= '';
 		
 		//create the photos array for later use
 		$data['photos']		= array();
@@ -152,7 +153,6 @@ class Categories extends Admin_Controller {
 			$data['id']				= $category->id;
 			$data['name']			= $category->name;
 			$data['admin_id']		= $this->admin_id;
-			$data['publish_by']		= $this->admin_access;			
 			$data['slug']			= $category->slug;
 			$data['description']	= $category->description;
 			$data['excerpt']		= $category->excerpt;
@@ -161,7 +161,7 @@ class Categories extends Admin_Controller {
 			$data['image']			= $category->image;
 			$data['seo_title']		= $category->seo_title;
 			$data['meta']			= $category->meta;
-			$data['status']			= $category->status;	
+			$data['publish_date']	= date('Y-m-d H:h:i');	
 			$data['delete']			= $category->delete;	
 			
 		}
@@ -305,7 +305,8 @@ class Categories extends Admin_Controller {
 			$save['id']				= $id;			
 			$save['name']			= $this->input->post('name');
 			$save['admin_id']		= $this->admin_id;
-			$save['publish_by']		= $this->admin_access;	
+			$save['publish_by_admin']		= '1';
+			$save['publish_by_super']		= '0';
 			$save['description']	= $this->input->post('description');
 			$save['excerpt']		= $this->input->post('excerpt');
 			$save['parent_id']		= intval($this->input->post('parent_id'));
@@ -314,14 +315,14 @@ class Categories extends Admin_Controller {
 			$save['meta']			= $this->input->post('meta');
 			$save['route_id']		= intval($route_id);
 			$save['slug']			= $slug;
-			$save['delete']			= '0';	
+			$save['publish_date']	= date('Y-m-d H:h:i');
 			if($this->input->post('enabled')=='on')
 			{
-				$save['status']		= '1';
+				$save['delete']			= '0';	
 			}
 			else
 			{
-				$save['status']		= '0';
+				$save['delete']		= '1';
 			}
 			$category_id	= $this->Category_model->save($save);
 			

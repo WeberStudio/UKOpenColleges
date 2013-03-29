@@ -198,7 +198,6 @@ function selectGroup(childs)
           <h4> <span>Manage Courses<small>(column sorting, live search, pagination)</small></span> </h4>
         </div>
         <!-- End .title -->
-       <?php /*?> <div class="span4"> <?php echo $this->pagination->create_links();?> &nbsp; </div><?php */?>
         <!-- Paginatin End -->
         <div class="content top"> <?php echo form_open($this->config->item('admin_folder').'/products/bulk_save', array('id'=>'bulk_form'));?>
         	<?php
@@ -260,6 +259,7 @@ function selectGroup(childs)
           </table>
           </form>
         </div>
+		<div class="span4"> <?php echo $this->pagination->create_links();?> &nbsp; </div>
         <!-- End .content -->
       </div>
       <!-- End box -->
