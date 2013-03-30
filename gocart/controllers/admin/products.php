@@ -8,12 +8,6 @@ class Products extends Admin_Controller {
 		parent::__construct();
 		remove_ssl();
 
-		$this->auth->check_access('Admin', true);		
-		$this->load->model('Product_model');
-		$this->load->model('Routes_model');
-		$this->load->helper('form');
-		$this->lang->load('product');
-		
 		/*** Get User Info***/
 		//$admin_info = $this->admin_session->userdata('admin');
 		$user_info = $this->auth->admin_info();
@@ -21,6 +15,14 @@ class Products extends Admin_Controller {
 		$this->admin_email = $user_info['email'];
 		$this->admin_access = $user_info['access'];
 		/*** Get User Info***/
+		
+		$this->auth->check_access($this->admin_access, true);		
+		$this->load->model('Product_model');
+		$this->load->model('Routes_model');
+		$this->load->helper('form');
+		$this->lang->load('product');
+		
+		
 	}
 
 	function index($order_by="name", $sort_order="ASC", $code=0, $page=0, $rows=15)
@@ -54,7 +56,7 @@ class Products extends Admin_Controller {
 		$data['sort_order']	= $sort_order;
 		
 		$data['products']	= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
-
+		//$this->show->pe($data['products']);
 		//total number of products
 		$data['total']		= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order), true);
 
@@ -184,12 +186,11 @@ class Products extends Admin_Controller {
 		$this->load->model(array('Option_model', 'Category_model', 'Digital_Product_model'));
 		$this->lang->load('digital_product');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		//$data['categories']		= $this->Category_model->get_categories_tierd();
-		//$data['product_list']	= $this->Product_model->get_products();
+		
 		
 		$data['all_categories']		= $this->Category_model->get_all_categories();
 		$data['all_products']		= $this->Product_model->get_all_products_array();
-		//echo "<pre>";print_r($data['all_products']);exit;
+		//echo "<pre>";print_r($data['all_categories']);exit;
 		//$data['file_list']		= $this->Digital_Product_model->get_list();
 
 		$data['page_title']		= lang('product_form');
@@ -199,6 +200,8 @@ class Products extends Admin_Controller {
 		$data['admin_id']			= '';
 		$data['sku']				= '';
 		$data['name']				= '';
+		$data['publish_by_admin']	= '1';
+		$data['publish_by_super']	= '0';
 		$data['slug']				= '';
 		$data['description']		= '';
 		$data['excerpt']			= '';
@@ -366,6 +369,8 @@ class Products extends Admin_Controller {
 
 			$save['id']					= $id;
 			$save['admin_id']			= $this->admin_id;
+			$save['publish_by_admin']	= '1';
+			$save['publish_by_super']	= '0';
 			$save['sku']				= $this->input->post('sku');
 			$save['name']				= $this->input->post('name');
 			$save['seo_title']			= $this->input->post('seo_title');

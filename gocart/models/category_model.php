@@ -8,8 +8,8 @@ Class Category_model extends CI_Model
 		
 		$this->db->select('*');
 		$this->db->order_by('name', 'ASC');
-		$this->db->where('status', '1');
 		$this->db->where('delete', '0');
+		$this->db->where('publish_by_admin', '1');
 		$result	= $this->db->get('categories');
 		if(count($result)>0)
 		{

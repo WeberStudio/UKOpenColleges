@@ -4,24 +4,7 @@ $GLOBALS['option_value_count']		= 0;
 
 <div id="main">
   <div class="container">
-    <div class="header row-fluid">
-    <div class="logo"> <a href="index.html"><span>Start</span><span class="icon"></span></a> </div>
-    <div class="top_right">
-      <ul class="nav nav_menu">
-        <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html">
-          <div class="title"><span class="name">George</span><span class="subtitle">Future Buyer</span></div>
-          <span class="icon"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george.jpg"></span></a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li><a href="profile.html"><i class=" icon-user"></i> My Profile</a></li>
-            <li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>
-            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/login/logout');?>"><i class=" icon-unlock"></i><?php echo lang('common_log_out') ?></a></li>
-            <li><a href="search.html"><i class=" icon-flag"></i>Help</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- End top-right -->
-  </div>
+    <? include_once('includes/admin_profile.php');?>
     <div id="main_container">
      <form class="form-horizontal" action="<?=base_url().$this->config->item('admin_folder').'/products/form/'.$id?>" method="post">
       <div class="row-fluid">
@@ -29,7 +12,7 @@ $GLOBALS['option_value_count']		= 0;
           <div class="box paint color_3">
             <div class="title">
               <div class="row-fluid">
-                <h4> Regular tabs </h4>
+                <h4> Product Information </h4>
               </div>
             </div>
             <!-- End .title -->
@@ -114,8 +97,9 @@ $GLOBALS['option_value_count']		= 0;
                         <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" name="categories[]" multiple="true" tabindex="5">
                         <? if(isset($all_categories)){  ?>
                         <?php  foreach ($all_categories as $file){
-						$flag = 0;
-								for($i = 0; $i<count($product_categories); $i++){
+								$flag = 0;
+								//$this->show->pe($file);
+								for($i = 0; $i<count($all_categories); $i++){
 									if(isset($product_categories[$i]->category_id) && $product_categories[$i]->category_id==$file['id']){ 
 									$flag = 1;
 						?>
@@ -126,7 +110,7 @@ $GLOBALS['option_value_count']		= 0;
 									}
 									
 						  		}
-								if($flag==1)
+								if($flag==0)
 								{?>
 									<option  value="<?=$file['id']?>"><?=$file['name']?></option>
 							<?	}
@@ -145,12 +129,12 @@ $GLOBALS['option_value_count']		= 0;
                     <div class="form-row control-group row-fluid">
                        <div class="controls span10">
                        <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" id="option_options" >
-								<option value=""><?php echo lang('select_option_type')?></option>
+								<option value=""><?php echo lang('select_option_type');?></option>
 								<option value="checklist"><?php echo lang('checklist');?></option>
 								<option value="radiolist"><?php echo lang('radiolist');?></option>
-								<option value="droplist"><?php echo lang('droplist');?></option>
+								<option value="droplist"><?php  echo lang('droplist');?></option>
 								<option value="textfield"><?php echo lang('textfield');?></option>
-								<option value="textarea"><?php echo lang('textarea');?></option>                                
+								<option value="textarea"><?php  echo lang('textarea');?></option>                                
                         </select>
                         </div>
                         <div class="controls span2">

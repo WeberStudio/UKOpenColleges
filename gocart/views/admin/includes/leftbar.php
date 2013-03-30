@@ -26,15 +26,8 @@
             <!--<li><a href="<?=base_url().ADMIN_PATH?>digital_products">Digital Products</a></li>-->
           </ul>
         </li>
-        <li class="accordion-group color_7"> <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Invoices</span></a>
-          <ul id="collapse3" class="accordion-body collapse">
-            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/form'); ?>">Create Invoice</a></li>
-            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/'); ?>">View Invoices</a></li>
-            <li><a href="<?=base_url().ADMIN_PATH?>products">View Recuring Invoices</a></li>  
-            <!--<li><a href="<?=base_url().ADMIN_PATH?>digital_products">Digital Products</a></li>-->
-          </ul>
-        </li>
-        <li class="accordion-group color_3"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Sales</span></a>
+        <? if(isset($this->admin_access) && $this->admin_access=='Superadmin'){ ?>
+        <li class="accordion-group color_3"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Sales</span></a>
           <ul id="collapse2" class="accordion-body collapse">
             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
@@ -45,7 +38,7 @@
             <li><a href="<?=base_url().ADMIN_PATH?>giftcards">Giftcards</a></li>-->
           </ul>
         </li>
-        
+        <? } ?>
       </ul>
       <div class="menu_states row-fluid container ">
         <h2 class="pull-left">Menu Settings</h2>

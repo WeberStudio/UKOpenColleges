@@ -27,11 +27,16 @@ Class Product_model extends CI_Model
 	{
 		if(empty($data))
 		{
+			
 			//if nothing is provided return the whole shabang
 			$this->get_all_products();
 		}
 		else
 		{
+			
+			$this->db->where('admin_id', $this->admin_id);
+			//$this->db->where('enabled', '1');
+			$this->db->where('publish_by_admin', '1');
 			//grab the limit
 			if(!empty($data['rows']))
 			{
@@ -72,9 +77,10 @@ Class Product_model extends CI_Model
 					$this->db->order_by('sequence', 'ASC');
 				}
 			}
-			
+		
 			if($return_count)
 			{
+				
 				return $this->db->count_all_results('products');
 			}
 			else
@@ -103,8 +109,11 @@ Class Product_model extends CI_Model
 	function get_all_products()
 	{
 		//sort by alphabetically by default
+		echo $this->admin_id;exit;
 		$this->db->order_by('name', 'ASC');
-		$this->db->where('enabled', '1');
+		$this->db->where('admin_id', $this->admin_id);
+		//$this->db->where('enabled', '1');
+		$this->db->where('publish_by_admin', '1');
 		$result	= $this->db->get('products');
 		//apply group discount
 		$return = $result->result();
