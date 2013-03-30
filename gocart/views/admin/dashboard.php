@@ -1,6 +1,6 @@
 <div id="main">
   <div class="container">
-    <div class="header row-fluid">
+    <?php /*?><div class="header row-fluid">
       <div class="logo"> <a href="index.html"><span>Start</span><span class="icon"></span></a> </div>
       <div class="top_right">
         <ul class="nav nav_menu">
@@ -17,7 +17,8 @@
         </ul>
       </div>
       <!-- End top-right --> 
-    </div>
+    </div><?php */?>
+    <? include_once('includes/admin_profile.php');?>
     <div id="main_container">
       <div class="row-fluid">
         <div class="span6 box color_3 title_big height_big paint_hover">
