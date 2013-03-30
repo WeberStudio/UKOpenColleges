@@ -29,7 +29,7 @@ $GLOBALS['option_value_count']		= 0;
           <div class="box paint color_3">
             <div class="title">
               <div class="row-fluid">
-                <h4> Regular tabs </h4>
+                <h4> Product Information </h4>
               </div>
             </div>
             <!-- End .title -->
@@ -114,8 +114,9 @@ $GLOBALS['option_value_count']		= 0;
                         <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" name="categories[]" multiple="true" tabindex="5">
                         <? if(isset($all_categories)){  ?>
                         <?php  foreach ($all_categories as $file){
-						$flag = 0;
-								for($i = 0; $i<count($product_categories); $i++){
+								$flag = 0;
+								//$this->show->pe($file);
+								for($i = 0; $i<count($all_categories); $i++){
 									if(isset($product_categories[$i]->category_id) && $product_categories[$i]->category_id==$file['id']){ 
 									$flag = 1;
 						?>
@@ -126,7 +127,7 @@ $GLOBALS['option_value_count']		= 0;
 									}
 									
 						  		}
-								if($flag==1)
+								if($flag==0)
 								{?>
 									<option  value="<?=$file['id']?>"><?=$file['name']?></option>
 							<?	}
@@ -145,12 +146,12 @@ $GLOBALS['option_value_count']		= 0;
                     <div class="form-row control-group row-fluid">
                        <div class="controls span10">
                        <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" id="option_options" >
-								<option value=""><?php echo lang('select_option_type')?></option>
+								<option value=""><?php echo lang('select_option_type');?></option>
 								<option value="checklist"><?php echo lang('checklist');?></option>
 								<option value="radiolist"><?php echo lang('radiolist');?></option>
-								<option value="droplist"><?php echo lang('droplist');?></option>
+								<option value="droplist"><?php  echo lang('droplist');?></option>
 								<option value="textfield"><?php echo lang('textfield');?></option>
-								<option value="textarea"><?php echo lang('textarea');?></option>                                
+								<option value="textarea"><?php  echo lang('textarea');?></option>                                
                         </select>
                         </div>
                         <div class="controls span2">

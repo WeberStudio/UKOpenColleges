@@ -7,11 +7,19 @@ class Admin extends Admin_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->auth->check_access('Admin', true);
+		$this->auth->check_access('Superadmin', true);
+		
+		/*** Get User Info***/
+		//$admin_info = $this->admin_session->userdata('admin');
+		$user_info = $this->auth->admin_info();
+		$this->admin_id = $user_info['id'];
+		$this->admin_email = $user_info['email'];
+		$this->admin_access = $user_info['access'];
+		/*** Get User Info***/
+
 		
 		//load the admin language file in
 		$this->lang->load('admin');
-		
 		$this->current_admin	= $this->session->userdata('admin');
 	}
 
@@ -21,7 +29,7 @@ class Admin extends Admin_Controller
        // data['sessions'] = $this->admin_session->userdata('admin'));
 		$data['page_title']	= lang('admins');
 		$data['admins']		= $this->auth->get_admin_list(); 
-   // print_r($data['admins'])  ; exit;
+    	//print_r($data['admins'])  ; exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/admins', $data);

@@ -2,8 +2,9 @@
 function list_categories($cats, $product_categories, $sub='') {
 
 	foreach ($cats as $cat):?>
-        <option value="<?php echo $cat['category']->id;?>"><?php echo  $sub.$cat['category']->name; ?></option>
-        <?php
+
+<option value="<?php echo $cat['category']->id;?>"><?php echo  $sub.$cat['category']->name; ?></option>
+<?php
 			if (sizeof($cat['children']) > 0)
 			{
 				$sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
@@ -52,7 +53,6 @@ function sort_url($lang, $by, $sort, $sorder, $code, $admin_folder)
 if(!empty($term)):
 	$term = json_decode($term);
 	if(!empty($term->term) || !empty($term->category_id)):?>
-
 <div class="alert alert-info"> <?php echo sprintf(lang('search_returned'), intval($total));?> </div>
 <?php endif;?>
 <?php endif;?>
@@ -96,35 +96,35 @@ function selectGroup(childs)
 </style>
 <div id="main" style="min-height:1000px">
 <div class="container">
-  <div class="header row-fluid">
-    <div class="logo"> <a href="index.html"><span>Start</span><span class="icon"></span></a> </div>
-    <div class="top_right">
-      <ul class="nav nav_menu">
-        <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html">
-          <div class="title"><span class="name">George</span><span class="subtitle">Future Buyer</span></div>
-          <span class="icon"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george.jpg"></span></a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li><a href="profile.html"><i class=" icon-user"></i> My Profile</a></li>
-            <li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>
-            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/login/logout');?>"><i class=" icon-unlock"></i><?php echo lang('common_log_out') ?></a></li>
-            <li><a href="search.html"><i class=" icon-flag"></i>Help</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- End top-right -->
+<div class="header row-fluid">
+  <div class="logo"> <a href="index.html"><span>Start</span><span class="icon"></span></a> </div>
+  <div class="top_right">
+    <ul class="nav nav_menu">
+      <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html">
+        <div class="title"><span class="name">George</span><span class="subtitle">Future Buyer</span></div>
+        <span class="icon"><img src="<?=base_url().ASSETS_PATH?>img/thumbnail_george.jpg"></span></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li><a href="profile.html"><i class=" icon-user"></i> My Profile</a></li>
+          <li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>
+          <li><a href="<?php echo site_url($this->config->item('admin_folder').'/login/logout');?>"><i class=" icon-unlock"></i><?php echo lang('common_log_out') ?></a></li>
+          <li><a href="search.html"><i class=" icon-flag"></i>Help</a></li>
+        </ul>
+      </li>
+    </ul>
   </div>
-  <!--=======Search Panel Start=======-->
-  <div class="box paint color_18">
-    <div class="title">
-      <h4> <i class="icon-book"></i><span>Search Courses</span> </h4>
-    </div>
-    <div class="content"> <?php echo form_open($this->config->item('admin_folder').'/products/index', 'class="form-horizontal row-fluid" ');?>
-      <div class="form-row control-group row-fluid">
-        <div class="controls span5">
-          <input type="text" id="with-tooltip" rel="tooltip" data-placement="top" name="term" data-original-title="Search By Course Name, Sku, Keyword" placeholder="<?php echo lang('search_term');?>" class="row-fluid">
-        </div>
-        <div class="controls span5">
+  <!-- End top-right -->
+</div>
+<!--=======Search Panel Start=======-->
+<div class="box paint color_18">
+  <div class="title">
+    <h4> <i class="icon-book"></i><span>Search Courses</span> </h4>
+  </div>
+  <div class="content"> <?php echo form_open($this->config->item('admin_folder').'/products/index', 'class="form-horizontal row-fluid" ');?>
+    <div class="form-row control-group row-fluid">
+      <div class="controls span5">
+        <input type="text" id="with-tooltip" rel="tooltip" data-placement="top" name="term" data-original-title="Search By Course Name, Sku, Keyword" placeholder="<?php echo lang('search_term');?>" class="row-fluid">
+      </div>
+      <div class="controls span5">
         <?php
 				if(!empty($categories))
 				{
@@ -135,11 +135,10 @@ function selectGroup(childs)
 					
 				}
 		?>
-        </div>
-        <div class="controls span2">
-            <button class="btn" rel="tooltip" data-placement="top" data-original-title="Search" name="submit" value="search"><?php echo lang('search')?></button>
-            <a class="btn" rel="tooltip" data-placement="top" data-original-title="Reset" href="<?php echo site_url($this->config->item('admin_folder').'/products/index');?>">Reset</a> 
-        </div>
+      </div>
+      <div class="controls span2">
+        <button class="btn" rel="tooltip" data-placement="top" data-original-title="Search" name="submit" value="search"><?php echo lang('search')?></button>
+        <a class="btn" rel="tooltip" data-placement="top" data-original-title="Reset" href="<?php echo site_url($this->config->item('admin_folder').'/products/index');?>">Reset</a> </div>
       </form>
     </div>
   </div>
@@ -165,24 +164,20 @@ function selectGroup(childs)
 				}
 		  ?>
         </div>
-         <div class="title">
+        <div class="title">
           <h4><small><a href="products/download_csv_template" title="Sample Template">Download Sample CSV File</a></small></span> </h4>
         </div>
-        
         <div class="form-row control-group row-fluid">
           <div style="margin-left:50px;" class="controls span7">
-            <div class="input-append row-fluid">
-            <?php echo form_open($this->config->item('admin_folder').'/products/save_bulk_products', array('enctype'=>'multipart/form-data'));?>
+            <div class="input-append row-fluid"> <?php echo form_open($this->config->item('admin_folder').'/products/save_bulk_products', array('enctype'=>'multipart/form-data'));?>
               <table  id="datatable_example" class="responsive table table-striped table-bordered">
-              	<tr>
-                	<td>
-                    	<input type="file" name="product_file" class="spa1n6 fileinput" id="search-input">
-                    </td>
-                    <td>
-              		<input type="submit" class="btn" name="upload_course" value="Save" />
-                    </td>
-                 </tr>
-               </table>
+                <tr>
+                  <td><input type="file" name="product_file" class="spa1n6 fileinput" id="search-input">
+                  </td>
+                  <td><input type="submit" class="btn" name="upload_course" value="Save" />
+                  </td>
+                </tr>
+              </table>
               </form>
             </div>
           </div>
@@ -200,25 +195,24 @@ function selectGroup(childs)
         <!-- End .title -->
         <!-- Paginatin End -->
         <div class="content top"> <?php echo form_open($this->config->item('admin_folder').'/products/bulk_save', array('id'=>'bulk_form'));?>
-        	<?php
+          <?php
             	if($this->session->flashdata('remove_product_err'))
 				{
 					echo $this->session->flashdata('remove_product_err');
 				}			
 			?>
-            <div class="form-row control-group row-fluid">
+          <div class="form-row control-group row-fluid">
             <div class="btn-group pull-right">
-              		<button class="btn" href="#"><i class="icon-remove-sign"></i> <?php echo lang('bulk_remove');?></button>
-                	<button  class="btn" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save');?></button>                
-                	<a class="btn" style="font-weight:normal;"href="<?php echo site_url($this->config->item('admin_folder').'/products/form');?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_product');?></a>
-           &nbsp;
-           </div>
-           </div>
+              <button class="btn" href="#"><i class="icon-remove-sign"></i> <?php echo lang('bulk_remove');?></button>
+              <button  class="btn" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save');?></button>
+              <a class="btn" style="font-weight:normal;"href="<?php echo site_url($this->config->item('admin_folder').'/products/form');?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_product');?></a> &nbsp; </div>
+          </div>
           <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
-            <thead>             	
+            <thead>
               <tr>
-                <th class="jv no_sort">
-                	<label class="checkbox "><input type="checkbox" onclick="selectGroup(<?=count($products)?>)" id="check_all_courses" name="remove_products" value="remove_products"></label>
+                <th class="jv no_sort"> <label class="checkbox ">
+                  <input type="checkbox" onclick="selectGroup(<?=count($products)?>)" id="check_all_courses" name="remove_products" value="remove_products">
+                  </label>
                 </th>
                 <?php /*?><th><?php echo sort_url('sku', 'sku', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th><?php */?>
                 <th><?php echo sort_url('name', 'name', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>
@@ -230,7 +224,9 @@ function selectGroup(childs)
               </tr>
             </thead>
             <tbody>
-              <tr><? $i = 0;?> <?php echo (count($products) < 1)?'<tr><td style="text-align:center;" colspan="7">'.lang('no_products').'</td></tr>':''?>
+              <tr>
+                <? $i = 0;?>
+                <?php echo (count($products) < 1)?'<tr><td style="text-align:center;" colspan="7">'.lang('no_products').'</td></tr>':''?>
                 <?php foreach ($products as $product):?>
                 <? $i++;?>
               <tr>
@@ -259,7 +255,7 @@ function selectGroup(childs)
           </table>
           </form>
         </div>
-		<div class="span4"> <?php echo $this->pagination->create_links();?> &nbsp; </div>
+        <div class="span4"> <?php //echo $this->pagination->create_links();?> &nbsp; </div>
         <!-- End .content -->
       </div>
       <!-- End box -->
