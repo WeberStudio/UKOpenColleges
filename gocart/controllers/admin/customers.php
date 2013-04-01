@@ -8,7 +8,19 @@ class Customers extends Admin_Controller {
 	function __construct()
 	{		
 		parent::__construct();
-
+		$this->auth->check_access('Superadmin', true);
+		
+		/*** Get User Info***/
+		//$admin_info = $this->admin_session->userdata('admin');
+		$user_info = $this->auth->admin_info();
+		$this->admin_id = $user_info['id'];
+		$this->admin_email = $user_info['email'];
+		$this->admin_access = $user_info['access'];
+		$this->first_name = $user_info['firstname'];
+		$this->last_name = $user_info['lastname'];
+		$this->image = $user_info['image'];
+		/*** Get User Info***/
+				
 		$this->load->model(array('Customer_model', 'Location_model'));
 		$this->load->helper('formatting_helper');
 		$this->lang->load('customer');

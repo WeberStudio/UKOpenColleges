@@ -12,6 +12,9 @@ class Dashboard extends Admin_Controller {
 		$this->admin_id = $user_info['id'];
 		$this->admin_email = $user_info['email'];
 		$this->admin_access = $user_info['access'];
+		$this->first_name = $user_info['firstname'];
+		$this->last_name = $user_info['lastname'];
+		$this->image = $user_info['image'];
 		/*** Get User Info***/
 		if($this->auth->check_access('Orders'))
 		{
