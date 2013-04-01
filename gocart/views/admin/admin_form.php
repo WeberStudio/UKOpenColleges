@@ -86,17 +86,32 @@
             </div>
           </div>
           <div class="form-row control-group row-fluid">
-            <label class="control-label span3" for="search-input">File upload</label>
+            <label class="control-label span3" for="search-input">Profile Image</label>
             <div class="controls span7">
               <div class="input-append row-fluid">
                 <input type="file" class="spa1n6 fileinput" name="image" id="search-input">
               </div>
             </div>
           </div>
-          <?php if(isset($id) && $image != ''):?>
-          <div style="text-align:center; padding:5px; border:1px solid #ddd;"><img src="<?php echo base_url('uploads/images/small/'.$image);?>" alt="current"/><br/>
-            <?php echo lang('current_file');?></div>
-          <?php endif;?>
+          <?php
+          	$imageurl = realpath('.')."/uploads/images/small/".$image;
+		  	if(file_exists($imageurl))
+			{
+		  ?>          
+			  <?php if(isset($id) && $image != ''):?>
+              <div style="text-align:center; padding:5px; border:1px solid #ddd; margin-bottom:5px;"><img src="<?php echo base_url('uploads/images/small/'.$image);?>" alt="current"/><br/>
+                <?php echo lang('current_file');?></div>
+              <?php endif;?>
+              
+            <? }else{?>  
+            	
+                <?php if(isset($id) && $image != ''):?>
+              <div style="text-align:center; padding:5px; border:1px solid #ddd; margin-bottom:5px;"><img src="<?php echo base_url('assets/opencollege/admin/img/no-person.png');?>" alt="current"/><br/>
+                <?php echo lang('current_file');?></div>
+              <?php endif;?>
+                
+                
+            <? } ?>
         
         <button type="submit" class="btn btn-inverse btn-block btn-large"><?php echo lang('form_save');?></button>
         </div>

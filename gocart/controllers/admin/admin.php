@@ -14,6 +14,10 @@ class Admin extends Admin_Controller
 		$this->admin_id = $user_info['id'];
 		$this->admin_email = $user_info['email'];
 		$this->admin_access = $user_info['access'];
+		$this->first_name = $user_info['firstname'];
+		$this->last_name = $user_info['lastname'];
+		$this->image = $user_info['image'];
+		//echo "<pre>";print_r($user_info);exit;
 		/*** Get User Info***/
 		
 		$this->auth->check_access($this->admin_access, true);
@@ -30,10 +34,16 @@ class Admin extends Admin_Controller
 		$data['page_title']	= lang('admins');
 		$data['admins']		= $this->auth->get_admin_list(); 
     	//print_r($data['admins'])  ; exit;
-        $this->load->view($this->config->item('admin_folder').'/includes/header');
-        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+		//go back to the customer list
+		if($this->admin_access=='Admin')
+		{
+			redirect($this->config->item('admin_folder'));
+		}
+			
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+		$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/admins', $data);
-        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer'); 
+		$this->load->view($this->config->item('admin_folder').'/includes/inner_footer'); 
 	}
 	function delete($id)
 	{

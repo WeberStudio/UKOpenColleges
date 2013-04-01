@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Mar 29, 2013 at 07:47 PM
+-- Generation Time: Apr 01, 2013 at 11:52 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -27,6 +27,7 @@ CREATE TABLE `oc_admin` (
   `access` varchar(11) NOT NULL,
   `password` varchar(40) NOT NULL,
   `company` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `status` enum('1','0') NOT NULL,
@@ -37,20 +38,20 @@ CREATE TABLE `oc_admin` (
 -- Dumping data for table `oc_admin`
 -- 
 
-INSERT INTO `oc_admin` VALUES (1, 'super', 'super', 'khalil.junaid@gmail.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'weber', 'www.google.com', '23636363636', '1');
-INSERT INTO `oc_admin` VALUES (2, 'junaid', 'khalil', 'khalil.junaid123@gmail.com', 'Admin', '6c75f2a70c892301254da6a2d83cc0b37bf5a5d7', 'junaidkhalil', '', 'khalil.junaid123@gmail.com', '1');
-INSERT INTO `oc_admin` VALUES (3, 'junaid', 'khalil', 'khalil.junaid01@gmail.com', 'Admin', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'junaidkhalil', '', '0326599999', '1');
-INSERT INTO `oc_admin` VALUES (4, 'junaid', 'khalil', 'khalil.junaid121@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '1212121212121', '1');
-INSERT INTO `oc_admin` VALUES (5, 'junaid', 'khalil', 'khalil.junaid1212@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '1212121212121', '1');
-INSERT INTO `oc_admin` VALUES (6, 'junaid', 'khalil', 'khalil.junaiad@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '111111', '1');
-INSERT INTO `oc_admin` VALUES (7, 'junaid', 'khalil', 'khalil.junaid@gmail.comq', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '22323232', '1');
-INSERT INTO `oc_admin` VALUES (8, 'junaid', 'khalil', 'khalil.junaidqqq@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '232323232', '1');
-INSERT INTO `oc_admin` VALUES (9, 'junaid', 'khalil', 'khalil.junaid22@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', 'khalil.junaid@gmail.com', '1');
-INSERT INTO `oc_admin` VALUES (10, 'junaid', 'khalil', 'khalil.junaid2q2@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', 'khalil.junaid@gmail.com', '1');
-INSERT INTO `oc_admin` VALUES (11, 'junaid', 'khalil', 'khalil.junaid2q2w@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', 'khalil.junaid@gmail.com', '1');
-INSERT INTO `oc_admin` VALUES (12, 'junaid', 'khalil', 'khalil.junaid0101@gmail.com', 'Admin', '7c222fb2927d828af22f592134e8932480637c0d', 'junaidkhalil', '', '235696969', '1');
-INSERT INTO `oc_admin` VALUES (13, 'jooojo', 'Rahat', 'r@r.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Jhon', '', '25252525', '1');
-INSERT INTO `oc_admin` VALUES (14, 'Weber', 'Pro', 'weber@gmail.com', 'Superadmin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WeberPro', 'http://www.weber.com', '445555555555', '1');
+INSERT INTO `oc_admin` VALUES (1, 'junaid', 'khalil', 'khalil.junaid@gmail.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Junaidkhalil', 'thumb_1.jpg', 'www.facebook.com', '034555555555', '1');
+INSERT INTO `oc_admin` VALUES (2, 'junaid', 'khalil', 'khalil.junaid123@gmail.com', 'Admin', '6c75f2a70c892301254da6a2d83cc0b37bf5a5d7', 'junaidkhalil', '', '', 'khalil.junaid123@gmail.com', '1');
+INSERT INTO `oc_admin` VALUES (3, 'junaid', 'khalil', 'khalil.junaid01@gmail.com', 'Admin', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'junaidkhalil', '', '', '0326599999', '1');
+INSERT INTO `oc_admin` VALUES (4, 'junaid', 'khalil', 'khalil.junaid121@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '1212121212121', '1');
+INSERT INTO `oc_admin` VALUES (5, 'junaid', 'khalil', 'khalil.junaid1212@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '1212121212121', '1');
+INSERT INTO `oc_admin` VALUES (6, 'junaid', 'khalil', 'khalil.junaiad@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '111111', '1');
+INSERT INTO `oc_admin` VALUES (7, 'junaid', 'khalil', 'khalil.junaid@gmail.comq', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '22323232', '1');
+INSERT INTO `oc_admin` VALUES (8, 'junaid', 'khalil', 'khalil.junaidqqq@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '232323232', '1');
+INSERT INTO `oc_admin` VALUES (9, 'junaid', 'khalil', 'khalil.junaid22@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1');
+INSERT INTO `oc_admin` VALUES (10, 'junaid', 'khalil', 'khalil.junaid2q2@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1');
+INSERT INTO `oc_admin` VALUES (11, 'junaid', 'khalil', 'khalil.junaid2q2w@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1');
+INSERT INTO `oc_admin` VALUES (12, 'junaid', 'khalil', 'khalil.junaid0101@gmail.com', 'Admin', '7c222fb2927d828af22f592134e8932480637c0d', 'junaidkhalil', '', '', '235696969', '1');
+INSERT INTO `oc_admin` VALUES (13, 'jooojo', 'Rahat', 'r@r.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Jhon', '', '', '25252525', '1');
+INSERT INTO `oc_admin` VALUES (14, 'Weber', 'Pro', 'weber@gmail.com', 'Superadmin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WeberPro', '', 'http://www.weber.com', '445555555555', '1');
 
 -- --------------------------------------------------------
 
@@ -5427,11 +5428,40 @@ INSERT INTO `oc_sessions` VALUES ('9ef989593f8fc10352bb26fb7f2d6e0e', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('c695f299dbc07ffc8f967c1f99416ac1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364399601, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364400236;}}');
 INSERT INTO `oc_sessions` VALUES ('49315751ae8db76ef4082cb6e4f8f674', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364550359, '');
 INSERT INTO `oc_sessions` VALUES ('4912cb757737c89d642faebe3da6d49e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364406650, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364413851;}}');
-INSERT INTO `oc_sessions` VALUES ('be91de9a297931978a6a1d6d2e787d10', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568343, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364575543;}}');
-INSERT INTO `oc_sessions` VALUES ('436a0b4c251f86652185af6bb3114cf8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568308, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:new:redirect";s:6:"/admin";}');
-INSERT INTO `oc_sessions` VALUES ('c2228dfd237abf8c45a5666842ac6ec0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568343, '');
+INSERT INTO `oc_sessions` VALUES ('330ae7b18d33063dead72a302887e62e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568718, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364575918;}}');
+INSERT INTO `oc_sessions` VALUES ('5c83b15614ba6d2cac8101506e34c094', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364586033, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364593233;}}');
+INSERT INTO `oc_sessions` VALUES ('edd9fd1e16ffdc7872c76f517e35cce4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568718, '');
 INSERT INTO `oc_sessions` VALUES ('c4c71f79c2cad3e44ceb7b72b0618227', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22', 1364550359, '');
-INSERT INTO `oc_sessions` VALUES ('398493698798182df6a1c40b5b5cb211', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364568307, '');
+INSERT INTO `oc_sessions` VALUES ('a79d8dfced075468c97627a7a66cad90', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364586033, '');
+INSERT INTO `oc_sessions` VALUES ('8083472e9a0249ad7bec79891e97cbcc', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364584517, '');
+INSERT INTO `oc_sessions` VALUES ('9efff2f0c946ada0b40b088133e893f8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364584517, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364591717;}}');
+INSERT INTO `oc_sessions` VALUES ('9f0566a792a8f655bc4a7875ed7c389c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364569035, '');
+INSERT INTO `oc_sessions` VALUES ('f880951c31153faf5d9007db27d3f279', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0', 1364569035, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:6:"expire";i:1364576235;}}');
+INSERT INTO `oc_sessions` VALUES ('a18dd64122e6202977815178d9018a4e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364620084, '');
+INSERT INTO `oc_sessions` VALUES ('33cbfc4a88fac574d3057ed478030096', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364620046, '');
+INSERT INTO `oc_sessions` VALUES ('6a9fa0acfdb4fb38735461cd6b3e1c12', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364620046, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364627246;}}');
+INSERT INTO `oc_sessions` VALUES ('e278dfa30b2e2111ab9acb1b82445e84', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364620084, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:5:"super";s:8:"lastname";s:5:"super";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364627284;}}');
+INSERT INTO `oc_sessions` VALUES ('1dc5ea9816afef068b667c2d85fc9273', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364728611, '');
+INSERT INTO `oc_sessions` VALUES ('93e848dab8e75caefc5c240e20b95801', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364728611, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:6:"junaid";s:8:"lastname";s:6:"khalil";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364735811;}}');
+INSERT INTO `oc_sessions` VALUES ('81a929bf1c75790e31fea4c823b54496', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364720559, '');
+INSERT INTO `oc_sessions` VALUES ('8a898f6e970adcf22d6d2a55b69a9721', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364720559, '');
+INSERT INTO `oc_sessions` VALUES ('5f6ec16f3e29ea501114105dc7bb6afb', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364720559, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:old:redirect";s:33:"/admin/invoices/invoice_recursion";}');
+INSERT INTO `oc_sessions` VALUES ('0e5a5eab94787dccafd3020cc7a60186', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364720559, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:old:redirect";s:15:"/admin/invoices";}');
+INSERT INTO `oc_sessions` VALUES ('387517b1d83f981b101ee6da24022964', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364751161, '');
+INSERT INTO `oc_sessions` VALUES ('df1669ee7bbddf3df410f5d50154c213', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364754121, '');
+INSERT INTO `oc_sessions` VALUES ('f010f7931813d923cf9edb57399f9749', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364754121, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:6:"expire";i:1364761321;}}');
+INSERT INTO `oc_sessions` VALUES ('b6848de43ca1777815bea3e1acebf822', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364754960, '');
+INSERT INTO `oc_sessions` VALUES ('0dd8710b180b084bb4b9216e7d94fab2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364754960, '');
+INSERT INTO `oc_sessions` VALUES ('21c3bb2622bfdf999da05898e0775309', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364796175, '');
+INSERT INTO `oc_sessions` VALUES ('6e39394fe7b3c6eed5b773b0831fbe62', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364796175, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:6:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:6:"junaid";s:8:"lastname";s:6:"khalil";s:5:"email";s:23:"khalil.junaid@gmail.com";s:6:"expire";i:1364803375;}}');
+INSERT INTO `oc_sessions` VALUES ('edd1f72816e58ebd1a11af2d022c830f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364797646, 'a:1:{s:9:"user_data";s:0:"";}');
+INSERT INTO `oc_sessions` VALUES ('92fcd1c85e1975a50519bca153719555', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364797924, '');
+INSERT INTO `oc_sessions` VALUES ('ccd9c856a7ae72dffd0fade9ba1631d0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364797646, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:6:"junaid";s:8:"lastname";s:6:"khalil";s:5:"email";s:23:"khalil.junaid@gmail.com";s:5:"image";s:11:"thumb_1.jpg";s:6:"expire";i:1364804846;}}');
+INSERT INTO `oc_sessions` VALUES ('1a4ae6fa99d2303b23555ca9557b49c7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364797924, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:6:"junaid";s:8:"lastname";s:6:"khalil";s:5:"email";s:23:"khalil.junaid@gmail.com";s:5:"image";s:11:"thumb_1.jpg";s:6:"expire";i:1364805124;}}');
+INSERT INTO `oc_sessions` VALUES ('b18733f13e866f8e75ced21eed08da89', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364798878, 'a:1:{s:9:"user_data";s:0:"";}');
+INSERT INTO `oc_sessions` VALUES ('bfcb004f805a26e851fd0527879c4e2f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364798878, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:6:"junaid";s:8:"lastname";s:6:"khalil";s:5:"email";s:23:"khalil.junaid@gmail.com";s:5:"image";s:11:"thumb_1.jpg";s:6:"expire";i:1364806078;}}');
+INSERT INTO `oc_sessions` VALUES ('3819d0af1b2a576eb91136bdc97c27c5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364799138, '');
+INSERT INTO `oc_sessions` VALUES ('2bfeb97e83f69cffa0165b14c42b1f57', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.43 Safari/537.31', 1364799138, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:0:"";s:6:"expire";i:1364806338;}}');
 
 -- --------------------------------------------------------
 

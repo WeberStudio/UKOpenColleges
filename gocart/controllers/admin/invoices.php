@@ -13,9 +13,20 @@ class Invoices extends Admin_Controller {
         $this->admin_id = $user_info['id'];
         $this->admin_email = $user_info['email'];
         $this->admin_access = $user_info['access'];
+		$this->first_name = $user_info['firstname'];
+		$this->last_name = $user_info['lastname'];
+		$this->image = $user_info['image'];
+		
+		
         /*** Get User Info***/
-        $this->auth->check_access($this->admin_access, true);  
-        $this->load->model('Invoice_model');
+		$this->auth->check_access($this->admin_access, true);  
+        
+		if($this->admin_access=='Admin')
+		{
+			redirect($this->config->item('admin_folder'));
+		}
+		
+		$this->load->model('Invoice_model');
 
 
     }

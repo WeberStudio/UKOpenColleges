@@ -1,10 +1,17 @@
 <div class="header row-fluid">
       <div class="logo"> <a href="<? echo site_url($this->config->item('admin_folder')); ?>"><span>Start</span><span class="icon"></span></a> </div>
+      <?  $imageurl = realpath('.')."/uploads/images/small/".$this->image;  ?>
       <div class="top_right">
         <ul class="nav nav_menu">
           <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html">
-            <div class="title"><span class="name">George</span><span class="subtitle">Future Buyer</span></div>
-            <span class="icon"><img src="<?=base_url()?>uploads/images/small/<?="thumb_".$this->admin_id?>"></span></a>
+            <div class="title"><span class="name"><?=$this->first_name.' '.$this->last_name?></span><span class="subtitle">System Admin</span></div>
+            <?php 
+			if(file_exists($imageurl) && $this->image!=''){ ?>            
+            <span class="icon"><img src="<?=base_url()?>uploads/images/small/<?=$this->image?>"></span>
+            <?php }else {?>
+            <span class="icon"><img src="<?=base_url()?>assets/opencollege/admin/img/no-person.png"></span>
+            <? } ?>
+            </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li><a href="<?=base_url()?>admin/admin/form/<?=$this->admin_id?>"><i class=" icon-user"></i> My Profile</a></li>
               <!--<li><a href="forms_general.html"><i class=" icon-cog"></i>Settings</a></li>-->
