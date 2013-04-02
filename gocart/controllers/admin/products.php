@@ -563,7 +563,7 @@ class Products extends Admin_Controller {
 	function download_csv_template()
 	{
 		$this->load->helper('download_helper');
-		$donwload_path = 'http://127.0.0.1/UKOpenColleges/downloads/oc_courses.csv';
+		$donwload_path = base_url().'downloads/oc_courses.csv';
 		$data = file_get_contents($donwload_path); // Read the file's contents
 		$name = 'courses_upload_template.csv';
 		force_download_content($name, $data);

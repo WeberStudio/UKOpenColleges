@@ -93,7 +93,7 @@ class Admin extends Admin_Controller
 		$data['image']		= '';
 		$data['phone']		= '';
 		$data['url']		= '';
-		$data['image']			= '';
+		$data['image']		= '';
 		
 		if ($id)
 		{	
@@ -225,7 +225,7 @@ class Admin extends Admin_Controller
 			$save['firstname']	= $this->input->post('firstname');
 			$save['lastname']	= $this->input->post('lastname');
 			$save['email']		= $this->input->post('email');
-			$save['access']		= 'Admin';
+			//$save['access']		= 'Admin';
 			$save['phone']		= $this->input->post('phone');
 			$save['company']	= $this->input->post('company');
 			$save['url']	= $this->input->post('url');
