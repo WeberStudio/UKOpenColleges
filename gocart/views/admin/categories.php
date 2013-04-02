@@ -1,7 +1,7 @@
 <script type="text/javascript">
 function areyousure()
 {
-	return confirm('<?php echo lang('confirm_delete_category');?>');
+	return confirm('<?php echo lang('confirm_trash_category');?>');
 }
 </script>
 <?php 
@@ -13,17 +13,17 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 				<td><?php echo  $cat['category']->id; ?></td>
 				<td><?php echo  $sub.$cat['category']->name; ?></td>
                 <td>10</td>
-                <td><?php if($cat['category']->publish_by_super=='1'){ echo  'Published';}else{ echo  'In Process'; } ?></td>
+                <td><?php if($cat['category']->publish_by_super=='1'){ echo  'Published'; }else { echo  'Unpublish'; } ?></td>
                 <td></td>
-                <td><?php echo  $cat['category']->publish_date; ?></td>
+                <td><?php echo  date("Y-m-d", strtotime($cat['category']->publish_date)); ?></td>
                 <td>
 					<div class="btn-group" style="float:right">
 
 						<a class="btn" href="<?php echo  site_url(ADMIN_FOLDER.'/categories/form/'.$cat['category']->id);?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>
 
-						<a class="btn" href="<?php echo  site_url(ADMIN_FOLDER.'/categories/organize/'.$cat['category']->id);?>"><i class="icon-move"></i> <?php echo lang('organize');?></a>
+						<?php /*?><a class="btn" href="<?php echo  site_url(ADMIN_FOLDER.'/categories/organize/'.$cat['category']->id);?>"><i class="icon-move"></i> <?php echo lang('organize');?></a><?php */?>
 						
-						<a class="btn btn-danger" href="<?php echo  site_url(ADMIN_FOLDER.'/categories/delete/'.$cat['category']->id);?>" onClick="return areyousure();"><i class="icon-trash"></i> <?php echo lang('delete');?></a>
+						<a class="btn btn-danger" href="<?php echo  site_url(ADMIN_FOLDER.'/categories/trash/'.$cat['category']->id);?>" onClick="return areyousure();"><i class="icon-trash"></i> <?php echo lang('trash');?></a>
 					</div>
 				</td>
 			</tr>
@@ -40,6 +40,34 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 <div id="main" style="min-height:1000px">
   <div class="container">
     <? include_once('includes/admin_profile.php');?>
+     <?php
+		//lets have the flashdata overright "$message" if it exists
+		if($this->session->flashdata('message'))
+		{
+			$message	= $this->session->flashdata('message');
+		}
+		
+		if($this->session->flashdata('error'))
+		{
+			$error	= $this->session->flashdata('error');
+		}
+		
+		if(function_exists('validation_errors') && validation_errors() != '')
+		{
+			$error	= validation_errors();
+		}
+		?>
+	
+          <div id="js_error_container" class="alert alert-error" style="display:none;">
+            <p id="js_error"></p>
+          </div>
+          <div id="js_note_container" class="alert alert-note" style="display:none;"> </div>
+          <?php if (!empty($message)): ?>
+          <div class="alert alert-success"> <a class="close" data-dismiss="alert">x</a> <?php echo $message; ?> </div>
+          <?php endif; ?>
+          <?php if (!empty($error)): ?>
+          <div class="alert alert-error"> <a class="close" data-dismiss="alert">x</a> <?php echo $error; ?> </div>
+          <?php endif; ?>
     <div id="main_container">
       <div class="row-fluid ">
         <div class="span12">

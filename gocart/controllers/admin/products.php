@@ -60,6 +60,7 @@ class Products extends Admin_Controller {
 		
 		$data['products']	= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
 		//$this->show->pe($data['products']);
+		//$this->show->pe($data['products']);
 		//total number of products
 		$data['total']		= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order), true);
 
@@ -183,6 +184,9 @@ class Products extends Admin_Controller {
 	
 	function form($id = false, $duplicate = false)
 	{
+		
+		$this->show->pe($_POST);
+		$this->show->pe($_FILES);
 		$this->product_id	= $id;
 		
 		$this->load->library('form_validation');

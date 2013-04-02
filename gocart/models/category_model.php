@@ -153,4 +153,20 @@ Class Category_model extends CI_Model
 		$this->db->where('category_id', $id);
 		$this->db->delete('category_products');
 	}
+	
+	function trash($id)
+	{
+		$data = array('publish_by_admin' => '0');
+		if($this->admin_access == 'Superadmin')
+		{
+			$data = array('publish_by_super' => '0');
+		}
+		
+		$this->db->where('id', $id);
+		$this->db->update('categories', $data);
+		return true;
+	}
+	
+	
+	
 }
