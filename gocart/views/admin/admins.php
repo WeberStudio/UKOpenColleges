@@ -19,7 +19,7 @@ function list_admin($admins, $current_admin_id)
                     	<a class="btn" href="<?php echo site_url(ADMIN_FOLDER.'/admin/form/'.$admin->id);?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>    
 						<?php                                
                         if ($current_admin_id != $admin->id){ ?>
-                        <a class="btn btn-danger" href="<?php echo site_url(ADMIN_FOLDER.'/admin/delete/'.$admin->id); ?>" onClick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
+                        <a class="btn btn-danger" href="<?php echo site_url(ADMIN_FOLDER.'/admin/delete/'.$admin->id); ?>" onClick="return areyousure();"><i class="icon-trash"></i> <?php echo lang('delete');?></a>
                             <?php } ?>
                     </div> 
 				</td>  

@@ -25,16 +25,21 @@ Class Product_model extends CI_Model
 	
 	function products($data=array(), $return_count=false)
 	{
+		
 		if(empty($data))
 		{
-			
 			//if nothing is provided return the whole shabang
 			$this->get_all_products();
+			
 		}
 		else
 		{
+			if($this->admin_access!='Superadmin')
+			{
+				$this->db->where('admin_id', $this->admin_id);
+			}
 			
-			$this->db->where('admin_id', $this->admin_id);
+			
 			//$this->db->where('enabled', '1');
 			$this->db->where('publish_by_admin', '1');
 			//grab the limit

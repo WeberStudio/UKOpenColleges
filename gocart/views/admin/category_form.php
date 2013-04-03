@@ -38,7 +38,7 @@
                                 ?>
                             </fieldset>
                             <div class="form-row control-group row-fluid ">
-                              <h3>Course Status</h3>
+                              <h3>Category Status (Publish/ Unpublish)</h3>
                               <div class="controls span3">
                                 <div class="row-fluid">
                                   <div class="pull-left">
@@ -49,9 +49,9 @@
                                       <input type="radio" name="enabled" id="toggle1-on" value="on" checked="true">
                                     </label>
                                     <div class="toggle off">
-                                      <div class="yes"> ON </div>
+                                      <div class="yes"> Yes </div>
                                       <div class="switch"> </div>
-                                      <div class="no"> OFF </div>
+                                      <div class="no"> No </div>
                                     </div>
                                   </div>                      
                                 </div>

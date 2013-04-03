@@ -60,6 +60,7 @@ class Products extends Admin_Controller {
 		
 		$data['products']	= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
 		//$this->show->pe($data['products']);
+		//$this->show->pe($data['products']);
 		//total number of products
 		$data['total']		= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order), true);
 
@@ -183,6 +184,9 @@ class Products extends Admin_Controller {
 	
 	function form($id = false, $duplicate = false)
 	{
+		
+		$this->show->pe($_POST);
+		$this->show->pe($_FILES);
 		$this->product_id	= $id;
 		
 		$this->load->library('form_validation');
@@ -563,7 +567,7 @@ class Products extends Admin_Controller {
 	function download_csv_template()
 	{
 		$this->load->helper('download_helper');
-		$donwload_path = 'http://127.0.0.1/UKOpenColleges/downloads/oc_courses.csv';
+		$donwload_path = base_url().'downloads/oc_courses.csv';
 		$data = file_get_contents($donwload_path); // Read the file's contents
 		$name = 'courses_upload_template.csv';
 		force_download_content($name, $data);

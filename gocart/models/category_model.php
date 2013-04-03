@@ -31,12 +31,16 @@ Class Category_model extends CI_Model
 		
 		$this->db->select('id');
 		$this->db->order_by('categories.sequence', 'ASC');
-		$this->db->where('admin_id', $this->admin_id);
+		
+		if($this->admin_access!='Superadmin')
+		{
+			$this->db->where('admin_id', $this->admin_id);
+		}
 		//$this->db->where('publish_by', 'Admin');
 		//$this->db->where('status', '1');
 		//$this->db->where('delete', '0');
 		//this will alphabetize them if there is no sequence
-		$this->db->order_by('name', 'ASC');
+		$this->db->order_by('id', 'ASC');
 		$result	= $this->db->get('categories');
 		
 		$categories	= array();
@@ -149,4 +153,20 @@ Class Category_model extends CI_Model
 		$this->db->where('category_id', $id);
 		$this->db->delete('category_products');
 	}
+	
+	function trash($id)
+	{
+		$data = array('publish_by_admin' => '0');
+		if($this->admin_access == 'Superadmin')
+		{
+			$data = array('publish_by_super' => '0');
+		}
+		
+		$this->db->where('id', $id);
+		$this->db->update('categories', $data);
+		return true;
+	}
+	
+	
+	
 }

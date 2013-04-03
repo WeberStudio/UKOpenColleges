@@ -6,7 +6,7 @@ $GLOBALS['option_value_count']		= 0;
   <div class="container">
     <? include_once('includes/admin_profile.php');?>
     <div id="main_container">
-     <form class="form-horizontal" action="<?=base_url().$this->config->item('admin_folder').'/products/form/'.$id?>" method="post">
+     <form class="form-horizontal" action="<?=base_url().$this->config->item('admin_folder').'/products/form/'.$id?>" method="post" enctype="multipart/form-data">
       <div class="row-fluid">
         <div class="span12">
           <div class="box paint color_3">
@@ -183,17 +183,10 @@ $GLOBALS['option_value_count']		= 0;
                 </div>
                 <!-- TAB FOUR END-->
                 <!-- TAB FIVE START-->
-                <div class="tab-pane fade" id="images">
-                  <div class="content">
-                      <div class="form-row control-group row-fluid">
-                        <label class="control-label span3" for="search-input">File upload</label>
-                        <div class="controls span7">
-                          <div class="input-append row-fluid">
-                            <input type="file" class="spa1n6 fileinput" name="userfile" value="" id="search-input">
-                          </div>
-                        </div>
-                      </div>
-                  </div>
+                
+                <div class="tab-pane" id="images">
+                    <label class="control-label span3" for="search-input">Image upload</label>
+                    <input type="file"   name="fileinput">
                 </div>
                 <!-- TAB FIVE END-->
               </div>
