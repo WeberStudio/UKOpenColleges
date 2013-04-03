@@ -10,7 +10,7 @@ Class Invoice_model extends CI_Model
         $this->db->order_by('name', 'ASC');
         $this->db->where('status', '1');
         $this->db->where('delete', '0');
-        $result    = $this->db->get('categories');
+        $result    = $this->db->get('oc_invoices');
         if(count($result)>0)
         {
             return $result->result_array();
@@ -66,9 +66,9 @@ Class Invoice_model extends CI_Model
         return    $this->db->like('name', $name)->get('categories', $limit)->result();
     }
     
-    function get_category($id)
+    function get_invoices($id)
     {
-        return $this->db->get_where('categories', array('id'=>$id))->row();
+        return $this->db->get_where('invoices', array('invoice_id'=>$id))->row();
     }
     
     function get_category_products_admin($id)
@@ -128,14 +128,14 @@ Class Invoice_model extends CI_Model
     {
         if ($category['id'])
         {
-            $this->db->where('id', $category['id']);
-            $this->db->update('categories', $category);
+            $this->db->where('invoice_id', $category['id']);
+            $this->db->update('invoices', $category);
             
             return $category['id'];
         }
         else
         {
-            $this->db->insert('categories', $category);
+            $this->db->insert('invoices', $category);
             return $this->db->insert_id();
         }
     }

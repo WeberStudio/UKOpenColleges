@@ -13,20 +13,20 @@ class Invoices extends Admin_Controller {
         $this->admin_id = $user_info['id'];
         $this->admin_email = $user_info['email'];
         $this->admin_access = $user_info['access'];
-		$this->first_name = $user_info['firstname'];
-		$this->last_name = $user_info['lastname'];
-		$this->image = $user_info['image'];
-		
-		
+        $this->first_name = $user_info['firstname'];
+        $this->last_name = $user_info['lastname'];
+        $this->image = $user_info['image'];
+
+
         /*** Get User Info***/
-		$this->auth->check_access($this->admin_access, true);  
-        
-		if($this->admin_access=='Admin')
-		{
-			redirect($this->config->item('admin_folder'));
-		}
-		
-		$this->load->model('Invoice_model');
+        $this->auth->check_access($this->admin_access, true);  
+
+        if($this->admin_access=='Admin')
+        {
+            redirect($this->config->item('admin_folder'));
+        }
+
+        $this->load->model('Invoice_model');
 
 
     }
@@ -321,12 +321,12 @@ class Invoices extends Admin_Controller {
         $this->load->library('upload', $config);
 
 
-        $this->category_id    = $id;
+        $this->invoices_id    = $id;
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
-        $data['categories']        = $this->Invoice_model->get_categories();
+        $data['invoices']        = $this->Invoice_model->get_categories();
         // $data['page_title']        = lang('category_form');
 
         //default values are empty if the customer is new
@@ -478,18 +478,19 @@ class Invoices extends Admin_Controller {
                 $route_id    = $this->Routes_model->save($route);
                 }*/
 
-                $save['id']                = $id;            
+            $save['id']                = $id;            
             $save['name']            = $this->input->post('name');
+            $save['Cname']       =        $this->input->post('Cname');
             $save['admin_id']        = $this->admin_id;
             $save['publish_by_admin']        = '1';
             $save['publish_by_super']        = '0';
             /*            $save['description']    = $this->input->post('description');*/
-            $save['excerpt']        = $this->input->post('excerpt');
-            $save['parent_id']        = intval($this->input->post('parent_id'));
-            $save['sequence']        = intval($this->input->post('sequence'));
-            $save['seo_title']        = $this->input->post('seo_title');
-            $save['meta']            = $this->input->post('meta');
-            $save['route_id']        = intval($route_id);
+           // $save['date']        = $this->input->post('date');
+            $save['description']        = intval($this->input->post('parent_id'));
+            $save['duedate']        = intval($this->input->post('duedate'));
+            //$save['seo_title']        = $this->input->post('seo_title');
+           /// $save['meta']            = $this->input->post('meta');
+           // $save['route_id']        = intval($route_id);
             $save['slug']            = $slug;
             $save['publish_date']    = date('Y-m-d H:h:i');
             if($this->input->post('enabled')=='on')
