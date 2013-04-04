@@ -41,7 +41,8 @@
                     <li class="accordion-group color_4"> <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Invoices</span></a>
                         <ul id="collapse3" class="accordion-body collapse">
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/form'); ?>">Create Invoice</a></li>
-                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/'); ?>">View Invoices</a></li>
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoice_details'); ?>">View Invoices</a></li>
+                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoices'); ?>">Invoices Template</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoice_recursion'); ?>">View Recuring Invoices</a></li>  
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>digital_products">Digital Products</a></li>-->
                         </ul>

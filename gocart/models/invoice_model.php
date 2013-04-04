@@ -1,153 +1,51 @@
 <?php
 Class Invoice_model extends CI_Model
 {
-
-    
-    function get_all_categories()
-    {
-        
-        $this->db->select('*');
-        $this->db->order_by('name', 'ASC');
-        $this->db->where('status', '1');
-        $this->db->where('delete', '0');
-        $result    = $this->db->get('oc_invoices');
-        if(count($result)>0)
+        function get_all_template()
         {
-            return $result->result_array();
-        }
-        else
-        {
-            return false;
-        }    
-    }
-    
-    function get_categories($parent = false)
-    {
-        if ($parent !== false)
-        {
-            $this->db->where('parent_id', $parent);
+                     $this->db->from('invoice_templates');
+                     $this->db->order_by("invoice_template_id", "asc");
+                    $query = $this->db->get();
+                    return $query->result();
             
         }
+   
+    function save($template)
+    {
+        $this->db->insert('invoice_templates', $template);
+        return $this->db->insert_id();   
         
-        $this->db->select('id');
-        $this->db->order_by('categories.sequence', 'ASC');
-        $this->db->where('admin_id', $this->admin_id);
-        //$this->db->where('publish_by', 'Admin');
-        //$this->db->where('status', '1');
-        //$this->db->where('delete', '0');
-        //this will alphabetize them if there is no sequence
-        $this->db->order_by('name', 'ASC');
-        $result    = $this->db->get('categories');
+    }
+    function get_template($id)
+    {
+      return $this->db->get_where('invoice_templates', array('invoice_template_id'=>$id))->row();
+    }
+    function update_template($id,$data) 
+    {
+        $this->db->where('invoice_template_id', $id);
+        $query2    =$this->db->update( 'invoice_templates', $data );
+                
+    }
+     function invoice_save($data)
+    {
+        $this->db->insert('invoices', $data);
+        return $this->db->insert_id();   
         
-        $categories    = array();
-        foreach($result->result() as $cat)
+    }
+      function get_all_invoices()
         {
-            $categories[]    = $this->get_category($cat->id);
-        }
-        
-        return $categories;
-    }
-    
-    //this is for building a menu
-    function get_categories_tierd($parent=0)
-    {
-        $categories    = array();
-        $result    = $this->get_categories($parent);
-        foreach ($result as $category)
-        {
-            $categories[$category->id]['category']    = $category;
-            $categories[$category->id]['children']    = $this->get_categories_tierd($category->id);
-        }
-        return $categories;
-    }
-    
-    function category_autocomplete($name, $limit)
-    {
-        return    $this->db->like('name', $name)->get('categories', $limit)->result();
-    }
-    
-    function get_invoices($id)
-    {
-        return $this->db->get_where('invoices', array('invoice_id'=>$id))->row();
-    }
-    
-    function get_category_products_admin($id)
-    {
-        $this->db->order_by('sequence', 'ASC');
-        $result    = $this->db->get_where('category_products', array('category_id'=>$id));
-        $result    = $result->result();
-        
-        $contents    = array();
-        foreach ($result as $product)
-        {
-            $result2    = $this->db->get_where('products', array('id'=>$product->product_id));
-            $result2    = $result2->row();
+        $this->db->from('invoices');
+        $this->db->order_by("invoice_id", "asc");
+        $query = $this->db->get();
+        return $query->result();
             
-            $contents[]    = $result2;    
         }
-        
-        return $contents;
-    }
+      function update_invoice($id,$data) 
+      {
+        $this->db->where('invoice_id', $id);
+        $query2    =$this->db->update( 'invoices', $data );
+                
+      }
     
-    function get_category_products($id, $limit, $offset)
-    {
-        $this->db->order_by('sequence', 'ASC');
-        $result    = $this->db->get_where('category_products', array('category_id'=>$id), $limit, $offset);
-        $result    = $result->result();
-        
-        $contents    = array();
-        $count        = 1;
-        foreach ($result as $product)
-        {
-            $result2    = $this->db->get_where('products', array('id'=>$product->product_id));
-            $result2    = $result2->row();
-            
-            $contents[$count]    = $result2;
-            $count++;
-        }
-        
-        return $contents;
-    }
-    
-    function organize_contents($id, $products)
-    {
-        //first clear out the contents of the category
-        $this->db->where('category_id', $id);
-        $this->db->delete('category_products');
-        
-        //now loop through the products we have and add them in
-        $sequence = 0;
-        foreach ($products as $product)
-        {
-            $this->db->insert('category_products', array('category_id'=>$id, 'product_id'=>$product, 'sequence'=>$sequence));
-            $sequence++;
-        }
-    }
-    
-    function save($category)
-    {
-        if ($category['id'])
-        {
-            $this->db->where('invoice_id', $category['id']);
-            $this->db->update('invoices', $category);
-            
-            return $category['id'];
-        }
-        else
-        {
-            $this->db->insert('invoices', $category);
-            return $this->db->insert_id();
-        }
-    }
-    
-    function delete($id)
-    {
-        $this->db->where('id', $id);
-        $this->db->delete('categories');
-        
-        //delete references to this category in the product to category table
-        $this->db->where('category_id', $id);
-        $this->db->delete('category_products');
-    }
 }
-?>
+

@@ -16,7 +16,7 @@
                     <!-- End .title -->  
                     <div class="content">
 
-                        <?php echo form_open_multipart($this->config->item('admin_folder').'/invoices/form/'.$id); ?>
+                        <?php echo form_open_multipart($this->config->item('admin_folder').'/invoices/invoices_save/'); ?>
 
                         <div class="tab-content">
                             <div class="tab-pane active" id="description_tab">
@@ -25,28 +25,25 @@
 
                                                                                     
 
-                                    <label for="name"><?php echo lang('name');?></label>
+                                    <label for="name">Client Name</label>
                                     <?php
-                                        $data    = array('name'=>'cname', 'value'=>set_value('name', $name), 'class'=>'span12');
+                                        $data    = array('name'=>'name','id'=>'name', 'value'=>set_value('name','name'), 'class'=>'span12');
                                         echo form_input($data);
                                     ?>
 
-                                    <label for="description"><?php echo lang('description');?></label>
+                                    <label for="group">Group</label>
                                     <?php
-                                        $data    = array('name'=>'description', 'class'=>'redactor', 'value'=>set_value('description', $description));
-                                        echo form_textarea($data);
+                                        $data    = array('name'=>'client', 'value'=>set_value('group'), 'class'=>'span12');
+                                        echo form_input($data);
                                     ?>
 
-                                    <label for="date">Created Date </label>
+                                    <label for="date">Date </label>
                                     <?php
-                                        $data    = array('name'=>'date','id'=>'datepicker1', 'value'=>set_value('name',date("m.d.y")), 'class'=>'span12');
+                                        $data    = array('name'=>'date','id'=>'datepicker1', 'value'=>set_value('date'), 'class'=>'span12');
                                         echo form_input($data);
-                                    ?>  
-                                    <label for="duedate">Due Date </label>
-                                    <?php
-                                        $data    = array('name'=>'duedate','id'=>'datepicker1', 'value'=>set_value('name',date("m.d.y")), 'class'=>'span12');
-                                        echo form_input($data);
-                                    ?>  
+                                    ?> 
+                                     
+                                   
                                 </fieldset>
 
                             </div>   

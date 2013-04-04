@@ -180,7 +180,7 @@ class Admin extends Admin_Controller
 			redirect($this->config->item('admin_folder').'/admin/form/'.$id);
 			
 		}
-	}
+	
 	
 	function check_email($str)
 	{
