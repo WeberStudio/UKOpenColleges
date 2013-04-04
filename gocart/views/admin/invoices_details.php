@@ -6,50 +6,28 @@ function areyousure()
 </script>
 <?php 
 define('ADMIN_FOLDER', $this->config->item('admin_folder'));
-        function list_categories($cats, $sub='') {
-            
-            foreach ($cats as $cat):?>
+        function list_categories($invoices)
+         {            
+             foreach ($invoices as $ledger):?>
             <tr>
-                <td><?php echo  $cat['category']->id; ?></td>
-                <td><?php echo  $sub.$cat['category']->name; ?></td>
-                <td>10</td>
-                <td>Published</td>
-                <td></td>
-                <td>03-23-2013</td>                
-                <td></td>  
+                <td>Open</td>
+                <td><?php echo  $ledger->invoice_number; ?></td>  
+                <td><?php echo  $ledger->client_name; ?></td>
+                <td><?php echo  $ledger->invoice_date_created; ?></td>                
+                <td><?php echo  $ledger->invoice_date_due; ?></td>   
+                <td>$00.00</td>
+                <td>$00.00</td>
+
                 <td>
-            <div class="options btn-group" align="right">
-                    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> Options</a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="">
-                                <i class="icon-pencil"></i> Edit                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="icon-print"></i> Open PDF                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="icon-envelope"></i> Send Email                            </a>
-                        </li>
-                        <li>
-                            <a href="" onclick="return confirm('If you delete this invoice you will not be able to recover it later. Are you sure you want to permanently delete this invoice?');">
-                                <i class="icon-trash"></i> Delete                            </a>
-                        </li>
-                    </ul>
+                     <div class="btn-group" style="float:right">
+                <a class="btn" href="<?php // echo base_url().ADMIN_PATH?>invoices/invoice_update/<?=$id=$ledger->invoice_id;?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>
                 </div>
                 </td>
                 <td width="60"></td>
 
             </tr>
             <?php
-            if (sizeof($cat['children']) > 0)
-            {
-                $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
-                    $sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
-                list_categories($cat['children'], $sub2);
-            }
+            
             endforeach;
         }
 ?>
@@ -77,9 +55,10 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
                   <tr>
                     <th class="no_sort">Status</th>
                     <th class="no_sort to_hide_phone">Invoice </th>
+                    <th>Client Name</th> 
                     <th class="ue no_sort">Created</th>
                     <th>Due Date</th>
-                    <th>Client Name</th>
+
                     <th class="ue no_sort">Amount</th>
                     <th class="ue no_sort ">Balance</th>
                     <th class="ue no_sort">Options</th> 
@@ -88,7 +67,7 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
                 </thead>
                 <tbody>
                 <?php
-                  list_categories($categories);
+                  list_categories($invoices);
                 ?>
                 </tbody>
               </table>
