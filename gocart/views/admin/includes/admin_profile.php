@@ -7,7 +7,7 @@
             <div class="title"><span class="name"><?=$this->first_name.' '.$this->last_name?></span><span class="subtitle">System Admin</span></div>
             <?php 
 			if(file_exists($imageurl) && $this->image!=''){ ?>            
-            <span class="icon"><img src="<?=base_url()?>uploads/images/small/<?=$this->image?>"></span>
+            <span class="icon"><img src="<?=base_url()?>uploads/images/thumbnails/<?=$this->image?>"></span>
             <?php }else {?>
             <span class="icon"><img src="<?=base_url()?>assets/opencollege/admin/img/no-person.png"></span>
             <? } ?>

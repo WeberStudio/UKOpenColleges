@@ -255,12 +255,26 @@ class Auth
 	/*
 	This function gets a complete list of all admin
 	*/
-	function get_admin_list()
+	function get_admin_list($data=array())
 	{
 		$this->CI->db->select('*');
-		$this->CI->db->order_by('lastname', 'ASC');
-		$this->CI->db->order_by('firstname', 'ASC');
-		$this->CI->db->order_by('email', 'ASC');
+		
+		if(empty($data))
+		{
+			$this->CI->db->order_by('lastname', 'ASC');
+			$this->CI->db->order_by('firstname', 'ASC');
+			$this->CI->db->order_by('email', 'ASC');
+		}
+		else
+		{
+			if(!empty($data['order_by']))
+			{
+				//if we have an order_by then we must have a direction otherwise KABOOM
+				$this->CI->db->order_by($data['order_by'], $data['sort_order']);
+			}	
+		}
+		
+		
 		$result = $this->CI->db->get('admin');
 		$result	= $result->result();
 		

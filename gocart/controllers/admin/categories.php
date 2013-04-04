@@ -25,13 +25,18 @@ class Categories extends Admin_Controller {
 		
 	}
 	
-	function index()
+	function index($order_by="name", $sort_order="ASC", $page=0, $rows=15)
 	{
+		
+		//Store the sort term
+		$data['order_by']	= $order_by;
+		$data['sort_order']	= $sort_order;
+		
+		
 		//we're going to use flash data and redirect() after form submissions to stop people from refreshing and duplicating submissions
 		//$this->session->set_flashdata('message', 'this is our message');
-		
 		$data['page_title']	= lang('categories');
-		$data['categories']	= $this->Category_model->get_categories_tierd();
+		$data['categories']	= $this->Category_model->get_categories_tierd($parent = false, array('order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
 		
 		
 		$this->load->view($this->config->item('admin_folder').'/includes/header');
@@ -167,7 +172,7 @@ class Categories extends Admin_Controller {
 			$data['id']				= $category->id;
 			$data['name']			= $category->name;
 			$data['publish_by_admin']		= $category->publish_by_admin;
-			$data['publish_by_super']		= $category->publish_by_admin;
+			$data['publish_by_super']		= $category->publish_by_super;
 			if(isset($category->admin_id) && $category->admin_id!='')
 			{
 				$data['admin_id']		= $category->admin_id;

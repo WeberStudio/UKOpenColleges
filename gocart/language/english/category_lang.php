@@ -40,3 +40,4 @@ $lang['price']						= 'Price';
 $lang['sale']						= 'Sale';
 $lang['max_file_size']				= 'Max File Size';
 $lang['trash']						= 'Trash';
+$lang['publish_date']				= 'Publish Date';

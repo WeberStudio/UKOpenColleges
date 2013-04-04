@@ -21,7 +21,7 @@ Class Category_model extends CI_Model
 		}	
 	}
 	
-	function get_categories($parent = false)
+	function get_categories($parent = false, $data=array())
 	{
 		if ($parent !== false)
 		{
@@ -30,7 +30,7 @@ Class Category_model extends CI_Model
 		}
 		
 		$this->db->select('id');
-		$this->db->order_by('categories.sequence', 'ASC');
+		
 		
 		if($this->admin_access!='Superadmin')
 		{
@@ -39,8 +39,24 @@ Class Category_model extends CI_Model
 		//$this->db->where('publish_by', 'Admin');
 		//$this->db->where('status', '1');
 		//$this->db->where('delete', '0');
+		
+		if(empty($data))
+		{
+			$this->db->order_by('categories.sequence', 'ASC');
+			$this->db->order_by('id', 'ASC');
+		}
+		else
+		{
+			if(!empty($data['order_by']))
+			{
+				//if we have an order_by then we must have a direction otherwise KABOOM
+				$this->db->order_by($data['order_by'], $data['sort_order']);
+			}	
+		}
+		
+		
 		//this will alphabetize them if there is no sequence
-		$this->db->order_by('id', 'ASC');
+		
 		$result	= $this->db->get('categories');
 		
 		$categories	= array();
@@ -53,10 +69,10 @@ Class Category_model extends CI_Model
 	}
 	
 	//this is for building a menu
-	function get_categories_tierd($parent=0)
+	function get_categories_tierd($parent=0, $data=array())
 	{
 		$categories	= array();
-		$result	= $this->get_categories($parent);
+		$result	= $this->get_categories($parent, $data);
 		foreach ($result as $category)
 		{
 			$categories[$category->id]['category']	= $category;

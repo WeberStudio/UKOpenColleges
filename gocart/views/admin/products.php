@@ -177,17 +177,29 @@ function selectGroup(childs)
                   <input type="checkbox" id="child_<?=$i?>" name="courses[]"  value="<?=$product->id?>">
                   </label>
                 </td>
-                 <td><img class="thumbnail small" src="<?=base_url()?>assets/opencollege/admin/img/no-image.png"></td>
+                 <td>
+                 	<? if(!empty($product->images) && $product->images!=null){ ?>
+                    <img class="thumbnail small" src="<?=base_url()?>uploads/images/thumbnails/<?=$product->images?>">
+                    <? }else{ ?>
+                    <img class="thumbnail small" src="<?=base_url()?>assets/opencollege/admin/img/no-image.png">
+                    <? } ?>
+                 </td>
                 <?php /*?><td><?php echo form_input(array('name'=>'product['.$product->id.'][sku]','value'=>form_decode($product->sku), 'class'=>'span7'));?></td><?php */?>
                 <td><?php echo form_input(array('name'=>'product['.$product->id.'][name]','value'=>form_decode($product->name), 'class'=>'span12'));?></td>
                 <td><?php echo form_input(array('name'=>'product['.$product->id.'][price]', 'value'=>set_value('price', $product->price), 'class'=>'span7'));?></td>
                 <td><?php
 					 	$options = array(
-			                  '1'	=> lang('enabled'),
-			                  '0'	=> lang('disabled')
+			                  '1'	=> lang('published'),
+			                  '0'	=> lang('unpublished')
 			                );
-
-						echo form_dropdown('product['.$product->id.'][enabled]', $options, set_value('enabled',$product->enabled), 'class="span12"');
+						if(!empty($this->admin_access) && $this->admin_access=='Admin')
+						{
+							echo form_dropdown('product['.$product->id.'][enabled]', $options, set_value('publish_by_admin',$product->publish_by_admin), 'class="span12"');
+						}
+						else
+						{
+							echo form_dropdown('product['.$product->id.'][enabled]', $options, set_value('publish_by_super',$product->publish_by_super), 'class="span12"');
+						}
 					?>
                 </td>
                 <td class="ms"><div class="btn-group1"> <a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id);?>"> <i class="gicon-edit"></i> </a> <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View"> <i class="gicon-eye-open"></i> </a> <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="<?php echo lang('copy');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$product->id.'/1');?>"> <i class="gicon-file"></i> </a> <a class="btn  btn-small" rel="tooltip" data-placement="bottom" data-original-title="<?php echo lang('delete');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/delete/'.$product->id);?>" onclick="return areyousure();"> <i class="gicon-remove "></i> </a> </div></td>
@@ -228,6 +240,10 @@ function selectGroup(childs)
 					}
 				}
 		  	?>
+            <div class="form-row control-group row-fluid">
+              <div class="title">
+          		<h4> <span><a href="products/download_csv_template" title="Sample Template">Download Sample CSV File</a></span> </h4>
+              </div>    
           	<?php echo form_open($this->config->item('admin_folder').'/products/save_bulk_products', array('enctype'=>'multipart/form-data'));?>
               <!--<table  id="datatable_example" class="responsive table table-striped table-bordered">
                 <tr>
@@ -237,21 +253,24 @@ function selectGroup(childs)
                   </td>
                 </tr>
               </table>-->
-              <div class="form-row control-group row-fluid">
-              <div class="title">
-          		<h4> <span><a href="products/download_csv_template" title="Sample Template">Download Sample CSV File</a></span> </h4>
-              </div>              
+                        
             
               
                   <label class="control-label span3" for="search-input">File upload</label>
-                  <div class="controls span7">
+                  <div class="controls span3">
                     <div class="input-append row-fluid">
-                      <input type="file" class="spa1n6 fileinput" id="search-input" name="upload_course">
-                      </div>
+                      <input type="file" class="spa1n6 fileinput" id="search-input" name="product_file">
+                     
+                    </div>
+                    <div class="input-append row-fluid">
+                       <button class="btn" rel="tooltip" data-placement="top" data-original-title="Save CSV File" name="upload_course" value="Save"><?php echo lang('save')?></button>
+                     
+                    </div>
+                       <!--<input type="submit" class="btn" name="upload_course" value="Save" />-->
                   </div>
-                </div>           
+                    
             </form>
-         
+           </div>     
         </div>
       </div>
 

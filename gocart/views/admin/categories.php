@@ -6,6 +6,35 @@ function areyousure()
 </script>
 <?php 
 define('ADMIN_FOLDER', $this->config->item('admin_folder'));
+
+		function sort_url($heading, $by, $sort, $sorder, $admin_folder)
+		{
+			if ($sort == $by)
+			{
+				if ($sorder == 'asc')
+				{
+					$sort	= 'desc';
+					$icon	= ' <i class="icon-chevron-up"></i>';
+				}
+				else
+				{
+					$sort	= 'asc';
+					$icon	= ' <i class="icon-chevron-down"></i>';
+				}
+			}
+			else
+			{
+				$sort	= 'asc';
+				$icon	= '';
+			}
+				
+		
+			$return = site_url($admin_folder.'/categories/index/'.$by.'/'.$sort);
+			
+			echo '<a href="'.$return.'">'.$heading.$icon.'</a>';
+		
+		}
+
 		function list_categories($cats, $sub='') {
 			
 			foreach ($cats as $cat):?>
@@ -31,7 +60,7 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 			if (sizeof($cat['children']) > 0)
 			{
 				$sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
-					$sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
+				$sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
 				list_categories($cat['children'], $sub2);
 			}
 			endforeach;
@@ -82,12 +111,12 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
               <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
                 <thead>
                   <tr>
-                    <th class="no_sort"><?php echo lang('category_id');?></th>
-                    <th class="no_sort to_hide_phone">Category Name </th>
+                    <th><?php echo sort_url(lang('category_id'),'id', $order_by, $sort_order, $this->config->item('admin_folder'));?></th>
+                    <th><?php echo sort_url(lang('name'),'name', $order_by, $sort_order, $this->config->item('admin_folder'));?></th>
                     <th class="ue no_sort">Courses Count</th>
                     <th>Status</th>
                     <th></th>
-                    <th class="ue no_sort">Register Date</th>
+                    <th><?php echo sort_url(lang('publish_date'),'publish_date', $order_by, $sort_order, $this->config->item('admin_folder'));?></th>
                     <th class="ms no_sort ">Actions </th>
                   </tr>
                 </thead>

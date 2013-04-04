@@ -63,7 +63,8 @@ $lang['textfield']					= 'Textfield';
 $lang['textarea']					= 'Textarea';
 $lang['add_option']					= 'Add Option';
 $lang['select_option_type']			= 'Select Option Type';
-
+$lang['published']					= 'Published';
+$lang['unpublished']				= 'Unpublished';
 //option form portion
 $lang['option_name']				= 'Option Name';
 $lang['required']					= 'Required';

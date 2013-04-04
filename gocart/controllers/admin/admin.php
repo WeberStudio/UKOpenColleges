@@ -27,18 +27,24 @@ class Admin extends Admin_Controller
 		$this->current_admin	= $this->session->userdata('admin');
 	}
 
-	function index()
+	function index($order_by="firstname", $sort_order="ASC", $page=0, $rows=15)
 	{
-        //echo "test"; exit;
-       // data['sessions'] = $this->admin_session->userdata('admin'));
-		$data['page_title']	= lang('admins');
-		$data['admins']		= $this->auth->get_admin_list(); 
-    	//print_r($data['admins'])  ; exit;
-		//go back to the customer list
+       //Go back to the customer list if not Superadmin
 		if($this->admin_access=='Admin')
 		{
 			redirect($this->config->item('admin_folder'));
 		}
+		
+		//Store the sort term
+		$data['order_by']	= $order_by;
+		$data['sort_order']	= $sort_order;      
+	   
+	   
+		$data['page_title']	= lang('admins');
+		$data['admins']		= $this->auth->get_admin_list(array('order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page)); 
+    	//print_r($data['admins'])  ; exit;
+		
+		
 			
 		$this->load->view($this->config->item('admin_folder').'/includes/header');
 		$this->load->view($this->config->item('admin_folder').'/includes/leftbar');

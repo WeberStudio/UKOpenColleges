@@ -130,14 +130,14 @@ class Products extends Admin_Controller {
 	function bulk_save()
 	{
 		
-		//echo"<pre>";print_r($_REQUEST);exit;
+		//echo"<pre>";print_r($_POST);exit;
 		$products	= $this->input->post('product');
 		$remove_products	= $this->input->post('remove_products');
 		$courses = $this->input->post('courses');
 		
-		if($remove_products)
-		{
-			if(isset($courses) && count($courses)>0)
+		/*if($remove_products)
+		{*/
+			if(!empty($courses) && count($courses)>0)
 			{
 				
 				//if the product does not exist, redirect them to the customer list with an error
@@ -158,13 +158,13 @@ class Products extends Admin_Controller {
 					}
 				}
 				redirect($this->config->item('admin_folder').'/products');
-			}
+			}/*
 			else
 			{
 				$this->session->set_flashdata('remove_product_err',  'Please select atleast one product to remove.');
 				redirect($this->config->item('admin_folder').'/products');
-			}
-		}
+			}*/
+		//}
 		
 		if(!$products)
 		{
@@ -175,18 +175,46 @@ class Products extends Admin_Controller {
 		foreach($products as $id=>$product)
 		{
 			$product['id']	= $id;
+			
+			// Check Admin Enabled
+			if($this->admin_access=='Admin')
+			{
+					
+				if($product['enabled'] =='1')
+				{
+						$product['publish_by_admin']	= '1';
+				}
+				else
+				{
+						$product['publish_by_admin']	= '0';
+				}		
+					
+			}		
+				
+			// Check Superadmin Enabled			
+			if($this->admin_access=='Superadmin')
+			{
+				//echo $this->admin_access.'------'.$product['enabled'];
+				if($product['enabled'] =='1')
+				{
+						$product['publish_by_super']	= '1';	
+				}
+				else
+				{
+						$product['publish_by_super']	= '0';
+				}
+			}
+			
+			
 			$this->Product_model->save($product);
 		}
-		
+		//exit;
 		$this->session->set_flashdata('message', lang('message_bulk_update'));
 		redirect($this->config->item('admin_folder').'/products');
 	}
 	
 	function form($id = false, $duplicate = false)
 	{
-		
-		$this->show->pe($_POST);
-		$this->show->pe($_FILES);
 		$this->product_id	= $id;
 		
 		$this->load->library('form_validation');
@@ -207,15 +235,13 @@ class Products extends Admin_Controller {
 		$data['admin_id']			= '';
 		$data['sku']				= '';
 		$data['name']				= '';
-		$data['publish_by_admin']	= '1';
+		$data['publish_by_admin']	= '0';
 		$data['publish_by_super']	= '0';
 		$data['slug']				= '';
 		$data['description']		= '';
 		$data['excerpt']			= '';
 		$data['price']				= '';
 		$data['saleprice']			= '';
-		$data['publish_by']			= '';
-		$data['unpublish_by']		= '';
 		$data['weight']				= '';
 		$data['track_stock'] 		= '';
 		$data['seo_title']			= '';
@@ -227,7 +253,7 @@ class Products extends Admin_Controller {
 		$data['enabled']			= '';
 		$data['related_products']	= array();
 		$data['product_categories']	= array();
-		$data['images']				= array();
+		$data['images']				= '';
 		$data['product_files']		= array();
 
 		//create the photos array for later use
@@ -254,12 +280,30 @@ class Products extends Admin_Controller {
 				redirect($this->config->item('admin_folder').'/products');
 			}
 			
+			//if the product does not belong to the user, redirect them to the products list with an error
+			if($this->admin_access == 'Admin')
+			{
+				if($product->admin_id!=$this->admin_id)
+				{
+					$this->session->set_flashdata('error', lang('error_not_found'));
+					redirect($this->config->item('admin_folder').'/products');
+				}
+			}
+			
+			
 			//helps us with the slug generation
 			$this->product_name	= $this->input->post('slug', $product->slug);
 			
 			//set values to db values
 			$data['id']					= $id;
-			$data['admin_id']			= $this->admin_id;
+			if(isset($product->admin_id) && $product->admin_id!='')
+			{
+				$data['admin_id']		= $product->admin_id;
+			}		
+			else
+			{
+				$data['admin_id']		= $this->admin_id;
+			}
 			$data['sku']				= $product->sku;
 			$data['name']				= $product->name;
 			$data['seo_title']			= $product->seo_title;
@@ -276,13 +320,16 @@ class Products extends Admin_Controller {
 			$data['taxable']			= $product->taxable;
 			$data['fixed_quantity']		= $product->fixed_quantity;
 			$data['enabled']			= $product->enabled;
+			$data['images']				= $product->images;
+			$data['publish_by_admin']	= $product->publish_by_admin;
+			$data['publish_by_super']	= $product->publish_by_super;
 			
 			//make sure we haven't submitted the form yet before we pull in the images/related products from the database
 			if(!$this->input->post('submit'))
 			{
 				$data['product_categories']	= $product->categories;
 				$data['related_products']	= $product->related_products;
-				$data['images']				= (array)json_decode($product->images);
+				//$data['images']				= (array)json_decode($product->images);
 			}
 		}
 		
@@ -359,8 +406,6 @@ class Products extends Admin_Controller {
 			$slug	= url_title(convert_accented_characters($slug), 'dash', TRUE);
 			
 			//validate the slug
-			
-
 			if($id)
 			{
 				$slug		= $this->Routes_model->validate_slug($slug, $product->route_id);
@@ -373,11 +418,51 @@ class Products extends Admin_Controller {
 				$route['slug']	= $slug;	
 				$route_id	= $this->Routes_model->save($route);
 			}
+			
+			// Upload Image
+			if(count($_FILES)>0)
+			{
+				$save['images']	 = $this->product_image_upload();
+			}
 
 			$save['id']					= $id;
-			$save['admin_id']			= $this->admin_id;
-			$save['publish_by_admin']	= '1';
-			$save['publish_by_super']	= '0';
+			if(isset($product->admin_id) && $product->admin_id!='')
+			{
+				$save['admin_id']		= $product->admin_id;
+			}		
+			else
+			{
+				$save['admin_id']		= $this->admin_id;
+			}
+			
+			// Check Admin Enabled
+			if($this->admin_access=='Admin')
+			{
+					
+				if($this->input->post('enabled')=='on')
+				{
+						$save['publish_by_admin']	= '1';
+				}
+				else
+				{
+						$save['publish_by_admin']	= '0';
+				}		
+					
+			}		
+				
+			// Check Superadmin Enabled
+			
+			if($this->admin_access=='Superadmin')
+			{
+				if($this->input->post('enabled')=='on')
+				{
+						$save['publish_by_super']	= '1';	
+				}
+				else
+				{
+						$save['publish_by_super']	= '0';
+				}
+			}
 			$save['sku']				= $this->input->post('sku');
 			$save['name']				= $this->input->post('name');
 			$save['seo_title']			= $this->input->post('seo_title');
@@ -392,37 +477,11 @@ class Products extends Admin_Controller {
 			$save['quantity']			= $this->input->post('quantity');
 			$save['shippable']			= $this->input->post('shippable');
 			$save['taxable']			= $this->input->post('taxable');
-			if($this->input->post('enabled')=='on')
-			{
-				$save['enabled']			= '1';
-			}
-			else
-			{
-				$save['enabled']			= '0';
-			}
-			
 			$post_images				= $this->input->post('images');
 			
 			$save['slug']				= $slug;
 			$save['route_id']			= $route_id;
 			//echo '<pre>';print_r($save);exit;
-			if($primary	= $this->input->post('primary_image'))
-			{
-				if($post_images)
-				{
-					foreach($post_images as $key => &$pi)
-					{
-						if($primary == $key)
-						{
-							$pi['primary']	= true;
-							continue;
-						}
-					}	
-				}
-				
-			}
-			
-			$save['images']				= json_encode($post_images);
 			
 			
 			if($this->input->post('related_products'))
@@ -492,19 +551,20 @@ class Products extends Admin_Controller {
 	
 	function product_image_upload()
 	{
-		$data['file_name'] = false;
-		$data['error']	= false;
 		
-		$config['allowed_types'] = 'gif|jpg|png';
-		//$config['max_size']	= $this->config->item('size_limit');
-		$config['upload_path'] = 'uploads/images/full';
-		$config['encrypt_name'] = true;
-		$config['remove_spaces'] = true;
-
+		//$this->show->pe($_FILES);
+		$file_name = '';
+		$config['upload_path']		= 'uploads/images/full';
+		$config['allowed_types']	= 'gif|jpg|png';
+		$config['max_size']			= $this->config->item('size_limit');
+		$config['max_width']		= '1024';
+		$config['max_height']		= '768';
+		$config['encrypt_name']		= true;
 		$this->load->library('upload', $config);
 		
-		if ( $this->upload->do_upload())
+		if ($this->upload->do_upload('image'))
 		{
+			
 			$upload_data	= $this->upload->data();
 			
 			$this->load->library('image_lib');
@@ -548,30 +608,33 @@ class Products extends Admin_Controller {
 			$config['source_image'] = 'uploads/images/small/'.$upload_data['file_name'];
 			$config['new_image']	= 'uploads/images/thumbnails/'.$upload_data['file_name'];
 			$config['maintain_ratio'] = TRUE;
-			$config['width'] = 150;
-			$config['height'] = 150;
+			$config['width'] = 70;
+			$config['height'] = 70;
 			$this->image_lib->initialize($config); 	
 			$this->image_lib->resize();	
 			$this->image_lib->clear();
 
-			$data['file_name']	= $upload_data['file_name'];
+			$file_name	= $upload_data['file_name'];
 		}
 		
 		if($this->upload->display_errors() != '')
 		{
-			$data['error'] = $this->upload->display_errors();
+			 $data['error'] = $this->upload->display_errors();
 		}
-		$this->load->view($this->config->item('admin_folder').'/iframe/product_image_uploader', $data);
+		return $file_name;
+		
+		//$this->load->view($this->config->item('admin_folder').'/iframe/product_image_uploader', $data);
 	}
 	
 	function download_csv_template()
 	{
 		$this->load->helper('download_helper');
-		$donwload_path = base_url().'downloads/oc_courses.csv';
+		//echo realpath('.');exit;
+		$donwload_path = realpath('.').'/downloads/oc_courses.csv';
 		$data = file_get_contents($donwload_path); // Read the file's contents
 		$name = 'courses_upload_template.csv';
 		force_download_content($name, $data);
-		redirect($this->config->item('admin_folder').'/products');
+		//redirect($this->config->item('admin_folder').'/products');
 	}
 	
 	function save_bulk_products()
@@ -581,7 +644,7 @@ class Products extends Admin_Controller {
 		$data = array();
 		$array_missing_field = array();
 		$filename = $_FILES['product_file']['name'];
-		$filename = time().preg_replace('/\s/', '_', $filename);
+		$filename = $this->admin_id.'_'.time().preg_replace('/\s/', '_', $filename);
 		
 	   	$this->load->library('upload');
 		$this->load->library('getcsv');
@@ -657,12 +720,10 @@ class Products extends Admin_Controller {
 								"2" => "description",
 								"3" => "excerpt",
 								"4" => "price",
-								"5" => "saleprice",
-								"6" => "publish_by",
-								"7" => "seo_title",
-								"8" => "meta",
-								"9" => "enabled",
-								"10" => "category_id");
+								"5" => "seo_title",
+								"6" => "meta",
+								"7" => "enabled",
+								"8" => "category_id");
 		
 		foreach($array as $key => $val)
 		 {
@@ -708,11 +769,28 @@ class Products extends Admin_Controller {
 			$save['description']		=  $course_data['description'];
 			$save['excerpt']			=  $course_data['excerpt'];
 			$save['price']				=  $course_data['price'];
-			$save['saleprice']			=  $course_data['saleprice'];
-			$save['publish_by']			=  $this->admin_access;
+			//$save['saleprice']			=  $course_data['saleprice'];
+			//$save['publish_by']			=  $this->admin_access;
+			// Check Admin Enabled
+			if($this->admin_access=='Admin')
+			{
+				if(isset($course_data['enabled']) && !empty($course_data['enabled']))
+				{
+						$save['publish_by_admin']	= $course_data['enabled'];
+				}	
+			}		
+				
+			// Check Superadmin Enabled
+			
+			if($this->admin_access=='Superadmin')
+			{
+				if(isset($course_data['enabled']) && !empty($course_data['enabled']))
+				{
+						$save['publish_by_super']	= $course_data['enabled'];
+				}
+			}
 			$save['seo_title']			=  $course_data['seo_title'];
 			$save['meta']				=  $course_data['meta'];
-			$save['enabled']			=  $course_data['enabled'];			
 			$save['admin_id']			=  $this->admin_id;
 			$save['route_id']			=  $route_id;
 			//echo '<pre>';print_r($save);exit;
@@ -739,8 +817,41 @@ class Products extends Admin_Controller {
 			
 			return true;
 	
-	} 	
+	}
+	
+	// SOFT DELETE PRODUCT
 	function delete($id = false)
+	{
+		if ($id)
+		{	
+			$product	= $this->Product_model->get_product($id);
+			//if the product does not exist, redirect them to the customer list with an error
+			if (!$product)
+			{
+				$this->session->set_flashdata('error', lang('error_not_found'));
+				redirect($this->config->item('admin_folder').'/products');
+			}
+			else
+			{
+
+				//if the product is legit, SOFT delete them
+				$this->Product_model->soft_delete_product($id);
+
+				$this->session->set_flashdata('message', lang('message_deleted_product'));
+				redirect($this->config->item('admin_folder').'/products');
+			}
+		}
+		else
+		{
+			//if they do not provide an id send them to the product list page with an error
+			$this->session->set_flashdata('error', lang('error_not_found'));
+			redirect($this->config->item('admin_folder').'/products');
+		}
+	}
+	
+	// HARD DELETE PRODUCT
+	
+	/*function delete($id = false)
 	{
 		if ($id)
 		{	
@@ -771,5 +882,5 @@ class Products extends Admin_Controller {
 			$this->session->set_flashdata('error', lang('error_not_found'));
 			redirect($this->config->item('admin_folder').'/products');
 		}
-	}
+	}*/
 }

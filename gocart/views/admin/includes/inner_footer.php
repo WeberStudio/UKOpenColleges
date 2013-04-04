@@ -1,7 +1,7 @@
 <!--  Footer Div Start   ---> 
  <div id="footer">
     <p>&copy; Uk Open-College Admin Template 2013 </p>
-    <span class="company_logo"><a href="#">Logo</a></span> 
+   <!-- <span class="company_logo"><a href="#">Logo</a></span> -->
   </div>
 <!--  Footer Div End   --->  
 </div>
