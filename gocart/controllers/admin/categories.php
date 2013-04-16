@@ -25,13 +25,18 @@ class Categories extends Admin_Controller {
 		
 	}
 	
-	function index()
+	function index($order_by="name", $sort_order="ASC", $page=0, $rows=15)
 	{
+		
+		//Store the sort term
+		$data['order_by']	= $order_by;
+		$data['sort_order']	= $sort_order;
+		
+		
 		//we're going to use flash data and redirect() after form submissions to stop people from refreshing and duplicating submissions
 		//$this->session->set_flashdata('message', 'this is our message');
-		
 		$data['page_title']	= lang('categories');
-		$data['categories']	= $this->Category_model->get_categories_tierd();
+		$data['categories']	= $this->Category_model->get_categories_tierd($parent = false, array('order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
 		
 		
 		$this->load->view($this->config->item('admin_folder').'/includes/header');
@@ -101,7 +106,7 @@ class Categories extends Admin_Controller {
 	{
 		
 		
-		
+		//$this->show->pe($_POST);
 		$config['upload_path']		= 'uploads/images/full';
 		$config['allowed_types']	= 'gif|jpg|png';
 		$config['max_size']			= $this->config->item('size_limit');
@@ -122,7 +127,7 @@ class Categories extends Admin_Controller {
 		//default values are empty if the customer is new
 		$data['id']				= '';
 		$data['admin_id']		= '';
-		$data['publish_by_admin']		= '1';
+		$data['publish_by_admin']		= '0';
 		$data['publish_by_super']		= '0';
 		$data['name']			= '';
 		$data['slug']			= '';
@@ -151,13 +156,31 @@ class Categories extends Admin_Controller {
 				redirect($this->config->item('admin_folder').'/categories');
 			}
 			
+			//if the category does not belong to the user, redirect them to the category list with an error
+			if($this->admin_access == 'Admin')
+			{
+				if($category->admin_id!=$this->admin_id)
+				{
+					$this->session->set_flashdata('error', lang('error_not_found'));
+					redirect($this->config->item('admin_folder').'/categories');
+				}
+			}
 			//helps us with the slug generation
 			$this->category_name	= $this->input->post('slug', $category->slug);
 			
 			//set values to db values
 			$data['id']				= $category->id;
 			$data['name']			= $category->name;
-			$data['admin_id']		= $this->admin_id;
+			$data['publish_by_admin']		= $category->publish_by_admin;
+			$data['publish_by_super']		= $category->publish_by_super;
+			if(isset($category->admin_id) && $category->admin_id!='')
+			{
+				$data['admin_id']		= $category->admin_id;
+			}		
+			else
+			{
+				$data['admin_id']		= $this->admin_id;
+			}
 			$data['slug']			= $category->slug;
 			$data['description']	= $category->description;
 			$data['excerpt']		= $category->excerpt;
@@ -309,9 +332,16 @@ class Categories extends Admin_Controller {
 			
 			$save['id']				= $id;			
 			$save['name']			= $this->input->post('name');
-			$save['admin_id']		= $this->admin_id;
-			$save['publish_by_admin']		= '1';
-			$save['publish_by_super']		= '0';
+			if(isset($category->admin_id) && $category->admin_id!='')
+			{
+				$save['admin_id']		= $category->admin_id;
+			}		
+			else
+			{
+				$save['admin_id']		= $this->admin_id;
+			}
+			/*$save['publish_by_admin']		= '0';
+			$save['publish_by_super']		= '0';*/
 			$save['description']	= $this->input->post('description');
 			$save['excerpt']		= $this->input->post('excerpt');
 			$save['parent_id']		= intval($this->input->post('parent_id'));
@@ -321,14 +351,33 @@ class Categories extends Admin_Controller {
 			$save['route_id']		= intval($route_id);
 			$save['slug']			= $slug;
 			$save['publish_date']	= date('Y-m-d H:h:i');
-			if($this->input->post('enabled')=='on')
+			$save['delete']			= '0';
+			if($this->admin_access=='Admin')
 			{
-				$save['delete']			= '0';	
-			}
-			else
+					
+				if($this->input->post('enabled')=='on')
+				{
+						$save['publish_by_admin']	= '1';
+				}
+				else
+				{
+						$save['publish_by_admin']	= '0';
+				}		
+					
+			}		
+				
+			if($this->admin_access=='Superadmin')
 			{
-				$save['delete']		= '1';
+				if($this->input->post('enabled')=='on')
+				{
+						$save['publish_by_super']	= '1';	
+				}
+				else
+				{
+						$save['publish_by_super']	= '0';
+				}
 			}
+			
 			$category_id	= $this->Category_model->save($save);
 			
 			//save the route
@@ -365,4 +414,36 @@ class Categories extends Admin_Controller {
 			$this->session->set_flashdata('error', lang('error_not_found'));
 		}
 	}
+	
+	
+	function trash($id)
+	{
+		
+		$category	= $this->Category_model->get_category($id);
+		//if the category does not exist, redirect them to the category list with an error
+		if (!$category)
+		{
+			$this->session->set_flashdata('error', lang('error_not_found'));
+			redirect($this->config->item('admin_folder').'/categories');
+		}
+		
+		//if the category does not belong to the user, redirect them to the category list with an error
+		if($this->admin_access == 'Admin')
+		{
+			if($category->admin_id!=$this->admin_id)
+			{
+				$this->session->set_flashdata('error', lang('error_not_found'));
+				redirect($this->config->item('admin_folder').'/categories');
+			}
+		}
+		$trash_status = $this->Category_model->trash($id);
+		if($trash_status)
+		{
+			$this->session->set_flashdata('message', lang('message_trash_category'));
+			redirect($this->config->item('admin_folder').'/categories');
+			
+		}
+		
+	}
+	
 }

@@ -25,18 +25,24 @@ Class Product_model extends CI_Model
 	
 	function products($data=array(), $return_count=false)
 	{
+		
 		if(empty($data))
 		{
-			
 			//if nothing is provided return the whole shabang
 			$this->get_all_products();
+			
 		}
 		else
 		{
+			if($this->admin_access!='Superadmin')
+			{
+				$this->db->where('admin_id', $this->admin_id);
+			}
 			
-			$this->db->where('admin_id', $this->admin_id);
+			
 			//$this->db->where('enabled', '1');
-			$this->db->where('publish_by_admin', '1');
+			//$this->db->where('publish_by_admin', '1');
+			$this->db->where('delete', '0');
 			//grab the limit
 			if(!empty($data['rows']))
 			{
@@ -96,6 +102,7 @@ Class Product_model extends CI_Model
 		//sort by alphabetically by default
 		$this->db->order_by('name', 'ASC');
 		$this->db->where('enabled', '1');
+		$this->db->where('delete', '0');
 		$result	= $this->db->get('products');
 		$return = $result->result_array();
 		if(count($return))
@@ -112,6 +119,7 @@ Class Product_model extends CI_Model
 		echo $this->admin_id;exit;
 		$this->db->order_by('name', 'ASC');
 		$this->db->where('admin_id', $this->admin_id);
+		$this->db->where('delete', '0');
 		//$this->db->where('enabled', '1');
 		$this->db->where('publish_by_admin', '1');
 		$result	= $this->db->get('products');
@@ -277,11 +285,17 @@ Class Product_model extends CI_Model
 			$count = 1;
 			foreach ($options as $option)
 			{
-				$values = $option['values'];
+				if(empty($option['values']))
+				{
+					$values = '';
+				}
+				else
+				{
+					$values = $option['values'];
+				}				
 				unset($option['values']);
 				$option['product_id'] = $id;
 				$option['sequence'] = $count;
-
 				$obj->Option_model->save_option($option, $values);
 				$count++;
 			}
@@ -374,6 +388,14 @@ Class Product_model extends CI_Model
 		$this->db->where('product_id', $id);
 		$this->db->delete('coupons_products');
 
+	}
+	
+	function soft_delete_product($id)
+	{
+		$product =  array('delete' => '1');
+		$this->db->where('id', $id);
+		$this->db->update('products', $product);
+		return true;
 	}
 
 	function add_product_to_category($product_id, $optionlist_id, $sequence)

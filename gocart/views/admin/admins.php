@@ -5,6 +5,36 @@ function areyousure()
 }
 </script>
 <?php define('ADMIN_FOLDER', $this->config->item('admin_folder'));
+
+function sort_url($heading, $by, $sort, $sorder, $admin_folder)
+{
+		if ($sort == $by)
+		{
+			if ($sorder == 'asc')
+			{
+				$sort	= 'desc';
+				$icon	= ' <i class="icon-chevron-up"></i>';
+			}
+			else
+			{
+				$sort	= 'asc';
+				$icon	= ' <i class="icon-chevron-down"></i>';
+			}
+		}
+		else
+		{
+			$sort	= 'asc';
+			$icon	= '';
+		}
+			
+	
+		$return = site_url($admin_folder.'/admin/index/'.$by.'/'.$sort);
+		
+		echo '<a href="'.$return.'">'.$heading.$icon.'</a>';
+
+}
+
+
 function list_admin($admins, $current_admin_id) 
 { 
 	foreach ($admins as $admin){
@@ -19,7 +49,7 @@ function list_admin($admins, $current_admin_id)
                     	<a class="btn" href="<?php echo site_url(ADMIN_FOLDER.'/admin/form/'.$admin->id);?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>    
 						<?php                                
                         if ($current_admin_id != $admin->id){ ?>
-                        <a class="btn btn-danger" href="<?php echo site_url(ADMIN_FOLDER.'/admin/delete/'.$admin->id); ?>" onClick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
+                        <a class="btn btn-danger" href="<?php echo site_url(ADMIN_FOLDER.'/admin/delete/'.$admin->id); ?>" onClick="return areyousure();"><i class="icon-trash"></i> <?php echo lang('delete');?></a>
                             <?php } ?>
                     </div> 
 				</td>  
@@ -45,9 +75,9 @@ function list_admin($admins, $current_admin_id)
      <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
      <thead>
          <tr>
-            <th class="no_sort"><?php echo lang('firstname');?></th>
-            <th class="no_sort to_hide_phone"><?php echo lang('lastname');?></th>
-            <th class="ue no_sort"><?php echo lang('email');?></th>
+            <th class="no_sort"><?php echo sort_url(lang('firstname'),'firstname', $order_by, $sort_order, $this->config->item('admin_folder'));?></th>
+            <th class="no_sort to_hide_phone"><?php echo sort_url(lang('lastname'),'lastname', $order_by, $sort_order, $this->config->item('admin_folder'));?></th>
+            <th class="ue no_sort"><?php echo sort_url(lang('email'),'email', $order_by, $sort_order, $this->config->item('admin_folder'));?></th>
             <th class="ue no_sort"><?php echo lang('access');?></th>
             <th>Actions</th>
         </tr>

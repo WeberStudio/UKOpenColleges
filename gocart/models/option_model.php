@@ -65,14 +65,17 @@ Class Option_model extends CI_Model
 		
 		//add options to the database
 		$sequence	= 0;
-		foreach($values as $value)
+		if(!empty($values))
 		{
-			$value['option_id'] = $id;
-			$value['sequence']	= $sequence;
-			/*$value['weight']	= floatval($value['weight']);
-			$value['price']		= floatval($value['price']);*/
-			$sequence++;
-			$this->db->insert('oc_option_values', $value);
+			foreach($values as $value)
+			{
+				$value['option_id'] = $id;
+				$value['sequence']	= $sequence;
+				/*$value['weight']	= floatval($value['weight']);
+				$value['price']		= floatval($value['price']);*/
+				$sequence++;
+				$this->db->insert('oc_option_values', $value);
+			}
 		}
 		return $id;
 	}
