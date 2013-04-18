@@ -434,7 +434,7 @@ function replace_newline($string) {
 ?>
 <script type="text/javascript">
 //<![CDATA[
-var option_count		= <?php echo $counter?>;
-var option_value_count	= <?php echo $GLOBALS['option_value_count'];?>
+var option_count		= '<?php echo $counter?>';
+var option_value_count	='<?php echo $GLOBALS['option_value_count'];?>'
 //]]>
 </script>
