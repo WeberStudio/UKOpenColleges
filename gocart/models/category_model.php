@@ -2,7 +2,6 @@
 Class Category_model extends CI_Model
 {
 
-	
 	function get_all_categories()
 	{
 		
@@ -32,7 +31,7 @@ Class Category_model extends CI_Model
 		$this->db->select('id');
 		
 		
-		if($this->admin_access!='Superadmin')
+		if(!empty($this->admin_access) && $this->admin_access!='Superadmin')
 		{
 			$this->db->where('admin_id', $this->admin_id);
 		}
@@ -173,7 +172,7 @@ Class Category_model extends CI_Model
 	function trash($id)
 	{
 		$data = array('publish_by_admin' => '0');
-		if($this->admin_access == 'Superadmin')
+		if(!empty($this->admin_access) && $this->admin_access == 'Superadmin')
 		{
 			$data = array('publish_by_super' => '0');
 		}
