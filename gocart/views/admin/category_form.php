@@ -11,7 +11,7 @@
                     <h4> Category Form</h4>
                   </div>
                 </div>
-                
+				                
                 <div class="content">
 				
 				<?php echo form_open_multipart($this->config->item('admin_folder').'/categories/form/'.$id); ?>

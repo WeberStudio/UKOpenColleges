@@ -40,8 +40,9 @@
                     </li>
                     <li class="accordion-group color_4"> <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Invoice Management</span></a>
                         <ul id="collapse3" class="accordion-body collapse">
-                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoice_templates'); ?>">Invoice Templates</a></li>
-							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoice_groups'); ?>">Invoice Groups</a></li>
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoice_templates'); ?>">Invoice Templates</a></li>
+							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoice_groups'); ?>">Invoice Groups</a></li>
+							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/tax'); ?>">Tax Rate</a></li>
 							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/form'); ?>">Create Invoice</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/'); ?>">View Invoices</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoice_recursion'); ?>">View Recuring Invoices</a></li>  

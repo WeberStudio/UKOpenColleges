@@ -1,6 +1,6 @@
 <div class="header row-fluid">
       <div class="logo"> <a href="<? echo site_url($this->config->item('admin_folder')); ?>"><span>Start</span><span class="icon"></span></a> </div>
-      <?   $imageurl = realpath('.')."/uploads/images/small/".$this->image;  ?>
+      <?    $imageurl = realpath('.')."\uploads\images\small\\".$this->image;  ?>
       <div class="top_right">
         <ul class="nav nav_menu">
           <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
