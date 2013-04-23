@@ -36,8 +36,9 @@
 
                                     <label for="date"> Date </label>
                                     <?php
-                                        $data    = array('name'=>'name', 'value'=>set_value('name', $name), 'class'=>'span12');
+                                        $data    = array('name'=>'date', 'id'=>'datepicker1', 'value'=>set_value('name', $name), 'class'=>'span12');
                                         echo form_input($data);
+										
                                     ?>
                                 </fieldset>
 
@@ -60,4 +61,3 @@
         $('.btn').attr('disabled', true).addClass('disabled');
     });
 </script>
-
