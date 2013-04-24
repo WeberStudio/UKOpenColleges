@@ -35,6 +35,12 @@ $lang['message_saved_group_template']		= 'Group Saved Successfully.';
 $lang['message_saved_tax'] 					= 'Tax Saved Successfully!';
 $lang['tax_title'] 							= 'Tax Title';
 $lang['tax'] 								= 'Tax';
-$lang['tax_level'] 								= 'Set This Tax As Universal';
+$lang['tax_level'] 							= 'Set This Tax As Universal';
+
+//Invoice Lang
+$lang['terms_conditions'] 					= 'Terms & Conditions';
+$lang['message_invoice_saved'] 				= 'Invoiced Saved Successfully!';
+
+
 
 ?>
