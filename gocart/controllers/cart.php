@@ -21,8 +21,8 @@ class Cart extends Front_Controller {
 		$data['boxes']				= $this->box_model->get_homepage_boxes(4);
 		$data['homepage']			= true;
 		
-      // $this->load->view('homepage', $data);
-	  $this->load->view('index');
+        //$this->load->view('homepage', $data);
+		$this->load->view('index');
 	}
 
 	function page($id = false)

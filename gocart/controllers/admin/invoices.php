@@ -7,10 +7,8 @@ class Invoices extends Admin_Controller {
         parent::__construct();
 
         remove_ssl();
-		
         /*** Get User Info***/
-       /* $admin_info = $this->admin_session->userdata('admin');*/
-		
+        //$admin_info = $this->admin_session->userdata('admin');
         $user_info = $this->auth->admin_info();
         $this->admin_id = $user_info['id'];
         $this->admin_email = $user_info['email'];
@@ -29,11 +27,7 @@ class Invoices extends Admin_Controller {
 		}
 		
 		$this->load->model('Invoice_model');
-		$this->load->model('Invoice_Groups_Model');
-        $this->load->model('Invoice_Tax_Model');
-		$this->load->model('Custom_Fields');
-		$this->load->model('Invoice_Custom');			
-		$this->lang->load('invoice');
+
 
     }
 
@@ -44,6 +38,8 @@ class Invoices extends Admin_Controller {
 
         $data['page_title']    = lang('categories');
         $data['categories']    = $this->Category_model->get_categories_tierd();
+
+
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/invoices_details', $data);
@@ -315,83 +311,211 @@ class Invoices extends Admin_Controller {
     function form($id = false)
     {            
 
-		$this->load->helper('form');
+
+        $config['upload_path']        = 'uploads/images/full';
+        $config['allowed_types']    = 'gif|jpg|png';
+        $config['max_size']            = $this->config->item('size_limit');
+        $config['max_width']        = '1024';
+        $config['max_height']        = '768';
+        $config['encrypt_name']        = true;
+        $this->load->library('upload', $config);
+
+
+        $this->category_id    = $id;
+        $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		//$this->show->pe($_REQUEST);
-		
-        //default values are empty if the invoice is new       
-        $data['admin_id']        		= '';
-		$data['invoice_group_id']       = '';
-        $data['invoice_date_created']   = '';
-        $data['invoice_date_modified']  = '';
-        $data['invoice_date_due']       = '';
-        $data['invoice_number']    		= '';
-        $data['invoice_terms']        	= '';
-		$data['users']					= '';
-		$data['groups'] 				= '';
-		
-		//Get All Course Providers       
-		$data['users'] 					= $this->Invoice_model->get_all_admin();
-		
-		//Get All Groups 
-		$data['groups'] 				= $this->Invoice_model->get_all_groups();
-		
-		
+
+        $data['categories']        = $this->Invoice_model->get_categories();
+        // $data['page_title']        = lang('category_form');
+
+        //default values are empty if the customer is new
+        $data['id']                = '';
+        $data['admin_id']        = '';
+        $data['publish_by_admin']        = '1';
+        $data['publish_by_super']        = '0';
+        $data['name']            = '';
+        $data['slug']            = '';
+        $data['description']    = '';
+        $data['excerpt']        = '';
+        $data['sequence']        = '';
+        $data['image']            = '';
+        $data['seo_title']        = '';
+        $data['meta']            = '';
+        $data['parent_id']        = 0;
+        $data['error']            = '';
+        $data['publish_date']    = '';    
+        $data['delete']            = '';
+
         //create the photos array for later use
-       /* $this->form_validation->set_rules('users', 'users', 'trim|required');
-        $this->form_validation->set_rules('invoice_group_id', 'invoice_group_id', 'trim|required');
-        $this->form_validation->set_rules('invoice_date_created', 'invoice_date_created', 'trim|required');*/
-        
-		
-		// validate the form
-        if (!isset($_POST['submit'])  &&  empty($_POST['submit']))
+        $data['photos']        = array();
+
+        if ($id)
+        {    
+            $category        = $this->Invoice_model->get_category($id);
+
+            //if the category does not exist, redirect them to the category list with an error
+            if (!$category)
+            {
+                $this->session->set_flashdata('error', lang('error_not_found'));
+                redirect($this->config->item('admin_folder').'/invoices');
+            }
+
+            //helps us with the slug generation
+            $this->category_name    = $this->input->post('slug', $category->slug);
+
+            //set values to db values
+            $data['id']                = $category->id;
+            $data['name']            = $category->name;
+            $data['admin_id']        = $this->admin_id;
+            $data['slug']            = $category->slug;
+            $data['description']    = $category->description;
+            $data['excerpt']        = $category->excerpt;
+            $data['sequence']        = $category->sequence;
+            $data['parent_id']        = $category->parent_id;
+            $data['image']            = $category->image;
+            $data['seo_title']        = $category->seo_title;
+            $data['meta']            = $category->meta;
+            $data['publish_date']    = date('Y-m-d H:h:i');    
+            $data['delete']            = $category->delete;    
+
+        }
+
+        $this->form_validation->set_rules('name', 'lang:name', 'trim|required|max_length[64]');
+        $this->form_validation->set_rules('slug', 'lang:slug', 'trim');
+        $this->form_validation->set_rules('description', 'lang:description', 'trim');
+        $this->form_validation->set_rules('excerpt', 'lang:excerpt', 'trim');
+        $this->form_validation->set_rules('sequence', 'lang:sequence', 'trim|integer');
+        $this->form_validation->set_rules('parent_id', 'parent_id', 'trim');
+        $this->form_validation->set_rules('image', 'lang:image', 'trim');
+        $this->form_validation->set_rules('seo_title', 'lang:seo_title', 'trim');
+        $this->form_validation->set_rules('meta', 'lang:meta', 'trim');
+
+
+        // validate the form
+        if ($this->form_validation->run() == FALSE)
         {
 
-			$this->load->view($this->config->item('admin_folder').'/includes/header');
+
+            $this->load->view($this->config->item('admin_folder').'/includes/header');
             $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-            $this->load->view($this->config->item('admin_folder').'/invoice/invoice_form', $data); 
+            $this->load->view($this->config->item('admin_folder').'/invoice_form', $data); 
             $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
         }
-		else
-		{
-			$source = strtotime($this->input->post('invoice_date_created'));
-			$date = new DateTime($source);
-						
-			$save['admin_id']        		= $this->input->post('users');
-			$save['invoice_group_id']       = $this->input->post('invoice_group_id');
-			$save['invoice_date_created']   = $date->format('Y-m-d');		
-			$save['invoice_date_due']       = $date->format('Y-m-d');
-			$save['invoice_number']    		= '';
-			$save['invoice_terms']        	= $this->input->post('invoice_terms');
-				
-			//$this->show->pe($save);
-			$invoice = $this->Invoice_model->save($save);
-		
-			$this->session->set_flashdata('message', lang('message_invoice_saved'));
-	
-			//go back to the category list
-			redirect($this->config->item('admin_folder').'/invoices/invoice_detail/'.$invoice);
-    	} 
+        else
+        {
+
+
+            $uploaded    = $this->upload->do_upload('image');
+
+            if ($id)
+            {
+                //delete the original file if another is uploaded
+                if($uploaded)
+                {
+
+                    if($data['image'] != '')
+                    {
+                        $file = array();
+                        $file[] = 'uploads/images/full/'.$data['image'];
+                        $file[] = 'uploads/images/medium/'.$data['image'];
+                        $file[] = 'uploads/images/small/'.$data['image'];
+                        $file[] = 'uploads/images/thumbnails/'.$data['image'];
+
+                        foreach($file as $f)
+                        {
+                            //delete the existing file if needed
+                            if(file_exists($f))
+                            {
+                                unlink($f);
+                            }
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                if(!$uploaded)
+                {
+                    $error    = $this->upload->display_errors();
+                    if($error != lang('error_file_upload'))
+                    {
+                        $data['error']    .= $this->upload->display_errors();
+                        $this->load->view($this->config->item('admin_folder').'/invoice_form', $data);
+                        return; //end script here if there is an error
+                    }
+                }
+            }
+
+
+
+            $this->load->helper('text');
+
+            //first check the slug field
+            $slug = $this->input->post('slug');
+
+            //if it's empty assign the name field
+            if(empty($slug) || $slug=='')
+            {
+                $slug = $this->input->post('name');
+            }
+
+            $slug    = url_title(convert_accented_characters($slug), 'dash', TRUE);
+
+            //validate the slug
+            $this->load->model('Routes_model');
+            if($id)
+                /*{
+                $slug    = $this->Routes_model->validate_slug($slug, $category->route_id);
+                $route_id    = $category->route_id;
+                }*/
+                /*            else*/
+                /*{
+                $slug    = $this->Routes_model->validate_slug($slug);
+
+                $route['slug']    = $slug;    
+                $route_id    = $this->Routes_model->save($route);
+                }*/
+
+                $save['id']                = $id;            
+            $save['name']            = $this->input->post('name');
+            $save['admin_id']        = $this->admin_id;
+            $save['publish_by_admin']        = '1';
+            $save['publish_by_super']        = '0';
+            /*            $save['description']    = $this->input->post('description');*/
+            $save['excerpt']        = $this->input->post('excerpt');
+            $save['parent_id']        = intval($this->input->post('parent_id'));
+            $save['sequence']        = intval($this->input->post('sequence'));
+            $save['seo_title']        = $this->input->post('seo_title');
+            $save['meta']            = $this->input->post('meta');
+            $save['route_id']        = intval($route_id);
+            $save['slug']            = $slug;
+            $save['publish_date']    = date('Y-m-d H:h:i');
+            if($this->input->post('enabled')=='on')
+            {
+                $save['delete']            = '0';    
+            }
+            else
+            {
+                $save['delete']        = '1';
+            }
+            $category_id    = $this->Invoice_model->save($save);
+
+            //save the route
+            $route['id']    = $route_id;
+            $route['slug']    = $slug;
+            $route['route']    = 'cart/category/'.$category_id.'';
+
+            $this->Routes_model->save($route);
+
+            $this->session->set_flashdata('message', lang('message_category_saved'));
+
+            //go back to the category list
+            redirect($this->config->item('admin_folder').'/invoices');
+        }
     }
-	
-	function invoice_detail($invoice_id)
-	{
-		
-			//$data = array();
-			$data['invoice_data'] 	= $this->Invoice_model->get_invoice($invoice_id); 
-			$data['user_info'] 		= $this->Invoice_model->get_all_admin($data['invoice_data']->admin_id); 
-			$data['invoice_group'] 	= $this->Invoice_model->get_all_groups($data['invoice_data']->invoice_group_id); 
-			
-			
-			//$this->show->pe($data);		
-			$this->load->view($this->config->item('admin_folder').'/includes/header');
-            $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-            $this->load->view($this->config->item('admin_folder').'/invoice/invoice_detail', $data); 
-            $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
-		
-	}
-	
+
     function delete($id)
     {
 

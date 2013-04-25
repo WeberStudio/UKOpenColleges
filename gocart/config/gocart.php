@@ -1,12 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 // GoCart Theme
 //$config['theme']            = 'default';
-<<<<<<< HEAD
 $config['theme']			= 'oneTouch';
-=======
-//$config['theme']            = 'public';
-$config['theme']			  = 'oneTouch';
->>>>>>> 6b1c95d8f601264e5b961a0488a9f7fc07ccfc04
 
 // SSL support
 $config['ssl_support']		= false;

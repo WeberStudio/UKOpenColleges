@@ -25,7 +25,6 @@
         <ul class="background-select">
             <li data-selector = "#body-wrapper"><span class = "bg-title">16 Content BG textures</span>
                 <span class="float-right">
-<<<<<<< HEAD
                     <a class="pattern-example color"><img src="<?php echo theme_img("custom-slider-img/color.png")?>" alt="" /></a>
                     <a class="pattern-example image"><img src="<?php echo theme_img("custom-slider-img/title-icon.png")?>" alt="" /></a></span>
                 <div class="pattern-select-wrapper">
@@ -37,19 +36,6 @@
                         </div>
                         <div class="pattern-example pic"><img src="<?php echo theme_img("custom-slider-img/1.jpg")?>" alt = "" /> </div>
                         <div class="pattern-example pic"><img src="<?php echo theme_img("custom-slider-img/city.jpg")?>" alt = "" /> </div>
-=======
-                    <a class="pattern-example color"><img src="images/custom-slider-img/color.png" alt="" /></a>
-                    <a class="pattern-example image"><img src="images/custom-slider-img/title-icon.png" alt="" /></a></span>
-                <div class="pattern-select-wrapper">
-                    <div class="pattern-select">
-                        <div class="pattern-example pic"><img src = "images/custom-slider-img/furley_bg.png" alt = "" /> 
-                        </div>
-                        <div class="pattern-example pic">
-                            <img src = "images/custom-slider-img/2.jpg" alt = "" />
-                        </div>
-                        <div class="pattern-example pic"><img src = "images/custom-slider-img/1.jpg" alt = "" /> </div>
-                        <div class="pattern-example pic"><img src = "images/custom-slider-img/city.jpg" alt = "" /> </div>
->>>>>>> 6b1c95d8f601264e5b961a0488a9f7fc07ccfc04
                         <div class="pattern-example pic"><img src = "images/custom-slider-img/3.jpg" alt = "" /> </div>
                         <div class="pattern-example pic"><img src = "images/custom-slider-img/pattern/thumb/tileable_wood_texture.png" alt = "" /> </div>
                         <div class="pattern-example pic"><img src = "images/custom-slider-img/pattern/thumb/vertical_cloth.png" alt = "" /> </div>
@@ -65,11 +51,7 @@
                 </div></div>            </li>
             <li data-selector = "#darkf"><span class = "bg-title">16 Footer BG textures</span> 
                 <span class="float-right"><a class="pattern-example color">
-<<<<<<< HEAD
                         <img src="<?php echo theme_img("custom-slider-img/color.png")?>" alt="" /></a><a class="pattern-example image">
-=======
-                        <img src="images/custom-slider-img/color.png" alt="" /></a><a class="pattern-example image">
->>>>>>> 6b1c95d8f601264e5b961a0488a9f7fc07ccfc04
                         <img src="images/custom-slider-img/title-icon.png" alt="" /></a></span>
 
                 <div class="pattern-select-wrapper"><div class="pattern-select"><div class="pattern-example pic">
