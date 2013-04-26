@@ -22,7 +22,8 @@ class Cart extends Front_Controller {
 		$data['homepage']			= true;
 		
         //$this->load->view('homepage', $data);
-		$this->load->view('portfilo');
+        //$this->load->view('index');  
+		$this->load->view('portfilo');  
 	}
 
 	function page($id = false)
