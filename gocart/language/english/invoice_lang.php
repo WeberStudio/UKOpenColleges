@@ -42,7 +42,7 @@ $lang['tax_rate_percent'] 					= 'Tax Rate Percent';
 $lang['tax_rate_placement'] 				= 'Tax Rate Placement';
 $lang['tax_rate'] 							= 'Tax Rate';
 $lang['tax_rates'] 							= 'Tax Rates';
-
+$lang['item_tax'] 							= 'Item Tax';
 
 //Invoice Lang
 $lang['terms_conditions'] 					= 'Terms & Conditions';

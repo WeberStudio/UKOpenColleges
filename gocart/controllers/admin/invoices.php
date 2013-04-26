@@ -19,6 +19,7 @@ class Invoices extends Admin_Controller {
 		$this->last_name = $user_info['lastname'];
 		$this->image = $user_info['image'];
 		
+		$this->load->helper('formatting_helper');
 		
         /*** Get User Info***/
 		$this->auth->check_access($this->admin_access, true);  
@@ -42,11 +43,12 @@ class Invoices extends Admin_Controller {
         //we're going to use flash data and redirect() after form submissions to stop people from refreshing and duplicating submissions
         //$this->session->set_flashdata('message', 'this is our message');
 
-        $data['page_title']    = lang('categories');
-        $data['categories']    = $this->Category_model->get_categories_tierd();
+        $data['page_title']    = lang('Invoices');
+        $data['invoices']    = $this->Invoice_model->get_all_invoices();
+		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-        $this->load->view($this->config->item('admin_folder').'/invoices_details', $data);
+        $this->load->view($this->config->item('admin_folder').'/invoice/invoices_listing', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 
     }
@@ -103,7 +105,7 @@ class Invoices extends Admin_Controller {
 			$save['invoice_date_due']       = $date->format('Y-m-d');
 			$save['invoice_number']    		= '';
 			$save['invoice_terms']        	= $this->input->post('invoice_terms');
-				
+			
 			//$this->show->pe($save);
 			$invoice = $this->Invoice_model->save($save);
 		
@@ -123,7 +125,7 @@ class Invoices extends Admin_Controller {
 			$data['invoice_group'] 	= $this->Invoice_model->get_all_groups($data['invoice_data']->invoice_group_id);
 			$data['invoice_items'] 	= $this->Invoice_model->get_invoice_items_by_invoice_id($invoice_id);
 			$data['tax_rates'] 		= $this->Invoice_Tax_Model->get_taxes(); 
-			
+			$data['invoice_totals'] = $this->Invoice_model->get_invoice_totals($invoice_id);
 			
 			//$this->show->pe($data);		
 			$this->load->view($this->config->item('admin_folder').'/includes/header');
@@ -144,9 +146,11 @@ class Invoices extends Admin_Controller {
 			$data['item_description'] 	= '';
 			$data['item_quantity'] 		= '';
 			$data['item_price'] 		= '';
-			$data['item_tax_rate_id'] 	= '';
+			$data['item_tax_rate_id'] 	= 0;
 			$item_count 				= count($_POST['item_name']);
-			
+			$invoice_total				= 0;
+			$invoice_tax_total			= 0;
+			$item_tax_total				= 0 ;
 			
 			if(isset($_POST['item_name']) && $item_count>0)
 			{
@@ -165,12 +169,22 @@ class Invoices extends Admin_Controller {
 					$data['item_description'] 	= $_POST['item_description'][$i];
 					$data['item_quantity'] 		= $_POST['item_quantity'][$i];
 					$data['item_price'] 		= $_POST['item_price'][$i];
-					$tax 						= $this->Invoice_Tax_Model->get_tax_by_id($data['item_tax_rate_id']);	
+					
+					//Get Each Item Tax
+					
+					$tax 						= $this->Invoice_Tax_Model->get_tax_by_id($data['item_tax_rate_id']);					
+					//Insert Invoice Item
 					$item_id 					= $this->Invoice_model->insert_invoice_items($data);
 					
 					$item_subtotal 				= $data['item_quantity'] * $data['item_price'];
-					$item_tax_total 			= $item_subtotal * ($tax->tax_rate_percent / 100);
+					if($data['item_tax_rate_id']!=0)
+					{
+						$item_tax_total 			= $item_subtotal * ($tax->tax_rate_percent / 100);
+					}
 					$item_total 				= $item_subtotal + $item_tax_total;
+					
+					$invoice_total 				= $invoice_total + $item_subtotal;
+					$invoice_tax_total 			= $invoice_tax_total + $item_tax_total;
 					
 					$item_totals = array(
 							'item_id' 			=> $item_id,
@@ -178,10 +192,19 @@ class Invoices extends Admin_Controller {
 							'item_tax_total' 	=> $item_tax_total,
 							'item_total'		=> $item_total
 						);
-						
+					// Save Each Calculation Of Each Item	
 					$item_total_id = $this->Invoice_model->insert_invoice_items_totals($item_totals);	
 				}
 				
+					// Save Total Calculation Of Tax And Total Price Of Invoice
+					$invoice_totals = array(
+							'invoice_id' 				=> $invoice_id,							
+							'invoice_item_tax_total' 	=> $invoice_tax_total,
+							'invoice_item_subtotal'		=> $invoice_total,
+							'invoice_total'				=> $invoice_tax_total + $invoice_total
+						);
+						
+					$item_total_id = $this->Invoice_model->save_invoice_totals($invoice_totals);					
 			}
 			
 			redirect($this->config->item('admin_folder').'/invoices/invoice_detail/'.$data['invoice_id']);
