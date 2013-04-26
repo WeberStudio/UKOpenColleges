@@ -29,11 +29,7 @@ class Invoices extends Admin_Controller {
 		}
 		
 		$this->load->model('Invoice_model');
-		$this->load->model('Invoice_Groups_Model');
-        $this->load->model('Invoice_Tax_Model');
-		$this->load->model('Custom_Fields');
-		$this->load->model('Invoice_Custom');			
-		$this->lang->load('invoice');
+
 
     }
 
@@ -44,6 +40,8 @@ class Invoices extends Admin_Controller {
 
         $data['page_title']    = lang('categories');
         $data['categories']    = $this->Category_model->get_categories_tierd();
+
+
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/invoices_details', $data);
@@ -57,79 +55,38 @@ class Invoices extends Admin_Controller {
 		$this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		//$this->show->pe($_REQUEST);
 		
-        //default values are empty if the invoice is new       
         $data['admin_id']        		= '';
-		$data['invoice_group_id']       = '';
-        $data['invoice_date_created']   = '';
-        $data['invoice_date_modified']  = '';
-        $data['invoice_date_due']       = '';
-        $data['invoice_number']    		= '';
-        $data['invoice_terms']        	= '';
-		$data['users']					= '';
-		$data['groups'] 				= '';
-		
-		//Get All Course Providers       
-		$data['users'] 					= $this->Invoice_model->get_all_admin();
-		
-		//Get All Groups 
-		$data['groups'] 				= $this->Invoice_model->get_all_groups();
 		
 		
-        //create the photos array for later use
-       /* $this->form_validation->set_rules('users', 'users', 'trim|required');
-        $this->form_validation->set_rules('invoice_group_id', 'invoice_group_id', 'trim|required');
-        $this->form_validation->set_rules('invoice_date_created', 'invoice_date_created', 'trim|required');*/
+		
+		
         
 		
 		// validate the form
-        if (!isset($_POST['submit'])  &&  empty($_POST['submit']))
         {
 
 			$this->load->view($this->config->item('admin_folder').'/includes/header');
             $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-            $this->load->view($this->config->item('admin_folder').'/invoice/invoice_form', $data); 
             $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
         }
 		else
 		{
-			$source = strtotime($this->input->post('invoice_date_created'));
-			$date = new DateTime($source);
 						
-			$save['admin_id']        		= $this->input->post('users');
-			$save['invoice_group_id']       = $this->input->post('invoice_group_id');
-			$save['invoice_date_created']   = $date->format('Y-m-d');		
-			$save['invoice_date_due']       = $date->format('Y-m-d');
-			$save['invoice_number']    		= '';
-			$save['invoice_terms']        	= $this->input->post('invoice_terms');
 				
-			//$this->show->pe($save);
-			$invoice = $this->Invoice_model->save($save);
 		
 			$this->session->set_flashdata('message', lang('message_invoice_saved'));
 	
-			//go back to the category list
-			redirect($this->config->item('admin_folder').'/invoices/invoice_detail/'.$invoice);
     	} 
     }
 	
 	function invoice_detail($invoice_id)
 	{
 		
-			//$data = array();
-			$data['invoice_data'] 	= $this->Invoice_model->get_invoice($invoice_id);
-			$data['user_info'] 		= $this->Invoice_model->get_all_admin($data['invoice_data']->admin_id);
-			$data['invoice_group'] 	= $this->Invoice_model->get_all_groups($data['invoice_data']->invoice_group_id);
 			$data['invoice_items'] 	= $this->Invoice_model->get_invoice_items_by_invoice_id($invoice_id);
 			$data['tax_rates'] 		= $this->Invoice_Tax_Model->get_taxes(); 
 			
 			
-			//$this->show->pe($data);		
-			$this->load->view($this->config->item('admin_folder').'/includes/header');
-            $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-            $this->load->view($this->config->item('admin_folder').'/invoice/invoice_detail', $data); 
-            $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 		
 	}
 	
