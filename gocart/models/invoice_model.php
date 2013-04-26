@@ -21,28 +21,59 @@ Class Invoice_model extends CI_Model
         }    
     }
     
+    function get_invoice($id)
     {
+        return $this->db->get_where('invoices', array('invoice_id'=>$id))->row();
     }
     
         
+    function save($invoice)
     {
+        $this->db->insert('invoices', $invoice);
+		return $this->db->insert_id();      
     }
     
+    function delete($id)
     {
+        $this->db->where('id', $id);
+        $this->db->delete('categories');
         
+        //delete references to this category in the product to category table
+        $this->db->where('category_id', $id);
+        $this->db->delete('category_products');
     }
 	
 	
+	function get_all_admin($admin_id = '')
 	{
+		$this->db->select('*');
+		$this->db->where('access', 'Admin');
+		$this->db->where('status', '1');
 		
+		if(!empty($admin_id))
+		$this->db->where('id', $admin_id);
 		
+		$result	= $this->db->get('admin');
+		$result	= $result->result_array();
+		//print_r($this->db->last_query());
+		//$this->show->pe($result);
+		return $result;
 	}
 	
 	
+	function get_all_groups($group_id = '')
 	{
+		$this->db->select('*');		
 		
+		if(!empty($group_id))
 		{
+			$this->db->where('invoice_group_id', $group_id);
 		}
+		$result	= $this->db->get('invoice_groups');
+		$result	= $result->result_array();
+		//print_r($this->db->last_query());
+		//$this->show->pe($result);
+		return $result;
 	}
 		
 		

@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'auth', 'go_cart', 'show')
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'file', 'string', 'html', 'language', 'number_helper');
+$autoload['helper'] = array('url', 'file', 'string', 'html', 'language');
 
 
 /*
