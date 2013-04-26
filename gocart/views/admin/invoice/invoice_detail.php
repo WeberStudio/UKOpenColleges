@@ -150,9 +150,9 @@
                             <?php } ?>
                           </select>
                         </td>
-                        <td style="vertical-align: top;"><?php echo $invoice_item['item_subtotal']; ?></td>
-                        <td style="vertical-align: top;"><?php echo $invoice_item['item_tax_total']; ?></td>
-                        <td style="vertical-align: top;"><?php echo $invoice_item['item_total']; ?></td>
+                        <td style="vertical-align: top;"><?php echo format_currency($invoice_item['item_subtotal']); ?></td>
+                        <td style="vertical-align: top;"><?php echo format_currency($invoice_item['item_tax_total']); ?></td>
+                        <td style="vertical-align: top;"><?php echo format_currency($invoice_item['item_total']); ?></td>
                         <td></td>
                       </tr>
                       <? } 
@@ -184,33 +184,24 @@
 						?>
                     </tbody>
                   </table>
-                  <?php /*?><table class="table table-striped table-bordered">
+				   <? if(!empty($invoice_totals)){?>
+                  <table class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th><?php echo lang('subtotal'); ?></th>
-							<th><?php echo lang('item_tax'); ?></th>
-							<th><?php echo lang('invoice_tax'); ?></th>
-							<th><?php echo lang('total'); ?></th>
-							<th><?php echo lang('paid'); ?></th>
-							<th><?php echo lang('balance'); ?></th>
+							<th><?php echo lang('item_tax'); ?></th>							
+							<th><?php echo lang('total'); ?></th>							
 						</tr>
 					</thead>
-					<tbody>
+					<tbody>					
 						<tr>
-							<td><?php echo format_currency($invoice->invoice_item_subtotal); ?></td>
-							<td><?php echo format_currency($invoice->invoice_item_tax_total); ?></td>
-							<td>
-								<?php if ($invoice_tax_rates) { foreach ($invoice_tax_rates as $invoice_tax_rate) { ?>
-									<strong><?php echo anchor('invoices/delete_invoice_tax/' . $invoice->invoice_id . '/' . $invoice_tax_rate->invoice_tax_rate_id, lang('remove')) . ' ' . $invoice_tax_rate->invoice_tax_rate_name . ' ' . $invoice_tax_rate->invoice_tax_rate_percent; ?>%:</strong>				
-									<?php echo format_currency($invoice_tax_rate->invoice_tax_rate_amount); ?><br>
-								<?php } } else { echo format_currency('0'); }?>
-							</td>
-							<td><?php echo format_currency($invoice->invoice_total); ?></td>
-							<td><?php echo format_currency($invoice->invoice_paid); ?></td>
-							<td><?php echo format_currency($invoice->invoice_balance); ?></td>
+							<td><?php echo format_currency($invoice_totals[0]['invoice_item_subtotal']); ?></td>
+							<td><?php echo format_currency($invoice_totals[0]['invoice_item_tax_total']); ?></td>							
+							<td><?php echo format_currency($invoice_totals[0]['invoice_total']); ?></td>							
 						</tr>
 					</tbody>
-				</table><?php */?>
+				</table>
+				<? }?>
                   <br />
                   <br />
                   <p><strong><?php echo lang('invoice_terms'); ?></strong></p>
@@ -226,24 +217,3 @@
     </div>
   </div>
 </div>
-<tr id="new_item" style="display: none;">
-  <td><input type="hidden" id="quote_id" value="">
-    <input type="hidden" id="item_id" value="">
-    <input type="text" id="item_name" class="input-small" value="">
-  </td>
-  <td><input type="text" class="input-small" id="item_description" value=""></td>
-  <td><input type="text" class="input-mini" id="item_quantity" value=""></td>
-  <td><input type="text" class="input-mini" id="item_price" value=""></td>
-  <td colspan="2"></td>
-</tr>
-<tr class="item">
-  <td><input type="hidden" id="quote_id" value="">
-    <input type="hidden" id="item_id" value=">">
-    <input type="text" id="item_name" style="width: 90%;" value="">
-  </td>
-  <td><input type="text" id="item_description" style="width: 90%;" value=""></td>
-  <td><input type="text" id="item_quantity" style="width: 90%;" value=""></td>
-  <td><input type="text" id="item_price" style="width: 90%;" value=""></td>
-  <td></td>
-  <td><a class="" href=""> <i class="icon-remove"></i> </a> </td>
-</tr>
