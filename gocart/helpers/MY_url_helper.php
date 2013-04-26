@@ -40,6 +40,8 @@ function theme_url($uri)
 	return $CI->config->base_url('gocart/themes/'.$CI->config->item('theme').'/'.$uri);
 }
 
+
+
 //to generate an image tag, set tag to true. you can also put a string in tag to generate the alt tag
 //to generate an image tag, set tag to true. you can also put a string in tag to generate the alt tag
 function theme_img($uri, $tag=false)
@@ -51,6 +53,20 @@ function theme_img($uri, $tag=false)
     else
     {
         return theme_url('assets/images/'.$uri);
+    }
+    
+}
+
+function catogery_img($uri, $tag=false)
+{
+    $CI =& get_instance(); 
+    if($tag)
+    {
+        return '<img src="'.$CI->config->base_url().'uploads/'.$uri.'" alt="'.$tag.'">';
+    }
+    else
+    {
+        return $CI->config->base_url().'uploads/'.$uri;
     }
     
 }
