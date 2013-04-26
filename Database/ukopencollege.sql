@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Apr 23, 2013 at 09:37 AM
+-- Generation Time: Apr 26, 2013 at 09:47 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -4639,21 +4639,33 @@ CREATE TABLE `oc_invoices` (
   `invoice_id` int(11) NOT NULL auto_increment,
   `admin_id` int(11) NOT NULL,
   `invoice_group_id` int(11) NOT NULL,
-  `invoice_date_created` date NOT NULL,
+  `invoice_date_created` datetime NOT NULL,
   `invoice_date_modified` datetime NOT NULL,
-  `invoice_date_due` date NOT NULL,
+  `invoice_date_due` datetime NOT NULL,
   `invoice_number` varchar(20) NOT NULL,
   `invoice_terms` longtext NOT NULL,
-  `invoice_url_key` char(32) NOT NULL,
-  PRIMARY KEY  (`invoice_id`),
-  UNIQUE KEY `invoice_url_key` (`invoice_url_key`),
-  KEY `admin_id` (`admin_id`,`invoice_group_id`,`invoice_date_created`,`invoice_date_due`,`invoice_number`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY  (`invoice_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 -- 
 -- Dumping data for table `oc_invoices`
 -- 
 
+INSERT INTO `oc_invoices` VALUES (1, 2, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '<p>asdasdas</p>');
+INSERT INTO `oc_invoices` VALUES (2, 2, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '<p>hkjhk</p>');
+INSERT INTO `oc_invoices` VALUES (3, 3, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1970-01-01 00:00:00', '', '<p>asdada</p>');
+INSERT INTO `oc_invoices` VALUES (4, 3, 2, '1970-01-01 00:00:00', '0000-00-00 00:00:00', '1970-01-01 00:00:00', '', '<p>asdsadasdas</p>');
+INSERT INTO `oc_invoices` VALUES (5, 3, 2, '1970-01-01 00:00:00', '0000-00-00 00:00:00', '1970-01-01 00:00:00', '', '<p>asdasd</p>');
+INSERT INTO `oc_invoices` VALUES (6, 3, 2, '1970-01-01 00:00:00', '0000-00-00 00:00:00', '1970-01-01 00:00:00', '', '<p>asdasd</p>');
+INSERT INTO `oc_invoices` VALUES (7, 3, 1, '2013-04-23 00:00:00', '0000-00-00 00:00:00', '2013-04-23 00:00:00', '', '<p>dZC</p>');
+INSERT INTO `oc_invoices` VALUES (8, 7, 2, '2013-04-23 00:00:00', '0000-00-00 00:00:00', '2013-04-23 00:00:00', '', '<p>Sssss</p>\r\n');
+INSERT INTO `oc_invoices` VALUES (9, 2, 2, '2013-04-23 00:00:00', '0000-00-00 00:00:00', '2013-04-23 00:00:00', '', '<p>asdadaasda</p>');
+INSERT INTO `oc_invoices` VALUES (10, 3, 2, '2013-04-24 00:00:00', '0000-00-00 00:00:00', '2013-04-24 00:00:00', '', '<p>adasdasd</p>');
+INSERT INTO `oc_invoices` VALUES (11, 5, 1, '2013-04-24 00:00:00', '0000-00-00 00:00:00', '2013-04-24 00:00:00', '', '<p>asdadasda</p>');
+INSERT INTO `oc_invoices` VALUES (12, 5, 1, '2013-04-24 00:00:00', '0000-00-00 00:00:00', '2013-04-24 00:00:00', '', '<p>asdadasda</p>');
+INSERT INTO `oc_invoices` VALUES (13, 4, 2, '2013-04-25 00:00:00', '0000-00-00 00:00:00', '2013-04-25 00:00:00', '', '<p>asdad</p>');
+INSERT INTO `oc_invoices` VALUES (14, 4, 2, '2013-04-25 00:00:00', '0000-00-00 00:00:00', '2013-04-25 00:00:00', '', '<p>asdasdasasdasd</p>');
+INSERT INTO `oc_invoices` VALUES (15, 6, 2, '2013-04-25 00:00:00', '0000-00-00 00:00:00', '2013-04-25 00:00:00', '', '<p>zczczxcz</p>');
 
 -- --------------------------------------------------------
 
@@ -4703,6 +4715,62 @@ CREATE TABLE `oc_invoice_groups` (
 
 INSERT INTO `oc_invoice_groups` VALUES (1, 'Superadmin', 'asdas', 'sds', 25, 22, 0, 1);
 INSERT INTO `oc_invoice_groups` VALUES (2, 'Superadmin', 'Invoice Default', 'Monthly In', 2, 22, 0, 0);
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `oc_invoice_items`
+-- 
+
+CREATE TABLE `oc_invoice_items` (
+  `item_id` int(11) NOT NULL auto_increment,
+  `invoice_id` int(11) NOT NULL,
+  `item_tax_rate_id` int(11) NOT NULL,
+  `item_date_added` date NOT NULL,
+  `item_name` varchar(100) NOT NULL,
+  `item_description` longtext NOT NULL,
+  `item_quantity` decimal(10,2) NOT NULL,
+  `item_price` decimal(10,2) NOT NULL,
+  `item_order` int(2) NOT NULL,
+  PRIMARY KEY  (`item_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+
+-- 
+-- Dumping data for table `oc_invoice_items`
+-- 
+
+INSERT INTO `oc_invoice_items` VALUES (1, 14, 4, '0000-00-00', 'item1', 'asdad', 2.00, 5.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (2, 14, 1, '0000-00-00', 'item2', 'sdfsdfs', 3.00, 8.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (3, 14, 1, '0000-00-00', 'item3', 'adads', 2.00, 3.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (38, 15, 1, '0000-00-00', 'B4', 'd6', 10.00, 12.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (37, 15, 1, '0000-00-00', 'B2', 'd3', 6.00, 16.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (36, 15, 1, '0000-00-00', 'B3', 'd3', 6.00, 16.00, 0);
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `oc_invoice_item_amounts`
+-- 
+
+CREATE TABLE `oc_invoice_item_amounts` (
+  `item_amount_id` int(11) NOT NULL auto_increment,
+  `item_id` int(11) NOT NULL,
+  `item_subtotal` decimal(10,2) NOT NULL,
+  `item_tax_total` decimal(10,2) NOT NULL,
+  `item_total` decimal(10,2) NOT NULL,
+  PRIMARY KEY  (`item_amount_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+
+-- 
+-- Dumping data for table `oc_invoice_item_amounts`
+-- 
+
+INSERT INTO `oc_invoice_item_amounts` VALUES (1, 1, 10.00, 0.80, 10.80);
+INSERT INTO `oc_invoice_item_amounts` VALUES (2, 2, 24.00, 1.20, 25.20);
+INSERT INTO `oc_invoice_item_amounts` VALUES (3, 3, 6.00, 0.30, 6.30);
+INSERT INTO `oc_invoice_item_amounts` VALUES (38, 38, 120.00, 6.00, 126.00);
+INSERT INTO `oc_invoice_item_amounts` VALUES (37, 37, 96.00, 4.80, 100.80);
+INSERT INTO `oc_invoice_item_amounts` VALUES (36, 36, 96.00, 4.80, 100.80);
 
 -- --------------------------------------------------------
 
@@ -5663,8 +5731,12 @@ INSERT INTO `oc_sessions` VALUES ('5d9273f21c2740f34637e7885e618179', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('8cf4cbba9eea2ffe06389d00eddfbd2b', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366289914, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366297114;}}');
 INSERT INTO `oc_sessions` VALUES ('dbe5de6dc676b1cee61f03402158a28f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366358330, '');
 INSERT INTO `oc_sessions` VALUES ('234a5d6eacc9e50ca0a445ef2e1f6c5c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366358330, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366365531;}}');
-INSERT INTO `oc_sessions` VALUES ('1950860e6b40b79db991db179e0f3e52', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366466461, '');
-INSERT INTO `oc_sessions` VALUES ('f6f99faac7a734a9a76997381afad165', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366466461, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366473661;}}');
+INSERT INTO `oc_sessions` VALUES ('56c188de9d2e85f9f8c110101c35f101', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366699844, '');
+INSERT INTO `oc_sessions` VALUES ('e82eed32a907d85edf99a635183a70e8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366699844, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366707044;}}');
+INSERT INTO `oc_sessions` VALUES ('ea0c3c70eeb5dadc5fa4af6ccc8e9d8e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366715156, '');
+INSERT INTO `oc_sessions` VALUES ('506b1568e2573cd1fee333fc0cb9e91c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366715156, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366722356;}}');
+INSERT INTO `oc_sessions` VALUES ('fbfee6cc726af6dd6c78c38c9b945c35', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366895616, '');
+INSERT INTO `oc_sessions` VALUES ('d3eec16e5f6c5fb5673d4bc5e109dff8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366895616, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366902816;}}');
 
 -- --------------------------------------------------------
 

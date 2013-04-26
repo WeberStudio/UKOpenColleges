@@ -36,11 +36,34 @@ $lang['message_saved_tax'] 					= 'Tax Saved Successfully!';
 $lang['tax_title'] 							= 'Tax Title';
 $lang['tax'] 								= 'Tax';
 $lang['tax_level'] 							= 'Set This Tax As Universal';
+$lang['tax_rate_form'] 						= 'Tax Rate Form';
+$lang['tax_rate_name'] 						= 'Tax Rate Name';
+$lang['tax_rate_percent'] 					= 'Tax Rate Percent';
+$lang['tax_rate_placement'] 				= 'Tax Rate Placement';
+$lang['tax_rate'] 							= 'Tax Rate';
+$lang['tax_rates'] 							= 'Tax Rates';
+
 
 //Invoice Lang
 $lang['terms_conditions'] 					= 'Terms & Conditions';
 $lang['message_invoice_saved'] 				= 'Invoiced Saved Successfully!';
+$lang['invoice_phone'] 						= 'Phone';
+$lang['invoice_email'] 						= 'E-mail';
+$lang['user_name'] 							= 'Name';
+$lang['admin_name'] 						= 'College Name';
+$lang['invoice_id'] 						= 'Invoice';
+$lang['creation_date'] 						= 'Creation Date';
+$lang['due_date'] 							= 'Due Date';
 
 
+$lang['description'] 						= 'Description';
+$lang['price'] 								= 'Price';
+$lang['qty'] 								= 'Qty';
+$lang['quantity'] 							= 'Quantity';
+$lang['subtotal'] 							= 'Subtotal';
+$lang['total'] 								= 'Total';
+$lang['item'] 								= 'Items';
+$lang['none'] 								= 'None';
+$lang['delete'] 							= 'Delete';
 
 ?>
