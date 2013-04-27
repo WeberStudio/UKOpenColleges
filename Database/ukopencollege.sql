@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Apr 26, 2013 at 11:14 AM
+-- Generation Time: Apr 27, 2013 at 09:28 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -4645,7 +4645,7 @@ CREATE TABLE `oc_invoices` (
   `invoice_number` varchar(20) NOT NULL,
   `invoice_terms` longtext NOT NULL,
   PRIMARY KEY  (`invoice_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 -- 
 -- Dumping data for table `oc_invoices`
@@ -4669,6 +4669,8 @@ INSERT INTO `oc_invoices` VALUES (15, 6, 2, '2013-04-25 00:00:00', '0000-00-00 0
 INSERT INTO `oc_invoices` VALUES (16, 3, 2, '2013-04-26 00:00:00', '0000-00-00 00:00:00', '2013-04-26 00:00:00', '', '<p>asdasd</p>');
 INSERT INTO `oc_invoices` VALUES (17, 5, 1, '2013-04-26 00:00:00', '0000-00-00 00:00:00', '2013-04-26 00:00:00', '', '<p>asdsadasdasd</p>');
 INSERT INTO `oc_invoices` VALUES (18, 3, 1, '2013-04-26 00:00:00', '0000-00-00 00:00:00', '2013-04-26 00:00:00', '', '<p>asfsdfsf</p>');
+INSERT INTO `oc_invoices` VALUES (19, 5, 1, '2013-04-26 00:00:00', '0000-00-00 00:00:00', '2013-04-26 00:00:00', '', '<p>asdas</p>');
+INSERT INTO `oc_invoices` VALUES (20, 2, 2, '2013-04-26 00:00:00', '0000-00-00 00:00:00', '2013-04-26 00:00:00', '', '<p>dasdasd</p>');
 
 -- --------------------------------------------------------
 
@@ -4693,6 +4695,29 @@ CREATE TABLE `oc_invoices_recurring` (
 -- Dumping data for table `oc_invoices_recurring`
 -- 
 
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `oc_invoice_amounts`
+-- 
+
+CREATE TABLE `oc_invoice_amounts` (
+  `invoice_amount_id` int(11) default NULL,
+  `invoice_id` int(11) NOT NULL,
+  `invoice_item_subtotal` decimal(10,2) NOT NULL,
+  `invoice_item_tax_total` decimal(10,2) NOT NULL,
+  `invoice_tax_total` decimal(10,2) NOT NULL,
+  `invoice_total` decimal(10,2) NOT NULL,
+  `invoice_paid` decimal(10,2) NOT NULL,
+  `invoice_balance` decimal(10,2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `oc_invoice_amounts`
+-- 
+
+INSERT INTO `oc_invoice_amounts` VALUES (NULL, 19, 95.00, 6.10, 0.00, 101.10, 0.00, 0.00);
 
 -- --------------------------------------------------------
 
@@ -4736,7 +4761,7 @@ CREATE TABLE `oc_invoice_items` (
   `item_price` decimal(10,2) NOT NULL,
   `item_order` int(2) NOT NULL,
   PRIMARY KEY  (`item_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
 -- 
 -- Dumping data for table `oc_invoice_items`
@@ -4751,6 +4776,8 @@ INSERT INTO `oc_invoice_items` VALUES (39, 16, 4, '0000-00-00', 'B1', 'asdasd', 
 INSERT INTO `oc_invoice_items` VALUES (38, 15, 1, '0000-00-00', 'B4', 'd6', 10.00, 12.00, 0);
 INSERT INTO `oc_invoice_items` VALUES (37, 15, 1, '0000-00-00', 'B2', 'd3', 6.00, 16.00, 0);
 INSERT INTO `oc_invoice_items` VALUES (36, 15, 1, '0000-00-00', 'B3', 'd3', 6.00, 16.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (74, 19, 4, '0000-00-00', 'item2', 'llll', 5.00, 9.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (73, 19, 1, '0000-00-00', 'item1', 'asdasdasd', 25.00, 2.00, 0);
 
 -- --------------------------------------------------------
 
@@ -4765,7 +4792,7 @@ CREATE TABLE `oc_invoice_item_amounts` (
   `item_tax_total` decimal(10,2) NOT NULL,
   `item_total` decimal(10,2) NOT NULL,
   PRIMARY KEY  (`item_amount_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
 
 -- 
 -- Dumping data for table `oc_invoice_item_amounts`
@@ -4780,6 +4807,8 @@ INSERT INTO `oc_invoice_item_amounts` VALUES (39, 39, 9.00, 0.72, 9.72);
 INSERT INTO `oc_invoice_item_amounts` VALUES (38, 38, 120.00, 6.00, 126.00);
 INSERT INTO `oc_invoice_item_amounts` VALUES (37, 37, 96.00, 4.80, 100.80);
 INSERT INTO `oc_invoice_item_amounts` VALUES (36, 36, 96.00, 4.80, 100.80);
+INSERT INTO `oc_invoice_item_amounts` VALUES (73, 74, 45.00, 3.60, 48.60);
+INSERT INTO `oc_invoice_item_amounts` VALUES (72, 73, 50.00, 2.50, 52.50);
 
 -- --------------------------------------------------------
 
@@ -4788,11 +4817,11 @@ INSERT INTO `oc_invoice_item_amounts` VALUES (36, 36, 96.00, 4.80, 100.80);
 -- 
 
 CREATE TABLE `oc_invoice_tax_rates` (
-  `oc_invoice_tax_rate_id` int(11) NOT NULL,
-  `oc_invoice_id` int(11) NOT NULL,
-  `oc_tax_rate_id` int(11) NOT NULL,
-  `oc_include_item_tax` int(1) NOT NULL default '0',
-  `oc_invoice_tax_rate_amount` decimal(10,2) NOT NULL
+  `invoice_tax_rate_id` int(11) NOT NULL,
+  `invoice_id` int(11) NOT NULL,
+  `tax_rate_id` int(11) NOT NULL,
+  `include_item_tax` int(11) NOT NULL default '0',
+  `invoice_tax_rate_amount` decimal(10,2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- 
@@ -5665,8 +5694,8 @@ INSERT INTO `oc_sessions` VALUES ('5297cacf331ff11d57fc3dd504dca8c9', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('eb8f232fe23f8bfffe9a71ccf4543628', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366104555, 'a:1:{s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366111755;}}');
 INSERT INTO `oc_sessions` VALUES ('44c2a87fb23116203893bae8142bcdf3', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366104687, '');
 INSERT INTO `oc_sessions` VALUES ('a74074178e283926f6701643883cc96a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366104687, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366111887;}}');
-INSERT INTO `oc_sessions` VALUES ('208440d3110b2925df5ffc2a40198df6', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0', 1366104670, '');
-INSERT INTO `oc_sessions` VALUES ('08aa8c3e185f4ba7f38ed38e9aeeea65', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0', 1366104670, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:1:"1";s:6:"access";s:5:"Admin";s:9:"firstname";s:6:"junaid";s:8:"lastname";s:6:"khalil";s:5:"email";s:23:"khalil.junaid@gmail.com";s:5:"image";s:11:"thumb_1.jpg";s:6:"expire";i:1366111870;}}');
+INSERT INTO `oc_sessions` VALUES ('dd3df9aef78ad4f123f1244b319240f6', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0', 1366957224, '');
+INSERT INTO `oc_sessions` VALUES ('aac4303832eb2ed58afb7becbf2de311', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0', 1366957224, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366964424;}}');
 INSERT INTO `oc_sessions` VALUES ('a491decfd506eb0a97475fce6a9383a4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366268131, 'a:1:{s:15:"flash:old:error";b:0;}');
 INSERT INTO `oc_sessions` VALUES ('231ce23b7d6bb7cc72199df3e0f3171c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366268130, '');
 INSERT INTO `oc_sessions` VALUES ('bb8de35fc9aa3ffacc59d9481464142e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366268131, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366275331;}}');
@@ -5744,8 +5773,8 @@ INSERT INTO `oc_sessions` VALUES ('56c188de9d2e85f9f8c110101c35f101', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('e82eed32a907d85edf99a635183a70e8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366699844, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366707044;}}');
 INSERT INTO `oc_sessions` VALUES ('ea0c3c70eeb5dadc5fa4af6ccc8e9d8e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366715156, '');
 INSERT INTO `oc_sessions` VALUES ('506b1568e2573cd1fee333fc0cb9e91c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366715156, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366722356;}}');
-INSERT INTO `oc_sessions` VALUES ('1625d82c6c314f3265f2872cf5c1451a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366956785, '');
-INSERT INTO `oc_sessions` VALUES ('2711f691cb3b02a915ee9569208ad73f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366956785, 'a:1:{s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366963985;}}');
+INSERT INTO `oc_sessions` VALUES ('0c583186810785ec7c37f1ba94bcab6c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1367036694, '');
+INSERT INTO `oc_sessions` VALUES ('cc0f20a5c6821e3f30ab1821593fe82c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1367036694, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1366988792;}}');
 INSERT INTO `oc_sessions` VALUES ('289b9630ee5ee5251234c814973ba6ed', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366954671, '');
 INSERT INTO `oc_sessions` VALUES ('f8249273ea7105b387b56fc64b274647', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366954671, '');
 INSERT INTO `oc_sessions` VALUES ('bdef6c31928a665c68d4329367e35ab8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366954703, '');
@@ -5784,6 +5813,8 @@ INSERT INTO `oc_sessions` VALUES ('fe2de9484327fd6f5661c7cadfd77a2b', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('8521615540311a9dcd57db15344fa353', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366956454, '');
 INSERT INTO `oc_sessions` VALUES ('b395b6b4508dccf4e81ea7d134e394ab', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366956454, '');
 INSERT INTO `oc_sessions` VALUES ('4b769e42c91d161cad453f33b3e96f06', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1366956454, '');
+INSERT INTO `oc_sessions` VALUES ('2ed8d58f9d6c0fcec6cce962aaf2874d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1367036695, '');
+INSERT INTO `oc_sessions` VALUES ('5dc904b610dea748183184f67ff8e1b6', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31', 1367036695, '');
 
 -- --------------------------------------------------------
 
@@ -5817,7 +5848,7 @@ CREATE TABLE `oc_tax_rates` (
   `tax_rate_percent` decimal(5,2) NOT NULL,
   `tax_level` varchar(50) NOT NULL,
   PRIMARY KEY  (`tax_rate_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- 
 -- Dumping data for table `oc_tax_rates`

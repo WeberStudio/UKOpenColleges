@@ -65,5 +65,7 @@ $lang['total'] 								= 'Total';
 $lang['item'] 								= 'Items';
 $lang['none'] 								= 'None';
 $lang['delete'] 							= 'Delete';
+$lang['edit'] 								= 'Edit';
+
 
 ?>
