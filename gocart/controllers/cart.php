@@ -40,7 +40,7 @@ class Cart extends Front_Controller {
        // echo '<pre>';print_r($data['allProduct']);
         //$this->load->view('homepage', $data);
        //$this->load->view('index');  
-        $this->load->view('portfilo', $data);  
+        $this->load->view('allCourses', $data);  
     }
 	function page($id = false)
 	{
