@@ -97,6 +97,22 @@ Class Product_model extends CI_Model
 		}
 	}
 	
+    function get_products_catogery_wise()
+    {
+       //sort by alphabetically by default
+       $this->db->join('category_products', 'category_products.product_id=products.id', 'right');
+
+        $this->db->order_by('name', 'ASC');
+        $this->db->where('enabled', '1');
+        $this->db->where('delete', '0');
+        $result    = $this->db->get('products');
+        $return = $result->result_array();
+        if(count($return))
+        {
+            return $return;
+        }
+        return false; 
+    }
 	function get_all_products_array()
 	{
 		//sort by alphabetically by default

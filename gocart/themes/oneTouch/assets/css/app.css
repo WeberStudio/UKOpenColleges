@@ -1109,7 +1109,7 @@ div.item, .item div{
 }
 
 #recent .sort-panel {
-    padding: 8px 0 20px 45px;
+   padding: 8px -1px 20px 1px;
     height: 50px;
 }
 .sort-panel ul {
@@ -1136,11 +1136,13 @@ div.item, .item div{
 }
 .works-list .item {
     float: left;
-    margin-left: 4px;
-    margin-bottom: 4px;
+    margin-right: 30px;
+    margin-bottom: 30px;
     position: relative;
     overflow: hidden;
 }
+
+
 .works-list .large {
     width: 390px;
 }
@@ -2001,7 +2003,7 @@ form  label {
 }
  .description .title {
     position: absolute;
-    bottom: 10px;
+    bottom: 85px;
     background: url("../icons/white-list.png") 15px 9px no-repeat;
     padding-bottom: 5px;
     padding-right: 10px;
@@ -2121,6 +2123,7 @@ a.button:hover, button.button:hover, input.button:hover, #respond input#submit:h
     border: none;
     background: #50A9D2;
     color: white;
+    
 }
 
 
@@ -2787,4 +2790,10 @@ div.orbit-wrapper div.slider-nav span.left, div.orbit-wrapper div.slider-nav spa
 .page-template-portfolio-masonry-php #post-nav {
     padding-left: 5px;
     padding-top: 20px;
+}
+.margin36{
+margin-left: 36px !important; 
+}
+.margin0{
+      margin-left: 0px !important;
 }
