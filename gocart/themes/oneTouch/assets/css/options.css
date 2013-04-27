@@ -45,23 +45,48 @@ body {
 .tiled-menu>li>.menu-item-wrap>a{
   background-color:#ffaa31;
 }
-.tiled-menu>.menu-portfolio>span>a {
-   background-color:#FFAA31;
+
+.tiled-menu>li>.menu-item-wrap>a{
+  background-color:#ffaa31;
 }
+
+.tiled-menu>li>.menu-item-wrap>a:hover {
+   background-color:#0000FF !important;
+}
+
+.tiled-menu>.menu-portfolio>span>a:hover {
+   background-color:#FF9B40 !important;
+}
+
 .tiled-menu>.menu-blog>span>a{
   background-color:#57BAE8;
 }
+
+.tiled-menu>.menu-blog>span>a:hover {
+  background-color:#FF0000 !important;
+}
+
 .tiled-menu>.menu-shop>span>a{
    background-color:#6CBE42;
  }
+ 
+ .tiled-menu>.menu-shop>span>a:hover {
+   background-color:#0066FF !important;
+ }
+ 
 .tiled-menu>.menu-shortcodes>span>a {
     background-color:#FFAA31;
 }
+
+.tiled-menu>.menu-shortcodes>span>a:hover {
+     background-color:#FF9B40 !important;
+}
+
 .tiled-menu>.menu-features>span>a{
     background-color:#57BAE8;
 }
-.tiled-menu>.menu-contacts>span>a{
-    background-color:#FFAA31;
+.tiled-menu>.menu-contacts>span>a:hover {
+    background-color:#009900 !important;
 }
 #director-page{
 	background-color:;

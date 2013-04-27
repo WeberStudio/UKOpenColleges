@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
 
-    var imagesForPreload = new Array(customStyleImgUrl + '/title-icon2.png');
+    var imagesForPreload = new Array(customStyleImgUrl + 'title-icon2.png');
     $(".pattern-select:eq(0) .pattern-example.pic img").each(function(){
         imagesForPreload.push( $(this).attr("src") );
     });
@@ -14,8 +14,8 @@ jQuery(document).ready(function($){
         jQuery("#appear_icon").hide();
     }
     /*Setting clorpicker*/
-    colorpicker = $.farbtastic("#custom-style-colorpicker");
-    $("#custom-style-colorpicker").append("<a class='close'>X</a>");
+    //colorpicker = $.farbtastic("#custom-style-colorpicker");
+   // $("#custom-style-colorpicker").append("<a class='close'>X</a>");
 
 	jQuery("#tempate-switcher").show();
 	
@@ -177,18 +177,18 @@ jQuery(window).load(function(){
     var defaults = {
         slider:{
             row:{
-                maxWidth: $(".scroll-box").closest(".row").css("max-width"),
-                width: $(".scroll-box").closest(".row").css("width"),
-                padding: $(".scroll-box").closest(".row").css("padding")
+                maxWidth: jQuery(".scroll-box").closest(".row").css("max-width"),
+                width: jQuery(".scroll-box").closest(".row").css("width"),
+                padding: jQuery(".scroll-box").closest(".row").css("padding")
             },
             fifteen:{
-                maxWidth: $(".scroll-box").closest(".fifteen").css("max-width"),
-                padding: $(".scroll-box").closest(".fifteen").css("padding")
+                maxWidth: jQuery(".scroll-box").closest(".fifteen").css("max-width"),
+                padding: jQuery(".scroll-box").closest(".fifteen").css("padding")
             },
             scrollBox:{
-                maxWidth:$(".scroll-box").css("max-width"),
-                padding: $(".scroll-box").css("padding"),
-                width: $(".scroll-box").css("width")
+                maxWidth:jQuery(".scroll-box").css("max-width"),
+                padding: jQuery(".scroll-box").css("padding"),
+                width: jQuery(".scroll-box").css("width")
             }
         },
         bodyWrapper:{
@@ -230,8 +230,8 @@ function hex(x) {
 }
 
 function preload(arrayOfImages) {
-    $(arrayOfImages).each(function(){
-        $('<img/>')[0].src = this;
+    jQuery(arrayOfImages).each(function(){
+       // jQuery('<img/>')[0].src = this;
         // Alternatively you could use:
         // (new Image()).src = this;
     });

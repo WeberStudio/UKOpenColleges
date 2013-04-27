@@ -1,11 +1,3 @@
-
-<div class="promo"><span class="icon info"></span>
-    <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
-        <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>
-        <span style="padding: 0 70px;"  >
-            <a href="" style="color:red;">Register</a> <span style="color:red;">/</span> <a href="" style="color:red;">Login</a></span></h1>
-</div> 
-
 <!-- Fullscreen jQuery template -->
 <!--<div class="sort-panel">  
     <h1 class="page-title" style="padding: -9px;"><a href="javascript:void(0)" class="all">All Courses</a> <span style="float: right;"> 
