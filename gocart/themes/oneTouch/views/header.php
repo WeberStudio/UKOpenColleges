@@ -262,28 +262,8 @@ experience this site.
     </div>
 
 </div> 
-<div><span style="padding 5 5 5 5; float : right"  ><a href="" rel="nofollow" data-product_id="868" class="add_to_cart_button button product_type_simple">Checkout</a></span></div>
-<div class="promo"><span class="icon info"></span>
-    <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
-        <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>
-        <span style="padding: 0 14px;"  >&nbsp;</span>
-        <a href="" style="color:red;">Register</a> <span style="color:red;">/</span> <a href="" style="color:red;">Login</a></h1>
-</div> 
-<div class="row">
-<div class="fifteen columns" id="page-title">
-    <h1 class="page-title">All Courses<span style="padding-right: 3px; "></span>
-        <a href="" rel="nofollow" data-product_id="868" class="add_to_cart_button button product_type_simple">  &nbsp; &nbsp;&nbsp;&nbsp;  All Courses &nbsp; &nbsp;&nbsp; &nbsp; </a>
-        <br/>
-        <?php foreach($this->categories as $cat_menu):?> 
-            <a href="" style="color: black";> <?php echo $cat_menu['category']->name;?>
-
-            <span class="delim"> / </span></a> 
-            <?php  endforeach;?>
-    </h1>
-
-    </div>
-  </div>  
-                              
+<div><span style="padding 15 15 15 15; float : right; "  ><a href="" rel="nofollow" data-product_id="868" class="add_to_cart_button button product_type_simple">Checkout</a></span></div>
+         
                                
                                 
     
