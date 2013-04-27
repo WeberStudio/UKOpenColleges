@@ -16,19 +16,20 @@
 
     <link rel="icon" type="image/png" href="">
     <link rel="alternate" type="application/rss+xml" title="OneTouch Feed" href="">
-    <?php echo theme_css('google-font.css', true); ?>
-      <?php echo theme_css('wo-commerence.css', true); ?>
-      <?php echo theme_css('aqpb-view.css', true); ?>
-      <?php echo theme_css('bootstrap.css', true); ?>
-      <?php echo theme_css('js_composer_front.css', true); ?>
-      <?php echo theme_css('revslider-settings.css', true); ?>
-      <?php echo theme_css('revslider-captions.css', true); ?>
-      <?php echo theme_css('frontend.css', true); ?>
-      <?php echo theme_css('foundation.min.css', true); ?>
-      <?php echo theme_css('app.css', true); ?>
-      <?php echo theme_css('shortcodes.css', true); ?>
-      <?php echo theme_css('responsive.css', true); ?>
-      <?php echo theme_css('colorbox.css', true); ?>
+	<?php echo theme_css('google-font.css', true); ?>
+	<?php echo theme_css('wo-commerence.css', true); ?>
+	<?php echo theme_css('aqpb-view.css', true); ?>
+	<?php echo theme_css('bootstrap.css', true); ?>
+	<?php echo theme_css('js_composer_front.css', true); ?>
+	<?php echo theme_css('revslider-settings.css', true); ?>
+	<?php echo theme_css('revslider-captions.css', true); ?>
+	<?php echo theme_css('frontend.css', true); ?>
+	<?php echo theme_css('foundation.min.css', true); ?>
+	<?php echo theme_css('app.css', true); ?>
+	<?php echo theme_css('shortcodes.css', true); ?>
+	<?php echo theme_css('responsive.css', true); ?>
+	<?php echo theme_css('colorbox.css', true); ?>
+	<?php echo theme_css('options.css', true); ?>
 
     <!--add the serach classess-->
     <?php echo theme_css('jquery.fancybox-1.3.1.css?c-v=24739', true); ?>
@@ -60,9 +61,6 @@
     <link href='css/ie.css' rel='stylesheet' type='text/css'>
     <![endif]-->
 
-
-    <?php echo theme_css('options.css', true); ?>
-   
 
     <style>
         #body-wrapper {

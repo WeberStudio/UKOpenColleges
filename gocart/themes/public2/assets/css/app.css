@@ -235,7 +235,7 @@ a.back:hover {
 -webkit-background-size: 32px 32px;
 }
 .twitter-widget .tweet, .tweet_odd, .tweet_even {
-    background: url("../icons/twitt@2x.png")  0 6px no-repeat;
+    background: url("http://localhost/UKOpenColleges/gocart/themes/oneTouch/assets/images/icons/twitt@2x.png")  0 6px no-repeat;
     background-size: 32px 32px;
 -webkit-background-size: 32px 32px;
 }
@@ -1245,7 +1245,7 @@ div.item, .item div{
 
 .twitter-widget .tweet, .tweet_even, .tweet_odd {
     padding-left: 80px;
-    background: url("../icons/twitt@2x.png")  0 4px no-repeat;
+    background: url("http://localhost/UKOpenColleges/gocart/themes/oneTouch/assets/images/icons/twitt@2x.png")  0 4px no-repeat;
     background-size: 60px 60px;
     -webkit-background-size: 60px 60px;
     line-height: 1.3;

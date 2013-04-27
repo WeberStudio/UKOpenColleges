@@ -283,9 +283,9 @@ class Categories extends Admin_Controller {
 				$config['image_library'] = 'gd2';
 				$config['source_image'] = 'uploads/images/medium/'.$save['image'];
 				$config['new_image']	= 'uploads/images/small/'.$save['image'];
-				$config['maintain_ratio'] = TRUE;
-				$config['width'] = 300;
-				$config['height'] = 300;
+				$config['maintain_ratio'] = FALSE;
+				$config['width'] = 356;
+				$config['height'] = 240;
 				$this->image_lib->initialize($config); 
 				$this->image_lib->resize();
 				$this->image_lib->clear();
