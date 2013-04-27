@@ -17,15 +17,14 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 			  <td><?php echo  format_currency($invoice['invoice_item_tax_total']); ?></td>
 			  <td><?php echo  format_currency($invoice['invoice_total']); ?></td>
 			  <td></td>
-			  <td><div class="options btn-group" align="right"> <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-cog"></i> Options</a>
-				  <ul class="dropdown-menu">
-					<li> <a href=""> <i class="icon-pencil"></i> Edit </a> </li>
-					<li> <a href=""> <i class="icon-print"></i> Open PDF </a> </li>
-					<li> <a href=""> <i class="icon-envelope"></i> Send Email </a> </li>
-					<li> <a href="" onclick="return confirm('If you delete this invoice you will not be able to recover it later. Are you sure you want to permanently delete this invoice?');"> <i class="icon-trash"></i> Delete </a> </li>
-				  </ul>
-				</div></td>
-			  <td width="60"></td>
+			  <td class="ms" style="white-space:nowrap;">
+			  	<div class="btn-group1">					
+					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" ><i class="icon-pencil"></i> Edit </a> 
+					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('pdf');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" ><i class="icon-print"></i> Open PDF </a>
+					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('email');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" ><i class="icon-envelope"></i> Send Email </a>
+					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('delete');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" onclick="return confirm('If you delete this invoice you will not be able to recover it later. Are you sure you want to permanently delete this invoice?');">  Delete </a>
+				   </div>
+			  </td>
 			</tr>
 			<?php
             
@@ -58,6 +57,7 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
                   <th class="ue no_sort ">Total</th>
                   <th class="ue no_sort">Options</th>
                   <th></th>
+				 
                 </tr>
               </thead>
               <tbody>
