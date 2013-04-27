@@ -10,7 +10,7 @@ experience this site.
 </div><![endif]-->
 <section id="header" class="row" role="banner">
 <div class="four columns logo">
-    <a href="#">
+    <a  href="<?=base_url()?>cart/">
         <img src="<?php echo theme_img("custom-slider-img/logouk.png")?>" alt="OneTouch"></a>
 </div>
 <nav class="eleven columns" id="topmenu">
@@ -21,7 +21,7 @@ experience this site.
     <ul id="menu-primary-navigation" class="tiled-menu">
         <li class="menu-portfolio">
             <span class="menu-item-wrap">
-                <a  href="#" style='background-color:#cecece; background-size:cover; background-image:none;' >
+                <a  href="<?=base_url()?>cart/allcourses/" style='background-color:#cecece; background-size:cover; background-image:none;' >
                     <span class="link-text">All Courses</span><span class="arrow">&nbsp;</span>                      
                     <span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/text_w@2x.png");?>)'></span>
                 </a>
