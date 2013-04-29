@@ -171,10 +171,23 @@ $GLOBALS['option_value_count']		= 0;
                   <div class="content">
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
+					  <? 
+					  $new_item = str_replace(array("[", "]",  '"'),'',$prelated);
+					  $new_item = explode(',',$new_item);
+					  //echo"<pre>";print_r($new_item);
+					  //exit; ?>
                         <select data-placeholder="Choose Multiple Related Courses" class="chzn-select" name="related_products[]" multiple="" tabindex="5">
-							<? if(isset($all_products)){  ?>
-							<?php  foreach ($all_products as $file):?>
-                                	<option value="<?=$file['id']?>"><?=$file['name']?></option>
+							<? if(isset($all_products)){ 
+								foreach ($all_products as $file):                                	
+									if(in_array($file['id'], $new_item)){ 									
+									?>
+											<option selected="selected" value="<?=$file['id']?>"><?=$file['name']?></option>
+									<? } 
+									else
+									{ ?>	
+											
+											<option value="<?=$file['id']?>"><?=$file['name']?></option>
+									<? } ?>
                              <?php endforeach; ?>
                             <? } ?>
                         </select>
@@ -436,5 +449,6 @@ function replace_newline($string) {
 //<![CDATA[
 var option_count		= <?php echo $counter?>;
 var option_value_count	= <?php echo $GLOBALS['option_value_count'];?>
+
 //]]>
 </script>

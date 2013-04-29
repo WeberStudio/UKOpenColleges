@@ -207,7 +207,7 @@ Class Product_model extends CI_Model
 		}
 
 		$related	= json_decode($result->related_products);
-		
+		$result->prelated = $result->related_products;
 		if(!empty($related))
 		{
 			//build the where

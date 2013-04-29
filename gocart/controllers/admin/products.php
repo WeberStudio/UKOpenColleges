@@ -130,7 +130,7 @@ class Products extends Admin_Controller {
 	function bulk_save()
 	{
 		
-		//echo"<pre>";print_r($_POST);exit;
+		
 		$products	= $this->input->post('product');
 		$remove_products	= $this->input->post('remove_products');
 		$courses = $this->input->post('courses');
@@ -215,8 +215,9 @@ class Products extends Admin_Controller {
 	
 	function form($id = false, $duplicate = false)
 	{
-		$this->product_id	= $id;
 		
+		//echo"<pre>";print_r($_FILES);exit;
+		$this->product_id	= $id;		
 		$this->load->library('form_validation');
 		$this->load->model(array('Option_model', 'Category_model', 'Digital_Product_model'));
 		$this->lang->load('digital_product');
@@ -255,6 +256,7 @@ class Products extends Admin_Controller {
 		$data['product_categories']	= array();
 		$data['images']				= '';
 		$data['product_files']		= array();
+		$data['prelated']			= '';
 
 		//create the photos array for later use
 		$data['photos']		= array();
@@ -272,7 +274,7 @@ class Products extends Admin_Controller {
 			
 			$data['product_options']	= $this->Option_model->get_product_options($id);
 			$product					= $this->Product_model->get_product($id);
-			
+			//echo"<pre>";print_r($product);exit;
 			//if the product does not exist, redirect them to the product list with an error
 			if (!$product)
 			{
@@ -329,6 +331,7 @@ class Products extends Admin_Controller {
 			{
 				$data['product_categories']	= $product->categories;
 				$data['related_products']	= $product->related_products;
+				$data['prelated']			= $product->prelated;
 				//$data['images']				= (array)json_decode($product->images);
 			}
 		}
@@ -379,6 +382,7 @@ class Products extends Admin_Controller {
 			$data['product_files']		= $this->input->post('downloads');
 			
 		}
+		
 		//$this->show->pe($_POST);
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -420,8 +424,9 @@ class Products extends Admin_Controller {
 			}
 			
 			// Upload Image
-			if(count($_FILES)>0)
+			if(!empty($_FILES['image']['name']))
 			{
+				
 				$save['images']	 = $this->product_image_upload();
 			}
 
@@ -479,6 +484,11 @@ class Products extends Admin_Controller {
 			$save['taxable']			= $this->input->post('taxable');
 			$post_images				= $this->input->post('images');
 			
+			if(!empty($post_images))
+			{
+			
+			}
+			
 			$save['slug']				= $slug;
 			$save['route_id']			= $route_id;
 			//echo '<pre>';print_r($save);exit;
@@ -510,23 +520,12 @@ class Products extends Admin_Controller {
 				}
 
 			}	
-			
+			//echo '<pre>';print_r($save);exit;
 			// save product 
 			//$this->show->pe($_POST);
 			$product_id	= $this->Product_model->save($save, $options, $categories);
 			
-			// add file associations
-			// clear existsing
-			$this->Digital_Product_model->disassociate(false, $product_id);
-			// save new
-			$downloads = $this->input->post('downloads');
-			if(is_array($downloads))
-			{
-				foreach($downloads as $d)
-				{
-					$this->Digital_Product_model->associate($d, $product_id);
-				}
-			}			
+				
 
 			//save the route
 			$route['id']	= $route_id;
@@ -596,9 +595,9 @@ class Products extends Admin_Controller {
 			$config['image_library'] = 'gd2';
 			$config['source_image'] = 'uploads/images/medium/'.$upload_data['file_name'];
 			$config['new_image']	= 'uploads/images/small/'.$upload_data['file_name'];
-			$config['maintain_ratio'] = TRUE;
-			$config['width'] = 235;
-			$config['height'] = 235;
+			$config['maintain_ratio'] = FALSE;
+			$config['width'] = 275;
+			$config['height'] = 130;
 			$this->image_lib->initialize($config); 
 			$this->image_lib->resize();
 			$this->image_lib->clear();

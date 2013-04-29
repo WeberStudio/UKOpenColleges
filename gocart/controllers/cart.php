@@ -304,7 +304,7 @@ class Cart extends Front_Controller {
 		}
 
 		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
-					
+		//$this->show->pe($data);			
 		$this->load->view('courseDetails', $data);
 	}
 	
