@@ -152,8 +152,8 @@
               
               <?php echo theme_css('farbtastic1.3.css', true); ?>
               <?php echo theme_css('grid.css', true); ?>
-              <?php //echo theme_css('farbtastic.css', true); ?>
-              <?php //echo theme_css('custom_style.css', true); ?>
+              <?php echo theme_css('farbtastic.css', true); ?>
+              <?php echo theme_css('custom_style.css', true); ?>
               <?php echo theme_js('js/jquery-plugins.min.js', true);?> 
               <?php echo theme_js('js/aqpb-view.js', true);?>
               <?php echo theme_js('js/add-to-cart.min.js', true);?>         

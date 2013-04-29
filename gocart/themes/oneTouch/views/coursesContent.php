@@ -90,7 +90,7 @@
                     -----------------------------------------------------------------------------------*/
 
                     jQuery(document).ready(function($) {
-
+                        var customStyleImgUrl = ''
                         function portfolio_quicksand() {
 
                             // Setting Up Our Variables
