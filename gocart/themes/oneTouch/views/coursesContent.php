@@ -34,7 +34,7 @@
                     <div class="works-list">
                         <ul class="filterable-grid">
                           <?php  
-                         //  echo '<pre>'; print_r($this);
+                         // echo '<pre>'; print_r($allProduct);
                           $counter = 0;
                           $class = '';
                           $marginleft = '';
@@ -55,15 +55,9 @@
                             }
                              
                           ?>  
-                              
+                            <a href="<?=base_url()?>cart/product/<?=$course['product_id']?>" class="all">
                             <li class="item" style="height: 226px; width: 270px;"  data-id="id-1" data-type="<?php echo $course['category_id'];?>">
-                               <? 
-                                 
-                               
-                             //  echo '<pre>';print_r($course);
-                               //if($course['category_id'] == $cat_menu['category']->id)
-                              // {
-                               ?>
+                             
                                 <div class="half <?=$class?>" style="height: 300px; width: 300px">
                                     <div class="pic" style="height: 300px; width: 300px"><img  src="<?php echo catogery_img('images/medium/'.$course['images']); ?>" style="margin:0 0 0 0;" alt="Watchers" title="Watchers" ></div>
                                     <div class="description">
@@ -76,6 +70,7 @@
                                     </div>
                                 </div>
                             </li>
+                            </a>   
                                <?php $counter++; endforeach; ?>   
                         </ul>
                     </div> 
