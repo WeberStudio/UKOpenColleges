@@ -172,9 +172,9 @@ class Cart extends Front_Controller {
 	
 	function category($id)
 	{
-		//get the category
-		$data['category']			= $this->Category_model->get_category($id);
-				
+		//get the category		
+		$data['category'] = $this->Category_model->get_category($id);
+		
 		if (!$data['category'])
 		{
 			show_404();
@@ -261,7 +261,7 @@ class Cart extends Front_Controller {
 			$p->images	= (array)json_decode($p->images);
 			$p->options	= $this->Option_model->get_product_options($p->id);
 		}
-		
+		//$this->show->pe($data);
 		$this->load->view('category', $data);
 	}
 	

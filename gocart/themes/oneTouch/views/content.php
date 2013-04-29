@@ -22,7 +22,7 @@
 						  <h4><? echo $cat_info['category']->name." Courses"?></h4>
 						  <p><? echo $cat_info['category']->description?></p>
 						</div>
-						<a href="#"></a> 
+						<a href="<?=base_url().$cat_info['category']->slug?>"></a> 
 						</div>
                   <? } else { ?>
 					   <div class="item half odd">
@@ -32,7 +32,7 @@
 						  <h4><? echo $cat_info['category']->name." Courses"?></h4>
 						  <p><? echo $cat_info['category']->description?></p>
 						</div>
-						<a href="#"></a> 
+						<a href="<?=base_url().$cat_info['category']->slug?>"></a> 
 						</div>
 				  <? }  
 					  if($count%4==0)

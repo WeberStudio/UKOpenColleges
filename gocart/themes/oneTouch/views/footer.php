@@ -93,12 +93,30 @@
     </div>
   </section>
 </div>
-<a href="#" id="linkTop" class="backtotop"> <span></span> </a> <?php echo theme_css('farbtastic1.3.css', true); ?> <?php echo theme_css('grid.css', true); ?>
-<?php //echo theme_css('farbtastic.css', true); ?>
-<?php //echo theme_css('custom_style.css', true); ?>
-<?php echo theme_js('js/jquery-plugins.min.js', true);?> <?php echo theme_js('js/aqpb-view.js', true);?> <?php echo theme_js('js/add-to-cart.min.js', true);?> <?php echo theme_js('js/jquery.ui.core.min.js', true);?> <?php echo theme_js('js/jquery.ui.widget.min.js', true);?> <?php echo theme_js('js/jquery.ui.tabs.min.js', true);?> <?php echo theme_js('js/jquery-ui-tabs-rotate.js', true);?> <?php echo theme_js('js/js_composer_front.js', true);?> <?php echo theme_js('js/jquery.isotope.min.js', true);?> <?php echo theme_js('js/metro-list.js', true);?> <?php echo theme_js('js/jquery.easing.1.3.js', true);?> <?php echo theme_js('js/jquery.nicescroll.js', true);?> <?php echo theme_js('js/jquery.colorbox.js', true);?> <?php echo theme_js('js/jflickrfeed.min.js', true);?> <?php echo theme_js('js/site.js', true);?> <?php echo theme_js('js/farbtastic.js', true);?> <?php echo theme_js('js/custom_style.js', true);?> <?php echo theme_js('js/jquery.quicksand.js', true);?>
-<?php //echo theme_js('js/woocommerce.min.js', true);?>
+<a href="#" id="linkTop" class="backtotop"> <span></span> </a> 
+<?php echo theme_css('farbtastic1.3.css', true); ?>
+<?php echo theme_css('grid.css', true); ?>
+<?php echo theme_js('js/jquery-plugins.min.js', true);?> 
+<?php echo theme_js('js/aqpb-view.js', true);?> 
+<?php echo theme_js('js/add-to-cart.min.js', true);?> 
+<?php echo theme_js('js/jquery.ui.core.min.js', true);?> 
+<?php echo theme_js('js/jquery.ui.widget.min.js', true);?> 
+<?php echo theme_js('js/jquery.ui.tabs.min.js', true);?>
+<?php echo theme_js('js/jquery-ui-tabs-rotate.js', true);?>
+<?php echo theme_js('js/js_composer_front.js', true);?> 
+<?php echo theme_js('js/jquery.isotope.min.js', true);?>
+<?php echo theme_js('js/metro-list.js', true);?> 
+<?php echo theme_js('js/jquery.easing.1.3.js', true);?>
+<?php echo theme_js('js/jquery.nicescroll.js', true);?>
+<?php echo theme_js('js/jquery.colorbox.js', true);?>
+<?php echo theme_js('js/jflickrfeed.min.js', true);?>
+<?php echo theme_js('js/site.js', true);?> 
+<?php echo theme_js('js/farbtastic.js', true);?> 
+<?php echo theme_js('js/custom_style.js', true);?> 
+<?php echo theme_js('js/jquery.quicksand.js', true);?>
 <?php echo theme_js('js/jquery.prettyPhoto.js', true);?>
-<?php //echo theme_js('js/woocommerce.min.js', true);?>
 <?php echo theme_js('js/jquery.masonry.min.js', true);?>
-</body></html>
+<?php echo theme_js('js/scrolling.js', true);?>
+
+</body>
+</html>

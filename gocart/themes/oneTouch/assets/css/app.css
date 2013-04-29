@@ -2502,6 +2502,7 @@ div.product span.price, div.product p.price, #content div.product span.price, #c
 }
 #grid-posts article.mini .entry-content p {
     line-height: 1.5;
+	text-align:justify;
 }
 
 .pad-r20 {
