@@ -9,13 +9,10 @@
 <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>OneTouch</title>
+    <title>UK Open College</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    
-
     <link rel="icon" type="image/png" href="">
-    <link rel="alternate" type="application/rss+xml" title="OneTouch Feed" href="">
+    <link rel="alternate" type="application/rss+xml" title="UK Open College" href="">
 	<?php echo theme_css('google-font.css', true); ?>
 	<?php echo theme_css('wo-commerence.css', true); ?>
 	<?php echo theme_css('aqpb-view.css', true); ?>

@@ -3,16 +3,16 @@
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
           <?php //include('leftPanel.php'); ?>
         <a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>
-		
-        <div id="body-wrapper" >		
-            <div id="body-wrapper-padding">			
+        
+        <div id="body-wrapper" >        
+            <div id="body-wrapper-padding">            
                 <!--[if lt IE 7]>
                 <div class="alert">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different
                 browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to
                 experience this site.
                 </div><![endif]-->
                  <?php include('header.php'); ?> 
-                <?php include_once('content.php'); ?> 
+                <?php include_once('courseDetailsContent.php'); ?> 
             </div>
         </div>
         <?php include_once('footer.php'); ?> 
@@ -20,4 +20,3 @@
        
     </body>
 </html>
-
