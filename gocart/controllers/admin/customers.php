@@ -20,6 +20,10 @@ class Customers extends Admin_Controller {
 		$this->last_name = $user_info['lastname'];
 		$this->image = $user_info['image'];
 		/*** Get User Info***/
+		
+		/*** Left Menu Selection ***/
+		$this->session->set_userdata('active_module', 'sales');
+		/*** Left Menu Selection ***/
 				
 		$this->load->model(array('Customer_model', 'Location_model'));
 		$this->load->helper('formatting_helper');

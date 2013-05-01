@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
-
-    var imagesForPreload = new Array(customStyleImgUrl + 'title-icon2.png');
+	var imagesForPreload = '';
+   // imagesForPreload = new Array(customStyleImgUrl + 'title-icon2.png');
     $(".pattern-select:eq(0) .pattern-example.pic img").each(function(){
         imagesForPreload.push( $(this).attr("src") );
     });

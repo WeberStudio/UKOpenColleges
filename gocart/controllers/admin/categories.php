@@ -18,9 +18,13 @@ class Categories extends Admin_Controller {
 		$this->image = $user_info['image'];
 		/*** Get User Info***/
 		
+		/*** Left Menu Selection ***/
+		$this->session->set_userdata('active_module', 'categories');
+		/*** Left Menu Selection ***/
+		
 		$this->auth->check_access($this->admin_access, true);
 		$this->lang->load('category');
-		$this->load->model('Category_model');
+		$this->load->model('Category_model');		
 		
 		
 	}

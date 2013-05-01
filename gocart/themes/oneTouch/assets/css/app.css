@@ -527,28 +527,30 @@ a.back:hover {
     position: absolute;
     top: 100%;
     left: 0;
-    padding: 10px 0;
-    margin: 0 0 0 22px;
+    padding: 10px 0 0 10px;
+    margin: 2px 0 0 22px;
     z-index: 100;
-    width: 100%;
+    width: 81.2%;
     display: none;
+	background-color:#58bae9;
 }
 .tiled-menu li ul li {
     background: none;
     display: inline;
-    padding: 12px 0 5px 0;
-    margin: 0 22px 0 0;
+    padding: 0px 0 5px 0;
+    margin: 0 10px 0 0;
     width: auto;
     height: auto;
+	
 
 }
 .tiled-menu li ul li a {
     font-size: 14px;
-    color: #4d4d4d;
+    color: #fff;
 }
 
 .tiled-menu li ul li a:hover {
-    color: #1F9ED9;
+    color: #FF0000;
 }
 
 

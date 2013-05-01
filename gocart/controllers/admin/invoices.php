@@ -17,11 +17,14 @@ class Invoices extends Admin_Controller {
         $this->admin_access = $user_info['access'];
 		$this->first_name = $user_info['firstname'];
 		$this->last_name = $user_info['lastname'];
-		$this->image = $user_info['image'];
-		
-		$this->load->helper('formatting_helper');
-		
+		$this->image = $user_info['image'];		
+		$this->load->helper('formatting_helper');		
         /*** Get User Info***/
+		
+		/*** Left Menu Selection ***/
+		$this->session->set_userdata('active_module', 'invoice');
+		/*** Left Menu Selection ***/
+		
 		$this->auth->check_access($this->admin_access, true);  
         
 		if($this->admin_access=='Admin')

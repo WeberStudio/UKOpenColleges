@@ -13,11 +13,12 @@ experience this site.
     <a  href="<?=base_url()?>cart/">
         <img src="<?php echo theme_img("custom-slider-img/logouk.png")?>" alt="OneTouch"></a>
 </div>
+<? $categories = $this->dropdown_menu->get_all_categories(); ?>
 <nav class="eleven columns" id="topmenu">
     <div id="eyebrow">
         <div class="clear"></div>
     </div>
-    <div class="clear"></div>
+    <div class="clear"></div>	
     <ul id="menu-primary-navigation" class="tiled-menu">
         <li class="menu-portfolio">
             <span class="menu-item-wrap">
@@ -25,21 +26,152 @@ experience this site.
                     <span class="link-text">All Courses</span><span class="arrow">&nbsp;</span>                      
                     <span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/text_w@2x.png");?>)'></span>
                 </a>
-            </span> 
+				
+			</span> 	
+				<?php /*?><ul class="nav main-links" >
+  				<li class="with-sub-menu" id="subject_menu"> <a href="#"> subject</a>
+				<div class="sub mega" style="display: block; opacity: 1;" id="subjectMenuTab">
+				  <div class="mm-menu">
+					<div class="mm-head">					 
+					  <div class="mm-index">
+						<ul class="ltrs">
+						  <li><a class="subjHome" onclick="toggleSubjectLetter(this.innerHTML);return false;">home</a></li>
+						  <li><a href="#" onclick="toggleSubjectLetter(this.innerHTML);return false;">#</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">A</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">B</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">C</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">D</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">E</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">F</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">G</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">H</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">I</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">K</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">L</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">M</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">N</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">O</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">P</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">R</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">S</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">T</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">U</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">V</a></li>
+						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>
+						</ul>
+					  </div>
+					  <div class="clear">&nbsp;</div>
+					</div>
+					<div class="mm-data cols_2" id="subjectMenuItems">
+					  <ul class="sub-menu with-counts lhome">
+						<li><a href="/3D-Animation-training-tutorials/1-0.html">3D + Animation<span> (162)</span></a></li>
+						<li><a href="/Audio-training-tutorials/20-0.html">Audio<span> (79)</span></a></li>
+						<li><a href="/Business-training-tutorials/29-0.html">Business<span> (359)</span></a></li>
+						<li><a href="/Design-training-tutorials/40-0.html">Design<span> (273)</span></a></li>
+						<li><a href="/Developer-training-tutorials/50-0.html">Developer<span> (218)</span></a></li>
+					  </ul>
+					  <ul class="sub-menu with-counts lhome">
+						<li><a href="/Documentaries-training-tutorials/1459-0.html">Documentaries<span> (45)</span></a></li>
+						<li><a href="/Photography-training-tutorials/70-0.html">Photography<span> (235)</span></a></li>
+						<li><a href="/Video-training-tutorials/78-0.html">Video<span> (254)</span></a></li>
+						<li><a href="/Web-training-tutorials/88-0.html">Web<span> (412)</span></a></li>
+					  </ul>
+					  <ul class="sub-menu with-counts l_">
+						<li><a href="/3D-Animation-training-tutorials/1-0.html">3D + Animation<span> (162)</span></a></li>
+					  </ul>
+					  <?php					  
+					   foreach($categories as $key => $cat_info)
+					   {
+					   		if(count($cat_info)>0)
+							{
+								
+					  
+					  ?>					  
+							  <ul class="sub-menu with-counts l<?=$key?>">
+							  <? foreach($cat_info as $cat)
+					   			{ ?>							  
+									<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (2)</span></a></li>									
+								<? } ?>
+							  </ul>
+					 	<? } 
+						}
+						?>
+					  <br class="clear" />
+					</div>
+				  </div>
+    			</div>
+		</li>
+		</ul><?php */?>
+			<ul class="ltrs">
+			  
+			  <li><a href="#" onclick="#">View all - by location - by author - by subject</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">A</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">B</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">C</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">D</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">E</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">F</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">G</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">H</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">I</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">K</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">L</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">M</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">N</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">O</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">P</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">R</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">S</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">T</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">U</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">V</a></li>
+			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>			  
+			  <li>
+			  	<div class="mm-data" id="subjectMenuItems">
+				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; ">
+					<?
+					foreach($categories as $key => $cat_info)
+					   {
+							if(count($cat_info)>0)
+							{
+								foreach($cat_info as $cat)
+								{ ?>							  
+									<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (<?=$cat['count']?>)</span></a></li>									
+								<? } 
+							} 
+						}							
+					?>
+				  </ul>
+			  	<?php					  
+			   foreach($categories as $key => $cat_info)
+			   {
+					if(count($cat_info)>0)
+					{
+						
+			  
+			  ?>					  
+					  <ul class="sub-menu with-counts l<?=$key?>"  style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; ">
+					  <? foreach($cat_info as $cat)
+						{ ?>							  
+							<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (<?=$cat['count']?>)</span></a></li>									
+						<? } ?>
+					  </ul>
+				<? } 
+				}
+				?>			
+			  </div>
+			  </li>
+			  
+			  
+			</ul>
+			 		
+	 		
         </li>             
         <li class="menu-blog">
 			<span class="menu-item-wrap">
 				<a  href="#" <a  href="#" style='background-color:#cecece; background-size:cover; background-image:none;' >
 					<span class="link-text">How it Work</span>
-                    <span class="arrow">&nbsp;</span><span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/!.png");?>);'></span></a></span>
-            <!--<ul>
-                <li class="menu-grid-items"><span class="menu-item-wrap"><a  href="#"><span class="link-text">Grid items</span></a></span></li>
-                <li class="menu-left-sidebar"><span class="menu-item-wrap"><a  href="#"><span class="link-text">Left sidebar</span></a></span></li>
-                <li class="menu-right-sidebar"><span class="menu-item-wrap"><a  href="#"><span class="link-text">Right sidebar</span></a></span></li>
-                <li class="menu-both-sidebars"><span class="menu-item-wrap"><a  href="#"><span class="link-text">Both sidebars</span></a></span></li>
-                <li class="menu-2-left-sidebars"><span class="menu-item-wrap"><a  href="#"><span class="link-text">2 left sidebars</span></a></span></li>
-                <li class="menu-2-right-sidebars"><span class="menu-item-wrap"><a  href="#"><span class="link-text">2 right sidebars</span></a></span></li>
-            </ul>-->
+                    <span class="arrow">&nbsp;</span><span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/!.png");?>);'></span></a></span>           
         </li>
         <li class="menu-shop"><span class="menu-item-wrap">
                 <a  href="#" <a  href="#" style='background-color:#cecece; background-size:cover; background-image:none;' >
@@ -61,6 +193,7 @@ experience this site.
                     <span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/category_w@2x.png");?>);'></span>
                 </a>
             </span>
+			
         </li>
         <li class="menu-contacts">
             <span class="menu-item-wrap">
@@ -75,6 +208,32 @@ experience this site.
 
     </ul> 
 </nav>
+  <script type="text/javascript">
+	jQuery(document).ready(function () {
+		toggleSubjectLetter('home');
+	});
+	function toggleSubjectLetter(letter) {
+		jQuery('div#subjectMenuItems')
+		.children('ul').hide()
+		.parent().children('ul.l' + (letter == '#' ? '_' : letter))
+		.show();
+		jQuery('div#subjectMenuTab ul.ltrs > li > a').each(function () {
+			var e = jQuery(this);
+			if (e.html() === letter)
+				e.parent().addClass('cur').siblings('li.cur').removeClass('cur');
+		});
+	}
+</script>
+<style>
+#sub-menu with-counts {
+	width: 100%;
+	float: left;
+	margin: 0 0 3em 0;
+	padding: 0;
+	list-style: none; }
+#sub-menu with-counts li {
+	float: left; }
+</style>
 <div class="row">
     <div class="fifteen columns" id="top-social">
 

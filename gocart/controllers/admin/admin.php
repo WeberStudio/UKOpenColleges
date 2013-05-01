@@ -16,9 +16,12 @@ class Admin extends Admin_Controller
 		$this->admin_access = $user_info['access'];
 		$this->first_name = $user_info['firstname'];
 		$this->last_name = $user_info['lastname'];
-		$this->image = $user_info['image'];
-		//echo "<pre>";print_r($user_info);exit;
-		/*** Get User Info***/
+		$this->image = $user_info['image'];		
+		/*** Get User Info***/		
+		
+		/*** Left Menu Selection ***/
+		$this->session->set_userdata('active_module', 'sales');
+		/*** Left Menu Selection ***/
 		
 		$this->auth->check_access($this->admin_access, true);
 		

@@ -20,6 +20,23 @@ Class Category_model extends CI_Model
 		}	
 	}
 	
+	function get_categories_dropdown()
+	{
+		$this->db->select('id,name,slug');
+		$this->db->order_by('name', 'ASC');
+		$this->db->where('delete', '0');
+		$this->db->where('publish_by_admin', '1');
+		$result	= $this->db->get('categories');
+		if(count($result)>0)
+		{
+			return $result->result_array();
+		}
+		else
+		{
+			return false;
+		}	
+	}
+	
 	function get_categories($parent = false, $data=array())
 	{
 		if ($parent !== false)

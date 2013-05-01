@@ -16,6 +16,11 @@ class Dashboard extends Admin_Controller {
 		$this->last_name = $user_info['lastname'];
 		$this->image = $user_info['image'];
 		/*** Get User Info***/
+		
+		/*** Left Menu Selection ***/
+		$this->session->set_userdata('active_module', 'dashboard');
+		/*** Left Menu Selection ***/
+		
 		if($this->auth->check_access('Orders'))
 		{
 			redirect($this->config->item('admin_folder').'/orders');

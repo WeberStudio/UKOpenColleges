@@ -1,3 +1,36 @@
+<?php
+    
+	$active_catalog		= '';
+	$active_cat			= ''; 
+    $active_dash		= '';
+    $active_invoice		= '';
+    $active_sales		= '';
+	$sales_links		= '';
+	$invoice_links		= '';
+	$active = $this->session->userdata('active_module');
+    if($active=='dashboard')
+    {
+        $active_dash			= 'active';
+		
+    }
+    else if($active == 'categories')
+    {
+        $active_catalog			= 'opened';
+		$active_cat				= 'in collapse';		
+		//$this->session->unset_userdata('active_module');
+		
+    }  
+    else if($active == 'sales')
+    {
+            $active_sales		= 'opened';
+			$sales_links		= 'in collapse';
+    }
+    else if($active == 'invoice')
+    {
+            $active_invoice		= 'opened';
+			$invoice_links		= 'in collapse';
+    }
+?>
 <div id="sidebar" class="">
     <div class="scrollbar">
         <div class="track">
@@ -12,23 +45,49 @@
                 <h2>Search</h2>
                 <form class="form-search">
                     <div class="input-append">
-                        <input type="text" class=" search-query" placeholder="">
-                        <button class="btn_search color_4">Search</button>
+                        <div class="form-row control-group row-fluid">
+                            <div class="controls span12">
+                                <select name="URL" data-placeholder="Choose a Module..." class="chzn-select" 
+                                    onchange="window.location.href= this.form.URL.options[this.form.URL.selectedIndex].value">
+                                    <option value=""></option>
+                                    <option value="<?=base_url().ADMIN_PATH?>dashboard">Dashboard</option>
+                                    <option value="<?=base_url().ADMIN_PATH?>categories">Categories</option>
+                                    <option value="<?=base_url().ADMIN_PATH?>products">Courses</option>
+                                    <option value="<?=base_url().ADMIN_PATH?>customers">Customer</option>
+                                    <option value="<?=base_url().ADMIN_PATH?>admin">Course Provider</option>
+                                    <option value="<?php echo site_url($this->config->item('admin_folder').'/invoice_templates'); ?>">Invoice Template</option>
+                                    <option value="<?php echo site_url($this->config->item('admin_folder').'/invoice_groups'); ?>">Invoice Groups</option>
+                                    <option value="<?php echo site_url($this->config->item('admin_folder').'/tax'); ?>">Tax Rate</option>
+                                    <option value="<?php echo site_url($this->config->item('admin_folder').'/invoices/form'); ?>">Create Invoices</option>
+                                    <option value="<?php echo site_url($this->config->item('admin_folder').'/invoices/'); ?>">View Invoices</option>
+                                    <option value="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoice_recursion'); ?>">View Recuring Invoices</option>
+
+
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
             <ul id="sidebar_menu" class="navbar nav nav-list container full">
-                <li class="accordion-group active color_4"> <a class="dashboard" href="<?=base_url().ADMIN_PATH?>dashboard"><img src="<?=base_url().ASSETS_PATH?>img/menu_icons/dashboard.png"><span>Dashboard</span></a> </li>
-                <li class="accordion-group color_7"> <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse1"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Catalog</span></a>
-                    <ul id="collapse1" class="accordion-body collapse">
+                <li class="accordion-group color_4 <?php echo $active_dash; ?>" onclick="set_module('dashboard')">
+                    <a class="dashboard" href="<?=base_url().ADMIN_PATH?>dashboard">
+                        <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/dashboard.png"><span>Dashboard</span></a> 
+                </li>
+                <? ?>
+                <li class="accordion-group color_7 <?php echo $active_catalog; ?>" onclick="set_module('catalog')" >
+                    <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse1">
+                        <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Catalog</span></a>
+                    <ul id="collapse1" class="accordion-body collapse <?php echo $active_cat; ?>">
                         <li><a href="<?=base_url().ADMIN_PATH?>categories">Categories</a></li>
                         <li><a href="<?=base_url().ADMIN_PATH?>products">Courses</a></li>
                         <!--<li><a href="<?=base_url().ADMIN_PATH?>digital_products">Digital Products</a></li>-->
                     </ul>
                 </li>
                 <? if(isset($this->admin_access) && $this->admin_access=='Superadmin'){ ?>
-                    <li class="accordion-group color_3"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Sales</span></a>
-                        <ul id="collapse2" class="accordion-body collapse">
+                    <li class="accordion-group color_3 <?php echo $active_sales; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2" onclick="set_module('sales')">
+                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Sales</span></a>
+                        <ul id="collapse2" class="accordion-body collapse <?php echo $sales_links; ?>">
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
                             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Provider</a></li>
@@ -38,12 +97,15 @@
                             <li><a href="<?=base_url().ADMIN_PATH?>giftcards">Giftcards</a></li>-->
                         </ul>
                     </li>
-                    <li class="accordion-group color_4"> <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3"> <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Invoice Management</span></a>
-                        <ul id="collapse3" class="accordion-body collapse">
+
+                    <li class="accordion-group color_4 <?php echo $active_invoice; ?> " onclick="set_module('invoice')" >
+                        <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3"> 
+                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Invoice Management</span></a>
+                        <ul id="collapse3" class="accordion-body collapse  <?=$invoice_links?>">
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoice_templates'); ?>">Invoice Templates</a></li>
-							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoice_groups'); ?>">Invoice Groups</a></li>
-							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/tax'); ?>">Tax Rate</a></li>
-							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/form'); ?>">Create Invoice</a></li>
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoice_groups'); ?>">Invoice Groups</a></li>
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/tax'); ?>">Tax Rate</a></li>
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/form'); ?>">Create Invoice</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/'); ?>">View Invoices</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoice_recursion'); ?>">View Recuring Invoices</a></li>  
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>digital_products">Digital Products</a></li>-->

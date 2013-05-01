@@ -20,6 +20,12 @@ class Invoice_Groups extends Admin_Controller {
 		$this->last_name 	= $user_info['lastname'];
 		$this->image 		= $user_info['image'];
 		/*** Get User Info***/
+		
+		/*** Left Menu Selection ***/
+		$this->session->set_userdata('active_module', 'invoice');
+		/*** Left Menu Selection ***/
+		
+		
 		$this->lang->load('invoice');		
 		$this->load->model(array('Invoice_Groups_Model', 'Location_model'));
 		$this->load->helper('formatting_helper');
