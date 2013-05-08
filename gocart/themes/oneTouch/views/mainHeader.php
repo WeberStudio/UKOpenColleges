@@ -26,6 +26,7 @@
 	<?php echo theme_css('responsive.css', true); ?>	
 	<?php echo theme_css('options.css', true); ?>
 	<?php echo theme_css('menu.css', true); ?>
+	<?php echo theme_css('wo-commerence.css?ver=3.5.1', true); ?>
 	
     <!--add the serach classess-->
     <?php echo theme_css('jquery.fancybox-1.3.1.css?c-v=24739', true); ?>
@@ -45,17 +46,8 @@
     <?php echo theme_js('js/modernizr.foundation.js', true);?>
     <?php echo theme_js('js/app.js', true);?>
     <?php echo theme_js('js/modernizr.foundation.js', true);?> 
-    <!-- WooCommerce Version -->
-    <meta name="generator" content="WooCommerce 1.6.6" />
-
-    
-
-    <!--[if IE]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <link href='css/ie.css' rel='stylesheet' type='text/css'>
-    <![endif]-->
-
-
+	<?php echo theme_js('js/simpletabs_1.3.js', true);?>
+   
     <style>
         #body-wrapper {
             background-attachment:fixed!important;

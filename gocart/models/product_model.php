@@ -273,7 +273,7 @@ Class Product_model extends CI_Model
 		}
 	}
 
-	function save($product, $options=false, $categories=false)
+	function save($product, $options=false, $categories=false, $tabs=false)
 	{
 		if ($product['id'])
 		{
@@ -357,6 +357,22 @@ Class Product_model extends CI_Model
 					$this->db->insert('category_products', array('product_id'=>$id,'category_id'=>$c));
 				}
 			}
+			//print_r($tabs);exit;
+			if($tabs != false)
+			{
+				if(isset($tabs['tab_id']) && !empty($tabs['tab_id']))
+				{
+					$this->db->where('tab_id', $tabs['tab_id']);
+					$this->db->update('oc_product_tabs', $tabs);
+				}
+				else
+				{
+					$this->db->insert('oc_product_tabs',$tabs);
+				}
+			}
+			
+			
+			
 		}
 		
 		//return the product id
@@ -480,5 +496,24 @@ Class Product_model extends CI_Model
 		$product->file_list	= $this->Digital_Product_model->get_associations_by_product($id);
 		
 		return (array)$product;
+	}
+	
+	function get_all_products_tabs($id)
+	{
+		return $product_tabs	= $this->db->get_where('product_tabs', array('product_id'=>$id))->result_array();
+		//$this->show->pe($product_tabs);
+	}
+	
+	function get_product_tab($tab_id)
+	{
+		return $product_tab	= $this->db->get_where('product_tabs', array('tab_id'=>$tab_id))->row();
+	}
+	
+	function delete_product_tab($tab_id)
+	{
+		//Delete Product 
+		$this->db->where('tab_id', $tab_id);
+		$this->db->delete('product_tabs');
+		return true;
 	}
 }

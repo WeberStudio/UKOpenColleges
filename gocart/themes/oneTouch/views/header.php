@@ -27,105 +27,31 @@ experience this site.
                     <span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/text_w@2x.png");?>)'></span>
                 </a>
 				
-			</span> 	
-				<?php /*?><ul class="nav main-links" >
-  				<li class="with-sub-menu" id="subject_menu"> <a href="#"> subject</a>
-				<div class="sub mega" style="display: block; opacity: 1;" id="subjectMenuTab">
-				  <div class="mm-menu">
-					<div class="mm-head">					 
-					  <div class="mm-index">
-						<ul class="ltrs">
-						  <li><a class="subjHome" onclick="toggleSubjectLetter(this.innerHTML);return false;">home</a></li>
-						  <li><a href="#" onclick="toggleSubjectLetter(this.innerHTML);return false;">#</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">A</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">B</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">C</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">D</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">E</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">F</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">G</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">H</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">I</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">K</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">L</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">M</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">N</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">O</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">P</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">R</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">S</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">T</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">U</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">V</a></li>
-						  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>
-						</ul>
-					  </div>
-					  <div class="clear">&nbsp;</div>
-					</div>
-					<div class="mm-data cols_2" id="subjectMenuItems">
-					  <ul class="sub-menu with-counts lhome">
-						<li><a href="/3D-Animation-training-tutorials/1-0.html">3D + Animation<span> (162)</span></a></li>
-						<li><a href="/Audio-training-tutorials/20-0.html">Audio<span> (79)</span></a></li>
-						<li><a href="/Business-training-tutorials/29-0.html">Business<span> (359)</span></a></li>
-						<li><a href="/Design-training-tutorials/40-0.html">Design<span> (273)</span></a></li>
-						<li><a href="/Developer-training-tutorials/50-0.html">Developer<span> (218)</span></a></li>
-					  </ul>
-					  <ul class="sub-menu with-counts lhome">
-						<li><a href="/Documentaries-training-tutorials/1459-0.html">Documentaries<span> (45)</span></a></li>
-						<li><a href="/Photography-training-tutorials/70-0.html">Photography<span> (235)</span></a></li>
-						<li><a href="/Video-training-tutorials/78-0.html">Video<span> (254)</span></a></li>
-						<li><a href="/Web-training-tutorials/88-0.html">Web<span> (412)</span></a></li>
-					  </ul>
-					  <ul class="sub-menu with-counts l_">
-						<li><a href="/3D-Animation-training-tutorials/1-0.html">3D + Animation<span> (162)</span></a></li>
-					  </ul>
-					  <?php					  
-					   foreach($categories as $key => $cat_info)
-					   {
-					   		if(count($cat_info)>0)
-							{
-								
-					  
-					  ?>					  
-							  <ul class="sub-menu with-counts l<?=$key?>">
-							  <? foreach($cat_info as $cat)
-					   			{ ?>							  
-									<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (2)</span></a></li>									
-								<? } ?>
-							  </ul>
-					 	<? } 
-						}
-						?>
-					  <br class="clear" />
-					</div>
-				  </div>
-    			</div>
-		</li>
-		</ul><?php */?>
+			</span> 			
 			<ul class="ltrs">
 			  
-			  <li><a href="#" onclick="#">View all - by location - by author - by subject</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">A</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">B</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">C</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">D</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">E</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">F</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">G</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">H</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">I</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">K</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">L</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">M</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">N</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">O</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">P</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">R</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">S</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">T</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">U</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">V</a></li>
-			  <li><a href="" onclick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>			  
+			  <li><a href="#" onClick="#">View all - by location - by author - by subject</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">A</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">B</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">C</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">D</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">E</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">F</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">G</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">H</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">I</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">K</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">L</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">M</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">N</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">O</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">P</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">R</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">S</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">T</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">U</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">V</a></li>
+			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>			  
 			  <li>
 			  	<div class="mm-data" id="subjectMenuItems">
 				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; ">
@@ -223,6 +149,9 @@ experience this site.
 				e.parent().addClass('cur').siblings('li.cur').removeClass('cur');
 		});
 	}
+	
+
+
 </script>
 <style>
 #sub-menu with-counts {

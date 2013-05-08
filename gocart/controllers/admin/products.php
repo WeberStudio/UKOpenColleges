@@ -23,7 +23,7 @@ class Products extends Admin_Controller {
 		$this->session->set_userdata('active_module', 'categories');
 		/*** Left Menu Selection ***/
 		
-		$this->auth->check_access($this->admin_access, true);		
+		$this->auth->check_access($this->admin_access, true);	
 		$this->load->model('Product_model');
 		$this->load->model('Routes_model');
 		$this->load->helper('form');
@@ -217,7 +217,7 @@ class Products extends Admin_Controller {
 		redirect($this->config->item('admin_folder').'/products');
 	}
 	
-	function form($id = false, $duplicate = false)
+	function form($id = false, $duplicate = false, $tab_id = false)
 	{
 		
 		//echo"<pre>";print_r($_FILES);exit;
@@ -237,6 +237,7 @@ class Products extends Admin_Controller {
 
 		//default values are empty if the product is new
 		$data['id']					= '';
+		$data['tab_id']				= '';
 		$data['admin_id']			= '';
 		$data['sku']				= '';
 		$data['name']				= '';
@@ -261,6 +262,9 @@ class Products extends Admin_Controller {
 		$data['images']				= '';
 		$data['product_files']		= array();
 		$data['prelated']			= '';
+		$data['tab_title']			= '';
+		$data['tab_content']		= '';
+		$data['all_tabs']			= array();
 
 		//create the photos array for later use
 		$data['photos']		= array();
@@ -276,9 +280,10 @@ class Products extends Admin_Controller {
 			
 			// get product & options data
 			
-			$data['product_options']	= $this->Option_model->get_product_options($id);
+			$data['product_options']	= $this->Option_model->get_product_options($id);			
+			$data['all_tabs']			= $this->Product_model->get_all_products_tabs($id);
 			$product					= $this->Product_model->get_product($id);
-			//echo"<pre>";print_r($product);exit;
+			//echo"<pre>";print_r($data['all_tabs']);exit;
 			//if the product does not exist, redirect them to the product list with an error
 			if (!$product)
 			{
@@ -295,8 +300,18 @@ class Products extends Admin_Controller {
 					redirect($this->config->item('admin_folder').'/products');
 				}
 			}
-			
-			
+			// If tab is edit
+			///echo $tab_id;exit;
+			if($tab_id)
+			{
+				$one_tab = $this->Product_model->get_product_tab($tab_id);
+				//$this->show->pe($data['one_tab']);
+				$data['tab_title']			= $one_tab->tab_title;
+				$data['tab_content']		= $one_tab->tab_content;
+				$data['tab_id']				= $tab_id;
+				
+				
+			}
 			//helps us with the slug generation
 			$this->product_name	= $this->input->post('slug', $product->slug);
 			
@@ -523,11 +538,29 @@ class Products extends Admin_Controller {
 					$options[]	= $option;
 				}
 
-			}	
-			//echo '<pre>';print_r($save);exit;
-			// save product 
+			}
+			
+			$tab_title			= $this->input->post('tab_title');
+			$tab_content		= $this->input->post('tab_content');
+			$tab_id				= $this->input->post('tab_id');
+			$tabs = array();
+			if(!empty($tab_title))
+			{
+				
+				if(!empty($tab_id))
+				{
+					$tabs = array('tab_id'=>$tab_id, 'product_id'=>$id, 'admin_id'=>$save['admin_id'], 'tab_title'=>$tab_title,'tab_content'=>$tab_content);
+				}
+				else
+				{
+					$tabs = array('product_id'=>$id, 'admin_id'=>$save['admin_id'], 'tab_title'=>$tab_title,'tab_content'=>$tab_content);
+				}
+			}
+			
+			//echo '<pre>';print_r($tabs);exit;
+			//save product 
 			//$this->show->pe($_POST);
-			$product_id	= $this->Product_model->save($save, $options, $categories);
+			$product_id	= $this->Product_model->save($save, $options, $categories, $tabs);
 			
 				
 
@@ -850,6 +883,13 @@ class Products extends Admin_Controller {
 			$this->session->set_flashdata('error', lang('error_not_found'));
 			redirect($this->config->item('admin_folder').'/products');
 		}
+	}
+	
+	function delete_tab($product_id, $tab_id)
+	{
+	
+		$this->Product_model->delete_product_tab($tab_id);
+		redirect($this->config->item('admin_folder').'/products/form/'.$product_id);
 	}
 	
 	// HARD DELETE PRODUCT

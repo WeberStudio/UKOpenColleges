@@ -268,8 +268,8 @@ class Cart extends Front_Controller {
 	function product($id)
 	{
 		//get the product
-		$data['product']	= $this->Product_model->get_product($id);
-		
+		$data['product']		= $this->Product_model->get_product($id);
+		$data['product_tabs']	= $this->Product_model->get_all_products_tabs($id);
 		
 		if(!$data['product'] || $data['product']->enabled==0)
 		{

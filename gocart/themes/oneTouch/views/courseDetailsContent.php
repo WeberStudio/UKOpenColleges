@@ -1,3 +1,4 @@
+<?php echo theme_css('simpletabs.css', true); ?>	
 <div class="row">
   <div class="fifteen columns" id="top-social">
     <div class="soc-wrap">
@@ -30,67 +31,40 @@
             </form>
           </div>
           <!-- .summary -->
-          <div class="woocommerce_tabs">
-            <ul class="tabs">
+          <div class="simpleTabs">
+            <ul class="simpleTabsNavigation">
               <li class="description_tab active"><a href="#tab-description">Description</a></li>
               <li class="reviews_tab"><a href="#tab-reviews">Reviews (0)</a></li>
-            </ul>
-            <div style="display: block;" class="panel entry-content" id="tab-description">
+			  <? if(!empty($product_tabs)){
+			  		foreach($product_tabs as $tabs)
+					{
+				?>
+						<li class="reviews_tab"><a href="#<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>"><?=$tabs['tab_title']?></a></li>
+						
+				<?	}
+			  } 
+			  
+			?>
+			</ul>
+            <div  class="simpleTabsContent" id="tab-description">
               <h2>Product Description</h2>
               <p><?=$product->description?></p>
             </div>
-            <div style="display: none;" class="panel entry-content" id="tab-reviews">
-              <div id="reviews">
-                <div id="comments">
-                  <h2>Reviews</h2>
-                  <p>There are no reviews yet, would you like to <a href="#review_form" class="inline show_review_form">submit yours</a>?</p>
-                </div>
-                <div style="display: none;" id="review_form_wrapper">
-                  <div id="review_form">
-                    <div id="respond">
-                      <h3 id="reply-title">Be the first to review “Backpack, IUTER 2” <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://theme.crumina.net/onetouch/shop/backpack-iuter-2/#respond" style="display:none;">Cancel reply</a></small></h3>
-                      <form action="http://theme.crumina.net/onetouch/wp-comments-post.php" method="post" id="commentform">
-                        <p class="comment-form-author">
-                          <label for="author">Name</label>
-                          <span class="required">*</span>
-                          <input id="author" name="author" size="30" aria-required="true" type="text">
-                        </p>
-                        <p class="comment-form-email">
-                          <label for="email">Email</label>
-                          <span class="required">*</span>
-                          <input id="email" name="email" size="30" aria-required="true" type="text">
-                        </p>
-                        <p class="comment-form-rating">
-                          <label for="rating">Rating</label>
-                        <p class="stars"><span><a class="star-1" href="#">1</a><a class="star-2" href="#">2</a><a class="star-3" href="#">3</a><a class="star-4" href="#">4</a><a class="star-5" href="#">5</a></span></p>
-                        <select style="display: none;" name="rating" id="rating">
-                          <option selected="selected" value="">Rate…</option>
-                          <option value="5">Perfect</option>
-                          <option value="4">Good</option>
-                          <option value="3">Average</option>
-                          <option value="2">Not that bad</option>
-                          <option value="1">Very Poor</option>
-                        </select>
-                        </p>
-                        <p class="comment-form-comment">
-                          <label for="comment">Your Review</label>
-                          <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea>
-                        </p>
-                        <input id="_n" name="_n" value="5f994de06d" type="hidden">
-                        <input name="_wp_http_referer" value="/onetouch/shop/backpack-iuter-2/" type="hidden">
-                        <p class="form-submit">
-                          <input name="submit" id="submit" value="Submit Review" type="submit">
-                          <input name="comment_post_ID" value="855" id="comment_post_ID" type="hidden">
-                          <input name="comment_parent" id="comment_parent" value="0" type="hidden">
-                        </p>
-                      </form>
-                    </div>
-                    <!-- #respond -->
-                  </div>
-                </div>
-                <div class="clear"></div>
-              </div>
+            <div  class="simpleTabsContent" id="tab-reviews">
+              
             </div>
+			<? if(!empty($product_tabs)){
+				foreach($product_tabs as $tabs)
+				{
+			?>			
+				<div  class="simpleTabsContent" id="<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>">
+				  <h2>Product Description</h2>
+				  <p><?=$tabs['tab_content']?></p>
+				</div>
+			<?	
+				}
+			  }			  
+			?>			
           </div>
           <div class="line"></div>
 		  
