@@ -163,6 +163,9 @@ $lang['address_city']				= 'City';
 $lang['address_postcode']			= 'Zip';
 $lang['address_country']			= 'Country';
 $lang['address_state']				= 'State';
+$lang['gender_m']					= 'Mr.';
+$lang['gender_f']					= 'Ms.';
+
 $lang['message_address_saved']		= 'Your address has been saved!';
 
 $lang['default']					= 'Default';

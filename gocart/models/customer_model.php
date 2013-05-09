@@ -184,7 +184,7 @@ Class Customer_model extends CI_Model
 		$this->db->select('*');
 		$this->db->where('email', $email);
 		$this->db->where('active', 1);
-		$this->db->where('password',  sha1($password));
+		$this->db->where('password', sha1($password));
 		$this->db->limit(1);
 		$result = $this->db->get('customers');
 		$customer	= $result->row_array();
