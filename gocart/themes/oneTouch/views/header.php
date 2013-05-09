@@ -22,9 +22,7 @@ experience this site.
 <?php else: ?>
 	<div class="clear"> </div>
       <?php endif; ?>
-    <div id="eyebrow">
-     <div class="clear"> </div>
-    </div>
+   
     <div class="clear"></div>	
     <ul id="menu-primary-navigation" class="tiled-menu">
         <li class="menu-portfolio">
@@ -135,7 +133,7 @@ experience this site.
 			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>			  
 			  <li>
 			  	<div class="mm-data" id="subjectMenuItems">
-				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; display:block !important; ">
+				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; ">
 					<?
 					foreach($categories as $key => $cat_info)
 					   {
@@ -157,7 +155,7 @@ experience this site.
 						
 			  
 			  ?>					  
-					  <ul class="sub-menu with-counts l<?=$key?>"  style="margin:0px !important; padding:10px 0 5px 10px !important; width:100% ">
+					  <ul class="sub-menu with-counts l<?=$key?>"  style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; ">
 					  <? foreach($cat_info as $cat)
 						{ ?>							  
 							<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (<?=$cat['count']?>)</span></a></li>									
@@ -282,8 +280,9 @@ experience this site.
 
 <div class="promo"><span class="icon info"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
+        <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>
         <a href="#" style="color:red;">Contact Us</a>
-        <span style="padding: 0 85px;"  >
+        <span style="padding: 0 30px;"  >
         
         <?php if($this->Customer_model->is_logged_in(false, false)):?>
         <a href="<?php echo  site_url('secure/my_account');?>" style="color:red;"><?php echo lang('my_account')?></a> <span style="color:red;">/</span>  <a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a></span></h1>
