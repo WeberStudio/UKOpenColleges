@@ -99,9 +99,10 @@ class Invoices extends Admin_Controller {
         }
 		else
 		{
+			//echo $this->input->post('invoice_date_created');exit;
 			$source = strtotime($this->input->post('invoice_date_created'));
-			$date = new DateTime($source);
-						
+			$date = new DateTime($this->input->post('invoice_date_created'));
+				
 			$save['admin_id']        		= $this->input->post('users');
 			$save['invoice_group_id']       = $this->input->post('invoice_group_id');
 			$save['invoice_date_created']   = $date->format('Y-m-d');		
@@ -235,4 +236,18 @@ class Invoices extends Admin_Controller {
             $this->session->set_flashdata('error', lang('error_not_found'));
         }
     }
+	
+	function pdf_view()
+	{
+			
+		prep_pdf();	
+		$all_products_html = '';		
+		 $this->mpdf->SetHeader('{DATE d-m-Y}|{PAGENO}|Customer Invoice');
+		
+		$html_output = 'HTML HERE' ;
+		//echo $html_output;exit;
+		$this->mpdf->WriteHTML($html_output);
+		$this->mpdf->Output();
+		exit;
+	}
 } 
