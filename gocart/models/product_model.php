@@ -273,7 +273,7 @@ Class Product_model extends CI_Model
 		}
 	}
 
-	function save($product, $options=false, $categories=false)
+	function save($product, $options=false, $categories=false, $tabs=false)
 	{
 		if ($product['id'])
 		{
@@ -357,6 +357,15 @@ Class Product_model extends CI_Model
 					$this->db->insert('category_products', array('product_id'=>$id,'category_id'=>$c));
 				}
 			}
+			
+			if($tabs != false)
+			{
+				
+				$this->db->insert('oc_product_tabs',$tabs);
+			}
+			
+			
+			
 		}
 		
 		//return the product id
@@ -480,5 +489,11 @@ Class Product_model extends CI_Model
 		$product->file_list	= $this->Digital_Product_model->get_associations_by_product($id);
 		
 		return (array)$product;
+	}
+	
+	function get_all_products_tabs($id)
+	{
+		$product_tabs	= $this->db->get_where('product_tabs', array('product_id'=>$id))->result_array();
+		//$this->show->pe($product_tabs);
 	}
 }

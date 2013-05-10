@@ -48,7 +48,11 @@ class Secure extends Front_Controller {
 				if ($redirect == '')
 				{
 					//if there is not a redirect link, send them to the my account page
-					$redirect = 'secure/my_account';
+					 
+				//echo "<pre>"; print_r($this->go_cart->customer());exit;
+    // $customer_details = $this->go_cart->customer();
+    // echo $customer_details['firstname'];exit;
+					$redirect = '';
 				}
 				//to login via ajax
 				if($ajax)
@@ -125,6 +129,7 @@ class Secure extends Front_Controller {
 		
 		//default values are empty if the customer is new
 
+		$data['id']			= '';
 		$data['company']	= '';
 		$data['firstname']	= '';
 		$data['lastname']	= '';
@@ -135,6 +140,8 @@ class Secure extends Front_Controller {
 		$data['city']		= '';
 		$data['state']		= '';
 		$data['zip']		= '';
+		$data['country_id']	= '';
+		$data['zone_id']	= '';
 
 		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]');
 		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required|max_length[32]');
@@ -158,10 +165,12 @@ class Secure extends Front_Controller {
 			$this->load->helper('directory');
 		
 			$data['categories']	= $this->Category_model->get_categories_tierd(0);
-			
+			$data['zones_menu']	= $this->Location_model->get_zones_menu('223');
+			$data['countries_menu']	= $this->Location_model->get_countries_menu();
 			$data['error'] = validation_errors();
 			
 			$this->load->view('register', $data);
+			
 		}
 		else
 		{
@@ -174,6 +183,13 @@ class Secure extends Front_Controller {
 			$save['email']				= $this->input->post('email');
 			$save['phone']				= $this->input->post('phone');
 			$save['company']			= $this->input->post('company');
+			$save['post_code']			=$this->input->post('zip');
+			$save['city']				=$this->input->post('city');
+			$save['address_street']		=$this->input->post('address1');
+			$save['address_line']		=$this->input->post('address2');
+			$save['country']		 	=$this->input->post('country_id');
+			$save['state']		 	 	=$this->input->post('zone_id');
+			$save['gender']				=$this->input->post('gender');
 			$save['active']				= $this->config->item('new_customer_status');
 			$save['email_subscribe']	= intval((bool)$this->input->post('email_subscribe'));
 			
@@ -351,10 +367,13 @@ class Secure extends Front_Controller {
 		
 		$this->pagination->initialize($config); 
 		
-		$data['orders_pagination'] = $this->pagination->create_links();
+		$data['orders_pagination'] 	= $this->pagination->create_links();
 
-		$data['orders']		= $this->order_model->get_customer_orders($this->customer['id'], $offset);
-
+		$data['orders']				= $this->order_model->get_customer_orders($this->customer['id'], $offset);
+		$data['zones_menu']			= $this->Location_model->get_zones_menu('223');
+		$data['countries_menu']		= $this->Location_model->get_countries_menu();
+		$data['country_id']			= "";
+		$data['zone_id']			= "";
 		
 		//if they're logged in, then we have all their acct. info in the cookie.
 		
@@ -397,6 +416,10 @@ class Secure extends Front_Controller {
 			$customer['lastname']				= $this->input->post('lastname');
 			$customer['email']					= $this->input->post('email');
 			$customer['phone']					= $this->input->post('phone');
+			$customer['post_code']				= $this->input->post('zip');
+			$customer['address_street']			= $this->input->post('address1');
+			$customer['address_line']			= $this->input->post('address2');
+			$customer['city']					= $this->input->post('city');
 			$customer['email_subscribe']		= intval((bool)$this->input->post('email_subscribe'));
 			if($this->input->post('password') != '')
 			{

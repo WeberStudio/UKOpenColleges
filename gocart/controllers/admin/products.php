@@ -23,7 +23,7 @@ class Products extends Admin_Controller {
 		$this->session->set_userdata('active_module', 'categories');
 		/*** Left Menu Selection ***/
 		
-		$this->auth->check_access($this->admin_access, true);		
+		$this->auth->check_access($this->admin_access, true);	
 		$this->load->model('Product_model');
 		$this->load->model('Routes_model');
 		$this->load->helper('form');
@@ -261,6 +261,9 @@ class Products extends Admin_Controller {
 		$data['images']				= '';
 		$data['product_files']		= array();
 		$data['prelated']			= '';
+		$data['tab_title']			= '';
+		$data['tab_content']		= '';
+		$data['all_tabs']			= array();
 
 		//create the photos array for later use
 		$data['photos']		= array();
@@ -277,6 +280,7 @@ class Products extends Admin_Controller {
 			// get product & options data
 			
 			$data['product_options']	= $this->Option_model->get_product_options($id);
+			$data['all_tabs']			= $this->Product_model->get_all_products_tabs($id);
 			$product					= $this->Product_model->get_product($id);
 			//echo"<pre>";print_r($product);exit;
 			//if the product does not exist, redirect them to the product list with an error
@@ -523,11 +527,20 @@ class Products extends Admin_Controller {
 					$options[]	= $option;
 				}
 
-			}	
+			}
+			
+			$tab_title			= $this->input->post('tab_title');
+			$tab_content		= $this->input->post('tab_content');
+			$tabs = array();
+			if(!empty($tab_title))
+			{
+				$tabs = array('product_id'=>$id, 'admin_id'=>$save['admin_id'], 'tab_title'=>$tab_title,'tab_content'=>$tab_content);
+			}
+			
 			//echo '<pre>';print_r($save);exit;
-			// save product 
+			//save product 
 			//$this->show->pe($_POST);
-			$product_id	= $this->Product_model->save($save, $options, $categories);
+			$product_id	= $this->Product_model->save($save, $options, $categories, $tabs);
 			
 				
 

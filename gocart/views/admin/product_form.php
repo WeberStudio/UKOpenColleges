@@ -24,6 +24,7 @@ $GLOBALS['option_value_count']		= 0;
                 <li><a href="#options" data-toggle="tab"><?php echo lang('course_registration_form');?></a></li>
                 <li><a href="#related-products" data-toggle="tab"><?php echo lang('related_courses');?></a></li>
                 <li><a href="#images" data-toggle="tab"><?php echo lang('images');?></a></li>
+				<li><a href="#tabs" data-toggle="tab"><?php echo lang('tabs');?></a></li>
               </ul>
               <div class="tab-content">
                 <!--TAB ONE START-->
@@ -216,6 +217,23 @@ $GLOBALS['option_value_count']		= 0;
                 </div>
                 <!-- TAB FIVE END-->
                 
+				<!-- TAB SIX START-->
+				<div class="tab-pane fade" id="tabs">
+                  <div class="content">
+                    <div class="form-row control-group row-fluid">                      
+                     <div class="controls span8">
+					 	 <label for="slug"><?php echo lang('tab_title');?></label>
+                        <input type="text" id="tab_title" value="<?=set_value('tab_title', $tab_title)?>" name="tab_title" class="row-fluid" >
+                     </div>                      
+                    </div>
+                    <div class="form-row control-group row-fluid">
+                      <div class="controls span14">
+                        <textarea name="tab_content" cols="40" rows="15"  class="redactor" id="tab_content"><?=set_value('tab_content', $tab_content)?></textarea>
+                      </div>
+                    </div>                                       
+                  </div>
+                </div>
+				<!-- TAB SIX END-->				
               </div>
               
               <button class="btn btn-inverse btn-block btn-large" rel="tooltip" data-placement="top" data-original-title="Save Course Info"><b><?php echo lang('form_save');?></b></button>

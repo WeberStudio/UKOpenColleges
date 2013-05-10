@@ -83,6 +83,12 @@ $lang['remove']						= 'Remove';
 $lang['alt_tag']					= 'Alt Tag';
 $lang['caption']					= 'Caption';
 
+
+//product tabs
+$lang['tabs']						= 'Tabs';
+$lang['tab_title']					= 'Tab Title';
+$lang['tab_content']				= 'Tab Content';
+
 //confirmations
 $lang['confirm_remove_image']		= 'Are you sure you want to remove this image?';
 $lang['confirm_remove_value']		= 'Are you sure you want to remove this value?';
