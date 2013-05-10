@@ -22,9 +22,7 @@ experience this site.
 <?php else: ?>
 	<div class="clear"> </div>
       <?php endif; ?>
-    <div id="eyebrow">
-     <div class="clear"> </div>
-    </div>
+   
     <div class="clear"></div>	
     <ul id="menu-primary-navigation" class="tiled-menu">
         <li class="menu-portfolio">
@@ -283,7 +281,7 @@ experience this site.
 <div class="promo"><span class="icon info"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
         <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>
-        <span style="padding: 0 85px;"  >
+        <span style="padding: 0 30px;"  >
         
         <?php if($this->Customer_model->is_logged_in(false, false)):?>
         <a href="<?php echo  site_url('secure/my_account');?>" style="color:red;"><?php echo lang('my_account')?></a> <span style="color:red;">/</span>  <a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a></span></h1>
