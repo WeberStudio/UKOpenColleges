@@ -117,6 +117,8 @@
 <?php echo theme_js('js/jquery.prettyPhoto.js', true);?>
 <?php echo theme_js('js/jquery.masonry.min.js', true);?>
 <?php echo theme_js('js/scrolling.js', true);?>
+<?php echo theme_js('js/woocommerce.min.js?ver=1.6.6', true);?>
+
 
 </body>
 </html>

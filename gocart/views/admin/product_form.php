@@ -230,8 +230,41 @@ $GLOBALS['option_value_count']		= 0;
                       <div class="controls span14">
                         <textarea name="tab_content" cols="40" rows="15"  class="redactor" id="tab_content"><?=set_value('tab_content', $tab_content)?></textarea>
                       </div>
-                    </div>                                       
-                  </div>
+                    </div> 
+					  <?php
+					//$this->show->pe($all_tabs);exit;
+					if(!empty($all_tabs))					
+					{
+					?>
+					<input type="hidden" name="tab_id" value="<?=set_value('tab_id', $tab_id)?>" />
+					<table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
+					<thead>
+					  <tr>						
+						<th >Tab Title</th>                
+						<th class="ms no_sort ">Actions</th>
+					  </tr>
+					</thead>
+					<tbody>
+					<?	
+						foreach($all_tabs as $tab)
+						{
+					?>	
+							 <tr>
+								<td>
+									<label class="title "><?=$tab['tab_title']?></label>
+								</td>
+								 <td class="ms">
+								 <div class="btn-group1">
+								 	<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/form/'.$id.'/0/'.$tab['tab_id']);?>"> <i class="gicon-edit"></i> </a>
+									<a class="btn  btn-small" rel="tooltip" data-placement="bottom" data-original-title="<?php echo lang('delete');?>" href="<?php echo  site_url($this->config->item('admin_folder').'/products/delete_tab/'.$id.'/'.$tab['tab_id']);?>" onclick="return areyousure();"> <i class="gicon-remove "></i> </a> 
+								 </div>
+								 </td>
+							</tr>
+					<?	}
+					}?>
+					  </tbody>
+					  </table>                                    
+                  </div>			  
                 </div>
 				<!-- TAB SIX END-->				
               </div>
