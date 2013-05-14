@@ -10,7 +10,7 @@
 	</div>
 	<?php echo form_open('cart/update_cart', array('id'=>'update_cart_form'));?>
 	
-	<?php include('checkout/summary.php');?>
+	<?php include('summary.php');?>
 	
 	
 	<div class="row">

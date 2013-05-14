@@ -26,7 +26,9 @@ experience this site.
 <?php else: ?>
 	
       <?php endif; ?>
-   
+   <div id="eyebrow">
+     <div class="clear"> </div>
+    </div>
     <div class="clear"></div>	
     <ul id="menu-primary-navigation" class="tiled-menu">
         <li class="menu-portfolio">
@@ -280,7 +282,26 @@ experience this site.
     </div>
 
 </div> 
-<div><span style="padding 15 15 15 15; float : right; margin-right:15px; "  ><a href="<?= base_url();?>secure/logout" rel="nofollow" data-product_id="868" class="add_to_cart_button button product_type_simple">Checkout</a></span></div>
+<div><span style="padding 15 15 15 15; float : right; margin-right:15px;"><a href="<?php echo site_url('cart/view_cart');?>" class="add_to_cart_button button product_type_simple" rel="nofollow" data-product_id="868">
+								<?php
+								if ($this->go_cart->total_items()==0)
+								{
+									echo lang('empty_cart');
+								}
+								else
+								{
+									if($this->go_cart->total_items() > 1)
+									{
+										echo sprintf (lang('multiple_items'), $this->go_cart->total_items());
+									}
+									else
+									{
+										echo sprintf (lang('single_item'), $this->go_cart->total_items());
+									}
+								}
+								?>
+								</a>
+</span></div>
 
 <div class="promo"><span class="icon info"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 

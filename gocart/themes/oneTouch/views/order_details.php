@@ -1,7 +1,7 @@
 <div class="row">
 	<?php if(!empty($customer['bill_address'])):?>
 	<div class="span3">
-		<a href="<?php echo site_url('checkout/step_1');?>" class="btn btn-block">
+		<a href="<?php echo site_url('checkout/step_1');?>" class="single_add_to_cart_button button alt">
 		
 			<?php if($customer['bill_address'] != @$customer['ship_address'])
 			{
@@ -54,5 +54,5 @@
 		<p><a href="<?php echo site_url('checkout/step_3');?>" class="btn btn-block"><?php echo lang('billing_method_button');?></a></p>
 		<?php echo $payment_method['description'];?>
 	</div>
-<?php endif;  ?>
+<?php endif;?>
 </div>
