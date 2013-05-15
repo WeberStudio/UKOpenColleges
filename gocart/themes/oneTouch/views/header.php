@@ -26,9 +26,7 @@ experience this site.
 <?php else: ?>
 	
       <?php endif; ?>
-    <div id="eyebrow">
-     <div class="clear"> </div>
-    </div>
+   
     <div class="clear"></div>	
     <ul id="menu-primary-navigation" class="tiled-menu">
         <li class="menu-portfolio">
