@@ -175,7 +175,14 @@ $confirm	= array('id'=>'confirm', 'class'=>'span2', 'name'=>'confirm', 'value'=>
 	</div>
 
 	<div class="span7 pull-right" style=" margin-top:-98.5%;" >
-		
+		<div class="row">
+			<div class="span4" style=" padding-right:77.5%;">
+				<h2 style="margin-bottom:-9%;"><?php echo lang('address_manager');?></h2>
+			</div>
+			<div class="span3" style="text-align:right;">
+				<input type="button" class="btn edit_address" rel="0" value="<?php echo lang('add_address');?>"/>
+			</div>
+		</div>
 		<div class="row">
 			<div class="span7" id='address_list'>
 			<?php if(count($addresses) > 0):?>
