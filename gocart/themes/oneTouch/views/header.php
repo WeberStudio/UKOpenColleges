@@ -18,11 +18,17 @@ experience this site.
 <?php if($this->Customer_model->is_logged_in(false, false)):?>
 <div class="clear"> </div>
 <div align="right" style="font-size:16px; color:#57BAE8;"> <?php $customer_details = $this->go_cart->customer();
-     echo "Wellcome ". $customer_details['firstname'];?></div>
+     echo "Wellcome ". $customer_details['firstname'];
+	 
+	 
+	 
+	 ?></div>
 <?php else: ?>
-	<div class="clear"> </div>
+	
       <?php endif; ?>
-   
+   <div id="eyebrow">
+     <div class="clear"> </div>
+    </div>
     <div class="clear"></div>	
     <ul id="menu-primary-navigation" class="tiled-menu">
         <li class="menu-portfolio">
@@ -276,12 +282,31 @@ experience this site.
     </div>
 
 </div> 
-<div><span style="padding 15 15 15 15; float : right; margin-right:15px; "  ><a href="<?= base_url();?>secure/logout" rel="nofollow" data-product_id="868" class="add_to_cart_button button product_type_simple">Checkout</a></span></div>
+<div><span style="padding 15 15 15 15; float : right; margin-right:15px;"><a href="<?php echo site_url('cart/view_cart');?>" class="add_to_cart_button button product_type_simple" rel="nofollow" data-product_id="868">
+								<?php
+								if ($this->go_cart->total_items()==0)
+								{
+									echo lang('empty_cart');
+								}
+								else
+								{
+									if($this->go_cart->total_items() > 1)
+									{
+										echo sprintf (lang('multiple_items'), $this->go_cart->total_items());
+									}
+									else
+									{
+										echo sprintf (lang('single_item'), $this->go_cart->total_items());
+									}
+								}
+								?>
+								</a>
+</span></div>
 
 <div class="promo"><span class="icon info"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
         <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>
-        <span style="padding: 0 30px;"  >
+        <span style="padding: 0 13px;">
         
         <?php if($this->Customer_model->is_logged_in(false, false)):?>
         <a href="<?php echo  site_url('secure/my_account');?>" style="color:red;"><?php echo lang('my_account')?></a> <span style="color:red;">/</span>  <a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a></span></h1>

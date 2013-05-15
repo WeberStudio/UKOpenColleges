@@ -48,6 +48,7 @@ $lang['reset_password']			= 'Reset Password';
 $lang['form_search']			= 'Search';
 $lang['form_cancel']			= 'Cancel';
 $lang['form_add_to_cart']		= 'Add to Cart';
+$lang['form_enrol_now']			= 'Enrol Now';
 $lang['form_update_cart']		= 'Update Cart';
 $lang['form_checkout']			= 'Checkout';
 $lang['form_continue']			= 'Continue';

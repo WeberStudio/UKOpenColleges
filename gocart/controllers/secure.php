@@ -315,6 +315,16 @@ class Secure extends Front_Controller {
 		$this->Customer_model->is_logged_in('secure/my_account/');
 	
 		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
+		$customer_details = $this->go_cart->customer();
+		//echo $customer_details['id']; exit;
+		//print_r($this->customer['id']);exit;
+		//if($this->customer['id'] == '')
+		//{
+			//	$customer_details = $this->go_cart->customer();
+     			//$this->customer['id'] = $customer_details['id'];
+				//echo $customer_details['id']; exit;
+		//}
+		
 		
 		$data['customer']			= (array)$this->Customer_model->get_customer($this->customer['id']);
 			
@@ -375,12 +385,16 @@ class Secure extends Front_Controller {
 		$data['country_id']			= "";
 		$data['zone_id']			= "";
 		
+		
+		
 		//if they're logged in, then we have all their acct. info in the cookie.
 		
 		
 		/*
 		This is for the customers to be able to edit their account information
 		*/
+		
+		
 
 		$this->load->library('form_validation');	
 		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]');
