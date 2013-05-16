@@ -30,7 +30,7 @@ class Admin extends Admin_Controller
 		$this->current_admin	= $this->session->userdata('admin');
 	}
 
-	function index($order_by="firstname", $sort_order="ASC", $page=0, $rows=15)
+	function index($order_by="firstname", $sort_order="ASC", $page=0, $rows=5)
 	{
        //Go back to the customer list if not Superadmin
 		if($this->admin_access=='Admin')
@@ -44,10 +44,37 @@ class Admin extends Admin_Controller
 	   
 	   
 		$data['page_title']	= lang('admins');
-		$data['admins']		= $this->auth->get_admin_list(array('order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page)); 
-    	//print_r($data['admins'])  ; exit;
+		$data['admins']		= $this->auth->get_admin_list(array('order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'offset'=>$page));
 		
+    	$this->load->library('pagination');
+		$config['base_url']		= base_url().'/'.$this->config->item('admin_folder').'/admin/index/'.$order_by.'/'.$sort_order.'/';
+		$config['total_rows']	= 12;
+		$config['per_page']		= $rows;
+		$config['uri_segment']	= 6;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
 		
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		
+		$config['prev_link']		= 'Prev';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+
+		$config['next_link']		= 'Next';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';
+		
+		$this->pagination->initialize($config);
 			
 		$this->load->view($this->config->item('admin_folder').'/includes/header');
 		$this->load->view($this->config->item('admin_folder').'/includes/leftbar');

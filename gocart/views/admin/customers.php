@@ -50,11 +50,7 @@ function areyousure()
 	<tbody>
 		<?php
 		$page_links	= $this->pagination->create_links();
-		
-		if($page_links != ''):?>
-		<tr><td colspan="5" style="text-align:center"><?php echo $page_links;?></td></tr>
-		<?php endif;?>
-		<?php echo (count($customers) < 1)?'<tr><td style="text-align:center;" colspan="5">'.lang('no_customers').'</td></tr>':''?>
+		echo (count($customers) < 1)?'<tr><td style="text-align:center;" colspan="5">'.lang('no_customers').'</td></tr>':''?>
 <?php foreach ($customers as $customer):?>
 		<tr>
 			<?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
@@ -88,11 +84,7 @@ function areyousure()
 		<?php endif;?>
 	</tbody>
 </table>
-			<div class="row-fluid control-group">
-                <div class="span6">
-                  <div class="pagination pull-right "> <?php echo $this->pagination->create_links();?> &nbsp; </div>
-				</div>
-			  </div>
+			
             </div>
             <!-- End row-fluid -->
           </div>

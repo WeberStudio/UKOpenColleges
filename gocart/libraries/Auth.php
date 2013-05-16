@@ -271,7 +271,13 @@ class Auth
 			{
 				//if we have an order_by then we must have a direction otherwise KABOOM
 				$this->CI->db->order_by($data['order_by'], $data['sort_order']);
-			}	
+			}
+			
+			if($data['rows']>0)
+			{
+				$this->CI->db->limit($data['rows'], $data['offset']);
+			}
+	
 		}
 		
 		
