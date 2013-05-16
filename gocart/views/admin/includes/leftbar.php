@@ -107,7 +107,7 @@
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/tax'); ?>">Tax Rate</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/form'); ?>">Create Invoice</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/'); ?>">View Invoices</a></li>
-                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/invoice_recursion'); ?>">View Recuring Invoices</a></li>  
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoices/view_recurring_invoices'); ?>">View Recuring Invoices</a></li>  
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>digital_products">Digital Products</a></li>-->
                         </ul>
                     </li>

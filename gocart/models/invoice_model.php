@@ -28,14 +28,11 @@ Class Invoice_model extends CI_Model
 		return $this->db->insert_id();      
     }
     
-    function delete($id)
+    function delete($invoice_id)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('categories');
-        
-        //delete references to this category in the product to category table
-        $this->db->where('category_id', $id);
-        $this->db->delete('category_products');
+        $this->db->where('invoice_id', $invoice_id);
+        $this->db->delete('oc_invoices');
+		return true;    
     }	
 	
 	function get_all_admin($admin_id = '')
@@ -112,6 +109,45 @@ Class Invoice_model extends CI_Model
 		$this->db->query("DELETE FROM  oc_invoice_items  WHERE invoice_id =".$invoice_id);		
 		return true;
 		
+	}
+	
+	function invoice_paid_status($invoice_id, $status)
+	{
+		//echo $status.'-----'.$invoice_id;
+		if(!empty($invoice_id))
+		{
+			$this->db->query("UPDATE oc_invoices SET invoice_paid_status = '".strtoupper($status)."' WHERE invoice_id = ".$invoice_id);
+		}
+		return true;
+	}
+	
+	
+	function get_invoice_customer($invoice_id)
+	{
+		$invoice_items = $this->db->query("SELECT admin_id FROM oc_invoices  WHERE invoice_id = ".$invoice_id);
+		$result 	   = $invoice_items->row();
+		//$this->show->pe($result);
+		$result_admin	= $this->db->get_where('admin', array('id'=>$result->admin_id, 'status'=>'1'));
+		
+		return $result_admin->row();
+		
+	}
+	
+	function save_recurring_invoice($data)
+	{
+			$this->db->query("DELETE FROM oc_invoices_recurring WHERE invoice_id =".$data['invoice_id']);
+			$this->db->insert('oc_invoices_recurring', $data);
+			return $this->db->insert_id();
+	}
+	
+	function get_recurring_invoices()
+	{
+	
+		//$invoice_items = $this->db->query("SELECT * FROM oc_invoices JOIN oc_invoices_recurring ON oc_invoices.invoice_id  = oc_invoices_recurring.invoice_id  WHERE oc_invoices_recurring.recur_flag = 'yes'");
+		
+		 $invoice_items  = $this->db->query('SELECT i.*, ia.invoice_item_subtotal, ia.invoice_item_tax_total, ia.invoice_total  FROM oc_invoices i LEFT JOIN oc_invoice_amounts ia ON i.invoice_id = ia.invoice_id JOIN oc_invoices_recurring  irec ON irec.invoice_id = i.invoice_id WHERE irec.recur_flag = "yes"  ORDER BY i.invoice_id ASC');  
+		return $result 	   = $invoice_items->result_array();
+		//$this->show->pe($result);
 	}
 }
 ?>

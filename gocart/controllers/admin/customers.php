@@ -36,7 +36,7 @@ class Customers extends Admin_Controller {
 		//$this->session->set_flashdata('message', 'this is our message');
 		
 		$data['page_title']	= lang('customers');
-		$data['customers']	= $this->Customer_model->get_customers(50,$page, $field, $by);
+		$data['customers']	= $this->Customer_model->get_customers(2,$page, $field, $by);
 		
 		$this->load->library('pagination');
 
