@@ -26,7 +26,6 @@
 	<?php echo theme_css('responsive.css', true); ?>	
 	<?php echo theme_css('options.css', true); ?>
 	<?php echo theme_css('menu.css', true); ?>
-	<?php echo theme_css('wo-commerence.css?ver=3.5.1', true); ?>
 	
     <!--add the serach classess-->
     <?php echo theme_css('jquery.fancybox-1.3.1.css?c-v=24739', true); ?>

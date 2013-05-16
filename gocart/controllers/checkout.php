@@ -46,6 +46,8 @@ class Checkout extends Front_Controller {
 	
 		*/
 		$this->load->library('form_validation');
+        //$this->load->library('merchant');
+        //$this->merchant->load('paypal_express');
 	}
 
 	function index()
@@ -473,6 +475,7 @@ class Checkout extends Front_Controller {
 	function step_4()
 	{
 		/* get addresses */
+                 
 		$data['customer']		= $this->go_cart->customer();
 
 		$data['shipping_method']	= $this->go_cart->shipping_method();
@@ -496,6 +499,7 @@ class Checkout extends Front_Controller {
 
 	function place_order()
 	{		
+      
 		// retrieve the payment method
 		$payment 			= $this->go_cart->payment_method();
 		$payment_methods	= $this->_get_payment_methods();

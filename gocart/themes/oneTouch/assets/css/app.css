@@ -2235,7 +2235,7 @@ div.product .woocommerce_tabs ul.tabs li::before, div.product .woocommerce_tabs 
     text-shadow: none;
     box-shadow: none;
     background-image: url("http://localhost/UKOpenColleges/gocart/themes/oneTouch/assets/images/img/plus-minus.png");
-    text-indent: -999em;
+    text-indent: -999em;    
 }
 .quantity .plus:hover, .quantity .minus:hover, #content .quantity .plus:hover, #content .quantity .minus:hover {
     background: #f0f3f4;
@@ -2830,4 +2830,28 @@ margin-left: 36px !important;
 }
 .margin0{
       margin-left: 0px !important;
+}
+div.product div.images, #content div.product div.images {
+float: left;
+width: 48%;
+margin-bottom: 2em;
+}
+div.product div.summary, #content div.product div.summary {
+float: right;
+width: 48%;
+margin-bottom: 2em;
+}
+div.product form.cart, #content div.product form.cart {
+margin-bottom: 2em;
+}
+div.product form.cart div.quantity, #content div.product form.cart div.quantity {
+float: left;
+margin: 0 4px 0 0;
+}
+ .quantity {
+width: 60px;
+position: relative;
+margin: 0 auto;
+overflow: hidden;
+zoom: 1;
 }
