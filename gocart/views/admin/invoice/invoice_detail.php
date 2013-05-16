@@ -6,11 +6,21 @@
 			$('#new_item').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();
 		});
 		
-		//$('#new_item').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();			
-		
-
+		//$('#new_item').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();	
 	});
-	
+	function recurring_block(flag)
+	{
+		var data = flag;
+		
+		if(data=='yes')
+		{
+			$('#recurring-block').show();
+		}
+		else
+		{
+			$('#recurring-block').hide();
+		}
+	}
 </script>
 
 <div id="main" style="min-height:1000px">
@@ -89,9 +99,9 @@
                 <label class="control-label"><?php echo lang('invoice_id'); ?> #</label>
                 <input type="text" id="invoice_number" class="span10" value="<?php echo $invoice_data->invoice_id; ?>" />
                 <label class="control-label"><?php echo lang('creation_date'); ?></label>
-                <input type="text" id="invoice_date_created" class="span10" value="<?php echo date("d-m-Y", strtotime($invoice_data->invoice_date_created)); ?>" />
+                <input type="text" id="invoice_date_created" class="span10" value="<?php echo date("Y-d-m", strtotime($invoice_data->invoice_date_created)); ?>" />
                 <label class="control-label"><?php echo lang('due_date'); ?></label>
-                <input type="text" id="invoice_date_due" class="span10" value="<?php echo date("d-m-Y", strtotime($invoice_data->invoice_date_due));  ?>"/>
+                <input type="text" id="invoice_date_due" class="span10" value="<?php echo date("Y-d-m", strtotime($invoice_data->invoice_date_due));  ?>"/>
               </div>
             </div>
           </div>
@@ -208,6 +218,43 @@
                   <textarea id="invoice_terms" name="invoice_terms" class="redactor" style="width: 100%;"><?php echo $invoice_data->invoice_terms; ?></textarea>
                 </div>
                 <br />
+				
+				<div class="form-row control-group row-fluid">
+                  <label class="control-label">Recurring Invoice</label>
+                  <div class="controls span7">
+                    <label class="inline radio"><input type="radio" name="recur_flag" checked="checked"  value="no" onclick="recurring_block('no')"/> No </label>                    
+                    <label class="inline radio"><input type="radio" name="recur_flag" value="yes" onclick="recurring_block('yes')"/>Yes </label>
+                  </div>
+                </div>
+				
+				<div class="form-row control-group" id="recurring-block" style="display:none;" >
+				
+					<div class="controls span10">
+					    <label class="label">Recurring Frequency</label>
+						<select name="recur_frequency" id="recur_frequency" class="input-small">
+							<option value="weekly">Weekly</option>
+							<option value="bi-weekly">Bi-Monthly</option>
+							<option value="monthly">Monthly</option>
+							<option value="yearly">Yearly</option>
+						</select>
+					</div>				
+					<div class="controls span10">
+					   <label for="date"> Start Date (M-D-Y) </label>
+						<?php
+							$recur_start_date    = array('name'=>'recur_start_date', 'id'=>'recur_start_date', 'value'=>date('Y-m-d'), 'class'=>'span6');
+							echo form_input($recur_start_date);					
+						?>
+					</div>
+					<div class="controls span10">
+						<label for="date"> End Date (M-D-Y) </label>
+						<?php
+							$recur_end_date    	= array('name'=>'recur_end_date', 'id'=>'recur_end_date', 'value'=>date('Y-m-d'), 'class'=>'span6');
+							echo form_input($recur_end_date);					
+						?>
+					</div>
+					               
+                </div>
+				<br />
                 <button type="submit" value="conform" name="submit" class="btn btn-inverse btn-block btn-large"><?php echo lang('form_save');?></button>
               </form>
             </div>
@@ -217,3 +264,28 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+
+ $(document).ready(function () {
+    $('form').submit(function() {
+        $('.btn').attr('disabled', true).addClass('disabled');
+    });
+		
+	$('#invoice_date_created').datepicker({
+	  format: 'yyyy-mm-dd'
+	});
+	
+	$('#invoice_date_due').datepicker({
+	  format: 'yyyy-mm-dd'
+	});	
+	
+	$('#recur_start_date').datepicker({
+	  format: 'yyyy-mm-dd'
+	});
+	
+	$('#recur_end_date').datepicker({
+	  format: 'yyyy-mm-dd'
+	});
+	
+});	
+</script>

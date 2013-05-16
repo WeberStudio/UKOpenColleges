@@ -14,8 +14,8 @@ function areyousure()
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i><span>Customers 
              
-	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/customers/export_xml');?>"><i class="icon-download"></i> <?php echo lang('xml_download');?></a>
-	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/customers/get_subscriber_list');?>"><i class="icon-download"></i> <?php echo lang('subscriber_download');?></a>
+	           <?php /*?> <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/customers/export_xml');?>"><i class="icon-download"></i> <?php echo lang('xml_download');?></a>
+	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/customers/get_subscriber_list');?>"><i class="icon-download"></i> <?php echo lang('subscriber_download');?></a><?php */?>
 	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/customers/form'); ?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_customer');?></a>
                      </span></h4>
                 
@@ -78,7 +78,7 @@ function areyousure()
 					
 					<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/customers/addresses/'.$customer->id); ?>"><i class="icon-envelope"></i> <?php echo lang('addresses');?></a>
 					
-					<a class="btn btn-danger" href="<?php echo site_url($this->config->item('admin_folder').'/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
+					<a class="btn btn-danger" href="<?php echo site_url($this->config->item('admin_folder').'/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="icon-trash"></i> <?php echo lang('delete');?></a>
 				</div>
 			</td>
 		</tr>
@@ -88,21 +88,11 @@ function areyousure()
 		<?php endif;?>
 	</tbody>
 </table>
-<div class="row-fluid control-group">
-                <div class="pull-left span6 " action="#"> </div>
+			<div class="row-fluid control-group">
                 <div class="span6">
-                  <div class="pagination pull-right ">
-                    <ul>
-                      <li><a href="#">Prev</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">Next</a></li>
-                    </ul>
-                  </div >
-                </div>
-              </div>
+                  <div class="pagination pull-right "> <?php echo $this->pagination->create_links();?> &nbsp; </div>
+				</div>
+			  </div>
             </div>
             <!-- End row-fluid -->
           </div>

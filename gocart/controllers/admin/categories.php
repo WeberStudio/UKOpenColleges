@@ -29,18 +29,45 @@ class Categories extends Admin_Controller {
 		
 	}
 	
-	function index($order_by="name", $sort_order="ASC", $page=0, $rows=15)
+	function index($order_by="name", $sort_order="ASC", $code=0, $page=0, $rows=5)
 	{
 		
 		//Store the sort term
 		$data['order_by']	= $order_by;
 		$data['sort_order']	= $sort_order;
-		
-		
+		$data['code']		= $code;
+		$term				= false;
 		//we're going to use flash data and redirect() after form submissions to stop people from refreshing and duplicating submissions
 		//$this->session->set_flashdata('message', 'this is our message');
 		$data['page_title']	= lang('categories');
 		$data['categories']	= $this->Category_model->get_categories_tierd($parent = false, array('order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
+		
+		$data['total']		= count($this->Category_model->get_all_categories());
+		
+		$this->load->library('pagination');		
+		$config['base_url']			= site_url($this->config->item('admin_folder').'/categories/index/'.$order_by.'/'.$sort_order.'/'.$code.'/');
+		$config['total_rows']		= $data['total'];
+		$config['per_page']			= $rows;
+		$config['uri_segment']		= 7;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';		
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';		
+		$config['prev_link']		= 'Prev';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+		$config['next_link']		= 'Next';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';		
+		$this->pagination->initialize($config);
 		
 		
 		$this->load->view($this->config->item('admin_folder').'/includes/header');

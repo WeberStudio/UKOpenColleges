@@ -55,6 +55,17 @@ Class Category_model extends CI_Model
 		//$this->db->where('publish_by', 'Admin');
 		//$this->db->where('status', '1');
 		//$this->db->where('delete', '0');
+		if(!empty($data['rows']))
+		{
+			
+			$this->db->limit($data['rows']);
+		}
+		
+		//grab the offset
+		if(!empty($data['page']))
+		{
+			$this->db->offset($data['page']);
+		}
 		
 		if(empty($data))
 		{
@@ -66,7 +77,7 @@ Class Category_model extends CI_Model
 			if(!empty($data['order_by']))
 			{
 				//if we have an order_by then we must have a direction otherwise KABOOM
-				$this->db->order_by($data['order_by'], $data['sort_order']);
+				//$this->db->order_by($data['order_by'], $data['sort_order']);
 			}	
 		}
 		
@@ -88,6 +99,18 @@ Class Category_model extends CI_Model
 	function get_categories_tierd($parent=0, $data=array())
 	{
 		$categories	= array();
+		if(!empty($data['rows']))
+		{
+			$this->db->limit($data['rows']);			
+		}
+		
+		//do we order by something other than category_id?
+		if(!empty($data['order_by']))
+		{
+			//if we have an order_by then we must have a direction otherwise KABOOM
+			$this->db->order_by($data['order_by'], $data['sort_order']);
+		}
+		
 		$result	= $this->get_categories($parent, $data);
 		foreach ($result as $category)
 		{

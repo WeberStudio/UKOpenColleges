@@ -59,7 +59,21 @@
 					$data = array('name'=>'invoice_terms', 'class'=>'redactor', 'value'=>set_value('invoice_terms', $invoice_terms));
 					echo form_textarea($data);
 				?>
-                <br />
+				 <br />
+				 
+				 <select data-placeholder="Choose Invoice Template" class="chzn-select" name="invoice_template"  tabindex="5">
+                  <option value="">Choose Template For Invoice</option>
+                  <? if(isset($templates)){  ?>
+                  <?php  foreach ($templates as $template){?>
+                  	<option  value="<?=$template->invoice_template_id?>"><?=$template->invoice_template_title?></option>
+                  <?
+					}
+				} 
+				 ?>
+                </select>			
+               <br />
+				
+				 <br />           
                 <select data-placeholder="Choose Group" class="chzn-select" name="invoice_group_id"  tabindex="5">
                   <option value="">Choose group and search for group</option>
                   <? if(isset($groups)){  ?>
@@ -73,7 +87,7 @@
                 <br />
                 <label for="date"> Date (M-D-Y) </label>
                 <?php
-					$data    = array('name'=>'invoice_date_created', 'id'=>'datepicker1', 'value'=>date('m-d-Y'), 'class'=>'span12');
+					$data    = array('name'=>'invoice_date_created', 'id'=>'datepicker1', 'value'=>date('Y-m-d'), 'class'=>'span12');
 					echo form_input($data);					
 				?>
                 </fieldset>
