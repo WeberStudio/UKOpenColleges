@@ -90,21 +90,11 @@ function list_admin($admins, $current_admin_id)
     ?>
     </tbody>
 </table>
- <div class="row-fluid control-group">
-                <div class="pull-left span6 " action="#"> </div>
+			 <div class="row-fluid control-group">
                 <div class="span6">
-                  <div class="pagination pull-right ">
-                    <ul>
-                      <li><a href="#">Prev</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">Next</a></li>
-                    </ul>
-                  </div >
-                </div>
-              </div>
+                  <div class="pagination pull-right "> <?php echo $this->pagination->create_links();?> &nbsp; </div>
+				</div>
+			  </div>
             </div>
             <!-- End row-fluid -->
           </div>

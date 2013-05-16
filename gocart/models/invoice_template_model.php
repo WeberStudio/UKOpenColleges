@@ -23,6 +23,13 @@ Class Invoice_Template_model extends CI_Model
 		return $result->result();
 	}
 	
+	function get_templates_count()
+	{
+		return $this->db->count_all_results('oc_invoice_templates');
+	}
+	
+	
+	
 	function get_templates_by_id($id)
 	{
 		$result	= $this->db->get_where('oc_invoice_templates', array('invoice_template_id'=>$id));
