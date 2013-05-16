@@ -2329,6 +2329,27 @@ span.onsale {
 ul.cart_list li a, ul.product_list_widget li a {
     font-weight: normal;
 }
+input#small_text{
+	height: 37px;
+    border-radius: 0;
+    background: #F0F3F4;
+    border: none;
+    border-right: 1px solid white;
+    color: #7A8487;
+    font-weight: 300;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    display: block;
+    padding: 6px 15px;
+    width: 20%;
+    -webkit-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    transition: all 0.15s linear;
+
+	
+}
 
 input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea {
     height: 37px;
@@ -2349,6 +2370,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
     -o-transition: all 0.15s linear;
     transition: all 0.15s linear;
 }
+
 #wp-submit {
     width: auto;
     background: #57BAE8;
