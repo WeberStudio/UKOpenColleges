@@ -88,10 +88,12 @@ Class Product_model extends CI_Model
 			{
 				
 				return $this->db->count_all_results('products');
+				
 			}
 			else
 			{
 				return $this->db->get('products')->result();
+				
 			}
 			
 		}
@@ -191,6 +193,7 @@ Class Product_model extends CI_Model
 	function count_all_products()
 	{
 		return $this->db->count_all_results('products');
+		
 	}
 	
 	function count_products($id)

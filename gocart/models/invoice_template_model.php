@@ -23,14 +23,43 @@ Class Invoice_Template_model extends CI_Model
 		return $result->result();
 	}
 	
+	function get_templates_count()
+	{
+		return $this->db->count_all_results('oc_invoice_templates');
+	}
+	
+	
+	
 	function get_templates_by_id($id)
 	{
 		$result	= $this->db->get_where('oc_invoice_templates', array('invoice_template_id'=>$id));
 		return $result->row();
 	}
+	
+	function get_templates_by_for_invoice($id)
+	{
+		$result	= $this->db->get_where('oc_invoice_templates', array('invoice_template_level'=>'Universal'));
+		$data = $result->row();
+		if(count($result->row())>0)
+		{
+			return $result->row();
+		}
+		else
+		{
+			$result	= $this->db->get_where('oc_invoice_templates', array('invoice_template_id'=>$id));
+			return $result->row();
+		}
+	}
+	
 		
 	function save($template)
 	{
+		if(isset($template['invoice_template_level']) && $template['invoice_template_level'] == 'Universal')
+		{
+			$this->db->where('invoice_template_level', 'Universal');
+			$this->db->update('oc_invoice_templates',  array('invoice_template_level' => 'Normal'));
+		}
+		
 		if ($template['invoice_template_id'])
 		{
 			$this->db->where('invoice_template_id', $template['invoice_template_id']);

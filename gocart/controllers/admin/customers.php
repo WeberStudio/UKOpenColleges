@@ -30,19 +30,19 @@ class Customers extends Admin_Controller {
 		$this->lang->load('customer');
 	}
 	
-	function index($field='lastname', $by='ASC', $page=0)
+	function index($field='lastname', $by='ASC', $page=0, $row=5)
 	{
 		//we're going to use flash data and redirect() after form submissions to stop people from refreshing and duplicating submissions
 		//$this->session->set_flashdata('message', 'this is our message');
 		
 		$data['page_title']	= lang('customers');
-		$data['customers']	= $this->Customer_model->get_customers(50,$page, $field, $by);
+		$data['customers']	= $this->Customer_model->get_customers($row, $page, $field, $by);
 		
 		$this->load->library('pagination');
 
 		$config['base_url']		= base_url().'/'.$this->config->item('admin_folder').'/customers/index/'.$field.'/'.$by.'/';
 		$config['total_rows']	= $this->Customer_model->count_customers();
-		$config['per_page']		= 50;
+		$config['per_page']		= $row;
 		$config['uri_segment']	= 6;
 		$config['first_link']		= 'First';
 		$config['first_tag_open']	= '<li>';
@@ -59,11 +59,11 @@ class Customers extends Admin_Controller {
 		$config['num_tag_open']		= '<li>';
 		$config['num_tag_close']	= '</li>';
 		
-		$config['prev_link']		= '&laquo;';
+		$config['prev_link']		= 'Prev';
 		$config['prev_tag_open']	= '<li>';
 		$config['prev_tag_close']	= '</li>';
 
-		$config['next_link']		= '&raquo;';
+		$config['next_link']		= 'Next';
 		$config['next_tag_open']	= '<li>';
 		$config['next_tag_close']	= '</li>';
 		

@@ -208,8 +208,13 @@ function selectGroup(childs)
             </tbody>
           </table>
           </form>
+		  <div class="row-fluid control-group">
+                <div class="span6">
+                  <div class="pagination pull-right "> <?php echo $this->pagination->create_links();?> &nbsp; </div>
+				</div>
+		</div>
         </div>
-        <div class="span4"> <?php //echo $this->pagination->create_links();?> &nbsp; </div>
+       
         <!-- End .content -->
       </div>
       <!-- End box -->
