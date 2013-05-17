@@ -30,10 +30,41 @@ class Tax extends Admin_Controller {
 		
 	}
 	
-	function index($field='tax_rate_id', $by='ASC', $page=0)
+	function index($field='tax_rate_id', $by='ASC', $page=0, $rows=5)
 	{
 		
-		$data['taxes']	= $this->Invoice_Tax_Model->get_taxes(50,$page, $field, $by);
+		$data['taxes']	= $this->Invoice_Tax_Model->get_taxes($field, $by, $page, $rows);	
+		$data['count']	= $this->Invoice_Tax_Model->get_count_taxes();
+		
+		$this->load->library('pagination');
+		$config['base_url']			= base_url().'/'.$this->config->item('admin_folder').'/tax/index/'.$field.'/'.$by.'/';
+		$config['total_rows']		= $data['count'];
+		$config['per_page']			= $rows;
+		$config['uri_segment']		= 6;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
+		
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		
+		$config['prev_link']		= 'Prev';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+
+		$config['next_link']		= 'Next';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';
+		
+		$this->pagination->initialize($config);
 		
 		 //echo "<pre>";print_r($data['taxes']);exit;
 		

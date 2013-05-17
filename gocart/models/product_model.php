@@ -505,6 +505,7 @@ Class Product_model extends CI_Model
 	{
 		return $product_tabs	= $this->db->get_where('product_tabs', array('product_id'=>$id))->result_array();
 		//$this->show->pe($product_tabs);
+		
 	}
 	
 	function get_product_tab($tab_id)
