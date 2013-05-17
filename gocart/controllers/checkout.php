@@ -93,7 +93,7 @@ class Checkout extends Front_Controller {
 		if ($this->form_validation->run() == false)
 		{
 			$data['address_form_prefix']	= 'bill';
-			$this->view('checkout/address_form', $data);
+			$this->load->view('confirm_address', $data);
 		}
 		else
 		{
@@ -481,7 +481,7 @@ class Checkout extends Front_Controller {
 
 
 		/* Confirm the sale */
-		$this->view('checkout/confirm', $data);
+		$this->load->view('confirm', $data);
 	}
 
 	function login()
