@@ -12,17 +12,23 @@ Class Invoice_Tax_Model extends CI_Model
 	********************************************************************/
 	
 	
-	function get_taxes($limit=0, $offset=0, $order_by='tax_rate_id', $direction='DESC')
+	function get_taxes($field, $by, $page, $rows)
 	{
-		$this->db->order_by($order_by, $direction);
-		if($limit>0)
+		$this->db->order_by($field, $by);
+		if($rows>0)
 		{
-			$this->db->limit($limit, $offset);
+			$this->db->limit($rows, $page);
 		}
 
 		$result	= $this->db->get('oc_tax_rates');
 		return $result->result();
 	}
+	
+	function get_count_taxes()
+	{
+		return $this->db->count_all_results('customers');
+	}
+	
 	
 	
 	function get_tax_by_id($id)

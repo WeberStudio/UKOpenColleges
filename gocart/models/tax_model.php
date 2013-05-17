@@ -104,4 +104,9 @@ Class Tax_model extends CI_Model
 		//send the price of the taxes back
 		return $order_price * $rate;
 	}
+	
+	function get_count_taxes()
+	{
+		
+	}
 }
