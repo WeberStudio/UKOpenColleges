@@ -476,7 +476,7 @@ class Checkout extends Front_Controller {
 	{
 		/* get addresses */
                  
-		$data['customer']		= $this->go_cart->customer();
+		$data['customer']		    = $this->go_cart->customer();
 
 		$data['shipping_method']	= $this->go_cart->shipping_method();
 
@@ -501,8 +501,14 @@ class Checkout extends Front_Controller {
 	{		
       
 		// retrieve the payment method
-		$payment 			= $this->go_cart->payment_method();
-		$payment_methods	= $this->_get_payment_methods();
+       // DebugBreak();
+        $payment['module']  = "paypal_express";
+        $payment['description']  = "PayPal Express";
+		//$payment 			= $this->go_cart->payment_method();
+        $paypal_express['name'] =   "PayPal Express";
+        $paypal_express['form'] =   "<table width=\"100%\" border=\"0\" cellpadding=\"5\">\n  <tr>\n    <td><img  src=\"https://www.paypal.com/en_US/i/logo/PayPal_mark_180x113.gif\" border=\"0\" alt=\"Acceptance Mark\"></td>\n  </tr>\n  <tr>\n    <td>You will be directed to the Paypal website to verify your payment. Once your payment is authorized, you will be directed back to our website and your order will be complete.</td>\n  </tr>\n</table>\n";
+        $payment_methods['paypal_express']    =    $paypal_express ;
+		//$payment_methods	= $this->_get_payment_methods();
 		
 		//make sure they're logged in if the config file requires it
 		if($this->config->item('require_login'))

@@ -17,7 +17,12 @@
 <div class="row">
 <div class="eleven columns">
     <div id="container">
+
         <div id="content" role="main">
+        <?  if ($this->go_cart->total_items()!=0)
+                    { ?>
+            <div class="woocommerce_message"><a href="<?php echo site_url('cart/view_cart');?>" class="button">View Cart →</a> Course successfully added to your cart.</div>
+              <?}?>
             <div itemscope="" itemtype="http://schema.org/Product" id="product-855" class="post-855 product type-product status-publish hentry">
                 <div class="images"> <a itemprop="image" href="<?php echo base_url('uploads/images/full/'.$product->images[0]);?>" class="zoom cboxElement" rel="thumbnails" title="<?=$product->name?>"><img src="<?php echo base_url('uploads/images/medium/'.$product->images[0]);?>" alt="<?=$product->seo_title?>" ></a> </div>
                 <div class="summary">
@@ -26,14 +31,14 @@
                         <p itemprop="price" class="price"><span class="amount"><?=format_currency($product->price)?></span></p>
                         <link itemprop="availability" href="http://schema.org/InStock">
                     </div>
-                  
-                                <?php echo form_open('cart/add_to_cart', 'class="cart"');?>
-                                <input type="hidden" name="cartkey" value="<?php echo $this->session->flashdata('cartkey');?>" />
-                                <input type="hidden" name="id" value="<?php echo $product->id?>"/>
-                                <div class="quantity buttons_added"><input type="button" value="-" class="minus"><input name="quantity" data-min="1" data-max="0" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12"><input type="button" value="+" class="plus"></div>
-                                <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
-                                </form>
-                          
+
+                    <?php echo form_open('cart/add_to_cart', 'class="cart"');?>
+                    <input type="hidden" name="cartkey" value="<?php echo $this->session->flashdata('cartkey');?>" />
+                    <input type="hidden" name="id" value="<?php echo $product->id?>"/>
+                    <div class="quantity buttons_added"><input type="button" value="-" class="minus"><input name="quantity" data-min="1" data-max="0" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12"><input type="button" value="+" class="plus"></div>
+                    <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
+                    </form>
+
 
 
 
@@ -130,9 +135,9 @@
                     </p>
                     <p>
                         <input class="submitbutton" name="wp-submit" id="wp-submit" value="Login →" type="submit">
-                        <a href="http://theme.crumina.net/onetouch/wp-login.php?action=lostpassword">Lost password?</a></p>
+                        <a href="">Lost password?</a></p>
                     <div>
-                        <input name="redirect_to" class="redirect_to" value="http://theme.crumina.net/onetouch/my-account/" type="hidden">
+                        <input name="redirect_to" class="redirect_to" value="" type="hidden">
                         <input name="testcookie" value="1" type="hidden">
                         <input name="woocommerce_login" value="1" type="hidden">
                         <input name="rememberme" value="forever" type="hidden">
@@ -146,9 +151,46 @@
             <div class="widget-inner">
                 <h3>Cart</h3>
                 <!--mfunc woocommerce_mini_cart() -->
-                <ul class="cart_list product_list_widget ">
-                    <li class="empty">No products in the cart.</li>
-                </ul>
+                
+                <?  if ($this->go_cart->total_items()==0)
+                    { ?>
+                    <ul class="cart_list product_list_widget ">
+                        <li class="empty">No products in the cart.</li>
+                    </ul>
+                <?   } else{  ?>
+                
+                   <ul class="cart_list product_list_widget ">    
+                <?
+                  
+                   foreach ($this->go_cart->contents() as $cartkey=>$product)
+                   {
+                         $productName = $product['name'] ;
+                         $price = $product['price'];
+                         $qty = $product['quantity'] ;
+                         $imgpath = $product['images'] ;
+
+                  ?>
+
+                    <li>
+                        <a href="#">
+
+                            <img width="200" height="200" src="<?=base_url('uploads/images/thumbnails/'.$imgpath)?>" class="attachment-shop_thumbnail wp-post-image" alt="746867-1">
+                            <?=$productName?>
+                        </a>
+
+
+                        <span class="quantity"><?=$qty?> × $<span class="amount"><?=$price?></span></span>
+                    </li>
+                     <? }
+                    
+                    ?>
+                </ul><!-- end product list -->
+                <p class="total"><strong>Subtotal:</strong> <span class="amount"><?=$this->go_cart->subtotal()?></span></p>
+                <p class="buttons">
+                    <a href="<?php echo site_url('cart/view_cart');?>" class="button">View Cart →</a>
+                    <a href="#" class="button checkout">Checkout →</a>
+                </p>
+                  <? }?>
                 <!-- end product list -->
                 <!--/mfunc-->
             </div>
