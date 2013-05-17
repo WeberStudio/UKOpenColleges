@@ -11,82 +11,84 @@
             <h4> <i class=" icon-bar-chart"></i>Administrator Form </h4>
           </div>
           <!-- End .title -->
-          <div class="content"> <?php echo form_open_multipart($this->config->item('admin_folder').'/admin/form/'.$id, array('class' => 'form-horizontal cmxform', 'id' => 'validateForm')); ?>
+          <div class="content"> <?php echo form_open_multipart($this->config->item('admin_folder').'/admin/form/'.$id, array('class' => '', 'id' => 'validateForm')); ?>
+          
+          
             <div class="form-row control-group row-fluid">
-              <label class="control-label span3" for="hint-field">Company<span class="help-block"></span></label>
+              <label class="control-label span1" for="hint-field">Company<span class="help-block"></span></label>
               <div class="controls span7">
                 <?php
-        $data    = array('name'=>'company', 'value'=>set_value('company', $company));
-        echo form_input($data, array('class' => 'span12'));
-        ?>
-              </div>
-            </div>
-            <div class="form-row control-group row-fluid">
-              <label class="control-label span3" for="hint-field"><?php echo lang('firstname');?><span class="help-block"></span></label>
-              <div class="controls span7">
-                <?php
-        $data    = array('name'=>'firstname', 'value'=>set_value('firstname', $firstname));
-        echo form_input($data, array('class' => 'span12'));
-        ?>
-              </div>
-            </div>
-            <div class="form-row control-group row-fluid">
-              <label class="control-label span3" for="hint-field"><?php echo lang('lastname');?><span class="help-block"></span></label>
-              <div class="controls span7">
-                <?php
-        $data    = array('name'=>'lastname', 'value'=>set_value('lastname', $lastname));
+        $data    = array('name'=>'company', 'value'=>set_value('company', $company) ,'class' => 'span12');
         echo form_input($data);
         ?>
               </div>
             </div>
             <div class="form-row control-group row-fluid">
-              <label class="control-label span3" for="hint-field"><?php echo lang('email');?><span class="help-block"></span> </label>
+              <label class="control-label span1" for="hint-field"><?php echo lang('firstname');?><span class="help-block"></span></label>
               <div class="controls span7">
                 <?php
-        $data    = array('name'=>'email', 'value'=>set_value('email', $email));
+        $data    = array('name'=>'firstname', 'value'=>set_value('firstname', $firstname) ,'class' => 'span12');
         echo form_input($data);
         ?>
               </div>
             </div>
             <div class="form-row control-group row-fluid">
-              <label class="control-label span3" for="hint-field">Phone<span class="help-block"></span></label>
+              <label class="control-label span1" for="hint-field"><?php echo lang('lastname');?><span class="help-block"></span></label>
               <div class="controls span7">
                 <?php
-        $data    = array('name'=>'phone', 'value'=>set_value('phone', $phone));
-        echo form_input($data, array('class' => 'span12'));
+        $data    = array('name'=>'lastname', 'value'=>set_value('lastname', $lastname) ,'class' => 'span12');
+        echo form_input($data);
         ?>
               </div>
             </div>
             <div class="form-row control-group row-fluid">
-              <label class="control-label span3" for="hint-field">URL<span class="help-block"></span></label>
+              <label class="control-label span1" for="hint-field"><?php echo lang('email');?><span class="help-block"></span> </label>
               <div class="controls span7">
                 <?php
-        $data    = array('name'=>'url', 'value'=>set_value('url', $url));
-        echo form_input($data, array('class' => 'span12'));
+        $data    = array('name'=>'email', 'value'=>set_value('email', $email) ,'class' => 'span12');
+        echo form_input($data);
+        ?>
+              </div>
+            </div>
+            <div class="form-row control-group row-fluid">
+              <label class="control-label span1" for="hint-field">Phone<span class="help-block"></span></label>
+              <div class="controls span7">
+                <?php
+        $data    = array('name'=>'phone', 'value'=>set_value('phone', $phone) ,'class' => 'span12');
+        echo form_input($data);
+        ?>
+              </div>
+            </div>
+            <div class="form-row control-group row-fluid">
+              <label class="control-label span1" for="hint-field">URL<span class="help-block"></span></label>
+              <div class="controls span7">
+                <?php
+        $data    = array('name'=>'url', 'value'=>set_value('url', $url) ,'class' => 'span12');
+        echo form_input($data);
         ?>
               </div>
             </div>
           
           <div class="form-row control-group row-fluid">
-            <label class="control-label span3"><?php echo lang('password');?></label>
+            <label class="control-label span1"><?php echo lang('password');?></label>
             <div class="controls span7">
               <?php
-        $data    = array('name'=>'password');
+        $data    = array('name'=>'password' ,'class' => 'span12');
         echo form_password($data);
         ?>
             </div>
           </div>
           <div class="form-row control-group row-fluid">
-            <label class="control-label span3"><?php echo lang('confirm_password');?></label>
+            <label class="control-label span1"><?php echo lang('confirm_password');?></label>
             <div class="controls span7">
               <?php
-					$data    = array('name'=>'confirm');
+					$data    = array('name'=>'confirm' ,'class' => 'span12');
 					echo form_password($data);
         	  ?>
             </div>
           </div>
           <div class="form-row control-group row-fluid">
-            <label class="control-label span3" for="search-input">Profile Image</label>
+            <label class="control-label span1" for="search-input">Profile Image</label>
             <div class="controls span7">
               <div class="input-append row-fluid">
                 <input type="file" class="spa1n6 fileinput" name="image" id="search-input">
@@ -122,6 +124,7 @@
     </div>
     <!-- End #container -->
   </div>
+</div>
 </div>
 <script type="text/javascript">
 if ($.browser.webkit) {

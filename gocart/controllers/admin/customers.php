@@ -22,7 +22,7 @@ class Customers extends Admin_Controller {
 		/*** Get User Info***/
 		
 		/*** Left Menu Selection ***/
-		$this->session->set_userdata('active_module', 'sales');
+		$this->session->set_userdata('active_module', 'user');
 		/*** Left Menu Selection ***/
 				
 		$this->load->model(array('Customer_model', 'Location_model'));

@@ -91,11 +91,11 @@ class Products extends Admin_Controller {
 		$config['num_tag_open']		= '<li>';
 		$config['num_tag_close']	= '</li>';
 		
-		$config['prev_link']		= '&laquo;';
+		$config['prev_link']		= 'Prev';
 		$config['prev_tag_open']	= '<li>';
 		$config['prev_tag_close']	= '</li>';
 
-		$config['next_link']		= '&raquo;';
+		$config['next_link']		= 'Next';
 		$config['next_tag_open']	= '<li>';
 		$config['next_tag_close']	= '</li>';
 		
@@ -634,8 +634,8 @@ class Products extends Admin_Controller {
 			$config['source_image'] = 'uploads/images/medium/'.$upload_data['file_name'];
 			$config['new_image']	= 'uploads/images/small/'.$upload_data['file_name'];
 			$config['maintain_ratio'] = FALSE;
-			$config['width'] = 275;
-			$config['height'] = 130;
+			$config['width'] = 300;
+			$config['height'] = 300;
 			$this->image_lib->initialize($config); 
 			$this->image_lib->resize();
 			$this->image_lib->clear();

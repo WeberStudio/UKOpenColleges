@@ -25,7 +25,7 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('delete');?>" href="<?=base_url().'admin/invoices/delete/'.$invoice['invoice_id']?>" onclick="return confirm('If you delete this invoice you will not be able to recover it later. Are you sure you want to permanently delete this invoice?');">  Delete </a>
 					
                       <div class="btn-group inline">
-                      <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">Success <span class="caret"></span></button>
+                      <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">Status <span class="caret"></span></button>
                       <ul class="dropdown-menu" style="text-align:left;">
                         <li><a href="<?=base_url().'admin/invoices/invoice_paid_status/open/'.$invoice['invoice_id']?>">Open</a></li>
                         <li><a href="<?=base_url().'admin/invoices/invoice_paid_status/close/'.$invoice['invoice_id']?>">Close</a></li>
@@ -76,20 +76,10 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
               </tbody>
             </table>
             <div class="row-fluid control-group">
-              <div class="pull-left span6 " action="#"> </div>
-              <div class="span6">
-                <div class="pagination pull-right ">
-                  <ul>
-                    <li><a href="#">Prev</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">Next</a></li>
-                  </ul>
-                </div >
-              </div>
-            </div>
+                <div class="span6">
+                  <div class="pagination pull-right "> <?php echo $this->pagination->create_links();?> &nbsp; </div>
+				</div>
+			</div>
           </div>
           <!-- End row-fluid -->
         </div>

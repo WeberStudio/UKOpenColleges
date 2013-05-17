@@ -46,14 +46,46 @@ class Invoices extends Admin_Controller {
 
     }
 
-    function index()
+    function index($field='invoice_id', $by='ASC', $page=0, $rows=5)
     {
         //we're going to use flash data and redirect() after form submissions to stop people from refreshing and duplicating submissions
         //$this->session->set_flashdata('message', 'this is our message');
 
-        $data['page_title']    = lang('Invoices');
-        $data['invoices']    = $this->Invoice_model->get_all_invoices();
+        $data['page_title']    	= lang('Invoices');
+        $data['invoices']    	= $this->Invoice_model->get_all_invoices($field, $by, $page, $rows);
 		//echo "<pre>"; print_r($data['invoices']);exit;
+		
+		
+		$this->load->library('pagination');
+		$config['base_url']			= base_url().'/'.$this->config->item('admin_folder').'/invoices/index/'.$field.'/'.$by.'/';
+		$config['total_rows']		= $this->Invoice_model->get_count_invoices();
+		$config['per_page']			= $rows;
+		$config['uri_segment']		= 6;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
+		
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		
+		$config['prev_link']		= 'Prev';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+
+		$config['next_link']		= 'Next';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';		
+		$this->pagination->initialize($config);
+		
+				
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/invoice/invoices_listing', $data);
