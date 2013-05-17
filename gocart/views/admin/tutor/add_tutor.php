@@ -296,11 +296,4 @@
 </div>
 </div>
 </div>
-<script>
-function add_qualification(){
-var addhtml = "<i> this kljdklfjsldkfjlksa fjskfjliksfjsldjfosjfklfjsdf lsk</i>";
-		    document.getElementById('addnew').innerHTML="addhtml";
 
-
-}
-</script>

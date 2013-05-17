@@ -21,7 +21,7 @@ class order extends Admin_Controller {
         /*** Get User Info***/
 		
 		/*** Left Menu Selection ***/
-		$this->session->set_userdata('active_module', 'sales');
+		$this->session->set_userdata('active_module', 'order');
 		/*** Left Menu Selection ***/
 		
 		$this->auth->check_access($this->admin_access, true);  
@@ -47,6 +47,17 @@ class order extends Admin_Controller {
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/order/order_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+
+    }
+	function view()
+    {
+       	$this->load->helper('form');
+        $data = array();
+		//echo "<pre>"; print_r($data['invoices']);exit;
+        $this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/order/order_view', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 
     }

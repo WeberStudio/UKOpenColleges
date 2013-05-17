@@ -4,10 +4,13 @@
 	$active_cat			= ''; 
     $active_dash		= '';
     $active_invoice		= '';
-    $active_sales		= '';
-	$sales_links		= '';
+    $active_user		= '';
+	$user_links			= '';
 	$invoice_links		= '';
+	$active_sales		= '';
+	$sales_links		= '';
 	$active = $this->session->userdata('active_module');
+	//print_r($active);
     if($active=='dashboard')
     {
         $active_dash			= 'active';
@@ -20,15 +23,20 @@
 		//$this->session->unset_userdata('active_module');
 		
     }  
-    else if($active == 'sales')
+    else if($active == 'user')
     {
-            $active_sales		= 'opened';
-			$sales_links		= 'in collapse';
+            $active_user		= 'opened';
+			$user_links		= 'in collapse';
     }
     else if($active == 'invoice')
     {
             $active_invoice		= 'opened';
 			$invoice_links		= 'in collapse';
+    }
+	 else if($active == 'sales')
+    {
+            $active_sales		= 'opened';
+			$sales_links		= 'in collapse';
     }
 ?>
 <div id="sidebar" class="">
@@ -74,7 +82,6 @@
                     <a class="dashboard" href="<?=base_url().ADMIN_PATH?>dashboard">
                         <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/dashboard.png"><span>Dashboard</span></a> 
                 </li>
-                <? ?>
                 <li class="accordion-group color_7 <?php echo $active_catalog; ?>" onclick="set_module('catalog')" >
                     <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse1">
                         <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Catalog</span></a>
@@ -85,25 +92,34 @@
                     </ul>
                 </li>
                 <? if(isset($this->admin_access) && $this->admin_access=='Superadmin'){ ?>
-                    <li class="accordion-group color_3 <?php echo $active_sales; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2" onclick="set_module('sales')">
-                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Sales</span></a>
-                        <ul id="collapse2" class="accordion-body collapse <?php echo $sales_links; ?>">
+                    <li class="accordion-group color_3 <?php echo $active_user; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2" onclick="set_module('user')">
+                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>User</span></a>
+                        <ul id="collapse2" class="accordion-body collapse <?php echo $user_links; ?>">
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
                             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Provider</a></li>
-							<li><a href="<?=base_url()?>order">Order</a></li>
-                            <li><a href="<?=base_url()?>tutor">Tutor</a></li>
+							<li><a href="<?=base_url()?>tutor">Tutor</a></li>
                             <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>giftcards">Giftcards</a></li>-->
                         </ul>
                     </li>
-
+					<li class="accordion-group color_3 <?php echo $active_sales; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3" onclick="set_module('sales')">
+                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>sales</span></a>
+                        <ul id="collapse3" class="accordion-body collapse <?php echo $sales_links; ?>">
+                            <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
+                            <li><a href="<?=base_url()?>order">Order</a></li>
+                            <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
+                            <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
+                            <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>
+                            <li><a href="<?=base_url().ADMIN_PATH?>giftcards">Giftcards</a></li>-->
+                        </ul>
+                    </li>
                     <li class="accordion-group color_4 <?php echo $active_invoice; ?> " onclick="set_module('invoice')" >
-                        <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3"> 
+                        <a class="accordion-toggle widgets collapsed " data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse4"> 
                             <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/forms.png"><span>Invoice Management</span></a>
-                        <ul id="collapse3" class="accordion-body collapse  <?=$invoice_links?>">
+                        <ul id="collapse4" class="accordion-body collapse  <?=$invoice_links?>">
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoice_templates'); ?>">Invoice Templates</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/invoice_groups'); ?>">Invoice Groups</a></li>
                             <li><a href="<?php echo site_url($this->config->item('admin_folder').'/tax'); ?>">Tax Rate</a></li>
