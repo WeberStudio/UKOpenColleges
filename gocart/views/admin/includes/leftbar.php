@@ -91,6 +91,7 @@
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
                             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Provider</a></li>
+							<li><a href="<?=base_url()?>order">Order</a></li>
                             <li><a href="<?=base_url()?>tutor">Tutor</a></li>
                             <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
