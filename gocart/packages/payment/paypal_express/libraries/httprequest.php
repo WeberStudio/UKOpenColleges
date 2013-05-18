@@ -47,7 +47,8 @@ class HTTPRequest {
 
 	public function connect( $data = ''){
 		//$protocol = $this->ssl ? "https://" : "http://";
-		$fp = fsockopen($this->rawhost, $this->port);
+       // $fp = fsockopen($this->rawhost, $this->port);
+		$fp = fsockopen("ssl://api-3t.sandbox.paypal.com", $this->port);
 		if (!$fp) return false;
 		fputs($fp, "$this->method $this->path HTTP/1.1\r\n");
 		fputs($fp, "Host: $this->host\r\n");

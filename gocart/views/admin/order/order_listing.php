@@ -1,9 +1,3 @@
-<script type="text/javascript">
-function areyousure()
-{
-	return confirm('<?php echo lang('confirm_delete_customer');?>');
-}
-</script>
 <div id="main" style="min-height:1000px">
   <div class="container">
     <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
@@ -12,11 +6,13 @@ function areyousure()
         <div class="span12">
           <div class="box paint color_18">
             <div class="title">
-             <h4> <i class=" icon-bar-chart"></i><span>Tutor Listing 
+             <h4> <i class=" icon-bar-chart"></i><span>Order Listing 
              
-	            <a class="btn" href="<?php echo site_url('/tutor/form'); ?>"><i class="icon-plus-sign"></i>Add New Tutor <?php //echo lang('add_new_customer');?></a>
-                     </span></h4>
-                
+	            
+				<a class="btn" style="margin-bottom: 2.5px; margin-top: 5px;" ><input type="text" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;"></a>
+				<a class="btn" style="margin-bottom: 2.5px; margin-top: 5px;"><input type="text" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;"></a>
+				<a class="btn" <button class="btn btn-primary" type="submit">Search<i class="gicon-search icon-white"></i></button></a></span></h4>
+                </div>
 <div class="content top"> 
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
@@ -34,14 +30,16 @@ function areyousure()
 			?>
 			
 			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/lastname/');?>/<?php //echo ($field == 'lastname')?$by:'';?>"><?php //echo lang('lastname');?>
-				<?php //if($field == 'lastname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Last Name </a></th>
+				<?php //if($field == 'lastname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Order </a></th>
 			
 			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/firstname/');?>/<?php //echo ($field == 'firstname')?$by:'';?>"><?php //echo lang('firstname');?>
-				<?php //if($field == 'firstname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>First Name</a></th>
+				<?php //if($field == 'firstname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Bill To</a></th>
 			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/email/');?>/<?php //echo ($field == 'email')?$by:'';?>"><?php //echo lang('email');?>
-				<?php //if($field == 'email'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?> Email</a></th>
-			<th> Active<?php //echo lang('active');?></th>
+			<th style=""><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/email/');?>/<?php //echo ($field == 'email')?$by:'';?>"><?php //echo lang('email');?>
+				<?php //if($field == 'email'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?> Ship TO</a></th>
+			<th><a href=""> Ordered On</a></th>
+			<th><a href="">Status</a></th>
+			<th><a href="">Total</a></th>
 			<th></th>
 		</tr>
 	</thead>
@@ -59,29 +57,13 @@ function areyousure()
 <?php //foreach ($customers as $customer):?>
 		<tr>
 			<?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
-			<td>rafique<?php //echo  $customer->lastname; ?></td>
+			<td>12345<?php //echo  $customer->lastname; ?></td>
 			<td class="gc_cell_left">qasim <?php //echo  $customer->firstname; ?></td>
-			<td>qasim@yahoo.com<?php //echo  $customer->email; ?></td>
-			<td> yes
-				<?php //if($customer->active == 1)
-				{
-					//echo 'Yes';
-				}
-				//else
-				{
-					//echo 'No';
-				}
-				?>
-			</td>
-			<td>
-				<div class="btn-group" style="float:right">
-					<a class="btn" href="<?php //echo site_url('/tutor/edit');  ?>"><i class="icon-pencil"></i> Edit <?php //echo lang('edit');?></a>
-					
-					
-					
-					<a class="btn btn-danger" href="<?php //echo site_url($this->config->item('admin_folder').'/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i> <?php //echo lang('delete');?> Delete</a>
-				</div>
-			</td>
+			<td>qasim<?php //echo  $customer->email; ?></td>
+			<td> 05/14/13 05:49 pm</td>
+			<td> <select> <option>option1</option></select></td>
+			<td>300Rs</td>
+			<td><button onclick="window.location='<?php echo site_url('/order/view')?>'"> view</button></td>
 		</tr>
 <?php //endforeach;
 		//if($page_links != ''):?>

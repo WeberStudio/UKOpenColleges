@@ -282,7 +282,7 @@ experience this site.
     </div>
 
 </div> 
-<div><span style="padding 15 15 15 15; float : right; margin-right:15px;"><a href="<?php echo site_url('cart/view_cart');?>" class="add_to_cart_button button product_type_simple" rel="nofollow" data-product_id="868">
+<!--<div><span style="padding 15 15 15 15; float : right; margin-right:15px;"><a href="<?php echo site_url('cart/view_cart');?>" class="add_to_cart_button button product_type_simple" rel="nofollow" data-product_id="868">
 								<?php
 								if ($this->go_cart->total_items()==0)
 								{
@@ -302,7 +302,7 @@ experience this site.
 								?>
 								</a>
 </span></div>
-
+                -->
 <div class="promo"><span class="icon info"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
         <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>

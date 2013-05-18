@@ -72,15 +72,16 @@ class PayPal {
 			$this->currency = $settings['currency'];
 			
 			// Test mode?
-			if (!$settings['SANDBOX']) {
+			/*if (!$settings['SANDBOX']) {
 				$this->host = "api-3t.paypal.com";
 				$this->gate = 'https://www.paypal.com/cgi-bin/webscr?';
-			} else {
+			} else {      */
 				//sandbox
-				$this->host = "api-3t.sandbox.paypal.com";
-				$this->gate = 'https://www.sandbox.paypal.com/cgi-bin/webscr?';
-			}
+				
+			//}
 		}
+        $this->host = "api-3t.sandbox.paypal.com";
+        $this->gate = 'https://www.sandbox.paypal.com/cgi-bin/webscr?';
 	}
 
 	/**
@@ -107,15 +108,16 @@ class PayPal {
 	private function response($data){
 		//$r = new HTTPRequest($this->host, $this->endpoint, 'POST', true);
 		//$result = $r->connect($data);
+        
 		$result = $this->CI->httprequest->connect($data);
 		if ($result<400) return $this->CI->httprequest;
 		return false;
 	}
 
 	private function buildQuery($data = array()){
-		$data['USER'] = $this->API_USERNAME;
-		$data['PWD'] = $this->API_PASSWORD;
-		$data['SIGNATURE'] = $this->API_SIGNATURE;
+		$data['USER'] = 'khalil.junaid-facilitator_api1.gmail.com';//$this->API_USERNAME;
+		$data['PWD'] = '1368600524';//$this->API_PASSWORD;
+		$data['SIGNATURE'] = 'AiPC9BjkCyDFQXbSkoZcgqH3hpacAB9iNTvvBC-Uk58f97NAOuUIQFA3';//$this->API_SIGNATURE;
 		$data['VERSION'] = '56.0';
 		$query = http_build_query($data);
 		return $query;
