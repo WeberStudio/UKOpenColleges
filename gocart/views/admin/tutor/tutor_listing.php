@@ -14,7 +14,7 @@ function areyousure()
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i><span>Tutor Listing 
              
-	            <a class="btn" href="<?php echo site_url('/tutor/form'); ?>"><i class="icon-plus-sign"></i>Add New Tutor <?php //echo lang('add_new_customer');?></a>
+	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/tutor/form'); ?>"><i class="icon-plus-sign"></i>Add New Tutor <?php //echo lang('add_new_customer');?></a>
                      </span></h4>
                 
 <div class="content top"> 

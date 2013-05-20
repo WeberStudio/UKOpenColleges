@@ -7,7 +7,7 @@
     $active_user		= '';
 	$user_links			= '';
 	$invoice_links		= '';
-	$active_sales		= '';
+    $active_sales		= '';
 	$sales_links		= '';
 	$active = $this->session->userdata('active_module');
 	//print_r($active);
@@ -98,7 +98,6 @@
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
                             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Provider</a></li>
-							<li><a href="<?=base_url()?>tutor">Tutor</a></li>
                             <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>

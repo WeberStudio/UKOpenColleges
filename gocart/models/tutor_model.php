@@ -1,5 +1,5 @@
 <?php
-Class Customer_model extends CI_Model
+Class Tutor_model extends CI_Model
 {
 
 	//this is the expiration for a non-remember session
@@ -32,10 +32,9 @@ Class Customer_model extends CI_Model
 		return $this->db->count_all_results('customers');
 	}
 	
-	function get_customer($id)
+	function get_tutor($id)
 	{
-		
-		$result	= $this->db->get_where('customers', array('id'=>$id));
+		$result	= $this->db->get_where('oc_tutors', array('tutor_id'=>$id));
 		return $result->row();
 	}
 	
@@ -95,17 +94,17 @@ Class Customer_model extends CI_Model
 		return $id;
 	}
 	
-	function save($customer)
+	function save($tutor)
 	{
-		if ($customer['id'])
+		if ($tutor['tutor_id'])
 		{
-			$this->db->where('id', $customer['id']);
-			$this->db->update('customers', $customer);
-			return $customer['id'];
+			$this->db->where('tutor_id', $tutor['tutor_id']);
+			$this->db->update('oc_tutors', $tutor);
+			return $tutor['tutor_id'];
 		}
 		else
 		{
-			$this->db->insert('customers', $customer);			
+			$this->db->insert('oc_tutors', $tutor);
 			return $this->db->insert_id();
 		}
 	}
@@ -374,5 +373,4 @@ Class Customer_model extends CI_Model
 			return $this->db->insert_id();
 		}
 	}
-    
 }

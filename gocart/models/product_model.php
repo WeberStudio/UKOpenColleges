@@ -134,7 +134,7 @@ Class Product_model extends CI_Model
 	function get_all_products()
 	{
 		//sort by alphabetically by default
-		echo $this->admin_id;exit;
+		
 		$this->db->order_by('name', 'ASC');
 		$this->db->where('admin_id', $this->admin_id);
 		$this->db->where('delete', '0');

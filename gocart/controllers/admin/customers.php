@@ -170,7 +170,7 @@ class Customers extends Admin_Controller {
 		}
 		else
 		{
-			$save['id']		= $id;
+			$save['id']			= $id;
 			$save['group_id'] 	= $this->input->post('group_id');
 			$save['firstname']	= $this->input->post('firstname');
 			$save['lastname']	= $this->input->post('lastname');
