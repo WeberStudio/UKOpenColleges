@@ -221,6 +221,13 @@ Class Category_model extends CI_Model
 		$this->db->update('categories', $data);
 		return true;
 	}
+    function get_blog_posts()
+    {
+        //return $this->db->get('wp_posts')->result(); 
+        $sql    =  "SELECT * FROM wp_posts where post_status='publish' order by post_date DESC Limit 0,3";
+        $result = $this->db->query($sql);
+        return $result->result();       
+    }
 	
 	
 	
