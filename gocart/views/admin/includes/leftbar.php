@@ -118,7 +118,7 @@
                             <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Contents</span></a>
                         <ul id="collapse3" class="accordion-body collapse <?php echo  $content_links; ?>">
 
-                            <li><a href="<?=base_url()?>pages">Pages</a></li>
+                            <li><a href="<?=base_url().ADMIN_PATH?>pages">Pages</a></li>
 
                         </ul>
                     </li>

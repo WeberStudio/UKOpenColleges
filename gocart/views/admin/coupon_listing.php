@@ -15,25 +15,10 @@
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
-			<?php
-			$by ="";
-			if($by=='ASC')
-			{
-				$by='DESC';
-			}
-			else
-			{
-				$by='ASC';
-			}
-			?>
 			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/lastname/');?>/<?php //echo ($field == 'lastname')?$by:'';?>"><?php //echo lang('lastname');?>
-				<?php //if($field == 'lastname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Code </a></th>
 			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/firstname/');?>/<?php //echo ($field == 'firstname')?$by:'';?>"><?php //echo lang('firstname');?>
-				<?php //if($field == 'firstname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Usage</a></th>
-			
-
+			<th><?php echo lang('code');?></th>
+			<th><?php echo lang('usage');?></th>
 			<th align="right"> Active<?php //echo lang('active');?></th>
 			
 		</tr>
