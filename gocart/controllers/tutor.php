@@ -48,7 +48,7 @@ class tutor extends Admin_Controller {
 		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-        $this->load->view($this->config->item('admin_folder').'/tutor/tutor_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/tutor_listing', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 
     }
@@ -62,7 +62,7 @@ class tutor extends Admin_Controller {
 		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-        $this->load->view($this->config->item('admin_folder').'/tutor/add_tutor', $data);
+        $this->load->view($this->config->item('admin_folder').'/add_tutor', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 }

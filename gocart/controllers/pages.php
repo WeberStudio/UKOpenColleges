@@ -1,5 +1,5 @@
 <?php 
-class order extends Admin_Controller {    
+class pages extends Admin_Controller {    
 
     function __construct()
     {        
@@ -21,7 +21,7 @@ class order extends Admin_Controller {
         /*** Get User Info***/
 		
 		/*** Left Menu Selection ***/
-		$this->session->set_userdata('active_module', 'sales');
+		$this->session->set_userdata('active_module', 'contents');
 		/*** Left Menu Selection ***/
 		
 		$this->auth->check_access($this->admin_access, true);  
@@ -46,18 +46,18 @@ class order extends Admin_Controller {
 		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-        $this->load->view($this->config->item('admin_folder').'/order_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/pages_listing', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 
     }
-	function view()
+	function form()
     {
        	$this->load->helper('form');
         $data = array();
 		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-        $this->load->view($this->config->item('admin_folder').'/order_view', $data);
+        $this->load->view($this->config->item('admin_folder').'/add_pages', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 
     }

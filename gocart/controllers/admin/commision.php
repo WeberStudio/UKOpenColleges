@@ -1,5 +1,5 @@
-<?php 
-class order extends Admin_Controller {    
+<?php
+class commision extends Admin_Controller {    
 
     function __construct()
     {        
@@ -21,7 +21,7 @@ class order extends Admin_Controller {
         /*** Get User Info***/
 		
 		/*** Left Menu Selection ***/
-		$this->session->set_userdata('active_module', 'sales');
+		$this->session->set_userdata('active_module', 'commisions');
 		/*** Left Menu Selection ***/
 		
 		$this->auth->check_access($this->admin_access, true);  
@@ -39,33 +39,31 @@ class order extends Admin_Controller {
 		$this->lang->load('invoice');
 
     }
-	 function index()
+	
+
+    function index()
     {
        	$this->load->helper('form');
         $data = array();
 		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-        $this->load->view($this->config->item('admin_folder').'/order_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/commision_listing', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 
     }
-	function view()
-    {
-       	$this->load->helper('form');
-        $data = array();
+	
+	function form()
+	{
+		$this->load->helper('form');
+		
+		$data = array();
+		
 		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-        $this->load->view($this->config->item('admin_folder').'/order_view', $data);
+        $this->load->view($this->config->item('admin_folder').'/add_commision', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
-
-    }
-
-
-
-
-
-
+	}
 }
 ?>

@@ -4,14 +4,14 @@
      <div id="main_container">
       <div class="row-fluid ">
         <div class="span12">
-          <div class="box paint color_18">
+          <div class="box paint color_14">
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i><span>Order Listing 
              
 	            
-				<a class="btn" style="margin-bottom: 2.5px; margin-top: 5px;" ><input type="text" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;"></a>
-				<a class="btn" style="margin-bottom: 2.5px; margin-top: 5px;"><input type="text" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;"></a>
-				<a class="btn" <button class="btn btn-primary" type="submit">Search<i class="gicon-search icon-white"></i></button></a></span></h4>
+				<a class="btn" style="margin-bottom: 2.5px; margin-top: 5px;" ><input type="text" id="datepicker1" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;"></a>
+				<a class="btn" style="margin-bottom: 2.5px; margin-top: 5px;"><input type="text" id="datepicker2" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;"></a>
+				<a class="btn" ><button class="btn btn-primary" type="submit">Search<i class="gicon-search icon-white"></i></button></a></span></h4>
                 </div>
 <div class="content top"> 
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
@@ -63,7 +63,7 @@
 			<td> 05/14/13 05:49 pm</td>
 			<td> <select> <option>option1</option></select></td>
 			<td>300Rs</td>
-			<td><button onclick="window.location='<?php echo site_url('/order/view')?>'"> view</button></td>
+			<td><button onClick="window.location='<?php echo site_url('/order/view')?>'"> view</button></td>
 		</tr>
 <?php //endforeach;
 		//if($page_links != ''):?>
@@ -96,5 +96,6 @@
       <!-- End .span12 -->
     </div>
     <!-- End .row-fluid -->
+  </div>
   </div>
   </div>

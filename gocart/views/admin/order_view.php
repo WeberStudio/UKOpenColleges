@@ -7,7 +7,7 @@
         <div class="span12">
           <div class="box paint color_18">
             <div class="title">
-             <h4> <i class=" icon-bar-chart"></i><span>Order View </span></h4></div> 
+             <h4> <i class=" icon-bar-chart"></i><span>Order View </span></h4>
 				
 <div class="content top">
 <div class="row-fluid">
@@ -129,3 +129,4 @@
     <!-- End .row-fluid -->
   </div>
   </div>
+  

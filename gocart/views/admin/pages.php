@@ -55,4 +55,4 @@ function areyousure()
 	</tbody>
 	<?php endif;?>
 </table>
-<?php include('footer.php');
+<?php include('footer.php');?>
