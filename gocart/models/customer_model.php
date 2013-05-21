@@ -105,7 +105,7 @@ Class Customer_model extends CI_Model
 		}
 		else
 		{
-			$this->db->insert('customers', $customer);
+			$this->db->insert('customers', $customer);			
 			return $this->db->insert_id();
 		}
 	}
@@ -374,4 +374,5 @@ Class Customer_model extends CI_Model
 			return $this->db->insert_id();
 		}
 	}
+    
 }
