@@ -7,19 +7,32 @@ class Pages extends Admin_Controller
 		parent::__construct();
 		
 		remove_ssl();
-
-		$this->auth->check_access('Admin', true);
+		$user_info = $this->auth->admin_info();
+        $this->admin_id = $user_info['id'];
+        $this->admin_email = $user_info['email'];
+        $this->admin_access = $user_info['access'];
+		$this->first_name = $user_info['firstname'];
+		$this->last_name = $user_info['lastname'];
+		$this->image = $user_info['image'];		
+		$this->load->helper('formatting_helper');
+		//$this->auth->check_access('Admin', true);
 		$this->load->model('Page_model');
 		$this->lang->load('page');
+		$this->session->set_userdata('active_module', 'contents');
 	}
 		
 	function index()
 	{
+	$data['pages']		= '';
+		$this->load->helper('form');
 		$data['page_title']	= lang('pages');
 		$data['pages']		= $this->Page_model->get_pages();
 		
 		
-		$this->load->view($this->config->item('admin_folder').'/pages', $data);
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/pages', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 	
 	/********************************************************************
@@ -32,6 +45,7 @@ class Pages extends Admin_Controller
 		$this->load->library('form_validation');
 		
 		//set the default values
+		$data['pages']		= '';
 		$data['id']			= '';
 		$data['title']		= '';
 		$data['menu_title']	= '';
@@ -82,7 +96,10 @@ class Pages extends Admin_Controller
 		// Validate the form
 		if($this->form_validation->run() == false)
 		{
+			$this->load->view($this->config->item('admin_folder').'/includes/header');
+			$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 			$this->load->view($this->config->item('admin_folder').'/page_form', $data);
+			$this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 		}
 		else
 		{

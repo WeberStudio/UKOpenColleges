@@ -65,28 +65,35 @@
                     <div class="widget-inner">
                         <div class="subtitle"> Some latest news</div>
                         <h3>Recent posts</h3>
-                        <article class="mini date">
-                            <time datetime="2012-12-06T10:29:53+00:00"> <span class="day">06</span> <span class="mounth">Dec.</span> <span class="time">10:29 am</span> </time>
-                            <div class="entry-content"> <a href='' class="title">Meet Joann Davidson: photomodel, athlete, excellent wife and beautiful woman</a>
-                                <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at,... ... </p>
+                         <?
+                        $recent_blog_post = $this->Category_model->get_blog_posts(); 
+                        for($i=0; $i<count($recent_blog_post);$i++)    
+                        {
+                            $date = new DateTime($recent_blog_post[$i]->post_date_gmt);
+                            $newFormate = $date->format('F j, Y, g:i a');
+                             $newFormate =   explode(',',$newFormate);
+                             $monthDay =  explode(' ', $newFormate[0]);
+                            
+                            //DebugBreak();
+                             $length = strlen($recent_blog_post[$i]->post_content);
+                             $post_content = '';
+                             if($length> 600)
+                             {
+                                $post_content = substr($recent_blog_post[$i]->post_content,0,150); 
+                             }
+                             else
+                             {
+                                 $post_content = $recent_blog_post[$i]->post_content;
+                             }
+                            
+                            ?>
+                           <article class="mini date">
+                            <time datetime="<?=$recent_blog_post[$i]->post_date_gmt?>"> <span class="day"><?=$monthDay[1]?></span> <span class="mounth"><?=substr($monthDay[0], 0, 3);?>.</span> <span class="time"><?=$newFormate[2]?></span> </time>
+                            <div class="entry-content"> <a href='<?=$recent_blog_post[$i]->guid?>' class="title" target="_blank"><?=$recent_blog_post[$i]->post_title?></a>
+                                <p> <?=$post_content?> </p>
                             </div>
                         </article>
-                        <article class="mini date">
-                            <time datetime="2012-12-06T10:28:54+00:00"> <span class="day">06</span> <span class="mounth">Dec.</span> <span class="time">10:28 am</span> </time>
-                            <div class="entry-content"> <a href='' class="title">Video post example (not in slider)</a>
-                                <p> http://vimeo.com/35396305
-
-                                    &nbsp;
-
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at,... ... </p>
-                            </div>
-                        </article>
-                        <article class="mini date">
-                            <time datetime="2012-12-05T14:02:09+00:00"> <span class="day">05</span> <span class="mounth">Dec.</span> <span class="time">2:02 pm</span> </time>
-                            <div class="entry-content"> <a href='' class="title">Gallery post example (Not in slider)</a>
-                                <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at,... ... </p>
-                            </div>
-                        </article>
+                       <? } ?>
                     </div>
                 </section>
             </div>

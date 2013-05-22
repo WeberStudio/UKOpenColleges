@@ -9,7 +9,7 @@ class Coupons extends Admin_Controller {
 		parent::__construct();
 		
 		force_ssl();
-		$this->auth->check_access('Admin', true);
+		//$this->auth->check_access('Admin', true);
 		$this->load->model('Coupon_model');
 		$this->load->model('Product_model');
 		$this->lang->load('coupon');
@@ -20,7 +20,10 @@ class Coupons extends Admin_Controller {
 		$data['page_title']	= lang('coupons');
 		$data['coupons']	= $this->Coupon_model->get_coupons();
 		
-		$this->load->view($this->config->item('admin_folder').'/coupons', $data);
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/coupon_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 	
 	
@@ -121,7 +124,10 @@ class Coupons extends Admin_Controller {
 	
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view($this->config->item('admin_folder').'/coupon_form', $data);
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/add_coupon', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 		}
 		else
 		{
