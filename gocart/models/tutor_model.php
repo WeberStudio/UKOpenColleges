@@ -15,7 +15,7 @@ Class Tutor_model extends CI_Model
 
 	********************************************************************/
 	
-	function get_customers($limit=0, $offset=0, $order_by='id', $direction='DESC')
+	function get_tutors($limit=0, $offset=0, $order_by='id', $direction='DESC')
 	{
 		$this->db->order_by($order_by, $direction);
 		if($limit>0)
@@ -23,18 +23,18 @@ Class Tutor_model extends CI_Model
 			$this->db->limit($limit, $offset);
 		}
 
-		$result	= $this->db->get('customers');
+		$result	= $this->db->get('tutors');
 		return $result->result();
 	}
 	
-	function count_customers()
+	function count_tutors()
 	{
-		return $this->db->count_all_results('customers');
+		return $this->db->count_all_results('tutors');
 	}
 	
 	function get_tutor($id)
 	{
-		$result	= $this->db->get_where('oc_tutors', array('tutor_id'=>$id));
+		$result	= $this->db->get_where('tutors', array('tutor_id'=>$id));
 		return $result->row();
 	}
 	
@@ -116,34 +116,11 @@ Class Tutor_model extends CI_Model
 	}
 	
 	function delete($id)
-	{
-		/*
-		deleting a customer will remove all their orders from the system
-		this will alter any report numbers that reflect total sales
-		deleting a customer is not recommended, deactivation is preferred
-		*/
-		
-		//this deletes the customers record
-		$this->db->where('id', $id);
-		$this->db->delete('customers');
-		
-		// Delete Address records
-		$this->db->where('customer_id', $id);
-		$this->db->delete('customers_address_bank');
-		
-		//get all the orders the customer has made and delete the items from them
-		$this->db->select('id');
-		$result	= $this->db->get_where('orders', array('customer_id'=>$id));
-		$result	= $result->result();
-		foreach ($result as $order)
-		{
-			$this->db->where('order_id', $order->id);
-			$this->db->delete('order_items');
-		}
-		
-		//delete the orders after the items have already been deleted
-		$this->db->where('customer_id', $id);
-		$this->db->delete('orders');
+	{		
+		//this deletes the tutor record
+		$this->db->where('tutor_id', $id);
+		$this->db->delete('oc_tutors');
+		return true;
 	}
 	
 	function check_email($str, $id=false)
@@ -344,33 +321,37 @@ Class Tutor_model extends CI_Model
 	}
 	
 	
-	/// Customer groups functions
+	/******************************************/
+	//Add Tutor Degree Details
 	
-	function get_groups()
-	{
-		return $this->db->get('customer_groups')->result();		
+	function save_tutor_attributes($table_name, $data)
+	{		
+					
+			$this->db->insert($table_name, $data);
+			//$this->db->insert_id();	
+			return  true;	
 	}
 	
-	function get_group($id)
-	{
-		return $this->db->where('id', $id)->get('customer_groups')->row();		
+	
+	/******************************************/
+	//Get Tutor Degree Details
+	
+	function get_tutor_attributes($table_name, $id)
+	{		
+		$result	= $this->db->get_where($table_name, array('tutor_id'=>$id));
+		return $result->result();
 	}
 	
-	function delete_group($id)
-	{
-		$this->db->where('id', $id);
-		$this->db->delete('customer_groups');
-	}
 	
-	function save_group($data)
+	/******************************************/
+	//Delete Tutor Degree Details
+	function delete_tutor_attributes($table_name, $tutor_id)
 	{
-		if(!empty($data['id'])) 
-		{
-			$this->db->where('id', $data['id'])->update('customer_groups', $data);
-			return $data['id'];
-		} else {
-			$this->db->insert('customer_groups', $data);
-			return $this->db->insert_id();
-		}
+			//echo $table_name;
+			$this->db->where('tutor_id', $tutor_id);
+			$this->db->delete($table_name);
+			//echo $this->db->last_query();
+			return true ;
 	}
+
 }
