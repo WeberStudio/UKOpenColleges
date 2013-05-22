@@ -1,7 +1,7 @@
 <script type="text/javascript">
 function areyousure()
 {
-	return confirm('<?php echo lang('confirm_delete_customer');?>');
+	return confirm('<?php echo lang('confirm_delete_order');?>');
 }
 </script>
 <div id="main" style="min-height:1000px">
@@ -12,14 +12,14 @@ function areyousure()
         <div class="span12">
           <div class="box paint color_1">
             <div class="title">
-             <h4> <i class=" icon-bar-chart"></i><span>Order Listing 
-             
-	            <a class="btn" style="margin-bottom: 2.5px; margin-top: 5px;" ><input type="text" id="datepicker1" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;"></a>
-				<a class="btn" style="margin-bottom: 2.5px; margin-top: 5px;"><input type="text" id="datepicker2" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;"></a>
-				<a class="btn" ><button class="btn btn-primary" type="submit">Search<i class="gicon-search icon-white"></i></button></a>
-                     </span></h4>
-                
-<div class="content top"> 
+             <h4> <i class=" icon-bar-chart"></i>
+			 <span>Order Listing
+			 <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/tutor/form'); ?>"><i class="gicon-search icon-white"></i><?php echo lang('search')?></a>
+			 <input type="text" id="datepicker1" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;">
+			 <input type="text" id="datepicker2" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;">
+			 </span></h4>
+               
+
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
@@ -69,7 +69,7 @@ function areyousure()
 			<td> 05/14/13 05:49 pm</td>
 			<td> <select> <option>option1</option></select></td>
 			<td>300Rs</td>
-			<td><button onClick="window.location='<?php echo site_url('/order/view')?>'"> view</button></td>
+			<td><button onClick="window.location='<?php echo site_url($this->config->item('admin_folder').'/order/view')?>'"> view</button></td>
 		</tr>
 <?php //endforeach;
 		//if($page_links != ''):?>
