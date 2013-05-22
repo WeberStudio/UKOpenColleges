@@ -31,18 +31,19 @@ class Order extends Admin_Controller {
 			redirect($this->config->item('admin_folder'));
 		}
 		
-		$this->load->model('Invoice_model');
-		$this->load->model('Invoice_Groups_Model');
-        $this->load->model('Invoice_Tax_Model');
-		$this->load->model('Custom_Fields');
-		$this->load->model('Invoice_Custom');			
+		$this->load->model('Order_model');
+		$this->load->model('Search_model');
+		$this->load->model('location_model');		
 		$this->lang->load('order');
 
     }
-	 function index()
+	 function index($sort_by='order_number',$sort_order='desc', $code=0, $page=0, $rows=15)
     {
+	
+		
        	$this->load->helper('form');
         $data = array();
+		$data['orders']	= $this->Order_model->get_orders();	
 		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
@@ -50,10 +51,14 @@ class Order extends Admin_Controller {
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 
     }
-	function view()
+	
+	function view($order_id)
     {
-       	$this->load->helper('form');
-        $data = array();
+       	$this->load->helper(array('form', 'date'));
+		$this->load->library('form_validation');
+		$data['order']		= $this->Order_model->get_order($order_id);
+		
+		//$this->show->pe($data['order']);
 		//echo "<pre>"; print_r($data['invoices']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
