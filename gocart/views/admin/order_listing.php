@@ -69,7 +69,7 @@ function areyousure()
 			<td> 05/14/13 05:49 pm</td>
 			<td> <select> <option>option1</option></select></td>
 			<td>300Rs</td>
-			<td><button onClick="window.location='<?php echo site_url('/order/view')?>'"> view</button></td>
+			<td><button onClick="window.location='<?php echo site_url($this->config->item('admin_folder').'/order/view')?>'"> view</button></td>
 		</tr>
 <?php //endforeach;
 		//if($page_links != ''):?>

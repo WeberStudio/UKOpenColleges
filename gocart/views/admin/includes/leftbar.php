@@ -104,10 +104,10 @@
                         <ul id="collapse2" class="accordion-body collapse <?php echo$sales_links; ?>">
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
                             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
-                            <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Provider</a></li>
-							<li><a href="<?=base_url()?>tutor">Tutor</a></li>
-							<li><a href="<?=base_url()?>order">Order</a></li>
-							<li><a href="<?=base_url()?>coupon">Coupon</a></li>
+                            <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Providers</a></li>
+							<li><a href="<?=base_url().ADMIN_PATH?>tutor">Tutors</a></li>
+							<li><a href="<?=base_url().ADMIN_PATH?>order">Orders</a></li>
+							 <li><a href="<?=base_url()?>coupons">Coupons</a></li>
                             <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>
