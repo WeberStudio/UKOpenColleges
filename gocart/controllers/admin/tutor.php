@@ -21,7 +21,7 @@ class tutor extends Admin_Controller {
         /*** Get User Info***/
 		
 		/*** Left Menu Selection ***/
-		$this->session->set_userdata('active_module', 'sales');
+		$this->session->set_userdata('active_module', 'user');
 		/*** Left Menu Selection ***/
 		
 		$this->auth->check_access($this->admin_access, true);  
@@ -37,15 +37,51 @@ class tutor extends Admin_Controller {
 		$this->load->model('Routes_model');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->lang->load('tutor');
 		
     }
 	
 
-    function index()
+    function index($field='lastname', $by='ASC', $page=0, $row=5)
     {
        	
         $data = array();
-		//echo "<pre>"; print_r($data['invoices']);exit;
+		$data['tutors']	= $this->Tutor_model->get_tutors($row, $page, $field, $by);
+		//echo "<pre>"; print_r($data['tutors']);exit;
+		
+		$this->load->library('pagination');
+
+		$config['base_url']		= base_url().'/'.$this->config->item('admin_folder').'/tutor/index/'.$field.'/'.$by.'/';
+		$config['total_rows']	= $this->Tutor_model->count_tutors();
+		$config['per_page']		= $row;
+		$config['uri_segment']	= 6;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
+		
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		
+		$config['prev_link']		= 'Prev';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+
+		$config['next_link']		= 'Next';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';
+		
+		$this->pagination->initialize($config);
+		$data['page']	= $page;
+		$data['field']	= $field;
+		$data['by']		= $by;
 		
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
@@ -59,7 +95,20 @@ class tutor extends Admin_Controller {
 		
 		//$this->show->pe($_POST);
 		
-		
+		/*** Start Image Upload Config******/		
+		$config['upload_path']		= 'uploads/images/full';
+		$config['allowed_types']	= 'gif|jpg|png';
+		$config['max_size']			= $this->config->item('size_limit');
+		$config['maintain_ratio'] 	= TRUE;
+		$config['width'] 			= 150;
+		$config['height'] 			= 150;
+		//$config['file_name'] 		= "thumb_".$this->admin_id;
+		//$config['overwrite']		= true;
+		$config['remove_spaces']	= true;
+		$config['encrypt_name']		= true;		
+		$this->load->library('upload', $config);		
+		/*** End Image Upload Config******/
+				
 		//default values are empty if the customer is new
 		$data['id']					= '';
 		$data['group_id']			= '';
@@ -73,21 +122,50 @@ class tutor extends Admin_Controller {
 		$data['sel_categories']		= '';		
 		$data['sel_courses']		= '';
 		$data['avatar']				= '';		
-		$data['active']				= false;		
+		$data['active']				= false;
+		$data['categories']			= array();
+		$data['courses']			= array();	
 		$data['all_categories']		= $this->Category_model->get_categories_dropdown();
-		$data['courses']			= $this->Product_model->get_all_products_array();
+		$data['all_courses']		= $this->Product_model->get_all_products_array();
+			
+		$data['all_degree']			= array();
+		$data['all_desig']			= array();
+		$data['all_achiev']			= array();
+		
+		$data['degree_title']		= array();
+		$data['degree_start']		= array();
+		$data['degree_end']			= array();
+		$data['degree_description']	= array();
+		
+		$data['desig_title']		= array();
+		$data['desig_start']		= array();
+		$data['desig_end']			= array();
+		$data['desig_description']	= array();
+		
+		$data['achiev_title']		= array();
+		$data['achiev_start']		= array();		
+		$data['achiev_description']	= array();
+		
+		$data['extra_info']			= '';		
+		
 		//$this->show->pe($data['courses']);
 		
 		if ($id)
 		{	
 			
 			$tutor					= $this->Tutor_model->get_tutor($id);
+			
 			//if the tutor does not exist, redirect them to the customer list with an error
 			if (!$tutor)
 			{
 				$this->session->set_flashdata('error', lang('error_not_found'));
 				redirect($this->config->item('admin_folder').'/tutor');
 			}
+			
+			$data['all_degree']			= $this->Tutor_model->get_tutor_attributes('oc_tutor_qualification', $id);
+			$data['all_desig']			= $this->Tutor_model->get_tutor_attributes('oc_tutor_designation', $id);
+			$data['all_achiev']			= $this->Tutor_model->get_tutor_attributes('oc_tutor_achievement', $id);
+			
 			
 			//set values to db values
 			$data['id']					= $tutor->tutor_id;			
@@ -98,9 +176,17 @@ class tutor extends Admin_Controller {
 			$data['description']		= $tutor->short_description;
 			$data['comments']			= $tutor->comments;
 			$data['active']				= $tutor->status;
-			$data['email_subscribe']	= $tutor->email_subscribe;			
+			$data['email_subscribe']	= $tutor->email_subscribe;	
+			$data['avatar']				= $tutor->avatar;	
+			$data['extra_info']			= $tutor->extra_info;
 			
+			if(!$this->input->post('submit'))
+			{
+				$data['categories']		= $tutor->categories;
+				$data['courses']		= $tutor->courses;				
+			}
 		}
+		
 		
 		
 		$this->form_validation->set_rules('firstname', 'lang:firstname', 'trim|required|max_length[32]');
@@ -130,6 +216,20 @@ class tutor extends Admin_Controller {
 		}
 		else
 		{
+			$uploaded	= $this->upload->do_upload('avatar');
+			if($uploaded)
+			{
+				$image					= $this->upload->data();
+				
+				$save['avatar']			= $image['file_name'];
+			}
+			else			
+			{
+				
+				 $data['error'] = $this->upload->display_errors();
+					
+			}
+			
 			$save['tutor_id']			= $id;			
 			$save['firstname']			= $this->input->post('firstname');
 			$save['lastname']			= $this->input->post('lastname');
@@ -144,14 +244,131 @@ class tutor extends Admin_Controller {
 			{
 				$save['password']	= $this->input->post('password');
 			}
-			//$this->show->pe($save);
-			$this->Tutor_model->save($save);
+			
+			if($this->input->post('courses'))
+			{
+				$save['courses'] = json_encode($this->input->post('courses'));
+			}
+			else
+			{
+				$save['courses'] = '';
+			}
+			
+			//save categories
+			
+			if($this->input->post('categories'))
+			{
+				$save['categories'] = json_encode($this->input->post('categories'));
+			}
+			else
+			{
+				$save['categories'] = '';
+			}
+			
+			$save['extra_info'] 	= $this->input->post('extra_info');
+			
+			$tutor_id = $this->Tutor_model->save($save);
+			
+			
+			// Add Tutor Qualification (Degree) Information
+			
+			$count_degree 				= count($this->input->post('degree_title'));
+			if(!empty($count_degree) && $count_degree>0)
+			{
+				$this->Tutor_model->delete_tutor_attributes('oc_tutor_qualification', $tutor_id);
+				$data['degree_title']		= $this->input->post('degree_title');
+				$data['degree_start']		= $this->input->post('degree_start');
+				$data['degree_end']			= $this->input->post('degree_end');
+				$data['degree_description']	= $this->input->post('degree_description');
+				for($i = 0; $i< $count_degree; $i++)
+				{
+						
+					$degree['tutor_id']				= $tutor_id;		
+					$degree['degree_title'] 		= (empty($data['degree_title'][$i]) ? '' : $data['degree_title'][$i]);
+					$degree['degree_start']			= (empty($data['degree_start'][$i]) ? '' : $data['degree_start'][$i]);
+					$degree['degree_end']			= (empty($data['degree_end'][$i]) ? '' : $data['degree_end'][$i]);
+					$degree['degree_description']	= (empty($data['degree_description'][$i]) ? '' : $data['degree_description'][$i]);				
+					$this->Tutor_model->save_tutor_attributes('oc_tutor_qualification', $degree);
+				}
+			}
+			// End Tutor Qualification (Degree) Information
+			
+			
+			// Add Tutor Experience Information	
+			$count_desig 				= count($this->input->post('desig_title'));
+			if(!empty($count_desig) && $count_desig>0)
+			{					
+				$this->Tutor_model->delete_tutor_attributes('oc_tutor_designation', $tutor_id);
+				$data['desig_title']		= $this->input->post('desig_title');
+				$data['desig_start']		= $this->input->post('desig_start');
+				$data['desig_end']			= $this->input->post('desig_end');
+				$data['desig_description']	= $this->input->post('desig_description');
+				for($i = 0; $i< $count_desig; $i++)
+				{						
+					$exp['tutor_id']				= $tutor_id;	
+					$exp['desig_title'] 			= (empty($data['desig_title'][$i]) ? '' : $data['desig_title'][$i]);
+					$exp['desig_start']				= (empty($data['desig_start'][$i]) ? '' : $data['desig_start'][$i]);
+					$exp['desig_end']				= (empty($data['desig_end'][$i]) ? '' : $data['desig_end'][$i]);
+					$exp['desig_description']		= (empty($data['desig_description'][$i]) ? '' : $data['desig_description'][$i]);				
+					$this->Tutor_model->save_tutor_attributes('oc_tutor_designation', $exp);
+				}
+			}
+			// End Tutor Experience Information
+			
+			
+			// Add Tutor Achievement  Information			
+			$count_achiev 				= count($this->input->post('achiev_title'));
+			if(!empty($count_achiev) && $count_achiev>0)
+			{
+				$this->Tutor_model->delete_tutor_attributes('oc_tutor_achievement', $tutor_id);
+				$data['achiev_title']		= $this->input->post('achiev_title');
+				$data['achiev_start']		= $this->input->post('achiev_start');			
+				$data['achiev_description']	= $this->input->post('achiev_description');
+				for($i = 0; $i< $count_achiev; $i++)
+				{
+					$ach['tutor_id']				= $tutor_id;	
+					$ach['achiev_title'] 			= (empty($data['achiev_title'][$i]) ? '' : $data['achiev_title'][$i]);
+					$ach['achiev_start']			= (empty($data['achiev_start'][$i]) ? '' : $data['achiev_start'][$i]);				
+					$ach['achiev_description']		= (empty($data['achiev_description'][$i]) ? '' : $data['achiev_description'][$i]);				
+					$this->Tutor_model->save_tutor_attributes('oc_tutor_achievement', $ach);
+				}
+			}
+			// End Tutor Achievement  Information
+			
 			
 			$this->session->set_flashdata('message', lang('message_saved_customer'));
 			
 			//go back to the customer list
 			redirect($this->config->item('admin_folder').'/tutor');
 		}	
+	}
+	
+	function delete($id = false)
+	{
+		if ($id)
+		{	
+			$customer	= $this->Tutor_model->get_tutor($id);
+			//if the tutor does not exist, redirect them to the customer list with an error
+			if (!$customer)
+			{
+				$this->session->set_flashdata('error', lang('error_not_found'));
+				redirect($this->config->item('admin_folder').'/tutor_listing');
+			}
+			else
+			{
+				//if the customer is legit, delete them
+				$delete	= $this->Tutor_model->delete($id);
+				
+				$this->session->set_flashdata('message', lang('message_customer_deleted'));
+				redirect($this->config->item('admin_folder').'/tutor_listing');
+			}
+		}
+		else
+		{
+			//if they do not provide an id send them to the customer list page with an error
+			$this->session->set_flashdata('error', lang('error_not_found'));
+			redirect($this->config->item('admin_folder').'/tutor_listing');
+		}
 	}
 }
 ?>
