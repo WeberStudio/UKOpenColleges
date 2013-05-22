@@ -12,6 +12,10 @@ class Orders extends Admin_Controller {
 		$this->load->model('location_model');
 		$this->load->helper(array('formatting'));
 		$this->lang->load('order');
+		
+		/*** Left Menu Selection ***/
+		$this->session->set_userdata('active_module', 'sales');
+		/*** Left Menu Selection ***/
 	}
 	
 	function index($sort_by='order_number',$sort_order='desc', $code=0, $page=0, $rows=15)

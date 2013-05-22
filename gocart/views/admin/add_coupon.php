@@ -22,25 +22,11 @@ $(document).ready(function(){
 </script>
 <?php define('ADMIN_FOLDER', $this->config->item('admin_folder')); 
 ?>
-<?php 
-            $company 	= "";
-            $firstname	= "";
-            $lastname	= "";
-            $email="";
-            $phone="";
-            $email_subscribe="";
-            $active="";
-            $group_id="";
-            $group_list="";
-            $zones_menu="";
-            $zone_id="";
-            $zones_menu="";
-            $zone_id="";
-            $description="";
-         ?>
+
 <div id="main" style="min-height:1000px">
 <div class="container">
 <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
+<?php echo form_open($this->config->item('admin_folder').'/coupons/form/'.$id); ?>
 <div id="main_container">
   <div class="row-fluid">
     <div class="span12">
@@ -53,78 +39,78 @@ $(document).ready(function(){
 		
 		
 		<div class="tab-pane fade in active" id="form">
-          <?php //echo form_open($this->config->item('admin_folder').'/customers/form/'.$id, array('class' => '', 'id' => 'validateForm')); ?>
-
- 
-          <div class="form-row control-group row-fluid">
+         <div class="form-row control-group row-fluid">
             <label class="control-label span1" for="hint-field">
-              <?php //echo lang('firstname');?>
-              Coupon Code<span class="help-block"></span></label>
+              <?php echo lang('coupon_code');?>
+              <span class="help-block"></span></label>
             <div class="controls span7">
               <?php
-			$data	= array('name'=>'firstname', 'value'=>set_value('firstname', $firstname), 'class'=>'span12');
+			$data	= array('name'=>'code', 'value'=>set_value('code', $code), 'class'=>'span12');
 			echo form_input($data); ?>
             </div>
           </div>
           <div class="form-row control-group row-fluid">
             <label class="control-label span1" for="hint-field">
-              <?php //echo lang('lastname');?>
-              Max Uses<span class="help-block"></span></label>
+              <?php echo lang('max_uses');?>
+              <span class="help-block"></span></label>
             <div class="controls span7">
               <?php
-			$data	= array('name'=>'lastname', 'value'=>set_value('lastname', $lastname), 'class'=>'span12');
+			$data	= array('name'=>'max_uses', 'value'=>set_value('max_uses', $max_uses), 'class'=>'span12');
 			echo form_input($data); ?>
             </div>
           </div>
           <div class="form-row control-group row-fluid">
             <label class="control-label span1" for="hint-field">
-              <?php //echo lang('phone');?>
-              Limit Per Order<span class="help-block"></span></label>
+              <?php echo lang('limit_per_order')?>
+              <span class="help-block"></span></label>
             <div class="controls span7">
               <?php
-			$data	= array('name'=>'phone', 'value'=>set_value('phone', $phone), 'class'=>'span12');
+			$data	= array('name'=>'max_product_instances', 'value'=>set_value('max_product_instances', $max_product_instances), 'class'=>'span12');
 			echo form_input($data); ?>
             </div>
           </div>
-          <div class="form-row control-group row-fluid">
-            <label class="control-label span1" for="hint-field"><?php echo lang('email');?> E-Mail<span class="help-block"></span></label>
+           <div class="form-row control-group row-fluid">
+            <label class="control-label span1" for="hint-field"> <?php echo lang('enable_on');?><span class="help-block"></span></label>
             <div class="controls span7">
-              <?php
-			$data	= array('name'=>'email', 'value'=>set_value('email', $email), 'class'=>'span12');
-			echo form_input($data); ?>
-            </div>
-          </div>
-		  <div class="form-row control-group row-fluid">
-            <label class="control-label span1" for="hint-field"> Enable On<span class="help-block"></span></label>
-            <div class="controls span7">
-              <input type="text" name="" value="" id="datepicker1" class="span12">
+             <?php
+			$data	= array('id'=>'datepicker1', 'value'=>set_value('start_date', reverse_format($start_date)), 'class'=>'span12');
+			echo form_input($data);
+			?>
             </div>
           </div>
           <div class="form-row control-group row-fluid">
-            <label class="control-label span1" for="hint-field"> Disable On<span class="help-block"></span></label>
+            <label class="control-label span1" for="hint-field"> <?php echo lang('disable_on');?><span class="help-block"></span></label>
             <div class="controls span7">
-              <input type="text" name="" value="" id="datepicker2" class="span12">
+			<?php
+              $data	= array('id'=>'datepicker2', 'value'=>set_value('end_date', reverse_format($end_date)), 'class'=>'span12');
+			echo form_input($data);
+			?>
             </div>
           </div>
            <div class="control-group row-fluid">
-            <label class="control-label span1"> Coupon Type<?php echo lang('group');?><span class="help-block"></span></label>
+            <label class="control-label span1"><?php echo lang('coupon_type');?><span class="help-block"></span></label>
             <div class="controls span7">
-              <select class="span12">
-                <option> Price Discount</option>
-              </select>
+			<?php
+				$option = array('price'=>lang('price_discount'),'shiping'=>lang('free_shipping')); 
+				echo form_dropdown('reduction_target', $option, $reduction_target,'id="gc_coupon_type" class="span12"');
+			?>
+              
             </div>
           </div>
            <div class="control-group row-fluid">
-            <label class="control-label span1"> Coupon Type<?php echo lang('group');?><span class="help-block"></span></label>
+            <label class="control-label span1"><?php echo lang('reduction_amount')?><span class="help-block"></span></label>
             <div class="controls span3">
-              <select class="span12">
-                <option>Price Discount</option>
-              </select>
+             <?php	$options = array(
+	                  'percent'  => '%',
+					  'fixed' => $this->config->item('currency_symbol')
+	               	);
+					echo ' '.form_dropdown('reduction_type', $options,  $reduction_type, 'class="span12"');
+				?>
 			  
             </div>
 			<div class="controls span3">
 			<?php
-			$data	= array('name'=>'phone', 'value'=>set_value('phone', $phone), 'class'=>'span12');
+			$data	= array('id'=>'reduction_amount', 'name'=>'reduction_amount', 'value'=>set_value('reduction_amount', $reduction_amount), 'class'=>'span12');
 			echo form_input($data); ?>
 			</div>
           </div>
@@ -133,17 +119,16 @@ $(document).ready(function(){
           <div class="box paint color_10">
             
             <div class="content">
-				<select id="gc_coupon_appliesto_fields">
-					<option value="1"> apply coupon to whole coupon</option>
-					<option value="0">apply coupon to selcted items</option>
-				</select>
+				<?php
+	 		$options = array(
+              '1' => lang('apply_to_whole_order'),
+			  '0' => lang('apply_to_select_items')
+           	);
+			echo form_dropdown('whole_order_coupon', $options,  set_value(0, $whole_order_coupon), 'id="gc_coupon_appliesto_fields"');
+		?>
 				<div id="gc_coupon_products">
 				 <table>
-				 	<tr>
-						<td>product 1</td>
-						<td><input type="checkbox" name="product" value="1" /></td>
-						
-					</tr> 
+				 	<?php echo $product_rows; ?> 
 				 </table>
 				</div>
 			</div>

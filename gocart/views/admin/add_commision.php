@@ -24,9 +24,9 @@
             <div class="controls span7">
               <select class="span12">
                 <option> Universal Level</option>
-				<option> Coupon Product Level</option>
-				<option> Coupon Catalog Level</option>
-				<option> Coupon Level</option>
+				<option> Courses Product Level</option>
+				<option> Courses Catalog Level</option>
+				<option> Courses Level</option>
               </select>
             </div>
           </div>

@@ -9,10 +9,25 @@ class Coupons extends Admin_Controller {
 		parent::__construct();
 		
 		force_ssl();
-		$this->auth->check_access('Admin', true);
+		 /*** Get User Info***/
+       //$admin_info = $this->admin_session->userdata('admin'); 
+		
+        $user_info = $this->auth->admin_info();
+        $this->admin_id = $user_info['id'];
+        $this->admin_email = $user_info['email'];
+        $this->admin_access = $user_info['access'];
+		$this->first_name = $user_info['firstname'];
+		$this->last_name = $user_info['lastname'];
+		$this->image = $user_info['image'];		
+		$this->load->helper('formatting_helper');		
+        /*** Get User Info***/
+		//$this->auth->check_access('Admin', true);
 		$this->load->model('Coupon_model');
 		$this->load->model('Product_model');
 		$this->lang->load('coupon');
+		/*** Left Menu Selection ***/
+		$this->session->set_userdata('active_module', 'sales');
+		/*** Left Menu Selection ***/
 	}
 	
 	function index()
@@ -20,7 +35,10 @@ class Coupons extends Admin_Controller {
 		$data['page_title']	= lang('coupons');
 		$data['coupons']	= $this->Coupon_model->get_coupons();
 		
-		$this->load->view($this->config->item('admin_folder').'/coupons', $data);
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/coupon_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 	
 	
@@ -121,7 +139,10 @@ class Coupons extends Admin_Controller {
 	
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view($this->config->item('admin_folder').'/coupon_form', $data);
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/add_coupon', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 		}
 		else
 		{

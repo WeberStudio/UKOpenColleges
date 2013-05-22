@@ -8,54 +8,39 @@
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i><span>Coupon Listing 
              
-	            <a class="btn" href="<?php echo site_url('/coupon/form'); ?>"><i class="icon-plus-sign"></i>Add New Coupon <?php //echo lang('add_new_customer');?></a>
+	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/coupons/form'); ?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_coupon');?></a>
                      </span></h4>
                 
 <div class="content top"> 
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
-			<?php
-			$by ="";
-			if($by=='ASC')
-			{
-				$by='DESC';
-			}
-			else
-			{
-				$by='ASC';
-			}
-			?>
 			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/lastname/');?>/<?php //echo ($field == 'lastname')?$by:'';?>"><?php //echo lang('lastname');?>
-				<?php //if($field == 'lastname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Code </a></th>
 			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/firstname/');?>/<?php //echo ($field == 'firstname')?$by:'';?>"><?php //echo lang('firstname');?>
-				<?php //if($field == 'firstname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Usage</a></th>
-			
-
-			<th align="right"> Active<?php //echo lang('active');?></th>
+			<th><?php echo lang('code');?></th>
+			<th><?php echo lang('usage');?></th>
+			<th align="right"><?php echo lang('active');?></th>
 			
 		</tr>
 	</thead>
 	
 	<tbody>
-
+<?php foreach ($coupons as $coupon):?>
 		<tr>
 			<?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
-			<td>code place<?php //echo  $customer->lastname; ?></td>
-			<td class="gc_cell_left">usage place <?php //echo  $customer->firstname; ?></td>
+			<td><?php echo  $coupon->code; ?></td>
+			<td class="gc_cell_left"><?php echo  $coupon->num_uses ." / ". $coupon->max_uses; ?></td>
 			<td>
 				<div class="btn-group" align="right">
-					<a class="btn" href="<?php //echo site_url('/tutor/edit');  ?>"><i class="icon-pencil"></i> Edit <?php //echo lang('edit');?></a>
+					<a class="btn" href="<?php //echo site_url('/tutor/edit');  ?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>
 					
 					
 					
-					<a class="btn btn-danger" href="<?php //echo site_url($this->config->item('admin_folder').'/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i> <?php //echo lang('delete');?> Delete</a>
+					<a class="btn btn-danger" href="<?php //echo site_url($this->config->item('admin_folder').'/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i>   <?php echo lang('delete');?></a>
 				</div>
 			</td>
 		</tr>
-<?php //endforeach;
+<?php endforeach;
 		//if($page_links != ''):?>
 		<tr><td colspan="5" style="text-align:center"><?php //echo $page_links;?></td></tr>
 		<?php //endif;?>

@@ -1,5 +1,5 @@
 <?php 
-class order extends Admin_Controller {    
+class Order extends Admin_Controller {    
 
     function __construct()
     {        
@@ -36,7 +36,7 @@ class order extends Admin_Controller {
         $this->load->model('Invoice_Tax_Model');
 		$this->load->model('Custom_Fields');
 		$this->load->model('Invoice_Custom');			
-		$this->lang->load('invoice');
+		$this->lang->load('order');
 
     }
 	 function index()
