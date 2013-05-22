@@ -21,16 +21,17 @@
 			
 		</tr>
 	</thead>
-	<?php  ?>
-	<?php //echo (count($pages) < 1)?'<tr><td style="text-align:center;" colspan="2">'.lang('no_pages_or_links').'</td></tr>':''?>
-	<?php //if($pages):?>
+	
+	<?php echo (count($pages) < 1)?'<tr><td style="text-align:center;" colspan="2">'.lang('no_pages_or_links').'</td></tr>':''?>
+	<?php if($pages):?>
 	<tbody>
 			
 			<?php
 			$GLOBALS['admin_folder'] = $this->config->item('admin_folder');
 			
 			function page_loop($pages, $dash = '')
-				{
+		{
+				
 					foreach($pages as $page)
 				{?>
 			<tr>
@@ -48,14 +49,16 @@
 		</tr>
 
 		<?php
+		
 			page_loop($page->children, $dash.'-');
 			}
 		}
 		page_loop($pages);
 		?>
 		
+		
 	</tbody>
-	<?php //endif;?>
+	<?php endif;?>
 </table>
 <div class="row-fluid control-group">
                 <div class="pull-left span6 " action="#"> </div>

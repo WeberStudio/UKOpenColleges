@@ -63,12 +63,28 @@
 				</div>
 			</div>
 			<div class="form-row control-group row-fluid">
-				<label class="control-label span1" for="hint-field"> Parent <span class="help-block"></span></label>
+				<label class="control-label span1" for="hint-field"> <?php echo lang('parent_id');?> <span class="help-block"></span></label>
 				<div class="controls span7">
-				  <select class="span12" name="parent_id">
-					<option value="0"> Top Level</option>
-					<option value="1"> some text</option>
-					</select>
+				<?php
+				$options	= array();
+				$options[0]	= lang('top_level');
+				function page_loop($pages, $dash = '', $id=0)
+				{
+					$options	= array();
+					foreach($pages as $page)
+					{
+						//this is to stop the whole tree of a particular link from showing up while editing it
+						if($id != $page->id)
+						{
+							$options[$page->id]	= $dash.' '.$page->title;
+							$options			= $options + page_loop($page->children, $dash.'-', $id);
+						}
+					}
+					return $options;
+				}
+				$options	= $options + page_loop($pages, '', $id);
+				echo form_dropdown('parent_id', $options,  set_value('parent_id', $parent_id));
+				?>
 				</div>
 			</div>
 			<div class="form-row control-group row-fluid">
