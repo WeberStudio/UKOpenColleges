@@ -8463,3 +8463,99 @@ CREATE TABLE `wp_users` (
 -- 
 
 INSERT INTO `wp_users` VALUES (1, 'admin', '$P$BuedDEVdbZCwUU0.gxZGe1S8JzQqgX.', 'admin', 'shahid1376@gmail.com', '', '2013-05-20 05:48:47', '', 0, 'admin');
+
+
+CREATE TABLE `oc_tutors` (
+  `tutor_id` int(8) unsigned NOT NULL auto_increment,
+  `categories` varchar(50) default NULL,
+  `courses` varchar(50) default NULL,
+  `email` varchar(150) NOT NULL,
+  `password` char(32) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `comments` text,
+  `avatar` varchar(255) default NULL,
+  `phone` int(50) default NULL,
+  `email_subscribe` varchar(11) default NULL,
+  `status` varchar(255) default '',
+  `short_description` text,
+  `extra_info` varchar(50) default NULL,
+  PRIMARY KEY  (`tutor_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+-- 
+-- Dumping data for table `oc_tutors`
+-- 
+
+INSERT INTO `oc_tutors` VALUES (1, NULL, NULL, 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', 'zdadasdadad', NULL, 2147483647, '1', '1', '<p>adadasd</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (2, NULL, NULL, 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'Jackob', 'Fornandas', 'adasdasdasdasd', NULL, 2147483647, '1', '1', '<p>adasdasdad</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (3, NULL, NULL, 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'asdasdasd', NULL, 2147483647, '1', '1', '<p>adasdasd</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (4, NULL, NULL, 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', '', '4f1f99ed0b60f5af9659c613902afe34.jpg', 2147483647, '0', '0', '', NULL);
+INSERT INTO `oc_tutors` VALUES (5, '', '["11","13"]', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'adasd', '9ed56e051a5558ddfeaeadb14b938e24.jpg', 2147483647, '1', '1', '<p>adasd</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (7, '["9","5"]', '["6","3"]', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', 'asdasd', NULL, 2147483647, '1', '1', '<p>asdsda</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (8, '["9"]', '["13"]', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'Hollo', 'Romba', 'aasasadasd', NULL, 2147483647, '0', '0', '<p>asdasdadas</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (9, '["9"]', '["13"]', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'Hollo', 'Romba', 'aasasadasd', NULL, 2147483647, '1', '1', '<p>asdasdadas</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (10, '["1","7"]', '["13"]', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'sdfsdf', NULL, 2147483647, '0', '0', '<p>sdfdsfsd</p>\r\n', '');
+INSERT INTO `oc_tutors` VALUES (11, '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'sdfsdf', NULL, 2147483647, '1', '1', '<p>asdasdas</p>', 'asdasdasdasdasdsdasd56565');
+INSERT INTO `oc_tutors` VALUES (12, '["7","5"]', '["2"]', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'asdad', 'asdasdasdasd', NULL, 2147483647, '1', '1', '<p>rahlllll</p>\r\n', 'sdadasdasdad');
+
+
+CREATE TABLE `oc_tutor_achievement` (
+  `achiev_id` int(11) NOT NULL auto_increment,
+  `tutor_id` int(50) NOT NULL,
+  `achiev_title` varchar(50) NOT NULL,
+  `achiev_start` varchar(50) NOT NULL,
+  `achiev_end` date NOT NULL,
+  `achiev_description` varchar(255) NOT NULL,
+  PRIMARY KEY  (`achiev_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=126 ;
+
+-- 
+-- Dumping data for table `oc_tutor_achievement`
+-- 
+
+INSERT INTO `oc_tutor_achievement` VALUES (12, 10, '', '', '0000-00-00', '');
+INSERT INTO `oc_tutor_achievement` VALUES (125, 12, 'dsds2', '5685', '0000-00-00', 'asdasdada');
+
+
+CREATE TABLE `oc_tutor_designation` (
+  `desig_id` int(50) NOT NULL auto_increment,
+  `tutor_id` int(50) NOT NULL,
+  `desig_title` varchar(50) NOT NULL,
+  `desig_start` varchar(50) NOT NULL,
+  `desig_end` varchar(50) NOT NULL,
+  `desig_description` varchar(255) NOT NULL,
+  PRIMARY KEY  (`desig_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
+
+-- 
+-- Dumping data for table `oc_tutor_designation`
+-- 
+
+INSERT INTO `oc_tutor_designation` VALUES (3, 11, 'asdasd', '05-20-2013', '05-20-2013', 'asdas');
+INSERT INTO `oc_tutor_designation` VALUES (50, 12, 'ddddddddddddddddddddd', 'asdasd', '05-20-2013', 'asdasdasdasdasdasda');
+INSERT INTO `oc_tutor_designation` VALUES (19, 10, 'asdasd', '0000-00-00', '0000-00-00', 'sdfsdfsf');
+
+
+
+CREATE TABLE `oc_tutor_qualification` (
+  `degree_id` int(11) NOT NULL auto_increment,
+  `tutor_id` int(50) NOT NULL,
+  `degree_title` varchar(50) NOT NULL,
+  `degree_start` date NOT NULL,
+  `degree_end` date NOT NULL,
+  `degree_description` varchar(255) NOT NULL,
+  PRIMARY KEY  (`degree_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
+
+-- 
+-- Dumping data for table `oc_tutor_qualification`
+-- 
+
+INSERT INTO `oc_tutor_qualification` VALUES (1, 0, '', '0000-00-00', '0000-00-00', '');
+INSERT INTO `oc_tutor_qualification` VALUES (2, 0, '', '0000-00-00', '0000-00-00', '');
+INSERT INTO `oc_tutor_qualification` VALUES (3, 9, 'asdasd', '0000-00-00', '0000-00-00', 'asdasdasd');
+INSERT INTO `oc_tutor_qualification` VALUES (4, 9, 'asdasd', '0000-00-00', '0000-00-00', 'asdasdasdad');
+INSERT INTO `oc_tutor_qualification` VALUES (7, 11, 'asdasd', '0000-00-00', '0000-00-00', 'asdas');
+INSERT INTO `oc_tutor_qualification` VALUES (54, 12, 'asdasd', '0000-00-00', '0000-00-00', 'fsfsfsfd');
+INSERT INTO `oc_tutor_qualification` VALUES (24, 10, 'asdasd', '0000-00-00', '0000-00-00', 'sdfsdfsf');
