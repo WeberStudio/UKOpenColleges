@@ -79,6 +79,7 @@
 <script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/character-limit.js"></script>
 <script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/jquery.maskedinput-1.3.js"></script>
 <script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/chosen/chosen/chosen.jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/bootstrap-datepicker.js"></script>
 <script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/bootstrap-colorpicker.js"></script>
 <!-- Custom made scripts for this template -->
 <script src="<?=base_url().ASSETS_PATH?>js/scripts.js" type="text/javascript"></script>
