@@ -100,14 +100,15 @@
                 </li>
                 <? if(isset($this->admin_access) && $this->admin_access=='Superadmin'){ ?>
                     <li class="accordion-group color_3 <?php echo $active_sales; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2" onclick="set_module('sales')">
-                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>sales</span></a>
+                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Sales</span></a>
                         <ul id="collapse2" class="accordion-body collapse <?php echo$sales_links; ?>">
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
                             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Providers</a></li>
 							<li><a href="<?=base_url().ADMIN_PATH?>tutor">Tutors</a></li>
 							<li><a href="<?=base_url().ADMIN_PATH?>order">Orders</a></li>
-							 <li><a href="<?=base_url()?>coupons">Coupons</a></li>
+							 <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>
+							 <li><a href="<?=base_url().ADMIN_PATH?>forums">Forums</a></li>
                             <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>
@@ -137,7 +138,7 @@
                         </ul>
                     </li>
 					<li class="accordion-group color_14 <?php echo $active_commisions; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse5" onclick="set_module('commisions')">
-                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>commision</span></a>
+                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Commision</span></a>
                         <ul id="collapse5" class="accordion-body collapse <?php echo  $commisioin_links; ?>">
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
                             <li><a href="<?=base_url().ADMIN_PATH?>commision">commision</a></li>
