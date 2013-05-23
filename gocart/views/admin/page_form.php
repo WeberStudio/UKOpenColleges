@@ -8,7 +8,7 @@
 <div id="main_container">
   <div class="row-fluid">
     <div class="span12">
-      <div class="box paint color_18">
+      <div class="box paint color_13">
         <div class="title">
           <h4> <i class=" icon-bar-chart"></i>Pages Form </h4>
         </div>

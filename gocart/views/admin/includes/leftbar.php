@@ -115,7 +115,7 @@
                             <li><a href="<?=base_url().ADMIN_PATH?>giftcards">Giftcards</a></li>-->
                         </ul>
                     </li>
-					<li class="accordion-group color_14 <?php echo $active_contents; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3" onclick="set_module('contents')">
+					<li class="accordion-group color_2 <?php echo $active_contents; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3" onclick="set_module('contents')">
                             <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Contents</span></a>
                         <ul id="collapse3" class="accordion-body collapse <?php echo  $content_links; ?>">
 

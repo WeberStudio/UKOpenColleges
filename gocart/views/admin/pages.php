@@ -4,19 +4,20 @@
      <div id="main_container">
       <div class="row-fluid ">
         <div class="span12">
-          <div class="box paint color_18">
+          <div class="box paint color_2">
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i><span>Pages Listing 
              
 	            <a class="btn" href="<?php echo site_url('pages/form'); ?>"><i class="icon-plus-sign"></i>Add New Pages <?php //echo lang('add_new_customer');?></a>
                      </span></h4>
                 
-<div class="content top"> 
+<div class="content top">
+<div class="content"> 
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
 			
-			<th><a href=""><?php echo lang('title');?> </a></th>
+			<th><?php echo lang('title');?> </th>
 			<th align="right"><?php echo lang('active');?></th>
 			
 		</tr>
@@ -60,6 +61,7 @@
 	</tbody>
 	<?php endif;?>
 </table>
+</div>
 <div class="row-fluid control-group">
                 <div class="pull-left span6 " action="#"> </div>
                 <div class="span6">

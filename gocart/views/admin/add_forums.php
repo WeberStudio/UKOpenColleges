@@ -1,4 +1,3 @@
-
 <?php define('ADMIN_FOLDER', $this->config->item('admin_folder')); 
 ?>
 
