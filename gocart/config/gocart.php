@@ -50,9 +50,7 @@ $config['nonship_status'] = 'Delivered';
 
 $config['order_statuses']	= array(
 	'Pending'  				=> 'Pending',
-	'Processing'    		=> 'Processing',
-	'Shipped'				=> 'Shipped',
-	'On Hold'				=> 'On Hold',
+	'Processing'    		=> 'Processing',	
 	'Cancelled'				=> 'Cancelled',
 	'Delivered'				=> 'Delivered'
 );
