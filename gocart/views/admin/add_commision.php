@@ -22,7 +22,7 @@
           <div class="control-group row-fluid">
             <label class="control-label span1">Commision Level<?php echo lang('group');?><span class="help-block"></span></label>
             <div class="controls span7">
-              <select class="span12">
+              <select data-placeholder="Choose Multiple Categories" class="chzn-select span12" name="categories[]" multiple="true" tabindex="5">
                 <option> Universal Level</option>
 				<option> Courses Product Level</option>
 				<option> Courses Catalog Level</option>
@@ -33,7 +33,7 @@
           <div class="control-group row-fluid">
             <label class="control-label span1">Commision unknown<?php echo lang('group');?><span class="help-block"></span></label>
             <div class="controls span7">
-              <select class="span12">
+              <select data-placeholder="Choose Multiple Categories" class="chzn-select span12" name="categories[]" multiple="true" tabindex="5">
                 <option>Price Discount</option>
               </select>
 			  
@@ -42,7 +42,7 @@
 		  <div class="control-group row-fluid">
             <label class="control-label span1">Commision Rate<?php echo lang('group');?><span class="help-block"></span></label>
             <div class="controls span7">
-              <select class="span12">
+              <select data-placeholder="Choose Multiple Categories" class="chzn-select span12" name="categories[]" multiple="true" tabindex="5">
                 <option> some text</option>
 				<option> some text</option>
               </select>

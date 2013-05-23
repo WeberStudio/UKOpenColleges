@@ -1,4 +1,3 @@
-
 <div id="main" style="min-height:1000px">
   <div class="container">
     <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
@@ -9,19 +8,18 @@
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i>
 			 <span>Forums Listing
-			<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/form'); ?>"><i class="icon-plus-sign"></i>Add New Forum </a>
-			<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/topic'); ?>"><i class="icon-plus-sign"></i>GO To Topic </a>
+			<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/topic_form'); ?>"><i class="icon-plus-sign"></i>Add New Topic </a>
+			<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/message'); ?>"><i class="icon-plus-sign"></i>Show Message </a>
+			
 			 </span></h4>
                
 <div class="content">
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
-			<th>Title</th>
-			<th>Activity</th>
-			<th>course</th>
-			<th>user</th>
-			<th>tuter</th>
+			<th>Topic</th>
+			<th>Message</th>
+			<th>Last post</th>
 			<th>status</th>
 			<th>oprations</th>
 		</tr>
@@ -30,12 +28,10 @@
 	<tbody>
 		<tr>
 			
-			<td>first title</td>
-			<td >activities</td>
-			<td>first course</td>
-			<td> first user</td>
-			<td>first tutor</td>
-			<td>active</td>
+			<td>first Topic</td>
+			<td>Message No 3</td>
+			<td>25/5/2013</td>
+			<td>Inactive</td>
 			<td><div class="btn-group">
 					<a class="btn" href=""><i class="icon-pencil"></i> Edit </a>
 					<a class="btn btn-danger" href=""><i class="icon-trash icon-white"></i> Remove </a>

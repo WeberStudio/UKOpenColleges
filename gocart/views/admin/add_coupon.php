@@ -102,8 +102,8 @@ $(document).ready(function(){
             <label class="control-label span1" for="hint-field"> <?php echo lang('disable_on');?><span class="help-block"></span></label>
             <div class="controls span7">
 			<?php
-             // $data	= array('id'=>'datepicker2', 'value'=>set_value('end_date', reverse_format($end_date)), 'class'=>'row-fluid span12');
-			//echo form_input($data);
+              $data	= array('id'=>'datepicker2', 'value'=>set_value('end_date', reverse_format($end_date)), 'class'=>'row-fluid span12');
+			echo form_input($data);
 			?>
 			<input type="hidden" name="end_date" value="<?php echo set_value('end_date', $end_date) ?>" id="datepicker2_alt" />
             </div>

@@ -65,5 +65,41 @@ class forums extends Admin_Controller {
         $this->load->view($this->config->item('admin_folder').'/add_forums', $data);
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
+		function topic()
+	{
+		$this->load->helper('form');
+		
+		$data = array();
+		
+		//echo "<pre>"; print_r($data['invoices']);exit;
+        $this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/topic_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+	}
+		function topic_form()
+	{
+		$this->load->helper('form');
+		
+		$data = array();
+		
+		//echo "<pre>"; print_r($data['invoices']);exit;
+        $this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/add_topic', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+	}
+			function message()
+	{
+		$this->load->helper('form');
+		
+		$data = array();
+		
+		//echo "<pre>"; print_r($data['invoices']);exit;
+        $this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/message', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+	}
 }
 ?>

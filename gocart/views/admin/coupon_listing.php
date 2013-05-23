@@ -11,7 +11,8 @@
 	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/coupons/form'); ?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_coupon');?></a>
                      </span></h4>
                 
-<div class="content top"> 
+<div class="content top">
+<div class="content"> 
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
@@ -47,6 +48,7 @@
 		<?php //endif;?>
 	</tbody>
 </table>
+</div>
 <div class="row-fluid control-group">
                 <div class="pull-left span6 " action="#"> </div>
                 <div class="span6">
