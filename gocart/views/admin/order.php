@@ -288,4 +288,4 @@ function set_canned_message(id)
 	</tfoot>
 </table>
 
-<?php include('footer.php');
+<?php include('footer.php');?>
