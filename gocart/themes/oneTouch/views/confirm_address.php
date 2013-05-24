@@ -1,4 +1,6 @@
 <?php include('mainHeader.php'); ?>
+<link rel="stylesheet" href="../assets/css/chosen.css">
+<script type="text/javascript" src="../assets/js/chosen.js"></script>
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
 <a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>
 <div id="body-wrapper" >
@@ -9,14 +11,10 @@
 <?php if($this->Customer_model->is_logged_in(false, false)):?>
  <?php else: ?>
 <script>
-window.location="http://localhost/UKOpenColleges/secure/login";
+window.location="<?=base_url();?>secure/process_checkout";
 </script>
 <?php endif; ?>
-<style type="text/css">
-	.placeholder {
-		display:none;
-	}
-</style>
+
 <div class="page-header">
 	<h2><?php echo lang('form_checkout');?></h2>
 </div>
@@ -45,7 +43,43 @@ window.location="http://localhost/UKOpenColleges/secure/login";
 	}
 </script>
 
+<script>
+function toggle() {
 
+	var el = document.getElementById('obj');
+
+	if ( el.style.display != 'none' ) {
+
+		el.style.display = 'none';
+
+	}
+
+	else {
+
+		el.style.display = '';
+
+	}
+return false;
+}
+function toggle1() {
+
+	var el = document.getElementById('obj1');
+
+	if ( el.style.display != 'none' ) {
+
+		el.style.display = 'none';
+
+	}
+
+	else {
+
+		el.style.display = '';
+
+	}
+
+}
+
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -129,105 +163,190 @@ $phone		= array('placeholder'=>lang('address_phone'), 'class'=>'address span4', 
 $city		= array('placeholder'=>lang('address_city'), 'class'=>'address span3', 'name'=>'city', 'value'=> set_value('city', @$customer[$address_form_prefix.'_address']['city']));
 $zip		= array('placeholder'=>lang('address_postcode'), 'maxlength'=>'10', 'class'=>'address span2', 'name'=>'zip', 'value'=> set_value('zip', @$customer[$address_form_prefix.'_address']['zip']));
 */
-$company	= array('id'=>'company', 'class'=>'span4', 'name'=>'company', 'value'=> set_value('company', $customer['company']));
-$first		= array('id'=>'firstname', 'class'=>'span2', 'name'=>'firstname', 'value'=> set_value('firstname', $customer['firstname']));
-$f_city		= array('id'=>'f_city', 'class'=>'span12', 'name'=>'city', 'value'=>set_value('city',$customer['city']));
-$f_zip		= array('id'=>'f_zip', 'maxlength'=>'10', 'class'=>'span12', 'name'=>'zip', 'value'=> set_value('zip', $customer['post_code']));
-$f_address1	= array('id'=>'f_address1', 'class'=>'span12', 'name'=>'address1', 'value'=>set_value('address1', $customer['address_street']));
-$f_address2	= array('id'=>'f_address2', 'class'=>'span12', 'name'=>'address2', 'value'=> set_value('address2', $customer['address_line']));
-$last		= array('id'=>'lastname', 'class'=>'span2', 'name'=>'lastname', 'value'=> set_value('lastname', $customer['lastname']));
-$email		= array('id'=>'email', 'class'=>'span2', 'name'=>'email', 'value'=> set_value('email', $customer['email']));
-$phone		= array('id'=>'phone', 'class'=>'span2', 'name'=>'phone', 'value'=> set_value('phone', $customer['phone']));
+$company	= array('id'=>'company', 'class'=>'input-text', 'name'=>'company', 'value'=> set_value('company', $customer['company']));
+$first		= array('id'=>'firstname', 'class'=>'input-text', 'name'=>'firstname', 'value'=> set_value('firstname', $customer['firstname']));
+$f_city		= array('id'=>'f_city', 'class'=>'input-text', 'name'=>'city', 'value'=>set_value('city',$customer['city']));
+$f_zip		= array('id'=>'f_zip', 'maxlength'=>'10', 'class'=>'input-text', 'name'=>'zip', 'value'=> set_value('zip', $customer['post_code']));
+$f_address1	= array('id'=>'f_address1', 'class'=>'input-text', 'name'=>'address1', 'value'=>set_value('address1', $customer['address_street']));
+$f_address2	= array('id'=>'f_address2', 'class'=>'input-text', 'name'=>'address2', 'value'=> set_value('address2', $customer['address_line']));
+$last		= array('id'=>'lastname', 'class'=>'input-text', 'name'=>'lastname', 'value'=> set_value('lastname', $customer['lastname']));
+$email		= array('id'=>'email', 'class'=>'input-text', 'name'=>'email', 'value'=> set_value('email', $customer['email']));
+$phone		= array('id'=>'phone', 'class'=>'input-text', 'name'=>'phone', 'value'=> set_value('phone', $customer['phone']));
+$password 	= array('id'=>'password','name'=>'password','class'=>'input-text','placeholder'=>'Password'); 
+$con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','placeholder'=>'Confirm'); 
 
 ?>
 	
 	<?php
 	//post to the correct place.
-	echo ($address_form_prefix == 'bill')?form_open('checkout/step_1'):form_open('checkout/shipping_address');?>
-		<div class="row" align="center" style="width: 500px; margin-left: 262px;">
-			<?php // Address form ?>
-			<div class="span8 offset2">
-				<div class="row">
-					<div class="span4">
-						<h2 style="margin:0px;">
-							<?php echo ($address_form_prefix == 'bill')?lang('address'):lang('shipping_address');?>
-						</h2>
-					</div>
-					
-				</div>
-				
-				<div class="row">
-					<div class="span8">
-						<label class="placeholder"><?php echo lang('address_company');?></label>
-						<?php echo form_input($company);?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="span4">
-						<label class="placeholder"><?php echo lang('address_firstname');?><b class="r"> *</b></label>
-						<?php echo form_input($first);?>
-					</div>
-					<div class="span4">
-						<label class="placeholder"><?php echo lang('address_lastname');?><b class="r"> *</b></label>
-						<?php echo form_input($last);?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="span4">
-						<label class="placeholder"><?php echo lang('address_email');?><b class="r"> *</b></label>
-						<?php echo form_input($email);?>
-					</div>
+	//echo ($address_form_prefix == 'bill')?form_open('checkout/step_1'):form_open('checkout/shipping_address');?>
+<div class="row">
+<div id="content" class="fifteen columns">
+<p class="woocommerce_info">Already registered? <a href="" class="" onClick="return toggle()">Click here to login</a></p>
+<form style="display:none;" id="obj" method="post" class="login">
+	<p>If you have shopped with us before, please enter your details in the
+ boxes below. If you are a new customer please proceed to the Billing 
+&amp; Shipping section.</p>
 
-					<div class="span4">
-						<label class="placeholder"><?php echo lang('address_phone');?><b class="r"> *</b></label>
-						<?php echo form_input($phone);?>
-					</div>
-				</div>
+	<p class="form-row form-row-first">
+		<label for="username">Username or email <span class="required">*</span></label>
+		<input class="input-text" name="username" id="username" type="text">
+	</p>
+	<p class="form-row form-row-last">
+		<label for="password">Password <span class="required">*</span></label>
+		<input class="input-text" name="password" id="password" type="password">
+	</p>
+	<div class="clear"></div>
 
-				<div class="row">
-					<div class="span8">
-						<label class="placeholder"><?php echo lang('address_country');?><b class="r"> *</b></label>
-						<?php echo form_dropdown('country_id',$countries, @$customer[$address_form_prefix.'_address']['country_id'], 'id="country_id" class="address span8"');?>
-					</div>
-				</div>
+	<p class="form-row">
+		<input id="_n" name="_n" value="23b8c2c5f1" type="hidden"><input name="_wp_http_referer" value="/onetouch/checkout/" type="hidden">		<input class="button" name="login" value="Login" type="submit">
+		<input name="redirect" value="http://theme.crumina.net/onetouch/checkout/" type="hidden">
+		<a class="lost_password" href="http://theme.crumina.net/onetouch/wp-login.php?action=lostpassword&amp;redirect_to=http://theme.crumina.net/onetouch">Lost Password?</a>
+	</p>
 
-				<div class="row">
-					<div class="span8">
-						<label class="placeholder"><?php echo lang('address1');?><b class="r"> *</b></label>
-						<?php echo form_input($f_address1);?>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="span8">
-						<label class="placeholder"><?php echo lang('address2');?></label>
-						<?php echo form_input($f_address2);?>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="span3">
-						<label class="placeholder"><?php echo lang('address_city');?><b class="r"> *</b></label>
-						<?php echo form_input($f_city);?>
-					</div>
-					<div class="span3">
-						<label class="placeholder"><?php echo lang('address_state');?><b class="r"> *</b></label>
-						<?php echo form_dropdown('zone_id',$zone_menu, @$customer[$address_form_prefix.'_address']['zone_id'], 'id="zone_id" class="address span3"');?>
-					</div>
-					<div class="span2">
-						<label class="placeholder"><?php echo lang('address_postcode');?><b class="r"> *</b></label>
-						<?php echo form_input($f_zip);?>
-					</div>
-				</div>
+	<div class="clear"></div>
+</form>
+	<?php echo form_open('secure/register'); ?>
+		<div class="col2-set" id="customer_details">
+				<div class="col-1">
+				<h3>Billing Address</h3>
 			
-				<div class="row">
-					<div class="span8">
-						<input class="btn btn-block btn-large btn-primary" type="submit" value="<?php echo lang('form_continue');?>"/>
-					</div>
+					<p class="form-row form-row-first" id="billing_first_name_field">
+						<label for="billing_first_name" class=""><?php echo lang('account_firstname');?><abbr class="required" title="required">*</abbr>
+						</label>
+						
+						<?php echo form_input($first);?>
+					</p>
+	
+					<p class="form-row form-row-last" id="billing_last_name_field">
+						<label for="billing_last_name" class=""><?php echo lang('account_lastname');?> <abbr class="required" title="required">*</abbr>
+						</label>
+						<?php echo form_input($last);?>
+					</p>
+					<div class="clear"></div>
+					<p class="form-row " id="billing_company_field">
+						<label for="billing_company" class=""><?php echo lang('account_company');?></label>
+						<?php echo form_input($company);?>
+					</p>
+					<div class="clear"></div>
+					<p class="form-row form-row-first" id="billing_address_1_field">
+						<label for="billing_address_1" class=""><?php echo lang('address');?><abbr class="required" title="required">*</abbr></label>
+						<?php echo form_input($f_address1);?>
+					</p>
+					<p class="form-row form-row-last" id="billing_address_2_field">
+						<label for="billing_address_2" class="hidden"><?php echo lang('address');?> 2</label>
+						<?php echo form_input($f_address2);?>
+					</p>
+					<div class="clear"></div>
+					<p class="form-row form-row-first" id="billing_city_field">
+						<label for="billing_city" class=""><?php echo lang('address_city');?><abbr class="required" title="required">*</abbr>
+						</label>
+						<?php echo form_input($f_city);?>
+					</p>
+					<p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
+						<label for="billing_postcode" class=""><?php echo lang('address_postcode');?> <abbr class="required" title="required">*</abbr>
+						</label>
+						<?php echo form_input($f_zip);?>
+					</p>
+					<div class="clear"></div>
+					
+					<p class="form-row form-row-first" id="billing_city_field">
+						<label for="billing_city" class=""><?php echo lang('address_country');?><abbr class="required" title="required">*</abbr>
+						</label>
+						<?php echo form_dropdown('country_id',$countries, @$customer[$address_form_prefix.'_address']['country_id'], 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+						
+					</p>
+					<p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
+						<label for="billing_postcode" class=""><?php echo lang('address_state');?><abbr class="required" title="required">*</abbr>
+						</label>
+						<?php echo form_dropdown('zone_id',$zone_menu, @$customer[$address_form_prefix.'_address']['zone_id'], 'id="zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+						
+					</p>
+					<div class="clear"></div>
+					<!--
+					<div class="span12">
+					<label><?php echo lang('address_country');?></label>
+					<?php echo form_dropdown('country_id', $countries_menu, set_value('country_id', $country_id), 'id="f_country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 				</div>
-			</div>
-		</div>
-	</form>
+					<div class="span6">
+					<label><?php echo lang('address_state');?></label>
+					<?php echo form_dropdown('zone_id', $zones_menu, set_value('zone_id', $zone_id), 'id="f_zone_id" class="span12"');?>
+					</div>-->
+					
+					<p class="form-row form-row-first" id="billing_city_field">
+						<label for="billing_city" class=""><?php echo lang('account_phone');?><abbr class="required" title="required">*</abbr>
+						</label>
+						<?php echo form_input($phone);?>
+					</p>
+					<p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
+						<label for="billing_postcode" class=""><?php echo lang('account_email');?> <abbr class="required" title="required">*</abbr>
+						</label>
+						<?php echo form_input($email);?>
+					</p>
+					<div class="clear"></div>
+					<p class="form-row">
+			<input class="input-checkbox" id="createaccount" name="createaccount" value="1" type="checkbox" onClick="toggle1()"> <label for="createaccount" class="checkbox">Create an account?</label>
+		</p>
+					<div  style="display: none;" class="create-account" id="obj1">
+						<p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
+						<p class="form-row form-row-first" id="account_password_field">
+											<label for="account_password" class="">Account password</label>
+											<?php echo form_password($password);?>
+										</p>
+						<p class="form-row form-row-last" id="account_password-2_field">
+											<label for="account_password-2" class="hidden">Account password</label>
+											<?php echo form_password($con_password);?>
+										</p>
+					</div>
+					<div class="clear"></div>
+					
+					
+				
+				</div>
+				</div>
+	
+	<h3 id="order_review_heading">Your order</h3>
+					<div id="order_review">
+
+	<table class="shop_table" style="width:100%;">
+		<thead>
+			<tr>
+				<th class="product-name">Product</th>
+				<th class="product-quantity">Qty</th>
+				<th class="product-total">Totals</th>
+			</tr>
+		</thead>
+		<tfoot>
+
+			<tr class="cart-subtotal">
+				<th colspan="2"><strong>Cart Subtotal</strong></th>
+				<td><span class="amount">$488</span></td>
+			</tr>
+
+			<tr class="total">
+				<th colspan="2"><strong>Order Total</strong></th>
+				<td><strong><span class="amount">$488</span></strong></td>
+			</tr>
+
+			
+		</tfoot>
+		<tbody>
+			
+								<tr class="checkout_table_item">
+									<td class="product-name">Backpack, IUTER 2</td>
+									<td class="product-quantity">4</td>
+									<td class="product-total"><span class="amount">$488</span></td>
+								</tr>		</tbody>
+	</table>
+
+	
+
+</div>
+<input type="submit" value="<?php echo lang('form_continue');?>" class="btn btn-primary" style="height: 34px; width: 74px;" />
+</form>
+</div>
+</div>
+	
 
 <?php if($this->Customer_model->is_logged_in(false, false)) : ?>
 
