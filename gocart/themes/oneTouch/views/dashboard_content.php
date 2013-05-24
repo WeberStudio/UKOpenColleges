@@ -14,11 +14,11 @@
           <div class="content">
             <div class="row-fluid well well-small"> <img class="row-fluid" src="<?php echo theme_img('sample_avatar_big');?>"> </div>
             <ul class="nav1 nav-tabs dark nav-stacked">
-              <li><a href="#"><i class="gicon-user"></i> Profile Dashboard</a></li>
-              <li><a href="#"><i class="gicon-wrench"></i> Settings</a></li>
-              <li><a href="#"><i class="gicon-globe"></i> Friends</a></li>
-              <li><a href="#"><i class="gicon-envelope"></i> Messages</a></li>
-              <li><a href="<?php echo site_url('secure/logout');?>"><i class="gicon-lock"></i> Log Out</a></li>
+              <li><a href="#"><i class="gicon-user"></i>Profile</a></li>
+              <li><a href="#"><i class="gicon-wrench"></i>My Course</a></li>
+              <li><a href="#"><i class="gicon-globe"></i>Fourms</a></li>
+              <li><a href="#"><i class="gicon-envelope"></i>Files</a></li>
+              <li><a href="<?php echo site_url('secure/logout');?>"><i class="gicon-lock"></i>Log Out</a></li>
             </ul>
           </div>
           <!-- End .content --> 
