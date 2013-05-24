@@ -309,9 +309,10 @@ experience this site.
         <span style="padding: 0 13px;">
         
         <?php if($this->Customer_model->is_logged_in(false, false)):?>
-        <a href="<?php echo  site_url('secure/my_account');?>" style="color:red;"><?php echo lang('my_account')?></a> <span style="color:red;">/</span>  <a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a></span></h1>
+        <!--<a href="<?php echo  site_url('secure/my_account');?>" style="color:red;"><?php echo lang('my_account')?></a>--><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
+		</h1>
         
-        <?php else: ?>
+			<?php else: ?>
         <a href="<?php echo site_url('secure/register'); ?>" style="color:red;"><?php echo lang('register');?></a>
         <span style="color:red;">/</span>
         <a href="<?php echo site_url('secure/login');?>" style="color:red;"><?php echo lang('login');?></a>

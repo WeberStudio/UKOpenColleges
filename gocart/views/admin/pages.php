@@ -4,33 +4,35 @@
      <div id="main_container">
       <div class="row-fluid ">
         <div class="span12">
-          <div class="box paint color_18">
+          <div class="box paint color_2">
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i><span>Pages Listing 
              
 	            <a class="btn" href="<?php echo site_url('pages/form'); ?>"><i class="icon-plus-sign"></i>Add New Pages <?php //echo lang('add_new_customer');?></a>
                      </span></h4>
                 
-<div class="content top"> 
+<div class="content top">
+<div class="content"> 
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
 			
-			<th><a href=""><?php echo lang('title');?> </a></th>
+			<th><?php echo lang('title');?> </th>
 			<th align="right"><?php echo lang('active');?></th>
 			
 		</tr>
 	</thead>
-	<?php  ?>
-	<?php //echo (count($pages) < 1)?'<tr><td style="text-align:center;" colspan="2">'.lang('no_pages_or_links').'</td></tr>':''?>
-	<?php //if($pages):?>
+	
+	<?php echo (count($pages) < 1)?'<tr><td style="text-align:center;" colspan="2">'.lang('no_pages_or_links').'</td></tr>':''?>
+	<?php if($pages):?>
 	<tbody>
 			
 			<?php
 			$GLOBALS['admin_folder'] = $this->config->item('admin_folder');
 			
 			function page_loop($pages, $dash = '')
-				{
+		{
+				
 					foreach($pages as $page)
 				{?>
 			<tr>
@@ -48,15 +50,18 @@
 		</tr>
 
 		<?php
+		
 			page_loop($page->children, $dash.'-');
 			}
 		}
 		page_loop($pages);
 		?>
 		
+		
 	</tbody>
-	<?php //endif;?>
+	<?php endif;?>
 </table>
+</div>
 <div class="row-fluid control-group">
                 <div class="pull-left span6 " action="#"> </div>
                 <div class="span6">

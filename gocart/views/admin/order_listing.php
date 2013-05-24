@@ -1,9 +1,39 @@
-<script type="text/javascript">
-function areyousure()
-{
-	return confirm('<?php echo lang('confirm_delete_order');?>');
+<?php
+
+function sort_url($lang, $by, $sort, $sorder, $code, $admin_folder)
+	{
+		if ($sort == $by)
+		{
+			if ($sorder == 'asc')
+			{
+				$sort	= 'desc';
+				$icon	= ' <i class="icon-chevron-up"></i>';
+			}
+			else
+			{
+				$sort	= 'asc';
+				$icon	= ' <i class="icon-chevron-down"></i>';
+			}
+		}
+		else
+		{
+			$sort	= 'asc';
+			$icon	= '';
+		}
+			
+
+		$return = site_url($admin_folder.'/orders/index/'.$by.'/'.$sort.'/'.$code);
+		
+		echo '<a href="'.$return.'">'.lang($lang).$icon.'</a>';
+
 }
-</script>
+$sort_by='order_number';
+$sort_order='desc';
+$code=0; 
+$page=0;
+$rows=15;
+?>
+
 <div id="main" style="min-height:1000px">
   <div class="container">
     <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
@@ -14,69 +44,69 @@ function areyousure()
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i>
 			 <span>Order Listing
-			 <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/tutor/form'); ?>"><i class="gicon-search icon-white"></i><?php echo lang('search')?></a>
-			 <input type="text" id="datepicker1" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;">
-			 <input type="text" id="datepicker2" value="Start Date" name="" style="width:155px; height: 26px; padding: 0px; margin-bottom: 0px;">
+			
+			 <input type="text" id="start_date" placeholder="Start Date" value="" name="start_date" style=" margin-bottom: 0px;">
+			 <input type="text" id="end_date" placeholder="End Date" value="" name="end_date" style=" margin-bottom: 0px;">
+			  <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/tutor/form'); ?>"><i class="gicon-search icon-white"></i><?php echo lang('search')?></a>
 			 </span></h4>
                
-
-<table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
-	<thead>
-		<tr>
-			<?php
-			$by ="";
-			if($by=='ASC')
-			{
-				$by='DESC';
-			}
-			else
-			{
-				$by='ASC';
-			}
-			?>
-			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/lastname/');?>/<?php //echo ($field == 'lastname')?$by:'';?>"><?php //echo lang('lastname');?>
-				<?php //if($field == 'lastname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Order </a></th>
-			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/firstname/');?>/<?php //echo ($field == 'firstname')?$by:'';?>"><?php //echo lang('firstname');?>
-				<?php //if($field == 'firstname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Bill To</a></th>
-			
-			<th style=""><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/email/');?>/<?php //echo ($field == 'email')?$by:'';?>"><?php //echo lang('email');?>
-				<?php //if($field == 'email'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?> Ship TO</a></th>
-			<th><a href=""> Ordered On</a></th>
-			<th><a href="">Status</a></th>
-			<th><a href="">Total</a></th>
-			<th></th>
-		</tr>
-	</thead>
-	
-	<tbody>
-		<?php
-		//$page_links	= $this->pagination->create_links();
-		$page_links = "";
-		$customers ="";
-		$customer = "";
-		if($page_links != ''):?>
-		<tr><td colspan="5" style="text-align:center"><?php echo $page_links;?></td></tr>
-		<?php endif;?>
-		<?php echo (count($customers) < 1)?'<tr><td style="text-align:center;" colspan="5">'.lang('no_customers').'</td></tr>':''?>
-<?php //foreach ($customers as $customer):?>
-		<tr>
-			<?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
-			<td>12345<?php //echo  $customer->lastname; ?></td>
-			<td class="gc_cell_left">qasim <?php //echo  $customer->firstname; ?></td>
-			<td>qasim<?php //echo  $customer->email; ?></td>
-			<td> 05/14/13 05:49 pm</td>
-			<td> <select> <option>option1</option></select></td>
-			<td>300Rs</td>
-			<td><button onClick="window.location='<?php echo site_url($this->config->item('admin_folder').'/order/view')?>'"> view</button></td>
-		</tr>
-<?php //endforeach;
-		//if($page_links != ''):?>
-		<tr><td colspan="5" style="text-align:center"><?php //echo $page_links;?></td></tr>
-		<?php //endif;?>
-	</tbody>
-</table>
+				<div class="content top">
+				<table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
+					<thead>
+						<tr>
+							<?php
+							$by ="";
+							if($by=='ASC')
+							{
+								$by='DESC';
+							}
+							else
+							{
+								$by='ASC';
+							}
+							?>
+							
+							<?php /*?><th><input type="checkbox" id="gc_check_all" /> <button type="submit" class="btn btn-small btn-danger"><i class="icon-trash"></i></button></th><?php */?>
+							<th><?php echo sort_url('order', 'order_number', $sort_by, $sort_order, $code, $this->config->item('admin_folder')); ?></th>
+							<th><?php echo sort_url('bill_to', 'bill_lastname', $sort_by, $sort_order, $code, $this->config->item('admin_folder')); ?></th>
+							<th><?php echo sort_url('ship_to', 'ship_lastname', $sort_by, $sort_order, $code, $this->config->item('admin_folder')); ?></th>
+							<th><?php echo sort_url('ordered_on','ordered_on', $sort_by, $sort_order, $code, $this->config->item('admin_folder')); ?></th>
+							<th><?php echo sort_url('status','status', $sort_by, $sort_order, $code, $this->config->item('admin_folder')); ?></th>
+							<th><?php echo sort_url('total','total', $sort_by, $sort_order, $code, $this->config->item('admin_folder')); ?></th>
+							<th>Delete</th>
+							<th>View</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+					<?php echo (count($orders) < 1)?'<tr><td style="text-align:center;" colspan="8">'.lang('no_orders') .'</td></tr>':''?>
+					<?php foreach($orders as $order): ?>
+						<tr>
+							<?php /*?><td class="to_hide_phone"><input name="order[]" type="checkbox" value="<?php echo $order->id; ?>" class="gc_check"/></td><?php */?>
+							<td class="to_hide_phone"><?php echo $order->order_number; ?></td>
+							<td class="to_hide_phone" style="white-space:nowrap"><?php echo $order->bill_lastname.', '.$order->bill_firstname; ?></td>
+							<td class="to_hide_phone" style="white-space:nowrap"><?php echo $order->ship_lastname.', '.$order->ship_firstname; ?></td>
+							<td class="to_hide_phone" style="white-space:nowrap"><?php echo date('m/d/y h:i a', strtotime($order->ordered_on)); ?></td>
+							<td style="span2">
+							<div class="btn-group inline">
+							  <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Status <span class="caret"></span></button>
+							  <ul class="dropdown-menu" style="text-align:left;">
+								<li><a href="<?=base_url().$this->config->item('admin_folder').'/order/order_paid_status/pending/'?>">Pending</a></li>
+								<li><a href="<?=base_url().$this->config->item('admin_folder').'/order/order_paid_status/processing/'?>">Processing</a></li>
+								<li><a href="<?=base_url().$this->config->item('admin_folder').'/order/order_paid_status/cencelled/'?>">Cancelled</a></li> 
+								<li><a href="<?=base_url().$this->config->item('admin_folder').'/order/order_paid_status/delivered/'?>">Delivered</a></li>                       
+							  </ul>
+							</div>				   
+							</td>
+							<td><?php echo format_currency($order->total); ?></td>
+							<td><a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('delete');?>" href="<?=base_url().'admin/order/delete/'.$order->id?>" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"><i class="gicon-remove-circle"></i> Delete </a></td>
+							<td><a  class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="View Order Details" href="<?=base_url().'admin/order/view/'.$order->id?>"><i class="gicon-eye-open"></i>View</td>							
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+				</div>
+				
 <div class="row-fluid control-group">
                 <div class="pull-left span6 " action="#"> </div>
                 <div class="span6">
@@ -104,3 +134,20 @@ function areyousure()
     <!-- End .row-fluid -->
   </div>
   </div>
+<script type="text/javascript">
+function areyousure()
+{
+	return confirm('<?php echo lang('confirm_delete_order');?>');
+}
+$(document).ready(function(){
+
+	
+
+	$('#start_date').datepicker({
+	  format: 'mm-dd-yyyy'
+	});
+	$('#end_date').datepicker({
+	  format: 'mm-dd-yyyy'
+	});
+});
+</script>

@@ -11,7 +11,8 @@
 	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/coupons/form'); ?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_coupon');?></a>
                      </span></h4>
                 
-<div class="content top"> 
+<div class="content top">
+<div class="content"> 
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
@@ -25,6 +26,7 @@
 	</thead>
 	
 	<tbody>
+	<?php echo (count($coupons) < 1)?'<tr><td style="text-align:center;" colspan="3">'.lang('no_coupons').'</td></tr>':''?>
 <?php foreach ($coupons as $coupon):?>
 		<tr>
 			<?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
@@ -32,11 +34,11 @@
 			<td class="gc_cell_left"><?php echo  $coupon->num_uses ." / ". $coupon->max_uses; ?></td>
 			<td>
 				<div class="btn-group" align="right">
-					<a class="btn" href="<?php //echo site_url('/tutor/edit');  ?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>
+					<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/coupons/form/'.$coupon->id); ?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>
 					
 					
 					
-					<a class="btn btn-danger" href="<?php //echo site_url($this->config->item('admin_folder').'/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i>   <?php echo lang('delete');?></a>
+					<a class="btn btn-danger" href="<?php echo site_url($this->config->item('admin_folder').'/coupons/delete/'.$coupon->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i>   <?php echo lang('delete');?></a>
 				</div>
 			</td>
 		</tr>
@@ -46,6 +48,7 @@
 		<?php //endif;?>
 	</tbody>
 </table>
+</div>
 <div class="row-fluid control-group">
                 <div class="pull-left span6 " action="#"> </div>
                 <div class="span6">

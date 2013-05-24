@@ -14,7 +14,7 @@ class Checkout extends Front_Controller {
 		{
 			redirect('cart/view_cart');
 		}
-
+		
 		/*is the user required to be logged in?*/
 		if (config_item('require_login'))
 		{
@@ -48,6 +48,7 @@ class Checkout extends Front_Controller {
 		$this->load->library('form_validation');
         //$this->load->library('merchant');
         //$this->merchant->load('paypal_express');
+		$this->lang->load('common');
 	}
 
 	function index()

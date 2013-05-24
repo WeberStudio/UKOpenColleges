@@ -1,7 +1,27 @@
-<script>
+<script type="text/javascript">
+$('form').submit(function() {
+	$('.btn').attr('disabled', true).addClass('disabled');
+});
+
 $(document).ready(function(){
 	$("#gc_tabs").tabs();
-
+	
+	if($('#gc_coupon_type').val() == 'shipping')
+	{
+		$('#gc_coupon_price_fields').hide();
+	}
+	
+	$('#gc_coupon_type').bind('change keyup', function(){
+		if($(this).val() == 'price')
+		{
+			$('#gc_coupon_price_fields').show();
+		}
+		else
+		{
+			$('#gc_coupon_price_fields').hide();
+		}
+	});
+	
 	if($('#gc_coupon_appliesto_fields').val() == '1')
 	{
 		$('#gc_coupon_products').hide();
@@ -72,19 +92,20 @@ $(document).ready(function(){
            <div class="form-row control-group row-fluid">
             <label class="control-label span1" for="hint-field"> <?php echo lang('enable_on');?><span class="help-block"></span></label>
             <div class="controls span7">
-             <?php
-			$data	= array('id'=>'datepicker1', 'value'=>set_value('start_date', reverse_format($start_date)), 'class'=>'span12');
-			echo form_input($data);
-			?>
+             
+			<input type="text" id="datepicker1" value="02-16-2012" class="row-fluid">
+		
+			
             </div>
           </div>
           <div class="form-row control-group row-fluid">
             <label class="control-label span1" for="hint-field"> <?php echo lang('disable_on');?><span class="help-block"></span></label>
             <div class="controls span7">
 			<?php
-              $data	= array('id'=>'datepicker2', 'value'=>set_value('end_date', reverse_format($end_date)), 'class'=>'span12');
+              $data	= array('id'=>'datepicker2', 'value'=>set_value('end_date', reverse_format($end_date)), 'class'=>'row-fluid span12');
 			echo form_input($data);
 			?>
+			<input type="hidden" name="end_date" value="<?php echo set_value('end_date', $end_date) ?>" id="datepicker2_alt" />
             </div>
           </div>
            <div class="control-group row-fluid">

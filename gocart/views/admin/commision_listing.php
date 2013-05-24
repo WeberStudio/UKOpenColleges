@@ -17,7 +17,8 @@ function areyousure()
 	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder')."/commision/form/"); ?>"><i class="icon-plus-sign"></i>Add New Commision <?php //echo lang('add_new_customer');?></a>
                      </span></h4>
                 
-<div class="content top"> 
+<div class="content top">
+<div class="content"> 
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>
@@ -79,6 +80,7 @@ function areyousure()
 		<?php //endif;?>
 	</tbody>
 </table>
+</div>
 <div class="row-fluid control-group">
                 <div class="pull-left span6 " action="#"> </div>
                 <div class="span6">

@@ -20,7 +20,7 @@
           </p>
           <p>
             <input class="submitbutton" name="submitted" id="wp-submit" value="Login →" type="submit">
-            <a href="http://theme.crumina.net/onetouch/wp-login.php?action=lostpassword">Lost password?</a></p>
+            <a href="javascript:viod(0);">Lost password?</a></p>
           <div>
             <input name="redirect_to" class="redirect_to" value="http://theme.crumina.net/onetouch/my-account/" type="hidden">
             <input name="testcookie" value="1" type="hidden">
@@ -34,16 +34,6 @@
         </ul>
       </div>
     </section>
-    <section id="shopping_cart-2" class="widget-2 widget widget_shopping_cart">
-      <div class="widget-inner">
-        <h3>Cart</h3>
-        <!--mfunc woocommerce_mini_cart() -->
-        <ul class="cart_list product_list_widget ">
-          <li class="empty">No products in the cart.</li>
-        </ul>
-        <!-- end product list -->
-        <!--/mfunc-->
-      </div>
-    </section>
+    
   </div>
  
