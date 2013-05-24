@@ -15,9 +15,9 @@ Class Customer_model extends CI_Model
 
 	********************************************************************/
 	
-	function get_customers($limit=0, $offset=0, $order_by='id', $direction='DESC')
+	function get_customers($limit=5, $offset=0, $order_by='ASC', $direction='firstname')
 	{
-		$this->db->order_by($order_by, $direction);
+		$this->db->order_by($direction, $order_by);
 		if($limit>0)
 		{
 			$this->db->limit($limit, $offset);

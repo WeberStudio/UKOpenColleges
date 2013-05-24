@@ -15,7 +15,7 @@ Class Tutor_model extends CI_Model
 
 	********************************************************************/
 	
-	function get_tutors($limit=0, $offset=0, $order_by='id', $direction='DESC')
+	function get_tutors($limit=0, $offset=0, $order_by='firstname', $direction='ASC')
 	{
 		$this->db->order_by($order_by, $direction);
 		if($limit>0)

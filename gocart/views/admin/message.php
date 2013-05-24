@@ -6,10 +6,12 @@
         <div class="span12">
           <div class="box color_5 ">
             <div class="title row-fluid">
-              <h4 class="pull-left"><span>Messages</span></h4>
-              <div class="btn-toolbar pull-right ">
+              <h4 class="pull-left"><span>Messages
+			  <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/message_form/'.$topic_id); ?>"><i class="icon-plus-sign"></i>Add New Message </a>
+			  </span></h4>
+              <!--<div class="btn-toolbar pull-right ">
                 <div class="btn-group"> <a class="btn">View All</a> <a class="btn change_color_outside"><i class="paint_bucket"></i></a> </div>
-              </div>
+              </div>-->
             </div>
             <!-- End .title -->
             <div class="content row-fluid">
@@ -21,8 +23,8 @@
                         <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html"> <i class=" icon-caret-down"></i> </a>
                           <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
                             <li><a href="#"><i class=" icon-share-alt icon-large"></i>Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i>Delete</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i>Share</a></li>
+                            <li><a href="#"><i class=" icon-trash icon-large"></i>Edit</a></li>
+                            <li><a href="#"><i class=" icon-share icon-large"></i>Delete</a></li>
                           </ul>
                         </div>
                       </div>
