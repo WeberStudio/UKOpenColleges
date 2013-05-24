@@ -7,10 +7,8 @@
           <div class="box paint color_1">
             <div class="title">
              <h4> <i class=" icon-bar-chart"></i>
-			 <span>Forums Listing
-			<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/topic_form'); ?>"><i class="icon-plus-sign"></i>Add New Topic </a>
-			<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/message'); ?>"><i class="icon-plus-sign"></i>Show Message </a>
-			
+			 <span>Topic Listing
+			<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/topic_form/'.$form_id); ?>"><i class="icon-plus-sign"></i>Add New Topic </a>		
 			 </span></h4>
                
 <div class="content">
@@ -26,19 +24,23 @@
 	</thead>
 	
 	<tbody>
+	<?php echo (count($topics) < 1)?'<tr><td style="text-align:center;" colspan="8">'.lang('no_forums') .'</td></tr>':''?>
+	<?php foreach($topics as $topic){ ?>
 		<tr>
 			
-			<td>first Topic</td>
-			<td>Message No 3</td>
-			<td>25/5/2013</td>
-			<td>Inactive</td>
-			<td><div class="btn-group">
-					<a class="btn" href=""><i class="icon-pencil"></i> Edit </a>
-					<a class="btn btn-danger" href=""><i class="icon-trash icon-white"></i> Remove </a>
-				</div></td>
+			<td><a style="text-decoration:underline;" href="<?php echo site_url($this->config->item('admin_folder').'/forums/message_converstion/'.$topic->topic_id); ?>" ><?=$topic->topic_title?></a></td>
+			<td><?=substr($topic->topic_message, 0, 15).'...'?></td>
+			<td><?=$topic->topic_time?></td>
+			<td><?=$topic->topic_status?></td>
+			<td>
+			<div class="btn-group">					
+			<a class="btn"  href="<?=base_url().'admin/forums/topic_form/'.$form_id.'/'.$topic->topic_id?>"><i class="icon-pencil"></i> Edit </a>
+			<a class="btn btn-danger" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"  href="<?=base_url().'admin/forums/topic_delete/'.$topic->topic_id?>"><i class="icon-trash"></i> Remove </a>
+			</div>
+			</td>
 		</tr>
 
-		
+	<? } ?>
 		
 	</tbody>
 </table>

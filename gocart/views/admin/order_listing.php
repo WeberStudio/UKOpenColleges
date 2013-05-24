@@ -100,7 +100,7 @@ $rows=15;
 							</td>
 							<td><?php echo format_currency($order->total); ?></td>
 							<td><a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('delete');?>" href="<?=base_url().'admin/order/delete/'.$order->id?>" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"><i class="gicon-remove-circle"></i> Delete </a></td>
-							<td><a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="View Order Details" href="<?=base_url().'admin/order/view/'.$order->id?>"><i class="gicon-eye-open"></i>View</td>							
+							<td><a  class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="View Order Details" href="<?=base_url().'admin/order/view/'.$order->id?>"><i class="gicon-eye-open"></i>View</td>							
 						</tr>
 					<?php endforeach; ?>
 					</tbody>
