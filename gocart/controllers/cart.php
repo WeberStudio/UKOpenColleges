@@ -22,7 +22,7 @@ class Cart extends Front_Controller {
 		$data['homepage']			= true;
         $data['allProduct']         = $this->Product_model->get_products_catogery_wise();    
 	   // echo '<pre>';print_r($data['allProduct']);
-       $this->load->view('homepage', $data);
+       $this->load->view('index', $data);
 	}
     function   allcourses()
     {
