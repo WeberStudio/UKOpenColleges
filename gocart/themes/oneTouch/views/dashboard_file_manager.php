@@ -14,7 +14,31 @@
                 </div><![endif]-->
                  <?php include('header.php'); ?> 
                  <div class="line"> </div>
-                <?php include_once('my_account_content.php'); ?> 
+               
+<div id="main">
+  <div class="container">
+        
+    <div id="main_container">
+      <div class="row-fluid">
+        <?php include('dashboard_leftpanal.php');?>
+        <!-- End .span3 -->
+        
+        <div class="span9">
+          
+          <!-- End .legend -->
+          
+          file manager
+          <!-- End .content --> 
+        </div>
+        <!-- End .span9 --> 
+      </div>
+      <!-- End .row-fluid --> 
+      
+    </div>
+    <!-- End #container --> 
+  </div>
+ 
+</div>
             </div>
         </div>
         <?php include_once('footer.php'); ?> 
