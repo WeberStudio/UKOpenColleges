@@ -4,44 +4,11 @@
         
     <div id="main_container">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="title">
-            <div class="row-fluid legend">
-              <h1> Celeste Holm </h1>
-            </div>
-          </div>
-          <!-- End .title -->
-          <div class="content">
-            <div class="row-fluid well well-small"> <img class="row-fluid" src="<?php echo theme_img('sample_avatar_big');?>"> </div>
-            <ul class="nav1 nav-tabs dark nav-stacked">
-              <li><a href="#"><i class="gicon-user"></i> Profile Dashboard</a></li>
-              <li><a href="#"><i class="gicon-wrench"></i> Settings</a></li>
-              <li><a href="#"><i class="gicon-globe"></i> Friends</a></li>
-              <li><a href="#"><i class="gicon-envelope"></i> Messages</a></li>
-              <li><a href="<?php echo site_url('secure/logout');?>"><i class="gicon-lock"></i> Log Out</a></li>
-            </ul>
-          </div>
-          <!-- End .content --> 
-        </div>
+        <?php include('dashboard_leftpanal.php');?>
         <!-- End .span3 -->
         
         <div class="span9">
-          <div class="row-fluid legend profile">
-            <div class="row-fluid ">
-              <div class="span6 spacer">
-                <ul class="unstyled">
-                  <li class="location pull-left right_offset"><span class="muted"><i class="icon-map-marker"></i> Location:</span> London, UK</li>
-                  <li class="location "><span class="muted"><i class="icon-globe"></i></span> Brighton Business School </li>
-                </ul>
-              </div>
-              <div class="span6">
-                <div class=" pull-right">
-                  <input type="button" value="Send Message" class="button" id="" name=""/>
-                  <input type="button" value="Connect" class="button" id="" name=""/>
-                </div>
-              </div>
-            </div>
-          </div>
+          
           <!-- End .legend -->
           
           <div class="content spacer-big">

@@ -35,6 +35,14 @@ Class Forum_model extends CI_Model
 		$result	= $this->db->get_where('forums', array('forum_id'=>$id));
 		return $result->row();
 	}
+	function get_forum_customer($id)
+	{
+		
+		$result = $this->db->get_where('forums',array('customer_id'=>$id,'forum_status'=>'1'));
+		return $result->result();
+	}
+	
+	 
 	
 	function save($data)
 	{
