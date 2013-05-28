@@ -63,6 +63,7 @@ class Products extends Admin_Controller {
 		$data['sort_order']	= $sort_order;
 		
 		$data['products']	= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
+		
 		//echo $this->db->last_query();exit;
 		//$this->show->pe($data['products']);
 		//$this->show->pe($data['products']);

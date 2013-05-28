@@ -1,4 +1,5 @@
- <?php include('mainHeader.php'); ?>  
+ <?php include('mainHeader.php'); ?>
+  <?php echo theme_css('basee.css', true); ?> 
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
           <?php //include('leftPanel.php'); ?>
@@ -13,7 +14,7 @@
                 </div><![endif]-->
                  <?php include('header.php'); ?> 
                  <div class="line"> </div>
-                <?php include_once('content_myaccount.php'); ?> 
+                <?php include_once('my_account_content.php'); ?> 
             </div>
         </div>
         <?php include_once('footer.php'); ?> 

@@ -18,7 +18,7 @@ class Secure extends Front_Controller {
 	function index()
 	{
 		//show_404();
-		$this->load->view('dashboard');
+		
 	}
 	//login2 content start
 		function process_checkout($ajax = false)
@@ -105,7 +105,7 @@ class Secure extends Front_Controller {
 		//if they are logged in, we send them back to the my_account by default, if they are not logging in
 		if ($redirect)
 		{
-			redirect('secure/');
+			redirect('');
 		}
 		
 		$data['page_title']	= 'Login';
@@ -130,7 +130,7 @@ class Secure extends Front_Controller {
 				//echo "<pre>"; print_r($this->go_cart->customer());exit;
     // $customer_details = $this->go_cart->customer();
     // echo $customer_details['firstname'];exit;
-					$redirect = 'secure/';
+					$redirect = '';
 				}
 				//to login via ajax
 				if($ajax)
