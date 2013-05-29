@@ -18,10 +18,7 @@ experience this site.
 <?php if($this->Customer_model->is_logged_in(false, false)):?>
 <div class="clear"> </div>
 <div align="right" style="font-size:16px; color:#57BAE8;"> <?php $customer_details = $this->go_cart->customer();
-     echo "Wellcome ". $customer_details['firstname'];
-	 
-	 
-	 
+     
 	 ?></div>
 <?php else: ?>
 	
@@ -309,7 +306,7 @@ experience this site.
         <span style="padding: 0 13px;">
         
         <?php if($this->Customer_model->is_logged_in(false, false)):?>
-        <!--<a href="<?php echo  site_url('secure/my_account');?>" style="color:red;"><?php echo lang('my_account')?></a>--><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
+        <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
 		</h1>
         
 			<?php else: ?>
