@@ -35,7 +35,7 @@
 			<td>
 			<div class="btn-group">					
 			<a class="btn"  href="<?=base_url().'admin/forums/topic_form/'.$form_id.'/'.$topic->topic_id?>"><i class="icon-pencil"></i> Edit </a>
-			<a class="btn btn-danger" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"  href="<?=base_url().'admin/forums/topic_delete/'.$topic->topic_id?>"><i class="icon-trash"></i> Remove </a>
+			<a class="btn btn-danger" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"  href="<?=base_url().'admin/forums/topic_delete/'.$form_id.'/'.$topic->topic_id?>"><i class="icon-trash"></i> Remove </a>
 			</div>
 			</td>
 		</tr>

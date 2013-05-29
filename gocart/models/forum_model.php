@@ -21,6 +21,7 @@ Class Forum_model extends CI_Model
 			$this->db->limit($limit, $offset);
 		}
 
+		$this->db->where('forum_status', '1');
 		$result	= $this->db->get('forums');
 		return $result->result();
 	}
@@ -49,6 +50,15 @@ Class Forum_model extends CI_Model
 			$this->db->insert('oc_forums', $data);
 			return $this->db->insert_id();
 		}
+	}
+	
+	function delete_forum($forum_id)
+	{
+	
+		$this->db->where('forum_id', $forum_id);
+		$this->db->update('oc_forums', array('forum_status' => '0'));
+		return true;
+	
 	}
 	
 	

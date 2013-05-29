@@ -41,7 +41,8 @@ class Invoices extends Admin_Controller {
         $this->load->model('Invoice_Tax_Model');
 		$this->load->model('Custom_Fields');
 		$this->load->model('Invoice_Custom');
-		$this->load->model('Invoice_Template_model');						
+		$this->load->model('Invoice_Template_model');	
+		$this->load->model('order_model');					
 		$this->lang->load('invoice');
 
     }
@@ -162,7 +163,7 @@ class Invoices extends Admin_Controller {
 			$save['invoice_date_due']       = $this->input->post('invoice_date_created');
 			$save['invoice_number']    		= '';
 			$save['invoice_terms']        	= $this->input->post('invoice_terms');	
-			$data['invoice_paid_status']	= 'OPEN';		
+			$data['invoice_paid_status']	= 'OPEN';
 			
 			//$this->show->pe($save);
 			$invoice = $this->Invoice_model->save($save);
@@ -178,14 +179,15 @@ class Invoices extends Admin_Controller {
 	{
 		
 			//$data = array();
-			$data['invoice_data'] 	= $this->Invoice_model->get_invoice($invoice_id);
-			$data['user_info'] 		= $this->Invoice_model->get_all_admin($data['invoice_data']->admin_id);
-			$data['invoice_group'] 	= $this->Invoice_model->get_all_groups($data['invoice_data']->invoice_group_id);
-			$data['invoice_items'] 	= $this->Invoice_model->get_invoice_items_by_invoice_id($invoice_id);
-			$data['tax_rates'] 		= $this->Invoice_Tax_Model->get_taxes(); 
-			$data['invoice_totals'] = $this->Invoice_model->get_invoice_totals($invoice_id);
+			$data['invoice_data'] 		= $this->Invoice_model->get_invoice($invoice_id);
+			$data['user_info'] 			= $this->Invoice_model->get_all_admin($data['invoice_data']->admin_id);
+			$data['invoice_group'] 		= $this->Invoice_model->get_all_groups($data['invoice_data']->invoice_group_id);
+			$data['invoice_items'] 		= $this->Invoice_model->get_invoice_items_by_invoice_id($invoice_id);
+			$data['tax_rates'] 			= $this->Invoice_Tax_Model->get_taxes(); 
+			$data['invoice_totals'] 	= $this->Invoice_model->get_invoice_totals($invoice_id);			
+			$data['invoice_products'] 	= $this->order_model->get_admin_related_orders($data['invoice_data']->admin_id);
 			
-			//$this->show->pe($data);		
+			//echo "<pre>";print_r($data['invoice_products']);exit;
 			$this->load->view($this->config->item('admin_folder').'/includes/header');
             $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
             $this->load->view($this->config->item('admin_folder').'/invoice/invoice_detail', $data); 
@@ -198,17 +200,20 @@ class Invoices extends Admin_Controller {
 		
 			//$this->show->pe($_POST);	exit;	
 			$data 						= array();
-			$invoice_item				= array();
+			$invoice_item				= array();			
 			$data['invoice_id'] 		= '';
 			$data['item_name'] 			= '';
 			$data['item_description'] 	= '';
 			$data['item_quantity'] 		= '';
 			$data['item_price'] 		= '';
+			$data['product_id'] 		= '';			
 			$data['item_tax_rate_id'] 	= 0;
 			$item_count 				= count($_POST['item_name']);
 			$invoice_total				= 0;
 			$invoice_tax_total			= 0;
-			$item_tax_total				= 0 ;
+			$item_tax_total				= 0;
+			$commission_item			= 0;
+			$commission_total			= 0;
 			
 			if(isset($_POST['item_name']) && $item_count>0)
 			{
@@ -227,10 +232,15 @@ class Invoices extends Admin_Controller {
 					$data['item_description'] 	= $_POST['item_description'][$i];
 					$data['item_quantity'] 		= $_POST['item_quantity'][$i];
 					$data['item_price'] 		= $_POST['item_price'][$i];
+					$data['product_id']			= $_POST['product_id'][$i];
+					$comm_rate 					= $_POST['comm_rate'][$i];
+					$comm_rate_mode 			= $_POST['comm_rate_mode'][$i];
 					
-					//Get Each Item Tax
 					
+					
+					//Get Each Item Tax					
 					$tax 						= $this->Invoice_Tax_Model->get_tax_by_id($data['item_tax_rate_id']);					
+					
 					//Insert Invoice Item
 					$item_id 					= $this->Invoice_model->insert_invoice_items($data);
 					
@@ -243,13 +253,33 @@ class Invoices extends Admin_Controller {
 					
 					$invoice_total 				= $invoice_total + $item_subtotal;
 					$invoice_tax_total 			= $invoice_tax_total + $item_tax_total;
+					//echo $item_subtotal.'--'.$comm_rate."<br>";
+					if(isset($comm_rate_mode) && $comm_rate_mode == '%')
+					{
 					
+						$comm_value 			= $item_subtotal * ($comm_rate / 100);
+						$comm_apply_item		= $item_subtotal - $comm_value ;
+						$commission_total		= $commission_total + $comm_apply_item;
+					}
+					else if(isset($comm_rate_mode) && $comm_rate_mode == 'Fix')
+					{
+						$comm_value 			= $comm_rate;
+						$comm_apply_item		= $item_subtotal - $comm_value;
+						$commission_total		= $commission_total + $comm_apply_item;
+					}
+				//echo 	$commission_item.'--'.$commission_total."<br>";
 					$item_totals = array(
 							'item_id' 			=> $item_id,
 							'item_subtotal' 	=> $item_subtotal,
 							'item_tax_total' 	=> $item_tax_total,
-							'item_total'		=> $item_total
+							'item_total'		=> $item_total,
+							'comm_rate' 		=> $comm_value,
+							'comm_rate_mode'	=> $comm_rate_mode,
+							'comm_per_item' 	=> $comm_apply_item											
 						);
+					
+				//echo "<pre>";	print_r($item_totals);	
+					//continue;	
 					// Save Each Calculation Of Each Item	
 					$item_total_id = $this->Invoice_model->insert_invoice_items_totals($item_totals);	
 				}

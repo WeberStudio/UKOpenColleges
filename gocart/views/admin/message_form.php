@@ -13,7 +13,20 @@
         <!-- End .title -->
         <div class="content">
 		<div class="tab-pane fade in active" id="form">
-          <?php echo form_open($this->config->item('admin_folder').'/forums/message_form/'.$topic_id.'/'.$id, array('class' => '', 'id' => 'validateForm')); ?>
+		
+		
+          <?php 
+		 
+		  if(empty($reply))
+		  {
+		  		  
+			echo form_open($this->config->item('admin_folder').'/forums/message_form/'.$topic_id.'/'.$id, array('class' => '', 'id' => 'validateForm')); 
+		  }
+		  else
+		  {		  	
+			echo form_open($this->config->item('admin_folder').'/forums/message_form/'.$topic_id, array('class' => '', 'id' => 'validateForm'));
+		  }
+		  ?>
  			<div class="form-row control-group row-fluid">
             <label class="control-label span1" for="hint-field">
               Title

@@ -14,7 +14,8 @@ Class Message_Forum_model extends CI_Model
 	
 	
 	
-	function get_messages($limit=0, $offset=0, $order_by='topic_title', $direction='ASC')
+	
+	function get_messages($limit=0, $offset=0, $order_by='message_title', $direction='ASC')
 	{
 		$this->db->order_by($order_by, $direction);
 		if($limit>0)
@@ -22,7 +23,7 @@ Class Message_Forum_model extends CI_Model
 			$this->db->limit($limit, $offset);
 		}
 
-		$result	= $this->db->get('topics');
+		$result	= $this->db->get('messages');
 		return $result->result();
 	}
 	
@@ -33,9 +34,11 @@ Class Message_Forum_model extends CI_Model
 	
 	function get_message($id)
 	{
-		$result	= $this->db->get_where('oc_messages', array('topic_id'=>$id));
+		$result	= $this->db->get_where('oc_messages', array('message_id'=>$id));
 		return $result->row();
 	}
+	
+	
 	
 	function save($data)
 	{
@@ -52,5 +55,10 @@ Class Message_Forum_model extends CI_Model
 		}
 	}
 	
+	function message_delete($message_id)
+	{			
+		$this->db->delete('oc_messages', array('message_id' => $message_id));
+		return true;	
+	}
 	
 }
