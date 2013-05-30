@@ -137,7 +137,8 @@ class Admin extends Admin_Controller
 		$data['zip_code']			= '';
 		$data['country']			= '';
 		$data['telephone']			= '';
-		
+		$password					= '';
+		$password 					= $this->input->post('password');
 		if ($id)
 		{	
 			$this->admin_id		= $id;
@@ -222,7 +223,7 @@ class Admin extends Admin_Controller
 			}
 			else
 			{
-				if(!$uploaded)
+				/*if(!$uploaded)
 				{
 					$error	= $this->upload->display_errors();
 					if($error != lang('error_file_upload'))
@@ -231,7 +232,7 @@ class Admin extends Admin_Controller
 						$this->load->view($this->config->item('admin_folder').'/admin/form/', $data);
 						return; //end script here if there is an error
 					}
-				}
+				}*/
 			}
 			
 			if($uploaded)
@@ -292,6 +293,18 @@ class Admin extends Admin_Controller
 			if ($this->input->post('password') != '' || !$id)
 			{
 				$save['password']	= $this->input->post('password');
+				$this->load->library('email');
+				$to		 = $save['email'];
+				$message = 'Welcome! '.$save['firstname'].' '.$save['lastname']."\n\n";
+				$message .= 'E-mail: '.$save['email']."\n";
+				$message .= 'Password: '.$password."\n\n";
+				$message .= 'Thanks For Joining Ukopencollege.';			
+				$this->email->from('support@ukopencollege.com', 'Ukopencollege');
+				$this->email->to($to);
+				$this->email->subject('Successfully Signup!');
+				$this->email->message($message);
+				$this->email->send();		
+				
 			}
 			
 			$this->auth->save($save);

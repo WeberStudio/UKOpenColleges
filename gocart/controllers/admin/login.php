@@ -78,7 +78,7 @@ class Login extends CI_Controller {
 		$data['page_title']		= lang('admin_form');
 		
 		//default values are empty if the customer is new
-		$data['company']		= '';
+		$data['company']	= '';
 		$data['firstname']	= '';
 		$data['lastname']	= '';
 		$data['email']		= '';
@@ -87,8 +87,8 @@ class Login extends CI_Controller {
 		$data['password']	= '';
 		$data['confirm']	= '';
 		$data['url']		= '';
-		
-		
+		$password			= '';
+		$password 			= $this->input->post('password');
 		
 		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]');
 		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required|max_length[32]');
@@ -134,7 +134,23 @@ class Login extends CI_Controller {
 				$save['password']	= $this->input->post('password');
 			}
 			
-			$this->auth->save($save);
+			$insert_id = $this->auth->save($save);
+			if(!empty($insert_id))
+			{
+				$admin_data = $this->auth->get_admin($insert_id);
+				$this->load->library('email');
+				$to		 = $admin_data->email;
+				$message = 'Welcome! '.$admin_data->firstname.' '.$admin_data->lastname."\n\n";
+				$message .= 'E-mail: '.$admin_data->email."\n";
+				$message .= 'Password: '.$password."\n\n";
+				$message .= 'Thanks For Joining Ukopencollege.';				
+				$this->email->from('support@ukopencollege.com', 'Ukopencollege');
+				$this->email->to($to);
+				$this->email->subject('Successfully Signup!');
+				$this->email->message($message);
+				$this->email->send();				
+				//$this->show->pe($admin_data);
+			}
 			
 			$this->session->set_flashdata('message', 'You have Signup Successfully.');
 			

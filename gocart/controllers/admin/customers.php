@@ -115,7 +115,9 @@ class Customers extends Admin_Controller {
 		$data['state']				= '';
 		$data['zip_code']			= '';
 		$data['country']			= '';
-		$data['telephone']			= '';		
+		$data['telephone']			= '';	
+		$password					= '';
+		$password 					= $this->input->post('password');	
 		// get group list
 		$groups = $this->Customer_model->get_groups();
 		foreach($groups as $group)
@@ -196,6 +198,17 @@ class Customers extends Admin_Controller {
 			if ($this->input->post('password') != '' || !$id)
 			{
 				$save['password']	= $this->input->post('password');
+				$this->load->library('email');
+				$to		  = $save['email'];
+				$message  = 'Welcome! '.$save['firstname'].' '.$save['lastname']."\n\n";
+				$message .= 'E-mail: '.$save['email']."\n";
+				$message .= 'Password: '.$password."\n\n";
+				$message .= 'Thanks For Joining Ukopencollege.';			
+				$this->email->from('support@ukopencollege.com', 'Ukopencollege');
+				$this->email->to($to);
+				$this->email->subject('Successfully Signup!');
+				$this->email->message($message);
+				$this->email->send();		
 			}
 			
 			$this->Customer_model->save($save);
