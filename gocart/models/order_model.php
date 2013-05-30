@@ -37,10 +37,9 @@ Class order_model extends CI_Model
 		return $years;
 	}
 	
-	function get_orders($search=false, $sort_by='', $sort_order='ASC', $limit=0, $offset=0)
-	{	
-	//echo $offset; exit;		
-		/*if ($search)
+	function get_orders($search=false, $sort_by='', $sort_order='DESC', $limit=0, $offset=0)
+	{			
+		if ($search)
 		{
 			if(!empty($search->term))
 			{
@@ -83,23 +82,18 @@ Class order_model extends CI_Model
 				$this->db->where('ordered_on <',$search->end_date);
 			}
 			
-		}*/
-		
-		if(!empty($sort_by))
-		{
-			 $this->db->order_by($sort_by, $sort_order);
 		}
+		
 		if($limit>0)
 		{
 			$this->db->limit($limit, $offset);
-			echo $this->db->last_query(); exit;
+		}
+		if(!empty($sort_by))
+		{
+			$this->db->order_by($sort_by, $sort_order);
 		}
 		
-		$result	= $this->db->get('orders');
-		
-		return $result->result();
-		
-		
+		return $this->db->get('orders')->result();
 	}
 	
 	function get_orders_count($search=false)
@@ -159,10 +153,28 @@ Class order_model extends CI_Model
 		return $this->db->get_where('orders', array('customer_id'=>$id), 15)->result();
 	}
 	
-	function count_customer_orders()
+	//get an individual customers orders
+	function get_admin_related_orders($admin_id)
 	{
-		return $this->db->count_all_results('orders');
+		
+		$result = $this->db->query('SELECT * , COUNT( oc_order_items.product_id ) items_count , SUM( oc_order_items.quantity ) q_sum
+							FROM oc_orders 
+							LEFT JOIN oc_order_items 
+							ON oc_orders.id = oc_order_items.order_id
+							LEFT JOIN oc_commission 
+							ON oc_order_items.product_id = oc_commission.comm_level_id
+							WHERE oc_orders.admin_id ='.$admin_id.'							
+							GROUP BY oc_order_items.product_id');
+							
+		return $result->result_array();
+	}
 	
+	
+	
+	function count_customer_orders($id)
+	{
+		$this->db->where(array('customer_id'=>$id));
+		return $this->db->count_all_results('orders');
 	}
 	
 	function get_order($id)

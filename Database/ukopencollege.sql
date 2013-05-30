@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 2.10.3
 -- http://www.phpmyadmin.net
 -- 
@@ -31,28 +31,37 @@ CREATE TABLE `oc_admin` (
   `url` varchar(255) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `status` enum('1','0') NOT NULL,
+  `street_address` varchar(255) NOT NULL,
+  `address_line_op` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `zip_code` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `telephone` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 -- 
 -- Dumping data for table `oc_admin`
 -- 
 
-INSERT INTO `oc_admin` VALUES (1, 'junaid', 'khalil', 'khalil.junaid@gmail.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Junaidkhalil', 'thumb_1.jpg', 'www.facebook.com', '034555555555', '1');
-INSERT INTO `oc_admin` VALUES (2, 'junaid', 'khalil', 'khalil.junaid123@gmail.com', 'Admin', '6c75f2a70c892301254da6a2d83cc0b37bf5a5d7', 'junaidkhalil', '', '', 'khalil.junaid123@gmail.com', '1');
-INSERT INTO `oc_admin` VALUES (3, 'junaid', 'khalil', 'khalil.junaid01@gmail.com', 'Admin', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'junaidkhalil', '', '', '0326599999', '1');
-INSERT INTO `oc_admin` VALUES (4, 'junaid', 'khalil', 'khalil.junaid121@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '1212121212121', '1');
-INSERT INTO `oc_admin` VALUES (5, 'junaid', 'khalil', 'khalil.junaid1212@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '1212121212121', '1');
-INSERT INTO `oc_admin` VALUES (6, 'junaid', 'khalil', 'khalil.junaiad@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '111111', '1');
-INSERT INTO `oc_admin` VALUES (7, 'junaid', 'khalil', 'khalil.junaid@gmail.comq', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '22323232', '1');
-INSERT INTO `oc_admin` VALUES (8, 'junaid', 'khalil', 'khalil.junaidqqq@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '232323232', '1');
-INSERT INTO `oc_admin` VALUES (9, 'junaid', 'khalil', 'khalil.junaid22@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1');
-INSERT INTO `oc_admin` VALUES (10, 'junaid', 'khalil', 'khalil.junaid2q2@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1');
-INSERT INTO `oc_admin` VALUES (11, 'junaid', 'khalil', 'khalil.junaid2q2w@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1');
-INSERT INTO `oc_admin` VALUES (12, 'junaid', 'khalil', 'khalil.junaid0101@gmail.com', 'Admin', '7c222fb2927d828af22f592134e8932480637c0d', 'junaidkhalil', '', '', '235696969', '1');
-INSERT INTO `oc_admin` VALUES (13, 'jooojo', 'Rahat', 'r@r.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Jhon', '', '', '25252525', '1');
-INSERT INTO `oc_admin` VALUES (14, 'Weber', 'Pro', 'weber@gmail.com', 'Superadmin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WeberPro', 'thumb_14.jpg', 'http://www.weber.com', '445555555555', '1');
-INSERT INTO `oc_admin` VALUES (15, 'NEW', 'TEST', 'test@gmail.com', 'Admin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WEBER', '', '', '0300ewq', '1');
+INSERT INTO `oc_admin` VALUES (1, 'junaid', 'khalil', 'khalil.junaid@gmail.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Junaidkhalil', 'thumb_1.jpg', 'www.facebook.com', '034555555555', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (2, 'junaid', 'khalil', 'khalil.junaid123@gmail.com', 'Admin', '6c75f2a70c892301254da6a2d83cc0b37bf5a5d7', 'junaidkhalil', '', '', 'khalil.junaid123@gmail.com', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (3, 'junaid', 'khalil', 'khalil.junaid01@gmail.com', 'Admin', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'junaidkhalil', '', '', '0326599999', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (4, 'junaid', 'khalil', 'khalil.junaid121@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '1212121212121', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (5, 'junaid', 'khalil', 'khalil.junaid1212@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '1212121212121', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (6, 'junaid', 'khalil', 'khalil.junaiad@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '111111', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (7, 'junaid', 'khalil', 'khalil.junaid@gmail.comq', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '22323232', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (8, 'junaid', 'khalil', 'khalil.junaidqqq@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '232323232', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (9, 'junaid', 'khalil', 'khalil.junaid22@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (10, 'junaid', 'khalil', 'khalil.junaid2q2@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (11, 'junaid', 'khalil', 'khalil.junaid2q2w@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (12, 'junaid', 'khalil', 'khalil.junaid0101@gmail.com', 'Admin', '7c222fb2927d828af22f592134e8932480637c0d', 'junaidkhalil', '', '', '235696969', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (13, 'jooojo', 'Rahat', 'r@r.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Jhon', '', '', '25252525', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (14, 'Weber', 'Pro', 'weber@gmail.com', 'Superadmin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WeberPro', 'thumb_14.jpg', 'http://www.weber.com', '445555555555', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (15, 'NEW', 'TEST', 'test@gmail.com', 'Admin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WEBER', '', '', '0300ewq', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (16, 'qais', 'qais', 'qais@yahoo.com', '', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'uk colleges', 'thumb_14.jpg', 'www.yahoo.com', '0307454648', '1', 'house#2255', 'line 56', 'majareka', '1', '12345', '0', '123456877');
+INSERT INTO `oc_admin` VALUES (17, 'qaiss', 'qaiss', 'qaiss@yahoo.com', '', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'uk collegess', 'thumb_14.jpg', 'www.yahhoo.com', '0307454648', '1', 'house#2255', 'line 56', 'majareka', '1', '12345', '0', '123456877');
 
 -- --------------------------------------------------------
 
@@ -8454,6 +8463,13 @@ CREATE TABLE `oc_tutors` (
   `tutor_id` int(8) unsigned NOT NULL auto_increment,
   `categories` varchar(50) default NULL,
   `courses` varchar(50) default NULL,
+  `street_address` varchar(255) NOT NULL,
+  `address_line_op` varchar(255) NOT NULL,
+  `city` varchar(125) NOT NULL,
+  `state` varchar(125) NOT NULL,
+  `zip_code` varchar(125) NOT NULL,
+  `country` varchar(125) NOT NULL,
+  `telephone` varchar(125) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` char(32) NOT NULL,
   `firstname` varchar(100) NOT NULL,
@@ -8466,23 +8482,25 @@ CREATE TABLE `oc_tutors` (
   `short_description` text,
   `extra_info` varchar(50) default NULL,
   PRIMARY KEY  (`tutor_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 -- 
 -- Dumping data for table `oc_tutors`
 -- 
 
-INSERT INTO `oc_tutors` VALUES (1, NULL, NULL, 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', 'zdadasdadad', NULL, 2147483647, '1', '1', '<p>adadasd</p>', NULL);
-INSERT INTO `oc_tutors` VALUES (2, NULL, NULL, 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'Jackob', 'Fornandas', 'adasdasdasdasd', NULL, 2147483647, '1', '1', '<p>adasdasdad</p>', NULL);
-INSERT INTO `oc_tutors` VALUES (3, NULL, NULL, 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'asdasdasd', NULL, 2147483647, '1', '1', '<p>adasdasd</p>', NULL);
-INSERT INTO `oc_tutors` VALUES (4, NULL, NULL, 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', '', '4f1f99ed0b60f5af9659c613902afe34.jpg', 2147483647, '0', '0', '', NULL);
-INSERT INTO `oc_tutors` VALUES (5, '', '["11","13"]', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'adasd', '9ed56e051a5558ddfeaeadb14b938e24.jpg', 2147483647, '1', '1', '<p>adasd</p>', NULL);
-INSERT INTO `oc_tutors` VALUES (7, '["9","5"]', '["6","3"]', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', 'asdasd', NULL, 2147483647, '1', '1', '<p>asdsda</p>', NULL);
-INSERT INTO `oc_tutors` VALUES (8, '["9"]', '["13"]', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'Hollo', 'Romba', 'aasasadasd', NULL, 2147483647, '0', '0', '<p>asdasdadas</p>', NULL);
-INSERT INTO `oc_tutors` VALUES (9, '["9"]', '["13"]', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'Hollo', 'Romba', 'aasasadasd', NULL, 2147483647, '1', '1', '<p>asdasdadas</p>', NULL);
-INSERT INTO `oc_tutors` VALUES (10, '["1","7"]', '["13"]', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'sdfsdf', NULL, 2147483647, '0', '0', '<p>sdfdsfsd</p>\r\n', '');
-INSERT INTO `oc_tutors` VALUES (11, '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'sdfsdf', NULL, 2147483647, '1', '1', '<p>asdasdas</p>', 'asdasdasdasdasdsdasd56565');
-INSERT INTO `oc_tutors` VALUES (12, '["7","5"]', '["2"]', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'asdad', 'asdasdasdasd', NULL, 2147483647, '1', '1', '<p>rahlllll</p>\r\n', 'sdadasdasdad');
+INSERT INTO `oc_tutors` VALUES (1, NULL, NULL, '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', 'zdadasdadad', NULL, 2147483647, '1', '1', '<p>adadasd</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (2, NULL, NULL, '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'Jackob', 'Fornandas', 'adasdasdasdasd', NULL, 2147483647, '1', '1', '<p>adasdasdad</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (3, NULL, NULL, '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'asdasdasd', NULL, 2147483647, '1', '1', '<p>adasdasd</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (4, NULL, NULL, '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', '', '4f1f99ed0b60f5af9659c613902afe34.jpg', 2147483647, '0', '0', '', NULL);
+INSERT INTO `oc_tutors` VALUES (5, '', '["11","13"]', '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'adasd', '9ed56e051a5558ddfeaeadb14b938e24.jpg', 2147483647, '1', '1', '<p>adasd</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (7, '["9","5"]', '["6","3"]', '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', 'asdasd', NULL, 2147483647, '1', '1', '<p>asdsda</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (8, '["9"]', '["13"]', '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'Hollo', 'Romba', 'aasasadasd', NULL, 2147483647, '0', '0', '<p>asdasdadas</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (9, '["9"]', '["13"]', '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'Hollo', 'Romba', 'aasasadasd', NULL, 2147483647, '1', '1', '<p>asdasdadas</p>', NULL);
+INSERT INTO `oc_tutors` VALUES (10, '["1","7"]', '["13"]', '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'sdfsdf', NULL, 2147483647, '0', '0', '<p>sdfdsfsd</p>\r\n', '');
+INSERT INTO `oc_tutors` VALUES (11, '', '', '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'sdfsdf', NULL, 2147483647, '1', '1', '<p>asdasdas</p>', 'asdasdasdasdasdsdasd56565');
+INSERT INTO `oc_tutors` VALUES (12, '["7","5"]', '["2"]', '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'asdad', 'asdasdasdasd', NULL, 2147483647, '1', '1', '<p>rahlllll</p>\r\n', 'sdadasdasdad');
+INSERT INTO `oc_tutors` VALUES (13, '["9","2"]', '', 'house#2255', 'line 56', 'majareka', '2', '12345', '0', '123456877', 'qaiss@yahoo.com', '7c4a8d09ca3762af61e59520943dc264', 'qaiss', 'qais', 'fhjfhfdgh', NULL, 123345634, '1', '1', '<p>ghfdgh<br></p>', '0');
+
 
 -- --------------------------------------------------------
 
