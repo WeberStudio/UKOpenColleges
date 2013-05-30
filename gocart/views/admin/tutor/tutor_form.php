@@ -113,6 +113,71 @@
 			echo form_input($data); ?>
                   </div>
                 </div>
+                
+                
+                <div class="form-row control-group row-fluid">
+                  <label class="control-label span1" for="hint-field"><?php echo lang('street_address');?><span class="help-block"></span></label>
+                  <div class="controls span7">
+                    <?php
+            $data    = array('name'=>'street_address', 'value'=>set_value('street_address', $street_address) ,'class' => 'span12');
+            echo form_input($data);
+            ?>
+                  </div>
+                </div>
+                <div class="form-row control-group row-fluid">
+                  <label class="control-label span1" for="hint-field"><?php echo lang('address_line_op');?><span class="help-block"></span></label>
+                  <div class="controls span7">
+                    <?php
+            $data    = array('name'=>'address_line_op', 'value'=>set_value('address_line_op', $address_line_op) ,'class' => 'span12');
+            echo form_input($data);
+            ?>
+                  </div>
+                </div>
+                <div class="form-row control-group row-fluid">
+                  <label class="control-label span1" for="hint-field"><?php echo lang('city');?><span class="help-block"></span></label>
+                  <div class="controls span7">
+                    <?php
+            $data    = array('name'=>'city', 'value'=>set_value('city', $city) ,'class' => 'span12');
+            echo form_input($data);
+            ?>
+                  </div>
+                </div>
+                <div class="form-row control-group row-fluid">
+                  <label class="control-label span1" for="hint-field"><?php echo lang('state');?><span class="help-block"></span></label>
+                  <div class="controls span7">
+                    <?php
+                    $option = array('1'=>'punjab','2'=>'sind','3'=>'sirhad');
+                    echo form_dropdown('state',$option,set_value('someValue'),'class="chzn-select"','id="default-select"');
+                    ?>
+                  </div>
+                </div>
+                <div class="form-row control-group row-fluid">
+                  <label class="control-label span1" for="hint-field"><?php echo lang('postcode');?><span class="help-block"></span></label>
+                  <div class="controls span7">
+                    <?php
+            $data    = array('name'=>'zip_code', 'value'=>set_value('zip_code', $zip_code) ,'class' => 'span6', 'maxlength'=>'6');
+            echo form_input($data);
+            ?>
+                  </div>
+                </div>
+                <div class="form-row control-group row-fluid">
+                      <label class="control-label span1" for="default-select"><?php echo lang('country');?> </label>
+                      <div class="controls span7">
+                      <?php $option = array('pk'=>'pakistan', 'un'=>'United States', 'uk'=>'united kingdom');
+                      echo form_dropdown('name',$option,set_value('someValue'),'class="chzn-select"','id="default-select"');
+                       ?>
+                      </div>
+                    </div>
+                <div class="form-row control-group row-fluid">
+                  <label class="control-label span1" for="hint-field"><?php echo lang('telephone');?><span class="help-block"></span></label>
+                  <div class="controls span7">
+                    <?php
+            $data    = array('name'=>'telephone', 'value'=>set_value('telephone', $telephone) ,'class' => 'span12');
+            echo form_input($data);
+            ?>
+                  </div>
+                </div>
+                    
                 <div class="form-row control-group row-fluid">
                   <label class="control-label span1" for="hint-field">
                   <?php //echo lang('phone');?>
@@ -195,6 +260,12 @@
                   </label>
                 </div>
               </div>
+              
+              
+              
+              
+              
+              
               <div class="tab-pane fade" id="qualification">
                 <div class="form-row control-group row-fluid">
                   <label class="control-label span1" for="hint-field">Degree Title<span class="help-block"></span></label>

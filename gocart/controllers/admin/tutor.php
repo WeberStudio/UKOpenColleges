@@ -21,7 +21,7 @@ class tutor extends Admin_Controller {
         /*** Get User Info***/
 		
 		/*** Left Menu Selection ***/
-		$this->session->set_userdata('active_module', 'user');
+		$this->session->set_userdata('active_module', 'sales');
 		/*** Left Menu Selection ***/
 		
 		$this->auth->check_access($this->admin_access, true);  
@@ -47,38 +47,34 @@ class tutor extends Admin_Controller {
        	
         $data = array();
 		$data['tutors']	= $this->Tutor_model->get_tutors($row, $page, $field, $by);
-		//echo "<pre>"; print_r($data['tutors']);exit;
 		
 		$this->load->library('pagination');
-
-		$config['base_url']		= base_url().'/'.$this->config->item('admin_folder').'/tutor/index/'.$field.'/'.$by.'/';
-		$config['total_rows']	= $this->Tutor_model->count_tutors();
-		$config['per_page']		= $row;
-		$config['uri_segment']	= 6;
+		//echo $this->db->last_query(); exit;
+		$config['base_url']			= base_url().'/'.$this->config->item('admin_folder').'/tutor/index/'.$field.'/'.$by.'/';
+		$config['total_rows']		= $this->Tutor_model->count_tutors();
+		$config['per_page']			= $row;
+		$config['uri_segment']		= 6;
 		$config['first_link']		= 'First';
 		$config['first_tag_open']	= '<li>';
 		$config['first_tag_close']	= '</li>';
 		$config['last_link']		= 'Last';
 		$config['last_tag_open']	= '<li>';
 		$config['last_tag_close']	= '</li>';
-
 		$config['full_tag_open']	= '<div class="pagination"><ul>';
 		$config['full_tag_close']	= '</ul></div>';
 		$config['cur_tag_open']		= '<li class="active"><a href="#">';
 		$config['cur_tag_close']	= '</a></li>';
-		
 		$config['num_tag_open']		= '<li>';
 		$config['num_tag_close']	= '</li>';
-		
 		$config['prev_link']		= 'Prev';
 		$config['prev_tag_open']	= '<li>';
 		$config['prev_tag_close']	= '</li>';
-
 		$config['next_link']		= 'Next';
 		$config['next_tag_open']	= '<li>';
 		$config['next_tag_close']	= '</li>';
 		
 		$this->pagination->initialize($config);
+		
 		$data['page']	= $page;
 		$data['field']	= $field;
 		$data['by']		= $by;
@@ -114,6 +110,15 @@ class tutor extends Admin_Controller {
 		$data['group_id']			= '';
 		$data['firstname']			= '';
 		$data['lastname']			= '';
+		
+		$data['street_address']		= '';
+		$data['address_line_op']	= '';
+		$data['city']				= '';
+		$data['state']				= '';
+		$data['zip_code']			= '';
+		$data['country']			= '';
+		$data['telephone']			= '';
+		
 		$data['email']				= '';
 		$data['phone']				= '';		
 		$data['description']		= '';
@@ -195,7 +200,7 @@ class tutor extends Admin_Controller {
 		$this->form_validation->set_rules('phone', 'lang:phone', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('comments', 'lang:comments', 'trim|max_length[128]');
 		$this->form_validation->set_rules('active', 'lang:active');
-		$this->form_validation->set_rules('group_id', 'group_id', 'numeric');
+		//$this->form_validation->set_rules('group_id', 'group_id', 'numeric');
 		$this->form_validation->set_rules('email_subscribe', 'email_subscribe', 'numeric|max_length[1]');
 		
 		//if this is a new account require a password, or if they have entered either a password or a password confirmation
@@ -239,6 +244,13 @@ class tutor extends Admin_Controller {
 			$save['comments']			= $this->input->post('comments');
 			$save['status']				= $this->input->post('active');
 			$save['email_subscribe'] 	= $this->input->post('email_subscribe');
+			$save['street_address']		= $this->input->post('street_address');
+			$save['address_line_op']	= $this->input->post('address_line_op');
+			$save['city']				= $this->input->post('city');
+			$save['state']				= $this->input->post('state');
+			$save['zip_code']			= $this->input->post('zip_code');
+			$save['country']			= $this->input->post('country');
+			$save['telephone']			= $this->input->post('telephone');
 			
 			if ($this->input->post('password') != '' || !$id)
 			{

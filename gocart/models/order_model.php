@@ -37,9 +37,10 @@ Class order_model extends CI_Model
 		return $years;
 	}
 	
-	function get_orders($search=false, $sort_by='', $sort_order='DESC', $limit=0, $offset=0)
-	{			
-		if ($search)
+	function get_orders($search=false, $sort_by='', $sort_order='ASC', $limit=0, $offset=0)
+	{	
+	//echo $offset; exit;		
+		/*if ($search)
 		{
 			if(!empty($search->term))
 			{
@@ -82,18 +83,23 @@ Class order_model extends CI_Model
 				$this->db->where('ordered_on <',$search->end_date);
 			}
 			
-		}
+		}*/
 		
+		if(!empty($sort_by))
+		{
+			 $this->db->order_by($sort_by, $sort_order);
+		}
 		if($limit>0)
 		{
 			$this->db->limit($limit, $offset);
-		}
-		if(!empty($sort_by))
-		{
-			$this->db->order_by($sort_by, $sort_order);
+			echo $this->db->last_query(); exit;
 		}
 		
-		return $this->db->get('orders')->result();
+		$result	= $this->db->get('orders');
+		
+		return $result->result();
+		
+		
 	}
 	
 	function get_orders_count($search=false)
@@ -153,10 +159,10 @@ Class order_model extends CI_Model
 		return $this->db->get_where('orders', array('customer_id'=>$id), 15)->result();
 	}
 	
-	function count_customer_orders($id)
+	function count_customer_orders()
 	{
-		$this->db->where(array('customer_id'=>$id));
 		return $this->db->count_all_results('orders');
+	
 	}
 	
 	function get_order($id)

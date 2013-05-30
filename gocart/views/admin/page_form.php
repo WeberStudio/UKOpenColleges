@@ -83,7 +83,7 @@
 					return $options;
 				}
 				$options	= $options + page_loop($pages, '', $id);
-				echo form_dropdown('parent_id', $options,  set_value('parent_id', $parent_id));
+				echo form_dropdown('parent_id', $options, set_value('parent_id', $parent_id) ,'class="chzn-select"', 'id="default-select"');
 				?>
 				</div>
 			</div>

@@ -120,16 +120,23 @@ class Admin extends Admin_Controller
 		$data['page_title']		= lang('admin_form');
 		
 		//default values are empty if the customer is new
-		$data['id']			= '';
-		$data['company']	= '';
-		$data['firstname']	= '';
-		$data['lastname']	= '';
-		$data['email']		= '';
-		$data['access']		= '';
-		$data['image']		= '';
-		$data['phone']		= '';
-		$data['url']		= '';
-		$data['image']		= '';
+		$data['id']					= '';
+		$data['company']			= '';
+		$data['firstname']			= '';
+		$data['lastname']			= '';
+		$data['email']				= '';
+		$data['access']				= '';
+		$data['image']				= '';
+		$data['phone']				= '';
+		$data['url']				= '';
+		$data['image']				= '';
+		$data['street_address']		= '';
+		$data['address_line_op']	= '';
+		$data['city']				= '';
+		$data['state']				= '';
+		$data['zip_code']			= '';
+		$data['country']			= '';
+		$data['telephone']			= '';
 		
 		if ($id)
 		{	
@@ -142,14 +149,21 @@ class Admin extends Admin_Controller
 				redirect($this->config->item('admin_folder').'/admin');
 			}
 			//set values to db values
-			$data['id']			= $admin->id;
-			$data['firstname']	= $admin->firstname;
-			$data['lastname']	= $admin->lastname;
-			$data['email']		= $admin->email;
-			$data['phone']		= $admin->phone;
-			$data['company']	= $admin->company;
-			$data['url']		= $admin->url;
-			$data['image']		= $admin->image;
+			$data['id']					= $admin->id;
+			$data['firstname']			= $admin->firstname;
+			$data['lastname']			= $admin->lastname;
+			$data['email']				= $admin->email;
+			$data['phone']				= $admin->phone;
+			$data['company']			= $admin->company;
+			$data['url']				= $admin->url;
+			$data['image']				= $admin->image;
+			$data['street_address']		= $admin->street_address;
+			$data['address_line_op']	= $admin->address_line_op;
+			$data['city']				= $admin->city;
+			$data['state']				= $admin->state;
+			$data['zip_code']			= $admin->zip_code;
+			$data['country']			= $admin->country;
+			$data['telephone']			= $admin->telephone;
 		}
 		
 		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]');
@@ -169,6 +183,7 @@ class Admin extends Admin_Controller
 		
 		if ($this->form_validation->run() == FALSE)
 		{
+			
             $this->load->view($this->config->item('admin_folder').'/includes/header');
             $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 			$this->load->view($this->config->item('admin_folder').'/admin_form', $data);
@@ -257,15 +272,22 @@ class Admin extends Admin_Controller
 				
 			}
 				
-			$save['id']		= $id;
-			$save['firstname']	= $this->input->post('firstname');
-			$save['lastname']	= $this->input->post('lastname');
-			$save['email']		= $this->input->post('email');
-			//$save['access']		= 'Admin';
-			$save['phone']		= $this->input->post('phone');
-			$save['company']	= $this->input->post('company');
-			$save['url']	= $this->input->post('url');
-			$save['status']		= '1';
+			$save['id']					= $id;
+			$save['firstname']			= $this->input->post('firstname');
+			$save['lastname']			= $this->input->post('lastname');
+			$save['email']				= $this->input->post('email');
+			$save['access']				= 'Admin';
+			$save['phone']				= $this->input->post('phone');
+			$save['company']			= $this->input->post('company');
+			$save['url']				= $this->input->post('url');
+			$save['status']				= '1';
+			$save['street_address']		= $this->input->post('street_address');
+			$save['address_line_op']	= $this->input->post('address_line_op');
+			$save['city']				= $this->input->post('city');
+			$save['state']				= $this->input->post('state');
+			$save['zip_code']			= $this->input->post('zip_code');
+			$save['country']			= $this->input->post('country');
+			$save['telephone']			= $this->input->post('telephone');
 			
 			if ($this->input->post('password') != '' || !$id)
 			{

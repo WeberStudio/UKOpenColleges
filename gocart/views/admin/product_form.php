@@ -13,7 +13,7 @@ $GLOBALS['option_value_count']		= 0;
           <div class="box paint color_3">
             <div class="title">
               <div class="row-fluid">
-                <h4> Product Information </h4>
+                <h4>Course Information </h4>
               </div>
             </div>
             <!-- End .title -->
@@ -198,15 +198,16 @@ $GLOBALS['option_value_count']		= 0;
                 </div>
                 <!-- TAB FOUR END-->
                 
-                <!-- TAB FIVE START-->                
-                <div class="tab-pane" id="images">
-                    <div class="form-row control-group row-fluid">
-                    <label class="control-label span3" for="search-input">Upload Course Title Image</label>
-                        <div class="controls span7">
-                            <div  class="input-append row-fluid">
-                              <input type="file" class="spa1n6 fileinput" id="search-input" name="image" >
-                            </div>
-                        </div>
+                <!-- TAB FIVE START-->
+                                
+                <div class="" id="images">
+                        <div class="form-row control-group row-fluid">
+                      <label class="control-label span1" for="search-input">File upload</label>
+                      <div class="controls span8">
+                        <div class="input-append row-fluid">
+                          <input type="file" class="spa1n6 fileinput" id="search-input">
+                          > </div>
+                      </div>
                     </div>
                      <?php if(!empty($images) && $images != ''):?>
                                 

@@ -13,7 +13,7 @@ Class Forum_model extends CI_Model
 	
 	
 	
-	function get_forums($limit=0, $offset=0, $order_by='forum_title', $direction='ASC')
+	function get_forums($limit=0, $offset=0, $order_by='forum_title', $direction='')
 	{
 		$this->db->order_by($order_by, $direction);
 		if($limit>0)
@@ -22,10 +22,11 @@ Class Forum_model extends CI_Model
 		}
 
 		$result	= $this->db->get('forums');
+		//echo $this->db->last_query(); exit;
 		return $result->result();
 	}
 	
-	function count_tutors()
+	function count_forums()
 	{
 		return $this->db->count_all_results('forums');
 	}

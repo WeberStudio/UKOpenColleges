@@ -27,8 +27,8 @@ function sort_url($lang, $by, $sort, $sorder, $code, $admin_folder)
 		echo '<a href="'.$return.'">'.lang($lang).$icon.'</a>';
 
 }
-$sort_by='order_number';
-$sort_order='desc';
+$sort_by='';
+$sort_order='ASC';
 $code=0; 
 $page=0;
 $rows=15;
@@ -108,19 +108,10 @@ $rows=15;
 				</div>
 				
 <div class="row-fluid control-group">
-                <div class="pull-left span6 " action="#"> </div>
+               
                 <div class="span6">
-                  <div class="pagination pull-right ">
-                    <ul>
-                      <li><a href="#">Prev</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">Next</a></li>
-                    </ul>
-                  </div >
-                </div>
+                  <div class="pagination pull-right "> <?php echo $this->pagination->create_links();?> &nbsp; </div
+                ></div>
               </div>
             </div>
             <!-- End row-fluid -->

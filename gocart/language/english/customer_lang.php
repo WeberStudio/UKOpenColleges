@@ -56,3 +56,6 @@ $lang['confirm_delete_customer']	= 'Are you sure you want to delete this custome
 $lang['add_new_address']			= 'Add New Address';
 $lang['add_new_group']				= 'Add New Group';
 $lang['add_new_customer']			= 'Add New Customer';
+$lang['street_address']				= 'Street Address';
+$lang['address_line_op']			= 'Address Line 2';
+$lang['telephone']					= 'Telephone';
