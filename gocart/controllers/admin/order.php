@@ -37,14 +37,52 @@ class Order extends Admin_Controller {
 		$this->lang->load('order');
 
     }
-	 function index($sort_by='order_number',$sort_order='desc', $code=0, $page=0, $rows=15)
-    {
+	
+	 function index($sort_by='order_number',$sort_order='ASC', $code=0, $page=0 , $rows=3)
+	 {
 	
 		
        	$this->load->helper('form');
+		
         $data = array();
-		$data['orders']	= $this->Order_model->get_orders();	
-		//echo "<pre>"; print_r($data['invoices']);exit;
+		$data['orders']				= $this->Order_model->get_orders('',$sort_by,$sort_order,$rows,$page);
+		
+		$this->load->library('pagination');	
+		
+		$config['base_url']			= base_url().'/'.$this->config->item('admin_folder').'/order/index/'.$sort_by.'/'.$sort_order.'/';
+		$config['total_rows']		= $this->Order_model->count_customer_orders();
+		
+		$config['per_page']			= $rows;
+		
+		$config['uri_segment']		= 6;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
+		
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		
+		$config['prev_link']		= 'Prev';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+
+		$config['next_link']		= 'Next';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';
+		
+		$this->pagination->initialize($config);
+		$data['page']			= $page;
+		$data['sort_by']		= $sort_by;
+		$data['sort_order']		= $sort_order;
+		
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/order_listing', $data);

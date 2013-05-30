@@ -35,6 +35,7 @@ $lang['meta_example']				= 'ex. &lt;meta name="description" content="We sell pro
 $lang['bulk_save']					= 'Bulk Save';
 $lang['bulk_remove']				= 'Bulk Remove';
 $lang['add_new_product']			= 'Add New Product';
+$lang['add_new_course']				= 'Add New Course';
 $lang['no_products']				= 'There are currently no products.';
 $lang['track_stock']				= 'Track Stock';
 $lang['do_not_track_stock']			= 'Do Not Track Stock';

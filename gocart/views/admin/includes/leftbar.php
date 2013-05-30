@@ -40,9 +40,9 @@
             $active_sales		= 'opened';
 			$sales_links		= 'in collapse';
     }
-	 else if($active == 'commissions')
+	 else if($active == 'commisions')
     {
-            $active_commissions		= 'opened';
+            $active_commisions		= 'opened';
 			$commisioin_links		= 'in collapse';
     }
 ?>
@@ -138,10 +138,10 @@
                         </ul>
                     </li>
 					<li class="accordion-group color_14 <?php echo $active_commisions; ?>"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse5" onclick="set_module('commisions')">
-                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Commision</span></a>
+                            <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Commission</span></a>
                         <ul id="collapse5" class="accordion-body collapse <?php echo  $commisioin_links; ?>">
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
-                            <li><a href="<?=base_url().ADMIN_PATH?>commission">Commission</a></li>
+                            <li><a href="<?=base_url().ADMIN_PATH?>commission">commission</a></li>
 						    <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>

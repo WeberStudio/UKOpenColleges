@@ -52,7 +52,7 @@
 <div class="row">
 <div id="content" class="fifteen columns">
 <div class="col-1">
- 	<h3>My Fourms</h3>
+ 	<h3>File Manager</h3>
           <div id="elfinder"></div>
 </div>
 </div>

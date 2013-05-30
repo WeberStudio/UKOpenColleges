@@ -24,6 +24,7 @@ Class Tutor_model extends CI_Model
 		}
 
 		$result	= $this->db->get('tutors');
+		//echo $this->db->last_query(); exit;
 		return $result->result();
 	}
 	

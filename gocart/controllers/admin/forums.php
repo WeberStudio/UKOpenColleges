@@ -37,12 +37,43 @@ class forums extends Admin_Controller {
     }
 	
 
-    function index()
+    function index($field='forum_title', $by='ASC', $page='', $row=5)
     {
        	
         $data = array();
+		$data['forums']			= $this->Forum_model->get_forums($row, $page, $field, $by);	
 		
-		$data['forums']			= $this->Forum_model->get_forums();		
+		$this->load->library('pagination');
+		
+		$config['base_url']			= base_url().'/'.$this->config->item('admin_folder').'/forums/index/'.$field.'/'.$by.'/';
+		$config['total_rows']		= $this->Forum_model->count_forums();
+		$config['per_page']			= $row;
+		$config['uri_segment']		= 6;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		$config['prev_link']		= 'Prev';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+		$config['next_link']		= 'Next';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';
+		
+		$this->pagination->initialize($config);
+		
+		$data['page']	= $page;
+		$data['field']	= $field;
+		$data['by']		= $by;
+			
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/forum_listing', $data);

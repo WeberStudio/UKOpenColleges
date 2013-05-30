@@ -109,7 +109,13 @@ class Customers extends Admin_Controller {
 		$data['company']			= '';
 		$data['email_subscribe']	= '';
 		$data['active']				= false;
-				
+		$data['street_address']		= '';
+		$data['address_line_op']	= '';
+		$data['city']				= '';
+		$data['state']				= '';
+		$data['zip_code']			= '';
+		$data['country']			= '';
+		$data['telephone']			= '';		
 		// get group list
 		$groups = $this->Customer_model->get_groups();
 		foreach($groups as $group)
@@ -150,7 +156,7 @@ class Customers extends Admin_Controller {
 		$this->form_validation->set_rules('phone', 'lang:phone', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('company', 'lang:company', 'trim|max_length[128]');
 		$this->form_validation->set_rules('active', 'lang:active');
-		$this->form_validation->set_rules('group_id', 'group_id', 'numeric');
+		//$this->form_validation->set_rules('group_id', 'group_id', 'numeric');
 		$this->form_validation->set_rules('email_subscribe', 'email_subscribe', 'numeric|max_length[1]');
 		
 		//if this is a new account require a password, or if they have entered either a password or a password confirmation
@@ -170,16 +176,22 @@ class Customers extends Admin_Controller {
 		}
 		else
 		{
-			$save['id']			= $id;
-			$save['group_id'] 	= $this->input->post('group_id');
-			$save['firstname']	= $this->input->post('firstname');
-			$save['lastname']	= $this->input->post('lastname');
-			$save['email']		= $this->input->post('email');
-			$save['phone']		= $this->input->post('phone');
-			$save['company']	= $this->input->post('company');
-			$save['active']		= $this->input->post('active');
-			$save['email_subscribe'] = $this->input->post('email_subscribe');
-
+			$save['id']					= $id;
+			$save['group_id'] 			= $this->input->post('group_id');
+			$save['firstname']			= $this->input->post('firstname');
+			$save['lastname']			= $this->input->post('lastname');
+			$save['email']				= $this->input->post('email');
+			$save['phone']				= $this->input->post('phone');
+			$save['company']			= $this->input->post('company');
+			$save['active']				= $this->input->post('active');
+			$save['email_subscribe'] 	= $this->input->post('email_subscribe');
+			$save['address_street']		= $this->input->post('street_address');
+			$save['address_line']		= $this->input->post('address_line_op');
+			$save['city']				= $this->input->post('city');
+			$save['state']				= $this->input->post('state');
+			$save['post_code']			= $this->input->post('zip_code');
+			$save['country']			= $this->input->post('country');
+			
 			
 			if ($this->input->post('password') != '' || !$id)
 			{
