@@ -2,6 +2,32 @@
 <div id="main" style="min-height:1000px">
 <div class="container">
   <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
+  <?php
+	//lets have the flashdata overright "$message" if it exists
+	if($this->session->flashdata('message'))
+	{
+		$message	= $this->session->flashdata('message');
+	}
+	
+	if($this->session->flashdata('error'))
+	{
+		$error	= $this->session->flashdata('error');
+	}
+	
+	?>
+
+  <div id="js_error_container" class="alert alert-error" style="display:none;">
+    <p id="js_error"></p>
+  </div>
+  <div id="js_note_container" class="alert alert-note" style="display:none;"> </div>
+  <?php if (!empty($message)): ?>
+  <div class="alert alert-success"> <a class="close" data-dismiss="alert">*</a> <?php echo $message; ?> </div>
+  <?php endif; ?>
+  <?php if (!empty($error)): ?>
+  <div class="alert alert-error"> <a class="close" data-dismiss="alert">*</a> <?php echo $error; ?> </div>
+  <?php endif; ?>
+  
+  
   <div id="main_container">
     <div class="row-fluid">
       <div class="span12">
@@ -18,34 +44,33 @@
               <li><a href="#achievement" data-toggle="tab">Achievement</a></li>
               <li><a href="#extra" data-toggle="tab">Extra</a></li>
             </ul>
+			<form class="" id="validateForm" action="<?=base_url().$this->config->item('admin_folder').'/tutor/form/'.$id?>" enctype="multipart/form-data"  method="post">
             <div class="tab-content">
               <div class="tab-pane fade in active" id="form">
-                <?php echo form_open_multipart($this->config->item('admin_folder').'/tutor/form/'.$id, array('class' => '', 'id' => 'validateForm')); ?>
+			 
+                <?php //echo form_open_multipart($this->config->item('admin_folder').'/tutor/form/'.$id, array('class' => '', 'id' => 'validateForm')); ?>
                
                     <div class="form-row control-group row-fluid">
                       <label class="control-label span1"><span class="hint-field">Categories</span></label>
                       <div class="controls span7">
-                      
+                      <?
+						if(!empty($categories)){
+							$categories_item = str_replace(array("[", "]",  '"'),'',$categories);						
+							$categories_item = explode(',',$categories_item);
+					  	}
+					  ?>
                         <select data-placeholder="Choose Multiple Categories" class="chzn-select" name="categories[]" multiple="true" tabindex="5">
                         <? if(isset($all_categories)){  ?>
                         <?php  foreach ($all_categories as $file){
-								$flag = 0;
-								//$this->show->pe($file);
-								for($i = 0; $i<count($all_categories); $i++){
-									if(isset($product_categories[$i]->category_id) && $product_categories[$i]->category_id==$file['id']){ 
-									$flag = 1;
-						?>
-                          			<option selected="selected" value="<?=$file['id']?>"><?=$file['name']?></option>
-                            
-                         <?php //$i++;
-						 			break;
-									}
+							if(in_array($file['id'], $categories_item)){ 									
+							?>
+									<option selected="selected" value="<?=$file['id']?>"><?=$file['name']?></option>
+							<? } 
+							else
+							{ ?>	
 									
-						  		}
-								if($flag==0)
-								{?>
-									<option  value="<?=$file['id']?>"><?=$file['name']?></option>
-							<?	}
+									<option value="<?=$file['id']?>"><?=$file['name']?></option>
+							<? }
 						 	}
 						} 
 						 ?>
@@ -56,27 +81,24 @@
                 <div class="form-row control-group row-fluid">
                       <label class="control-label span1"><span class="hint-field">Courses</span></label>
                       <div class="controls span7">
-                      
+                      <?
+						if(!empty($categories)){
+							$courses_item = str_replace(array("[", "]",  '"'),'',$courses);						
+							$courses_item = explode(',',$courses_item);
+						}			  
+					  ?>
                         <select data-placeholder="Choose Multiple Courses" class="chzn-select" name="courses[]" multiple="true" tabindex="5">
-                        <? if(isset($courses)){  ?>
-                        <?php  foreach ($courses as $course){
-								$flag = 0;
-								//$this->show->pe($file);
-								for($i = 0; $i<count($courses); $i++){
-									if(isset($product_categories[$i]->category_id) && $product_categories[$i]->category_id==$file['id']){ 
-									$flag = 1;
-						?>
-                          			<option selected="selected" value="<?=$course['id']?>"><?=$course['name']?></option>
-                            
-                         <?php //$i++;
-						 			break;
-									}
+                        <? if(isset($all_courses)){  ?>
+                        <?php  foreach ($all_courses as $course){
+							if(in_array($course['id'], $courses_item)){ 									
+							?>
+									<option selected="selected" value="<?=$course['id']?>"><?=$course['name']?></option>
+							<? } 
+							else
+							{ ?>	
 									
-						  		}
-								if($flag==0)
-								{?>
-									<option  value="<?=$course['id']?>"><?=$course['name']?></option>
-							<?	}
+									<option value="<?=$course['id']?>"><?=$course['name']?></option>
+							<? } 
 						 	}
 						} 
 						 ?>
@@ -102,7 +124,7 @@
 			$data	= array('name'=>'firstname', 'value'=>set_value('firstname', $firstname), 'class'=>'span12');
 			echo form_input($data); ?>
                   </div>
-                </div>
+                </div>				
                 <div class="form-row control-group row-fluid">
                   <label class="control-label span1" for="hint-field">
                   <?php //echo lang('lastname');?>
@@ -229,18 +251,14 @@
                   <label class="control-label span1" for="text">Comment</label>
                   <div class="controls span7">
                     <textarea id="text" rows="3"  name="comments" class="row-fluid"><? echo set_value('comments', $comments); ?></textarea>
-					<?
-					 //$data	= array('name'=>'comments', 'value'=>set_value('comments', $comments));
-                    // echo form_textarea($data);
 					
-					?>
                   </div>
                 </div>
                 <div class="form-row control-group row-fluid">
                   <label class="control-label span1" for="search-input">File upload</label>
                   <div class="controls span7">
                     <div class="input-append row-fluid">
-                      <input type="file" class="spa1n6 fileinput" id="search-input">
+                      <input type="file" name="avatar" class="spa1n6 fileinput" id="search-input">
 					</div>
                   </div>
                 </div>                
@@ -267,110 +285,218 @@
               
               
               <div class="tab-pane fade" id="qualification">
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="hint-field">Degree Title<span class="help-block"></span></label>
-                  <div class="controls span7">
-                    <?php
-				 $data	= array('name'=>'degre_title', 'class'=>'span12');
-				 echo form_input($data); ?>
-                  </div>
-                </div>
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label>
-                  <div class="controls span7">
-                    <select class="span12">
-                      <option> Year</option>
-                      <option> 2001</option>
-                      <option> 2002</option>
-                      <option> 2003</option>
-                      <option> 2004</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="text">Description</label>
-                  <div class="controls span7">
-                    <textarea id="text" rows="3" class="row-fluid"></textarea>
-                  </div>
-                </div>
-                <div id="addnew"></div>
-                <div class="form-row control-group row-fluid" align="center">
-                  <button class="btn btn-success" rel="tooltip" onclick="add_qualification();">Add More <i class="gicon-plus-sign"></i></button>
-                </div>
+			  <div id="degree_inner_table" >
+				<? 
+				$degree_counter = 0;
+				if(count($all_degree)>0) {					
+					foreach($all_degree as $degree_data){
+						$degree_counter = $degree_counter + 1;
+				 ?>
+						<div id="degree_inner_row_<?=$degree_counter?>" >
+							<div class="form-row control-group row-fluid">
+							  <label class="control-label span1" for="hint-field">Degree Title<span class="help-block"></span></label>
+							  <div class="controls span7">					
+							 <input type="text" name="degree_title[]"  class="span12" value="<?=$degree_data->degree_title?>"/>
+							  </div>
+							</div>
+							<div class="form-row control-group row-fluid">
+							  <label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label>
+							  <div class="controls span7">
+								<label for="date"> Date (M-D-Y) </label>
+								<input type="text" name="degree_start[]" id="degree_start_<?=$degree_counter?>" class="span12" onclick="show_date('degree_start_<?=$degree_counter?>')"  value="<?=$degree_data->degree_start?>"/>
+								<label for="date"> Date (M-D-Y) </label>
+								<input type="text" name="degree_end[]" id="degree_end_<?=$degree_counter?>" class="span12" onclick="show_date('degree_end_<?=$degree_counter?>')" value="<?=$degree_data->degree_end?>"/>
+							  </div>
+							</div>
+							<div class="form-row control-group row-fluid">
+							  <label class="control-label span1" for="text">Description</label>
+							  <div class="controls span7">
+								<textarea id="text" rows="3" class="row-fluid" name="degree_description[]"><?=$degree_data->degree_description?></textarea>
+							  </div>
+							   <a href="javascript:void(0)" class="btn btn-danger btn-mini"  onclick="remove_item('degree_inner_row_<?=$degree_counter?>')" style="margin-left:110px;"><i class="icon-remove"></i> Remove Item</a>
+							</div>					
+						</div>
+					<?
+						}
+					}
+					else
+					{?>
+					
+						<div id="degree_inner_row_1" >
+						<div class="form-row control-group row-fluid">
+						  <label class="control-label span1" for="hint-field">Degree Title<span class="help-block"></span></label>
+						  <div class="controls span7">					
+						 <input type="text" name="degree_title[]"  class="span12"/>
+						  </div>
+						</div>
+						<div class="form-row control-group row-fluid">
+						  <label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label>
+						  <div class="controls span7">
+							<label for="date"> Date (M-D-Y) </label>
+							<input type="text" name="degree_start[]" id="degree_start_1" class="span12" onclick="show_date('degree_start_1')" />
+							<label for="date"> Date (M-D-Y) </label>
+							<input type="text" name="degree_end[]" id="degree_end_1" class="span12" onclick="show_date('degree_end_1')"/>
+						  </div>
+						</div>
+						<div class="form-row control-group row-fluid">
+						  <label class="control-label span1" for="text">Description</label>
+						  <div class="controls span7">
+							<textarea id="text" rows="3" class="row-fluid" name="degree_description[]"></textarea>
+						  </div>
+						</div>					
+					  </div>
+					
+					
+					<? }
+					?>
+				</div>
+				
+				<div id="addnew"></div>
+					<div class="row-fluid" style="padding-left:110px;"> <a href="javascript:void(0)" class="btn" id="btn_add_item" onclick="add_degree_clon()" style="margin-right: 5px;"><i class="icon-plus-sign"></i> Add Item</a> </div>
               </div>
               <div class="tab-pane fade" id="experience">
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="hint-field"> Form <span class="help-block"></span></label>
-                  <div class="controls span7">
-                    <select class="span12">
-                      <option> Year</option>
-                      <option> 2001</option>
-                      <option> 2002</option>
-                      <option> 2003</option>
-                      <option> 2004</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="hint-field"> To <span class="help-block"></span></label>
-                  <div class="controls span7">
-                    <select class="span12">
-                      <option> Year</option>
-                      <option> 2001</option>
-                      <option> 2002</option>
-                      <option> 2003</option>
-                      <option> 2004</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="hint-field">Designation<span class="help-block"></span></label>
-                  <div class="controls span7">
-                    <?php
-					 $data	= array('name'=>'degre_title', 'class'=>'span12');
-					 echo form_input($data); ?>
-                  </div>
-                </div>
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="text">Description</label>
-                  <div class="controls span7">
-                    <textarea id="text" rows="3" class="row-fluid"></textarea>
-                  </div>
-                </div>
+			  	<div id="desig_inner_table" >
+				<? 
+				$desig_counter = 0;
+				if(count($all_desig)>0) {					
+					foreach($all_desig as $desig_data){
+						$desig_counter = $desig_counter + 1;
+				 ?>
+					<div id="desig_inner_row_<?=$desig_counter?>" >
+					<div class="form-row control-group row-fluid">
+					  <label class="control-label span1" for="hint-field">Desig Title<span class="help-block"></span></label>
+					  <div class="controls span7">						
+						 <input type="text" name="desig_title[]" class="span12" value="<?=$desig_data->desig_title?>" />
+					  </div>
+					</div>
+					<div class="form-row control-group row-fluid">
+					  <label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label>
+					  <div class="controls span7">
+						<label for="date"> Date (M-D-Y) </label>
+						<input type="text" name="desig_start[]" id="desig_start_<?=$desig_counter?>" class="span12" onclick="show_date('desig_start_<?=$desig_counter?>')" value="<?=$desig_data->desig_start?>" />
+						<label for="date"> Date (M-D-Y) </label>
+						<input type="text" name="desig_end[]" id="desig_end_<?=$desig_counter?>" class="span12" onclick="show_date('desig_end_<?=$desig_counter?>')" value="<?=$desig_data->desig_end?>"/>
+					  </div>
+					</div>                                
+					<div class="form-row control-group row-fluid">
+					  <label class="control-label span1" for="text">Description</label>
+					  <div class="controls span7">
+						<textarea id="text" rows="3" class="row-fluid" name="desig_description[]"><?=$desig_data->desig_description?></textarea>
+					  </div>
+					   <a href="javascript:void(0)" class="btn btn-danger btn-mini"  onclick="remove_item('desig_inner_row_<?=$desig_counter?>')" style="margin-left:110px;"><i class="icon-remove"></i> Remove Item</a>
+					</div>
+				</div>
+				<?
+						}
+					}
+					else
+					{?>
+						<div id="desig_inner_row_1" >
+							<div class="form-row control-group row-fluid">
+							  <label class="control-label span1" for="hint-field">Desig Title<span class="help-block"></span></label>
+							  <div class="controls span7">
+								<?php
+								 $data	= array('name'=>'desig_title[]', 'class'=>'span12');
+								 echo form_input($data); ?>
+							  </div>
+							</div>
+							<div class="form-row control-group row-fluid">
+							  <label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label>
+							  <div class="controls span7">
+								<label for="date"> Date (M-D-Y) </label>
+								<input type="text" name="desig_start[]" id="desig_start_1" class="span12" onclick="show_date('desig_start_1')" />
+								<label for="date"> Date (M-D-Y) </label>
+								<input type="text" name="desig_end[]" id="desig_end_1" class="span12" onclick="show_date('desig_end_1')"/>
+							  </div>
+							</div>                                
+							<div class="form-row control-group row-fluid">
+							  <label class="control-label span1" for="text">Description</label>
+							  <div class="controls span7">
+								<textarea id="text" rows="3" class="row-fluid" name="desig_description[]"></textarea>
+							  </div>
+							</div>
+						</div>
+					<? } ?>
+				</div>
+				<div id="addnew"></div>
+				<div class="row-fluid" style="padding-left:110px;"> <a href="javascript:void(0)" class="btn"  onclick="add_desig_clon()" style="margin-right: 5px;"><i class="icon-plus-sign"></i> Add Item</a> </div>
               </div>
               <div class="tab-pane fade" id="achievement">
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="hint-field">Achievement Title<span class="help-block"></span></label>
-                  <div class="controls span7">
-                    <?php
-				 $data	= array('name'=>'degre_title', 'class'=>'span12');
-				 echo form_input($data); ?>
-                  </div>
-                </div>
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label>
-                  <div class="controls span7">
-                    <select class="span12">
-                      <option> Year</option>
-                      <option> 2001</option>
-                      <option> 2002</option>
-                      <option> 2003</option>
-                      <option> 2004</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="text">Description</label>
-                  <div class="controls span7">
-                    <textarea id="text" rows="3" class="row-fluid"></textarea>
-                  </div>
-                </div>
+			  	<div id="achiev_inner_table" >
+				<? 
+				$achiev_counter = 0;
+				if(count($all_achiev)>0) {
+					$achiev_counter = 0;
+					foreach($all_achiev as $achiev_data){
+					$achiev_counter = $achiev_counter + 1;	
+				 ?>
+					<div id="achiev_inner_row_<?=$achiev_counter?>" >
+						<div class="form-row control-group row-fluid">
+						  <label class="control-label span1" for="hint-field">Achievement Title<span class="help-block"></span></label>
+						  <div class="controls span7">
+						    <input type="text" name="achiev_title[]" class="span12" value="<?=$achiev_data->achiev_title?>" />
+						  </div>
+						</div>
+						<div class="form-row control-group row-fluid">
+							  <label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label>
+							  <div class="controls span7">
+								<label for="date"> Date (M-D-Y) </label>
+								<input type="text" name="achiev_start[]" id="achiev_start_<?=$achiev_counter?>" class="span12" onclick="show_date('achiev_start_<?=$achiev_counter?>')" value="<?=$achiev_data->achiev_start?>" />								
+							  </div>
+						</div>
+						<div class="form-row control-group row-fluid">
+						  <label class="control-label span1" for="text">Description</label>
+						  <div class="controls span7">
+							<textarea id="text" rows="3" class="row-fluid" name="achiev_description[]" ><?=$achiev_data->achiev_description?></textarea>
+						  </div>
+						  <a href="javascript:void(0)" class="btn btn-danger btn-mini"  onclick="remove_item('achiev_inner_row_<?=$achiev_counter?>')" style="margin-left:110px;"><i class="icon-remove"></i> Remove Item</a>
+						</div>
+						
+						 
+						
+					</div>
+					<?
+						}
+					}
+					else
+					{?>
+					 <div id="achiev_inner_row" >
+						<div class="form-row control-group row-fluid">
+						  <label class="control-label span1" for="hint-field">Achievement Title<span class="help-block"></span></label>
+						  <div class="controls span7">
+						  <?php
+							$data	= array('name'=>'achiev_title[]', 'class'=>'span12');
+							echo form_input($data); 
+						  ?>
+						  </div>
+						</div>
+						<div class="form-row control-group row-fluid">
+							  <label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label>
+							  <div class="controls span7">
+								<label for="date"> Date (M-D-Y) </label>
+								<input type="text" name="achiev_start[]" id="achiev_start_1" class="span12" onclick="show_date('achiev_start_1')" />								
+							  </div>
+						</div>
+						<div class="form-row control-group row-fluid">
+						  <label class="control-label span1" for="text">Description</label>
+						  <div class="controls span7">
+							<textarea id="text" rows="3" class="row-fluid" name="achiev_description[]" ></textarea>
+						  </div>
+						</div>
+					</div>
+					
+				<? }
+				 ?>	
+				</div>
+				
+				<div id="addnew"></div>
+				<div class="row-fluid" style="padding-left:110px;"> <a href="javascript:void(0)" class="btn"  onclick="add_achiev_clon()" style="margin-right: 5px;"><i class="icon-plus-sign"></i> Add Item</a> </div>
               </div>
               <div class="tab-pane fade" id="extra">
                 <div class="form-row control-group row-fluid">
                   <label class="control-label span1" for="text">Description</label>
                   <div class="controls span7">
-                    <textarea id="text" rows="3" class="row-fluid"></textarea>
+                    <textarea id="text" rows="3" class="row-fluid" name="extra_info"><?=set_value('extra_info', $extra_info)?></textarea>
                   </div>
                 </div>
               </div>
@@ -388,10 +514,56 @@
   </div>
 </div>
 <script>
-function add_qualification(){
-var addhtml = "<i> this kljdklfjsldkfjlksa fjskfjliksfjsldjfosjfklfjsdf lsk</i>";
-		    document.getElementById('addnew').innerHTML="addhtml";
+counter = <?=$degree_counter?>;
+var $j = jQuery.noConflict();
+function add_degree_clon()
+{
+	
+	counter = counter + 1;
+	id = $j('#degree_inner_row').attr('id');	
+	html_div = '<div id="degree_inner_row_'+counter+'" ><div class="form-row control-group row-fluid"><label class="control-label span1" for="hint-field">Degree Title<span class="help-block"></span></label><div class="controls span7"><input type="text" name="degree_title[]" class="span12" /></div></div><div class="form-row control-group row-fluid"><label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label><div class="controls span7"><label for="date"> Date (M-D-Y) </label><input type="text" name="degree_start[]" id="degree_start_'+counter+'" class="span12" /><label for="date"> Date (M-D-Y) </label><input type="text" name="degree_end[]" id="degree_end_'+counter+'" class="span12" /></div></div><div class="form-row control-group row-fluid"><label class="control-label span1" for="text">Description</label><div class="controls span7"><textarea id="text" rows="3" class="row-fluid" name="degree_description[]"></textarea></div>  <a href="javascript:void(0)" class="btn btn-danger btn-mini"  onclick="remove_item(\'degree_inner_row_'+counter+'\')" style="margin-left:110px;"><i class="icon-remove"></i> Remove Item</a></div></div>';
+	
+	$j('#degree_inner_table').append(html_div);
+	
+}
+counter_desig = <?=$desig_counter?>;
+
+function add_desig_clon()
+{
+	
+	counter_desig = counter_desig + 1;
+	id = $j('#desig_inner_row').attr('id');	
+	html_div = '<div id="desig_inner_row_'+counter_desig+'" ><div class="form-row control-group row-fluid"><label class="control-label span1" for="hint-field">Desig Title<span class="help-block"></span></label><div class="controls span7"><input type="text" name="desig_title[]" class="span12" /></div></div><div class="form-row control-group row-fluid"><label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label><div class="controls span7"><label for="date"> Date (M-D-Y) </label><input type="text" name="desig_start[]" id="desig_start_'+counter_desig+'" class="span12" /><label for="date"> Date (M-D-Y) </label><input type="text" name="desig_end[]" id="desig_end_'+counter_desig+'" class="span12" /></div></div><div class="form-row control-group row-fluid"><label class="control-label span1" for="text">Description</label><div class="controls span7"><textarea id="text" rows="3" class="row-fluid" name="desig_description[]"></textarea></div> <a href="javascript:void(0)" class="btn btn-danger btn-mini"  onclick="remove_item(\'desig_inner_row_'+counter_desig+'\')" style="margin-left:110px;"><i class="icon-remove"></i> Remove Item</a></div></div>';
+	
+	$j('#desig_inner_table').append(html_div);
+	
+}
+
+counter_achiev = <?=$achiev_counter?>;
+function add_achiev_clon()
+{
+	
+	counter_achiev = counter_achiev + 1;
+	id = $j('#achiev_inner_row').attr('id');	
+	html_div = '<div id="achiev_inner_row_'+counter_achiev+'" ><div class="form-row control-group row-fluid"><label class="control-label span1" for="hint-field">Achievement Title<span class="help-block"></span></label><div class="controls span7"><input type="text" name="achiev_title[]" class="span12" /></div></div><div class="form-row control-group row-fluid"><label class="control-label span1" for="hint-field"> Year <span class="help-block"></span></label><div class="controls span7"><label for="date"> Date (M-D-Y) </label><input type="text" name="achiev_start[]" id="achiev_start_'+counter_achiev+'" class="span12" /></div></div><div class="form-row control-group row-fluid"><label class="control-label span1" for="text">Description</label><div class="controls span7"><textarea id="text" rows="3" class="row-fluid" name="achiev_description[]"></textarea></div><a href="javascript:void(0)" class="btn btn-danger btn-mini"  onclick="remove_item(\'achiev_inner_row_'+counter_achiev+'\')" style="margin-left:110px;"><i class="icon-remove"></i> Remove Item</a></div></div>';	
+	$j('#achiev_inner_table').append(html_div);
+	
+}
+
+function remove_item(item_id)
+{
+	//alert(item_id);
+	$('#'+item_id).remove();
+}
 
 
+function show_date(id)
+{
+	//alert(id);
+	$j('#'+id).datepicker({
+	  format: 'mm-dd-yyyy'
+	});
 }
 </script>
+
+
