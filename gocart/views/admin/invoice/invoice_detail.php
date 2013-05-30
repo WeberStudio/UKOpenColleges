@@ -3,10 +3,10 @@
 	$(function()
 	{
 		$('#btn_add_item').click(function() {
-			$('#new_item').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();
+			$('#blank_item').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();
 		});
 		
-		//$('#new_item').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();	
+		
 	});
 	function recurring_block(flag)
 	{
@@ -133,9 +133,9 @@
                         <th style="width: 80px;"><?php echo lang('price'); ?></th>
 						<th>Commission</th>
                         <th><?php echo lang('tax_rate'); ?></th>
-                        <th><?php echo lang('subtotal'); ?></th>
-						 <th>Comm</th>
+                        <th><?php echo lang('subtotal'); ?></th>						
                         <th><?php echo lang('tax'); ?></th>
+						<th>Comm</th>
                         <th><?php echo lang('total'); ?></th>
                         <th></th>
                         <input type="hidden" id="invoice_id" value="<?php echo $invoice_data->invoice_id; ?>">
@@ -146,7 +146,7 @@
 							foreach ($invoice_items as $invoice_item){ 
 						?>
                       <tr id="new_item" >
-                        <td style="vertical-align: top;"><input type="text" id="item_name" name="item_name[]" style="width: 90%;" value="<?=$invoice_item['item_name']?>">
+                        <td style="vertical-align: top;"><input type="text" id="item_name" name="item_name[]" style="width: 100%;" value="<?=$invoice_item['item_name']?>">
                           <input type="hidden" id="item_id" value="<?=$invoice_item['item_id']?>">
 						   <input type="hidden" name="product_id[]" value="<?=$invoice_item['product_id']?>">
                         </td>
@@ -154,9 +154,15 @@
 </textarea></td>
                         <td style="vertical-align: top;"><input type="text" class="input-mini" id="item_quantity" name="item_quantity[]" style="width: 90%;" value="<?=$invoice_item['item_quantity']?>"></td>
                         <td style="vertical-align: top;"><input type="text" class="input-mini" id="item_price" name="item_price[]" style="width: 90%;" value="<?=$invoice_item['item_price']?>"></td>
-                       <td><?=$invoice_item['comm_rate'].'-'.$invoice_item['comm_rate_mode']?>
+                       <td><?php /*?><?=$invoice_item['comm_rate'].'-'.$invoice_item['comm_rate_mode']?>
 					   	  <input type="hidden"  name="comm_rate[]"  value="<?=$invoice_item['comm_rate']?>">
-						  <input type="hidden"  name="comm_rate_mode[]"  value="<?=$invoice_item['comm_rate_mode']?>">
+						  <input type="hidden"  name="comm_rate_mode[]"  value="<?=$invoice_item['comm_rate_mode']?>"><?php */?>
+						  <? //echo "<pre>"; print_r($comm_rates); ?>
+						  <select name="comm_rate[]"  class="input-small">						  
+							<?php foreach ($comm_rates as $comm_rate) { ?>
+							<option <?php if ($comm_rate->comm_id == $invoice_item['comm_id']) { ?>selected="selected"<?php } ?>  value="<?php echo $comm_rate->comm_id; ?>"><?php echo $comm_rate->comm_rate .' ('. $comm_rate->comm_rate_mode .') '. $comm_rate->comm_level; ?></option>
+							<?php } ?>
+						  </select>		
 					   </td>
 					    <td style="vertical-align: top;"><select name="item_tax_rate_id[]" id="item_tax_rate_id" class="input-small">
                             <option value="0">
@@ -170,7 +176,7 @@
 						
                         <td style="vertical-align: top;"><?php echo format_currency($invoice_item['item_subtotal']); ?></td>
                         <td style="vertical-align: top;"><?php echo format_currency($invoice_item['item_tax_total']); ?></td>
-						<td style="vertical-align: top;"><?php echo format_currency($invoice_item['comm_per_item']); ?></td>
+						<td style="vertical-align: top;"><?php echo format_currency($invoice_item['comm_rate_value']); ?></td>
                         <td style="vertical-align: top;"><?php echo format_currency($invoice_item['item_total']); ?></td>
                         <td></td>
                       </tr>
@@ -181,7 +187,7 @@
 							$item_content	= unserialize($invoice_item['contents']);
 							
 						?>
-							<tr id="new_item" >
+							<tr  >
 								<td style="vertical-align: top;"><input type="text" id="item_name" name="item_name[]" style="width: 90%;" value="<?=$item_content['name']?>">
 								 <input type="hidden" name="product_id[]" value="<?=$item_content['id']?>">
 								</td>
@@ -189,9 +195,12 @@
 		</textarea></td>
 								<td style="vertical-align: top;"><input type="text" class="input-mini" id="item_quantity" name="item_quantity[]" style="width: 90%;" value="<?=$invoice_item['q_sum']?>"></td>
 								<td style="vertical-align: top;"><input type="text" class="input-mini" id="item_price" name="item_price[]" style="width: 90%;" value="<?=$item_content['price']?>"></td>
-								<td><?=$invoice_item['comm_rate'].'-'.$invoice_item['comm_rate_mode']?>
-									<input type="hidden"  name="comm_rate[]"  value="<?=$invoice_item['comm_rate']?>">
-						  			<input type="hidden"  name="comm_rate_mode[]"  value="<?=$invoice_item['comm_rate_mode']?>">
+								<td>
+									<select name="comm_rate[]"  class="input-small">						  
+									<?php foreach ($comm_rates as $comm_rate) { ?>
+										<option <?php if ($comm_rate->comm_id == $invoice_item['comm_id']) { ?>selected="selected"<?php } ?>  value="<?php echo $comm_rate->comm_id; ?>"><?php echo $comm_rate->comm_rate .' ('. $comm_rate->comm_rate_mode .') '. $comm_rate->comm_level; ?></option>
+									<?php } ?>
+									</select>				  			
 								</td>
 								<td style="vertical-align: top;"><select name="item_tax_rate_id[]" id="item_tax_rate_id" class="input-small">
 									<option value="0">
@@ -202,6 +211,7 @@
 									<?php } ?>
 								  </select>
 								</td>
+								<td></td>
 								<td style="vertical-align: top;"><?php echo format_currency($invoice_item['item_subtotal']); ?></td>
 								<td style="vertical-align: top;"><?php echo format_currency($invoice_item['item_tax_total']); ?></td>
 								<td style="vertical-align: top;"><?php echo format_currency($invoice_item['comm_per_item']); ?></td>
@@ -214,24 +224,25 @@
 						else
 						{
 						?>
-						  <tr id="new_item">
-							 <td style="vertical-align: top;"><input type="text" id="item_name" name="item_name[]" style="width: 90%;" value="">
-                          <input type="hidden" id="item_id" value="">
-                        </td>
-                        <td><textarea id="item_description" name="item_description[]" rows="1"  cols="5"></textarea></td>
-                        <td style="vertical-align: top;"><input type="text" class="input-mini" id="item_quantity" name="item_quantity[]" style="width: 90%;" value=""></td>
-                        <td style="vertical-align: top;"><input type="text" class="input-mini" id="item_price" name="item_price[]" style="width: 90%;" value=""></td>
-						<td style="vertical-align: top;">
-						<select name="item_tax_rate_id[]" id="item_tax_rate_id" class="input-small">
-                         	<option value="0">
-                            <?php  echo lang('none'); ?>
-                            </option>
-                            <?php foreach ($tax_rates as $tax_rate) { ?>
-                            <option  value="<?php echo $tax_rate->tax_rate_id; ?>"><?php echo $tax_rate->tax_rate_percent . '% - ' . $tax_rate->tax_rate_name; ?></option>
-                            <?php } ?>
-                          </select>
-                        </td>                       
-                        <td colspan="4"></td>
+						  <tr id="blank_item">
+							 <td style="vertical-align: top;">
+								<input type="text" id="item_name" name="item_name[]" style="width: 90%;" value="">
+								<input type="hidden" id="item_id" value="">
+								</td>
+								<td><textarea id="item_description" name="item_description[]" rows="1"  cols="5"></textarea></td>
+								<td style="vertical-align: top;"><input type="text" class="input-mini" id="item_quantity" name="item_quantity[]" style="width: 90%;" value=""></td>
+								<td style="vertical-align: top;"><input type="text" class="input-mini" id="item_price" name="item_price[]" style="width: 90%;" value=""></td>
+								<td style="vertical-align: top;">
+								<select name="item_tax_rate_id[]" id="item_tax_rate_id" class="input-small">
+									<option value="0">
+									<?php  echo lang('none'); ?>
+									</option>
+									<?php foreach ($tax_rates as $tax_rate) { ?>
+									<option  value="<?php echo $tax_rate->tax_rate_id; ?>"><?php echo $tax_rate->tax_rate_percent . '% - ' . $tax_rate->tax_rate_name; ?></option>
+									<?php } ?>
+								  </select>
+								</td>                       
+								<td colspan="4"></td>
 						  </tr>
                       <?php
 						}						
@@ -243,14 +254,16 @@
 					<thead>
 						<tr>
 							<th><?php echo lang('subtotal'); ?></th>
-							<th><?php echo lang('item_tax'); ?></th>							
+							<th><?php echo lang('item_tax'); ?></th>
+							<th>Commission Total</th>							
 							<th><?php echo lang('total'); ?></th>							
 						</tr>
 					</thead>
 					<tbody>					
 						<tr>
 							<td><?php echo format_currency($invoice_totals[0]['invoice_item_subtotal']); ?></td>
-							<td><?php echo format_currency($invoice_totals[0]['invoice_item_tax_total']); ?></td>							
+							<td><?php echo format_currency($invoice_totals[0]['invoice_item_tax_total']); ?></td>
+							<td><?php echo format_currency($invoice_totals[0]['invoice_commission_total']); ?></td>							
 							<td><?php echo format_currency($invoice_totals[0]['invoice_total']); ?></td>							
 						</tr>
 					</tbody>

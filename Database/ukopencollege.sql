@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: May 29, 2013 at 01:44 PM
+-- Generation Time: May 30, 2013 at 11:57 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -4726,7 +4726,7 @@ CREATE TABLE `oc_invoices` (
   `invoice_terms` longtext NOT NULL,
   `invoice_paid_status` varchar(50) default NULL,
   PRIMARY KEY  (`invoice_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 -- 
 -- Dumping data for table `oc_invoices`
@@ -4760,6 +4760,10 @@ INSERT INTO `oc_invoices` VALUES (41, 15, 1, 19, '2009-05-29 00:00:00', '0000-00
 INSERT INTO `oc_invoices` VALUES (42, 15, 2, 20, '2013-05-29 00:00:00', '0000-00-00 00:00:00', '2013-05-29 00:00:00', '', '', NULL);
 INSERT INTO `oc_invoices` VALUES (43, 15, 1, 20, '2013-05-29 00:00:00', '0000-00-00 00:00:00', '2013-05-29 00:00:00', '', '', NULL);
 INSERT INTO `oc_invoices` VALUES (44, 15, 1, 19, '2009-05-29 00:00:00', '0000-00-00 00:00:00', '2009-05-29 00:00:00', '', '', NULL);
+INSERT INTO `oc_invoices` VALUES (45, 15, 1, 19, '2009-05-29 00:00:00', '0000-00-00 00:00:00', '2009-05-29 00:00:00', '', '', NULL);
+INSERT INTO `oc_invoices` VALUES (46, 15, 2, 23, '2009-05-29 00:00:00', '0000-00-00 00:00:00', '2009-05-29 00:00:00', '', '<p><br></p>', NULL);
+INSERT INTO `oc_invoices` VALUES (47, 15, 2, 19, '2009-05-30 00:00:00', '0000-00-00 00:00:00', '2009-05-30 00:00:00', '', '', NULL);
+INSERT INTO `oc_invoices` VALUES (48, 15, 1, 19, '2009-05-30 00:00:00', '0000-00-00 00:00:00', '2009-05-30 00:00:00', '', '<p>sds</p>', NULL);
 
 -- --------------------------------------------------------
 
@@ -4777,7 +4781,7 @@ CREATE TABLE `oc_invoices_recurring` (
   `recur_flag` varchar(50) NOT NULL,
   PRIMARY KEY  (`invoice_recurring_id`),
   KEY `invoice_id` (`invoice_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 -- 
 -- Dumping data for table `oc_invoices_recurring`
@@ -4793,6 +4797,10 @@ INSERT INTO `oc_invoices_recurring` VALUES (26, 41, '2013-05-29', '2013-05-29', 
 INSERT INTO `oc_invoices_recurring` VALUES (27, 42, '2013-05-29', '2013-05-29', 'weekly', '0000-00-00', 'no');
 INSERT INTO `oc_invoices_recurring` VALUES (28, 43, '2013-05-29', '2013-05-29', 'weekly', '0000-00-00', 'no');
 INSERT INTO `oc_invoices_recurring` VALUES (29, 44, '2013-05-29', '2013-05-29', 'weekly', '0000-00-00', 'no');
+INSERT INTO `oc_invoices_recurring` VALUES (35, 45, '2013-05-29', '2013-05-29', 'weekly', '0000-00-00', 'no');
+INSERT INTO `oc_invoices_recurring` VALUES (37, 46, '2013-05-29', '2013-05-29', 'weekly', '0000-00-00', 'no');
+INSERT INTO `oc_invoices_recurring` VALUES (38, 47, '2013-05-30', '2013-05-30', 'weekly', '0000-00-00', 'no');
+INSERT INTO `oc_invoices_recurring` VALUES (52, 48, '2013-05-30', '2013-05-30', 'weekly', '0000-00-00', 'no');
 
 -- --------------------------------------------------------
 
@@ -4801,11 +4809,12 @@ INSERT INTO `oc_invoices_recurring` VALUES (29, 44, '2013-05-29', '2013-05-29', 
 -- 
 
 CREATE TABLE `oc_invoice_amounts` (
-  `invoice_amount_id` int(11) default NULL,
+  `invoice_amount_id` int(11) NOT NULL,
   `invoice_id` int(11) NOT NULL,
   `invoice_item_subtotal` decimal(10,2) NOT NULL,
   `invoice_item_tax_total` decimal(10,2) NOT NULL,
   `invoice_tax_total` decimal(10,2) NOT NULL,
+  `invoice_commission_total` decimal(11,0) default NULL,
   `invoice_total` decimal(10,2) NOT NULL,
   `invoice_paid` decimal(10,2) NOT NULL,
   `invoice_balance` decimal(10,2) NOT NULL
@@ -4815,17 +4824,21 @@ CREATE TABLE `oc_invoice_amounts` (
 -- Dumping data for table `oc_invoice_amounts`
 -- 
 
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 19, 120.00, 7.35, 0.00, 127.35, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 21, 12.00, 0.96, 0.00, 12.96, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 34, 132.00, 9.84, 0.00, 141.84, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 35, 234.00, 18.00, 0.00, 252.00, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 36, 234.00, 18.00, 0.00, 252.00, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 39, 258.00, 16.50, 0.00, 274.50, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 40, 258.00, 0.00, 0.00, 258.00, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 41, 258.00, 0.00, 0.00, 258.00, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 42, 258.00, 0.00, 0.00, 258.00, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 43, 258.00, 0.00, 0.00, 258.00, 0.00, 0.00);
-INSERT INTO `oc_invoice_amounts` VALUES (NULL, 44, 258.00, 0.00, 0.00, 258.00, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 19, 120.00, 7.35, 0.00, NULL, 127.35, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 21, 12.00, 0.96, 0.00, NULL, 12.96, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 34, 132.00, 9.84, 0.00, NULL, 141.84, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 35, 234.00, 18.00, 0.00, NULL, 252.00, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 36, 234.00, 18.00, 0.00, NULL, 252.00, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 39, 258.00, 16.50, 0.00, NULL, 274.50, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 40, 258.00, 0.00, 0.00, NULL, 258.00, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 41, 258.00, 0.00, 0.00, NULL, 258.00, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 42, 258.00, 0.00, 0.00, NULL, 258.00, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 43, 258.00, 0.00, 0.00, NULL, 258.00, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 44, 258.00, 0.00, 0.00, NULL, 258.00, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 45, 283.00, 17.78, 0.00, 5, 305.28, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 46, 258.00, 28.32, 0.00, 22, 308.24, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 47, 258.00, 14.58, 0.00, 23, 295.45, 0.00, 0.00);
+INSERT INTO `oc_invoice_amounts` VALUES (0, 48, 258.00, 19.92, 0.00, 20, 277.52, 0.00, 0.00);
 
 -- --------------------------------------------------------
 
@@ -4869,64 +4882,79 @@ CREATE TABLE `oc_invoice_items` (
   `item_quantity` decimal(10,2) NOT NULL,
   `item_price` decimal(10,2) NOT NULL,
   `item_order` int(2) NOT NULL,
-  `comm_rate` varchar(11) default NULL,
-  `comm_rate_mode` varchar(11) default NULL,
   PRIMARY KEY  (`item_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=197 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=296 ;
 
 -- 
 -- Dumping data for table `oc_invoice_items`
 -- 
 
-INSERT INTO `oc_invoice_items` VALUES (1, 14, NULL, 4, '0000-00-00', 'item1', 'asdad', 2.00, 5.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (2, 14, NULL, 1, '0000-00-00', 'item2', 'sdfsdfs', 3.00, 8.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (3, 14, NULL, 1, '0000-00-00', 'item3', 'adads', 2.00, 3.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (41, 18, NULL, 4, '0000-00-00', 'B1', 'dadad', 3.00, 4.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (40, 17, NULL, 2, '0000-00-00', 'B1', 'asdasdas', 2.00, 5.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (39, 16, NULL, 4, '0000-00-00', 'B1', 'asdasd', 3.00, 3.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (38, 15, NULL, 1, '0000-00-00', 'B4', 'd6', 10.00, 12.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (37, 15, NULL, 1, '0000-00-00', 'B2', 'd3', 6.00, 16.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (36, 15, NULL, 1, '0000-00-00', 'B3', 'd3', 6.00, 16.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (86, 19, NULL, 4, '0000-00-00', 'item2', 'llll', 5.00, 9.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (85, 19, NULL, 1, '0000-00-00', 'item1', 'asdasdasd', 25.00, 2.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (84, 19, NULL, 1, '0000-00-00', 'item3', 'jjjjjjj', 5.00, 5.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (90, 21, NULL, 2, '0000-00-00', 'item1', 'asas', 3.00, 4.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (106, 34, 0, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (105, 34, 0, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (104, 34, 0, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (103, 34, 0, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 10.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (107, 35, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (108, 35, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (109, 35, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (110, 35, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (111, 36, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (112, 36, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (113, 36, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (114, 36, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (116, 39, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (117, 39, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (118, 39, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (119, 39, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (120, 40, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (121, 40, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (122, 40, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (123, 40, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (184, 41, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (183, 41, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (182, 41, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (181, 41, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (185, 42, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (186, 42, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (187, 42, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (188, 42, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (189, 43, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (190, 43, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (191, 43, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (192, 43, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (193, 44, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (194, 44, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (195, 44, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
-INSERT INTO `oc_invoice_items` VALUES (196, 44, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0, NULL, NULL);
+INSERT INTO `oc_invoice_items` VALUES (1, 14, NULL, 4, '0000-00-00', 'item1', 'asdad', 2.00, 5.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (2, 14, NULL, 1, '0000-00-00', 'item2', 'sdfsdfs', 3.00, 8.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (3, 14, NULL, 1, '0000-00-00', 'item3', 'adads', 2.00, 3.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (41, 18, NULL, 4, '0000-00-00', 'B1', 'dadad', 3.00, 4.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (40, 17, NULL, 2, '0000-00-00', 'B1', 'asdasdas', 2.00, 5.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (39, 16, NULL, 4, '0000-00-00', 'B1', 'asdasd', 3.00, 3.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (38, 15, NULL, 1, '0000-00-00', 'B4', 'd6', 10.00, 12.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (37, 15, NULL, 1, '0000-00-00', 'B2', 'd3', 6.00, 16.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (36, 15, NULL, 1, '0000-00-00', 'B3', 'd3', 6.00, 16.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (86, 19, NULL, 4, '0000-00-00', 'item2', 'llll', 5.00, 9.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (85, 19, NULL, 1, '0000-00-00', 'item1', 'asdasdasd', 25.00, 2.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (84, 19, NULL, 1, '0000-00-00', 'item3', 'jjjjjjj', 5.00, 5.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (90, 21, NULL, 2, '0000-00-00', 'item1', 'asas', 3.00, 4.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (106, 34, 0, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (105, 34, 0, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (104, 34, 0, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (103, 34, 0, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 10.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (107, 35, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (108, 35, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (109, 35, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (110, 35, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (111, 36, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (112, 36, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (113, 36, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (114, 36, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (116, 39, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (117, 39, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (118, 39, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (119, 39, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (120, 40, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (121, 40, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (122, 40, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (123, 40, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (184, 41, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (183, 41, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (182, 41, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (181, 41, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (185, 42, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (186, 42, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (187, 42, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (188, 42, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (189, 43, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (190, 43, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (191, 43, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (192, 43, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (193, 44, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (194, 44, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (195, 44, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (196, 44, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (221, 45, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (220, 45, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (219, 45, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (218, 45, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (222, 45, 1, 2, '0000-00-00', 'jjj', 'iiii	', 5.00, 5.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (230, 46, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (229, 46, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (228, 46, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (231, 46, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (232, 47, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (233, 47, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (234, 47, 1, 0, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (235, 47, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (295, 48, 1, 4, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (294, 48, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 8.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (293, 48, 1, 1, '0000-00-00', 'Product1', 'sdfsdfsdf		', 4.00, 6.00, 0);
+INSERT INTO `oc_invoice_items` VALUES (292, 48, 1, 2, '0000-00-00', 'Product1', 'sdfsdfsdf		', 23.00, 6.00, 0);
 
 -- --------------------------------------------------------
 
@@ -4937,60 +4965,80 @@ INSERT INTO `oc_invoice_items` VALUES (196, 44, 1, 0, '0000-00-00', 'Product1', 
 CREATE TABLE `oc_invoice_item_amounts` (
   `item_amount_id` int(11) NOT NULL auto_increment,
   `item_id` int(11) NOT NULL,
+  `comm_id` int(11) default NULL,
   `item_subtotal` decimal(10,2) NOT NULL,
+  `tax_rate` varchar(11) default NULL,
   `item_tax_total` decimal(10,2) NOT NULL,
   `item_total` decimal(10,2) NOT NULL,
   `comm_rate` varchar(11) default NULL,
+  `comm_rate_value` varchar(11) default NULL,
   `comm_rate_mode` varchar(11) default NULL,
   `comm_per_item` int(11) default NULL,
   PRIMARY KEY  (`item_amount_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=130 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=225 ;
 
 -- 
 -- Dumping data for table `oc_invoice_item_amounts`
 -- 
 
-INSERT INTO `oc_invoice_item_amounts` VALUES (1, 1, 10.00, 0.80, 10.80, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (2, 2, 24.00, 1.20, 25.20, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (3, 3, 6.00, 0.30, 6.30, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (41, 41, 12.00, 0.96, 12.96, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (40, 40, 10.00, 0.80, 10.80, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (39, 39, 9.00, 0.72, 9.72, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (38, 38, 120.00, 6.00, 126.00, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (37, 37, 96.00, 4.80, 100.80, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (36, 36, 96.00, 4.80, 100.80, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (85, 86, 45.00, 3.60, 48.60, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (84, 85, 50.00, 2.50, 52.50, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (83, 84, 25.00, 1.25, 26.25, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (89, 90, 12.00, 0.96, 12.96, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (105, 106, 24.00, 1.92, 25.92, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (104, 105, 24.00, 1.20, 25.20, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (103, 104, 24.00, 1.92, 25.92, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (102, 103, 60.00, 4.80, 64.80, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (106, 107, 138.00, 11.04, 149.04, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (107, 108, 24.00, 1.92, 25.92, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (108, 109, 48.00, 3.84, 51.84, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (109, 110, 24.00, 1.20, 25.20, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (110, 111, 138.00, 11.04, 149.04, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (111, 112, 24.00, 1.92, 25.92, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (112, 113, 48.00, 3.84, 51.84, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (113, 114, 24.00, 1.20, 25.20, NULL, NULL, NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (114, 116, 138.00, 6.90, 144.90, '138', '138', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (115, 117, 24.00, 1.92, 25.92, '24', '162', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (116, 118, 48.00, 3.84, 51.84, '48', '210', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (117, 119, 48.00, 3.84, 51.84, '48', '258', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (118, 120, 138.00, 0.00, 138.00, '138', '', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (119, 121, 24.00, 0.00, 24.00, '24', '', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (120, 122, 48.00, 0.00, 48.00, '48', 'Fix', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (121, 123, 48.00, 0.00, 48.00, '48', 'Fix', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (122, 189, 138.00, 0.00, 138.00, '0', '', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (123, 190, 24.00, 0.00, 24.00, '0', '', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (124, 191, 48.00, 0.00, 48.00, '46', 'Fix', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (125, 192, 48.00, 0.00, 48.00, '45.5', 'Fix', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (126, 193, 138.00, 0.00, 138.00, NULL, '', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (127, 194, 24.00, 0.00, 24.00, NULL, '', NULL);
-INSERT INTO `oc_invoice_item_amounts` VALUES (128, 195, 48.00, 0.00, 48.00, '2', 'Fix', 46);
-INSERT INTO `oc_invoice_item_amounts` VALUES (129, 196, 48.00, 0.00, 48.00, '2.5', 'Fix', 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (1, 1, NULL, 10.00, NULL, 0.80, 10.80, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (2, 2, NULL, 24.00, NULL, 1.20, 25.20, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (3, 3, NULL, 6.00, NULL, 0.30, 6.30, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (41, 41, NULL, 12.00, NULL, 0.96, 12.96, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (40, 40, NULL, 10.00, NULL, 0.80, 10.80, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (39, 39, NULL, 9.00, NULL, 0.72, 9.72, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (38, 38, NULL, 120.00, NULL, 6.00, 126.00, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (37, 37, NULL, 96.00, NULL, 4.80, 100.80, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (36, 36, NULL, 96.00, NULL, 4.80, 100.80, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (85, 86, NULL, 45.00, NULL, 3.60, 48.60, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (84, 85, NULL, 50.00, NULL, 2.50, 52.50, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (83, 84, NULL, 25.00, NULL, 1.25, 26.25, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (89, 90, NULL, 12.00, NULL, 0.96, 12.96, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (105, 106, NULL, 24.00, NULL, 1.92, 25.92, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (104, 105, NULL, 24.00, NULL, 1.20, 25.20, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (103, 104, NULL, 24.00, NULL, 1.92, 25.92, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (102, 103, NULL, 60.00, NULL, 4.80, 64.80, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (106, 107, NULL, 138.00, NULL, 11.04, 149.04, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (107, 108, NULL, 24.00, NULL, 1.92, 25.92, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (108, 109, NULL, 48.00, NULL, 3.84, 51.84, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (109, 110, NULL, 24.00, NULL, 1.20, 25.20, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (110, 111, NULL, 138.00, NULL, 11.04, 149.04, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (111, 112, NULL, 24.00, NULL, 1.92, 25.92, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (112, 113, NULL, 48.00, NULL, 3.84, 51.84, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (113, 114, NULL, 24.00, NULL, 1.20, 25.20, NULL, NULL, NULL, NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (114, 116, NULL, 138.00, NULL, 6.90, 144.90, '138', NULL, '138', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (115, 117, NULL, 24.00, NULL, 1.92, 25.92, '24', NULL, '162', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (116, 118, NULL, 48.00, NULL, 3.84, 51.84, '48', NULL, '210', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (117, 119, NULL, 48.00, NULL, 3.84, 51.84, '48', NULL, '258', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (118, 120, NULL, 138.00, NULL, 0.00, 138.00, '138', NULL, '', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (119, 121, NULL, 24.00, NULL, 0.00, 24.00, '24', NULL, '', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (120, 122, NULL, 48.00, NULL, 0.00, 48.00, '48', NULL, 'Fix', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (121, 123, NULL, 48.00, NULL, 0.00, 48.00, '48', NULL, 'Fix', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (122, 189, NULL, 138.00, NULL, 0.00, 138.00, '0', NULL, '', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (123, 190, NULL, 24.00, NULL, 0.00, 24.00, '0', NULL, '', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (124, 191, NULL, 48.00, NULL, 0.00, 48.00, '46', NULL, 'Fix', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (125, 192, NULL, 48.00, NULL, 0.00, 48.00, '45.5', NULL, 'Fix', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (126, 193, NULL, 138.00, NULL, 0.00, 138.00, NULL, NULL, '', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (127, 194, NULL, 24.00, NULL, 0.00, 24.00, NULL, NULL, '', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (128, 195, NULL, 48.00, NULL, 0.00, 48.00, '2', NULL, 'Fix', 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (129, 196, NULL, 48.00, NULL, 0.00, 48.00, '2.5', NULL, 'Fix', 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (155, 222, NULL, 25.00, NULL, 2.00, 29.50, '', '2.5', '', 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (154, 221, NULL, 48.00, NULL, 3.84, 54.34, '2.5', '2.5', 'Fix', 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (153, 220, NULL, 48.00, NULL, 3.84, 53.84, '2', '2', 'Fix', 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (152, 219, NULL, 24.00, NULL, 1.20, 25.20, '', '0', '', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (151, 218, NULL, 138.00, NULL, 6.90, 144.90, '', '0', '', NULL);
+INSERT INTO `oc_invoice_item_amounts` VALUES (162, 230, NULL, 48.00, NULL, 2.40, 52.90, '2.5', '2.5', NULL, 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (161, 229, NULL, 24.00, NULL, 11.04, 37.54, '2.5', '2.5', NULL, 22);
+INSERT INTO `oc_invoice_item_amounts` VALUES (160, 228, NULL, 138.00, NULL, 11.04, 164.04, '15', '15', NULL, 123);
+INSERT INTO `oc_invoice_item_amounts` VALUES (163, 231, NULL, 48.00, NULL, 3.84, 53.76, '4', '1.92', NULL, 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (164, 232, NULL, 138.00, NULL, 6.90, 148.35, '2.5', '3.45', NULL, 135);
+INSERT INTO `oc_invoice_item_amounts` VALUES (165, 233, NULL, 24.00, NULL, 1.92, 40.92, '15', '15', NULL, 9);
+INSERT INTO `oc_invoice_item_amounts` VALUES (166, 234, NULL, 48.00, NULL, 1.92, 51.84, '4', '1.92', NULL, 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (167, 235, NULL, 48.00, NULL, 3.84, 54.34, '2.5', '2.5', NULL, 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (222, 293, 18, 24.00, '5.00', 1.20, 25.80, '2.5', '0.6', NULL, 23);
+INSERT INTO `oc_invoice_item_amounts` VALUES (221, 292, 27, 138.00, '8.00', 11.04, 151.04, '2', '2', NULL, 136);
+INSERT INTO `oc_invoice_item_amounts` VALUES (223, 294, 21, 48.00, '8.00', 3.84, 53.76, '4', '1.92', NULL, 46);
+INSERT INTO `oc_invoice_item_amounts` VALUES (224, 295, 24, 48.00, '8.00', 3.84, 66.84, '15', '15', NULL, 33);
 
 -- --------------------------------------------------------
 
@@ -8246,8 +8294,8 @@ INSERT INTO `oc_sessions` VALUES ('b61f468b53ab6837619904756e541fc7', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('4ef02ec531ac8afecda70247de6c3ec6', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369727535, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1369734735;}}');
 INSERT INTO `oc_sessions` VALUES ('e48a027e93a9a1474436c03612bf2936', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369727924, 'a:1:{s:13:"active_module";s:10:"categories";}');
 INSERT INTO `oc_sessions` VALUES ('d44f9b9fb1b1f4f8b2459c7d1e1dd1d0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369727924, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1369735124;}}');
-INSERT INTO `oc_sessions` VALUES ('164c8a74738a5fe3accb7644167836e4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1369728719, 'a:1:{s:13:"active_module";s:10:"categories";}');
-INSERT INTO `oc_sessions` VALUES ('aa43eef0e23b11d3ece00f693707274b', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1369728719, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1369735919;}}');
+INSERT INTO `oc_sessions` VALUES ('39512b1801771ffde0e65e5629e0c99e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1369894274, 'a:1:{s:13:"active_module";s:10:"categories";}');
+INSERT INTO `oc_sessions` VALUES ('b6b5f7093a64229697fc428c8be5da2b', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1369894274, '');
 INSERT INTO `oc_sessions` VALUES ('716e85db48513e9bd00e5ecaac824a77', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369731547, '');
 INSERT INTO `oc_sessions` VALUES ('6ffaa641f58c5c054982f0999086f3dd', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369731547, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:new:redirect";s:20:"/admin/products/form";}');
 INSERT INTO `oc_sessions` VALUES ('9d1653a60a310001fce4dcc2ff928efa', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369731745, 'a:1:{s:13:"active_module";s:10:"categories";}');
@@ -8324,8 +8372,8 @@ INSERT INTO `oc_sessions` VALUES ('dc8a4d8d2abfe1c395d8e15d6b60ef17', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('a756233a4280435af934e4e004cc1c20', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369734786, '');
 INSERT INTO `oc_sessions` VALUES ('30280e86ee9a404fd4716d74d9329b91', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369741927, 'a:1:{s:13:"active_module";s:7:"invoice";}');
 INSERT INTO `oc_sessions` VALUES ('484e3bca03668a8ddeada03478b81a50', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369741927, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1369749127;}}');
-INSERT INTO `oc_sessions` VALUES ('2b106a9fc1d19ef758f63c5c2d1b95da', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369814518, 'a:1:{s:13:"active_module";s:7:"invoice";}');
-INSERT INTO `oc_sessions` VALUES ('29173777d651952fbece46bf02ab8380', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369814518, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1369821718;}}');
+INSERT INTO `oc_sessions` VALUES ('ee6d12c2b155aae58fea1627a1376230', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369895885, 'a:1:{s:13:"active_module";s:7:"invoice";}');
+INSERT INTO `oc_sessions` VALUES ('bf44c69057128528c300cc538f0ca43e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 1369895885, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1369903085;}}');
 
 -- --------------------------------------------------------
 

@@ -23,6 +23,14 @@ Class Commission_model extends CI_Model
 		return $result->result();
 	}
 	
+	function get_commissions_dropdown()
+	{
+		$this->db->order_by('comm_id');
+		$result	= $this->db->get_where('oc_commission', array('comm_active'=>'Yes'));
+		return $result->result();
+	}
+	
+	
 	function count_message()
 	{
 		return $this->db->count_all_results('topics');
