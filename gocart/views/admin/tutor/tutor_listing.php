@@ -83,6 +83,7 @@ function areyousure()
 			<div class="row-fluid control-group">
                 <div class="span6">
                   <div class="pagination pull-right "> <?php echo $this->pagination->create_links();?> &nbsp; </div>
+                  
 				</div>
 			</div>
             </div>

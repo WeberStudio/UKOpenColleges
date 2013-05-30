@@ -18,7 +18,7 @@ class Secure extends Front_Controller {
 	function index()
 	{
 		//show_404();
-		$this->load->view('dashboard');
+		
 	}
 	//login2 content start
 		function process_checkout($ajax = false)

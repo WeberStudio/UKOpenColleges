@@ -10,8 +10,8 @@
         <div class="span9">
           
           <!-- End .legend -->
-          
-          <div class="content spacer-big">
+      
+         	 <div class="content spacer-big">
             <h3><span>About Me</span></h3>
             <hr>
             <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit, dolor at molestie bibendum, diam est imperdiet libero, vel malesuada augue metus ultricies velit. In semper, neque vel luctus ullamcorper, lectus ligula faucibus risus, eget ultrices nisl magna eu ligula. Proin ipsum metus, varius sit amet dapibus id, dapibus vel felis. Duis eu odio mauris. Maecenas pulvinar dignissim arcu, quis elementum erat volutpat ac. Ut et neque a justo scelerisque pellentesque. Maecenas ut quam vitae mi condimentum iaculis at sed erat.</p>
@@ -39,6 +39,7 @@
             <p> In sit amet urna turpis, sit amet pretium nisi. Maecenas quam sem, aliquam nec vehicula sed, fringilla nec leo. Phasellus nec orci orci, vestibulum rutrum urna. Maecenas aliquam ipsum ut purus posuere suscipit. Vivamus posuere gravida metus. Aliquam erat volutpat. Suspendisse euismod pellentesque leo et imperdiet.</p>
             <p> In sit amet urna turpis, sit amet pretium nisi. Maecenas quam sem, aliquam nec vehicula sed, fringilla nec leo. Phasellus nec orci orci, vestibulum rutrum urna. Maecenas aliquam ipsum ut purus posuere suscipit. Vivamus posuere gravida metus. Aliquam erat volutpat. Suspendisse euismod pellentesque leo et imperdiet.</p>
           </div>
+         
           <!-- End .content --> 
         </div>
         <!-- End .span9 --> 

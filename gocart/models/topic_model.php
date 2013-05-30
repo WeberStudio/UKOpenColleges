@@ -13,7 +13,6 @@ Class Topic_model extends CI_Model
 	
 	
 	
-	
 	function get_topics($limit=0, $offset=0, $order_by='topic_title', $direction='ASC')
 	{
 		$this->db->order_by($order_by, $direction);
@@ -50,6 +49,12 @@ Class Topic_model extends CI_Model
 			$this->db->insert('oc_topics', $data);
 			return $this->db->insert_id();
 		}
+	}
+	
+	function topic_delete($topic_id)
+	{			
+		$this->db->delete('oc_topics', array('topic_id' => $topic_id));
+		return true;	
 	}
 	
 	

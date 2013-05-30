@@ -1,8 +1,9 @@
 <script type="text/javascript">
 function areyousure()
 {
-	return confirm('<?php echo lang('confirm_delete_customer');?>');
+	return confirm('Are you sure to delete the record?');
 }
+
 </script>
 <div id="main" style="min-height:1000px">
   <div class="container">
@@ -12,9 +13,9 @@ function areyousure()
         <div class="span12">
           <div class="box paint color_18">
             <div class="title">
-             <h4> <i class=" icon-bar-chart"></i><span>Commision Listing 
+             <h4> <i class=" icon-bar-chart"></i><span>Commission Listing 
              
-	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder')."/commision/form/"); ?>"><i class="icon-plus-sign"></i>Add New Commision <?php //echo lang('add_new_customer');?></a>
+	            <a class="btn" href="<?php echo site_url($this->config->item('admin_folder')."/commission/form/"); ?>"><i class="icon-plus-sign"></i>Add New Commision <?php //echo lang('add_new_customer');?></a>
                      </span></h4>
                 
 <div class="content top">
@@ -43,38 +44,29 @@ function areyousure()
 			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/email/');?>/<?php //echo ($field == 'email')?$by:'';?>"><?php //echo lang('email');?>
 				<?php //if($field == 'email'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?> Persentage</a></th>
 			<th> Active<?php //echo lang('active');?></th>
+			<th>Actions</th>
 			
 		</tr>
 	</thead>
 	
 	<tbody>
-		<?php
-		//$page_links	= $this->pagination->create_links();
-		$page_links = "";
-		$customers ="";
-		$customer = "";
-		if($page_links != ''):?>
-		<tr><td colspan="5" style="text-align:center"><?php echo $page_links;?></td></tr>
-		<?php endif;?>
-		<?php echo (count($customers) < 1)?'<tr><td style="text-align:center;" colspan="5">'.lang('no_customers').'</td></tr>':''?>
-<?php //foreach ($customers as $customer):?>
+		
+		<?php echo (count($commissions) < 1)?'<tr><td style="text-align:center;" colspan="5">'.lang('no_customers').'</td></tr>':''?>
+<?php foreach ($commissions as $commission):?>
 		<tr>
 			<?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
-			<td>course provider level<?php //echo  $customer->lastname; ?></td>
-			<td class="gc_cell_left">200 <?php //echo  $customer->firstname; ?></td>
-			<td>persentage<?php //echo  $customer->email; ?></td>
-
+			<td><?php echo  $commission->comm_level; ?></td>
+			<td class="gc_cell_left"> <?php echo  $commission->comm_rate; ?></td>
+			<td><?php if($commission->comm_rate_mode == ''){ echo 'Fix'; }else{ echo  $commission->comm_rate_mode;} ?></td>
+			<td><?php echo  $commission->comm_active; ?></td>
 			<td>
 				<div class="btn-group" >
-					<a class="btn" href="<?php //echo site_url('/tutor/edit');  ?>"><i class="icon-pencil"></i> Edit <?php //echo lang('edit');?></a>
-					
-					
-					
-					<a class="btn btn-danger" href="<?php //echo site_url($this->config->item('admin_folder').'/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i> <?php //echo lang('delete');?> Delete</a>
+					<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/commission/form/'.$commission->comm_id); ?>"><i class="icon-pencil"></i> Edit </a>				
+					<a class="btn btn-danger" href="<?php echo site_url($this->config->item('admin_folder').'/commission/delete/'.$commission->comm_id); ?>" onclick="return areyousure();"><i class="icon-trash"></i> Delete</a>
 				</div>
 			</td>
 		</tr>
-<?php //endforeach;
+<?php endforeach;
 		//if($page_links != ''):?>
 		<tr><td colspan="5" style="text-align:center"><?php //echo $page_links;?></td></tr>
 		<?php //endif;?>

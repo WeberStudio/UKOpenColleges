@@ -4,7 +4,7 @@
      <div id="main_container">
       <div class="row-fluid ">
         <div class="span12">
-          <div class="box color_5 ">
+          <div class="box paint color_24 ">
             <div class="title row-fluid">
               <h4 class="pull-left"><span>Messages
 			  <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/forums/message_form/'.$topic_id); ?>"><i class="icon-plus-sign"></i>Add New Message </a>
@@ -14,56 +14,49 @@
               </div>-->
             </div>
             <!-- End .title -->
+			
+			
             <div class="content row-fluid">
               <ul class="messages_layout">
-                <li class="from_user left"> <a href="#" class="avatar"><img src="img/message_avatar2.png"/></a>
+			  <!--class="by_myself right"-->
+			  <?php 
+			  	$count = 0;
+			  	echo (count($messages) < 1)?'<div  style="text-align:center;" colspan="8">'.lang('no_forums') .'</div>':''?>
+				<?php  foreach($messages as $message){?>
+				 <?  
+					  	if($count%2==0)
+						{
+							$class = 'from_user left';
+						}
+						else
+						{
+							$class = 'by_myself right';
+						}
+				?>			  
+                <li class="<?=$class?>"> <a href="javascript:void(0)" class="avatar"><img src="<?=base_url().'uploads/images/thumbnails/'.$this->image?>"/></a>
                   <div class="message_wrap"> <span class="arrow"></span>
-                    <div class="info"> <a class="name">Celeste Holm</a> <span class="time">1 hour ago</span>
-                      <div class="options_arrow">
-                        <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html"> <i class=" icon-caret-down"></i> </a>
+                    <div class="info"> <a class="name"><?=$this->first_name?></a><br /><span class="time">( posted by <?=$message->message_user_role?> ) <?=$message->message_time?> ago</span>  
+					  <div class="options_arrow">
+                        <div class="dropdown pull-right"> 
+						<a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html"> <i class=" icon-caret-down"></i> </a>
                           <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
-                            <li><a href="#"><i class=" icon-share-alt icon-large"></i>Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i>Edit</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i>Delete</a></li>
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/forums/message_form/'.$message->topic_id.'/'.$message->message_id.'/reply'); ?>"><i class=" icon-share-alt icon-large"></i>Reply</a></li>
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/forums/message_form/'.$message->topic_id.'/'.$message->message_id); ?>"><i class=" icon-edit icon-large"></i>Edit</a></li>
+                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/forums/message_delete/'.$message->topic_id.'/'.$message->message_id); ?>"><i class=" icon-trash icon-large" ></i>Delete</a></li>
                           </ul>
                         </div>
                       </div>
                     </div>
-                    <div class="text"> All I want is to be a monkey of moderate intelligence who wears a suit… that's why I'm transferring to business school! I had more, but you go ahead.  Dissect its brain! </div>
+					 <div class="info"><h1><?=$message->message_title?></h1></div>
+                    <div class="text"><?=$message->message_message?></div>
                   </div>
-                </li>
-                <li class="by_myself right"> <a href="#" class="avatar"><img src="img/message_avatar4.png"/></a>
-                  <div class="message_wrap"> <span class="arrow"></span>
-                    <div class="info"> <a class="name">Bender (myself) </a> <span class="time">4 hours ago</span>
-                      <div class="options_arrow">
-                        <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html"> <i class=" icon-caret-down"></i> </a>
-                          <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
-                            <li><a href="#"><i class=" icon-share-alt icon-large"></i>Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i>Delete</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i>Share</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text"> Man, I'm sore all over. </div>
-                  </div>
-                </li>
-                <li class="from_user left"> <a href="#" class="avatar"><img src="img/message_avatar2.png"/></a>
-                  <div class="message_wrap"> <span class="arrow"></span>
-                    <div class="info"> <a class="name">Celeste Holm </a> <span class="time">1 Day ago</span>
-                      <div class="options_arrow">
-                        <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="../../page.html"> <i class="icon-caret-down"></i> </a>
-                          <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
-                            <li><a href="#"><i class=" icon-share-alt icon-large"></i>Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i>Delete</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i>Share</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text"> Thank you! </div>
-                  </div>
-                </li>
+                </li>  
+				
+				<? 
+				$count = $count + 1;
+				} 
+				?>
+				            
               </ul>
             </div>
 			<div class="row-fluid control-group">

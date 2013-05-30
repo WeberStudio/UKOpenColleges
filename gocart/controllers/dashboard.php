@@ -17,8 +17,18 @@ class dashboard extends Front_Controller {
 		
 	}
 	
+	function index()
+		{
+			if($this->Customer_model->is_logged_in(false, false)):
+			$this->load->view('dashboard');
+			else:
+		 	redirect('cart/');
+		 	endif;
+		}
+	
 	function course()
 	{
+		if($this->Customer_model->is_logged_in(false, false)):
 		$this->load->model('Order_model');
 
 		$this->load->model('customer_model');
@@ -26,25 +36,34 @@ class dashboard extends Front_Controller {
 		$data['orderss']	= $this->Order_model->get_customer_orders($customer_details['id']);
 		//print_r($data['orderss']);exit;
 		$this->load->view('dashboard_course',$data);
+		else:
+		redirect('cart/');
+		endif;
 	}
 	
 	
 	function fourm()
 	{
 		
-		
+		if($this->Customer_model->is_logged_in(false, false)):
+
+
 		$customer_details 	= $this->go_cart->customer();
 		$data['forums']		= $this->Forum_model->get_forum_customer($customer_details['id']);
-		//print_r($data['forums']); exit;
-		//$data['tutorss']		= $this->Tutor_model->get_tutor(2);
-		//print_r($data['tutorss']); exit;
-		//$data['tutor']		= $this->Tutor_model->get_tutor()
+		//echo "<pre>";print_r($data['forums']); exit;
 		$this->load->view('dashboard_fourm',$data);
+		else:
+		redirect('cart/');
+		endif;
 	}
 	
 	function file_manager()
 	{
+		if($this->Customer_model->is_logged_in(false, false)):
 		$this->load->view('dashboard_file_manager');
+		else:
+		redirect('cart/');
+		endif;
 	}
 	
 	

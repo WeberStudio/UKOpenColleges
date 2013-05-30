@@ -306,7 +306,7 @@ experience this site.
         <span style="padding: 0 13px;">
         
         <?php if($this->Customer_model->is_logged_in(false, false)):?>
-        <a href="<?php echo  site_url('secure/');?>" style="color:red;"><input value="Dashboard" type="button" class="button"/></a><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
+        <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
 		</h1>
         
 			<?php else: ?>

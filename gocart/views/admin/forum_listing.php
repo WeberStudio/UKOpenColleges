@@ -53,7 +53,7 @@
 			<td>
 				<div class="btn-group">
 						<a class="btn"  href="<?=base_url().'admin/forums/form/'.$forum->forum_id?>"><i class="icon-pencil"></i> Edit </a>
-						<a class="btn btn-danger" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"  href="<?=base_url().'admin/forums/delete/'.$forum->forum_id?>"><i class="icon-trash"></i> Remove </a>
+						<a class="btn btn-danger" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"  href="<?=base_url().'admin/forums/delete_forum/'.$forum->forum_id?>"><i class="icon-trash"></i> Remove </a>
 				</div>
 			</td>
 		</tr>
@@ -64,17 +64,10 @@
 </table>
 </div>
 <div class="row-fluid control-group">
-                <div class="pull-left span6 " action="#"> </div>
+                
                 <div class="span6">
                   <div class="pagination pull-right ">
-                    <ul>
-                      <li><a href="#">Prev</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">Next</a></li>
-                    </ul>
+                    <?php echo $this->pagination->create_links();?> &nbsp; 
                   </div >
                 </div>
               </div>

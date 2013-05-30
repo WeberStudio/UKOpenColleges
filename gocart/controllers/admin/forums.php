@@ -37,12 +37,43 @@ class forums extends Admin_Controller {
     }
 	
 
-    function index()
+    function index($field='forum_title', $by='ASC', $page='', $row=5)
     {
        	
         $data = array();
+		$data['forums']			= $this->Forum_model->get_forums($row, $page, $field, $by);	
 		
-		$data['forums']			= $this->Forum_model->get_forums();		
+		$this->load->library('pagination');
+		
+		$config['base_url']			= base_url().'/'.$this->config->item('admin_folder').'/forums/index/'.$field.'/'.$by.'/';
+		$config['total_rows']		= $this->Forum_model->count_forums();
+		$config['per_page']			= $row;
+		$config['uri_segment']		= 6;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		$config['prev_link']		= 'Prev';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+		$config['next_link']		= 'Next';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';
+		
+		$this->pagination->initialize($config);
+		
+		$data['page']	= $page;
+		$data['field']	= $field;
+		$data['by']		= $by;
+			
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/forum_listing', $data);
@@ -133,6 +164,13 @@ class forums extends Admin_Controller {
 		
 	}
 	
+	function delete_forum($forum_id)
+	{
+		
+		$data['forum_id']		= $this->Forum_model->delete_forum($forum_id);
+		redirect($this->config->item('admin_folder').'/forums');
+	}
+	
 	function topic_form($forum_id, $id = false)
 	{
 		$this->load->helper('form');
@@ -197,13 +235,9 @@ class forums extends Admin_Controller {
 		
 	}
 	
-	
-	
-	
+			
 	function topic_view($forum_id)
 	{
-			
-		
 		$data['form_id'] 	= $forum_id;	
 		$data['topics']		= $this->Topic_model->get_topics();	
 		//echo "<pre>"; print_r($data['topics']);exit;
@@ -213,12 +247,17 @@ class forums extends Admin_Controller {
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 	
+	function topic_delete($forum_id, $topic_id)
+	{
+		$data['topic_id'] = $this->Topic_model->topic_delete($topic_id);
+		redirect($this->config->item('admin_folder').'/forums/topic_view/'.$forum_id);
+	}
 	
 	function message_converstion($topoc_id)
 	{
-		$data 				= array();
-		$data['topic_id'] 	= $topoc_id;
-		$data['messages']		= $this->Message_Forum_model->get_message($topoc_id);	
+		$data 					= array();
+		$data['topic_id'] 		= $topoc_id;
+		$data['messages']		= $this->Message_Forum_model->get_messages($topoc_id);
 		//echo "<pre>"; print_r($data['messages']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
@@ -226,8 +265,9 @@ class forums extends Admin_Controller {
         $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 	}
 	
+	
 		
-	function message_form($topic_id, $id = false)
+	function message_form($topic_id, $id = false, $message_mode = false)
 	{
 		
 		$this->load->helper('form');
@@ -239,20 +279,19 @@ class forums extends Admin_Controller {
 		$data['message_login_id'] 	= '';
 		$data['message_user_role']	= '';
 		$data['message_title']		= '';
-		$data['message_message']	= '';
-		
-		
-		
+		$data['message_message']	= '';	
+				
 		if($id)
 		{
 			
 			$message				= $this->Message_Forum_model->get_message($id);
+			//print_r($message);exit;
 			
 			if(!$message)
 			{
 				//forum does not exist
 				$this->session->set_flashdata('error', lang('error_forum_not_found'));
-				redirect($this->config->item('admin_folder').'/topic_form');
+				redirect($this->config->item('admin_folder').'/forums/message_converstion/'.$topic_id);
 			}
 			
 			
@@ -262,12 +301,21 @@ class forums extends Admin_Controller {
 			$data['message_title']		= $message->message_title;
 			$data['message_message']	= $message->message_message;		
 		}
+		//echo '--'.$message_mode;exit;
+		
+		if(!empty($message_mode) && $message_mode = 'reply')
+		{
+			$data['message_title'] 		= 'Re: '.$message->message_title;
+			$data['reply']				= 'reply';
+			$data['message_message']	= '';	
+		}
 		
 		$this->form_validation->set_rules('message_title', 'Message Title', 'required');
 		$this->form_validation->set_rules('message_message', 'Message Message', 'required');
 		
 		if($this->form_validation->run() == false)
 		{
+					
 			//echo validation_errors('<div class="error">', '</div>'); exit;
 			$this->load->view($this->config->item('admin_folder').'/includes/header');
 			$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
@@ -290,10 +338,16 @@ class forums extends Admin_Controller {
 			$this->session->set_flashdata('message', lang('message_saved_forum'));
 			
 			//go back to the forum list
-			redirect($this->config->item('admin_folder').'/forums/message_converstion/'.$message_id);
+			redirect($this->config->item('admin_folder').'/forums/message_converstion/'.$topic_id);
 		}
 		
 	
+	}
+	
+	function message_delete($topic_id, $message_id)
+	{
+		$data['message_id'] = $this->Message_Forum_model->message_delete($message_id);
+		redirect($this->config->item('admin_folder').'/forums/message_converstion/'.$topic_id);
 	}
 }
 ?>

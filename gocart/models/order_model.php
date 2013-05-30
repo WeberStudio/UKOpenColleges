@@ -153,6 +153,24 @@ Class order_model extends CI_Model
 		return $this->db->get_where('orders', array('customer_id'=>$id), 15)->result();
 	}
 	
+	//get an individual customers orders
+	function get_admin_related_orders($admin_id)
+	{
+		
+		$result = $this->db->query('SELECT * , COUNT( oc_order_items.product_id ) items_count , SUM( oc_order_items.quantity ) q_sum
+							FROM oc_orders 
+							LEFT JOIN oc_order_items 
+							ON oc_orders.id = oc_order_items.order_id
+							LEFT JOIN oc_commission 
+							ON oc_order_items.product_id = oc_commission.comm_level_id
+							WHERE oc_orders.admin_id ='.$admin_id.'							
+							GROUP BY oc_order_items.product_id');
+							
+		return $result->result_array();
+	}
+	
+	
+	
 	function count_customer_orders($id)
 	{
 		$this->db->where(array('customer_id'=>$id));

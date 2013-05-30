@@ -66,6 +66,12 @@ $lang['item'] 								= 'Items';
 $lang['none'] 								= 'None';
 $lang['delete'] 							= 'Delete';
 $lang['edit'] 								= 'Edit';
+$lang['comm'] 								= 'Commission';
+$lang['comm_total'] 						= 'Commission Total';
+
+
+
+
 
 
 ?>

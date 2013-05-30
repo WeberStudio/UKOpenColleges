@@ -12,7 +12,7 @@ Class Invoice_Tax_Model extends CI_Model
 	********************************************************************/
 	
 	
-	function get_taxes($field, $by, $page, $rows)
+	function get_taxes($field='tax_rate_id', $by='ASC', $page=0, $rows=5)
 	{
 		$this->db->order_by($field, $by);
 		if($rows>0)

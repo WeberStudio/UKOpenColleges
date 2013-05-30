@@ -42,11 +42,11 @@ $(document).ready(function(){
 </script>
 <?php define('ADMIN_FOLDER', $this->config->item('admin_folder')); 
 ?>
-
+<?php echo form_open($this->config->item('admin_folder').'/coupons/form/'.$id); ?>
 <div id="main" style="min-height:1000px">
 <div class="container">
 <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
-<?php echo form_open($this->config->item('admin_folder').'/coupons/form/'.$id); ?>
+
 <div id="main_container">
   <div class="row-fluid">
     <div class="span12">
@@ -92,9 +92,10 @@ $(document).ready(function(){
            <div class="form-row control-group row-fluid">
             <label class="control-label span1" for="hint-field"> <?php echo lang('enable_on');?><span class="help-block"></span></label>
             <div class="controls span7">
-             
-			<input type="text" id="datepicker1" value="02-16-2012" class="row-fluid">
-		
+           <?php
+              $data	= array('name'=>'start_date', 'id'=>'datepicker1', 'value'=>set_value('start_date', reverse_format($start_date)), 'class'=>'row-fluid span12');
+			echo form_input($data);
+			?>
 			
             </div>
           </div>
@@ -102,7 +103,7 @@ $(document).ready(function(){
             <label class="control-label span1" for="hint-field"> <?php echo lang('disable_on');?><span class="help-block"></span></label>
             <div class="controls span7">
 			<?php
-              $data	= array('id'=>'datepicker2', 'value'=>set_value('end_date', reverse_format($end_date)), 'class'=>'row-fluid span12');
+              $data	= array('name'=>'end_date', 'id'=>'datepicker2', 'value'=>set_value('end_date', reverse_format($end_date)), 'class'=>'row-fluid span12');
 			echo form_input($data);
 			?>
 			<input type="hidden" name="end_date" value="<?php echo set_value('end_date', $end_date) ?>" id="datepicker2_alt" />
@@ -131,7 +132,7 @@ $(document).ready(function(){
             </div>
 			<div class="controls span3">
 			<?php
-			$data	= array('id'=>'reduction_amount', 'name'=>'reduction_amount', 'value'=>set_value('reduction_amount', $reduction_amount), 'class'=>'span12');
+			$data	= array('name'=>'reduction_amount', 'value'=>set_value('reduction_amount', $reduction_amount), 'class'=>'span12');
 			echo form_input($data); ?>
 			</div>
           </div>

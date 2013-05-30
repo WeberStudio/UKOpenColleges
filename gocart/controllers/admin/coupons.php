@@ -93,7 +93,7 @@ class Coupons extends Admin_Controller {
 			
 			$added = $this->Coupon_model->get_product_ids($id);
 		}
-		
+		//print_r($this->input->post('end_date'));exit;
 		$this->form_validation->set_rules('code', 'lang:code', 'trim|required|callback_check_code');
 		$this->form_validation->set_rules('max_uses', 'lang:max_uses', 'trim|numeric');
 		$this->form_validation->set_rules('max_product_instances', 'lang:limit_per_order', 'trim|numeric');
@@ -139,13 +139,15 @@ class Coupons extends Admin_Controller {
 	
 		if ($this->form_validation->run() == FALSE)
 		{
-		$this->load->view($this->config->item('admin_folder').'/includes/header');
-        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
-        $this->load->view($this->config->item('admin_folder').'/add_coupon', $data);
-        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+			//echo "here i am"; exit;
+			$this->load->view($this->config->item('admin_folder').'/includes/header');
+			$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+			$this->load->view($this->config->item('admin_folder').'/add_coupon', $data);
+			$this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
 		}
 		else
 		{
+			//echo "here i am"; exit;
 			$save['id']						= $id;
 			$save['code']					= $this->input->post('code');
 			$save['start_date']				= $this->input->post('start_date');

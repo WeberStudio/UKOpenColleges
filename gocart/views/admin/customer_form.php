@@ -13,27 +13,90 @@
 <div class="content"> 
 <?php echo form_open($this->config->item('admin_folder').'/customers/form/'.$id, array('class' => '', 'id' => 'validateForm')); ?>
 
-    <div class="form-row control-group row-fluid"> 
+    		<div class="form-row control-group row-fluid"> 
 	   			<label class="control-label span1" for="hint-field"><?php echo lang('company');?><span class="help-block"></span></label>
 			       <div class="controls span7"> <?php
 			$data	= array('name'=>'company', 'value'=>set_value('company', $company), 'class'=>'span12');
 			echo form_input($data); ?>
 		</div>
 	</div>
-             <div class="form-row control-group row-fluid">  
+            <div class="form-row control-group row-fluid">  
 	   		<label class="control-label span1" for="hint-field"><?php echo lang('firstname');?><span class="help-block"></span></label>
 			<div class="controls span7"><?php
 			$data	= array('name'=>'firstname', 'value'=>set_value('firstname', $firstname), 'class'=>'span12');
 			echo form_input($data); ?>
 		</div>  </div>
-		
-             <div class="form-row control-group row-fluid">
+			<div class="form-row control-group row-fluid">
 			<label class="control-label span1" for="hint-field"><?php echo lang('lastname');?><span class="help-block"></span></label>
 			<div class="controls span7"><?php
 			$data	= array('name'=>'lastname', 'value'=>set_value('lastname', $lastname), 'class'=>'span12');
 			echo form_input($data); ?>
 		</div>
 	</div>
+            <div class="form-row control-group row-fluid">
+              <label class="control-label span1" for="hint-field"><?php echo lang('street_address');?><span class="help-block"></span></label>
+              <div class="controls span7">
+                <?php
+        $data    = array('name'=>'street_address', 'value'=>set_value('street_address', $street_address) ,'class' => 'span12');
+        echo form_input($data);
+        ?>
+              </div>
+            </div>
+            <div class="form-row control-group row-fluid">
+              <label class="control-label span1" for="hint-field"><?php echo lang('address_line_op');?><span class="help-block"></span></label>
+              <div class="controls span7">
+                <?php
+        $data    = array('name'=>'address_line_op', 'value'=>set_value('address_line_op', $address_line_op) ,'class' => 'span12');
+        echo form_input($data);
+        ?>
+              </div>
+            </div>
+            <div class="form-row control-group row-fluid">
+              <label class="control-label span1" for="hint-field"><?php echo lang('city');?><span class="help-block"></span></label>
+              <div class="controls span7">
+                <?php
+        $data    = array('name'=>'city', 'value'=>set_value('city', $city) ,'class' => 'span12');
+        echo form_input($data);
+        ?>
+              </div>
+            </div>
+            <div class="form-row control-group row-fluid">
+              <label class="control-label span1" for="hint-field"><?php echo lang('state');?><span class="help-block"></span></label>
+              <div class="controls span7">
+                <?php
+				$option = array('1'=>'punjab','2'=>'sind','3'=>'sirhad');
+				echo form_dropdown('state',$option,set_value('someValue'),'class="chzn-select"','id="default-select"');
+				?>
+              </div>
+            </div>
+            <div class="form-row control-group row-fluid">
+              <label class="control-label span1" for="hint-field"><?php echo lang('postcode');?><span class="help-block"></span></label>
+              <div class="controls span7">
+                <?php
+        $data    = array('name'=>'zip_code', 'value'=>set_value('zip_code', $zip_code) ,'class' => 'span6', 'maxlength'=>'6');
+        echo form_input($data);
+        ?>
+              </div>
+            </div>
+            
+            
+            <div class="form-row control-group row-fluid">
+                  <label class="control-label span1" for="default-select"><?php echo lang('country');?> </label>
+                  <div class="controls span7">
+                  <?php $option = array('pk'=>'pakistan', 'un'=>'United States', 'uk'=>'united kingdom');
+				  echo form_dropdown('name',$option,set_value('someValue'),'class="chzn-select"','id="default-select"');
+				   ?>
+                  </div>
+                </div>
+            <!--<div class="form-row control-group row-fluid">
+              <label class="control-label span1" for="hint-field"><?php echo lang('telephone');?><span class="help-block"></span></label>
+              <div class="controls span7">
+                <?php
+        $data    = array('name'=>'telephone', 'value'=>set_value('telephone', $telephone) ,'class' => 'span12');
+        echo form_input($data);
+        ?>
+              </div>
+            </div>-->
             <div class="form-row control-group row-fluid"> 
 			<label class="control-label span1" for="hint-field"><?php echo lang('email');?><span class="help-block"></span></label>
 			<div class="controls span7"><?php
@@ -41,36 +104,34 @@
 			echo form_input($data); ?>
 		</div> 
         </div>    
-		<div class="form-row control-group row-fluid">   
+			<div class="form-row control-group row-fluid">   
 			<label class="control-label span1" for="hint-field"><?php echo lang('phone');?><span class="help-block"></span></label>
 			<div class="controls span7"><?php
 			$data	= array('name'=>'phone', 'value'=>set_value('phone', $phone), 'class'=>'span12');
 			echo form_input($data); ?>
 		</div>
 	</div>                                             
-                                                       
-        <div class="form-row control-group row-fluid">  
+        	<div class="form-row control-group row-fluid">  
 		<label class="control-label span1" for="hint-field"><?php echo lang('password');?><span class="help-block"></span></label>
 	    <div class="controls span7"><?php
 			$data	= array('name'=>'password', 'class'=>'span12');
 			echo form_password($data); ?>
 		</div> </div> 
-		<div class="form-row control-group row-fluid">   
+			<div class="form-row control-group row-fluid">   
 			<label class="control-label span1" for="hint-field"><?php echo lang('confirm');?><span class="help-block"></span></label>
 			<div class="controls span7"><?php
 			$data	= array('name'=>'confirm', 'class'=>'span12');
 			echo form_password($data); ?>
 		</div>
 	</div>
-
-        <div class="form-row control-group row-fluid">
+			<div class="form-row control-group row-fluid">
 		<label class="control-label span1" for="hint-field"><span class="help-block"></span></label>   
         <label class="checkbox">
 <?php $data	= array('name'=>'email_subscribe', 'value'=>1, 'checked'=>(bool)$email_subscribe);
 			echo form_checkbox($data).' '.lang('email_subscribed'); ?>
 			</label>
 		</div>
-      <div class="form-row control-group row-fluid"> 
+     		<div class="form-row control-group row-fluid"> 
         <label class="control-label span1" for="hint-field"><span class="help-block"></span></label>      
        <label class="checkbox">
 				<?php
@@ -78,12 +139,7 @@
 				echo form_checkbox($data).' '.lang('active'); ?>
 			</label>
 		</div>
-<!--<div class="control-group row-fluid">  
- <label class="control-label span1"><?php echo lang('group');?></label>
-	 <div class="controls span7">
-     <?php echo form_dropdown('group_id', $group_list, set_value('group_id',$group_id), 'class="span12"'); ?>
-		</div>
- </div>-->
+
 	         <button type="submit" class="btn btn-inverse btn-block btn-large"><?php echo lang('form_save');?></button>
    </form>
  </div>

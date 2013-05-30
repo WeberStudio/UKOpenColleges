@@ -1,7 +1,31 @@
  <?php include('mainHeader.php'); ?>
   <?php echo theme_css('basee.css', true); ?> 
+  <link rel="stylesheet" type="text/css" media="screen" href="<?php echo theme_css('jquery-ui.css');?>">
+		<script type="text/javascript" src="<?php echo theme_js('js/jquery.min.js');?>"></script>
+		<script type="text/javascript" src="<?php echo theme_js('js/jquery-ui.min.js');?>"></script>
+
+		<!-- elFinder CSS (REQUIRED) -->
+		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo theme_css('elfinder.min.css');?>">
+		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo theme_css('theme.css');?>">
+
+		<!-- elFinder JS (REQUIRED) -->
+		<script type="text/javascript" src="<?php echo theme_js('js/elfinder.min.js');?>"></script>
+
+		<!-- elFinder translation (OPTIONAL) -->
+		<script type="text/javascript" src="<?php echo theme_js('js/i18n/elfinder.ru.js');?>"></script>
+
+		<!-- elFinder initialization (REQUIRED) -->
+		<script type="text/javascript" charset="utf-8">
+			$().ready(function() {
+				var elf = $('#elfinder').elfinder({
+					url : '<?=base_url('php')."/connector.php";?>'  // connector URL (REQUIRED)
+					// lang: 'ru',             // language (OPTIONAL)
+				}).elfinder('instance');
+			});
+		</script>
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
+        
           <?php //include('leftPanel.php'); ?>
         <a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>
 		
@@ -13,6 +37,7 @@
                 experience this site.
                 </div><![endif]-->
                  <?php include('header.php'); ?> 
+                 
                  <div class="line"> </div>
                
 <div id="main">
@@ -24,10 +49,14 @@
         <!-- End .span3 -->
         
         <div class="span9">
-          
-          <!-- End .legend -->
-          
-          file manager
+<div class="row">
+<div id="content" class="fifteen columns">
+<div class="col-1">
+ 	<h3>File Manager</h3>
+          <div id="elfinder"></div>
+</div>
+</div>
+</div>
           <!-- End .content --> 
         </div>
         <!-- End .span9 --> 
