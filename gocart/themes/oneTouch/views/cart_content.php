@@ -7,7 +7,7 @@
 
 
     <div class="row">
-        <div class="fifteen columns" id="page-title">
+        <div class="fifteen columns" id="page-title" style="margin-left: 21px;">
             <a class="back" href="javascript:history.back()"></a>
             <div class="subtitle">
             </div>
@@ -15,7 +15,7 @@
             <h1 class="page-title">
                 Cart        </h1>
 
-            <div class="breadcrumbs"><a href="#">Home</a> <span class="delim">/</span> Cart</div>
+            <div class="breadcrumbs"><a href="<?php echo base_url();?>">Home</a><!-- <span class="delim">/ </span>Cart--> </div>
 
 
         </div>

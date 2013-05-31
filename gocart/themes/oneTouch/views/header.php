@@ -299,7 +299,7 @@ experience this site.
 								</a>
 </span></div>
                 -->
-<div class="promo"><span class="icon info"></span>
+<div class="promo" style="padding-bottom: 0px;"><span class="icon info"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
         <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>
         <span style="padding: 0 13px;">

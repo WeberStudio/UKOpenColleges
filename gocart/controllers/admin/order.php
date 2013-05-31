@@ -17,7 +17,8 @@ class Order extends Admin_Controller {
 		$this->first_name = $user_info['firstname'];
 		$this->last_name = $user_info['lastname'];
 		$this->image = $user_info['image'];		
-		$this->load->helper('formatting_helper');		
+		$this->load->helper('formatting_helper');
+				
         /*** Get User Info***/
 		
 		/*** Left Menu Selection ***/
@@ -35,6 +36,7 @@ class Order extends Admin_Controller {
 		$this->load->model('Search_model');
 		$this->load->model('location_model');		
 		$this->lang->load('order');
+		
 
     }
 	
@@ -50,7 +52,7 @@ class Order extends Admin_Controller {
 		$this->load->library('pagination');	
 		
 		$config['base_url']			= base_url().'/'.$this->config->item('admin_folder').'/order/index/'.$sort_by.'/'.$sort_order.'/';
-		$config['total_rows']		= $this->Order_model->count_customer_orders();
+		//$config['total_rows']		= $this->Order_model->count_customer_orders();
 		
 		$config['per_page']			= $rows;
 		
