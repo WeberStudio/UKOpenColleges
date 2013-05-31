@@ -33,7 +33,7 @@ class forums extends Admin_Controller {
 		
 		
 		$this->load->model(array('Customer_model', 'Product_model', 'Tutor_model', 'Forum_model', 'Topic_model', 'Message_Forum_model'));
-
+		$this->load->library('email');
     }
 	
 
@@ -155,6 +155,22 @@ class forums extends Admin_Controller {
 			
 			//save the forum
 			$forum_id				= $this->Forum_model->save($save);
+			if(!$id)
+			{
+				
+				/*$to		 = $save['email'];
+				$message = 'Welcome! '.$save['firstname'].' '.$save['lastname']."\n\n";
+				$message .= 'E-mail: '.$save['email']."\n";
+				$message .= 'Password: '.$password."\n\n";
+				$message .= 'Thanks For Joining Ukopencollege.';			
+				$this->email->from('support@ukopencollege.com', 'Ukopencollege');
+				$this->email->to($to);
+				$this->email->subject('Successfully Signup!');
+				$this->email->message($message);
+				$this->email->send();*/	
+			}
+			
+			
 			$this->session->set_flashdata('message', lang('message_saved_forum'));
 			
 			//go back to the forum list

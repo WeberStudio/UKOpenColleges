@@ -198,8 +198,7 @@ class Auth
 			
 			$new_password		= random_string('alnum', 8);
 			$admin['password']	= sha1($new_password);
-			$this->save($admin);
-			
+			$this->save($admin);			
 			$this->CI->email->from($this->CI->config->item('email'), $this->CI->config->item('site_name'));
 			$this->CI->email->to($email);
 			$this->CI->email->subject($this->CI->config->item('site_name').': Admin Password Reset');
@@ -248,6 +247,7 @@ class Auth
 		else
 		{
 			$this->CI->db->insert('admin', $admin);
+			return $this->CI->db->insert_id();
 		}
 	}
 	

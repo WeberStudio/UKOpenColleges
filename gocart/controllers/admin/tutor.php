@@ -152,7 +152,8 @@ class tutor extends Admin_Controller {
 		$data['achiev_description']	= array();
 		
 		$data['extra_info']			= '';		
-		
+		$password					= '';
+		$password 					= $this->input->post('password');	
 		//$this->show->pe($data['courses']);
 		
 		if ($id)
@@ -255,6 +256,17 @@ class tutor extends Admin_Controller {
 			if ($this->input->post('password') != '' || !$id)
 			{
 				$save['password']	= $this->input->post('password');
+				$this->load->library('email');
+				$to		  = $save['email'];
+				$message  = 'Welcome! '.$save['firstname'].' '.$save['lastname']."\n\n";
+				$message .= 'E-mail: '.$save['email']."\n";
+				$message .= 'Password: '.$password."\n\n";
+				$message .= 'Thanks For Joining Ukopencollege.';			
+				$this->email->from('support@ukopencollege.com', 'Ukopencollege');
+				$this->email->to($to);
+				$this->email->subject('Successfully Signup!');
+				$this->email->message($message);
+				$this->email->send();
 			}
 			
 			if($this->input->post('courses'))
