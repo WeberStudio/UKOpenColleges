@@ -345,7 +345,7 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 	
 
 </div>
-<input type="submit" value="<?php echo lang('form_continue');?>" class="btn btn-primary" style="height: 34px; width: 74px;" />
+
 </form>
 </div>
 </div>
@@ -353,22 +353,156 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 <div id="content" class="fifteen columns">
 <div class="col2-set" id="customer_details">
 <div class="col-1">
-	<h3>Billing Address</h3>
+<form>
+	<h3>Payment Method</h3>
+	<p><b><i>Please select a payment method for this order.</i></b></p>	
+    <p>
+     	<?php
+			$data = array('name'=>'pay_method');
+		 	echo form_radio($data);
 			
-	<p class="form-row form-row-first" id="billing_first_name_field">
-						<label for="billing_first_name" class=""><?php echo lang('account_firstname');?><abbr class="required" title="required">*</abbr>
-						</label>
-						
-						<?php echo form_input($first);?>
-					</p>
-	
-					<p class="form-row form-row-last" id="billing_last_name_field">
-						<label for="billing_last_name" class=""><?php echo lang('account_lastname');?> <abbr class="required" title="required">*</abbr>
-						</label>
-						<?php echo form_input($last);?>
-					</p>
-					<div class="clear"></div>
-                    </div>
+		?>
+        	 <img src="<?php echo theme_img('pay_cards/PayPal_mark');?>"/>
+        	<b>Checkout with PayPal </b>
+     </p>
+     
+     <p>
+     <?php
+			$data = array('name'=>'pay_method');
+		 	echo form_radio($data);
+	?>
+    	<b>Checkout with PayPal </b>
+     </p>
+     
+    
+    <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 120px;">
+        <label for="billing_first_name" class="">Cards Accepted: 
+        
+        </label>
+	</p>
+    
+	<p class="form-row form-row-last" id="billing_last_name_field"  style="width: 290px; margin-right: -14px;">
+         <img src="<?php echo theme_img('pay_cards/visa');?>"/>
+         <img src="<?php echo theme_img('pay_cards/mc');?>"/>
+        <img src="<?php echo theme_img('pay_cards/visa_debit');?>"/>
+         <img src="<?php echo theme_img('pay_cards/solo');?>"/>
+          <img src="<?php echo theme_img('pay_cards/maestro');?>"/>
+         <img src="<?php echo theme_img('pay_cards/visa_electron');?>"/>
+	</p>
+	<div class="clear"></div>
+    
+     <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 120px;">
+        <label for="billing_first_name" class="">Card Owner:  
+        
+        </label>
+	</p>
+    
+	<p class="form-row form-row-last" id="billing_last_name_field">
+        <?php echo form_input($first);?>
+	</p>
+	<div class="clear"></div>
+    
+     <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 120px;">
+        <label for="billing_first_name" class="">Cards Accepted: 
+        
+        </label>
+	</p>
+    
+	<p class="form-row form-row-last" id="billing_last_name_field">
+     	<?php 
+			$option	= array('sele'=>'Select Card Type','VISA'=>'Visa','MC'=>'MasterCard' ,'DELTA'=>'Visa Debit' ,'SOLO'=>'Solo' ,'MAESTRO'=>'Maestro' ,'UKE'=>'Visa Electron (UKE)' );
+			echo form_dropdown('select_card',$option);	
+		?>
+	</p>
+	<div class="clear"></div>
+    
+     <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 120px;">
+        <label for="billing_first_name" class="">Card Number:  
+        
+        </label>
+	</p>
+    
+	<p class="form-row form-row-last" id="billing_last_name_field">
+      <?php 
+	  		$data = array('id'=>'card_num', 'class'=>'input-text', 'name'=>'card_num',);
+			echo form_input($data)
+	  ?> 
+	</p>
+    
+	<div class="clear"></div>
+    
+   <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 120px;">
+        <label for="billing_first_name" class="">Card Expiry Date:  
+        
+        </label>
+	</p>
+    
+	<p class="form-row form-row-last" id="billing_last_name_field">
+     	<?php 
+			$option	= array('sele'=>'Select Month','01'=>'January','02'=>'February' ,'03'=>' March' ,'04'=>'April' ,'05'=>'May' ,'06'=>'  June','07'=>'July' ,'08'=>'August' ,'09'=>'September' ,'10'=>'October' ,'11'=>'November' ,'12'=>'December');
+			echo form_dropdown('select_month',$option,'', 'style="width: 100px;"');	
+			echo " ";
+			$option	= array('sele'=>'Select Year','01'=>'2013','02'=>'2014' ,'03'=>' 2015' ,'04'=>'2016' ,'05'=>'2017' ,'06'=>' 2018','07'=>'2019' ,'08'=>'2020' ,'09'=>'2021' ,'10'=>'2022');
+			echo form_dropdown('select_year',$option, '', 'style="width: 100px;"');
+		?>
+	</p>
+	<div class="clear"></div>
+    
+       <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 120px;">
+        <label for="billing_first_name" class="">CVV Number (More Info): 
+        
+        </label>
+	</p>
+    
+	<p class="form-row form-row-last" id="billing_last_name_field">
+     	<?php 
+			$data = array('id'=>'cvv_num', 'class'=>'input-text', 'name'=>'cvv_num','style'=>'width: 120px');
+			echo form_input($data)
+		?>
+	</p>
+	<div class="clear"></div>
+    
+    
+   <p class="form-row form-row-last" id="billing_last_name_field" style="width: 464px;">
+   	<i>You need to fill in the following fields <b>ONLY</b> if the information is on your card. <i/>
+   </p> 
+   <div class="clear"></div>
+   <p>
+   <b>NOTE:</b> Halifax, Bank of Scotland and Abbey customers do not need to enter an issue number.
+   </p>
+   <div class="clear"></div>
+   <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 105px;">
+        <label for="billing_first_name" class="">Card Start Date (If on card):  
+        </label>
+	</p>
+    
+	<p class="form-row form-row-last" id="billing_last_name_field">
+     	<?php 
+			$option	= array('sele'=>'Select Month','01'=>'January','02'=>'February' ,'03'=>' March' ,'04'=>'April' ,'05'=>'May' ,'06'=>'  June','07'=>'July' ,'08'=>'August' ,'09'=>'September' ,'10'=>'October' ,'11'=>'November' ,'12'=>'December');
+			echo form_dropdown('select_month_if',$option,'', 'style="width: 100px;"');	
+			echo " ";
+			$option	= array('sele'=>'Select Year','01'=>'2013','02'=>'2014' ,'03'=>' 2015' ,'04'=>'2016' ,'05'=>'2017' ,'06'=>' 2018','07'=>'2019' ,'08'=>'2020' ,'09'=>'2021' ,'10'=>'2022');
+			echo form_dropdown('select_year_if',$option, '', 'style="width: 100px;"');
+		?>
+	</p>
+   
+   <div class="clear"></div>
+     <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 105px;">
+        <label for="billing_first_name" class="">Card Issue No. (If on card):  
+        
+        </label>
+	</p>
+    
+	<p class="form-row form-row-last" id="billing_last_name_field">
+     	<?php 
+			$data = array('id'=>'card_issu', 'class'=>'input-text', 'name'=>'card_issu','style'=>'width: 120px');
+			echo form_input($data)
+		?>
+	</p>
+   <div class="clear"></div>
+ <input type="submit" value="<?php echo lang('form_continue');?>" class="btn btn-primary" style="height: 34px; width: 74px;" />     
+ </form>
+ </div>
 </div>
 </div>
 
