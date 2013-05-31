@@ -27,8 +27,8 @@
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
         
           <?php //include('leftPanel.php'); ?>
-        <a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>
-		
+<!--        <a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>
+-->		
         <div id="body-wrapper" >		
             <div id="body-wrapper-padding">			
                 <!--[if lt IE 7]>

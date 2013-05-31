@@ -12,7 +12,7 @@ class Cart extends Front_Controller {
 
 	function index()
 	{
-        //DebugBreak();
+        DebugBreak();
 		$this->load->model(array('Banner_model', 'box_model'));
 		$this->load->helper('directory');
 
