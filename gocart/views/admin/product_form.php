@@ -32,21 +32,25 @@ $GLOBALS['option_value_count']		= 0;
                   <div class="content">
                     <div class="form-row control-group row-fluid">
                       <div class="controls span8">
+					   	<label for="slug">Course Name </label>
                         <input type="text" id="normal-field" value="<?=set_value('name', $name)?>" name="name" class="row-fluid" placeholder="Course Name">
                       </div>                      
                     </div>
                     <div class="form-row control-group row-fluid">                      
                      <div class="controls span8">
+						<label for="slug">Course Price </label>
                         <input type="text" id="normal-field" value="<?=set_value('name', $price)?>" name="price" class="row-fluid" placeholder="Course Price">
                      </div>                      
                     </div>
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
+					  	<label for="slug">Description </label>
                         <textarea name="description" cols="40" rows="15"  class="redactor" id="elastic-textarea"><?=set_value('description', $description)?></textarea>
                       </div>
                     </div>
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
+					  	<label for="slug">Excerpt </label>
                         <textarea name="excerpt" cols="40" rows="5" class="row-fluid autogrow" id="elastic-textarea" placeholder="Add Excerpt Here...."><?=set_value('excerpt', $excerpt)?></textarea>
                       </div>
                     </div>
@@ -92,6 +96,7 @@ $GLOBALS['option_value_count']		= 0;
                     <div class="form-row control-group row-fluid">
                       <label class="control-label span3" for="inputEmail"><span class="help-block"></span></label>
                       <div class="controls span14">
+					  <label for="slug">Choose Multiple Categories For Course </label>
                       <? 
 					  	//$this->show->pe($product_categories);
 						//echo $product_categories[0]->category_id.'----------'.$product_categories[1]->category_id;
@@ -130,6 +135,7 @@ $GLOBALS['option_value_count']		= 0;
                   <div class="content">
                     <div class="form-row control-group row-fluid">
                        <div class="controls span10">
+					   <label for="slug">Select Options For Courses</label>
                        <select data-placeholder="Choose Multiple Categories For Course" class="chzn-select" id="option_options" >
 								<option value=""><?php echo lang('select_option_type');?></option>
 								<option value="checklist"><?php echo lang('checklist');?></option>
@@ -172,6 +178,7 @@ $GLOBALS['option_value_count']		= 0;
                   <div class="content">
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
+					  <label for="slug">Choose Multiple Related Courses</label>
 					  <? 
 					  $new_item = str_replace(array("[", "]",  '"'),'',$prelated);
 					  $new_item = explode(',',$new_item);
@@ -200,13 +207,14 @@ $GLOBALS['option_value_count']		= 0;
                 
                 <!-- TAB FIVE START-->
                                 
-                <div class="" id="images">
+                <div class="tab-pane fade" id="images">
                         <div class="form-row control-group row-fluid">
+						<label for="slug">Upload Image For Course</label>
                       <label class="control-label span1" for="search-input">File upload</label>
                       <div class="controls span8">
                         <div class="input-append row-fluid">
-                          <input type="file" class="spa1n6 fileinput" id="search-input">
-                          > </div>
+                          <input type="file" class="spa1n6 fileinput" name="image" id="search-input">
+                         </div>
                       </div>
                     </div>
                      <?php if(!empty($images) && $images != ''):?>
@@ -223,6 +231,7 @@ $GLOBALS['option_value_count']		= 0;
                   <div class="content">
                     <div class="form-row control-group row-fluid">                      
                      <div class="controls span8">
+					 	<label for="slug">Ebter Tabs For Course Details</label>
 					 	 <label for="slug"><?php echo lang('tab_title');?></label>
                         <input type="text" id="tab_title" value="<?=set_value('tab_title', $tab_title)?>" name="tab_title" class="row-fluid" >
                      </div>                      

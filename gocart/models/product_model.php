@@ -370,6 +370,7 @@ Class Product_model extends CI_Model
 				}
 				else
 				{
+					$tabs['product_id'] = $id;
 					$this->db->insert('oc_product_tabs',$tabs);
 				}
 			}
