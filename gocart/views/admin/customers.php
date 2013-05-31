@@ -20,6 +20,7 @@ function areyousure()
                      </span></h4>
                 
 <div class="content top"> 
+
 <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 	<thead>
 		<tr>

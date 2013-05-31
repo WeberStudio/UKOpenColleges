@@ -38,7 +38,71 @@ $rows=15;
   <div class="container">
     <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
      <div id="main_container">
-      <div class="row-fluid ">
+     <!--=======Search Panel Start=======-->
+     <div class="box paint color_0">
+      <div class="title">
+        <h4> <i class="icon-book"></i><span>Search Orders</span> </h4>
+      </div>
+      <div class="content"> <?php //echo form_open($this->config->item('admin_folder').'/products/index', 'class="" ');?>
+      
+         <div class="form-row control-group row-fluid">
+        
+              <div class="controls span3">
+                <?php 
+					$option = array( 'select_frequently'=>'select frequently','per_week'=>'Per Week', 'per_month'=>'Per Month','per_year'=>'Per Year');
+					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
+				?>
+              </div>
+              <div class="controls span3">
+                <?php 
+					$option = array( 'course'=>'course','1'=>'course1', '2'=>'course1','2'=>' course3');
+					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
+				?>
+              </div>
+              <div class="controls span3">
+                <?php 
+					$option = array( 'catagory'=>'catagory','1'=>'catagory1', '2'=>'catagory2','3'=>'catagory3 ');
+					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
+				?>
+              </div>
+              <div class="controls span3">
+                <?php 
+					$option = array( 'course provider'=>'course provider','1'=>'course provider1', '2'=>'course provider2','3'=>'course provider3');
+					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
+				?>
+              </div>
+            
+         </div>
+         <div class="form-row control-group row-fluid">
+         
+         <div class="controls span3">
+         <label class="control-label "><h3> Form </h3></label>
+                <?php 
+					$data = array('id'=>'start_date','name'=>'start_date','placeholder'=>'Start Date','style'=>'margin-bottom: 0px;');
+					echo form_input($data);
+				?>
+              </div>
+            
+             
+            
+             
+              <div class="controls span3">
+               <label class="control-label"> <h3> To </h3></label>
+                <?php 
+				$data = array('id'=>'end_date','name'=>'end_date','placeholder'=>'End Date','style'=>'margin-bottom: 0px;');
+					echo form_input($data);
+				?>
+              </div>
+              </div>
+         <div class="form-row control-group row-fluid">
+              <div class="controls span12" align="right">
+                <button class="btn" rel="tooltip" data-placement="top" data-original-title="Search" name="submit" value="search"><?php echo lang('search')?></button>
+                <a class="btn" rel="tooltip" data-placement="top" data-original-title="Reset" href="<?php echo site_url($this->config->item('admin_folder').'/products/index');?>">Reset</a> 	  </div>
+          </div>
+          </form>
+        </div>
+      </div>
+     <div class="row-fluid ">
         <div class="span12">
           <div class="box paint color_1">
             <div class="title">

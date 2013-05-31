@@ -194,7 +194,7 @@ class Admin extends Admin_Controller
 			
 			
 			$uploaded	= $this->upload->do_upload('image');
-			
+			if($uploaded != ""){
 			if ($id)
 			{
 				//echo $id;
@@ -271,7 +271,8 @@ class Admin extends Admin_Controller
 				$this->image_lib->clear();
 				
 			}
-				
+			}
+			
 			$save['id']					= $id;
 			$save['firstname']			= $this->input->post('firstname');
 			$save['lastname']			= $this->input->post('lastname');

@@ -30,6 +30,8 @@ class Dashboard extends Admin_Controller {
 		$this->load->model('Customer_model');
 		$this->load->helper('date');		
 		$this->lang->load('dashboard');
+		$this->load->model('dashboard_model');
+		
 		
 	}
 	
@@ -42,10 +44,13 @@ class Dashboard extends Admin_Controller {
 		$data['page_title']	=  lang('dashboard');
 		
 		// get 5 latest orders
-		//$data['orders']	= $this->Order_model->get_orders(false, '' , 'DESC', 5);
-
+		$data['orders']	= $this->Order_model->get_orders(false, 'id' , 'DESC', 5);
+		
+		
+		
 		// get 5 latest customers
-		//$data['customers'] = $this->Customer_model->get_customers(5);
+		$data['customers'] = $this->Customer_model->get_customers(5,"","DESC");
+		
 		$this->load->view($this->config->item('admin_folder').'/includes/header');
 		$this->load->view($this->config->item('admin_folder').'/includes/leftbar');
 		$this->load->view($this->config->item('admin_folder').'/dashboard', $data);

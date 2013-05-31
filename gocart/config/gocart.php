@@ -17,8 +17,8 @@ $config['zip']				= '54000';
 $config['email']			= 'khalil.junaid@gmail.com';
 
 // Store currency
-$config['currency']						= 'USD';  // USD, EUR, etc
-$config['currency_symbol']				= '$';
+$config['currency']						= 'GBP';  // USD, EUR, etc
+$config['currency_symbol']				= '£';
 $config['currency_symbol_side']			= 'left'; // anything that is not "left" is automatically right
 $config['currency_decimal']				= '.';
 $config['currency_thousands_separator']	= ',';

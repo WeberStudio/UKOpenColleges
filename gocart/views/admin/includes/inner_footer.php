@@ -85,6 +85,22 @@
 <script src="<?=base_url().ASSETS_PATH?>js/scripts.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/redactor.min.js"></script>
 <script type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/file-browser.js"></script>
+
+
+
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/flot/jquery.flot.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/flot/jquery.flot.stack.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/flot/jquery.flot.pie.js"></script> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/flot/jquery.flot.resize.js"></script> 
+
+<!-- Data tables --> 
+<script type="text/javascript" language="javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/datatables/js/jquery.dataTables.js"></script> 
+
+<!-- Task plugin --> 
+<script language="javascript" type="text/javascript" src="<?=base_url().ASSETS_PATH?>js/plugins/knockout-2.0.0.js"></script> 
+
+
+
 <script type="text/javascript">
   /**** Specific JS for this page ****/
  $(document).ready(function () {

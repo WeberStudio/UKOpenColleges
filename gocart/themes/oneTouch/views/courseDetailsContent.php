@@ -1,14 +1,14 @@
 <?php echo theme_css('simpletabs.css', true); ?>	
 <div class="row">
-    <div class="fifteen columns" id="top-social">
+    <!--<div class="fifteen columns" id="top-social">
         <div class="soc-wrap">
             <div style="width: 0px; overflow: hidden;" class="soc-icons"> <a class="rss" href="http://theme.crumina.net/onetouch/feed=rss2" data-original-title="RSS feed">RSS</a> <a href="http://twitter.com/" class="tw" data-original-title="Twitter">Twitter</a><a href="http://facebook.com/" class="fb" data-original-title="Facebook">Facebook</a><a href="http://flickr.com/" class="fl" data-original-title="Flickr">Flickr</a><a href="http://vimeo.com/" class="vi" data-original-title="Vimeo">Vimeo</a><a href="http://dribble.com/" class="dr" data-original-title="Dribble">Dribble</a><a href="http://lastfm.com/" class="lf" data-original-title="Last FM">Last FM</a><a href="http://youtube.com/" class="yt" data-original-title="YouTube">YouTube</a><a href="https://accountservices.passport.net/" class="ms" data-original-title="Microsoft ID">Microsoft ID</a><a href="http://linkedin.com/" class="li" data-original-title="LinkedIN">LinkedIN</a><a href="https://accounts.google.com/" class="gp" data-original-title="Google +">Google +</a><a href="http://picasa.com/" class="pi" data-original-title="Picasa">Picasa</a><a href="http://pinterest.com/" class="pt" data-original-title="Pinterest">Pinterest</a><a href="http://wordpress.com/" class="wp" data-original-title="Wordpress">Wordpress</a><a href="http://dropbox.com/" class="db" data-original-title="Dropbox">Dropbox</a> </div>
         </div>
-    </div>
+    </div>-->
 </div>
 <div class="row">
-    <div class="fifteen columns" id="page-title"> <a class="back" href="javascript:history.back()"></a>
-        <div class="breadcrumbs"><a href="http://theme.crumina.net/onetouch">Home</a> <span class="delim">/</span> <a href="http://theme.crumina.net/onetouch/shop/">Product</a> <span class="delim">/</span> Backpack, IUTER 2</div>
+    <div class="fifteen columns" id="page-title" style="margin-left: 21px;"> <a class="back" href="javascript:history.back()"></a>
+        <div class="breadcrumbs"><a href="<?=base_url();?>">Home</a> <span class="delim">/</span> <a href="<?=base_url()?>cart/allcourses/">Courses</a> <span class="delim">/</span> <?=$product->name?></div>
     </div>
     <div class="fifteen columns">
         <div class="line"></div>
@@ -28,7 +28,7 @@
                 <div class="summary">
                     <h1 itemprop="name" class="product_title entry-title"><?=$product->name?></h1>
                     <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                        <p itemprop="price" class="price"><span class="amount"><?=format_currency($product->price)?></span></p>
+                        <p itemprop="price" class="price"><span class="amount"><?php echo format_currency($product->price);?></span></p>
                         <link itemprop="availability" href="http://schema.org/InStock">
                     </div>
 
@@ -179,7 +179,7 @@
                         </a>
 
 
-                        <span class="quantity"><?=$qty?> × $<span class="amount"><?=$price?></span></span>
+                        <span class="quantity"><?=$qty?> × £<span class="amount"><?=$price?></span></span>
                     </li>
                      <? }
                     
