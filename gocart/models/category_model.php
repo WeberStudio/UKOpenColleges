@@ -47,7 +47,7 @@ Class Category_model extends CI_Model
 		
 		$this->db->select('id');		
 		
-		if($this->admin_access!='Superadmin')
+		if(!empty($this->admin_access) && $this->admin_access!='Superadmin')
 		{			
 			$this->db->where('admin_id', $this->admin_id);			
 		}
