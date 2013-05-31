@@ -43,8 +43,8 @@
 				<div class="btn-group" align="right">
 				
 					<a class="btn" href="<?php echo site_url($GLOBALS['admin_folder'].'/pages/form/'.$page->id); ?>"><i class="icon-pencil"></i><?php echo lang('edit');?></a>
-					<a class="btn" href="<?php echo site_url().'index.php/'.$page->slug; ?>" target="_blank"><i class="icon-play-circle"></i> <?php echo lang('go_to_page');?></a>
-					<a class="btn btn-danger" href="<?php echo site_url($GLOBALS['admin_folder'].'/pages/delete/'.$page->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?> </a>
+					<!--<a class="btn" href="<?php echo site_url().'index.php/'.$page->slug; ?>" target="_blank"><i class="icon-play-circle"></i> <?php echo lang('go_to_page');?></a>-->
+					<a class="btn btn-danger" href="<?php echo site_url($GLOBALS['admin_folder'].'/pages/delete/'.$page->id); ?>" onclick="return areyousure();"><i class="icon-trash"></i> <?php echo lang('delete');?> </a>
 				</div>
 			</td>
 		</tr>

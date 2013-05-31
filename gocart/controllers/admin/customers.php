@@ -185,6 +185,7 @@ class Customers extends Admin_Controller {
 			$save['email']				= $this->input->post('email');
 			$save['phone']				= $this->input->post('phone');
 			$save['company']			= $this->input->post('company');
+			$save['register_on']		= date('Y-m-d H:i:s');		
 			$save['active']				= $this->input->post('active');
 			$save['email_subscribe'] 	= $this->input->post('email_subscribe');
 			$save['address_street']		= $this->input->post('street_address');

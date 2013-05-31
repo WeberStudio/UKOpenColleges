@@ -17,7 +17,8 @@ class Commission extends Admin_Controller {
 		$this->first_name = $user_info['firstname'];
 		$this->last_name = $user_info['lastname'];
 		$this->image = $user_info['image'];		
-		$this->load->helper('formatting_helper');		
+		$this->load->helper('formatting_helper');
+		$this->load->helper('form');		
         /*** Get User Info***/
 		
 		/*** Left Menu Selection ***/

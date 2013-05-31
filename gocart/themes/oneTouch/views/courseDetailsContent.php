@@ -18,7 +18,7 @@
 
     <div class="fifteen columns" id="page-title"> <a class="back" href="javascript:history.back()"></a>
 
-        <div class="breadcrumbs"><a href="http://theme.crumina.net/onetouch">Home</a> <span class="delim">/</span> <a href="http://theme.crumina.net/onetouch/shop/">Product</a> <span class="delim">/</span> Backpack, IUTER 2</div>
+        <div class="breadcrumbs"><a href="<?php echo base_url();?>">Home</a> <span class="delim">/</span> <a href="<?=base_url()?>cart/allcourses/">Product</a> <span class="delim">/</span> <?=$product->name?></div>
 
     </div>
 
