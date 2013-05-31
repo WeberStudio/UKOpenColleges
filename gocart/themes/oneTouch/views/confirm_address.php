@@ -207,7 +207,7 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 	<div class="clear"></div>
 </form>-->
 	<?php echo form_open('secure/register'); ?>
-		<div class="col2-set" id="customer_details">
+	<div class="col2-set" id="customer_details">
 				<div class="col-1">
 				<h3>Billing Address</h3>
 			
@@ -303,7 +303,7 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 				</div>
 	
 	<h3 id="order_review_heading">Your order</h3>
-					<div id="order_review">
+	<div id="order_review">
 
 	<table class="" style="width:100%;">
 		<thead>
@@ -348,6 +348,30 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 <input type="submit" value="<?php echo lang('form_continue');?>" class="btn btn-primary" style="height: 34px; width: 74px;" />
 </form>
 </div>
+</div>
+<div class="row">
+<div id="content" class="fifteen columns">
+<div class="col2-set" id="customer_details">
+<div class="col-1">
+	<h3>Billing Address</h3>
+			
+	<p class="form-row form-row-first" id="billing_first_name_field">
+						<label for="billing_first_name" class=""><?php echo lang('account_firstname');?><abbr class="required" title="required">*</abbr>
+						</label>
+						
+						<?php echo form_input($first);?>
+					</p>
+	
+					<p class="form-row form-row-last" id="billing_last_name_field">
+						<label for="billing_last_name" class=""><?php echo lang('account_lastname');?> <abbr class="required" title="required">*</abbr>
+						</label>
+						<?php echo form_input($last);?>
+					</p>
+					<div class="clear"></div>
+                    </div>
+</div>
+</div>
+
 </div>
 	
 

@@ -28,7 +28,7 @@
 	 <div class="widget-inner">
         <h3>Customer Login</h3>
         
-        <?php //echo form_open('secure/login', 'class="form-horizontal"'); ?>
+        <?php echo form_open('secure/login', 'class=""'); ?>
         <form class="bs-docs-example form-horizontal" accept-charset="utf-8" method="post" action="<?=base_url()?>secure/process_checkout">
           <p>
             <label for="user_login">Username or email</label>
