@@ -231,13 +231,14 @@ $GLOBALS['option_value_count']		= 0;
                   <div class="content">
                     <div class="form-row control-group row-fluid">                      
                      <div class="controls span8">
-					 	<label for="slug">Ebter Tabs For Course Details</label>
+					 	 <label for="slug">Ebter Tabs For Course Details</label>
 					 	 <label for="slug"><?php echo lang('tab_title');?></label>
                         <input type="text" id="tab_title" value="<?=set_value('tab_title', $tab_title)?>" name="tab_title" class="row-fluid" >
                      </div>                      
                     </div>
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
+					  <label for="slug">Tab Description</label>
                         <textarea name="tab_content" cols="40" rows="15"  class="redactor" id="tab_content"><?=set_value('tab_content', $tab_content)?></textarea>
                       </div>
                     </div> 

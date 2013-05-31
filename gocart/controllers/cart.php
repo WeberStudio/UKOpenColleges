@@ -34,7 +34,7 @@ class Cart extends Front_Controller {
 
         $data['gift_cards_enabled'] = $this->gift_cards_enabled;
         $data['banners']            = $this->Banner_model->get_homepage_banners(5);
-        $data['boxes']                = $this->box_model->get_homepage_boxes(4);
+        $data['boxes']              = $this->box_model->get_homepage_boxes(4);
         $data['homepage']            = true;
         $data['allProduct']         = $this->Product_model->get_products_catogery_wise();    
        // echo '<pre>';print_r($data['allProduct']);
