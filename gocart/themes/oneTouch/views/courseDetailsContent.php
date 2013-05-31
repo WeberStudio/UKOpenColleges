@@ -18,7 +18,7 @@
 
     <div class="fifteen columns" id="page-title"> <a class="back" href="javascript:history.back()"></a>
 
-        <div class="breadcrumbs"><a href="<?php echo base_url();?>">Home</a> <span class="delim">/</span> <a href="<?=base_url()?>cart/allcourses/">Product</a> <span class="delim">/</span> <?=$product->name?></div>
+        <div class="breadcrumbs"><a href="http://theme.crumina.net/onetouch">Home</a> <span class="delim">/</span> <a href="http://theme.crumina.net/onetouch/shop/">Product</a> <span class="delim">/</span> Backpack, IUTER 2</div>
 
     </div>
 
@@ -51,10 +51,10 @@
             <div itemscope="" itemtype="http://schema.org/Product" id="product-855" class="post-855 product type-product status-publish hentry">
 
               
-			  	<? if(isset($product->images[0])){ ?>
-			    <div class="images"> <a itemprop="image" href="<?php echo base_url('uploads/images/full/'.$product->images[0]);?>" class="zoom cboxElement" rel="thumbnails" title="<?=$product->name?>">
+			  	<? if(isset($product->images)){ ?>
+			    <div class="images"> <a itemprop="image" href="<?php echo base_url('uploads/images/full/'.$product->images);?>" class="zoom cboxElement" rel="thumbnails" title="<?=$product->name?>">
 				
-				<img src="<?php echo base_url('uploads/images/medium/'.$product->images[0]);?>" alt="<?=$product->seo_title?>" >
+				<img src="<?php echo base_url('uploads/images/medium/'.$product->images);?>" alt="<?=$product->seo_title?>" >
 				
 				</a> 
 				</div>
@@ -103,7 +103,7 @@
 
                         <li class="description_tab active"><a href="#tab-description">Description</a></li>
 
-                        <li class="reviews_tab"><a href="#tab-reviews">Reviews (0)</a></li>
+                       <!-- <li class="reviews_tab"><a href="#tab-reviews">Reviews (0)</a></li>-->
 
                         <? if(!empty($product_tabs)){
 
