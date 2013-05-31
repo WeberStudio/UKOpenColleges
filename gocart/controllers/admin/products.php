@@ -222,7 +222,7 @@ class Products extends Admin_Controller {
 	function form($id = false, $duplicate = false, $tab_id = false)
 	{
 		
-		//echo"<pre>";print_r($_FILES);exit;
+		//echo"<pre>";print_r($_POST);exit;
 		$this->product_id	= $id;		
 		$this->load->library('form_validation');
 		$this->load->model(array('Option_model', 'Category_model', 'Digital_Product_model'));
@@ -551,6 +551,7 @@ class Products extends Admin_Controller {
 				
 				if(!empty($tab_id))
 				{
+					
 					$tabs = array('tab_id'=>$tab_id, 'product_id'=>$id, 'admin_id'=>$save['admin_id'], 'tab_title'=>$tab_title,'tab_content'=>$tab_content);
 				}
 				else
@@ -558,7 +559,7 @@ class Products extends Admin_Controller {
 					$tabs = array('product_id'=>$id, 'admin_id'=>$save['admin_id'], 'tab_title'=>$tab_title,'tab_content'=>$tab_content);
 				}
 			}
-			
+			//$this->show->pe($tabs);
 			//echo '<pre>';print_r($tabs);exit;
 			//save product 
 			//$this->show->pe($_POST);

@@ -11,6 +11,7 @@ Class Commission_model extends CI_Model
 			parent::__construct();
 	}
 	
+	
 	function get_commissions($limit=0, $offset=0, $order_by='comm_id', $direction='ASC')
 	{
 		$this->db->order_by($order_by, $direction);

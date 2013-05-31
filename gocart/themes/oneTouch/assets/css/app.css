@@ -1197,7 +1197,7 @@ div.item, .item div{
 
 
 #darkf {
-    background: #4e616d;
+    background: #4e616d !important;
     color: #b8d2e3;
 }
 #darkf p{

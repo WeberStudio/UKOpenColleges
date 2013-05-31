@@ -123,11 +123,11 @@
         $(".chzn-select").chosen({
           disable_search_threshold: 10
         });
-        // Datepicker
+        // Datepicker       
         $('#datepicker1').datepicker({
-          format: 'mm-dd-yyyy'
-        });
-        $('#datepicker2').datepicker();
+          format: 'mm-dd-yyyy', 
+        })
+        $('#datepicker2').datepicker();                          
         $('.colorpicker').colorpicker()
         $('#colorpicker3').colorpicker();
 		$('.redactor').redactor({
