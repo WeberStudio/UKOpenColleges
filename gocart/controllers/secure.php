@@ -389,27 +389,18 @@ class Secure extends Front_Controller {
 	
 	function my_account($offset=0)
 	{
+		
+		//$this->show->pe($_REQUEST);
 		//make sure they're logged in
 		$this->Customer_model->is_logged_in('secure/my_account/');
 	
 		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
-		$customer_details = $this->go_cart->customer();
-		//echo $customer_details['id']; exit;
-		//print_r($this->customer['id']);exit;
-		//if($this->customer['id'] == '')
-		//{
-			//	$customer_details = $this->go_cart->customer();
-     			//$this->customer['id'] = $customer_details['id'];
-				//echo $customer_details['id']; exit;
-		//}
-		
-		
-		$data['customer']			= (array)$this->Customer_model->get_customer($this->customer['id']);
-			
-		$data['addresses'] 			= $this->Customer_model->get_address_list($this->customer['id']);
-		
+		$customer_details 			= $this->go_cart->customer();		
+		$data['customer']			= (array)$this->Customer_model->get_customer($this->customer['id']);			
+		$data['addresses'] 			= $this->Customer_model->get_address_list($this->customer['id']);		
 		$data['page_title']			= 'Welcome '.$data['customer']['firstname'].' '.$data['customer']['lastname'];
 		$data['customer_addresses']	= $this->Customer_model->get_address_list($data['customer']['id']);
+		
 		
 		// load other page content 
 		//$this->load->model('banner_model');
@@ -456,24 +447,13 @@ class Secure extends Front_Controller {
 		$this->pagination->initialize($config); 
 		
 		$data['orders_pagination'] 	= $this->pagination->create_links();
-
 		$data['orders']				= $this->order_model->get_customer_orders($this->customer['id'], $offset);
-		$data['zones_menu']			= $this->Location_model->get_zones_menu('223');
+		$data['zones_menu']			= $this->Location_model->get_zones_menu($data['customer']['country']);		
 		$data['countries_menu']		= $this->Location_model->get_countries_menu();
-		$data['country_id']			= "";
-		$data['zone_id']			= "";
 		
 		
 		
-		//if they're logged in, then we have all their acct. info in the cookie.
 		
-		
-		/*
-		This is for the customers to be able to edit their account information
-		*/
-		
-		
-
 		$this->load->library('form_validation');	
 		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]');
 		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required|max_length[32]');
@@ -501,7 +481,7 @@ class Secure extends Front_Controller {
 		}
 		else
 		{
-			$customer = array();
+			$customer 							= array();
 			$customer['id']						= $this->customer['id'];
 			$customer['company']				= $this->input->post('company');
 			$customer['firstname']				= $this->input->post('firstname');
@@ -513,16 +493,16 @@ class Secure extends Front_Controller {
 			$customer['address_line']			= $this->input->post('address2');
 			$customer['city']					= $this->input->post('city');
 			$customer['email_subscribe']		= intval((bool)$this->input->post('email_subscribe'));
+			$customer['country']				= $this->input->post('country_id');
+			$customer['state']					= $this->input->post('zone_id');
 			if($this->input->post('password') != '')
 			{
 				$customer['password']			= $this->input->post('password');
 			}
 						
 			$this->go_cart->save_customer($this->customer);
-			$this->Customer_model->save($customer);
-			
-			$this->session->set_flashdata('message', lang('message_account_updated'));
-			
+			$this->Customer_model->save($customer);			
+			$this->session->set_flashdata('message', lang('message_account_updated'));			
 			redirect('secure/my_account');
 		}
 	

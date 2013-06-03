@@ -66,5 +66,10 @@ class dashboard extends Front_Controller {
 		endif;
 	}
 	
+	function request_for_tutor($customer_id, $course_id)
+	{
+		
+	}
+	
 	
 }
