@@ -114,9 +114,12 @@
                     <div class="widget-inner">
                         <div class="subtitle">Integrated facebook widget</div>
                         <h3>Facebook widget</h3>    
-                        <div class="fb-like-box" data-href="https://www.facebook.com/pages/UK-Open-College/411574175557181" data-width="292" data-show-faces="true" data-colorscheme="dark" data-stream="false" data-show-border="false" data-header="false"></div>            </div>
+                        <div class="fb-like-box" data-href="https://www.facebook.com/pages/UK-Open-College/411574175557181" data-width="292" data-show-faces="true" data-colorscheme="dark" data-stream="false" data-show-border="false" data-header="false"></div>            
+                        </div>
+                        </section>
         </div>
         </div>
+        
         <div class="row dop-row">
             <div class="five columns">
                 <section class="footer-logo">
@@ -151,19 +154,14 @@
                 </section>
             </div>
         </div>
-<<<<<<< HEAD
+
         <div class="row">
         <div class="five columns">
          <a href="<?php echo site_url('tutor_login');?>"  style="color:#FFF; font-size:12px;"><?php echo "Tutor Login"; ?></a>
          </div>
         </div>
-=======
+
         
-        
-       
-        
-        
->>>>>>> 151a3cdc78ede40c428561691bdd5174fca7eb4e
     </section>
     
 </div>
