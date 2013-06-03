@@ -7,14 +7,14 @@ $config['theme']			= 'oneTouch';
 $config['ssl_support']		= false;
 
 // Business information
-$config['company_name']		= 'junaidkhalil';
+$config['company_name']		= 'Weprosolutions';
 $config['address1']			= 'lahore';
 $config['address2']			= 'lahore';
 $config['country']			= 'Pakistan'; // use proper country codes only
 $config['city']				= 'lahore'; 
 $config['state']			= 'Alberta';
 $config['zip']				= '54000';
-$config['email']			= 'khalil.junaid@gmail.com';
+$config['email']			= 'weproSol@gmail.com';
 
 // Store currency
 $config['currency']						= 'GBP';  // USD, EUR, etc
