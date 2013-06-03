@@ -99,7 +99,7 @@
 
                 <div class="simpleTabs">
 
-                    <ul class="simpleTabsNavigation">
+                    <ul class="tabs">
 
                         <li class="description_tab active"><a href="#tab-description">Description</a></li>
 
