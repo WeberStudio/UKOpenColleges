@@ -15,7 +15,7 @@
                             if ($responseJson) {
                                 $response = json_decode($responseJson);
                             }   
-
+                            // echo '<pre>'; print_r($response);echo '</pre>';
                             function dateDiff ($d1, $d2) {
                                 // Return the number of days between the two dates:
 
@@ -26,23 +26,27 @@
 
                                 //$current = new DateTime(date('m/d/Y h:i:s a'));
                                 //$db_date = new DateTime($tweet->created_at);
-                                $days = dateDiff(date('m/d/Y h:i:s a'),$tweet->created_at);
-                                echo '<div class="tweet">';  
-                                $tweet_text = $tweet->text; //get the tweet
+                                if(!empty($tweet))
+                                    {
+                                        $days = dateDiff(date('m/d/Y h:i:s a'),$tweet->created_at);
+                                        echo '<div class="tweet">';  
+                                        $tweet_text = $tweet->text; //get the tweet
 
-                                // make links link to URL
-                                $tweet_text = preg_replace("#(^|[\n ])([\w]+?://[\w\#$%&~/.\-;:=,?@\[\]+]*)#is", "\\1<a href='\\2'>\\2</a>", $tweet_text); 
+                                        // make links link to URL
+                                        $tweet_text = preg_replace("#(^|[\n ])([\w]+?://[\w\#$%&~/.\-;:=,?@\[\]+]*)#is", "\\1<a href='\\2'>\\2</a>", $tweet_text); 
 
-                                // make hashtags link to a search for that hashtag
-                                $tweet_text = preg_replace("/#([a-z_0-9]+)/i", "<a href=\"http://twitter.com/search/$1\">$0</a>", $tweet_text);
+                                        // make hashtags link to a search for that hashtag
+                                        $tweet_text = preg_replace("/#([a-z_0-9]+)/i", "<a href=\"http://twitter.com/search/$1\">$0</a>", $tweet_text);
 
-                                // make mention link to actual twitter page of that person
-                                $tweet_text = preg_replace("/@([a-z_0-9]+)/i", "<a href=\"http://twitter.com/$1\">$0</a>", $tweet_text);
+                                        // make mention link to actual twitter page of that person
+                                        $tweet_text = preg_replace("/@([a-z_0-9]+)/i", "<a href=\"http://twitter.com/$1\">$0</a>", $tweet_text);
 
-                                // display each tweet in a list item
-                                echo  $tweet_text ;
-                                echo "<div class='time'>$days days ago</div> " ;
-                                echo '</div>'; 
+                                        // display each tweet in a list item
+                                        echo  $tweet_text ;
+                                        echo "<div class='time'>$days days ago</div> " ;
+                                        echo '</div>';  
+                                    }
+                               
                             } 
 
                         ?>
@@ -100,24 +104,26 @@
             <div class="five columns">
                 <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
                     <div id="fb-root"></div>
-                       <?php /*?> <script>(function(d, s, id) {
+                        <script>(function(d, s, id) {
                           var js, fjs = d.getElementsByTagName(s)[0];
                           if (d.getElementById(id)) return;
                           js = d.createElement(s); js.id = id;
                           js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
                           fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));</script><?php */?>
+                        }(document, 'script', 'facebook-jssdk'));</script>
                     <div class="widget-inner">
                         <div class="subtitle">Integrated facebook widget</div>
                         <h3>Facebook widget</h3>    
-                        <div class="fb-like-box" data-href="https://www.facebook.com/pages/UK-Open-College/411574175557181" data-width="292" data-height="300" data-show-faces="true" data-colorscheme="dark" data-stream="false" data-show-border="true" data-header="false"></div>                    </div>
-                </section>
-            </div>
+                        <div class="fb-like-box" data-href="https://www.facebook.com/pages/UK-Open-College/411574175557181" data-width="292" data-show-faces="true" data-colorscheme="dark" data-stream="false" data-show-border="false" data-header="false"></div>            </div>
+        </div>
         </div>
         <div class="row dop-row">
             <div class="five columns">
                 <section class="footer-logo">
-                    <h1> <a href="#">UK Open College</a></h1>
+                <a  href="<?=base_url()?>cart/">
+                        <img src="<?php echo theme_img("footer-logo.png")?>" alt="OneTouch">
+                        </a>
+                        
                 </section>
             </div>
             <div class="five columns">
@@ -139,16 +145,25 @@
                             <img src="<?php echo theme_img("custom-slider-img/map_w.png");?>" alt="adress-icon" class="adress-icon">
                         </noscript>
                     </div>
-                    <p>Address:   123456 Street Name, Los Angeles <br>
-                        Phone:   (1800) 765-4321</p>
+                    <p>Address:   UK Open College Limited 4, Copthall House The Meridian Station Square Coventry West Midlands CV1 2FL
+ <br>
+                        Phone:     (0121) 288-0181</p>
                 </section>
             </div>
         </div>
+<<<<<<< HEAD
         <div class="row">
         <div class="five columns">
          <a href="<?php echo site_url('tutor_login');?>"  style="color:#FFF; font-size:12px;"><?php echo "Tutor Login"; ?></a>
          </div>
         </div>
+=======
+        
+        
+       
+        
+        
+>>>>>>> 151a3cdc78ede40c428561691bdd5174fca7eb4e
     </section>
     
 </div>

@@ -3,7 +3,7 @@
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
           <?php //include('leftPanel.php'); ?>
-<!--        <a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>
+<!--        
 -->		
         <div id="body-wrapper" >		
             <div id="body-wrapper-padding">			
@@ -56,7 +56,7 @@
 <div id="content" class="fifteen columns">
 <div class="col-1">
  	<h3>My Course</h3>
-
+	
 	<table width="100%">
     <thead>
 		<tr>
@@ -64,18 +64,25 @@
 			<th><?php //echo lang('name');?> Number</th>
 			<th><?php echo lang('price');?></th>
 			<th>Status</th>
-			
+			<th>Action</th>
 	    </tr>
 	</thead>
 
     <tbody>
-	<?php //echo (count($orders) < 1)?'<tr><td style="text-align:center;" colspan="8">'.lang('no_orders') .'</td></tr>':''?>
-    <?php foreach($orderss as $order): ?>
+	<?php //echo (count($orders) < 1)?'<tr><td style="text-align:center;" colspan="8">'.lang('no_orders') .'</td></tr>':''
+	
+	
+	?>
+    <?php foreach($orderss as $order): 
+	//$this->show->pe(unserialize($order->contents));
+	$product_id = unserialize($order->contents);
+	?>
 	<tr>
 		<!--<td><input type="checkbox" id="gc_check_all" /></td>-->
 		<td style="white-space:nowrap"><?php echo $order->order_number;?></td>
 		<td style="white-space:nowrap"><?php echo $order->total;?></td>
-		<td style="white-space:nowrap"> <?php if($order->status == "1"){echo "Ative";}?></td>
+		<td style="white-space:nowrap"><?php echo $order->status;?></td>
+		<td style="white-space:nowrap"><a class="button" href="<?=base_url().'dashboard/request_for_tutor'.$order->customer_id.'/'.$product_id['id']?>" >Request Tutor</a></td>
 	</tr>
     <?php endforeach; ?>
     </tbody>

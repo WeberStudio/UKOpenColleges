@@ -90,19 +90,11 @@ $address_form_prefix ="";
 					<p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
 						<label for="billing_postcode" class=""><?php echo lang('address_state');?><abbr class="required" title="required">*</abbr>
 						</label>
-						<?php echo form_dropdown('zone_id',$zone_menu, @$customer[$address_form_prefix.'_address']['zone_id'], 'id="zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+						<?php echo form_dropdown('zone_id',$zone_menu, @$customer['state'], 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 						
 					</p>
 					<div class="clear"></div>
-					<!--
-					<div class="span12">
-					<label><?php echo lang('address_country');?></label>
-					<?php echo form_dropdown('country_id', $countries_menu, set_value('country_id', $country_id), 'id="f_country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
-				</div>
-					<div class="span6">
-					<label><?php echo lang('address_state');?></label>
-					<?php echo form_dropdown('zone_id', $zones_menu, set_value('zone_id', $zone_id), 'id="f_zone_id" class="span12"');?>
-					</div>-->
+				
 					
 					<p class="form-row form-row-first" id="billing_city_field">
 						<label for="billing_city" class=""><?php echo lang('account_phone');?><abbr class="required" title="required">*</abbr>
@@ -133,3 +125,14 @@ $address_form_prefix ="";
   </div>
  
 </div>
+<script type="text/javascript">
+  var j = jQuery.noConflict();
+	j(function(){
+		j('#country_id').change(function(){
+				j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
+				  j('#f_zone_id').html(data);
+				});
+				
+			});
+	});
+</script>

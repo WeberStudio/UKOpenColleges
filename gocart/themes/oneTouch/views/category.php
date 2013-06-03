@@ -41,8 +41,8 @@
             <div class="entry-thumb">
 
           		<a href="<?php echo site_url(implode('/', $base_url).'/'.$product->slug); ?>">				
-				<? if(isset($product->images[0])){ ?>
-		  		<img src="<?=base_url('uploads/images/small/'.$product->images[0])?>" alt="<?=$product->seo_title?>">
+				<? if(isset($product->images)){ ?>
+		  		<img src="<?=base_url('uploads/images/small/'.$product->images)?>" alt="<?=$product->seo_title?>">
 				<? } ?>
 				</a>
 
