@@ -3,7 +3,7 @@
         <div class="row">
             <div class="five columns">
                 <section id="crum_latest_tweets-2" class="widget-1 widget-first widget twitter-widget">
-                    <div class="widget-inner">
+                    <?php /*?><div class="widget-inner">
                         <div class="subtitle">Our latest twitter news</div>
                         <h3>Latest Tweets</h3>
                         <?php  
@@ -61,7 +61,7 @@
                         <div class='tweet'>Crumina: Check this! Great creative Photo and video WP Theme - Boson.
                         <div class='time'>111 days ago</div>
                         </div> -->
-                    </div>
+                    </div><?php */?>
                 </section>
             </div>
             <div class="five columns">
@@ -104,17 +104,17 @@
             <div class="five columns">
                 <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
                     <div id="fb-root"></div>
-                        <script>(function(d, s, id) {
+                       <?php /*?> <script>(function(d, s, id) {
                           var js, fjs = d.getElementsByTagName(s)[0];
                           if (d.getElementById(id)) return;
                           js = d.createElement(s); js.id = id;
                           js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
                           fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));</script>
-                    <div class="widget-inner">
+                        }(document, 'script', 'facebook-jssdk'));</script><?php */?>
+                    <!--<div class="widget-inner">
                         <div class="subtitle">Integrated facebook widget</div>
                         <h3>Facebook widget</h3>    
-                        <div class="fb-like-box" data-href="https://www.facebook.com/pages/UK-Open-College/411574175557181" data-width="292" data-height="300" data-show-faces="true" data-colorscheme="dark" data-stream="false" data-show-border="true" data-header="false"></div>                    </div>
+                        <div class="fb-like-box" data-href="https://www.facebook.com/pages/UK-Open-College/411574175557181" data-width="292" data-height="300" data-show-faces="true" data-colorscheme="dark" data-stream="false" data-show-border="true" data-header="false"></div>                    </div>-->
                 </section>
             </div>
         </div>

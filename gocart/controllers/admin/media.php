@@ -7,7 +7,7 @@ class Media extends Admin_Controller
 		parent::__construct();
 		
 		$this->path	= 'uploads/wysiwyg';
-		$this->auth->check_access('Admin', true);
+		//$this->auth->check_access('Admin', true);
 		$this->load->helper(array('file', 'form'));
 		
 	}
