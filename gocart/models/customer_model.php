@@ -188,7 +188,7 @@ Class Customer_model extends CI_Model
 		$this->db->limit(1);
 		$result = $this->db->get('customers');
 		$customer	= $result->row_array();
-		
+		//print_r($customer); exit;
 		if ($customer)
 		{
 			

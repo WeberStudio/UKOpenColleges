@@ -312,6 +312,7 @@ experience this site.
         <a href="<?php echo site_url('secure/register'); ?>" style="color:red;"><?php echo lang('register');?></a>
         <span style="color:red;">/</span>
         <a href="<?php echo site_url('secure/login');?>" style="color:red;"><?php echo lang('login');?></a>
+        
         </span></h1>
         <?php endif; ?>
           

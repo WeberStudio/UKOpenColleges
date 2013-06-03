@@ -144,7 +144,13 @@
                 </section>
             </div>
         </div>
+        <div class="row">
+        <div class="five columns">
+         <a href="<?php echo site_url('tutor_login');?>"  style="color:#FFF; font-size:12px;"><?php echo "Tutor Login"; ?></a>
+         </div>
+        </div>
     </section>
+    
 </div>
 <a href="#" id="linkTop" class="backtotop"> <span></span> </a> 
 <?php echo theme_css('farbtastic1.3.css', true); ?>

@@ -160,11 +160,15 @@ Class Tutor_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->where('email', $email);
-		$this->db->where('active', 1);
+		$this->db->where('status', 1);
 		$this->db->where('password', sha1($password));
+		
 		$this->db->limit(1);
-		$result = $this->db->get('customers');
+		$result = $this->db->get('tutors');
+		
 		$customer	= $result->row_array();
+		 
+		
 		
 		if ($customer)
 		{
@@ -353,6 +357,21 @@ Class Tutor_model extends CI_Model
 			$this->db->delete($table_name);
 			//echo $this->db->last_query();
 			return true ;
+	}
+	
+	function tutor_loggin($email, $password, $remember=false)
+	{
+		$this->db->select('*');
+		$this->db->where('email', $email);
+		$this->db->where('status', 1);
+		$this->db->where('password', sha1($password));
+		$this->db->limit(1);
+		$result = $this->db->get('tutors');
+		
+		
+		$customer	= $result->row_array();
+		
+		return $customer;
 	}
 
 }
