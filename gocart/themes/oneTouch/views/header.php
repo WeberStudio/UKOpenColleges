@@ -14,6 +14,7 @@ experience this site.
 </div>
 <? $categories = $this->dropdown_menu->get_all_categories(); ?>
 <nav class="eleven columns" id="topmenu">
+
 <?php if($this->Customer_model->is_logged_in(false, false)):?>
 <div class="clear"> </div>
 <div align="right" style="font-size:16px; color:#57BAE8;"> <?php $customer_details = $this->go_cart->customer();
@@ -235,8 +236,10 @@ experience this site.
         <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>
         <span style="padding: 0 13px;">
         
-        <?php if($this->Customer_model->is_logged_in(false, false)):?>
+        <?php if($this->Tutor_model->is_logged_in(false, false)):?>
         <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
+        <?php elseif($this->Customer_model->is_logged_in(false, false)):?>
+         <a href="<?php echo  site_url('secure/my_account');?>" style="color:red;">Dashboard</a>
 		</h1>
         
 			<?php else: ?>
@@ -249,25 +252,25 @@ experience this site.
           
 </div> 
 <!---------php validation----->
-<?php if ($this->session->flashdata('message')):?>
+<?php /*if ($this->session->flashdata('message')):?>
 			<div class="alert alert-info">
 				<a class="close" data-dismiss="alert">×</a>
-				<?php echo $this->session->flashdata('message');?>
+				<?php //echo $this->session->flashdata('message');?>
 			</div>
 		<?php endif;?>
 		
 		<?php if ($this->session->flashdata('error')):?>
 			<div class="alert alert-error">
 				<a class="close" data-dismiss="alert">×</a>
-				<?php echo $this->session->flashdata('error');?>
+				<?php //echo $this->session->flashdata('error');?>
 			</div>
 		<?php endif;?>
 		
 		<?php if (!empty($error)):?>
 			<div class="alert alert-error">
 				<a class="close" data-dismiss="alert">×</a>
-				<?php echo $error;?>
+				<?php //echo $error;?>
 			</div>
-		<?php endif;?>
+		<?php endif;*/?>
 
      

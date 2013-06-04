@@ -22,12 +22,34 @@ class Tutor_login extends Front_Controller {
 	
 	function index()
 	{
-		$this->load->view('tutor_login');
+		if($this->Tutor_model->is_logged_in(false, false)):
+		redirect('cart/');
 		
+		else:
+		$this->load->view('tutor_login');
+		endif;
+	}
+	function logout()
+	{
+		$this->Tutor_model->logout();
+		redirect('tutor_login');
 	}
 	
 	function login()
 	{
+		
+		
+		$this->load->library('form_validation');
+		
+		
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+		if ($this->form_validation->run() == FALSE)
+		{
+		$this->load->view('tutor_login');
+		}
+		else{
+		
 		$submitted 		= $this->input->post('submitted');
 		if ($submitted)
 		{
@@ -35,7 +57,7 @@ class Tutor_login extends Front_Controller {
 			$password	= $this->input->post('password');
 			//$remember   = $this->input->post('remember');
 			//$redirect	= $this->input->post('redirect');
-			$login		= $this->tutor_model->tutor_loggin($email, $password);
+			$login		= $this->tutor_model->login($email, $password);
 			//echo print_r($login); exit;
 			if ($login)
 			{
@@ -43,8 +65,12 @@ class Tutor_login extends Front_Controller {
 			}
 			else
 			{
+				$this->session->set_flashdata('error', lang('login_failed'));
 				redirect('tutor_login');
 			}
+			$this->session->set_flashdata('error', 'You Are Not Registered');
+		}
+		$this->session->set_flashdata('error', 'You Are Not Registered');
 		}
 	}
 	
@@ -79,12 +105,17 @@ class Tutor_login extends Front_Controller {
 		$this->load->library('form_validation');	
 		$this->form_validation->set_rules('firstname', 'lang:firstname', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('lastname', 'lang:lastname', 'trim|required|max_length[32]');
+		$this->form_validation->set_rules('street_address', 'Address', 'trim|required');
+		$this->form_validation->set_rules('city', 'City', 'trim|required');
+		$this->form_validation->set_rules('zip_code', 'zip_code', 'trim|required|numeric|max_length[6]');
+		$this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[32]|numeric');
 		$this->form_validation->set_rules('email', 'lang:email', 'trim|required|valid_email|max_length[128]|callback_check_email');
-		$this->form_validation->set_rules('phone', 'lang:phone', 'trim|required|max_length[32]');
-		$this->form_validation->set_rules('comment', 'lang:comments', 'trim|max_length[128]');
+		
+		
 		$this->form_validation->set_rules('password', 'lang:password', 'required|min_length[6]|sha1');
 		$this->form_validation->set_rules('confirm', 'lang:confirm_password', 'required|matches[password]');
-		$this->form_validation->set_rules('zip_code', 'zip_code', 'numeric');
+		$this->form_validation->set_rules('comment', 'lang:comments', 'trim|max_length[128]');
+		
 		
 		if ($this->form_validation->run() == FALSE)
 		{    

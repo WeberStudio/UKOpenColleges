@@ -168,7 +168,7 @@
 					  	<div class='icon icon_center' > <img src="<?php echo theme_img("img/tile-icons/comp.png")?>" alt="OneTouch"></div>
 					  	<div class='text-tile text-big-left' style="padding-top:0px; padding-left:25px;" >Live Chat</div>
 					  </div>
-                      <div class='tile mini' style='background-color:#90a7b1'> <a href='#'></a>
+                      <div class='tile mini' style='background-color:#90a7b1'> <a href='<?php echo site_url('cart/allcourses/');?>'></a>
                         
                         <div class='text-tile text-big-left' style="padding-left:20px;" >All Courses</div>
                       </div>                      

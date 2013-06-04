@@ -162,56 +162,52 @@ Class Tutor_model extends CI_Model
 		$this->db->where('email', $email);
 		$this->db->where('status', 1);
 		$this->db->where('password', sha1($password));
-		
 		$this->db->limit(1);
 		$result = $this->db->get('tutors');
-		
 		$customer	= $result->row_array();
-		 
-		
-		
+		//print_r($customer); exit;
 		if ($customer)
 		{
 			
 			// Retrieve customer addresses
-			$this->db->where(array('customer_id'=>$customer['id'], 'id'=>$customer['default_billing_address']));
-			$address = $this->db->get('customers_address_bank')->row_array();
-			if($address)
-			{
-				$fields = unserialize($address['field_data']);
-				$customer['bill_address'] = $fields;
-				$customer['bill_address']['id'] = $address['id']; // save the addres id for future reference
-			}
+			//$this->db->where(array('customer_id'=>$customer['id'], 'id'=>$customer['default_billing_address']));
+			//$address = $this->db->get('customers_address_bank')->row_array();
+			//if($address)
+			//{
+				//$fields = unserialize($address['field_data']);
+				//$customer['bill_address'] = $fields;
+				//$customer['bill_address']['id'] = $address['id']; // save the addres id for future reference
+			//}
 			
-			$this->db->where(array('customer_id'=>$customer['id'], 'id'=>$customer['default_shipping_address']));
-			$address = $this->db->get('customers_address_bank')->row_array();
-			if($address)
-			{
-				$fields = unserialize($address['field_data']);
-				$customer['ship_address'] = $fields;
-				$customer['ship_address']['id'] = $address['id'];
-			} else {
-				 $customer['ship_to_bill_address'] = 'true';
-			}
+			//$this->db->where(array('customer_id'=>$customer['id'], 'id'=>$customer['default_shipping_address']));
+			//$address = $this->db->get('customers_address_bank')->row_array();
+			//if($address)
+			//{
+				//$fields = unserialize($address['field_data']);
+			//	$customer['ship_address'] = $fields;
+				//$customer['ship_address']['id'] = $address['id'];
+			//} else {
+			//	 $customer['ship_to_bill_address'] = 'true';
+			//}
 			
 			
 			// Set up any group discount 
-			if($customer['group_id']!=0) 
-			{
-				$group = $this->get_group($customer['group_id']);
-				if($group) // group might not exist
-				{
-					if($group->discount_type == "fixed")
-					{
-						$customer['group_discount_formula'] = "- ". $group->discount; 
-					}
-					else
-					{
-						$percent	= (100-(float)$group->discount)/100;
-						$customer['group_discount_formula'] = '* ('.$percent.')';
-					}
-				}
-			}
+			//if($customer['group_id']!=0) 
+			//{
+				//$group = $this->get_group($customer['group_id']);
+				//if($group) // group might not exist
+				//{
+					//if($group->discount_type == "fixed")
+					//{
+						//$customer['group_discount_formula'] = "- ". $group->discount; 
+					//}
+					//else
+					//{
+						//$percent	= (100-(float)$group->discount)/100;
+						//$customer['group_discount_formula'] = '* ('.$percent.')';
+					//}
+				//}
+			//}
 			
 			if(!$remember)
 			{
@@ -241,7 +237,7 @@ Class Tutor_model extends CI_Model
 		//$default_redirect points is to the login page, if you do not want this, you can set it to false and then redirect wherever you wish.
 		
 		$customer = $this->go_cart->customer();
-		if (!isset($customer['id']))
+		if (!isset($customer['tutor_id']))
 		{
 			//this tells gocart where to go once logged in
 			if ($redirect)
@@ -359,7 +355,7 @@ Class Tutor_model extends CI_Model
 			return true ;
 	}
 	
-	function tutor_loggin($email, $password, $remember=false)
+	/*function tutor_loggin($email, $password, $remember=false)
 	{
 		$this->db->select('*');
 		$this->db->where('email', $email);
@@ -372,6 +368,6 @@ Class Tutor_model extends CI_Model
 		$customer	= $result->row_array();
 		
 		return $customer;
-	}
+	}*/
 
 }

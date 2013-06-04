@@ -22,8 +22,8 @@ $email		= array('id'=>'bill_email', 'class'=>'input-text', 'placeholder'=>'E-Mai
 $phone		= array('id'=>'bill_phone', 'class'=>'input-text', 'name'=>'phone', 'placeholder'=>'Phone', 'value'=> set_value('phone'));
 $f_city		= array('id'=>'f_city', 'class'=>'input-text', 'placeholder'=>'City', 'name'=>'city', 'value'=>set_value('city',$city));
 $f_zip		= array('id'=>'zip_code', 'maxlength'=>'10', 'class'=>'input-text', 'placeholder'=>'Zip', 'name'=>'zip_code', 'value'=> set_value('zip',$zip));
-$f_address1	= array('id'=>'street_address', 'placeholder'=>'Address', 'class'=>'input-text', 'name'=>'street_address', 'value'=>set_value('address1',$address1));
-$f_address2	= array('id'=>'address_line_op','class'=>'input-text','placeholder'=>'Address  (optional)','name'=>'address_line_op', 'value'=> set_value('address2',$address2));
+$f_address1	= array('id'=>'street_address', 'placeholder'=>'Address', 'class'=>'input-text', 'name'=>'street_address', 'value'=>set_value('address1'));
+$f_address2	= array('id'=>'address_line_op','class'=>'input-text','placeholder'=>'Address  (optional)','name'=>'address_line_op', 'value'=> set_value('address2'));
 $password 	= array('id'=>'password','name'=>'password','class'=>'input-text','placeholder'=>'Password'); 
 $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','placeholder'=>'Confirm');
 //$gender_m 	= array('id'=>'gender_m', 'class'=>'','name'=>'gender', 'value'=>'male' );
@@ -53,6 +53,40 @@ return false;
 	<a class="all" href="javascript:void(0)">you can Rgister here</a>
 	</h1>
     <div class="line"> </div>
+   <script type="text/javascript">
+function showStuff() {
+    document.getElementById('closee').style.display = 'none';
+}
+</script>
+       <?php 
+	if($this->session->flashdata('message'))
+	{
+		$message	= $this->session->flashdata('message');
+	}
+	
+	if($this->session->flashdata('error'))
+	{
+		$error	= $this->session->flashdata('error');
+	}
+	if(validation_errors() != '')
+	{
+		$error	= validation_errors();
+	}
+	?>
+    
+   
+   
+    <?php if (!empty($error)): ?>
+          <div class="alert alert-error" id="closee"> <a href="javascript:void(0)"  class="close" data-dismiss="alert" onClick="showStuff(); return false;">x</a> <?php echo"<div style='margin-left: 70px;'>". $error. "</div>"; ?> </div>
+          <?php endif; ?>
+          
+      
+          <?php if (!empty($message)): ?>
+		<div class="alert alert-success">
+			<a class="close" data-dismiss="alert">×</a>
+			<?php echo $message; ?>
+		</div>
+	<?php endif; ?>
 	<!----- main content section start---->
 <div class="row">
 <div id="content" class="fifteen columns">
