@@ -172,16 +172,16 @@ $(document).ready(function(){
 	</div>
 	
 	<?php if (!empty($message)): ?>
-		<div class="alert alert-success">
+	<div class="alert alert-success">
 			<a class="close" data-dismiss="alert">×</a>
-			<?php echo $message; ?>
+			<?php //echo $message; ?>
 		</div>
 	<?php endif; ?>
 
 	<?php if (!empty($error)): ?>
-		<div class="alert alert-error">
+	<div class="alert alert-error">
 			<a class="close" data-dismiss="alert">×</a>
-			<?php echo $error; ?>
+			<?php //echo $error; ?>
 		</div>
 	<?php endif; ?>
 </div>		
@@ -189,7 +189,7 @@ $(document).ready(function(){
 <div class="container">
 	<?php if(!empty($page_title)):?>
 	<div class="page-header">
-		<h1><?php echo  $page_title; ?></h1>
+		<h1><?php //echo  $page_title; ?></h1>
 	</div>
 	<?php endif;?>
 	

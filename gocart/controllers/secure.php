@@ -103,6 +103,7 @@ class Secure extends Front_Controller {
 		//find out if they're already logged in, if they are redirect them to the my account page
 		$redirect	= $this->Customer_model->is_logged_in(false, false);
 		//if they are logged in, we send them back to the my_account by default, if they are not logging in
+		$this->load->library('form_validation');
 		if ($redirect)
 		{
 			redirect('');
@@ -113,6 +114,17 @@ class Secure extends Front_Controller {
 		
 		$this->load->helper('form');
 		$data['redirect']	= $this->session->flashdata('redirect');
+		
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+		$this->load->view('login', $data);
+		}
+		
+		else
+		{
 		$submitted 		= $this->input->post('submitted');
 		if ($submitted)
 		{
@@ -174,6 +186,7 @@ class Secure extends Front_Controller {
 			
 		$this->load->view('login', $data);
 	}
+	}
 	
 	function logout()
 	{
@@ -221,11 +234,16 @@ class Secure extends Front_Controller {
 		$data['country_id']	= '';
 		$data['zone_id']	= '';
 
-		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]');
+		$this->form_validation->set_rules('company', 'Company', 'trim| required |max_length[128]');
 		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('lastname', 'Last Name', 'trim|required|max_length[32]');
+		$this->form_validation->set_rules('address1', 'Address', 'trim|required');
+		$this->form_validation->set_rules('city', 'City', 'trim|required');
+		$this->form_validation->set_rules('zip', 'Zip', 'trim|required|numeric|max_length[6]');
+		$this->form_validation->set_rules('country_id', 'Country', 'trim|required|numeric');
+		$this->form_validation->set_rules('zone_id', 'State', 'trim|required|numeric');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]|callback_check_email');
-		$this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[32]');
+		$this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[32]|numeric');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|sha1');
 		$this->form_validation->set_rules('confirm', 'Confirm Password', 'required|matches[password]');
 		$this->form_validation->set_rules('email_subscribe', 'Subscribe', 'trim|numeric|max_length[1]');

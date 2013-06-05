@@ -49,7 +49,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'root';
+$db['default']['password'] = 'vertrigo';
 $db['default']['database'] = 'ukopencollege';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'oc_';

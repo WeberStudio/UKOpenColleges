@@ -1,9 +1,10 @@
- <?php include('mainHeader.php'); ?>  
+ <?php include('mainHeader.php'); ?>
+  <?php echo theme_css('basee.css', true); ?> 
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
           <?php //include('leftPanel.php'); ?>
-        <!--<a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>-->
-		
+<!--        
+-->		
         <div id="body-wrapper" >		
             <div id="body-wrapper-padding">			
                 <!--[if lt IE 7]>
@@ -12,7 +13,8 @@
                 experience this site.
                 </div><![endif]-->
                  <?php include('header.php'); ?> 
-                <?php include_once('content_login.php'); ?> 
+                 <div class="line"> </div>
+                <?php include_once('profile_content.php'); ?> 
             </div>
         </div>
         <?php include_once('footer.php'); ?> 

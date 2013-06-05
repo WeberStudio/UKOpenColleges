@@ -2,8 +2,7 @@
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
           <?php //include('leftPanel.php'); ?>
-<!--        
--->		
+	
         <div id="body-wrapper" >		
             <div id="body-wrapper-padding">			
                 <!--[if lt IE 7]>
