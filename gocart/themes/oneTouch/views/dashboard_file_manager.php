@@ -13,12 +13,16 @@
 
 		<!-- elFinder translation (OPTIONAL) -->
 		<script type="text/javascript" src="<?php echo theme_js('js/i18n/elfinder.ru.js');?>"></script>
-
+          <?  
+                $customer_details             = $this->go_cart->customer(); 
+                
+          ?>
 		<!-- elFinder initialization (REQUIRED) -->
+		
 		<script type="text/javascript" charset="utf-8">
 			$().ready(function() {
 				var elf = $('#elfinder').elfinder({
-					url : '<?=base_url('php')."/connector.php";?>'  // connector URL (REQUIRED)
+					url : '<?=base_url('php')."/connector.php?customer_id=".$customer_details['id'];?>'  // connector URL (REQUIRED)					
 					// lang: 'ru',             // language (OPTIONAL)
 				}).elfinder('instance');
 			});
@@ -49,6 +53,7 @@
         <!-- End .span3 -->
         
         <div class="span9">
+		
 <div class="row">
 <div id="content" class="fifteen columns">
 <div class="col-1">

@@ -82,7 +82,7 @@
 		<td style="white-space:nowrap"><?php echo $order->order_number;?></td>
 		<td style="white-space:nowrap"><?php echo $order->total;?></td>
 		<td style="white-space:nowrap"><?php echo $order->status;?></td>
-		<td style="white-space:nowrap"><a class="button" href="<?=base_url().'dashboard/request_for_tutor'.$order->customer_id.'/'.$product_id['id']?>" >Request Tutor</a></td>
+		<td style="white-space:nowrap"><a class="button" href="<?=base_url().'dashboard/request_for_tutor/'.$order->customer_id.'/'.$product_id['id']?>" >Request Tutor</a></td>
 	</tr>
     <?php endforeach; ?>
     </tbody>

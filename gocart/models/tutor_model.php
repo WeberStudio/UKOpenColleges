@@ -15,6 +15,7 @@ Class Tutor_model extends CI_Model
 
 	********************************************************************/
 	
+	
 	function get_tutors($limit=0, $offset=0, $order_by='tutor_id', $direction='DESC')
 	{
 		$this->db->order_by($order_by, $direction);
@@ -353,6 +354,28 @@ Class Tutor_model extends CI_Model
 			$this->db->delete($table_name);
 			//echo $this->db->last_query();
 			return true ;
+	}
+	
+	function get_tutor_requests()
+	{
+		$result	= $this->db->get('for_tutor_request');
+		return $result->result_array();
+
+	}
+	
+	function get_tutor_requests_by_id($field, $id)
+	{
+		
+		$result	= $this->db->get_where('for_tutor_request', array($field => $id));
+		return $result->result_array();
+
+	}
+	
+	function save_tutor_requests($data)
+	{
+		$this->db->where('request_id', $data['request_id']);
+		$this->db->update('for_tutor_request', $data);
+		return true;	
 	}
 
 }

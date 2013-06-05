@@ -56,7 +56,7 @@ Class Forum_model extends CI_Model
 	
 	function save($data)
 	{
-		if($data['forum_id'])
+		if(!empty($data['forum_id']))
 		{
 			$this->db->where('forum_id', $data['forum_id']);
 			$this->db->update('oc_forums', $data);

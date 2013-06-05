@@ -169,8 +169,7 @@ class forums extends Admin_Controller {
 				$this->email->message($message);
 				$this->email->send();*/	
 			}
-			
-			
+				
 			$this->session->set_flashdata('message', lang('message_saved_forum'));
 			
 			//go back to the forum list
