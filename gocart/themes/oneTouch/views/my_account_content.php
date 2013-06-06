@@ -93,9 +93,7 @@ $address_form_prefix ="";
 						<?php echo form_dropdown('zone_id',$zone_menu, @$customer['state'], 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 						
 					</p>
-					<div class="clear"></div>
-				
-					
+					<div class="clear"></div>				
 					<p class="form-row form-row-first" id="billing_city_field">
 						<label for="billing_city" class=""><?php echo lang('account_phone');?><abbr class="required" title="required">*</abbr>
 						</label>

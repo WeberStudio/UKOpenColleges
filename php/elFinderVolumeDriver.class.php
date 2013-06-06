@@ -2019,7 +2019,7 @@ abstract class elFinderVolumeDriver {
 			
 			if ($stat['mime'] == 'directory') {
 				// for dir - check for subdirs
-
+                  //  DebugBreak();
 				if ($this->options['checkSubfolders']) {
 					if (isset($stat['dirs'])) {
 						if ($stat['dirs']) {
@@ -2066,12 +2066,25 @@ abstract class elFinderVolumeDriver {
 	 **/
 	protected function cacheDir($path) {
 		$this->dirsCache[$path] = array();
+                //  DebugBreak();   
+		  $customer_id =     $_GET['customer_id']; 
+        foreach ($this->_scandir($path) as $p) {
 
-		foreach ($this->_scandir($path) as $p) {
-			if (($stat = $this->stat($p)) && empty($stat['hidden'])) {
-				$this->dirsCache[$path][] = $p;
-			}
-		}	
+            if (($stat = $this->stat($p)) && empty($stat['hidden'])) {
+                 $folder_name = explode('_', $p);
+                  if($folder_name[1] == $customer_id )
+                 {   
+                    $this->dirsCache[$path][] = $p;
+                }
+                else if(strstr($folder_name[1],$customer_id."\\"))
+                {
+                        $this->dirsCache[$path][] = $p;
+                }
+                else{
+                     $this->dirsCache[$path][] = '';
+                }
+            }
+        }    
 	}
 	
 	/**
@@ -2261,17 +2274,28 @@ abstract class elFinderVolumeDriver {
 		$dirs = array();
 		
 		!isset($this->dirsCache[$path]) && $this->cacheDir($path);
-
-		foreach ($this->dirsCache[$path] as $p) {
-			$stat = $this->stat($p);
-			
-			if ($stat && empty($stat['hidden']) && $path != $exclude && $stat['mime'] == 'directory') {
-				$dirs[] = $stat;
-				if ($deep > 0 && !empty($stat['dirs'])) {
-					$dirs = array_merge($dirs, $this->gettree($p, $deep-1));
-				}
-			}
-		}
+          $customer_id =     $_GET['customer_id']; 
+        foreach ($this->_scandir($path) as $p) {
+            if (($stat = $this->stat($p)) && empty($stat['hidden'])) {
+                 
+                $folder_name = explode('_', $p);
+                  if($folder_name[1] == $customer_id )
+                 {   
+                    $this->dirsCache[$path][] = $p;
+                }
+                else if(strstr($folder_name[1],$customer_id."\\"))
+                {
+                        $this->dirsCache[$path][] = $p;
+                }
+                else{
+                     $this->dirsCache[$path][] = '';
+                }
+                
+                
+                  // $this->dirsCache[$path][] = $p;   
+               
+            }
+        }    
 
 		return $dirs;
 	}	

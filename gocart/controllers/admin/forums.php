@@ -169,8 +169,7 @@ class forums extends Admin_Controller {
 				$this->email->message($message);
 				$this->email->send();*/	
 			}
-			
-			
+				
 			$this->session->set_flashdata('message', lang('message_saved_forum'));
 			
 			//go back to the forum list
@@ -255,7 +254,7 @@ class forums extends Admin_Controller {
 	function topic_view($forum_id)
 	{
 		$data['form_id'] 	= $forum_id;	
-		$data['topics']		= $this->Topic_model->get_topics();	
+		$data['topics']		= $this->Topic_model->get_topic_by_form_id($forum_id);	
 		//echo "<pre>"; print_r($data['topics']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
@@ -273,7 +272,7 @@ class forums extends Admin_Controller {
 	{
 		$data 					= array();
 		$data['topic_id'] 		= $topoc_id;
-		$data['messages']		= $this->Message_Forum_model->get_messages($topoc_id);
+		$data['messages']		= $this->Message_Forum_model->get_messages_by_topic_id($topoc_id);
 		//echo "<pre>"; print_r($data['messages']);exit;
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');

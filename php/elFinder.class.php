@@ -320,7 +320,7 @@ class elFinder {
 				$this->volumes[$id]->setMimesFilter($args['mimes']);
 			}
 		}
-		
+		// DebugBreak(); 
 		$result = $this->$cmd($args);
 		
 		if (isset($result['removed'])) {

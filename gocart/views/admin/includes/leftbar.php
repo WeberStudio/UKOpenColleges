@@ -106,6 +106,7 @@
                             <li><a href="<?=base_url().ADMIN_PATH?>customers">Customers</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>admin">Course Providers</a></li>
 							<li><a href="<?=base_url().ADMIN_PATH?>tutor">Tutors</a></li>
+							<li><a href="<?=base_url().ADMIN_PATH?>tutor/requested_tutor">Requested Tutors</a></li>
 							<li><a href="<?=base_url().ADMIN_PATH?>order">Orders</a></li>
 							 <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>
 							 <li><a href="<?=base_url().ADMIN_PATH?>forums">Forums</a></li>

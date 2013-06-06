@@ -80,7 +80,7 @@
 	?>
 	<tr>
 		<!--<td><input type="checkbox" id="gc_check_all" /></td>-->
-		<td><?php echo $forum->forum_title;?></td>
+		<td><a class="button"  href="<?=base_url().'dashboard/topic_view/'.$forum->forum_id?>" ><?php echo $forum->forum_title;?></a></td>
 		<td style="white-space:nowrap"><?php echo $forum->name;?> </td>
 		
       
@@ -113,4 +113,3 @@
        
     </body>
 </html>
-

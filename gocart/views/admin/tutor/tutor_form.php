@@ -82,8 +82,8 @@
                       <label class="control-label span1"><span class="hint-field">Courses</span></label>
                       <div class="controls span7">
                       <?
-						if(!empty($categories)){
-							$courses_item = str_replace(array("[", "]",  '"'),'',$courses);						
+						if(!empty($tutors)){
+							$courses_item = str_replace(array("[", "]",  '"'),'',$tutors);					
 							$courses_item = explode(',',$courses_item);
 						}			  
 					  ?>
@@ -278,12 +278,6 @@
                   </label>
                 </div>
               </div>
-              
-              
-              
-              
-              
-              
               <div class="tab-pane fade" id="qualification">
 			  <div id="degree_inner_table" >
 				<? 

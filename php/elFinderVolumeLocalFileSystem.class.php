@@ -1,5 +1,4 @@
-<?php
-
+<?php  
 /**
  * elFinder driver for local filesystem.
  *
@@ -303,10 +302,11 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _subdirs($path) {
-
+                         //  DebugBreak();
+    $customer_id =     $_SESSION['customer_id']  ; 
 		if (($dir = dir($path))) {
 			$dir = dir($path);
-			while (($entry = $dir->read()) !== false) {
+			while (($entry = $dir->read()) !== false) { 
 				$p = $dir->path.DIRECTORY_SEPARATOR.$entry;
 				if ($entry != '.' && $entry != '..' && is_dir($p) && !$this->attr($p, 'hidden')) {
 					$dir->close();

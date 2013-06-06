@@ -35,6 +35,7 @@ class tutor extends Admin_Controller {
 		$this->load->model('Category_model');
 		$this->load->model('Product_model');
 		$this->load->model('Routes_model');
+		$this->load->model('Forum_model');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->lang->load('tutor');
@@ -393,6 +394,58 @@ class tutor extends Admin_Controller {
 			$this->session->set_flashdata('error', lang('error_not_found'));
 			redirect($this->config->item('admin_folder').'/tutor_listing');
 		}
+	}
+	
+	function requested_tutor()
+	{
+		$data['tutor_requests']	= $this->Tutor_model->get_tutor_requests();
+		$data['tutors']			= $this->Tutor_model->get_tutors();		
+		foreach ($data['tutors'] as $tutors)
+		{
+			$related			= json_decode($tutors->courses);
+			$tutors->courses 	= $related;			
+		}
+		
+		//$this->show->pe($data['tutors']);
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/tutor/tutor_request_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+	}
+	
+	function ajex_tutor_for_course()
+	{
+		
+		$save = array();		
+		$save['forum_admin']	= strtolower($this->admin_access);
+		$save['product_id']		= $_POST['subject_id'];
+		$save['customer_id']	= $_POST['customer_id']; 
+		$save['tutor_id']		= $_POST['tutor_id'];
+		$save['forum_title']	= 'Subject Forum';
+		$save['forum_comments']	= 'Please user forum to communicat with tutors.';
+		$save['forum_status']	= '1';
+		$forum_id				= $this->Forum_model->save($save);
+		
+		
+		$data['tutor_id'] 			= $_POST['tutor_id'];
+		$data['request_id']  		= $_POST['request_id'];
+		$data['admin_id'] 			= $this->admin_id;       
+        $data['admin_access'] 		= $this->admin_access;		
+		$data['request_status']		= 'Tutor Assigned';		
+		$folder_name 				= realpath('.').'/files/'.$_POST['tutor_id'].'_'.$_POST['customer_id'];
+		$data['folder_share']		= $_POST['tutor_id'].'_'.$_POST['customer_id'];
+		$data['forum_id']			= $forum_id;
+		
+		if(!is_dir($folder_name))
+		{
+			mkdir($folder_name,0777,true);
+			$student 				= realpath('.').'/files/'.$_POST['tutor_id'].'_'.$_POST['customer_id'].'/student';
+			$tutor 				= realpath('.').'/files/'.$_POST['tutor_id'].'_'.$_POST['customer_id'].'/tutor';
+			mkdir($student,0777,true);
+			mkdir($tutor,0777,true);
+		}	
+		
+		$this->Tutor_model->save_tutor_requests($data);
 	}
 }
 ?>
