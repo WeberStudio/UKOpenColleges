@@ -37,11 +37,9 @@ Class Forum_model extends CI_Model
 		$result	= $this->db->get_where('forums', array('forum_id'=>$id));
 		return $result->row();
 	}
-	function get_forum_customer($id)
-	{
-		
-		
-		
+    
+	function get_forum_customer($id)  
+    {	
 		$result = $this->db->query("SELECT * FROM oc_forums 
 		JOIN oc_tutors 
 		ON oc_forums.tutor_id = oc_tutors.tutor_id 
@@ -52,7 +50,17 @@ Class Forum_model extends CI_Model
 		return $result->result();
 	}
 	
-	 
+	function get_forum_for_tutors($id)
+     {       
+        $result = $this->db->query("SELECT * FROM oc_forums 
+        JOIN oc_tutors 
+        ON oc_forums.tutor_id = oc_tutors.tutor_id 
+        JOIN oc_products
+        ON oc_forums.product_id = oc_products.id  
+        AND oc_forums.tutor_id =".$id." AND oc_forums.forum_status='1'");
+        //$result = $this->db->get_where('forums',array('customer_id'=>$id,'forum_status'=>'1'));
+        return $result->result();
+    } 
 	
 	function save($data)
 	{

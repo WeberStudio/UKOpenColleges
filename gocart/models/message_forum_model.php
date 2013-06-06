@@ -38,7 +38,11 @@ Class Message_Forum_model extends CI_Model
 		return $result->row();
 	}
 	
-	
+	function get_messages_by_topic_id($id)
+    {
+        $result    = $this->db->get_where('oc_messages', array('topic_id'=>$id, 'message_status'=>'Yes'));
+        return $result->result();
+    }
 	
 	function save($data)
 	{
