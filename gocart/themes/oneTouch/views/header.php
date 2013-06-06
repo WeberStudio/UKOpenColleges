@@ -243,7 +243,7 @@ experience this site.
         <?php if($this->Tutor_model->is_logged_in(false, false)):?>
         <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
         <?php elseif($this->Customer_model->is_logged_in(false, false)):?>
-         <a href="<?php echo  site_url('secure/my_account');?>" style="color:red;">Dashboard</a>
+         <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a>
 		</h1>
         
 			<?php else: ?>

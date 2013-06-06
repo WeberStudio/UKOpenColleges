@@ -76,7 +76,7 @@ class Tutor_login extends Front_Controller {
 	
 	
 	
-	function register($id)
+	function register($id = false)
 	{
 		$data['id']			= '';
 		$data['company']	= '';
@@ -130,6 +130,10 @@ class Tutor_login extends Front_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{    
             //echo "<pre>"; print_r($data['invoices']);exit;
+			if($id!="")
+			{
+				redirect('dashboard/my_profile');
+			}
 			$this->load->view('tutor_register', $data);
 			
 		}
@@ -199,9 +203,13 @@ class Tutor_login extends Front_Controller {
 			 $this->tutor_model->save($save);
 			 if($id!="")
 			 {
+				 
 				 redirect('dashboard');
+				 //echo "found it"; exit;
+				// redirect('tutor_login/login');
 			 }
-			 redirect('');
+			 redirect('dashboard');
+			
 		}
 		
 	}

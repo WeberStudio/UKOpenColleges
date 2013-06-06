@@ -10,27 +10,52 @@
         <div class="span9">
           
           <!-- End .legend -->
-       <?php $get_address = $this->Tutor_model->get_address();
-			//echo "<pre>"; print_r($get_address); exit;
-			?>
+       <?php
+	   if($this->Tutor_model->is_logged_in(false, false))
+	   {
+	    $get_address = $this->Tutor_model->get_address();
+	   }
+	   if($this->Customer_model->is_logged_in(false, false)){
+			$get_address_cus = $this->Customer_model->get_address_pro();
+			//echo "<pre>" ;print_r($get_address_cus); exit;
+	   }
+		?>
          	 <div class="content spacer-big">
             <h3><span>About Me</span></h3>
             <hr>
-            <p><?php if(!empty($get_address)){ echo  $get_address[0]->about;}?></p>
+            <p><?php
+			
+			 if(!empty($get_address)){ echo  $get_address[0]->about;}
+			 
+			  if(!empty($get_address_cus)){ echo  $get_address_cus[0]->about;}
+			 ?></p>
            
           
             <h3><span>Address</span></h3>
             <hr>
             <address>
             <!--<strong>PixelGrade, Inc.</strong>-->
-            <?php if(!empty($get_address)){ echo $get_address[0]->street_address." <b>,</b> ".$get_address[0]->address_line_op."<br>
+             <?php
+			  if(!empty($get_address)){ echo $get_address[0]->street_address." <b>,</b> ".$get_address[0]->address_line_op."<br>
             ". $get_address[0]->city." <b>,</b> ". $get_address[0]->state_code."  ". $get_address[0]->country_name ."<br>
-            <abbr title='Phone'>P:</abbr> ". $get_address[0]->phone;}?>
+            <abbr title='Phone'>P:</abbr> ". $get_address[0]->phone;}
+			
+			 if(!empty($get_address_cus)){ echo $get_address_cus[0]->address_street." <b>,</b> ".$get_address_cus[0]->address_line."<br>
+            ". $get_address_cus[0]->city." <b>,</b> ". $get_address_cus[0]->state_code."  ". $get_address_cus[0]->country_name ."<br>
+            <abbr title='Phone'>P:</abbr> ". $get_address_cus[0]->phone;}
+			
+			?>
             </address>
             <address>
             <strong>E-Mail</strong>
             <br>
-            <a href="mailto:#"><?php if(!empty($get_address)){ echo  $get_address[0]->email;}?></a>
+            <a href="mailto:#">
+			<?php 
+			if(!empty($get_address)){ echo  $get_address[0]->email;}
+			
+			if(!empty($get_address_cus)){ echo  $get_address_cus[0]->email;}
+			
+			?></a>
             </address>
            
           <!--  <h3><span>Other info</span></h3>

@@ -374,5 +374,18 @@ Class Customer_model extends CI_Model
 			return $this->db->insert_id();
 		}
 	}
+	
+	function get_address_pro()
+	{
+	$customer = $this->go_cart->customer();
+	$result =	$this->db->query("SELECT oc_customers.*, oc_countries.name as country_name, oc_country_zones.code as state_code  FROM oc_customers 
+	JOIN oc_countries 
+	ON oc_customers.country = oc_countries.id 
+	JOIN oc_country_zones 
+	ON oc_customers.state = oc_country_zones.id 
+	WHERE oc_customers.id = '".$customer['id']."'");
+	// echo $this->db->last_query();
+	return $result->result();
+	}
     
 }

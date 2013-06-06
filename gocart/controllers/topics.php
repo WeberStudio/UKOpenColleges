@@ -10,8 +10,15 @@ class Topics extends Front_Controller {
         $this->load->library('email');
         $customer_details           = $this->go_cart->customer();
        // echo "<pre>";print_r($customer_details);  exit;
+	   if($this->Tutor_model->is_logged_in(false, false))
+	   {
+		 $this->login_id             = $customer_details['tutor_id'];
+		 $this->first_name           = $customer_details['firstname'];   
+		}
+		else{
         $this->login_id             = $customer_details['id'];
         $this->first_name           = $customer_details['firstname']; 
+		}
     }   
     
     function topic_form($forum_id, $id = false)
