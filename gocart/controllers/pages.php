@@ -38,7 +38,6 @@ class pages extends Admin_Controller {
 		$this->load->helper('form');
 		$data['page_title']	= lang('pages');
 		$data['pages']		= $this->Page_model->get_pages();
-		 
 		$this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/pages', $data);

@@ -101,6 +101,7 @@ experience this site.
 			 		
 	 		
         </li>
+        <?php //print_r($this->top_page);exit;?>
 		<?php foreach($this->pages as $menu_page):?>
         <li class="menu-blog">
 			<span class="menu-item-wrap">
@@ -110,7 +111,10 @@ experience this site.
 					<span class="arrow">&nbsp;</span><span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/!.png");?>);'></span>
 					</a>
 					<?php else:?>
-					<a style='background-color:#cecece; background-size:cover; background-image:none;' href="<?php echo site_url($menu_page->slug);?>"><?php echo $menu_page->menu_title;?></a>
+					<a style='background-color:#cecece; background-size:cover; background-image:none;' href="<?php echo site_url($menu_page->slug);?>"><?php echo $menu_page->menu_title;?>
+                    <?php //echo $menu_page->image;?>
+                     <span class='tile-icon' style='background-image:url(<?php echo base_url('uploads/images/full/'.$menu_page->image);?>)'></span>
+                    </a>
 					<?php endif;?>
 			</span>           
         </li>

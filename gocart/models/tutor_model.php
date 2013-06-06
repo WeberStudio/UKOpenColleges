@@ -61,7 +61,7 @@ Class Tutor_model extends CI_Model
 		return $addresses;
 	}
 	
-	function get_address($address_id)
+	/*function get_address($address_id)
 	{
 		$address= $this->db->where('id', $address_id)->get('customers_address_bank')->row_array();
 		if($address)
@@ -71,7 +71,7 @@ Class Tutor_model extends CI_Model
 			$address				= array_merge($address, $address_info);
 		}
 		return $address;
-	}
+	}*/
 	
 	function save_address($data)
 	{
@@ -353,6 +353,19 @@ Class Tutor_model extends CI_Model
 			$this->db->delete($table_name);
 			//echo $this->db->last_query();
 			return true ;
+	}
+	
+	function get_address()
+	{
+		$tutor = $this->go_cart->customer();
+	$result =	$this->db->query("SELECT oc_tutors.*, oc_countries.name as country_name, oc_country_zones.code as state_code  FROM oc_tutors 
+	JOIN oc_countries 
+	ON oc_tutors.country = oc_countries.id 
+	JOIN oc_country_zones 
+	ON oc_tutors.state = oc_country_zones.id 
+	WHERE tutor_id = '".$tutor['tutor_id']."'");
+	// echo $this->db->last_query();
+	return $result->result();
 	}
 	
 	/*function tutor_loggin($email, $password, $remember=false)

@@ -120,6 +120,7 @@
                         <ul id="collapse3" class="accordion-body collapse <?php echo  $content_links; ?>">
 
                             <li><a href="<?=base_url().ADMIN_PATH?>pages">Pages</a></li>
+                            <li><a href="<?=base_url().ADMIN_PATH?>pages/page_text">Home Page Content</a></li>
 
                         </ul>
                     </li>

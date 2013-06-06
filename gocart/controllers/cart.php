@@ -86,8 +86,7 @@ class Cart extends Front_Controller {
 	{
 
 		//if there is no page id provided redirect to the homepage.
-
-		$data['page']	= $this->Page_model->get_page($id);
+		$data['page']		= $this->Page_model->get_page($id);
 		if(!$data['page'])
 		{
 			show_404();

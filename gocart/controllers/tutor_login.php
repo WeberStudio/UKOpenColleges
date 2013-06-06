@@ -61,7 +61,7 @@ class Tutor_login extends Front_Controller {
 			//echo print_r($login); exit;
 			if ($login)
 			{
-				redirect('');	
+				redirect('dashboard');	
 			}
 			else
 			{
@@ -76,7 +76,7 @@ class Tutor_login extends Front_Controller {
 	
 	
 	
-	function register()
+	function register($id)
 	{
 		$data['id']			= '';
 		$data['company']	= '';
@@ -100,6 +100,16 @@ class Tutor_login extends Front_Controller {
 		$data['country_id']			= "";
 		$data['zone_id']			= "";
 		//print_r($this->Product_model->get_all_products_array());exit;
+		$config['upload_path']		= 'uploads/images/full';
+		$config['allowed_types']	= 'gif|jpg|png';
+		$config['max_size']			= $this->config->item('size_limit');
+		$config['max_width']		= '1024';
+		$config['max_height']		= '768';
+		//$config['file_name'] 		= "thumb_";
+		$config['overwrite']		= true;
+		$config['remove_spaces']	= true;
+		$config['encrypt_name']		= true;
+		$this->load->library('upload', $config);
 		
 			
 		$this->load->library('form_validation');	
@@ -110,12 +120,12 @@ class Tutor_login extends Front_Controller {
 		$this->form_validation->set_rules('zip_code', 'zip_code', 'trim|required|numeric|max_length[6]');
 		$this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[32]|numeric');
 		$this->form_validation->set_rules('email', 'lang:email', 'trim|required|valid_email|max_length[128]|callback_check_email');
-		
-		
+		if($id == "")
+		{
 		$this->form_validation->set_rules('password', 'lang:password', 'required|min_length[6]|sha1');
 		$this->form_validation->set_rules('confirm', 'lang:confirm_password', 'required|matches[password]');
 		$this->form_validation->set_rules('comment', 'lang:comments', 'trim|max_length[128]');
-		
+		}
 		
 		if ($this->form_validation->run() == FALSE)
 		{    
@@ -123,23 +133,47 @@ class Tutor_login extends Front_Controller {
 			$this->load->view('tutor_register', $data);
 			
 		}
-		else{	
-			$save['tutor_id']			= false;
-			
+		else{
+			if($id!=""){
+			$uploaded	= $this->upload->do_upload('image');
+			if($uploaded != "")
+			{
+			if($uploaded == "")
+			{
+				$error	= $this->upload->display_errors();
+				echo $error;
+				
+			}
+			if($uploaded != "")
+			{
+				$image			= $this->upload->data();
+				$save['avatar']	= $image['file_name'];
+			}
+			}
+			}
+			//echo $this->input->post('about'); exit; 
+			if($this->input->post('about')!="")
+			{
+			$save['about']				= $this->input->post('about');
+			}
+			$save['tutor_id']			= $id;
 			$save['firstname']			= $this->input->post('firstname');
 			$save['lastname']			= $this->input->post('lastname');
 			$save['email']				= $this->input->post('email');
 			$save['phone']				= $this->input->post('phone');
-			$save['short_description']	= $this->input->post('description');
-			$save['comments']			= $this->input->post('comment');
 			$save['status']				= 1;
-			$save['email_subscribe'] 	= $this->input->post('email_subscribe');
 			$save['street_address']		= $this->input->post('street_address');
 			$save['address_line_op']	= $this->input->post('address_line_op');
 			$save['city']				= $this->input->post('city');
 			$save['state']				= $this->input->post('state');
 			$save['zip_code']			= $this->input->post('zip_code');
 			$save['country']			= $this->input->post('country');
+			
+			if($id == "")
+			{
+			$save['short_description']	= $this->input->post('description');
+			$save['comments']			= $this->input->post('comment');
+			$save['email_subscribe'] 	= $this->input->post('email_subscribe');
 			$save['password']			= $this->input->post('password');
 			
 			if($this->input->post('courses'))
@@ -161,7 +195,12 @@ class Tutor_login extends Front_Controller {
 			{
 				$save['categories'] = '';
 			}
-			$id = $this->tutor_model->save($save);
+			}
+			 $this->tutor_model->save($save);
+			 if($id!="")
+			 {
+				 redirect('dashboard');
+			 }
 			 redirect('');
 		}
 		

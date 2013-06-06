@@ -3,16 +3,17 @@
             <div class="row-fluid legend">
               <h1>
 			  <?php
-			   $customer_details = $this->go_cart->customer();
-			   //print_r($customer_details); exit;
-			   echo  $customer_details['firstname']." ". $customer_details['lastname'];
+			   $tutor_details = $this->go_cart->customer();
+			   //print_r($tutor_details); exit;
+			   $get_address = $this->Tutor_model->get_address();
+			   echo  $tutor_details['firstname']." ". $tutor_details['lastname'];
 			   ?>
                 </h1>
             </div>
           </div>
           <!-- End .title -->
           <div class="content">
-            <div class="row-fluid well well-small"> <img class="row-fluid" src="<?php echo theme_img('login@2x');?>"> </div>
+            <div class="row-fluid well well-small"> <img class="row-fluid" src="<?php if(!empty($get_address)){ echo base_url().'uploads/images/full/'.$get_address[0]->avatar;}?>"> </div>
             <ul class="nav1 nav-tabs dark nav-stacked">
             <?php if($this->Tutor_model->is_logged_in(false, false)):?>
 			<li><a href="<?= base_url();?>dashboard/"><i class="gicon-user"></i>Dashboard</a></li>

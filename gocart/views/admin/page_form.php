@@ -4,7 +4,7 @@
 <div id="main" style="min-height:1000px">
 <div class="container">
 <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
-<?php echo form_open($this->config->item('admin_folder').'/pages/form/'.$id); ?>
+<?php echo form_open_multipart($this->config->item('admin_folder').'/pages/form/'.$id); ?>
 <div id="main_container">
   <div class="row-fluid">
     <div class="span12">
@@ -43,6 +43,14 @@
 				?>
             </div>
           </div>
+          <div class="form-row control-group row-fluid">
+                  <label class="control-label span3" for="search-input">File upload</label>
+                  <div class="controls span7">
+                    <div class="input-append row-fluid">
+                      <input type="file" class="spa1n6 fileinput" id="search-input" name="image">
+                      > </div>
+                  </div>
+                </div>
           </div>
 		<div class="tab-pane fade" id="attributes">
 			
