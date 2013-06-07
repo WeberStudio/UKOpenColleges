@@ -37,7 +37,7 @@ $address_form_prefix ="";
           <!-- End .legend -->
          <div class="row">
 		<div id="content" class="fifteen columns">
-		<?php echo form_open(); ?>
+		<?php echo form_open_multipart(base_url().'secure/my_account/0/'.$customer['id']); ?>
 		
 		<div class="col-1">
 				<h3>My Account</h3>
@@ -104,6 +104,15 @@ $address_form_prefix ="";
 						</label>
 						<?php echo form_input($email);?>
 					</p>
+                     <h3>About You</h3>
+                    <p class="form-row " id="billing_company_field">
+                          <label for="billing_postcode" class="">File upload</label>
+                           <input type="file" class="spa1n6 fileinput" id="search-input" name="image">
+                    </p>
+                    <p class="form-row " id="billing_company_field">
+						<label for="billing_company" class="">About</label>
+						<textarea name="about"></textarea>
+					</p>
 					<div class="clear"></div>
 					<input type="submit" value="<?php echo lang('form_submit');?>" class="button"  style="height: 34px; width: 74px;" />
 				</div>
@@ -132,5 +141,8 @@ $address_form_prefix ="";
 				});
 				
 			});
+			j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
+				  j('#f_zone_id').html(data);
+				});
 	});
 </script>

@@ -4,7 +4,7 @@
 <div id="main" style="min-height:1000px">
 <div class="container">
 <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
-<?php echo form_open($this->config->item('admin_folder').'/pages/form/'.$id); ?>
+<?php echo form_open_multipart($this->config->item('admin_folder').'/pages/form/'.$id); ?>
 <div id="main_container">
   <div class="row-fluid">
     <div class="span12">
@@ -43,6 +43,14 @@
 				?>
             </div>
           </div>
+          <div class="form-row control-group row-fluid">
+                  <label class="control-label span3" for="search-input">File upload</label>
+                  <div class="controls span7">
+                    <div class="input-append row-fluid">
+                      <input type="file" class="spa1n6 fileinput" id="search-input" name="image">
+                      > </div>
+                  </div>
+                </div>
           </div>
 		<div class="tab-pane fade" id="attributes">
 			
@@ -51,6 +59,14 @@
 				<div class="controls span7">
 				 <?php
 				 $data	= array('name'=>'manu_title','value'=>set_value('menu_title', $menu_title),'class'=>'span12');
+				 echo form_input($data); ?>
+				</div>
+			</div>
+            <div class="form-row control-group row-fluid">
+				<label class="control-label span1" for="hint-field"><?php echo lang('old_slug');?><span class="help-block"></span></label>
+				<div class="controls span7">
+				 <?php
+				 $data	= array('name'=>'old_slug', 'value'=>set_value('old_slug', $old_slug), 'class'=>'span12');
 				 echo form_input($data); ?>
 				</div>
 			</div>
@@ -99,19 +115,29 @@
 		<div class="tab-pane fade" id="seo">
 			<div class="form-row control-group row-fluid">
 					<label class="control-label span1" for="hint-field"><?php echo lang('seo_title');?><span class="help-block"></span></label>
-					<div class="controls span7">
+					<div class="controls span8">
 					 <?php
 					 $data	= array('name'=>'seo_title', 'value'=>set_value('seo_title', $seo_title), 'class'=>'span12');
 					 echo form_input($data); ?>
 					</div>
          		</div>
 			<div class="form-row control-group row-fluid">
-				<label class="control-label span1" for="text">Meta Data</label>
-				<div class="controls span7">
+				<label class="control-label span1" for="text"><?php echo lang('meta_des');?></label>
+				<div class="controls span8">
 				  <?php
 				$data	= array('rows'=>'3', 'name'=>'meta', 'value'=>set_value('meta', html_entity_decode($meta)), 'class'=>'span12');
 				echo form_textarea($data);
 				?>
+				 </div>
+		   </div>
+           <div class="form-row control-group row-fluid">
+				<label class="control-label span1" for="text"><?php echo lang('meta_key');?></label>
+				<div class="controls span8">
+				  <?php
+				$data	= array('rows'=>'3', 'name'=>'meta_key', 'value'=>set_value('meta_key', html_entity_decode($meta_key)), 'class'=>'span12');
+				echo form_textarea($data);
+				?>
+                <i>ex. &lt;meta name="description" content="comma Separated Keywords" /&gt;</i>
 				 </div>
 		   </div>
 		</div>

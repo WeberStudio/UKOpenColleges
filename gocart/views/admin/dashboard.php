@@ -128,10 +128,12 @@
 				$i++;
 				
 				?>
+                
                   <tr>
+                  
                   <td><?php echo $i;?>
                   </td>
-                    <td> <?php echo  $order->order_number;?></td>
+                    <td><a href="<?=base_url().'admin/order/view/'.$order->id?>"> <?php echo  $order->order_number;?> </a></td>
                     <td> <?php echo $order->firstname." ".$order->lastname;?></td>
                     <td> <?php 
 					$date = $order->ordered_on;
@@ -142,6 +144,7 @@
 					?>
 					</td>
                     <td class="to_hide_phone"><?php echo "£".$order->subtotal;?></td>
+                    
                   </tr>
                   
                   <?php endforeach;?>
@@ -169,6 +172,7 @@
 			foreach($customers as $customer): 
 			$i++;
 			?>
+            	<a href="<?php echo site_url($this->config->item('admin_folder').'/customers/form/'.$customer->id); ?>">
               <li>
                 <div class="info row-fluid"><span class="number pull-left text_color_0"><?php echo $i ?></span>
                   <h2 class="pull-left"><?php echo $customer->firstname;?></h2>
@@ -186,6 +190,7 @@
                   <div class="value"><?php echo $customer->company;?></div>
                 </div>-->
               </li>
+              </a>
               <?php endforeach;?>
             </ul>
             <!-- End .content -->

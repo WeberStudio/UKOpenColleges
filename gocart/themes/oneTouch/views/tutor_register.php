@@ -2,7 +2,7 @@
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
           <?php //include('leftPanel.php'); ?>
-	
+		
         <div id="body-wrapper" >		
             <div id="body-wrapper-padding">			
                 <!--[if lt IE 7]>
@@ -90,14 +90,14 @@ function showStuff() {
 <div class="row">
 <div id="content" class="fifteen columns">
 <p class="woocommerce_info">Already registered? <a href="" class="" onClick="return toggle()">Click here to login</a></p>
-<form style="display:none;" id="obj" method="post" class="login">
+<form style="display:none;" id="obj" method="post" class="login" action="<?=base_url()?>tutor_login/login">
 	<p>If you have shopped with us before, please enter your details in the
  boxes below. If you are a new customer please proceed to the Billing 
 &amp; Shipping section.</p>
 
 	<p class="form-row form-row-first">
 		<label for="username">Username or email <span class="required">*</span></label>
-		<input class="input-text" name="username" id="username" type="text">
+		<input class="input-text" name="email" id="username" type="text">
 	</p>
 	<p class="form-row form-row-last">
 		<label for="password">Password <span class="required">*</span></label>
@@ -106,9 +106,10 @@ function showStuff() {
 	<div class="clear"></div>
 
 	<p class="form-row">
-		<input id="_n" name="_n" value="23b8c2c5f1" type="hidden"><input name="_wp_http_referer" value="/onetouch/checkout/" type="hidden">		<input class="button" name="login" value="Login" type="submit">
-		<input name="redirect" value="http://theme.crumina.net/onetouch/checkout/" type="hidden">
-		<a class="lost_password" href="http://theme.crumina.net/onetouch/wp-login.php?action=lostpassword&amp;redirect_to=http://theme.crumina.net/onetouch">Lost Password?</a>
+		<input id="_n" name="_n" value="" type="hidden"><input name="_wp_http_referer" value="" type="hidden">	
+        	<input class="button" name="submitted" value="Login" type="submit">
+		<input name="redirect" value="" type="hidden">
+		<a class="lost_password" href="<?php echo site_url('secure/forgot_password')?>">Lost Password?</a>
 	</p>
 
 	<div class="clear"></div>
@@ -216,7 +217,7 @@ function showStuff() {
 				<p class="form-row form-row-first" id="billing_city_field">
 					<label for="billing_city" class=""><?php echo lang('address_country');?><abbr class="required" title="required">*</abbr>
 					</label>
-					<?php echo form_dropdown('country', $countries_menu, set_value('country_id', $country_id), 'id="f_country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+					<?php echo form_dropdown('country', $countries_menu, set_value('country_id', $country_id), 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 				</p>
 				<p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
 					<label for="billing_postcode" class=""><?php echo lang('address_state');?><abbr class="required" title="required">*</abbr>
@@ -278,11 +279,23 @@ function showStuff() {
     <section id="shopping_cart-2" class="widget-2 widget widget_shopping_cart">
       
     </section>
-  
+    </div>
+  </div>
 </div>
 </div>
 <!-----main content section end----->
-  <script type="text/javascript">
+<script type="text/javascript">
+  var j = jQuery.noConflict();
+j(function(){
+	j('#country_id').change(function(){
+			j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
+			  j('#f_zone_id').html(data);
+			});
+			
+		});
+});
+</script>
+  <!--<script type="text/javascript">
 $(function(){
 	$('#f_country_id').change(function(){
 			$.post('<?php echo site_url('locations/get_zone_menu');?>',{id:$('#f_country_id').val()}, function(data) {
@@ -316,16 +329,17 @@ function save_address()
 			}
 		});
 }
-</script>
+</script>-->
  
 
                
                <!--===========inner content start========-->
             </div>
         </div>
+        
         <?php include_once('footer.php'); ?> 
         
        
-    </body>
+    
 </html>
 

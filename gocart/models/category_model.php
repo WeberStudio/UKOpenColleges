@@ -9,6 +9,7 @@ Class Category_model extends CI_Model
 		$this->db->order_by('name', 'ASC');
 		$this->db->where('delete', '0');
 		$this->db->where('publish_by_admin', '1');
+		//$this->db->where('publish_by_super', '1');
 		$result	= $this->db->get('categories');
 		if(count($result)>0)
 		{
@@ -26,6 +27,7 @@ Class Category_model extends CI_Model
 		$this->db->order_by('name', 'ASC');
 		$this->db->where('delete', '0');
 		$this->db->where('publish_by_admin', '1');
+		//$this->db->where('publish_by_super', '1');
 		$result	= $this->db->get('categories');
 		if(count($result)>0)
 		{
@@ -39,6 +41,7 @@ Class Category_model extends CI_Model
 	
 	function get_categories($parent = false, $data=array())
 	{
+		
 		if ($parent !== false)
 		{
 			$this->db->where('parent_id', $parent);
@@ -82,6 +85,7 @@ Class Category_model extends CI_Model
 		
 		
 		//this will alphabetize them if there is no sequence
+		//$this->db->where('publish_by_super', '1');
 		
 		$result	= $this->db->get('categories');
 		

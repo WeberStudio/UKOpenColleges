@@ -101,12 +101,13 @@ class Secure extends Front_Controller {
 	function login($ajax = false)
 	{
 		//find out if they're already logged in, if they are redirect them to the my account page
-		$redirect	= $this->Customer_model->is_logged_in(false, false);
+		//$redirect	= $this->Customer_model->is_logged_in(false, false);
+		$redirect	= "";
 		//if they are logged in, we send them back to the my_account by default, if they are not logging in
 		$this->load->library('form_validation');
 		if ($redirect)
 		{
-			redirect('');
+			redirect('dashboard');
 		}
 		
 		$data['page_title']	= 'Login';
@@ -135,15 +136,18 @@ class Secure extends Front_Controller {
 			$login		= $this->Customer_model->login($email, $password, $remember);
 			if ($login)
 			{
-				if ($redirect == '')
+				//echo " found it"; exit;
+				redirect('dashboard');
+				/*if ($redirect == '')
 				{
+					
 					//if there is not a redirect link, send them to the my account page
 					 
 				//echo "<pre>"; print_r($this->go_cart->customer());exit;
     // $customer_details = $this->go_cart->customer();
     // echo $customer_details['firstname'];exit;
 					$redirect = '';
-				}
+				}*/
 				//to login via ajax
 				if($ajax)
 				{
@@ -153,6 +157,7 @@ class Secure extends Front_Controller {
 				{
 					redirect($redirect);
 				}
+				
 				
 			}
 			else
@@ -405,7 +410,7 @@ class Secure extends Front_Controller {
 		$this->load->view('forgot_password', $data);
 	}
 	
-	function my_account($offset=0)
+	function my_account($offset=0,$id = false)
 	{
 		
 		//$this->show->pe($_REQUEST);
@@ -469,6 +474,17 @@ class Secure extends Front_Controller {
 		$data['zones_menu']			= $this->Location_model->get_zones_menu($data['customer']['country']);		
 		$data['countries_menu']		= $this->Location_model->get_countries_menu();
 		
+		$config['upload_path']		= 'uploads/images/full';
+		$config['allowed_types']	= 'gif|jpg|png';
+		$config['max_size']			= $this->config->item('size_limit');
+		$config['max_width']		= '1024';
+		$config['max_height']		= '768';
+		//$config['file_name'] 		= "thumb_";
+		$config['overwrite']		= true;
+		$config['remove_spaces']	= true;
+		$config['encrypt_name']		= true;
+		$this->load->library('upload', $config);
+		
 		
 		
 		
@@ -481,7 +497,7 @@ class Secure extends Front_Controller {
 		$this->form_validation->set_rules('email_subscribe', 'Subscribe', 'trim|numeric|max_length[1]');
 
 
-		if($this->input->post('password') != '' || $this->input->post('confirm') != '')
+		/*if($this->input->post('password') != '' || $this->input->post('confirm') != '')
 		{
 			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|sha1');
 			$this->form_validation->set_rules('confirm', 'Confirm Password', 'required|matches[password]');
@@ -490,7 +506,7 @@ class Secure extends Front_Controller {
 		{
 			$this->form_validation->set_rules('password', 'Password');
 			$this->form_validation->set_rules('confirm', 'Confirm Password');
-		}
+		}*/
 
 
 		if ($this->form_validation->run() == FALSE)
@@ -499,8 +515,28 @@ class Secure extends Front_Controller {
 		}
 		else
 		{
+			
 			$customer 							= array();
-			$customer['id']						= $this->customer['id'];
+			//$customer['id']						= $this->customer['id'];
+			if($id!=""){
+			$uploaded	= $this->upload->do_upload('image');
+			if($uploaded != "")
+			{
+			if($uploaded == "")
+			{
+				$error	= $this->upload->display_errors();
+				echo $error;
+				
+			}
+			if($uploaded != "")
+			{
+				$image			= $this->upload->data();
+				$customer['image']	= $image['file_name'];
+			}
+			}
+			}
+
+			$customer['id']						= $id;
 			$customer['company']				= $this->input->post('company');
 			$customer['firstname']				= $this->input->post('firstname');
 			$customer['lastname']				= $this->input->post('lastname');
@@ -513,15 +549,20 @@ class Secure extends Front_Controller {
 			$customer['email_subscribe']		= intval((bool)$this->input->post('email_subscribe'));
 			$customer['country']				= $this->input->post('country_id');
 			$customer['state']					= $this->input->post('zone_id');
-			if($this->input->post('password') != '')
+			if($this->input->post('about')!=""){
+			$customer['about']					= $this->input->post('about');
+			}
+			
+			/*if($this->input->post('password') != '')
 			{
 				$customer['password']			= $this->input->post('password');
-			}
+			}*/
 						
 			$this->go_cart->save_customer($this->customer);
 			$this->Customer_model->save($customer);			
-			$this->session->set_flashdata('message', lang('message_account_updated'));			
-			redirect('secure/my_account');
+			$this->session->set_flashdata('message', lang('message_account_updated'));	
+			 redirect('dashboard');		
+			//redirect('secure/my_account');
 		}
 	
 	}

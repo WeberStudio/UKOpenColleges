@@ -8,9 +8,12 @@
             <div class = "dragger">
               <div class="grid">
                 <div class = "gr-box">
-                  <?php  
+
+                
+                  <?php
 				  $count = 0;
 				  foreach($this->categories as $cat_info){
+				 
 				  $count = $count + 1;
 				  if($count%2==0)
 				  {
@@ -116,6 +119,9 @@
                     </script>
         </div>
       </div>
+      <?php $page_content =  $this->page_model->get_page_texts();
+	  //print_r($page_content); exit;
+	  ?>
       <div class="fifteen columns">
         <div class="text-block clearing-container">
           <div class="row">
@@ -126,30 +132,30 @@
                     <div class="wpb_wrapper">
                       <div class="row-fluid">
                         <div class="wpb_content_element wpb_single_image span12">
-                          <div class="wpb_wrapper"> <img src="<?php echo theme_img("/director1.png")?>" width="335" height="367" /> </div>
+                          <div class="wpb_wrapper"><?php if(!empty($page_content)){?> <img src="<?php echo base_url('uploads/images/full/'.$page_content[0]->image); //echo theme_img("/director1.png")?>" width="335" height="367" /><?php }?>  </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                 
                   <div class="wpb_content_element span4 column_container">
                     <div class="wpb_wrapper">
                       <div class="row-fluid">
                         <div class="wpb_content_element span12 text-item wpb_text_column">
                           <div class="wpb_wrapper">
-                            <h6>Great made option</h6>
-                            <h2><a>Multiresponsive Layout</a></h2>
-                            Psychic self-regulation, to a first approximation, enlightens positivist ericson hypnosis, so is a kind of
-                            
-                            relationship with the darkness of the unconscious. Thinking integrates cultural entity 
-							<img class="icon_post" title="settings" alt=""  src="<?php echo theme_img("icons/check.png")?>" width="32" height="32" /> </div>
+                         
+                            <h6></h6>
+                           <?php if(!empty($page_content)){?> <h2><a><?php echo $page_content[0]->title;?></a></h2>
+                             <?php echo $page_content[0]->content;?>
+							<img class="icon_post" title="settings" alt=""  src="<?php echo theme_img("icons/check.png")?>" width="32" height="32" /><?php }?> </div>
                         </div>
                       </div>
                       <div class="row-fluid">
                         <div class="wpb_content_element span12 text-item no-740 wpb_text_column">
-                          <div class="wpb_wrapper">
+                          <!--<div class="wpb_wrapper">
                             <h6>It was hard to make it so cool</h6>
                             <h2><a>Greatest Theme Options</a></h2>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. <img class="icon_post" title="check" alt="" src="<?php echo theme_img("icons/check.png")?>" width="32" height="32" /> </div>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. <img class="icon_post" title="check" alt="" src="<?php echo theme_img("icons/check.png")?>" width="32" height="32" /> </div>-->
                         </div>
                       </div>
                     </div>

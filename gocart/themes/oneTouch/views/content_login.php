@@ -59,7 +59,7 @@ function showStuff() {
             <input name="testcookie" value="1" type="hidden">
             <input name="woocommerce_login" value="1" type="hidden">
             <input name="rememberme" value="forever" type="hidden">
-            <input type="hidden" value="<?php echo $redirect; ?>" name="redirect"/>
+            <input type="hidden" value="<?php //echo $redirect; ?>" name="redirect"/>
 			<input type="hidden" value="submitted" name="submitted"/>
           </div>
         </form>

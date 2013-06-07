@@ -6,9 +6,9 @@
         <div class="span12">
           <div class="box paint color_2">
             <div class="title">
-             <h4> <i class=" icon-bar-chart"></i><span>Pages Listing 
+             <h4> <i class=" icon-bar-chart"></i><span>Page Home Listing 
              
-	            <a class="btn" href="<?=base_url().ADMIN_PATH?>pages/form"><i class="icon-plus-sign"></i>Add New Pages <?php //echo lang('add_new_customer');?></a>
+	            <a class="btn" href="<?=base_url().ADMIN_PATH?>pages/page_text_form"><i class="icon-plus-sign"></i>Add Home Page Content</a>
                      </span></h4>
                 
 <div class="content top">
@@ -30,31 +30,30 @@
 			<?php
 			$GLOBALS['admin_folder'] = $this->config->item('admin_folder');
 			
-			function page_loop($pages, $dash = '')
-		{
+		
 				
 					foreach($pages as $page)
 				{?>
 			<tr>
-			<?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
-			<td><?php echo $page->title; ?><?php //echo  $customer->lastname; ?></td>
+			
+			<td><?php echo $page->title; ?></td>
 			
 			<td>
 				<div class="btn-group" align="right">
 				
-					<a class="btn" href="<?php echo site_url($GLOBALS['admin_folder'].'/pages/form/'.$page->id); ?>"><i class="icon-pencil"></i><?php echo lang('edit');?></a>
-					<!--<a class="btn" href="<?php echo site_url().'index.php/'.$page->slug; ?>" target="_blank"><i class="icon-play-circle"></i> <?php echo lang('go_to_page');?></a>-->
-					<a class="btn btn-danger" href="<?php echo site_url($GLOBALS['admin_folder'].'/pages/delete/'.$page->id); ?>" onclick="return areyousure();"><i class="icon-trash"></i> <?php echo lang('delete');?> </a>
+					<a class="btn" href="<?php echo site_url($GLOBALS['admin_folder'].'/pages/page_text_form/'.$page->id); ?>"><i class="icon-pencil"></i><?php echo lang('edit');?></a>
+					
+					<a class="btn btn-danger" href="<?php echo site_url($GLOBALS['admin_folder'].'/pages/page_text_delete/'.$page->id); ?>" onclick="return areyousure();"><i class="icon-trash"></i> <?php echo lang('delete');?> </a>
 				</div>
 			</td>
 		</tr>
 
 		<?php
 		
-			page_loop($page->children, $dash.'-');
-			}
-		}
-		page_loop($pages);
+				}
+		
+		
+		
 		?>
 		
 		
@@ -89,3 +88,4 @@
     <!-- End .row-fluid -->
   </div>
   </div>
+  

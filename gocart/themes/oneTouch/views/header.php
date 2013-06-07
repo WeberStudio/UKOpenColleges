@@ -12,7 +12,11 @@ experience this site.
     <a  href="<?=base_url()?>cart/">
         <img src="<?php echo theme_img("custom-slider-img/logouk.png")?>" alt="OneTouch"></a>
 </div>
-<? $categories = $this->dropdown_menu->get_all_categories(); ?>
+<? $categories = $this->dropdown_menu->get_all_categories(); 
+//echo"<pre>";print_r($categories);
+
+?>
+
 <nav class="eleven columns" id="topmenu">
 
 <?php if($this->Customer_model->is_logged_in(false, false)):?>
@@ -101,6 +105,7 @@ experience this site.
 			 		
 	 		
         </li>
+        <?php //print_r($this->top_page);exit;?>
 		<?php foreach($this->pages as $menu_page):?>
         <li class="menu-blog">
 			<span class="menu-item-wrap">
@@ -110,7 +115,10 @@ experience this site.
 					<span class="arrow">&nbsp;</span><span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/!.png");?>);'></span>
 					</a>
 					<?php else:?>
-					<a style='background-color:#cecece; background-size:cover; background-image:none;' href="<?php echo site_url($menu_page->slug);?>"><?php echo $menu_page->menu_title;?></a>
+					<a style='background-color:#cecece; background-size:cover; background-image:none;' href="<?php echo site_url($menu_page->slug);?>"><?php echo $menu_page->menu_title;?>
+                    <?php //echo $menu_page->image;?>
+                     <span class='tile-icon' style='background-image:url(<?php echo base_url('uploads/images/full/'.$menu_page->image);?>)'></span>
+                    </a>
 					<?php endif;?>
 			</span>           
         </li>
@@ -239,7 +247,7 @@ experience this site.
         <?php if($this->Tutor_model->is_logged_in(false, false)):?>
         <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
         <?php elseif($this->Customer_model->is_logged_in(false, false)):?>
-         <a href="<?php echo  site_url('secure/my_account');?>" style="color:red;">Dashboard</a>
+         <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a>
 		</h1>
         
 			<?php else: ?>

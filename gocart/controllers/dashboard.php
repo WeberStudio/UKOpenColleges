@@ -19,26 +19,46 @@ class dashboard extends Front_Controller {
 	
 	function index()
 		{
-			if($this->Tutor_model->is_logged_in(false, false)):
-			$this->load->view('dashboard');
-			else:
+			if($this->Tutor_model->is_logged_in(false, false))
+			{
+				$this->load->view('dashboard');
+			}
+			elseif($this->Customer_model->is_logged_in(false, false))
+			{
+				$this->load->view('dashboard');
+			}
+			else
+			{
 		 	redirect('cart/');
-		 	endif;
+			}
 		}
 	
 	function course()
 	{
-		if($this->Tutor_model->is_logged_in(false, false)):
+		if($this->Customer_model->is_logged_in(false, false))
+		{
 		$this->load->model('Order_model');
 
 		$this->load->model('customer_model');
 		$customer_details = $this->go_cart->customer();
 		$data['orderss']	= $this->Order_model->get_customer_orders($customer_details['id']);
-		//print_r($data['orderss']);exit;
 		$this->load->view('dashboard_course',$data);
-		else:
+		//print_r($data['orderss']);exit;
+		}
+		else if($this->Tutor_model->is_logged_in(false, false))
+		{
+		$this->load->model('Order_model');
+		$this->load->model('tutor_model');
+		$customer_details = $this->go_cart->customer();
+		$data['orderss']	= $this->Order_model->get_customer_orders($customer_details['tutor_id']);
+        $this->load->view('dashboard_course',$data);
+		}
+		else
+		{
 		redirect('cart/');
-		endif;
+		}
+		
+		
 	}
 	
      /*********************************************************/

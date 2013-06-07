@@ -42,7 +42,8 @@ class Cart extends Front_Controller {
 
 		$data['homepage']			= true;
 
-        $data['allProduct']         = $this->Product_model->get_products_catogery_wise();    
+        $data['allProduct']         = $this->Product_model->get_products_catogery_wise();
+		  
 
 	   // echo '<pre>';print_r($data['allProduct']);
 
@@ -86,8 +87,7 @@ class Cart extends Front_Controller {
 	{
 
 		//if there is no page id provided redirect to the homepage.
-
-		$data['page']	= $this->Page_model->get_page($id);
+		$data['page']		= $this->Page_model->get_page($id);
 		if(!$data['page'])
 		{
 			show_404();

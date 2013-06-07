@@ -40,21 +40,38 @@ class Pages extends Admin_Controller
 	********************************************************************/
 	function form($id = false)
 	{
+		
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		
 		//set the default values
-		$data['pages']		= '';
-		$data['id']			= '';
-		$data['title']		= '';
-		$data['menu_title']	= '';
-		$data['slug']		= '';
-		$data['sequence']	= 0;
-		$data['parent_id']	= 0;
-		$data['content']	= '';
-		$data['seo_title']	= '';
-		$data['meta']		= '';
+		$data['pages']			= '';
+		$data['id']				= '';
+		$data['title']			= '';
+		$data['menu_title']		= '';
+		$data['old_slug']		= '';
+		$data['slug']			= '';
+		$data['sequence']		= 0;
+		$data['parent_id']		= 0;
+		$data['content']		= '';
+		$data['image']			= '';
+		$data['seo_title']		= '';
+		$data['meta']			= '';
+		$data['meta_key']		= '';
+		
+		
+		$config['upload_path']		= 'uploads/images/full';
+		$config['allowed_types']	= 'gif|jpg|png';
+		$config['max_size']			= $this->config->item('size_limit');
+		$config['max_width']		= '1024';
+		$config['max_height']		= '768';
+		//$config['file_name'] 		= "thumb_";
+		$config['overwrite']		= true;
+		$config['remove_spaces']	= true;
+		$config['encrypt_name']		= true;
+		$this->load->library('upload', $config);  
+		
 		
 		$data['page_title']	= lang('page_form');
 		$data['pages']		= $this->Page_model->get_pages();
@@ -79,20 +96,24 @@ class Pages extends Admin_Controller
 			$data['menu_title']		= $page->menu_title;
 			$data['sequence']		= $page->sequence;
 			$data['content']		= $page->content;
+			$data['image']			= $page->image;
 			$data['seo_title']		= $page->seo_title;
 			$data['meta']			= $page->meta;
+			$data['meta_key']		= $page->meta_key;
+			$data['old_slug']		= $page->old_route;
 			$data['slug']			= $page->slug;
 		}
 		
 		$this->form_validation->set_rules('title', 'lang:title', 'trim|required');
 		$this->form_validation->set_rules('menu_title', 'lang:menu_title', 'trim');
+		$this->form_validation->set_rules('old_slug', 'old_slug', 'trim');
 		$this->form_validation->set_rules('slug', 'lang:slug', 'trim');
 		$this->form_validation->set_rules('seo_title', 'lang:seo_title', 'trim');
 		$this->form_validation->set_rules('meta', 'lang:meta', 'trim');
 		$this->form_validation->set_rules('sequence', 'lang:sequence', 'trim|integer');
 		$this->form_validation->set_rules('parent_id', 'lang:parent_id', 'trim|integer');
 		$this->form_validation->set_rules('content', 'lang:content', 'trim');
-		
+		$this->form_validation->set_rules('meta_key', 'meta_key', 'trim');
 		// Validate the form
 		if($this->form_validation->run() == false)
 		{
@@ -107,7 +128,7 @@ class Pages extends Admin_Controller
 			
 			//first check the slug field
 			$slug = $this->input->post('slug');
-			
+			$old_slug	= $this->input->post('old_slug');
 			//if it's empty assign the name field
 			if(empty($slug) || $slug=='')
 			{
@@ -125,24 +146,43 @@ class Pages extends Admin_Controller
 			}
 			else
 			{
-				$slug			= $this->Routes_model->validate_slug($slug);
-				$route['slug']	= $slug;	
+				$slug					= $this->Routes_model->validate_slug($slug);
+				$route['slug']			= $slug;
+				$route['old_route']		= $old_slug;	
 				$route_id		= $this->Routes_model->save($route);
 			}
-			
-			
+			//==== start image uplode section=====\\
 			$save = array();
-			$save['id']			= $id;
-			$save['parent_id']	= $this->input->post('parent_id');
-			$save['title']		= $this->input->post('title');
-			$save['menu_title']	= $this->input->post('menu_title'); 
-			$save['sequence']	= $this->input->post('sequence');
-			$save['content']	= $this->input->post('content');
-			$save['seo_title']	= $this->input->post('seo_title');
-			$save['meta']		= $this->input->post('meta');
-			$save['route_id']	= $route_id;
-			$save['slug']		= $slug;
+			$uploaded	= $this->upload->do_upload('image');
 			
+			if($uploaded != ""){
+			if($uploaded == "")
+			{
+				$error	= $this->upload->display_errors();
+				echo $error;
+				
+			}
+			if($uploaded != "")
+			{
+				$image			= $this->upload->data();
+				$save['image']			= $image['file_name'];
+			}
+			}
+			//==== end image uplode section=====\\
+			
+			
+			$save['id']				= $id;
+			$save['parent_id']		= $this->input->post('parent_id');
+			$save['title']			= $this->input->post('title');
+			$save['menu_title']		= $this->input->post('menu_title'); 
+			$save['sequence']		= $this->input->post('sequence');
+			$save['content']		= $this->input->post('content');
+			$save['seo_title']		= $this->input->post('seo_title');
+			$save['meta']			= $this->input->post('meta');
+			$save['route_id']		= $route_id;
+			$save['slug']			= $slug;
+			$save['old_route']		= $old_slug;
+			$save['meta_key']		= $this->input->post('meta_key');
 			//set the menu title to the page title if if is empty
 			if ($save['menu_title'] == '')
 			{
@@ -153,8 +193,9 @@ class Pages extends Admin_Controller
 			$page_id	= $this->Page_model->save($save);
 			
 			//save the route
-			$route['id']	= $route_id;
-			$route['slug']	= $slug;
+			$route['id']			= $route_id;
+			$route['slug']			= $slug;
+			$route['old_route']		= $old_slug;
 			$route['route']	= 'cart/page/'.$page_id;
 			
 			$this->Routes_model->save($route);
@@ -260,4 +301,100 @@ class Pages extends Admin_Controller
 		
 		redirect($this->config->item('admin_folder').'/pages');
 	}
+	
+	//========== start ====this is for froentend home page text =========//
+	function page_text()
+	{
+		$data['pages']		= '';
+		$this->load->helper('form');
+		$data['page_title']	= lang('pages');
+		$data['pages']		= $this->Page_model->get_page_texts();
+		//print_r($this->Page_model->get_page_text()); exit;
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/page_text',$data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+	}
+	function page_text_form($id = false)
+	{
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+	
+		
+		$data['id']			= '';
+		$data['title']		= '';
+		$data['content']	= '';
+		$data['image']		= '';
+		
+		$config['upload_path']		= 'uploads/images/full';
+		$config['allowed_types']	= 'gif|jpg|png';
+		$config['max_size']			= $this->config->item('size_limit');
+		$config['max_width']		= '1024';
+		$config['max_height']		= '768';
+		//$config['file_name'] 		= "thumb_";
+		$config['overwrite']		= true;
+		$config['remove_spaces']	= true;
+		$config['encrypt_name']		= true;
+		$this->load->library('upload', $config);
+		
+		if($id){
+			
+		$page		= $this->Page_model->get_page_text($id);
+		if($page == "")
+		{
+			echo "Your Record not found";exit;
+		}
+		$data['id']				= $page->id;
+		$data['title']			= $page->title;
+		$data['content']		= $page->content;
+		$data['image']			= $page->image;
+		}
+		$this->form_validation->set_rules('title', 'lang:title', 'trim|required');
+		$this->form_validation->set_rules('content', 'lang:content', 'trim|required');
+		
+		if($this->form_validation->run() == false)
+		{
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/page_text_form',$data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+		}
+		
+		else
+		{
+			$uploaded	= $this->upload->do_upload('image');
+			
+			if($uploaded != "")
+			{
+			if($uploaded == "")
+			{
+				$error	= $this->upload->display_errors();
+				echo $error;
+				
+			}
+			if($uploaded != "")
+			{
+				$image			= $this->upload->data();
+				$save['image']	= $image['file_name'];
+			}
+			}
+			$save['id']			= $id;
+			$save['title']		= $this->input->post('title');
+			$save['content']	= $this->input->post('content');
+			$page_id	= $this->Page_model->save_text($save);
+			redirect($this->config->item('admin_folder').'/pages/page_text');
+		}
+	}
+	
+	
+	function page_text_delete($id)
+	{
+		if($id!="")
+		{
+		$this->Page_model->delete_page_text($id);
+		redirect($this->config->item('admin_folder').'/pages/page_text');
+		}
+	}
+	//========== end ====this is for froentend home page text =========//
 }	

@@ -74,13 +74,13 @@ function showStuff() {
 <div class="row">
   <div id="content" class="fifteen columns">
     <p class="woocommerce_info">Already registered? <a href="" class="" onclick="return toggle()">Click here to login</a></p>
-    <form style="display:none;" id="obj" method="post" class="login">
+    <form style="display:none;" id="obj" method="post" class="login" action="<?=base_url()?>secure/login">
       <p>If you have shopped with us before, please enter your details in the
         boxes below. If you are a new customer please proceed to the Billing 
         &amp; Shipping section.</p>
       <p class="form-row form-row-first">
         <label for="username">Username or email <span class="required">*</span></label>
-        <input class="input-text" name="username" id="username" type="text">
+        <input class="input-text" name="email" id="username" type="text">
       </p>
       <p class="form-row form-row-last">
         <label for="password">Password <span class="required">*</span></label>
@@ -88,11 +88,11 @@ function showStuff() {
       </p>
       <div class="clear"></div>
       <p class="form-row">
-        <input id="_n" name="_n" value="23b8c2c5f1" type="hidden">
-        <input name="_wp_http_referer" value="/onetouch/checkout/" type="hidden">
-        <input class="button" name="login" value="Login" type="submit">
-        <input name="redirect" value="http://theme.crumina.net/onetouch/checkout/" type="hidden">
-        <a class="lost_password" href="http://theme.crumina.net/onetouch/wp-login.php?action=lostpassword&amp;redirect_to=http://theme.crumina.net/onetouch">Lost Password?</a> </p>
+        <input id="_n" name="_n" value="" type="hidden">
+        <input name="_wp_http_referer" value="" type="hidden">
+        <input class="button" name="submitted" value="Login" type="submit">
+        <!--<input name="redirect" value="" type="hidden">-->
+        <a class="lost_password" href="<?php echo site_url('secure/forgot_password')?>">Lost Password?</a> </p>
       <div class="clear"></div>
     </form>
     <?php echo form_open('secure/register'); ?>
@@ -126,12 +126,15 @@ function showStuff() {
           <label for="billing_postcode" class=""><?php echo lang('address_postcode');?> <abbr class="required" title="required">*</abbr> </label>
           <?php echo form_input($f_zip);?> </p>
         <div class="clear"></div>
+        
         <p class="form-row form-row-first" id="billing_city_field">
           <label for="billing_city" class=""><?php echo lang('address_country');?><abbr class="required" title="required">*</abbr> </label>
           <?php echo form_dropdown('country_id', $countries_menu, set_value('country_id', $country_id), 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?> </p>
+          
         <p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
           <label for="billing_postcode" class=""><?php echo lang('address_state');?><abbr class="required" title="required">*</abbr> </label>
           <?php echo form_dropdown('zone_id', $zones_menu, set_value('zone_id', $zone_id), 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?> </p>
+          
         <div class="clear"></div>
         <p class="form-row form-row-first" id="billing_city_field">
           <label for="billing_city" class=""><?php echo lang('account_phone');?><abbr class="required" title="required">*</abbr> </label>

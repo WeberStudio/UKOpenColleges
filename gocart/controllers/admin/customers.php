@@ -98,6 +98,8 @@ class Customers extends Admin_Controller {
 		$this->load->library('form_validation');
 		
 		$data['page_title']		= lang('customer_form');
+		$data['zones_menu']	= $this->Location_model->get_zones_menu('223');
+		$data['countries_menu']	= $this->Location_model->get_countries_menu();
 		
 		//default values are empty if the customer is new
 		$data['id']					= '';
@@ -146,9 +148,15 @@ class Customers extends Admin_Controller {
 			$data['lastname']			= $customer->lastname;
 			$data['email']				= $customer->email;
 			$data['phone']				= $customer->phone;
+			$data['zip_code']			= $customer->post_code;
+			$data['street_address']		= $customer->address_street;
+			$data['address_line_op']	= $customer->address_line;
+			$data['city']				= $customer->city;
 			$data['company']			= $customer->company;
 			$data['active']				= $customer->active;
 			$data['email_subscribe']	= $customer->email_subscribe;
+			$data['country']			= $customer->country;
+			$data['state']				= $customer->state;
 			
 		}
 		
@@ -157,7 +165,7 @@ class Customers extends Admin_Controller {
 		$this->form_validation->set_rules('email', 'lang:email', 'trim|required|valid_email|max_length[128]|callback_check_email');
 		$this->form_validation->set_rules('phone', 'lang:phone', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('company', 'lang:company', 'trim|max_length[128]');
-		$this->form_validation->set_rules('active', 'lang:active');
+		//$this->form_validation->set_rules('active', 'lang:active');
 		//$this->form_validation->set_rules('group_id', 'group_id', 'numeric');
 		$this->form_validation->set_rules('email_subscribe', 'email_subscribe', 'numeric|max_length[1]');
 		
