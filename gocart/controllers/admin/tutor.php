@@ -36,6 +36,7 @@ class tutor extends Admin_Controller {
 		$this->load->model('Product_model');
 		$this->load->model('Routes_model');
 		$this->load->model('Forum_model');
+		$this->load->model('location_model');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->lang->load('tutor');
@@ -106,6 +107,8 @@ class tutor extends Admin_Controller {
 		$this->load->library('upload', $config);		
 		/*** End Image Upload Config******/
 				
+		$data['zones_menu']	= $this->Location_model->get_zones_menu('223');
+		$data['countries_menu']	= $this->Location_model->get_countries_menu();
 		//default values are empty if the customer is new
 		$data['id']					= '';
 		$data['group_id']			= '';
@@ -180,13 +183,19 @@ class tutor extends Admin_Controller {
 			$data['lastname']			= $tutor->lastname;
 			$data['email']				= $tutor->email;
 			$data['phone']				= $tutor->phone;
+			$data['city']				= $tutor->city;
+			$data['zip_code']			= $tutor->zip_code;
+			$data['telephone']			= $tutor->telephone;
+			$data['address_line_op']	= $tutor->address_line_op;
+			$data['street_address']		= $tutor->street_address;
 			$data['description']		= $tutor->short_description;
 			$data['comments']			= $tutor->comments;
 			$data['active']				= $tutor->status;
 			$data['email_subscribe']	= $tutor->email_subscribe;	
 			$data['avatar']				= $tutor->avatar;	
 			$data['extra_info']			= $tutor->extra_info;
-			
+			$data['country']			= $tutor->country;
+			$data['state']				= $tutor->state;
 			if(!$this->input->post('submit'))
 			{
 				$data['categories']		= $tutor->categories;
@@ -372,12 +381,12 @@ class tutor extends Admin_Controller {
 	{
 		if ($id)
 		{	
-			$customer	= $this->Tutor_model->get_tutor($id);
+			$tutor	= $this->Tutor_model->get_tutor($id);
 			//if the tutor does not exist, redirect them to the customer list with an error
-			if (!$customer)
+			if (!$tutor)
 			{
 				$this->session->set_flashdata('error', lang('error_not_found'));
-				redirect($this->config->item('admin_folder').'/tutor_listing');
+				redirect($this->config->item('admin_folder').'/tutor');
 			}
 			else
 			{
@@ -385,14 +394,14 @@ class tutor extends Admin_Controller {
 				$delete	= $this->Tutor_model->delete($id);
 				
 				$this->session->set_flashdata('message', lang('message_customer_deleted'));
-				redirect($this->config->item('admin_folder').'/tutor_listing');
+				redirect($this->config->item('admin_folder').'/tutor');
 			}
 		}
 		else
 		{
 			//if they do not provide an id send them to the customer list page with an error
 			$this->session->set_flashdata('error', lang('error_not_found'));
-			redirect($this->config->item('admin_folder').'/tutor_listing');
+			redirect($this->config->item('admin_folder').'/tutor');
 		}
 	}
 	

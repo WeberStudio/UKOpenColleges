@@ -8,9 +8,12 @@
             <div class = "dragger">
               <div class="grid">
                 <div class = "gr-box">
-                  <?php  
+
+                
+                  <?php
 				  $count = 0;
 				  foreach($this->categories as $cat_info){
+				 
 				  $count = $count + 1;
 				  if($count%2==0)
 				  {

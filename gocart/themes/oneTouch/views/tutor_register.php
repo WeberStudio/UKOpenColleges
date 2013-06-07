@@ -2,8 +2,7 @@
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
           <?php //include('leftPanel.php'); ?>
-<!--        <a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>
--->		
+		
         <div id="body-wrapper" >		
             <div id="body-wrapper-padding">			
                 <!--[if lt IE 7]>
@@ -218,7 +217,7 @@ function showStuff() {
 				<p class="form-row form-row-first" id="billing_city_field">
 					<label for="billing_city" class=""><?php echo lang('address_country');?><abbr class="required" title="required">*</abbr>
 					</label>
-					<?php echo form_dropdown('country', $countries_menu, set_value('country_id', $country_id), 'id="f_country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+					<?php echo form_dropdown('country', $countries_menu, set_value('country_id', $country_id), 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 				</p>
 				<p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
 					<label for="billing_postcode" class=""><?php echo lang('address_state');?><abbr class="required" title="required">*</abbr>
@@ -280,11 +279,23 @@ function showStuff() {
     <section id="shopping_cart-2" class="widget-2 widget widget_shopping_cart">
       
     </section>
-  
+    </div>
+  </div>
 </div>
 </div>
 <!-----main content section end----->
-  <script type="text/javascript">
+<script type="text/javascript">
+  var j = jQuery.noConflict();
+j(function(){
+	j('#country_id').change(function(){
+			j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
+			  j('#f_zone_id').html(data);
+			});
+			
+		});
+});
+</script>
+  <!--<script type="text/javascript">
 $(function(){
 	$('#f_country_id').change(function(){
 			$.post('<?php echo site_url('locations/get_zone_menu');?>',{id:$('#f_country_id').val()}, function(data) {
@@ -318,16 +329,17 @@ function save_address()
 			}
 		});
 }
-</script>
+</script>-->
  
 
                
                <!--===========inner content start========-->
             </div>
         </div>
+        
         <?php include_once('footer.php'); ?> 
         
        
-    </body>
+    
 </html>
 

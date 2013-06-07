@@ -2,7 +2,7 @@
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
         <script> var customStyleImgUrl = "images/custom-slider-img";</script>
           <?php //include('leftPanel.php'); ?>
-        <!--<a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>-->
+        
 		
         <div id="body-wrapper" >		
             <div id="body-wrapper-padding">			
@@ -15,9 +15,11 @@
                 <?php include_once('content_login.php'); ?> 
             </div>
         </div>
+        </div>
+        </div>
         <?php include_once('footer.php'); ?> 
         
        
-    </body>
+
 </html>
 

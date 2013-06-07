@@ -62,6 +62,11 @@
                         <div class="tab-pane fade"id="attributes_tab">
                             
                             <fieldset>
+                            	<label for="slug"><?php echo lang('old_slug');?> </label>
+                                <?php
+                                $data	= array('name'=>'old_slug', 'value'=>set_value('old_slug', $old_slug), 'class'=>'span8');
+                                echo form_input($data);
+                                ?>
                                 <label for="slug"><?php echo lang('slug');?> </label>
                                 <?php
                                 $data	= array('name'=>'slug', 'value'=>set_value('slug', $slug), 'class'=>'span8');
@@ -125,12 +130,17 @@
                                 echo form_input($data);
                                 ?>
                                 
-                                <label><?php echo lang('meta');?></label> 
+                                <label><?php echo lang('meta_des');?></label> 
                                 <?php
                                 $data	= array('rows'=>3, 'name'=>'meta', 'value'=>set_value('meta', html_entity_decode($meta)), 'class'=>'span12');
                                 echo form_textarea($data);
                                 ?>
-                                <p class="help-block"><?php echo lang('meta_data_description');?></p>
+                                  <label><?php echo lang('meta_key');?></label> 
+                                <?php
+                                $data	= array('rows'=>3, 'name'=>'meta_key', 'value'=>set_value('meta_key', html_entity_decode($meta_key)), 'class'=>'span12');
+                                echo form_textarea($data);
+                                ?>
+                               <i>ex. &lt;meta name="description" content="comma Separated Keywords" /&gt;</i>
                             </fieldset>
                         </div>
                     </div>

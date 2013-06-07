@@ -46,17 +46,19 @@ class Pages extends Admin_Controller
 		$this->load->library('form_validation');
 		
 		//set the default values
-		$data['pages']		= '';
-		$data['id']			= '';
-		$data['title']		= '';
-		$data['menu_title']	= '';
-		$data['slug']		= '';
-		$data['sequence']	= 0;
-		$data['parent_id']	= 0;
-		$data['content']	= '';
-		$data['image']		= '';
-		$data['seo_title']	= '';
-		$data['meta']		= '';
+		$data['pages']			= '';
+		$data['id']				= '';
+		$data['title']			= '';
+		$data['menu_title']		= '';
+		$data['old_slug']		= '';
+		$data['slug']			= '';
+		$data['sequence']		= 0;
+		$data['parent_id']		= 0;
+		$data['content']		= '';
+		$data['image']			= '';
+		$data['seo_title']		= '';
+		$data['meta']			= '';
+		$data['meta_key']		= '';
 		
 		
 		$config['upload_path']		= 'uploads/images/full';
@@ -97,18 +99,21 @@ class Pages extends Admin_Controller
 			$data['image']			= $page->image;
 			$data['seo_title']		= $page->seo_title;
 			$data['meta']			= $page->meta;
+			$data['meta_key']		= $page->meta_key;
+			$data['old_slug']		= $page->old_route;
 			$data['slug']			= $page->slug;
 		}
 		
 		$this->form_validation->set_rules('title', 'lang:title', 'trim|required');
 		$this->form_validation->set_rules('menu_title', 'lang:menu_title', 'trim');
+		$this->form_validation->set_rules('old_slug', 'old_slug', 'trim');
 		$this->form_validation->set_rules('slug', 'lang:slug', 'trim');
 		$this->form_validation->set_rules('seo_title', 'lang:seo_title', 'trim');
 		$this->form_validation->set_rules('meta', 'lang:meta', 'trim');
 		$this->form_validation->set_rules('sequence', 'lang:sequence', 'trim|integer');
 		$this->form_validation->set_rules('parent_id', 'lang:parent_id', 'trim|integer');
 		$this->form_validation->set_rules('content', 'lang:content', 'trim');
-		
+		$this->form_validation->set_rules('meta_key', 'meta_key', 'trim');
 		// Validate the form
 		if($this->form_validation->run() == false)
 		{
@@ -123,7 +128,7 @@ class Pages extends Admin_Controller
 			
 			//first check the slug field
 			$slug = $this->input->post('slug');
-			
+			$old_slug	= $this->input->post('old_slug');
 			//if it's empty assign the name field
 			if(empty($slug) || $slug=='')
 			{
@@ -141,11 +146,13 @@ class Pages extends Admin_Controller
 			}
 			else
 			{
-				$slug			= $this->Routes_model->validate_slug($slug);
-				$route['slug']	= $slug;	
+				$slug					= $this->Routes_model->validate_slug($slug);
+				$route['slug']			= $slug;
+				$route['old_route']		= $old_slug;	
 				$route_id		= $this->Routes_model->save($route);
 			}
 			//==== start image uplode section=====\\
+			$save = array();
 			$uploaded	= $this->upload->do_upload('image');
 			
 			if($uploaded != ""){
@@ -158,22 +165,24 @@ class Pages extends Admin_Controller
 			if($uploaded != "")
 			{
 				$image			= $this->upload->data();
+				$save['image']			= $image['file_name'];
 			}
 			}
 			//==== end image uplode section=====\\
-			$save = array();
-			$save['image']		= $image['file_name'];
-			$save['id']			= $id;
-			$save['parent_id']	= $this->input->post('parent_id');
-			$save['title']		= $this->input->post('title');
-			$save['menu_title']	= $this->input->post('menu_title'); 
-			$save['sequence']	= $this->input->post('sequence');
-			$save['content']	= $this->input->post('content');
-			$save['seo_title']	= $this->input->post('seo_title');
-			$save['meta']		= $this->input->post('meta');
-			$save['route_id']	= $route_id;
-			$save['slug']		= $slug;
 			
+			
+			$save['id']				= $id;
+			$save['parent_id']		= $this->input->post('parent_id');
+			$save['title']			= $this->input->post('title');
+			$save['menu_title']		= $this->input->post('menu_title'); 
+			$save['sequence']		= $this->input->post('sequence');
+			$save['content']		= $this->input->post('content');
+			$save['seo_title']		= $this->input->post('seo_title');
+			$save['meta']			= $this->input->post('meta');
+			$save['route_id']		= $route_id;
+			$save['slug']			= $slug;
+			$save['old_route']		= $old_slug;
+			$save['meta_key']		= $this->input->post('meta_key');
 			//set the menu title to the page title if if is empty
 			if ($save['menu_title'] == '')
 			{
@@ -184,8 +193,9 @@ class Pages extends Admin_Controller
 			$page_id	= $this->Page_model->save($save);
 			
 			//save the route
-			$route['id']	= $route_id;
-			$route['slug']	= $slug;
+			$route['id']			= $route_id;
+			$route['slug']			= $slug;
+			$route['old_route']		= $old_slug;
 			$route['route']	= 'cart/page/'.$page_id;
 			
 			$this->Routes_model->save($route);

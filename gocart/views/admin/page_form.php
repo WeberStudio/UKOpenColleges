@@ -62,6 +62,14 @@
 				 echo form_input($data); ?>
 				</div>
 			</div>
+            <div class="form-row control-group row-fluid">
+				<label class="control-label span1" for="hint-field"><?php echo lang('old_slug');?><span class="help-block"></span></label>
+				<div class="controls span7">
+				 <?php
+				 $data	= array('name'=>'old_slug', 'value'=>set_value('old_slug', $old_slug), 'class'=>'span12');
+				 echo form_input($data); ?>
+				</div>
+			</div>
 			<div class="form-row control-group row-fluid">
 				<label class="control-label span1" for="hint-field"><?php echo lang('slug');?><span class="help-block"></span></label>
 				<div class="controls span7">
@@ -107,19 +115,29 @@
 		<div class="tab-pane fade" id="seo">
 			<div class="form-row control-group row-fluid">
 					<label class="control-label span1" for="hint-field"><?php echo lang('seo_title');?><span class="help-block"></span></label>
-					<div class="controls span7">
+					<div class="controls span8">
 					 <?php
 					 $data	= array('name'=>'seo_title', 'value'=>set_value('seo_title', $seo_title), 'class'=>'span12');
 					 echo form_input($data); ?>
 					</div>
          		</div>
 			<div class="form-row control-group row-fluid">
-				<label class="control-label span1" for="text">Meta Data</label>
-				<div class="controls span7">
+				<label class="control-label span1" for="text"><?php echo lang('meta_des');?></label>
+				<div class="controls span8">
 				  <?php
 				$data	= array('rows'=>'3', 'name'=>'meta', 'value'=>set_value('meta', html_entity_decode($meta)), 'class'=>'span12');
 				echo form_textarea($data);
 				?>
+				 </div>
+		   </div>
+           <div class="form-row control-group row-fluid">
+				<label class="control-label span1" for="text"><?php echo lang('meta_key');?></label>
+				<div class="controls span8">
+				  <?php
+				$data	= array('rows'=>'3', 'name'=>'meta_key', 'value'=>set_value('meta_key', html_entity_decode($meta_key)), 'class'=>'span12');
+				echo form_textarea($data);
+				?>
+                <i>ex. &lt;meta name="description" content="comma Separated Keywords" /&gt;</i>
 				 </div>
 		   </div>
 		</div>

@@ -164,15 +164,7 @@
             ?>
                   </div>
                 </div>
-                <div class="form-row control-group row-fluid">
-                  <label class="control-label span1" for="hint-field"><?php echo lang('state');?><span class="help-block"></span></label>
-                  <div class="controls span7">
-                    <?php
-                    $option = array('1'=>'punjab','2'=>'sind','3'=>'sirhad');
-                    echo form_dropdown('state',$option,set_value('someValue'),'class="chzn-select"','id="default-select"');
-                    ?>
-                  </div>
-                </div>
+                
                 <div class="form-row control-group row-fluid">
                   <label class="control-label span1" for="hint-field"><?php echo lang('postcode');?><span class="help-block"></span></label>
                   <div class="controls span7">
@@ -185,11 +177,20 @@
                 <div class="form-row control-group row-fluid">
                       <label class="control-label span1" for="default-select"><?php echo lang('country');?> </label>
                       <div class="controls span7">
-                      <?php $option = array('pk'=>'pakistan', 'un'=>'United States', 'uk'=>'united kingdom');
-                      echo form_dropdown('name',$option,set_value('someValue'),'class="chzn-select"','id="default-select"');
+                      <?php
+                      echo form_dropdown('country',$countries_menu,set_value('state', $state),'class="chzn-select"','id="country_id"');
                        ?>
                       </div>
                     </div>
+                    <div class="form-row control-group row-fluid">
+                  <label class="control-label span1" for="hint-field"><?php echo lang('state');?><span class="help-block"></span></label>
+                  <div class="controls span7">
+                    <?php
+                   
+                    echo form_dropdown('state',$zones_menu,set_value('country', $country),'class="chzn-select"','id="f_zone_id"');
+                    ?>
+                  </div>
+                </div>
                 <div class="form-row control-group row-fluid">
                   <label class="control-label span1" for="hint-field"><?php echo lang('telephone');?><span class="help-block"></span></label>
                   <div class="controls span7">
@@ -507,6 +508,17 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  var j = jQuery.noConflict();
+j(function(){
+	j('#country_id').change(function(){
+			j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
+			  j('#f_zone_id').html(data);
+			});
+			
+		});
+});
+</script>
 <script>
 counter = <?=$degree_counter?>;
 var $j = jQuery.noConflict();

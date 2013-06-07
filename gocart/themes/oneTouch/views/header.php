@@ -12,7 +12,11 @@ experience this site.
     <a  href="<?=base_url()?>cart/">
         <img src="<?php echo theme_img("custom-slider-img/logouk.png")?>" alt="OneTouch"></a>
 </div>
-<? $categories = $this->dropdown_menu->get_all_categories(); ?>
+<? $categories = $this->dropdown_menu->get_all_categories(); 
+//echo"<pre>";print_r($categories);
+
+?>
+
 <nav class="eleven columns" id="topmenu">
 
 <?php if($this->Customer_model->is_logged_in(false, false)):?>
