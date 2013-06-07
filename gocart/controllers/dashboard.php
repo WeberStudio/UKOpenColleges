@@ -11,7 +11,7 @@ class dashboard extends Front_Controller {
 		
 		$this->load->model('Search_model');
 		$this->load->model('location_model');
-		$this->load->model(array('Customer_model', 'Product_model', 'Tutor_model', 'Forum_model', 'Topic_model', 'Message_Forum_model'));
+		$this->load->model(array('Customer_model', 'Product_model', 'Topic_model', 'Forum_model', 'Topic_model', 'Message_Forum_model'));
 		$this->load->helper(array('formatting'));
 		$this->lang->load('order');
 		
@@ -19,51 +19,124 @@ class dashboard extends Front_Controller {
 	
 	function index()
 		{
-			if($this->Tutor_model->is_logged_in(false, false)):
-			$this->load->view('dashboard');
-			else:
+			if($this->Tutor_model->is_logged_in(false, false))
+			{
+				$this->load->view('dashboard');
+			}
+			elseif($this->Customer_model->is_logged_in(false, false))
+			{
+				$this->load->view('dashboard');
+			}
+			else
+			{
 		 	redirect('cart/');
-		 	endif;
+			}
 		}
 	
 	function course()
 	{
-		if($this->Tutor_model->is_logged_in(false, false)):
+		if($this->Customer_model->is_logged_in(false, false))
+		{
 		$this->load->model('Order_model');
 
 		$this->load->model('customer_model');
 		$customer_details = $this->go_cart->customer();
-		$data['orderss']	= $this->Order_model->get_customer_orders($customer_details['tutor_id']);
-		//print_r($data['orderss']);exit;
+		$data['orderss']	= $this->Order_model->get_customer_orders($customer_details['id']);
 		$this->load->view('dashboard_course',$data);
-		else:
+		//print_r($data['orderss']);exit;
+		}
+		else if($this->Tutor_model->is_logged_in(false, false))
+		{
+		$this->load->model('Order_model');
+		$this->load->model('tutor_model');
+		$customer_details = $this->go_cart->customer();
+		$data['orderss']	= $this->Order_model->get_customer_orders($customer_details['tutor_id']);
+        $this->load->view('dashboard_course',$data);
+		}
+		else
+		{
 		redirect('cart/');
-		endif;
+		}
+		
+		
 	}
 	
+     /*********************************************************/
+    
+    // Forum Area Start
+    
+    /********************************************************/
 	
 	function fourm()
 	{
 		
-		if($this->Tutor_model->is_logged_in(false, false)):
-
-
-		$customer_details 	= $this->go_cart->customer();
-		$data['forums']		= $this->Forum_model->get_forum_customer($customer_details['tutor_id']);
-		//echo "<pre>";print_r($data['forums']); exit;
-		$this->load->view('dashboard_fourm',$data);
-		else:
-		redirect('cart/');
-		endif;
+		//DebugBreak()   ;
+        if($this->Tutor_model->is_logged_in(false, false))
+        {
+            
+            $customer_details     = $this->go_cart->customer();
+            $data['forums']       = $this->Forum_model->get_forum_for_tutors($customer_details['tutor_id']);        
+            $this->load->view('dashboard_fourm',$data);
+        }
+        else if($this->Customer_model->is_logged_in(false, false))
+        {              
+            $customer_details     = $this->go_cart->customer();
+            $data['forums']       = $this->Forum_model->get_forum_customer($customer_details['id']);        
+            $this->load->view('dashboard_fourm',$data);
+        }
+        else
+        {               
+            redirect('cart/');     
+        }		    	
 	}
 	
+    /*********************************************************/
+    
+     // Forum Area End   
+    
+    // Topic Area Start
+    
+    /********************************************************/
+    
+    function topic_view($forum_id)
+    {
+        $data['form_id']     = $forum_id;    
+        $data['topics']        = $this->Topic_model->get_topic_by_form_id($forum_id);    
+        //echo "<pre>"; print_r($data['topics']);exit;
+         $this->load->view('topics_listing',$data);
+    }
+    
+    function topic_delete($forum_id, $topic_id)
+    {
+        $data['topic_id'] = $this->Topic_model->topic_delete($topic_id);
+        redirect($this->config->item('admin_folder').'/forums/topic_view/'.$forum_id);
+    }
+    
+    /*********************************************************/
+    
+    // Topic Area End
+    
+    /********************************************************/
+    
+    
 	function file_manager()
 	{
-		if($this->Tutor_model->is_logged_in(false, false)):
-		$this->load->view('dashboard_file_manager');
-		else:
-		redirect('cart/');
-		endif;
+		//$customer_details             = $this->go_cart->customer();
+        //$data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('customer_id', $customer_details['id']);
+        //print_r($data['file_directory']);
+        
+        //$this->session->set_userdata('file_data',$data['file_directory']);
+        //DebugBreak();        
+        
+        if($this->Tutor_model->is_logged_in(false, false)){
+            $this->load->view('dashboard_file_manager');    
+        }else if($this->Customer_model->is_logged_in(false, false)){
+            $this->load->view('dashboard_file_manager');            
+        }else{
+            redirect('cart/');    
+        }
+		
+        
 	}
 	
 	function my_profile($offset=0)
@@ -192,10 +265,18 @@ class dashboard extends Front_Controller {
 		endif;
 	}
 	
-	function request_for_tutor($customer_id, $course_id)
-	{
-		
-	}
+	function request_for_tutor($customer_id, $product_id)
+    {
+        //echo $customer_id.'---------'.$course_id; exit;
+        if(!empty($customer_id) && !empty($product_id))
+        {
+            
+            $data = array('customer_id' => $customer_id, 'subject_id' => $product_id, 'request_status' => 'Requested');            
+            $result = $this->Order_model->request_for_tutor($data);
+        }
+        
+        redirect(base_url().'dashboard/course');
+    }
 	
 	
 }

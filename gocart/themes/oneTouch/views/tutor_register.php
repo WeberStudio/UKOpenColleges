@@ -91,14 +91,14 @@ function showStuff() {
 <div class="row">
 <div id="content" class="fifteen columns">
 <p class="woocommerce_info">Already registered? <a href="" class="" onClick="return toggle()">Click here to login</a></p>
-<form style="display:none;" id="obj" method="post" class="login">
+<form style="display:none;" id="obj" method="post" class="login" action="<?=base_url()?>tutor_login/login">
 	<p>If you have shopped with us before, please enter your details in the
  boxes below. If you are a new customer please proceed to the Billing 
 &amp; Shipping section.</p>
 
 	<p class="form-row form-row-first">
 		<label for="username">Username or email <span class="required">*</span></label>
-		<input class="input-text" name="username" id="username" type="text">
+		<input class="input-text" name="email" id="username" type="text">
 	</p>
 	<p class="form-row form-row-last">
 		<label for="password">Password <span class="required">*</span></label>
@@ -107,9 +107,10 @@ function showStuff() {
 	<div class="clear"></div>
 
 	<p class="form-row">
-		<input id="_n" name="_n" value="23b8c2c5f1" type="hidden"><input name="_wp_http_referer" value="/onetouch/checkout/" type="hidden">		<input class="button" name="login" value="Login" type="submit">
-		<input name="redirect" value="http://theme.crumina.net/onetouch/checkout/" type="hidden">
-		<a class="lost_password" href="http://theme.crumina.net/onetouch/wp-login.php?action=lostpassword&amp;redirect_to=http://theme.crumina.net/onetouch">Lost Password?</a>
+		<input id="_n" name="_n" value="" type="hidden"><input name="_wp_http_referer" value="" type="hidden">	
+        	<input class="button" name="submitted" value="Login" type="submit">
+		<input name="redirect" value="" type="hidden">
+		<a class="lost_password" href="<?php echo site_url('secure/forgot_password')?>">Lost Password?</a>
 	</p>
 
 	<div class="clear"></div>

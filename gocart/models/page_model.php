@@ -10,7 +10,21 @@ Class Page_model extends CI_Model
 		$this->db->order_by('sequence', 'ASC');
 		$this->db->where('parent_id', $parent);
 		$result = $this->db->get('pages')->result();
+		$return	= array();
+		foreach($result as $page)
+		{
+			$return[$page->id]				= $page;
+			$return[$page->id]->children	= $this->get_pages($page->id);
+		}
 		
+		return $return;
+	}
+	function get_pages_top()
+	{
+		$this->db->order_by('id', 'ASC');
+		$this->db->limit(4);
+		$result = $this->db->get('pages')->result();
+		//echo $this->db->last_query();exit;
 		$return	= array();
 		foreach($result as $page)
 		{
@@ -68,4 +82,40 @@ Class Page_model extends CI_Model
 		
 		return $result;
 	}
+	//========== start ====this is for froentend home page text =========//
+	function save_text($data)
+	{
+		if($data['id'])
+		{
+			
+			$this->db->where('id', $data['id']);
+			$this->db->update('page_text', $data);
+			return $data['id'];
+		}
+		else
+		{
+			$this->db->insert('page_text', $data);
+			return $this->db->insert_id();
+		}
+	}
+		function get_page_texts()
+	{
+		$result = $this->db->get('page_text')->result();
+		return $result;
+	}
+	function get_page_text($id)
+	{
+		$this->db->where('id', $id);
+		$result = $this->db->get('page_text')->row();
+		
+		return $result;
+	}
+	function delete_page_text($id)
+	{
+		//delete the page
+		$this->db->where('id', $id);
+		$this->db->delete('page_text');
+	
+	}
+	//========== end ====this is for froentend home page text =========//
 }

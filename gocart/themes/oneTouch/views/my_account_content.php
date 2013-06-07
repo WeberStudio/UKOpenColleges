@@ -37,7 +37,7 @@ $address_form_prefix ="";
           <!-- End .legend -->
          <div class="row">
 		<div id="content" class="fifteen columns">
-		<?php echo form_open(); ?>
+		<?php echo form_open_multipart(base_url().'secure/my_account/0/'.$customer['id']); ?>
 		
 		<div class="col-1">
 				<h3>My Account</h3>
@@ -93,9 +93,7 @@ $address_form_prefix ="";
 						<?php echo form_dropdown('zone_id',$zone_menu, @$customer['state'], 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 						
 					</p>
-					<div class="clear"></div>
-				
-					
+					<div class="clear"></div>				
 					<p class="form-row form-row-first" id="billing_city_field">
 						<label for="billing_city" class=""><?php echo lang('account_phone');?><abbr class="required" title="required">*</abbr>
 						</label>
@@ -105,6 +103,15 @@ $address_form_prefix ="";
 						<label for="billing_postcode" class=""><?php echo lang('account_email');?> <abbr class="required" title="required">*</abbr>
 						</label>
 						<?php echo form_input($email);?>
+					</p>
+                     <h3>About You</h3>
+                    <p class="form-row " id="billing_company_field">
+                          <label for="billing_postcode" class="">File upload</label>
+                           <input type="file" class="spa1n6 fileinput" id="search-input" name="image">
+                    </p>
+                    <p class="form-row " id="billing_company_field">
+						<label for="billing_company" class="">About</label>
+						<textarea name="about"></textarea>
 					</p>
 					<div class="clear"></div>
 					<input type="submit" value="<?php echo lang('form_submit');?>" class="button"  style="height: 34px; width: 74px;" />
@@ -134,5 +141,8 @@ $address_form_prefix ="";
 				});
 				
 			});
+			j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
+				  j('#f_zone_id').html(data);
+				});
 	});
 </script>

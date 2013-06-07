@@ -36,6 +36,12 @@ Class Topic_model extends CI_Model
 		return $result->row();
 	}
 	
+    function get_topic_by_form_id($id)
+    {
+        $result    = $this->db->get_where('topics', array('forum_id'=>$id, 'topic_status'=>'Yes'));
+        return $result->result();
+    }
+    
 	function save($data)
 	{
 		if($data['topic_id'])

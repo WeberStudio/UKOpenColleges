@@ -334,4 +334,12 @@ Class order_model extends CI_Model
 		return $return;
 	}
 	
+	function request_for_tutor($data)
+	{
+		
+		$this->db->insert('for_tutor_request', $data);
+		return $id = $this->db->insert_id();	
+		
+	}
+	
 }
