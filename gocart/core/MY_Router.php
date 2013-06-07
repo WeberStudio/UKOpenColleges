@@ -1,5 +1,6 @@
 <?php
-
+  require_once( BASEPATH . 'database/DB' . EXT );
+   
 class My_Router extends CI_Router 
 {
 	function __construct()
@@ -11,6 +12,20 @@ class My_Router extends CI_Router
 	//If a route isn't found in the routes config file. then it will scan the database for a matching route.
 	function _parse_routes()
 	{
+       // $this->load->model('Routes_model');
+        $baseURL = $this->config;
+        $url = $this->uri->segments;
+        $db = & DB();
+        $query = $db->query("select * from oc_routes where  old_route = '".$url[0]."'");
+        $results = $query->result();
+        if(!empty($results))
+        {
+            
+          header('Location: '.$baseURL->config['base_url'].$results[0]->slug);
+          exit();  
+        }
+       
+        
 		$segments	= $this->uri->segments;
 
 		// Turn the segment array into a URI string

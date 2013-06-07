@@ -44,7 +44,7 @@ class Cart extends Front_Controller {
 
         $data['allProduct']         = $this->Product_model->get_products_catogery_wise();    
 
-	   // echo '<pre>';print_r($data['allProduct']);
+	   //echo '<pre>';print_r($data['allProduct']);
 
        $this->load->view('index', $data);
 
@@ -320,7 +320,7 @@ class Cart extends Front_Controller {
 	{
 
 		//get the category		
-
+         //  DebugBreak();
 		$data['category'] = $this->Category_model->get_category($id);
 
 		
