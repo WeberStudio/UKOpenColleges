@@ -1,8 +1,6 @@
-<?php include('mainHeader.php'); ?>
-<link rel="stylesheet" href="../assets/css/chosen.css">
-<script type="text/javascript" src="../assets/js/chosen.js"></script>
+<?php include('mainHeader.php'); ?> 
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
-<!--<a href="#"><img id="nominee" src="<?=theme_img("custom-slider-img/cssreel_nomineetag_yellow.png")?>" alt="" /></a>-->
+
 <div id="body-wrapper" >
 <div id="body-wrapper-padding">
 <?php include('header.php'); ?>
@@ -27,13 +25,18 @@ window.location="<?=base_url();?>secure/process_checkout";
 <?php endif;?>
 
 <script type="text/javascript">
-	$(document).ready(function(){
+    var j = jQuery.noConflict();
+	j(document).ready(function(){
 		
 		//if we support placeholder text, remove all the labels
 		if(!supports_placeholder())
 		{
-			$('.placeholder').show();
+			j('.placeholder').show(); 
 		}
+        
+        j('#country_id').change(function(){
+        populate_zone_menu();
+         });    
 		
 	});
 	
@@ -82,18 +85,24 @@ function toggle1() {
 </script>-->
 
 <script type="text/javascript">
-$(document).ready(function() {
-	$('#country_id').change(function(){
-		populate_zone_menu();
-	});	
 
-});
 // context is ship or bill
 function populate_zone_menu(value)
 {
-	$.post('<?php echo site_url('locations/get_zone_menu');?>',{id:$('#country_id').val()}, function(data) {
-		$('#zone_id').html(data);
+	j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
+		j('#zone_id').html(data);
 	});
+}
+
+function show_block()
+{
+     
+      j('#card_info_block').show();
+}
+
+function hide_block()
+{
+    j('#card_info_block').hide();   
 }
 </script>
 <?php /* Only show this javascript if the user is logged in */ ?>
@@ -353,28 +362,29 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 <div id="content" class="fifteen columns">
 <div class="col2-set" id="customer_details">
 <div class="col-1">
-<form>
+
 	<h3>Payment Method</h3>
 	<p><b><i>Please select a payment method for this order.</i></b></p>	
     <p>
-     	<?php
-			$data = array('name'=>'pay_method');
-		 	echo form_radio($data);
-			
-		?>
-        	 <img src="<?php echo theme_img('pay_cards/PayPal_mark');?>"/>
-        	<b>Checkout with PayPal </b>
+	<?php
+		$data = array('name'=>'pay_method', 'checked'=>'checked',  'onClick'=>'hide_block()');
+		echo form_radio($data);
+	?>
+		<img src="<?php echo theme_img('pay_cards/PayPal_mark');?>"/>
+		<b>Checkout with PayPal </b>
+        <input type="button" class="button" name="proceed" onclick ="window.location='<?=base_url()?>checkout/place_order'" value="PayPal">    
      </p>
-     
+	     
      <p>
      <?php
-			$data = array('name'=>'pay_method');
+			$data = array('name'=>'pay_method',  'onClick'=>'show_block()');
 		 	echo form_radio($data);
-	?>
-    	<b>Checkout with PayPal </b>
+	 ?>
+    		<b>Checkout with PayPal </b>
+            
      </p>
-     
-    
+ <form action="<?=base_url()?>checkout/place_order_paypal_pro" method="post">        
+     <div id="card_info_block" style="display: none;">
     <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 120px;">
         <label for="billing_first_name" class="">Cards Accepted: 
         
@@ -382,12 +392,12 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 	</p>
     
 	<p class="form-row form-row-last" id="billing_last_name_field"  style="width: 290px; margin-right: -14px;">
-         <img src="<?php echo theme_img('pay_cards/visa');?>"/>
-         <img src="<?php echo theme_img('pay_cards/mc');?>"/>
-        <img src="<?php echo theme_img('pay_cards/visa_debit');?>"/>
-         <img src="<?php echo theme_img('pay_cards/solo');?>"/>
-          <img src="<?php echo theme_img('pay_cards/maestro');?>"/>
-         <img src="<?php echo theme_img('pay_cards/visa_electron');?>"/>
+		<img src="<?php echo theme_img('pay_cards/visa');?>"/>
+		<img src="<?php echo theme_img('pay_cards/mc');?>"/>
+		<img src="<?php echo theme_img('pay_cards/visa_debit');?>"/>
+		<img src="<?php echo theme_img('pay_cards/solo');?>"/>
+		<img src="<?php echo theme_img('pay_cards/maestro');?>"/>
+		<img src="<?php echo theme_img('pay_cards/visa_electron');?>"/>
 	</p>
 	<div class="clear"></div>
     
@@ -426,7 +436,8 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
       <?php 
 	  		$data = array('id'=>'card_num', 'class'=>'input-text', 'name'=>'card_num',);
 			echo form_input($data)
-	  ?> 
+	  ?>
+     
 	</p>
     
 	<div class="clear"></div>
@@ -460,6 +471,7 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 			echo form_input($data)
 		?>
 	</p>
+    
 	<div class="clear"></div>
     
     
@@ -500,7 +512,8 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 		?>
 	</p>
    <div class="clear"></div>
- <input type="submit" value="<?php echo lang('form_continue');?>" class="btn btn-primary" style="height: 34px; width: 74px;" />     
+ <input type="submit" value="<?php echo lang('form_continue');?>" class="btn btn-primary" style="height: 34px; width: 74px;" />  
+ </div>    
  </form>
  </div>
 </div>

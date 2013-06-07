@@ -1130,4 +1130,3 @@ class Cart extends Front_Controller {
 	}
 
 }
-

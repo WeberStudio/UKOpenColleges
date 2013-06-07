@@ -1136,8 +1136,8 @@ class go_cart {
 		}
 		
 		$customer					= $this->_cart_contents['customer'];
-		$ship						= $customer['ship_address'];
-		$bill						= $customer['bill_address'];
+		/*$ship						= $customer['ship_address'];
+		$bill						= $customer['bill_address'];*/
 		
 		$save['company']			= $customer['company'];
 		$save['firstname']			= $customer['firstname']; 
@@ -1145,7 +1145,7 @@ class go_cart {
 		$save['phone']				= $customer['phone'];
 		$save['email']				= $customer['email'];
 		
-		$save['ship_company']		= $ship['company'];
+		/*$save['ship_company']		= $ship['company'];
 		$save['ship_firstname']		= $ship['firstname'];
 		$save['ship_lastname']		= $ship['lastname'];
 		$save['ship_email']			= $ship['email'];
@@ -1171,16 +1171,16 @@ class go_cart {
 		$save['bill_zone']			= $bill['zone'];
 		$save['bill_zone_id']		= $bill['zone_id'];
 		$save['bill_country']		= $bill['country'];
-		$save['bill_country_id']	= $bill['country_id'];
+		$save['bill_country_id']	= $bill['country_id'];*/
 		
 		//shipping information
-		$save['shipping_method']	= $this->_cart_contents['shipping']['method'];
-		$save['shipping']			= $this->_cart_contents['shipping']['price'];
+		/*$save['shipping_method']	= $this->_cart_contents['shipping']['method'];
+		$save['shipping']			= $this->_cart_contents['shipping']['price'];  */
 		
 		//add in the other charges
 		$save['tax']				= $this->_cart_contents['tax'];
 		//discounts
-		$save['gift_card_discount'] = $this->_cart_contents['gift_card_discount'];
+		//$save['gift_card_discount'] = $this->_cart_contents['gift_card_discount'];
 		$save['coupon_discount']	= $this->_cart_contents['coupon_discount'];
 		$save['subtotal']			= $this->_cart_contents['cart_subtotal'];
 		$save['total']				= $this->_cart_contents['cart_total'];
@@ -1200,8 +1200,8 @@ class go_cart {
 		}
 		
 		//save additional details
-		$save['referral']		= $this->get_additional_detail('referral');
-		$save['shipping_notes']	= $this->get_additional_detail('shipping_notes');
+		//$save['referral']		= $this->get_additional_detail('referral');
+		//$save['shipping_notes']	= $this->get_additional_detail('shipping_notes');
 		
 		//ordered_on datetime stamp
 		$save['ordered_on']			= date('Y-m-d H:i:s');	

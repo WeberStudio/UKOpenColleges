@@ -95,7 +95,7 @@
                                       <input type="button" class="button" name="proceed" onclick ="window.location='<?=base_url()?>cart/allcourses/'" value="Continue to Shopping"> 
 									   <input type="submit" class="button" name="update_cart" value="Update Cart"> 
 									    <input type="button" class="checkout-button button alt" name="proceed" value="Proceed to Checkout →"  onclick='window.location="<?=base_url()?>checkout";'> 
-										<input type="button" class="button" name="proceed" onclick ="window.location='<?=base_url()?>checkout/place_order'" value="PayPal"> 
+										<input type="button" class="button" name="proceed" onclick ="window.location='<?=base_url()?>checkout/place_order'" value="PayPal">     
 
 
                                     <input type="hidden" id="_n" name="_n" value="727f0214be"><input type="hidden" name="_wp_http_referer" value="/onetouch/cart/">            </td>

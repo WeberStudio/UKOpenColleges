@@ -55,7 +55,7 @@ function showStuff() {
             <input class="submitbutton" name="submitted" id="wp-submit" value="Login →" type="submit">
             <a href="<?php echo site_url('secure/forgot_password')?>">Lost password?</a></p>
           <div>
-            <input name="redirect_to" class="redirect_to" value="http://theme.crumina.net/onetouch/my-account/" type="hidden">
+            <input name="redirect_to" class="redirect_to" value="" type="hidden">
             <input name="testcookie" value="1" type="hidden">
             <input name="woocommerce_login" value="1" type="hidden">
             <input name="rememberme" value="forever" type="hidden">
