@@ -27,6 +27,7 @@
 	<?php echo theme_css('options.css', true); ?>
     <?php echo theme_css('menu.css', true); ?>
 	<?php echo theme_css('woocommerce.css', true); ?>
+    <?php echo theme_css('chosen.css', true); ?>    
 	
     <!--add the serach classess-->
     <?php echo theme_css('jquery.fancybox-1.3.1.css?c-v=24739', true); ?>
@@ -47,7 +48,9 @@
     <?php echo theme_js('js/app.js', true);?>
     <?php echo theme_js('js/modernizr.foundation.js', true);?> 
 	<?php echo theme_js('js/simpletabs_1.3.js', true);?>
-   
+    <?php echo theme_js('js/chosen.js', true);?>  
+    
+
     <style>
         #body-wrapper {
             background-attachment:fixed!important;

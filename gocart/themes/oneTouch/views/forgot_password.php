@@ -33,7 +33,7 @@
             <input class="submitbutton" name="submitted" id="wp-submit" value="Send →" type="submit">
             </p>
           <div>
-            <input name="redirect_to" class="redirect_to" value="http://theme.crumina.net/onetouch/my-account/" type="hidden">
+            <input name="redirect_to" class="redirect_to" value="" type="hidden">
             <input name="testcookie" value="1" type="hidden">
             <input name="woocommerce_login" value="1" type="hidden">
             <input name="rememberme" value="forever" type="hidden">

@@ -10,7 +10,8 @@ Class Settings_model extends CI_Model
 	
 	function get_settings($code)
 	{
-		$this->db->where('code', $code);
+		           
+        $this->db->where('code', $code);
 		$result	= $this->db->get('settings');
 		
 		$return	= array();

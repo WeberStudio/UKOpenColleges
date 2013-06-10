@@ -28,6 +28,7 @@ class Admin extends Admin_Controller
 		//load the admin language file in
 		$this->lang->load('admin');
 		$this->current_admin	= $this->session->userdata('admin');
+		$this->load->model(array('location_model'));
 	}
 
 	function index($order_by="firstname", $sort_order="ASC", $page=0, $rows=5)
@@ -118,6 +119,9 @@ class Admin extends Admin_Controller
 		/*** End Image Upload Config******/
 		
 		$data['page_title']		= lang('admin_form');
+		
+		$data['zones_menu']	= $this->Location_model->get_zones_menu('223');
+		$data['countries_menu']	= $this->Location_model->get_countries_menu();
 		
 		//default values are empty if the customer is new
 		$data['id']					= '';

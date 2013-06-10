@@ -57,12 +57,18 @@ $GLOBALS['option_value_count']		= 0;
                     <h1>SEO Information</h1>
                     <div class="form-row control-group row-fluid">
                       <div class="controls span14">
-                        <label for="slug">URL Keyword </label>
+                      <label for="slug">Old Slug </label>
+                        <input type="text" name="old_slug" value="<?=set_value('old_slug', $old_slug)?>" class="span8">
+                        <label for="slug">Slug </label>
                         <input type="text" name="slug" value="<?=set_value('slug', $slug)?>" class="span8">
                         <label for="seo_title">Title Tag </label>
                         <input type="text" name="seo_title" value="<?=set_value('seo_title', $seo_title)?>" class="span8">
-                        <label for="meta">Meta Tags <i>ex. &lt;meta name="description" content="We sell products that help you" /&gt;</i></label>
-                        <textarea name="meta"  cols="40" rows="10" class="row-fluid autogrow" id="elastic-textarea"><?=set_value('meta', html_entity_decode($meta))?></textarea>
+                        <label for="meta">Meta Description <!--<i>ex. &lt;meta name="description" content="We sell products that help you" /&gt;</i>--></label>
+                        <textarea name="meta"  cols="40" rows="7" class="row-fluid autogrow" id="elastic-textarea"><?=set_value('meta', html_entity_decode($meta))?></textarea>
+                        <label for="meta">Meta Keywords </label>
+                        <textarea name="meta_key"  cols="10" rows="3" class="row-fluid autogrow" id="elastic-textarea"><?=set_value('meta_key', html_entity_decode($meta_key))?></textarea>
+                        <i>ex. &lt;meta name="description" content="comma Separated Keywords" /&gt;</i>
+                        
                       </div>
                     </div>
                     
@@ -207,11 +213,13 @@ $GLOBALS['option_value_count']		= 0;
                 
                 <!-- TAB FIVE START-->
                                 
-                <div class="tab-pane fade" id="images">
+                <div class="tab-pane fade in active" id="images">
+                <div class="form-row control-group row-fluid">
+                </div>
                         <div class="form-row control-group row-fluid">
 						<label for="slug">Upload Image For Course</label>
-                      <label class="control-label span1" for="search-input">File upload</label>
-                      <div class="controls span8">
+                      <label class="control-label span2" for="search-input">File upload</label>
+                      <div class="controls span7">
                         <div class="input-append row-fluid">
                           <input type="file" class="spa1n6 fileinput" name="image" id="search-input">
                          </div>

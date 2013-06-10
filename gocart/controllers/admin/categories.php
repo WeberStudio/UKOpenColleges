@@ -161,6 +161,7 @@ class Categories extends Admin_Controller {
 		$data['publish_by_admin']		= '0';
 		$data['publish_by_super']		= '0';
 		$data['name']			= '';
+		$data['old_slug']		= '';
 		$data['slug']			= '';
 		$data['description']	= '';
 		$data['excerpt']		= '';
@@ -168,10 +169,12 @@ class Categories extends Admin_Controller {
 		$data['image']			= '';
 		$data['seo_title']		= '';
 		$data['meta']			= '';
+		$data['meta_key']		= '';
 		$data['parent_id']		= 0;
 		$data['error']			= '';
 		$data['publish_date']	= '';	
 		$data['delete']			= '';
+		
 		
 		//create the photos array for later use
 		$data['photos']		= array();
@@ -212,6 +215,7 @@ class Categories extends Admin_Controller {
 			{
 				$data['admin_id']		= $this->admin_id;
 			}
+			$data['old_slug']		= $category->old_route;
 			$data['slug']			= $category->slug;
 			$data['description']	= $category->description;
 			$data['excerpt']		= $category->excerpt;
@@ -220,12 +224,14 @@ class Categories extends Admin_Controller {
 			$data['image']			= $category->image;
 			$data['seo_title']		= $category->seo_title;
 			$data['meta']			= $category->meta;
+			$data['meta_key']		= $category->meta_key;
 			$data['publish_date']	= date('Y-m-d H:h:i');	
 			$data['delete']			= $category->delete;	
 			
 		}
 		
 		$this->form_validation->set_rules('name', 'lang:name', 'trim|required|max_length[64]');
+		$this->form_validation->set_rules('old_slug', 'old_slug', 'trim');
 		$this->form_validation->set_rules('slug', 'lang:slug', 'trim');
 		$this->form_validation->set_rules('description', 'lang:description', 'trim');
 		$this->form_validation->set_rules('excerpt', 'lang:excerpt', 'trim');
@@ -234,6 +240,7 @@ class Categories extends Admin_Controller {
 		$this->form_validation->set_rules('image', 'lang:image', 'trim');
 		$this->form_validation->set_rules('seo_title', 'lang:seo_title', 'trim');
 		$this->form_validation->set_rules('meta', 'lang:meta', 'trim');
+		$this->form_validation->set_rules('meta_key', 'meta_key', 'trim');
 		
 		
 		// validate the form
@@ -336,7 +343,8 @@ class Categories extends Admin_Controller {
 			$this->load->helper('text');
 			
 			//first check the slug field
-			$slug = $this->input->post('slug');
+			$slug 		= $this->input->post('slug');
+			$old_slug	= $this->input->post('old_slug');
 			
 			//if it's empty assign the name field
 			if(empty($slug) || $slug=='')
@@ -357,7 +365,8 @@ class Categories extends Admin_Controller {
 			{
 				$slug	= $this->Routes_model->validate_slug($slug);
 				
-				$route['slug']	= $slug;	
+				$route['slug']			= $slug;
+				$route['old_route']		= $old_slug;
 				$route_id	= $this->Routes_model->save($route);
 			}
 			
@@ -379,8 +388,10 @@ class Categories extends Admin_Controller {
 			$save['sequence']		= intval($this->input->post('sequence'));
 			$save['seo_title']		= $this->input->post('seo_title');
 			$save['meta']			= $this->input->post('meta');
+			$save['meta_key']		= $this->input->post('meta_key');
 			$save['route_id']		= intval($route_id);
 			$save['slug']			= $slug;
+			$save['old_route']		= $old_slug;
 			$save['publish_date']	= date('Y-m-d H:h:i');
 			$save['delete']			= '0';
 			if($this->admin_access=='Admin')
@@ -412,8 +423,9 @@ class Categories extends Admin_Controller {
 			$category_id	= $this->Category_model->save($save);
 			
 			//save the route
-			$route['id']	= $route_id;
-			$route['slug']	= $slug;
+			$route['id']			= $route_id;
+			$route['slug']			= $slug;
+			$route['old_route']		= $old_slug;
 			$route['route']	= 'cart/category/'.$category_id.'';
 			
 			$this->Routes_model->save($route);

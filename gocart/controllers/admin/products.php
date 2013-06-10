@@ -245,6 +245,7 @@ class Products extends Admin_Controller {
 		$data['name']				= '';
 		$data['publish_by_admin']	= '0';
 		$data['publish_by_super']	= '0';
+		$data['old_slug']			= '';
 		$data['slug']				= '';
 		$data['description']		= '';
 		$data['excerpt']			= '';
@@ -254,6 +255,7 @@ class Products extends Admin_Controller {
 		$data['track_stock'] 		= '';
 		$data['seo_title']			= '';
 		$data['meta']				= '';
+		$data['meta_key']			= '';
 		$data['shippable']			= '';
 		$data['taxable']			= '';
 		$data['fixed_quantity']		= '';
@@ -331,6 +333,8 @@ class Products extends Admin_Controller {
 			$data['name']				= $product->name;
 			$data['seo_title']			= $product->seo_title;
 			$data['meta']				= $product->meta;
+			$data['meta_key']			= $product->meta_key;
+			$data['old_slug']			= $product->old_route;
 			$data['slug']				= $product->slug;
 			$data['description']		= $product->description;
 			$data['excerpt']			= $product->excerpt;
@@ -375,12 +379,13 @@ class Products extends Admin_Controller {
 		$this->form_validation->set_rules('seo_title', 'lang:seo_title', 'trim');
 		$this->form_validation->set_rules('meta', 'lang:meta_data', 'trim');
 		$this->form_validation->set_rules('name', 'lang:name', 'trim|required|max_length[64]');
+		$this->form_validation->set_rules('old_slug', 'old_slug', 'trim');
 		$this->form_validation->set_rules('slug', 'lang:slug', 'trim');
 		$this->form_validation->set_rules('description', 'lang:description', 'trim');
 		$this->form_validation->set_rules('excerpt', 'lang:excerpt', 'trim');
 		$this->form_validation->set_rules('price', 'lang:price', 'trim|numeric|floatval');
 		$this->form_validation->set_rules('enabled', 'lang:enabled', 'trim');
-		
+		$this->form_validation->set_rules('meta_key', 'meta_key', 'trim');
 		/*
 		if we've posted already, get the photo stuff and organize it
 		if validation comes back negative, we feed this info back into the system
@@ -421,7 +426,7 @@ class Products extends Admin_Controller {
 			
 			//first check the slug field
 			$slug = $this->input->post('slug');
-			
+			$old_slug	= $this->input->post('old_slug');
 			//if it's empty assign the name field
 			if(empty($slug) || $slug=='')
 			{
@@ -440,7 +445,8 @@ class Products extends Admin_Controller {
 			{
 				$slug	= $this->Routes_model->validate_slug($slug);
 				
-				$route['slug']	= $slug;	
+				$route['slug']	= $slug;
+				$route['old_route']		= $old_slug;	
 				$route_id	= $this->Routes_model->save($route);
 			}
 			
@@ -493,6 +499,7 @@ class Products extends Admin_Controller {
 			$save['name']				= $this->input->post('name');
 			$save['seo_title']			= $this->input->post('seo_title');
 			$save['meta']				= $this->input->post('meta');
+			$save['meta_key']			= $this->input->post('meta_key');
 			$save['description']		= $this->input->post('description');
 			$save['excerpt']			= $this->input->post('excerpt');
 			$save['price']				= $this->input->post('price');
@@ -503,6 +510,7 @@ class Products extends Admin_Controller {
 			$save['quantity']			= $this->input->post('quantity');
 			$save['shippable']			= $this->input->post('shippable');
 			$save['taxable']			= $this->input->post('taxable');
+			$save['old_route']			= $old_slug;
 			$post_images				= $this->input->post('images');
 			
 			if(!empty($post_images))
@@ -570,6 +578,7 @@ class Products extends Admin_Controller {
 			//save the route
 			$route['id']	= $route_id;
 			$route['slug']	= $slug;
+			$route['old_route']		= $old_slug;
 			$route['route']	= 'cart/product/'.$product_id;
 			
 			$this->Routes_model->save($route);
