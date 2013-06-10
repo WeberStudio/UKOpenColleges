@@ -769,14 +769,14 @@ class Merchant_response
 	const REDIRECT = 'redirect';
 	const REFUNDED = 'refunded';
 
-	protected $_status;
-	protected $_message;
-	protected $_reference;
-	protected $_data;
-	protected $_redirect_url;
-	protected $_redirect_method = 'GET';
-	protected $_redirect_message;
-	protected $_redirect_data;
+	public $_status;
+	public $_message;
+	public $_reference;
+	public $_data;
+	public $_redirect_url;
+	public $_redirect_method = 'GET';
+	public $_redirect_message;
+	public $_redirect_data;
 
 	public function __construct($status, $message = NULL, $reference = NULL)
 	{

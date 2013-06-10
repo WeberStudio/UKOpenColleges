@@ -47,7 +47,7 @@ class Checkout extends Front_Controller {
 		*/
 		$this->load->library('form_validation');
         $this->load->library('merchant');
-       
+        $this->load->model('Order_model');
 		$this->lang->load('common');
 	}
 
@@ -501,14 +501,29 @@ class Checkout extends Front_Controller {
     function place_order_paypal_pro()
     {        
     
-       // echo "<pre>"; print_r($_POST); exit;
-        /*$this->Merchant_paypal_pro->_build_authorize_or_purchase($action)
-        {
-            //$this->require_params('card_no', 'first_name', 'last_name', 'exp_month', 'exp_year', 'csc');
-            
-        }*/
+         //echo "<pre>";print_r($_POST);exit;
+            $firstname      =   $this->input->post('firstname');
+            $select_card    =   $this->input->post('select_card'); 
+            $card_num       =   $this->input->post('card_num'); 
+            $select_month   =   $this->input->post('select_month'); 
+            $select_year    =   $this->input->post('select_year');                    
+            $cvv_num        =   $this->input->post('cvv_num');
+                      
+          
+        $customer            = $this->go_cart->customer(); 
         $this->merchant->load('paypal_pro');      
-        $action = array('card_type'=>'Visa', 'card_no' => '4019471378497964', 'first_name'  => 'junaid', 'last_name' => 'khalil', 'amount' => '10', 'currency' => 'GBP', 'country' => 'US',  'exp_month' => '05', 'exp_year' => '2018', 'csc' => '555');    
+        $action = array(
+                        'card_type'     => $select_card, 
+                        'card_no'       => $card_num, 
+                        'first_name'    => 'firstname',
+                        'last_name'     => ' ',                      
+                        'amount'        => $this->go_cart->total(), 
+                        'currency'      => 'GBP', 
+                        'country'       => 'GB',  
+                        'exp_month'     => $select_month, 
+                        'exp_year'      => $select_year, 
+                        'csc'           => $cvv_num
+                        ); 
         $settings = array(
                'username' => 'j.khalil_api1.weprosolutions.co.uk',
                'password' => '1370608609',
@@ -516,14 +531,31 @@ class Checkout extends Front_Controller {
                'test_mode' => true,            
         );
         
-        $this->merchant->initialize($settings);
-       // $this->merchant->valid_drivers(); 
-      //  DebugBreak();
-        $response = $this->merchant->purchase($action);
-            echo '<pre>';
+        $return = $this->merchant->initialize($settings);
+        
+        
+      
+       $order_id = $this->go_cart->save_order();
+       $response = $this->merchant->purchase($action);           
+       $update_array = array(    
+               'order_number'   => $order_id,           
+               'status'         => $response->_status,
+               'transaction_id' => $response->_reference,               
+               'card_type'      => $select_card,
+               'card_no'        => $card_num,            
+        );
+        
+        $this->Order_model->save_order($update_array, $contents = false);
+           /* echo '<pre>';
             print_r($response);
-            print_r($action);
-            exit; 
+           // print_r($update_array);
+           // print_r($customer);
+            exit;    */
+      $this->session->set_flashdata('message', "<div  class='woocommerce_message'>Your Order Have Been Submitted Successfully!</div>");
+       $this->go_cart->destroy();
+       redirect('cart/view_cart');
+            
+       
     }   
     
 	function place_order()
