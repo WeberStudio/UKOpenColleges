@@ -19,14 +19,12 @@ experience this site.
 
 <nav class="eleven columns" id="topmenu">
 
-<?php if($this->Customer_model->is_logged_in(false, false)):?>
+
 <div class="clear"> </div>
-<div align="right" style="font-size:16px; color:#57BAE8;"> <?php $customer_details = $this->go_cart->customer();
-     
-	 ?></div>
-<?php else: ?>
+<div align="right" style="font-size:16px; color:#57BAE8;"> </div>
+
 	
-      <?php endif; ?>
+   
    <div id="eyebrow">
      <div class="clear"> </div>
     </div>

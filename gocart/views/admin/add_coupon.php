@@ -46,7 +46,10 @@ $(document).ready(function(){
 <div id="main" style="min-height:1000px">
 <div class="container">
 <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
-
+<!--========  velidation error start    ==========-->
+<?php include('error.php');?>
+            
+<!--========  velidation error end   ==========-->
 <div id="main_container">
   <div class="row-fluid">
     <div class="span12">

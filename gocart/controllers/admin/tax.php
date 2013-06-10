@@ -109,8 +109,8 @@ class Tax extends Admin_Controller {
 			$data['tax_level']					= $tax->tax_level;
 		}
 		
-		$this->form_validation->set_rules('tax_rate_name',  'Tax Rate Name', 'trim');
-		$this->form_validation->set_rules('tax_rate_percent', 'Tax Rate Percentage', 'trim');
+		$this->form_validation->set_rules('tax_rate_name',  'Tax Rate Name', 'trim|required');
+		$this->form_validation->set_rules('tax_rate_percent', 'Tax Rate Percentage', 'trim|required');
 		
 		
 		 //echo "<pre>";print_r($_POST);exit;

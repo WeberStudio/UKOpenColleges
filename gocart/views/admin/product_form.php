@@ -5,6 +5,10 @@ $GLOBALS['option_value_count']		= 0;
 <div id="main">
   <div class="container">
     <? include_once('includes/admin_profile.php');?>
+ <!--========  velidation error start    ==========-->
+<?php include('error.php');?>
+            
+ <!--========  velidation error end   ==========-->
     <div id="main_container">
     <?php /*?><?php echo form_open_multipart($this->config->item('admin_folder').'/products/form/'.$id); ?><?php */?>
     <form class="form-horizontal" action="<?=base_url().$this->config->item('admin_folder').'/products/form/'.$id?>" method="post" enctype="multipart/form-data">

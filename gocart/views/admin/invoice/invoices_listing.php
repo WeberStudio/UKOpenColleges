@@ -18,20 +18,29 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 			  <td><?php echo  format_currency($invoice['invoice_total']); ?></td>
 			  
 			  <td class="ms" style="white-space:nowrap;">
-			  	<div class="btn-group1">					
-					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" ><i class="icon-pencil"></i> Edit </a> 
-					<a target="_blank" class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('pdf');?>" href="<?=base_url().'admin/invoices/pdf_view/'.$invoice['invoice_id'].'/'.$invoice['template_id']?>" ><i class="icon-print"></i> Open PDF </a>
-					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('email');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" ><i class="icon-envelope"></i> Send Email </a>
-					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('delete');?>" href="<?=base_url().'admin/invoices/delete/'.$invoice['invoice_id']?>" onclick="return confirm('If you delete this invoice you will not be able to recover it later. Are you sure you want to permanently delete this invoice?');">  Delete </a>
-					
-                      <div class="btn-group inline">
+			  	<div class="btn-group1">
+                <div class="btn-group ">
+                      <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                      <ul class="dropdown-menu" style="text-align:left;">
+                        <li><a target="_blank"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('pdf');?>" href="<?=base_url().'admin/invoices/pdf_view/'.$invoice['invoice_id'].'/'.$invoice['template_id']?>" ><i class="icon-print"></i> Open PDF </a></li>
+                        
+                        <li><a  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('email');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" ><i class="icon-envelope"></i> Send Email </a></li>                        
+                      </ul>
+                    </div>	
+                    <div class="btn-group inline">
                       <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">Status <span class="caret"></span></button>
                       <ul class="dropdown-menu" style="text-align:left;">
                         <li><a href="<?=base_url().'admin/invoices/invoice_paid_status/open/'.$invoice['invoice_id']?>">Open</a></li>
                         <li><a href="<?=base_url().'admin/invoices/invoice_paid_status/close/'.$invoice['invoice_id']?>">Close</a></li>
                         <li><a href="<?=base_url().'admin/invoices/invoice_paid_status/overdue/'.$invoice['invoice_id']?>">Overdue</a></li>                        
                       </ul>
-                    </div>                   
+                    </div>				
+					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('edit');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" ><i class="icon-pencil"></i> Edit </a> 
+					<!--<a target="_blank" class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('pdf');?>" href="<?=base_url().'admin/invoices/pdf_view/'.$invoice['invoice_id'].'/'.$invoice['template_id']?>" ><i class="icon-print"></i> Open PDF </a>-->
+					<!--<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('email');?>" href="<?=base_url().'admin/invoices/invoice_detail/'.$invoice['invoice_id']?>" ><i class="icon-envelope"></i> Send Email </a>-->
+					<a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('delete');?>" href="<?=base_url().'admin/invoices/delete/'.$invoice['invoice_id']?>" onclick="return confirm('If you delete this invoice you will not be able to recover it later. Are you sure you want to permanently delete this invoice?');">  Delete </a>
+					
+                                         
 				   </div>				   
 			  </td>
 			</tr>

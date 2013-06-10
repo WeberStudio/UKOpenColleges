@@ -5,11 +5,12 @@
 			  <?php
 			  if($this->Tutor_model->is_logged_in(false, false)){
 			   $tutor_details = $this->go_cart->customer();
-			   
+			   print_r($tutor_details);exit; 
 			  	$get_address = $this->Tutor_model->get_address();
 			   echo  $tutor_details['firstname']." ". $tutor_details['lastname'];
 			  }
-			  if($this->Customer_model->is_logged_in(false, false))
+			  //if($this->Customer_model->is_logged_in(false, false))
+			  else
 			  {
 				  $customer_details = $this->go_cart->customer();
 				  $get_address_cus = $this->Customer_model->get_address_pro();

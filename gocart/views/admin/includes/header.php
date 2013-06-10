@@ -25,7 +25,7 @@
 <script src="<?=base_url()?>assets/opencollege/admin/js/plugins/modernizr.custom.32549.js"></script>   
 </head>
 <body>
-    <div id="loading">
+<div id="loading">
     	<img src="<?=base_url().ASSETS_PATH?>img/ajax-loader.gif">
     </div>
     <div id="responsive_part">
@@ -39,4 +39,5 @@
     
 <!-- Responsive part -->
 <!-- Main Div Start   ---> 
+
 

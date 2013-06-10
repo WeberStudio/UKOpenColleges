@@ -94,7 +94,7 @@ class Coupons extends Admin_Controller {
 			$added = $this->Coupon_model->get_product_ids($id);
 		}
 		//print_r($this->input->post('end_date'));exit;
-		$this->form_validation->set_rules('code', 'lang:code', 'trim|required|callback_check_code');
+		$this->form_validation->set_rules('code', 'Coupon Code', 'trim|required|callback_check_code');
 		$this->form_validation->set_rules('max_uses', 'lang:max_uses', 'trim|numeric');
 		$this->form_validation->set_rules('max_product_instances', 'lang:limit_per_order', 'trim|numeric');
 		$this->form_validation->set_rules('whole_order_coupon', 'lang:whole_order_discount');
