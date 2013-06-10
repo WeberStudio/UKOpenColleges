@@ -103,3 +103,7 @@ body {
 #topmenu .tiled-menu{float:right}
 
 
+
+@media (max-width: 767px){
+	#topmenu .tiled-menu{ float:none;}
+}

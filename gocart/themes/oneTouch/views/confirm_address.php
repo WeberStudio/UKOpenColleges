@@ -358,6 +358,7 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 </form>
 </div>
 </div>
+
 <div class="row">
 <div id="content" class="fifteen columns">
 <div class="col2-set" id="customer_details">
@@ -420,7 +421,7 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
     
 	<p class="form-row form-row-last" id="billing_last_name_field">
      	<?php 
-			$option	= array('sele'=>'Select Card Type','VISA'=>'Visa','MC'=>'MasterCard' ,'DELTA'=>'Visa Debit' ,'SOLO'=>'Solo' ,'MAESTRO'=>'Maestro' ,'UKE'=>'Visa Electron (UKE)' );
+			$option	= array(''=>'Select Card Type','VISA'=>'Visa','MC'=>'MasterCard' ,'DELTA'=>'Visa Debit' ,'SOLO'=>'Solo' ,'MAESTRO'=>'Maestro' ,'UKE'=>'Visa Electron (UKE)' );
 			echo form_dropdown('select_card',$option);	
 		?>
 	</p>
@@ -450,10 +451,10 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
     
 	<p class="form-row form-row-last" id="billing_last_name_field">
      	<?php 
-			$option	= array('sele'=>'Select Month','01'=>'January','02'=>'February' ,'03'=>' March' ,'04'=>'April' ,'05'=>'May' ,'06'=>'  June','07'=>'July' ,'08'=>'August' ,'09'=>'September' ,'10'=>'October' ,'11'=>'November' ,'12'=>'December');
+			$option	= array(''=>'Select Month','01'=>'January','02'=>'February' ,'03'=>' March' ,'04'=>'April' ,'05'=>'May' ,'06'=>'  June','07'=>'July' ,'08'=>'August' ,'09'=>'September' ,'10'=>'October' ,'11'=>'November' ,'12'=>'December');
 			echo form_dropdown('select_month',$option,'', 'style="width: 100px;"');	
 			echo " ";
-			$option	= array('sele'=>'Select Year','2013'=>'2013','2014'=>'2014' ,'2015'=>' 2015' ,'2016'=>'2016' ,'2017'=>'2017' ,'2018'=>' 2018','2019'=>'2019' ,'2020'=>'2020' ,'2021'=>'2021' ,'2022'=>'2022');
+			$option	= array(''=>'Select Year','2013'=>'2013','2014'=>'2014' ,'2015'=>' 2015' ,'2016'=>'2016' ,'2017'=>'2017' ,'2018'=>' 2018','2019'=>'2019' ,'2020'=>'2020' ,'2021'=>'2021' ,'2022'=>'2022');
 			echo form_dropdown('select_year',$option, '', 'style="width: 100px;"');
 		?>
 	</p>
@@ -490,9 +491,9 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
     
 	<p class="form-row form-row-last" id="billing_last_name_field">
      	<?php 
-			$option	= array('sele'=>'Select Month','01'=>'January','02'=>'February' ,'03'=>' March' ,'04'=>'April' ,'05'=>'May' ,'06'=>'  June','07'=>'July' ,'08'=>'August' ,'09'=>'September' ,'10'=>'October' ,'11'=>'November' ,'12'=>'December');
+			$option	= array(''=>'Select Month','01'=>'January','02'=>'February' ,'03'=>' March' ,'04'=>'April' ,'05'=>'May' ,'06'=>'  June','07'=>'July' ,'08'=>'August' ,'09'=>'September' ,'10'=>'October' ,'11'=>'November' ,'12'=>'December');
 			echo form_dropdown('select_month_if',$option,'', 'style="width: 100px;"');				
-			$option	= array('sele'=>'Select Year','2013'=>'2013','2014'=>'2014' ,'2015'=>' 2015' ,'2016'=>'2016' ,'2017'=>'2017' ,'2018'=>' 2018','2019'=>'2019' ,'2020'=>'2020' ,'2021'=>'2021' ,'2022'=>'2022');
+			$option	= array(''=>'Select Year','2013'=>'2013','2014'=>'2014' ,'2015'=>' 2015' ,'2016'=>'2016' ,'2017'=>'2017' ,'2018'=>' 2018','2019'=>'2019' ,'2020'=>'2020' ,'2021'=>'2021' ,'2022'=>'2022');
 			echo form_dropdown('select_year_if',$option, '', 'style="width: 100px;"');
 		?>
 	</p>
