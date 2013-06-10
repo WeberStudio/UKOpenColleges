@@ -9,8 +9,9 @@
 <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>UK Open College</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo (!empty($seo_title)) ? $seo_title .' - ' : ''; echo $this->config->item('company_name'); ?></title>
+    <meta name="keywords" content="<?php echo (!empty($meta_key)) ? $meta_key .'' : ''; echo ""; ?>">
+    <meta name="description" content="<?php echo (!empty($meta)) ? $meta .'' : ''; echo ""; ?>">
     <link rel="icon" type="image/png" href="">
     <link rel="alternate" type="application/rss+xml" title="UK Open College" href="">
 	<?php echo theme_css('google-font.css', true); ?>	

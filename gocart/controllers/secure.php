@@ -100,6 +100,7 @@ class Secure extends Front_Controller {
 	// login 2 content end
 	function login($ajax = false)
 	{
+		//$data['seo_title']		= "Custormer Login";
 		//find out if they're already logged in, if they are redirect them to the my account page
 		//$redirect	= $this->Customer_model->is_logged_in(false, false);
 		$redirect	= "";
@@ -201,7 +202,7 @@ class Secure extends Front_Controller {
 	
 	function register()
 	{
-	
+		//$data['seo_title']		= "Register";
 		$redirect	= $this->Customer_model->is_logged_in(false, false);
 		//if they are logged in, we send them back to the my_account by default
 		if ($redirect)
