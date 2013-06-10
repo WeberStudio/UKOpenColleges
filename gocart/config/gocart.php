@@ -7,7 +7,7 @@ $config['theme']			= 'oneTouch';
 $config['ssl_support']		= false;
 
 // Business information
-$config['company_name']		= 'Weprosolutions';
+$config['company_name']		= 'UK Open College';
 $config['address1']			= 'lahore';
 $config['address2']			= 'lahore';
 $config['country']			= 'Pakistan'; // use proper country codes only

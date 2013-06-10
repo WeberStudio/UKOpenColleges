@@ -137,7 +137,7 @@
 
                             ?>			
 
-                            <div  class="simpleTabsContent" id="<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>">
+                            <div  class="simpleTabsContent" id="<?php echo str_replace(' ', '-', strtolower($tabs['tab_title']))?>">
 
                                 <h2>Product Description</h2>
 

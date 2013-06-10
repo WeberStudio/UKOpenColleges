@@ -97,6 +97,7 @@ class Cart extends Front_Controller {
 		$data['fb_like']			= true;
 		$data['page_title']			= $data['page']->title;
 		$data['meta']				= $data['page']->meta;
+		$data['meta_key']			= $data['page']->meta_key;
 		$data['seo_title']			= (!empty($data['page']->seo_title))?$data['page']->seo_title:$data['page']->title;
 		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
 		$this->load->view('page', $data);
@@ -380,7 +381,9 @@ class Cart extends Front_Controller {
 		
 
 		$data['meta']		= $data['category']->meta;
-
+		
+		$data['meta_key']	= $data['category']->meta_key;
+		
 		$data['seo_title']	= (!empty($data['category']->seo_title))?$data['category']->seo_title:$data['category']->name;
 
 		$data['page_title']	= $data['category']->name;
@@ -562,7 +565,9 @@ class Cart extends Front_Controller {
 		$data['page_title']			= $data['product']->name;
 
 		$data['meta']				= $data['product']->meta;
-
+		
+		$data['meta_key']			= $data['product']->meta_key;
+		
 		$data['seo_title']			= (!empty($data['product']->seo_title))?$data['product']->seo_title:$data['product']->name;
 
 			
