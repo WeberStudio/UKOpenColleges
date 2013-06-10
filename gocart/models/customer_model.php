@@ -279,7 +279,7 @@ Class Customer_model extends CI_Model
 		{
 		
 			//check if the session is expired if not reset the timer
-			if($customer['expire'] && $customer['expire'] < time())
+			/*if($customer['expire'] && $customer['expire'] < time())
 			{
 
 				$this->logout();
@@ -296,7 +296,8 @@ Class Customer_model extends CI_Model
 				return false;
 			}
 			else
-			{
+			{*/
+				
 
 				//update the session expiration to last more time if they are not remembered
 				if($customer['expire'])
@@ -305,7 +306,8 @@ Class Customer_model extends CI_Model
 					$this->go_cart->save_customer($customer);
 				}
 
-			}
+			
+			//}
 
 			return true;
 		}

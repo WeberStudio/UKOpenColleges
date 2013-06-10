@@ -38,7 +38,7 @@ class Tutor_login extends Front_Controller {
 	function login()
 	{
 		
-		
+		//$data['seo_title']		= "Tutor Login";
 		$this->load->library('form_validation');
 		
 		
@@ -78,6 +78,7 @@ class Tutor_login extends Front_Controller {
 	
 	function register($id = false)
 	{
+		//$data['seo_title']		= "Register";
 		$data['id']			= '';
 		$data['company']	= '';
 		$data['firstname']	= '';
@@ -208,7 +209,7 @@ class Tutor_login extends Front_Controller {
 				 //echo "found it"; exit;
 				// redirect('tutor_login/login');
 			 }
-			 redirect('dashboard');
+			 redirect('tutor_login');
 			
 		}
 		

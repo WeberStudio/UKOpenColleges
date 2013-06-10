@@ -5,7 +5,10 @@
         <div class="row-fluid">
             <div class="span12">
               <div class="box paint color_5">
+            <!--========  velidation error start    ==========-->
             
+            
+            <!--========  velidation error end   ==========-->
                 <div class="title">
                   <div class="row-fluid">
                     <h4> Category Form</h4>
