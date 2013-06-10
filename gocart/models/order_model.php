@@ -236,6 +236,16 @@ Class order_model extends CI_Model
 			// we don't need the actual order number for an update
 			$order_number = $id;
 		}
+        else if(!empty($data['order_number']))
+        {
+            
+            $this->db->where('order_number', $data['order_number']);
+            $this->db->update('orders', $data);
+                        
+            //return the order id we generated
+            $order_number = $data['order_number'];
+            
+        }       
 		else
 		{
 			$this->db->insert('orders', $data);
