@@ -209,7 +209,7 @@ class Tutor_login extends Front_Controller {
 				 //echo "found it"; exit;
 				// redirect('tutor_login/login');
 			 }
-			 redirect('dashboard');
+			 redirect('tutor_login');
 			
 		}
 		

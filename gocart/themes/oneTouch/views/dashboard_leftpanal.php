@@ -5,6 +5,7 @@
 			  <?php
 			  if($this->Tutor_model->is_logged_in(false, false)){
 			   $tutor_details = $this->go_cart->customer();
+			   
 			  	$get_address = $this->Tutor_model->get_address();
 			   echo  $tutor_details['firstname']." ". $tutor_details['lastname'];
 			  }
