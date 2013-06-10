@@ -46,8 +46,8 @@ class Checkout extends Front_Controller {
 	
 		*/
 		$this->load->library('form_validation');
-        //$this->load->library('merchant');
-        //$this->merchant->load('paypal_express');
+        $this->load->library('merchant');
+       
 		$this->lang->load('common');
 	}
 
@@ -498,76 +498,104 @@ class Checkout extends Front_Controller {
 		$this->Customer_model->is_logged_in('checkout', 'secure/register');
 	}
 
+    function place_order_paypal_pro()
+    {        
+    
+       // echo "<pre>"; print_r($_POST); exit;
+        /*$this->Merchant_paypal_pro->_build_authorize_or_purchase($action)
+        {
+            //$this->require_params('card_no', 'first_name', 'last_name', 'exp_month', 'exp_year', 'csc');
+            
+        }*/
+        $this->merchant->load('paypal_pro');      
+        $action = array('card_type'=>'Visa', 'card_no' => '4019471378497964', 'first_name'  => 'junaid', 'last_name' => 'khalil', 'amount' => '10', 'currency' => 'GBP', 'country' => 'US',  'exp_month' => '05', 'exp_year' => '2018', 'csc' => '555');    
+        $settings = array(
+               'username' => 'j.khalil_api1.weprosolutions.co.uk',
+               'password' => '1370608609',
+               'signature' => 'A7JgWk4uZhO1rqjMVjT4K9TltcFFAfOAFFulZRA.BaXpmcgm0L1DZ3sX',
+               'test_mode' => true,            
+        );
+        
+        $this->merchant->initialize($settings);
+       // $this->merchant->valid_drivers(); 
+      //  DebugBreak();
+        $response = $this->merchant->purchase($action);
+            echo '<pre>';
+            print_r($response);
+            print_r($action);
+            exit; 
+    }   
+    
 	function place_order()
 	{		
-      
+            
 		// retrieve the payment method
-       // DebugBreak();
-        $payment['module']  = "paypal_express";
-        $payment['description']  = "PayPal Express";
-		//$payment 			= $this->go_cart->payment_method();
-        $paypal_express['name'] =   "PayPal Express";
-        $paypal_express['form'] =   "<table width=\"100%\" border=\"0\" cellpadding=\"5\">\n  <tr>\n    <td><img  src=\"https://www.paypal.com/en_US/i/logo/PayPal_mark_180x113.gif\" border=\"0\" alt=\"Acceptance Mark\"></td>\n  </tr>\n  <tr>\n    <td>You will be directed to the Paypal website to verify your payment. Once your payment is authorized, you will be directed back to our website and your order will be complete.</td>\n  </tr>\n</table>\n";
-        $payment_methods['paypal_express']    =    $paypal_express ;
-		//$payment_methods	= $this->_get_payment_methods();
+        //DebugBreak();
+        $payment['module']                  = "paypal_express";
+        $payment['description']             = "PayPal Express";		
+        $paypal_express['name']             = "PayPal Express";
+        $paypal_express['form']             = "<table width=\"100%\" border=\"0\" cellpadding=\"5\">\n  <tr>\n    <td><img  src=\"https://www.paypal.com/en_US/i/logo/PayPal_mark_180x113.gif\" border=\"0\" alt=\"Acceptance Mark\"></td>\n  </tr>\n  <tr>\n    <td>You will be directed to the Paypal website to verify your payment. Once your payment is authorized, you will be directed back to our website and your order will be complete.</td>\n  </tr>\n</table>\n";
+        $payment_methods['paypal_express']  = $paypal_express ;
+		
 		
 		//make sure they're logged in if the config file requires it
 		if($this->config->item('require_login'))
 		{
-			$this->Customer_model->is_logged_in();
+			$customer_data = $this->Customer_model->is_logged_in(false, false);           
 		}
+        
+        
+        
 		
 		// are we processing an empty cart?
 		$contents = $this->go_cart->contents();
 		if(empty($contents))
 		{
 			redirect('cart/view_cart');
-		} else {
-			//  - check to see if we have a payment method set, if we need one
-			if(empty($payment) && $this->go_cart->total() > 0 && (bool)$payment_methods == true)
-			{
-				redirect('checkout/step_3');
-			}
 		}
+        
+		  // save the order
+       
+        
+       if(!$this->go_cart->_cart_contents['payment']['confirmed'])
+       {
+           if(!empty($payment) && (bool)$payment_methods == true)
+            {
+                //load the payment module
+                $this->load->add_package_path(APPPATH.'packages/payment/'.$payment['module'].'/');
+                $this->load->library($payment['module']);
+            
+                // Is payment bypassed? (total is zero, or processed flag is set)
+                if($this->go_cart->total() > 0 && ! isset($payment['confirmed'])) {
+                    //run the payment    
+                    $error_status    = $this->$payment['module']->process_payment();
+                  
+                    if($error_status !== false)
+                    {
+                        // send them back to the payment page with the error
+                        $this->session->set_flashdata('error', $error_status);
+                        redirect('checkout/step_3');
+                    }
+                }
+            }             
+       }
+      
 		
-		if(!empty($payment) && (bool)$payment_methods == true)
-		{
-			//load the payment module
-			$this->load->add_package_path(APPPATH.'packages/payment/'.$payment['module'].'/');
-			$this->load->library($payment['module']);
-		
-			// Is payment bypassed? (total is zero, or processed flag is set)
-			if($this->go_cart->total() > 0 && ! isset($payment['confirmed'])) {
-				//run the payment
-				$error_status	= $this->$payment['module']->process_payment();
-				if($error_status !== false)
-				{
-					// send them back to the payment page with the error
-					$this->session->set_flashdata('error', $error_status);
-					redirect('checkout/step_3');
-				}
-			}
-		}
 			
+	   $order_id = $this->go_cart->save_order();
+	   $this->session->set_flashdata('message', "<div  class='woocommerce_message'>Your Order Have Been Submitted Successfully!</div>");
+      // $this->go_cart->destroy();
+       redirect('cart/view_cart');
 		
-		// save the order
-		$order_id = $this->go_cart->save_order();
-		
-		$data['order_id']			= $order_id;
-		$data['shipping']			= $this->go_cart->shipping_method();
+		$data['order_id']			= $order_id;   		
 		$data['payment']			= $this->go_cart->payment_method();
 		$data['customer']			= $this->go_cart->customer();
-		$data['shipping_notes']		= $this->go_cart->get_additional_detail('shipping_notes');
-		$data['referral']			= $this->go_cart->get_additional_detail('referral');
-		
-		$order_downloads 			= $this->go_cart->get_order_downloads();
-		
-		$data['hide_menu']			= true;
 		
 		// run the complete payment module method once order has been saved
 		if(!empty($payment))
 		{
-			if(method_exists($this->$payment['module'], 'complete_payment'))
+			        
+            if(method_exists($this->$payment['module'], 'complete_payment'))
 			{
 				$this->$payment['module']->complete_payment($data);
 			}
@@ -575,46 +603,7 @@ class Checkout extends Front_Controller {
 	
 		// Send the user a confirmation email
 		
-		// - get the email template
-		$this->load->model('messages_model');
-		$row = $this->messages_model->get_message(7);
 		
-		$download_section = '';
-		if( ! empty($order_downloads))
-		{
-			// get the download link segment to insert into our confirmations
-			$downlod_msg_record = $this->messages_model->get_message(8);
-			
-			if(!empty($data['customer']['id']))
-			{
-				// they can access their downloads by logging in
-				$download_section = str_replace('{download_link}', anchor('secure/my_downloads', lang('download_link')),$downlod_msg_record['content']);
-			} else {
-				// non regs will receive a code
-				$download_section = str_replace('{download_link}', anchor('secure/my_downloads/'.$order_downloads['code'], lang('download_link')), $downlod_msg_record['content']);
-			}
-		}
-		
-		$row['content'] = html_entity_decode($row['content']);
-		
-		// set replacement values for subject & body
-		// {customer_name}
-		$row['subject'] = str_replace('{customer_name}', $data['customer']['firstname'].' '.$data['customer']['lastname'], $row['subject']);
-		$row['content'] = str_replace('{customer_name}', $data['customer']['firstname'].' '.$data['customer']['lastname'], $row['content']);
-		
-		// {url}
-		$row['subject'] = str_replace('{url}', $this->config->item('base_url'), $row['subject']);
-		$row['content'] = str_replace('{url}', $this->config->item('base_url'), $row['content']);
-		
-		// {site_name}
-		$row['subject'] = str_replace('{site_name}', $this->config->item('company_name'), $row['subject']);
-		$row['content'] = str_replace('{site_name}', $this->config->item('company_name'), $row['content']);
-			
-		// {order_summary}
-		$row['content'] = str_replace('{order_summary}', $this->load->view('order_email', $data, true), $row['content']);
-		
-		// {download_section}
-		$row['content'] = str_replace('{download_section}', $download_section, $row['content']);
 			
 		$this->load->library('email');
 		
@@ -650,16 +639,14 @@ class Checkout extends Front_Controller {
 		$data['go_cart']['subtotal']            = $this->go_cart->subtotal();
 		$data['go_cart']['coupon_discount']     = $this->go_cart->coupon_discount();
 		$data['go_cart']['order_tax']           = $this->go_cart->order_tax();
-		$data['go_cart']['discounted_subtotal'] = $this->go_cart->discounted_subtotal();
-		$data['go_cart']['shipping_cost']       = $this->go_cart->shipping_cost();
-		$data['go_cart']['gift_card_discount']  = $this->go_cart->gift_card_discount();
+		$data['go_cart']['discounted_subtotal'] = $this->go_cart->discounted_subtotal(); 		
 		$data['go_cart']['total']               = $this->go_cart->total();
 		$data['go_cart']['contents']            = $this->go_cart->contents();
 
 		/* remove the cart from the session */
-		$this->go_cart->destroy();
+		//$this->go_cart->destroy();
 
 		/*  show final confirmation page */
-		$this->load->view('order_placed', $data);
-	}
+		$this->load->view('order_placed', $data); 
+	} 
 }

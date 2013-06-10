@@ -187,6 +187,7 @@ class Merchant
 
 		try
 		{
+               
 			// load driver params
 			$this->_driver->set_params($params);
 
@@ -632,7 +633,7 @@ abstract class Merchant_driver
 		}
 		if (empty($_SERVER['HTTPS']) OR strtolower($_SERVER['HTTPS']) == 'off')
 		{
-			return FALSE;
+			return true;
 		}
 
 		return TRUE;

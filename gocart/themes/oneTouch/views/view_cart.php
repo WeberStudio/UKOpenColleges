@@ -12,6 +12,14 @@
                 experience this site.
                 </div><![endif]-->
                  <?php include('header.php'); ?> 
+                 <?
+                    if($this->session->flashdata('message'))
+                    {
+                        
+                        echo $this->session->flashdata('message');
+                    }
+                 
+                 ?>
                 <?php include_once('cart_content.php'); ?> 
             </div>
         </div>

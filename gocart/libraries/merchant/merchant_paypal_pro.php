@@ -38,10 +38,10 @@ class Merchant_paypal_pro extends Merchant_paypal_base
 	public function default_settings()
 	{
 		return array(
-			'username' => '',
-			'password' => '',
-			'signature' => '',
-			'test_mode' => FALSE,
+			 'username' => 'j.khalil_api1.weprosolutions.co.uk',
+             'password' => '1370608609',
+             'signature' => 'A7JgWk4uZhO1rqjMVjT4K9TltcFFAfOAFFulZRA.BaXpmcgm0L1DZ3sX',
+			 'test_mode' => true,
 		);
 	}
 	
