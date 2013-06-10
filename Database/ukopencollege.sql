@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Jun 06, 2013 at 05:49 PM
+-- Generation Time: Jun 10, 2013 at 09:37 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -39,7 +39,7 @@ CREATE TABLE `oc_admin` (
   `country` varchar(255) NOT NULL,
   `telephone` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 -- 
 -- Dumping data for table `oc_admin`
@@ -48,7 +48,6 @@ CREATE TABLE `oc_admin` (
 INSERT INTO `oc_admin` VALUES (1, 'junaid', 'khalil', 'khalil.junaid@gmail.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Junaidkhalil', 'thumb_1.jpg', 'www.facebook.com', '034555555555', '1', '', '', '', '', '', '', '');
 INSERT INTO `oc_admin` VALUES (2, 'junaid', 'khalil', 'khalil.junaid123@gmail.com', 'Admin', '6c75f2a70c892301254da6a2d83cc0b37bf5a5d7', 'junaidkhalil', '', '', 'khalil.junaid123@gmail.com', '1', '', '', '', '', '', '', '');
 INSERT INTO `oc_admin` VALUES (3, 'junaid', 'khalil', 'khalil.junaid01@gmail.com', 'Admin', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'junaidkhalil', '', '', '0326599999', '1', '', '', '', '', '', '', '');
-INSERT INTO `oc_admin` VALUES (4, 'junaid', 'khalil', 'khalil.junaid121@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '1212121212121', '1', '', '', '', '', '', '', '');
 INSERT INTO `oc_admin` VALUES (5, 'junaid', 'khalil', 'khalil.junaid1212@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '1212121212121', '1', '', '', '', '', '', '', '');
 INSERT INTO `oc_admin` VALUES (6, 'junaid', 'khalil', 'khalil.junaiad@gmail.com', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '111111', '1', '', '', '', '', '', '', '');
 INSERT INTO `oc_admin` VALUES (7, 'junaid', 'khalil', 'khalil.junaid@gmail.comq', 'Admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'junaidkhalil', '', '', '22323232', '1', '', '', '', '', '', '', '');
@@ -57,11 +56,11 @@ INSERT INTO `oc_admin` VALUES (9, 'junaid', 'khalil', 'khalil.junaid22@gmail.com
 INSERT INTO `oc_admin` VALUES (10, 'junaid', 'khalil', 'khalil.junaid2q2@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1', '', '', '', '', '', '', '');
 INSERT INTO `oc_admin` VALUES (11, 'junaid', 'khalil', 'khalil.junaid2q2w@gmail.com', 'Admin', '48058e0c99bf7d689ce71c360699a14ce2f99774', 'junaidkhalil', '', '', 'khalil.junaid@gmail.com', '1', '', '', '', '', '', '', '');
 INSERT INTO `oc_admin` VALUES (12, 'junaid', 'khalil', 'khalil.junaid0101@gmail.com', 'Admin', '7c222fb2927d828af22f592134e8932480637c0d', 'junaidkhalil', '', '', '235696969', '1', '', '', '', '', '', '', '');
-INSERT INTO `oc_admin` VALUES (13, 'jooojo', 'Rahat', 'r@r.com', 'Admin', 'ffb9b0421a6c914d620933c885b7f1d155ff8692', 'Jhon', '', '', '25252525', '1', '', '', '', '', '', '', '');
+INSERT INTO `oc_admin` VALUES (13, 'jooojo', 'Rahat', 'r@r.com', 'Admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Jhon', '', 'www.yahoo.com', '25252525', '1', 'sdfgdfgdfg', 'dsfgdfg', 'dfgsdfg', '3613', '435324', '223', '45345');
 INSERT INTO `oc_admin` VALUES (14, 'Weber', 'Pro', 'weber@gmail.com', 'Superadmin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WeberPro', 'thumb_14.jpg', 'http://www.weber.com', '445555555555', '1', '', '', '', '', '', '', '');
 INSERT INTO `oc_admin` VALUES (15, 'NEW', 'TEST', 'test@gmail.com', 'Admin', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'WEBER', '', '', '0300ewq', '1', '', '', '', '', '', '', '');
-INSERT INTO `oc_admin` VALUES (16, 'qais', 'qais', 'qais@yahoo.com', '', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'uk colleges', 'thumb_14.jpg', 'www.yahoo.com', '0307454648', '1', 'house#2255', 'line 56', 'majareka', '1', '12345', '0', '123456877');
 INSERT INTO `oc_admin` VALUES (17, 'qaiss', 'qaiss', 'qaiss@yahoo.com', '', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'uk collegess', 'thumb_14.jpg', 'www.yahhoo.com', '0307454648', '1', 'house#2255', 'line 56', 'majareka', '1', '12345', '0', '123456877');
+INSERT INTO `oc_admin` VALUES (18, 'sdafsdf', 'sadfsd', 'lkjdflkads@yahoo.com', 'Admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'kljflkdsjf', '', 'www.yahoo.com', '45353', '1', 'sdfdfasf', 'asdfsdf', 'adfsdf', '3614', '343', '222', '434');
 
 -- --------------------------------------------------------
 
@@ -148,6 +147,7 @@ CREATE TABLE `oc_categories` (
   `publish_by_super` enum('0','1') NOT NULL,
   `parent_id` int(10) unsigned NOT NULL,
   `name` varchar(64) NOT NULL,
+  `old_route` varchar(128) NOT NULL,
   `slug` varchar(64) NOT NULL,
   `route_id` int(11) NOT NULL,
   `description` text NOT NULL,
@@ -156,23 +156,25 @@ CREATE TABLE `oc_categories` (
   `image` varchar(255) default NULL,
   `seo_title` text NOT NULL,
   `meta` text NOT NULL,
+  `meta_key` text NOT NULL,
   `publish_date` datetime NOT NULL,
   `delete` enum('0','1') NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 -- 
 -- Dumping data for table `oc_categories`
 -- 
 
-INSERT INTO `oc_categories` VALUES (1, 1, '1', '1', 0, 'Information Technology', 'information-technology', 1, '<p>sfasfasfsafqqeqweqew</p>', '', 0, 'de9087955c1aae816f28bcdbf91e47b2.jpg', '', '', '2013-04-27 12:12:39', '0');
-INSERT INTO `oc_categories` VALUES (2, 1, '1', '1', 0, 'Human Resource123', 'human-resource', 3, '<img src="http://localhost/UKOpenColleges/uploads/wysiwyg/junaidkhalil/frr.jpg" alt="frr.jpg">ssfsdfsdfdsfdsfsdfsdfdsfdsfsdf', '', 0, '2f704047491b6341ca6a94fd0d34d5a1.jpg', 'dedecaif', '<meta name="description" content="We sell products that help you" />', '2013-04-27 12:12:39', '0');
-INSERT INTO `oc_categories` VALUES (3, 1, '', '1', 1, 'Me Child', 'me-child', 4, 'adasdasdasdadad', '', 0, 'c6ce9be6e1b94ad20cbf895ead43bdc8.jpg', '', '', '2013-04-27 12:12:39', '0');
-INSERT INTO `oc_categories` VALUES (4, 0, '1', '1', 0, 'Testing', 'gobottest', 14, '<p>afaasdadasd</p>', 'adadadadadad', 0, 'b5bee5eab34e39cd8f21f7d5cfc2f7ee.jpg', '', '', '2013-04-27 12:12:41', '0');
-INSERT INTO `oc_categories` VALUES (5, 1, '1', '1', 0, 'SuperFunWord', 'superfun', 15, '<p>this is testing</p>', '', 0, '7316d1cb9ff7b9a7016a6cafa630dbe7.jpg', '', '', '2013-04-27 12:12:40', '0');
-INSERT INTO `oc_categories` VALUES (7, 1, '1', '1', 0, 'Newcat', 'newcat1', 18, '<p>this is testing for new fields</p>', '', 0, '4e2bb003635ced9b3cd870bbf5b4a96b.jpg', '', '', '2013-04-27 12:12:40', '0');
-INSERT INTO `oc_categories` VALUES (8, 13, '1', '1', 0, 'ArTAr', 'rut', 19, '<p>this is admin 7 and his category</p>', 'hjhkhkjhkhjhkj', 1, '968aa815efb369858f54a9b0701152d3.jpg', 'sdfsdf', '', '2013-04-27 12:12:38', '0');
-INSERT INTO `oc_categories` VALUES (9, 14, '1', '1', 0, 'Automate Soap', 'automative-soap', 20, '<p>This is automate function to work with the people for serving people.</p>', 'fsfasfasdfasfasfasfa', 0, '42632c35e7a1654e774aebf3031dd9c2.jpg', '', '', '2013-04-30 13:01:04', '0');
+INSERT INTO `oc_categories` VALUES (1, 1, '1', '1', 0, 'Information Technology', '', 'information-technology', 1, '<p>sfasfasfsafqqeqweqew</p>', '', 0, 'de9087955c1aae816f28bcdbf91e47b2.jpg', '', '', '', '2013-06-07 15:03:43', '0');
+INSERT INTO `oc_categories` VALUES (2, 1, '1', '1', 0, 'Human Resource123', '', 'human-resource', 3, '<img src="http://localhost/UKOpenColleges/uploads/wysiwyg/junaidkhalil/frr.jpg" alt="frr.jpg">ssfsdfsdfdsfdsfsdfsdfdsfdsfsdf', '', 0, '2f704047491b6341ca6a94fd0d34d5a1.jpg', 'dedecaif', '<meta name="description" content="We sell products that help you" />', '', '2013-06-07 15:03:43', '0');
+INSERT INTO `oc_categories` VALUES (3, 1, '1', '0', 1, 'Me Child', 'old slug', 'me-child', 4, 'adasdasdasdadad', '', 0, 'c6ce9be6e1b94ad20cbf895ead43bdc8.jpg', '', '', 'key words', '2013-06-07 15:03:43', '0');
+INSERT INTO `oc_categories` VALUES (4, 0, '1', '1', 0, 'Testing', '', 'gobottest', 14, '<p>afaasdadasd</p>', 'adadadadadad', 0, 'b5bee5eab34e39cd8f21f7d5cfc2f7ee.jpg', '', '', '', '2013-06-07 15:03:44', '0');
+INSERT INTO `oc_categories` VALUES (5, 1, '1', '1', 0, 'SuperFunWord', '', 'superfun', 15, '<p>this is testing</p>', '', 0, '7316d1cb9ff7b9a7016a6cafa630dbe7.jpg', '', '', '', '2013-06-07 15:03:44', '0');
+INSERT INTO `oc_categories` VALUES (7, 1, '1', '1', 0, 'Newcat', '', 'newcat1', 18, '<p>this is testing for new fields</p>', '', 0, '4e2bb003635ced9b3cd870bbf5b4a96b.jpg', '', '', '', '2013-06-07 15:03:43', '0');
+INSERT INTO `oc_categories` VALUES (8, 13, '1', '1', 0, 'ArTAr', 'oldrun', 'rut', 19, '<p>this is admin 7 and his category</p>', 'hjhkhkjhkhjhkj', 1, '968aa815efb369858f54a9b0701152d3.jpg', 'sdfsdf', 'meta description', 'meta keyword', '2013-06-07 15:03:26', '0');
+INSERT INTO `oc_categories` VALUES (9, 14, '1', '1', 0, 'Automate Soap', '', 'automative-soap', 20, '<p>This is automate function to work with the people for serving people.</p>', 'fsfasfasdfasfasfasfa', 0, '42632c35e7a1654e774aebf3031dd9c2.jpg', '', '', '', '2013-06-07 15:03:43', '0');
+INSERT INTO `oc_categories` VALUES (10, 14, '1', '1', 0, 'slug', 'old slug 11111', 'slug', 36, '<p>slug des<br></p>', 'extra', 1, NULL, 'soe title 1', 'meta des 1', 'meta key wordssss', '2013-06-07 15:03:43', '0');
 
 -- --------------------------------------------------------
 
@@ -198,6 +200,7 @@ INSERT INTO `oc_category_products` VALUES (5, 1, 2);
 INSERT INTO `oc_category_products` VALUES (1, 1, 1);
 INSERT INTO `oc_category_products` VALUES (2, 5, 0);
 INSERT INTO `oc_category_products` VALUES (5, 2, 0);
+INSERT INTO `oc_category_products` VALUES (7, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -4490,12 +4493,13 @@ CREATE TABLE `oc_coupons` (
   `reduction_type` varchar(10) NOT NULL,
   `reduction_amount` float NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `oc_coupons`
 -- 
 
+INSERT INTO `oc_coupons` VALUES (1, '23123', '0000-00-00', '0000-00-00', 0, 23423, 342, 0, 'price', 'percent', 234234);
 
 -- --------------------------------------------------------
 
@@ -4545,19 +4549,21 @@ CREATE TABLE `oc_customers` (
   `post_code` varchar(25) NOT NULL,
   `country` varchar(25) NOT NULL,
   `gender` varchar(25) NOT NULL,
+  `register_on` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 -- 
 -- Dumping data for table `oc_customers`
 -- 
 
-INSERT INTO `oc_customers` VALUES (1, 'junaid', 'khalil', 'khalil.junaid@gmail.com', 0, '923454318345', 'junaidkhalil', '', '', NULL, NULL, 'true', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 1, 0, '', '', '', '', '', '', '');
-INSERT INTO `oc_customers` VALUES (2, 'nnnnn', 'rafique', 'qasim@yahoo.com', 0, '87654321', 'real madrade', '', '', 11, 11, 'true', 'qasim', 1, 1, 0, '', '', '', '', '', '', '');
-INSERT INTO `oc_customers` VALUES (3, 'rafique', 'ahmad', 'rafique@yahoo.com', 1, '123456', 'rafique', '', '', NULL, NULL, 'true', 'bbcd5278707febe7cae4936c6efa3a39319e3238', 1, 1, 0, '', '', '', '', '', '', '');
-INSERT INTO `oc_customers` VALUES (6, 'qasim11', 'rafique11', 'qasim1111@yahoo.com', 1, '24353711', 'qasim1111', '', '', NULL, NULL, 'true', '1122334455', 1, 1, 0, 'house #242311', 'main multan road11', 'lahore11', '3613', '00924211', '223', 'female');
-INSERT INTO `oc_customers` VALUES (7, 'tom', 'maka', 'tom@native.com', 1, '445555555555', 'junaidkhalil', '', '', NULL, NULL, 'true', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 1, 0, 'wwww', 'wwwww', 'wwwww', '3615', '222', '153', 'male');
-INSERT INTO `oc_customers` VALUES (8, 'qasim', 'qasim', 'qasimm@yahoo.com', 0, '03074203020', 'qasim', 'sample text sample textsample text sample text sample textsample text sample text sample textsample text', '5-secret-ingredients-winning-idea.jpg', NULL, NULL, 'true', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 1, 0, 'asdas', 'dfgfsdg', 'London', '2457', '1234', '162', '0');
+INSERT INTO `oc_customers` VALUES (1, 'junaid', 'khalil', 'khalil.junaid@gmail.com', 0, '923454318345', 'junaidkhalil', '', '', NULL, NULL, 'true', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 1, 0, '', '', '', '', '', '', '', '0000-00-00 00:00:00');
+INSERT INTO `oc_customers` VALUES (2, 'nnnnn', 'rafique', 'qasim@yahoo.com', 0, '87654321', 'real madrade', '', '', 11, 11, 'true', 'qasim', 1, 1, 0, '', '', '', '', '', '', '', '0000-00-00 00:00:00');
+INSERT INTO `oc_customers` VALUES (3, 'rafique', 'ahmad', 'rafique@yahoo.com', 1, '123456', 'rafique', '', '', NULL, NULL, 'true', 'bbcd5278707febe7cae4936c6efa3a39319e3238', 1, 1, 0, '', '', '', '', '', '', '', '0000-00-00 00:00:00');
+INSERT INTO `oc_customers` VALUES (6, 'qasim11', 'rafique11', 'qasim1111@yahoo.com', 1, '24353711', 'qasim1111', '', '', NULL, NULL, 'true', '1122334455', 1, 1, 0, 'house #242311', 'main multan road11', 'lahore11', '3613', '00924211', '223', 'female', '0000-00-00 00:00:00');
+INSERT INTO `oc_customers` VALUES (7, 'tom', 'maka', 'tom@native.com', 1, '445555555555', 'junaidkhalil', '', '', NULL, NULL, 'true', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 1, 0, 'wwww', 'wwwww', 'wwwww', '3615', '222', '153', 'male', '0000-00-00 00:00:00');
+INSERT INTO `oc_customers` VALUES (8, 'qasim', 'qasim', 'qasimm@yahoo.com', 0, '03074203020', 'qasim', 'sample text sample textsample text sample text sample textsample text sample text sample textsample text', '5-secret-ingredients-winning-idea.jpg', NULL, NULL, 'true', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 1, 0, 'asdas', 'dfgfsdg', 'London', '2457', '1234', '162', '0', '0000-00-00 00:00:00');
+INSERT INTO `oc_customers` VALUES (10, 'sdfgdfg', 'dsfgdfg', 'kjhfkjsdfh@yahoo.com', 0, '79879789', 'fgdfg', '', '', NULL, NULL, 'true', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 0, 0, 'sdfgdsfgsdfg', 'dsfgdsfgd', 'jlfglkfdsjg', '3616', '543', '38', '', '2013-06-07 17:46:34');
 
 -- --------------------------------------------------------
 
@@ -5192,7 +5198,7 @@ CREATE TABLE `oc_options` (
   `type` varchar(24) NOT NULL,
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
 
 -- 
 -- Dumping data for table `oc_options`
@@ -5200,8 +5206,8 @@ CREATE TABLE `oc_options` (
 
 INSERT INTO `oc_options` VALUES (32, 1, 1, 'Color', 'checklist', 0);
 INSERT INTO `oc_options` VALUES (2, 4, 1, 'Color', 'checklist', 0);
-INSERT INTO `oc_options` VALUES (66, 5, 2, 'Gender', 'radiolist', 0);
-INSERT INTO `oc_options` VALUES (65, 5, 1, 'Color', 'checklist', 1);
+INSERT INTO `oc_options` VALUES (68, 5, 2, 'Gender', 'radiolist', 0);
+INSERT INTO `oc_options` VALUES (67, 5, 1, 'Color', 'checklist', 1);
 
 -- --------------------------------------------------------
 
@@ -5218,16 +5224,16 @@ CREATE TABLE `oc_option_values` (
   `weight` varchar(255) default NULL,
   `price` varchar(255) default NULL,
   PRIMARY KEY  (`option_value_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
 
 -- 
 -- Dumping data for table `oc_option_values`
 -- 
 
-INSERT INTO `oc_option_values` VALUES (84, 'Green', 'green', 66, '1', NULL, NULL);
-INSERT INTO `oc_option_values` VALUES (83, 'White', 'white', 66, '0', NULL, NULL);
-INSERT INTO `oc_option_values` VALUES (82, 'Brown', 'brown', 65, '1', NULL, NULL);
-INSERT INTO `oc_option_values` VALUES (81, 'Black', 'black', 65, '0', NULL, NULL);
+INSERT INTO `oc_option_values` VALUES (88, 'Green', 'green', 68, '1', NULL, NULL);
+INSERT INTO `oc_option_values` VALUES (87, 'White', 'white', 68, '0', NULL, NULL);
+INSERT INTO `oc_option_values` VALUES (86, 'Brown', 'brown', 67, '1', NULL, NULL);
+INSERT INTO `oc_option_values` VALUES (85, 'Black', 'black', 67, '0', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -5340,6 +5346,7 @@ CREATE TABLE `oc_pages` (
   `parent_id` int(11) NOT NULL,
   `title` varchar(128) NOT NULL,
   `menu_title` varchar(128) NOT NULL,
+  `old_route` varchar(128) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `route_id` int(128) NOT NULL,
   `content` longtext NOT NULL,
@@ -5347,6 +5354,7 @@ CREATE TABLE `oc_pages` (
   `sequence` int(11) NOT NULL default '0',
   `seo_title` text NOT NULL,
   `meta` text NOT NULL,
+  `meta_key` text NOT NULL,
   `url` varchar(255) default NULL,
   `new_window` tinyint(1) default '0',
   PRIMARY KEY  (`id`),
@@ -5357,10 +5365,10 @@ CREATE TABLE `oc_pages` (
 -- Dumping data for table `oc_pages`
 -- 
 
-INSERT INTO `oc_pages` VALUES (1, 0, 'FAQ''s', 'FAQ''s', 'faq', 21, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/info@2x.png" alt="info@2x.png"><br></p>', '', 0, '', '', NULL, 0);
-INSERT INTO `oc_pages` VALUES (2, 0, 'payments', 'payments', 'pament', 22, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/tags@2x.png" alt="tags@2x.png"><br></p>', '', 0, '', '', NULL, 0);
-INSERT INTO `oc_pages` VALUES (3, 0, 'page3', 'page3', 'page3', 23, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/tags@2x.png" alt="tags@2x.png"><br></p>', '', 0, '', '', NULL, 0);
-INSERT INTO `oc_pages` VALUES (7, 0, 'page4', 'page4', 'page4', 27, '<p>page 4 content<br></p>', 'Desert.jpg', 0, '', '', NULL, 0);
+INSERT INTO `oc_pages` VALUES (1, 0, 'FAQ''s', 'FAQ''s', '', 'faq', 21, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/info@2x.png" alt="info@2x.png"><br></p>', '', 0, '', '', '', NULL, 0);
+INSERT INTO `oc_pages` VALUES (2, 0, 'payments', 'payments', '', 'pament', 22, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/tags@2x.png" alt="tags@2x.png"><br></p>', '', 0, '', '', '', NULL, 0);
+INSERT INTO `oc_pages` VALUES (3, 0, 'page3', 'page3', '', 'page3', 23, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/tags@2x.png" alt="tags@2x.png"><br></p>', '', 0, '', '', '', NULL, 0);
+INSERT INTO `oc_pages` VALUES (7, 0, 'page4', 'page4', 'edited slug', 'page4', 27, '<p>page 4 content<br></p>', '', 0, '', '', 'edited , meta,  key , words', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -5393,6 +5401,7 @@ CREATE TABLE `oc_products` (
   `admin_id` int(10) NOT NULL,
   `sku` varchar(30) default NULL,
   `name` varchar(128) default NULL,
+  `old_route` varchar(128) NOT NULL,
   `slug` varchar(128) default NULL,
   `route_id` int(11) NOT NULL,
   `description` text,
@@ -5412,20 +5421,22 @@ CREATE TABLE `oc_products` (
   `images` text,
   `seo_title` text,
   `meta` text,
+  `meta_key` text NOT NULL,
   `enabled` tinyint(1) NOT NULL default '1',
   `delete` enum('0','1') NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- 
 -- Dumping data for table `oc_products`
 -- 
 
-INSERT INTO `oc_products` VALUES (1, 13, '0', 'Top ID', 'junaid-khalil2', 7, 'Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris sagittis. Donec adipiscing venenatis rhoncus. Mauris in dapibus massa. Aenean sollicitudin facilisis nisl, sit amet gravida leo venenatis ac. Sed in turpis risus. Integer aliquam porttitor leo non consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 10.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '["3","2","1"]', '690bc40c31ffa46a4ce2c5a6e4fb85f5.jpg', '', '', 1, '0');
-INSERT INTO `oc_products` VALUES (2, 13, '0', 'Simple Course', 'simple-course', 8, 'Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris sagittis. Donec adipiscing venenatis rhoncus. Mauris in dapibus massa. Aenean sollicitudin facilisis nisl, sit amet gravida leo venenatis ac. Sed in turpis risus. Integer aliquam porttitor leo non consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 52.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '', '4edcb7f63e36bc0120ccec68e2be3b8f.jpg', '', '', 1, '0');
-INSERT INTO `oc_products` VALUES (3, 1, '0', 'Proudct Admin Id', 'proudct-admin-id', 9, 'Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris sagittis. Donec adipiscing venenatis rhoncus. Mauris in dapibus massa. Aenean sollicitudin facilisis nisl, sit amet gravida leo venenatis ac. Sed in turpis risus. Integer aliquam porttitor leo non consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 10.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '', '642786e4aef1b158b10a26dbdb4a0eb0.jpg', '', '', 1, '0');
-INSERT INTO `oc_products` VALUES (5, 1, '0', 'junaidkhalil', 'junaid-khalil3', 11, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/phpdev.jpg" alt="phpdev.jpg" style=""><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/phpdev.jpg" alt="phpdev.jpg">asdasdasdaasdasd</p>', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 10.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '', '7cc6082dee753e7166abf85a41f4e453.jpg', 'sdfsfsdfsd', 'asdadasd', 0, '0');
-INSERT INTO `oc_products` VALUES (6, 1, '0', 'March22', 'march-221', 13, 'Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris sagittis. Donec adipiscing venenatis rhoncus. Mauris in dapibus massa. Aenean sollicitudin facilisis nisl, sit amet gravida leo venenatis ac. Sed in turpis risus. Integer aliquam porttitor leo non consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 44.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '', '96ed34bdae9b353cffc3208a88eecaf5.jpg', 'mhhh', 'adsasd', 1, '0');
+INSERT INTO `oc_products` VALUES (1, 13, '0', 'Top ID', '', 'junaid-khalil2', 7, 'Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris sagittis. Donec adipiscing venenatis rhoncus. Mauris in dapibus massa. Aenean sollicitudin facilisis nisl, sit amet gravida leo venenatis ac. Sed in turpis risus. Integer aliquam porttitor leo non consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 10.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '["3","2","1"]', '690bc40c31ffa46a4ce2c5a6e4fb85f5.jpg', '', '', '', 1, '0');
+INSERT INTO `oc_products` VALUES (2, 13, '0', 'Simple Course', '', 'simple-course', 8, 'Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris sagittis. Donec adipiscing venenatis rhoncus. Mauris in dapibus massa. Aenean sollicitudin facilisis nisl, sit amet gravida leo venenatis ac. Sed in turpis risus. Integer aliquam porttitor leo non consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 52.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '', '4edcb7f63e36bc0120ccec68e2be3b8f.jpg', '', '', '', 1, '0');
+INSERT INTO `oc_products` VALUES (3, 1, '0', 'Proudct Admin Id', '', 'proudct-admin-id', 9, 'Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris sagittis. Donec adipiscing venenatis rhoncus. Mauris in dapibus massa. Aenean sollicitudin facilisis nisl, sit amet gravida leo venenatis ac. Sed in turpis risus. Integer aliquam porttitor leo non consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 10.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '', '642786e4aef1b158b10a26dbdb4a0eb0.jpg', '', '', '', 1, '0');
+INSERT INTO `oc_products` VALUES (5, 1, '0', 'junaidkhalil', 'editd  old slug', 'junaid-khalil3', 11, '<p><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/phpdev.jpg" alt="phpdev.jpg" style=""><img src="http://localhost/UKOpenColleges/uploads/wysiwyg/phpdev.jpg" alt="phpdev.jpg">asdasdasdaasdasd</p>', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 10.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '', '7cc6082dee753e7166abf85a41f4e453.jpg', 'sdfsfsdfsd', 'asdadasd', 'edited keyword', 1, '0');
+INSERT INTO `oc_products` VALUES (6, 1, '0', 'March22', '', 'march-221', 13, 'Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris sagittis. Donec adipiscing venenatis rhoncus. Mauris in dapibus massa. Aenean sollicitudin facilisis nisl, sit amet gravida leo venenatis ac. Sed in turpis risus. Integer aliquam porttitor leo non consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales dui eget turpis tincidunt fermentum. Vestibulum at metus erat. In pharetra eleifend odio, sit amet iaculis neque consequat id. Aliquam dignissim pellentesque arcu vel ultricies. Maecenas eget sodales purus. Integer commodo vehicula gravida. Donec elementum, augue quis bibendum adipiscing, erat sem fringilla quam, sit amet aliquet lacus arcu viverra nibh.', 44.00, 0.00, '1', '1', 0, 0, 0, 0, '0', 0, 0, '', '96ed34bdae9b353cffc3208a88eecaf5.jpg', 'mhhh', 'adsasd', '', 1, '0');
+INSERT INTO `oc_products` VALUES (7, 14, '0', 'junaidkhalil 22', 'new old slug', 'slug1', 37, '<p>test text<br></p>', 'dont need this', 1022.00, 0.00, NULL, '1', 0, 0, 0, 0, '0', 0, 0, '["3"]', NULL, 'slug title', 'meta des', 'now meta key word', 1, '0');
 
 -- --------------------------------------------------------
 
@@ -5457,7 +5468,7 @@ CREATE TABLE `oc_product_tabs` (
   `tab_title` varchar(255) NOT NULL,
   `tab_content` varchar(255) NOT NULL,
   PRIMARY KEY  (`tab_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
 -- Dumping data for table `oc_product_tabs`
@@ -5466,6 +5477,7 @@ CREATE TABLE `oc_product_tabs` (
 INSERT INTO `oc_product_tabs` VALUES (1, 5, 1, 'Tab1', '<p>adasdaa</p>');
 INSERT INTO `oc_product_tabs` VALUES (2, 5, 1, 'Tab2', '<p>this is tab 2</p>');
 INSERT INTO `oc_product_tabs` VALUES (3, 5, 1, 'Tab3', '');
+INSERT INTO `oc_product_tabs` VALUES (4, 7, 14, 'dsfgdfg', '<p>sgfdsfgdfg<br></p>');
 
 -- --------------------------------------------------------
 
@@ -5477,42 +5489,45 @@ CREATE TABLE `oc_routes` (
   `id` int(11) NOT NULL auto_increment,
   `slug` varchar(255) NOT NULL,
   `route` varchar(32) default NULL,
+  `old_route` varchar(128) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 -- 
 -- Dumping data for table `oc_routes`
 -- 
 
-INSERT INTO `oc_routes` VALUES (1, 'information-technology', 'cart/category/1');
-INSERT INTO `oc_routes` VALUES (2, 'oop', 'cart/product/1');
-INSERT INTO `oc_routes` VALUES (3, 'human-resource', 'cart/category/2');
-INSERT INTO `oc_routes` VALUES (4, 'me-child', 'cart/category/3');
-INSERT INTO `oc_routes` VALUES (5, 'junaid-khalil', NULL);
-INSERT INTO `oc_routes` VALUES (6, 'junaid-khalil1', NULL);
-INSERT INTO `oc_routes` VALUES (7, 'junaid-khalil2', 'cart/product/1');
-INSERT INTO `oc_routes` VALUES (8, 'simple-course', 'cart/product/2');
-INSERT INTO `oc_routes` VALUES (9, 'proudct-admin-id', 'cart/product/3');
-INSERT INTO `oc_routes` VALUES (10, 'junaid-khalil11', 'cart/product/4');
-INSERT INTO `oc_routes` VALUES (11, 'junaid-khalil3', 'cart/product/5');
-INSERT INTO `oc_routes` VALUES (12, 'march-22', NULL);
-INSERT INTO `oc_routes` VALUES (13, 'march-221', 'cart/product/6');
-INSERT INTO `oc_routes` VALUES (14, 'gobottest', 'cart/category/4');
-INSERT INTO `oc_routes` VALUES (15, 'superfun', 'cart/category/5');
-INSERT INTO `oc_routes` VALUES (17, 'newcat', NULL);
-INSERT INTO `oc_routes` VALUES (18, 'newcat1', 'cart/category/7');
-INSERT INTO `oc_routes` VALUES (19, 'rut', 'cart/category/8');
-INSERT INTO `oc_routes` VALUES (20, 'automative-soap', 'cart/category/9');
-INSERT INTO `oc_routes` VALUES (21, 'faq', 'cart/page/1');
-INSERT INTO `oc_routes` VALUES (22, 'pament', 'cart/page/2');
-INSERT INTO `oc_routes` VALUES (23, 'page3', 'cart/page/3');
-INSERT INTO `oc_routes` VALUES (27, 'page4', 'cart/page/7');
-INSERT INTO `oc_routes` VALUES (25, 'first-title', 'cart/page/5');
-INSERT INTO `oc_routes` VALUES (26, 'fsdsadrfasf', 'cart/page/6');
-INSERT INTO `oc_routes` VALUES (30, 'dsfgdfsg', NULL);
-INSERT INTO `oc_routes` VALUES (31, 'dsfgdfg', NULL);
-INSERT INTO `oc_routes` VALUES (32, 'sdfgdsfg', NULL);
-INSERT INTO `oc_routes` VALUES (33, 'dgsdfg', NULL);
+INSERT INTO `oc_routes` VALUES (1, 'information-technology', 'cart/category/1', '');
+INSERT INTO `oc_routes` VALUES (2, 'oop', 'cart/product/1', '');
+INSERT INTO `oc_routes` VALUES (3, 'human-resource', 'cart/category/2', '');
+INSERT INTO `oc_routes` VALUES (4, 'me-child', 'cart/category/3', 'old slug');
+INSERT INTO `oc_routes` VALUES (5, 'junaid-khalil', NULL, '');
+INSERT INTO `oc_routes` VALUES (6, 'junaid-khalil1', NULL, '');
+INSERT INTO `oc_routes` VALUES (7, 'junaid-khalil2', 'cart/product/1', '');
+INSERT INTO `oc_routes` VALUES (8, 'simple-course', 'cart/product/2', '');
+INSERT INTO `oc_routes` VALUES (9, 'proudct-admin-id', 'cart/product/3', '');
+INSERT INTO `oc_routes` VALUES (10, 'junaid-khalil11', 'cart/product/4', '');
+INSERT INTO `oc_routes` VALUES (11, 'junaid-khalil3', 'cart/product/5', 'editd  old slug');
+INSERT INTO `oc_routes` VALUES (12, 'march-22', NULL, '');
+INSERT INTO `oc_routes` VALUES (13, 'march-221', 'cart/product/6', '');
+INSERT INTO `oc_routes` VALUES (14, 'gobottest', 'cart/category/4', '');
+INSERT INTO `oc_routes` VALUES (15, 'superfun', 'cart/category/5', '');
+INSERT INTO `oc_routes` VALUES (17, 'newcat', NULL, '');
+INSERT INTO `oc_routes` VALUES (18, 'newcat1', 'cart/category/7', '');
+INSERT INTO `oc_routes` VALUES (19, 'rut', 'cart/category/8', 'oldrun');
+INSERT INTO `oc_routes` VALUES (20, 'automative-soap', 'cart/category/9', '');
+INSERT INTO `oc_routes` VALUES (21, 'faq', 'cart/page/1', '');
+INSERT INTO `oc_routes` VALUES (22, 'pament', 'cart/page/2', '');
+INSERT INTO `oc_routes` VALUES (23, 'page3', 'cart/page/3', '');
+INSERT INTO `oc_routes` VALUES (27, 'page4', 'cart/page/7', 'edited slug');
+INSERT INTO `oc_routes` VALUES (25, 'first-title', 'cart/page/5', '');
+INSERT INTO `oc_routes` VALUES (26, 'fsdsadrfasf', 'cart/page/6', '');
+INSERT INTO `oc_routes` VALUES (30, 'dsfgdfsg', NULL, '');
+INSERT INTO `oc_routes` VALUES (31, 'dsfgdfg', NULL, '');
+INSERT INTO `oc_routes` VALUES (32, 'sdfgdsfg', NULL, '');
+INSERT INTO `oc_routes` VALUES (33, 'dgsdfg', NULL, '');
+INSERT INTO `oc_routes` VALUES (36, 'slug', 'cart/category/10', 'old slug 11111');
+INSERT INTO `oc_routes` VALUES (37, 'slug1', 'cart/product/7', 'new old slug');
 
 -- --------------------------------------------------------
 
@@ -8771,14 +8786,32 @@ INSERT INTO `oc_sessions` VALUES ('b4086366bb3177565984584cef555304', '127.0.0.1
 INSERT INTO `oc_sessions` VALUES ('bee8c7377d3202a30068ddbb63ac8a1a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370521984, '');
 INSERT INTO `oc_sessions` VALUES ('cb779e01a6da5541a8827f95627dabb2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370521611, '');
 INSERT INTO `oc_sessions` VALUES ('1a904b1e29efc2654f7567fb2ce6eaba', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370521611, '');
-INSERT INTO `oc_sessions` VALUES ('e31ad235da6d7670f0f516bf333e2f94', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370522925, 'a:2:{s:13:"cart_contents";a:26:{s:21:"order_insurable_value";i:0;s:12:"order_weight";i:0;s:14:"group_discount";i:0;s:15:"coupon_discount";i:0;s:23:"taxable_coupon_discount";i:0;s:17:"gift_card_balance";i:0;s:18:"gift_card_discount";i:0;s:9:"downloads";a:0:{}s:13:"cart_subtotal";i:0;s:22:"cp_discounted_subtotal";i:0;s:13:"taxable_total";i:0;s:10:"cart_total";i:0;s:11:"total_items";i:0;s:14:"shipping_total";i:0;s:3:"tax";i:0;s:5:"items";a:0:{}s:8:"customer";b:0;s:14:"custom_charges";a:0:{}s:8:"shipping";a:3:{s:6:"method";b:0;s:5:"price";b:0;s:4:"code";b:0;}s:7:"gc_list";a:0:{}s:11:"coupon_list";a:0:{}s:15:"applied_coupons";a:0:{}s:21:"whole_order_discounts";a:0:{}s:20:"free_shipping_coupon";b:0;s:17:"requires_shipping";b:0;s:7:"payment";a:0:{}}s:13:"active_module";s:5:"sales";}');
-INSERT INTO `oc_sessions` VALUES ('568889a34aa95d80cb988d9c4d06662b', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370522925, 'a:1:{s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1370529959;}}');
+INSERT INTO `oc_sessions` VALUES ('b739427f8798809ae36543bd8d1d85f3', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370601964, 'a:2:{s:13:"cart_contents";a:26:{s:21:"order_insurable_value";i:0;s:12:"order_weight";i:0;s:14:"group_discount";i:0;s:15:"coupon_discount";i:0;s:23:"taxable_coupon_discount";i:0;s:17:"gift_card_balance";i:0;s:18:"gift_card_discount";i:0;s:9:"downloads";a:0:{}s:13:"cart_subtotal";i:0;s:22:"cp_discounted_subtotal";i:0;s:13:"taxable_total";i:0;s:10:"cart_total";i:0;s:11:"total_items";i:0;s:14:"shipping_total";i:0;s:3:"tax";i:0;s:5:"items";a:0:{}s:8:"customer";b:0;s:14:"custom_charges";a:0:{}s:8:"shipping";a:3:{s:6:"method";b:0;s:5:"price";b:0;s:4:"code";b:0;}s:7:"gc_list";a:0:{}s:11:"coupon_list";a:0:{}s:15:"applied_coupons";a:0:{}s:21:"whole_order_discounts";a:0:{}s:20:"free_shipping_coupon";b:0;s:17:"requires_shipping";b:0;s:7:"payment";a:0:{}}s:13:"active_module";s:10:"categories";}');
+INSERT INTO `oc_sessions` VALUES ('296c583deb7d3ff7774792e1bca11c91', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610598, 'a:1:{s:13:"active_module";s:5:"sales";}');
+INSERT INTO `oc_sessions` VALUES ('33353efba66ff555b9fbf6e9e0aa9ed9', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610598, 'a:1:{s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1370617415;}}');
+INSERT INTO `oc_sessions` VALUES ('0497ecfd64b465f7f7d276da16842b36', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370601964, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1370609069;}}');
 INSERT INTO `oc_sessions` VALUES ('1019a82ea318437ba369072ab198c8ca', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370522007, '');
 INSERT INTO `oc_sessions` VALUES ('a64dbbb54d678981c709f7d3d03cbcfe', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370522007, '');
 INSERT INTO `oc_sessions` VALUES ('6d2a19380e617cee4a50620421dd51bd', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370522049, '');
 INSERT INTO `oc_sessions` VALUES ('10ef24e6d82598d3fbe080fd34bb8f8b', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370522049, '');
 INSERT INTO `oc_sessions` VALUES ('52a5ea928da8665fa8ee6c8568daadb5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370522144, '');
 INSERT INTO `oc_sessions` VALUES ('b7776c462f8f9cd5f7ffa96f64b900f7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370522144, '');
+INSERT INTO `oc_sessions` VALUES ('ca45be8ed198ba4160683fefd3791ac4', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610622, 'a:1:{s:13:"active_module";s:9:"dashboard";}');
+INSERT INTO `oc_sessions` VALUES ('8aa893f0ebb4ccc16a2681be5b95e398', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610622, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1370617819;}}');
+INSERT INTO `oc_sessions` VALUES ('5d0f9fd499ee5032155771ef233e6cf0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610622, '');
+INSERT INTO `oc_sessions` VALUES ('fa55c75e852a77891bdf203bc6acb6b5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610622, '');
+INSERT INTO `oc_sessions` VALUES ('86553a0b4dcb9aade0ada083223103ea', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610623, '');
+INSERT INTO `oc_sessions` VALUES ('03471d8f7728a3a76f7e2e971de5fcf2', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610623, '');
+INSERT INTO `oc_sessions` VALUES ('9fd1c70e7189049a68ced1adabc63951', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610623, '');
+INSERT INTO `oc_sessions` VALUES ('9480c6dc55e171e79f480007fd951136', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610623, '');
+INSERT INTO `oc_sessions` VALUES ('97f9f0e78562285847a13f98719c3be1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610623, '');
+INSERT INTO `oc_sessions` VALUES ('8001dece539d3ef1b7e337fbb6fbee37', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610623, '');
+INSERT INTO `oc_sessions` VALUES ('88613a3626cd8b6a41096ec476d03e89', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610624, '');
+INSERT INTO `oc_sessions` VALUES ('9b36e68c63de59fb5c16f1d69b754a42', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610624, '');
+INSERT INTO `oc_sessions` VALUES ('b0e52fa357821d4562f46229ec689d14', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370838990, 'a:1:{s:13:"active_module";s:5:"sales";}');
+INSERT INTO `oc_sessions` VALUES ('a1c491f03e34de7dceb307b17e8db88d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370838990, 'a:2:{s:9:"user_data";s:0:"";s:5:"admin";a:7:{s:2:"id";s:2:"14";s:6:"access";s:10:"Superadmin";s:9:"firstname";s:5:"Weber";s:8:"lastname";s:3:"Pro";s:5:"email";s:15:"weber@gmail.com";s:5:"image";s:12:"thumb_14.jpg";s:6:"expire";i:1370846005;}}');
+INSERT INTO `oc_sessions` VALUES ('3ef8c746be4137ba78688551687d4270', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610632, '');
+INSERT INTO `oc_sessions` VALUES ('e4e9861cd27821d706a571aa03617c6e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0', 1370610632, 'a:2:{s:9:"user_data";s:0:"";s:18:"flash:old:redirect";s:16:"/admin/customers";}');
 
 -- --------------------------------------------------------
 
@@ -8882,7 +8915,7 @@ CREATE TABLE `oc_tutors` (
   `extra_info` varchar(50) default NULL,
   `about` varchar(255) NOT NULL,
   PRIMARY KEY  (`tutor_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 -- 
 -- Dumping data for table `oc_tutors`
@@ -8894,14 +8927,9 @@ INSERT INTO `oc_tutors` VALUES (3, NULL, NULL, '', '', '', '', '', '', '', 'khal
 INSERT INTO `oc_tutors` VALUES (4, NULL, NULL, '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', '', '4f1f99ed0b60f5af9659c613902afe34.jpg', 2147483647, '0', '0', '', NULL, '');
 INSERT INTO `oc_tutors` VALUES (5, '', '["11","13"]', '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'adasd', '9ed56e051a5558ddfeaeadb14b938e24.jpg', 2147483647, '1', '1', '<p>adasd</p>', NULL, '');
 INSERT INTO `oc_tutors` VALUES (7, '["9","5"]', '["6","3"]', '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'maka', 'asdasd', NULL, 2147483647, '1', '1', '<p>asdsda</p>', NULL, '');
-INSERT INTO `oc_tutors` VALUES (8, '["9"]', '["13"]', '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'Hollo', 'Romba', 'aasasadasd', NULL, 2147483647, '0', '0', '<p>asdasdadas</p>', NULL, '');
 INSERT INTO `oc_tutors` VALUES (9, '["9"]', '["13"]', '', '', '', '', '', '', '', 'tom@native.com', '7c4a8d09ca3762af61e59520943dc264', 'Hollo', 'Romba', 'aasasadasd', NULL, 2147483647, '1', '1', '<p>asdasdadas</p>', NULL, '');
 INSERT INTO `oc_tutors` VALUES (10, '["1","7"]', '["13"]', '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'sdfsdf', NULL, 2147483647, '0', '0', '<p>sdfdsfsd</p>\r\n', '', '');
 INSERT INTO `oc_tutors` VALUES (11, '', '', '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'weprosol', 'weprosol', 'sdfsdf', NULL, 2147483647, '1', '1', '<p>asdasdas</p>', 'asdasdasdasdasdsdasd56565', '');
-INSERT INTO `oc_tutors` VALUES (12, '["7","5"]', '["2"]', '', '', '', '', '', '', '', 'khalil.junaid@gmail.com', '7c4a8d09ca3762af61e59520943dc264', 'tom', 'asdad', 'asdasdasdasd', NULL, 2147483647, '1', '1', '<p>rahlllll</p>\r\n', 'sdadasdasdad', '');
-INSERT INTO `oc_tutors` VALUES (13, '["9","2"]', '', 'house#2255', 'line 56', 'majareka', '2', '12345', '0', '123456877', 'qaiss@yahoo.com', '7c4a8d09ca3762af61e59520943dc264', 'qaiss', 'qais', 'fhjfhfdgh', NULL, 123345634, '1', '1', '<p>ghfdgh<br></p>', '0', '');
-INSERT INTO `oc_tutors` VALUES (14, '["1"]', '["1"]', 'Street No 6', 'Line 123', 'Lahore', '3616', '0042', '1', '', 'tutor1@yahoo.com', '7c4a8d09ca3762af61e59520943dc264', 'Qasim', 'Rafique', 'hgjjdfhghfdhg', NULL, 2147483647, '1', '1', '0', NULL, '');
-INSERT INTO `oc_tutors` VALUES (15, '["9","5"]', '["6","3"]', 'Street No 6', 'Line number 2', 'Lahore', '2457', '0042', '162', '', 'tutor2@yahoo.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Qasim', 'Rafique', 'this is comment is for the tuor number 2', 'images.jpg', 2147483647, '0', '1', '0', NULL, 'g,fdsjkljsdf');
 
 -- --------------------------------------------------------
 
@@ -8917,7 +8945,7 @@ CREATE TABLE `oc_tutor_achievement` (
   `achiev_end` date NOT NULL,
   `achiev_description` varchar(255) NOT NULL,
   PRIMARY KEY  (`achiev_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=126 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=128 ;
 
 -- 
 -- Dumping data for table `oc_tutor_achievement`
@@ -8925,6 +8953,7 @@ CREATE TABLE `oc_tutor_achievement` (
 
 INSERT INTO `oc_tutor_achievement` VALUES (12, 10, '', '', '0000-00-00', '');
 INSERT INTO `oc_tutor_achievement` VALUES (125, 12, 'dsds2', '5685', '0000-00-00', 'asdasdada');
+INSERT INTO `oc_tutor_achievement` VALUES (127, 16, '', '', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -8940,7 +8969,7 @@ CREATE TABLE `oc_tutor_designation` (
   `desig_end` varchar(50) NOT NULL,
   `desig_description` varchar(255) NOT NULL,
   PRIMARY KEY  (`desig_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 -- 
 -- Dumping data for table `oc_tutor_designation`
@@ -8949,6 +8978,7 @@ CREATE TABLE `oc_tutor_designation` (
 INSERT INTO `oc_tutor_designation` VALUES (3, 11, 'asdasd', '05-20-2013', '05-20-2013', 'asdas');
 INSERT INTO `oc_tutor_designation` VALUES (50, 12, 'ddddddddddddddddddddd', 'asdasd', '05-20-2013', 'asdasdasdasdasdasda');
 INSERT INTO `oc_tutor_designation` VALUES (19, 10, 'asdasd', '0000-00-00', '0000-00-00', 'sdfsdfsf');
+INSERT INTO `oc_tutor_designation` VALUES (52, 16, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -8964,7 +8994,7 @@ CREATE TABLE `oc_tutor_qualification` (
   `degree_end` date NOT NULL,
   `degree_description` varchar(255) NOT NULL,
   PRIMARY KEY  (`degree_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 -- 
 -- Dumping data for table `oc_tutor_qualification`
@@ -8977,6 +9007,7 @@ INSERT INTO `oc_tutor_qualification` VALUES (4, 9, 'asdasd', '0000-00-00', '0000
 INSERT INTO `oc_tutor_qualification` VALUES (7, 11, 'asdasd', '0000-00-00', '0000-00-00', 'asdas');
 INSERT INTO `oc_tutor_qualification` VALUES (54, 12, 'asdasd', '0000-00-00', '0000-00-00', 'fsfsfsfd');
 INSERT INTO `oc_tutor_qualification` VALUES (24, 10, 'asdasd', '0000-00-00', '0000-00-00', 'sdfsdfsf');
+INSERT INTO `oc_tutor_qualification` VALUES (56, 16, '', '0000-00-00', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
