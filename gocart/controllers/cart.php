@@ -6,49 +6,49 @@ class Cart extends Front_Controller {
 
 
 
-	function __construct()
+    function __construct()
 
-	{
+    {
 
-		parent::__construct();
+        parent::__construct();
 
-		
+        
 
-		//make sure we're not always behind ssl
+        //make sure we're not always behind ssl
 
-		remove_ssl();
+        remove_ssl();
 
-	}
+    }
 
 
 
-	function index()
+    function index()
 
-	{
+    {
 
         //DebugBreak();
 
-		$this->load->model(array('Banner_model', 'box_model'));
+        $this->load->model(array('Banner_model', 'box_model'));
 
-		$this->load->helper('directory');
+        $this->load->helper('directory');
 
 
 
-		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
+        $data['gift_cards_enabled'] = $this->gift_cards_enabled;
 
-		$data['banners']			= $this->Banner_model->get_homepage_banners(5);
+        $data['banners']            = $this->Banner_model->get_homepage_banners(5);
 
-		$data['boxes']				= $this->box_model->get_homepage_boxes(4);
+        $data['boxes']                = $this->box_model->get_homepage_boxes(4);
 
-		$data['homepage']			= true;
+        $data['homepage']            = true;
 
         $data['allProduct']         = $this->Product_model->get_products_catogery_wise();    
 
-	   //echo '<pre>';print_r($data['allProduct']);
+       // echo '<pre>';print_r($data['allProduct']);
 
        $this->load->view('index', $data);
 
-	}
+    }
 
     function   allcourses()
 
@@ -82,1051 +82,1051 @@ class Cart extends Front_Controller {
 
     }
 
-	function page($id = false)
-	{
+    function page($id = false)
+    {
 
-		//if there is no page id provided redirect to the homepage.
-		$data['page']		= $this->Page_model->get_page($id);
-		if(!$data['page'])
-		{
-			show_404();
-		}
-		$this->load->model('Page_model');
-		$data['base_url']			= $this->uri->segment_array();
-		$data['fb_like']			= true;
-		$data['page_title']			= $data['page']->title;
-		$data['meta']				= $data['page']->meta;
-		$data['seo_title']			= (!empty($data['page']->seo_title))?$data['page']->seo_title:$data['page']->title;
-		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
-		$this->load->view('page', $data);
+        //if there is no page id provided redirect to the homepage.
 
-	}
+        $data['page']    = $this->Page_model->get_page($id);
+        if(!$data['page'])
+        {
+            show_404();
+        }
+        $this->load->model('Page_model');
+        $data['base_url']            = $this->uri->segment_array();
+        $data['fb_like']            = true;
+        $data['page_title']            = $data['page']->title;
+        $data['meta']                = $data['page']->meta;
+        $data['seo_title']            = (!empty($data['page']->seo_title))?$data['page']->seo_title:$data['page']->title;
+        $data['gift_cards_enabled'] = $this->gift_cards_enabled;
+        $this->load->view('page', $data);
 
-	
+    }
 
-	function search($code=false, $page = 0)
+    
 
-	{
+    function search($code=false, $page = 0)
 
-		$this->load->model('Search_model');
+    {
 
-		
+        $this->load->model('Search_model');
 
-		//check to see if we have a search term
+        
 
-		if(!$code)
+        //check to see if we have a search term
 
-		{
+        if(!$code)
 
-			//if the term is in post, save it to the db and give me a reference
+        {
 
-			$term		= $this->input->post('term', true);
+            //if the term is in post, save it to the db and give me a reference
 
-			$code		= $this->Search_model->record_term($term);
+            $term        = $this->input->post('term', true);
 
-			
+            $code        = $this->Search_model->record_term($term);
 
-			// no code? redirect so we can have the code in place for the sorting.
+            
 
-			// I know this isn't the best way...
+            // no code? redirect so we can have the code in place for the sorting.
 
-			redirect('cart/search/'.$code.'/'.$page);
+            // I know this isn't the best way...
 
-		}
+            redirect('cart/search/'.$code.'/'.$page);
 
-		else
+        }
 
-		{
+        else
 
-			//if we have the md5 string, get the term
+        {
 
-			$term	= $this->Search_model->get_term($code);
+            //if we have the md5 string, get the term
 
-		}
+            $term    = $this->Search_model->get_term($code);
 
-		
+        }
 
-		if(empty($term))
+        
 
-		{
+        if(empty($term))
 
-			//if there is still no search term throw an error
+        {
 
-			//if there is still no search term throw an error
+            //if there is still no search term throw an error
 
-			$this->session->set_flashdata('error', lang('search_error'));
+            //if there is still no search term throw an error
 
-			redirect('cart');
+            $this->session->set_flashdata('error', lang('search_error'));
 
-		}
+            redirect('cart');
 
-		$data['page_title']			= lang('search');
+        }
 
-		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
+        $data['page_title']            = lang('search');
 
-		
+        $data['gift_cards_enabled']    = $this->gift_cards_enabled;
 
-		//fix for the category view page.
+        
 
-		$data['base_url']			= array();
+        //fix for the category view page.
 
-		
+        $data['base_url']            = array();
 
-		$sort_array = array(
+        
 
-							'name/asc' => array('by' => 'name', 'sort'=>'ASC'),
+        $sort_array = array(
 
-							'name/desc' => array('by' => 'name', 'sort'=>'DESC'),
+                            'name/asc' => array('by' => 'name', 'sort'=>'ASC'),
 
-							'price/asc' => array('by' => 'price', 'sort'=>'ASC'),
+                            'name/desc' => array('by' => 'name', 'sort'=>'DESC'),
 
-							'price/desc' => array('by' => 'price', 'sort'=>'DESC'),
+                            'price/asc' => array('by' => 'price', 'sort'=>'ASC'),
 
-							);
+                            'price/desc' => array('by' => 'price', 'sort'=>'DESC'),
 
-		$sort_by	= array('by'=>false, 'sort'=>false);
+                            );
 
-	
+        $sort_by    = array('by'=>false, 'sort'=>false);
 
-		if(isset($_GET['by']))
+    
 
-		{
+        if(isset($_GET['by']))
 
-			if(isset($sort_array[$_GET['by']]))
+        {
 
-			{
+            if(isset($sort_array[$_GET['by']]))
 
-				$sort_by	= $sort_array[$_GET['by']];
+            {
 
-			}
+                $sort_by    = $sort_array[$_GET['by']];
 
-		}
+            }
 
-		
+        }
 
+        
 
 
-		if(empty($term))
 
-		{
+        if(empty($term))
 
-			//if there is still no search term throw an error
+        {
 
-			$this->load->view('search_error', $data);
+            //if there is still no search term throw an error
 
-		}
+            $this->load->view('search_error', $data);
 
-		else
+        }
 
-		{
+        else
 
-	
+        {
 
-			$data['page_title']	= lang('search');
+    
 
-			$data['gift_cards_enabled'] = $this->gift_cards_enabled;
+            $data['page_title']    = lang('search');
 
-		
+            $data['gift_cards_enabled'] = $this->gift_cards_enabled;
 
-			//set up pagination
+        
 
-			$this->load->library('pagination');
+            //set up pagination
 
-			$config['base_url']		= base_url().'cart/search/'.$code.'/';
+            $this->load->library('pagination');
 
-			$config['uri_segment']	= 4;
+            $config['base_url']        = base_url().'cart/search/'.$code.'/';
 
-			$config['per_page']		= 20;
+            $config['uri_segment']    = 4;
 
-			
+            $config['per_page']        = 20;
 
-			$config['first_link'] = 'First';
+            
 
-			$config['first_tag_open'] = '<li>';
+            $config['first_link'] = 'First';
 
-			$config['first_tag_close'] = '</li>';
+            $config['first_tag_open'] = '<li>';
 
-			$config['last_link'] = 'Last';
+            $config['first_tag_close'] = '</li>';
 
-			$config['last_tag_open'] = '<li>';
+            $config['last_link'] = 'Last';
 
-			$config['last_tag_close'] = '</li>';
+            $config['last_tag_open'] = '<li>';
 
+            $config['last_tag_close'] = '</li>';
 
 
-			$config['full_tag_open'] = '<div class="pagination"><ul>';
 
-			$config['full_tag_close'] = '</ul></div>';
+            $config['full_tag_open'] = '<div class="pagination"><ul>';
 
-			$config['cur_tag_open'] = '<li class="active"><a href="#">';
+            $config['full_tag_close'] = '</ul></div>';
 
-			$config['cur_tag_close'] = '</a></li>';
+            $config['cur_tag_open'] = '<li class="active"><a href="#">';
 
+            $config['cur_tag_close'] = '</a></li>';
 
 
-			$config['num_tag_open'] = '<li>';
 
-			$config['num_tag_close'] = '</li>';
+            $config['num_tag_open'] = '<li>';
 
+            $config['num_tag_close'] = '</li>';
 
 
-			$config['prev_link'] = '&laquo;';
 
-			$config['prev_tag_open'] = '<li>';
+            $config['prev_link'] = '&laquo;';
 
-			$config['prev_tag_close'] = '</li>';
+            $config['prev_tag_open'] = '<li>';
 
+            $config['prev_tag_close'] = '</li>';
 
 
-			$config['next_link'] = '&raquo;';
 
-			$config['next_tag_open'] = '<li>';
+            $config['next_link'] = '&raquo;';
 
-			$config['next_tag_close'] = '</li>';
+            $config['next_tag_open'] = '<li>';
 
-			
+            $config['next_tag_close'] = '</li>';
 
-			$result					= $this->Product_model->search_products($term, $config['per_page'], $page, $sort_by['by'], $sort_by['sort']);
+            
 
-			$config['total_rows']	= $result['count'];
+            $result                    = $this->Product_model->search_products($term, $config['per_page'], $page, $sort_by['by'], $sort_by['sort']);
 
-			$this->pagination->initialize($config);
+            $config['total_rows']    = $result['count'];
 
-	
+            $this->pagination->initialize($config);
 
-			$data['products']		= $result['products'];
+    
 
-			foreach ($data['products'] as &$p)
+            $data['products']        = $result['products'];
 
-			{
+            foreach ($data['products'] as &$p)
 
-				$p->images	= (array)json_decode($p->images);
+            {
 
-				$p->options	= $this->Option_model->get_product_options($p->id);
+                $p->images    = (array)json_decode($p->images);
 
-			}
+                $p->options    = $this->Option_model->get_product_options($p->id);
 
-			$this->load->view('category', $data);
+            }
 
-		}
+            $this->load->view('category', $data);
 
-	}
+        }
 
-	
+    }
 
-	function category($id)
+    
 
-	{
+    function category($id)
 
-		//get the category		
-         //  DebugBreak();
-		$data['category'] = $this->Category_model->get_category($id);
+    {
 
-		
+        //get the category        
 
-		if (!$data['category'])
+        $data['category'] = $this->Category_model->get_category($id);
 
-		{
+        
 
-			show_404();
+        if (!$data['category'])
 
-		}
+        {
 
-		
+            show_404();
 
-		//set up pagination
+        }
 
-		$segments	= $this->uri->total_segments();
+        
 
-		$base_url	= $this->uri->segment_array();
+        //set up pagination
 
-		
+        $segments    = $this->uri->total_segments();
 
-		if($data['category']->slug == $base_url[count($base_url)])
+        $base_url    = $this->uri->segment_array();
 
-		{
+        
 
-			$page	= 0;
+        if($data['category']->slug == $base_url[count($base_url)])
 
-			$segments++;
+        {
 
-		}
+            $page    = 0;
 
-		else
+            $segments++;
 
-		{
+        }
 
-			$page	= array_splice($base_url, -1, 1);
+        else
 
-			$page	= $page[0];
+        {
 
-		}
+            $page    = array_splice($base_url, -1, 1);
 
-		
+            $page    = $page[0];
 
-		$data['base_url']	= $base_url;
+        }
 
-		$base_url			= implode('/', $base_url);
+        
 
-		
+        $data['base_url']    = $base_url;
 
-		$data['subcategories']		= $this->Category_model->get_categories($data['category']->id);
+        $base_url            = implode('/', $base_url);
 
-		$data['product_columns']	= $this->config->item('product_columns');
+        
 
-		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
+        $data['subcategories']        = $this->Category_model->get_categories($data['category']->id);
 
-		
+        $data['product_columns']    = $this->config->item('product_columns');
 
-		$data['meta']		= $data['category']->meta;
+        $data['gift_cards_enabled'] = $this->gift_cards_enabled;
 
-		$data['seo_title']	= (!empty($data['category']->seo_title))?$data['category']->seo_title:$data['category']->name;
+        
 
-		$data['page_title']	= $data['category']->name;
+        $data['meta']        = $data['category']->meta;
 
-		
+        $data['seo_title']    = (!empty($data['category']->seo_title))?$data['category']->seo_title:$data['category']->name;
 
-		$sort_array = array(
+        $data['page_title']    = $data['category']->name;
 
-							'name/asc' => array('by' => 'products.name', 'sort'=>'ASC'),
+        
 
-							'name/desc' => array('by' => 'products.name', 'sort'=>'DESC'),
+        $sort_array = array(
 
-							'price/asc' => array('by' => 'products.price', 'sort'=>'ASC'),
+                            'name/asc' => array('by' => 'products.name', 'sort'=>'ASC'),
 
-							'price/desc' => array('by' => 'products.price', 'sort'=>'DESC'),
+                            'name/desc' => array('by' => 'products.name', 'sort'=>'DESC'),
 
-							);
+                            'price/asc' => array('by' => 'products.price', 'sort'=>'ASC'),
 
-		$sort_by	= array('by'=>'sequence', 'sort'=>'ASC');
+                            'price/desc' => array('by' => 'products.price', 'sort'=>'DESC'),
 
-	
+                            );
 
-		if(isset($_GET['by']))
+        $sort_by    = array('by'=>'sequence', 'sort'=>'ASC');
 
-		{
+    
 
-			if(isset($sort_array[$_GET['by']]))
+        if(isset($_GET['by']))
 
-			{
+        {
 
-				$sort_by	= $sort_array[$_GET['by']];
+            if(isset($sort_array[$_GET['by']]))
 
-			}
+            {
 
-		}
+                $sort_by    = $sort_array[$_GET['by']];
 
-		
+            }
 
-		//set up pagination
+        }
 
-		$this->load->library('pagination');
+        
 
-		$config['base_url']		= site_url($base_url);
+        //set up pagination
 
-		$config['uri_segment']	= $segments;
+        $this->load->library('pagination');
 
-		$config['per_page']		= 24;
+        $config['base_url']        = site_url($base_url);
 
-		$config['total_rows']	= $this->Product_model->count_products($data['category']->id);
+        $config['uri_segment']    = $segments;
 
-		
+        $config['per_page']        = 24;
 
-		$config['first_link'] = 'First';
+        $config['total_rows']    = $this->Product_model->count_products($data['category']->id);
 
-		$config['first_tag_open'] = '<li>';
+        
 
-		$config['first_tag_close'] = '</li>';
+        $config['first_link'] = 'First';
 
-		$config['last_link'] = 'Last';
+        $config['first_tag_open'] = '<li>';
 
-		$config['last_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
 
-		$config['last_tag_close'] = '</li>';
+        $config['last_link'] = 'Last';
 
+        $config['last_tag_open'] = '<li>';
 
+        $config['last_tag_close'] = '</li>';
 
-		$config['full_tag_open'] = '<div class="pagination"><ul>';
 
-		$config['full_tag_close'] = '</ul></div>';
 
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
 
-		$config['cur_tag_close'] = '</a></li>';
+        $config['full_tag_close'] = '</ul></div>';
 
-		
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
 
-		$config['num_tag_open'] = '<li>';
+        $config['cur_tag_close'] = '</a></li>';
 
-		$config['num_tag_close'] = '</li>';
+        
 
-		
+        $config['num_tag_open'] = '<li>';
 
-		$config['prev_link'] = '&laquo;';
+        $config['num_tag_close'] = '</li>';
 
-		$config['prev_tag_open'] = '<li>';
+        
 
-		$config['prev_tag_close'] = '</li>';
+        $config['prev_link'] = '&laquo;';
 
+        $config['prev_tag_open'] = '<li>';
 
+        $config['prev_tag_close'] = '</li>';
 
-		$config['next_link'] = '&raquo;';
 
-		$config['next_tag_open'] = '<li>';
 
-		$config['next_tag_close'] = '</li>';
+        $config['next_link'] = '&raquo;';
 
-		
+        $config['next_tag_open'] = '<li>';
 
-		$this->pagination->initialize($config);
+        $config['next_tag_close'] = '</li>';
 
-		
+        
 
-		//grab the products using the pagination lib
+        $this->pagination->initialize($config);
 
-		$data['products']	= $this->Product_model->get_products($data['category']->id, $config['per_page'], $page, $sort_by['by'], $sort_by['sort']);
+        
 
-		foreach ($data['products'] as &$p)
+        //grab the products using the pagination lib
 
-		{
+        $data['products']    = $this->Product_model->get_products($data['category']->id, $config['per_page'], $page, $sort_by['by'], $sort_by['sort']);
 
-			//$p->images	= (array)json_decode($p->images);
+        foreach ($data['products'] as &$p)
 
-			$p->options	= $this->Option_model->get_product_options($p->id);
+        {
 
-		}
+            //$p->images    = (array)json_decode($p->images);
 
-		//$this->show->pe($data);
+            $p->options    = $this->Option_model->get_product_options($p->id);
 
-		$this->load->view('category', $data);
+        }
 
-	}
+        //$this->show->pe($data);
 
-	
+        $this->load->view('category', $data);
 
-	function product($id)
+    }
 
-	{
+    
 
-		//get the product
+    function product($id)
 
-		$data['product']		= $this->Product_model->get_product($id);
+    {
 
-		$data['product_tabs']	= $this->Product_model->get_all_products_tabs($id);
+        //get the product
 
-		//echo $id;exit;
+        $data['product']        = $this->Product_model->get_product($id);
 
-		
+        $data['product_tabs']    = $this->Product_model->get_all_products_tabs($id);
 
-		
+        //echo $id;exit;
 
-		if(!$data['product'] || $data['product']->enabled==0)
+        
 
-		{
+        
 
-			show_404();
+        if(!$data['product'] || $data['product']->enabled==0)
 
-		}
+        {
 
-		
+            show_404();
 
-		$data['base_url']			= $this->uri->segment_array();
+        }
 
-		
+        
 
-		// load the digital language stuff
+        $data['base_url']            = $this->uri->segment_array();
 
-		$this->lang->load('digital_product');
+        
 
-		
+        // load the digital language stuff
 
-		$data['options']	= $this->Option_model->get_product_options($data['product']->id);
+        $this->lang->load('digital_product');
 
-		
+        
 
-		$related			= $data['product']->related_products;
+        $data['options']    = $this->Option_model->get_product_options($data['product']->id);
 
-		$data['related']	= array();
+        
 
-		
+        $related            = $data['product']->related_products;
 
+        $data['related']    = array();
 
+        
 
-				
 
-		$data['posted_options']	= $this->session->flashdata('option_values');
 
+                
 
+        $data['posted_options']    = $this->session->flashdata('option_values');
 
-		$data['page_title']			= $data['product']->name;
 
-		$data['meta']				= $data['product']->meta;
 
-		$data['seo_title']			= (!empty($data['product']->seo_title))?$data['product']->seo_title:$data['product']->name;
+        $data['page_title']            = $data['product']->name;
 
-			
+        $data['meta']                = $data['product']->meta;
 
-		/*if($data['product']->images == 'false')
+        $data['seo_title']            = (!empty($data['product']->seo_title))?$data['product']->seo_title:$data['product']->name;
 
-		{
+            
 
-			$data['product']->images = array();
+        /*if($data['product']->images == 'false')
 
-		}
+        {
 
-		else
+            $data['product']->images = array();
 
-		{
+        }
 
-			$data['product']->images	= array_values((array)json_decode($data['product']->images));
+        else
 
-		}*/
+        {
 
+            $data['product']->images    = array_values((array)json_decode($data['product']->images));
 
+        }*/
 
-		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
 
-		//$this->show->pe($data);			
 
-		$this->load->view('courseDetails', $data);
+        $data['gift_cards_enabled'] = $this->gift_cards_enabled;
 
-	}
+        //$this->show->pe($data);            
 
-	
+        $this->load->view('courseDetails', $data);
 
-	
+    }
 
-	function add_to_cart()
+    
 
-	{
+    
 
-		// Get our inputs
+    function add_to_cart()
 
-		$product_id		= $this->input->post('id');
+    {
 
-		$quantity 		= $this->input->post('quantity');
+        // Get our inputs
 
-		$post_options 	= $this->input->post('option');
+        $product_id        = $this->input->post('id');
 
-		
+        $quantity         = $this->input->post('quantity');
 
-		// Get a cart-ready product array
+        $post_options     = $this->input->post('option');
 
-		$product = $this->Product_model->get_cart_ready_product($product_id, $quantity);
+        
 
-		
+        // Get a cart-ready product array
 
-		//if out of stock purchase is disabled, check to make sure there is inventory to support the cart.
+        $product = $this->Product_model->get_cart_ready_product($product_id, $quantity);
 
-		if(!$this->config->item('allow_os_purchase') && (bool)$product['track_stock'])
+        
 
-		{
+        //if out of stock purchase is disabled, check to make sure there is inventory to support the cart.
 
-			$stock	= $this->Product_model->get_product($product_id);
+        if(!$this->config->item('allow_os_purchase') && (bool)$product['track_stock'])
 
-			
+        {
 
-			//loop through the products in the cart and make sure we don't have this in there already. If we do get those quantities as well
+            $stock    = $this->Product_model->get_product($product_id);
 
-			$items		= $this->go_cart->contents();
+            
 
-			$qty_count	= $quantity;
+            //loop through the products in the cart and make sure we don't have this in there already. If we do get those quantities as well
 
-			foreach($items as $item)
+            $items        = $this->go_cart->contents();
 
-			{
+            $qty_count    = $quantity;
 
-				if(intval($item['id']) == intval($product_id))
+            foreach($items as $item)
 
-				{
+            {
 
-					$qty_count = $qty_count + $item['quantity'];
+                if(intval($item['id']) == intval($product_id))
 
-				}
+                {
 
-			}
+                    $qty_count = $qty_count + $item['quantity'];
 
-			
+                }
 
-			if($stock->quantity < $qty_count)
+            }
 
-			{
+            
 
-				//we don't have this much in stock
+            if($stock->quantity < $qty_count)
 
-				$this->session->set_flashdata('error', sprintf(lang('not_enough_stock'), $stock->name, $stock->quantity));
+            {
 
-				$this->session->set_flashdata('quantity', $quantity);
+                //we don't have this much in stock
 
-				$this->session->set_flashdata('option_values', $post_options);
+                $this->session->set_flashdata('error', sprintf(lang('not_enough_stock'), $stock->name, $stock->quantity));
 
+                $this->session->set_flashdata('quantity', $quantity);
 
+                $this->session->set_flashdata('option_values', $post_options);
 
-				redirect($this->Product_model->get_slug($product_id));
 
-			}
 
-		}
+                redirect($this->Product_model->get_slug($product_id));
 
+            }
 
+        }
 
-		// Validate Options 
 
-		// this returns a status array, with product item array automatically modified and options added
 
-		//  Warning: this method receives the product by reference
+        // Validate Options 
 
-		$status = $this->Option_model->validate_product_options($product, $post_options);
+        // this returns a status array, with product item array automatically modified and options added
 
-		
+        //  Warning: this method receives the product by reference
 
-		// don't add the product if we are missing required option values
+        $status = $this->Option_model->validate_product_options($product, $post_options);
 
-		if( ! $status['validated'])
+        
 
-		{
+        // don't add the product if we are missing required option values
 
-			$this->session->set_flashdata('quantity', $quantity);
+        if( ! $status['validated'])
 
-			$this->session->set_flashdata('error', $status['message']);
+        {
 
-			$this->session->set_flashdata('option_values', $post_options);
+            $this->session->set_flashdata('quantity', $quantity);
 
-		
+            $this->session->set_flashdata('error', $status['message']);
 
-			redirect($this->Product_model->get_slug($product_id));
+            $this->session->set_flashdata('option_values', $post_options);
 
-		
+        
 
-		} else {
+            redirect($this->Product_model->get_slug($product_id));
 
-		
+        
 
-			//Add the original option vars to the array so we can edit it later
+        } else {
 
-			$product['post_options']	= $post_options;
+        
 
-			
+            //Add the original option vars to the array so we can edit it later
 
-			//is giftcard
+            $product['post_options']    = $post_options;
 
-			$product['is_gc']			= false;
+            
 
-			
+            //is giftcard
 
-			// Add the product item to the cart, also updates coupon discounts automatically
+            $product['is_gc']            = false;
 
-			$this->go_cart->insert($product);
+            
 
-		
+            // Add the product item to the cart, also updates coupon discounts automatically
 
-			// go go gadget cart!
+            $this->go_cart->insert($product);
 
-			redirect('cart/view_cart');
+        
 
-		}
+            // go go gadget cart!
 
-	}
+            redirect('cart/view_cart');
 
-	
+        }
 
-	function view_cart()
+    }
 
-	{
+    
 
-		
+    function view_cart()
 
-		$data['page_title']	= 'View Cart';
+    {
 
-		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
+        
 
-		
+        $data['page_title']    = 'View Cart';
 
-		$this->load->view('view_cart', $data);
+        $data['gift_cards_enabled'] = $this->gift_cards_enabled;
 
-	}
+        
 
-	
+        $this->load->view('view_cart', $data);
 
-	function remove_item($key)
+    }
 
-	{
+    
 
-		//drop quantity to 0
+    function remove_item($key)
 
-		$this->go_cart->update_cart(array($key=>0));
+    {
 
-		
+        //drop quantity to 0
 
-		redirect('cart/view_cart');
+        $this->go_cart->update_cart(array($key=>0));
 
-	}
+        
 
-	
+        redirect('cart/view_cart');
 
-	function update_cart($redirect = false)
+    }
 
-	{
+    
 
-		//if redirect isn't provided in the URL check for it in a form field
+    function update_cart($redirect = false)
 
-		if(!$redirect)
+    {
 
-		{
+        //if redirect isn't provided in the URL check for it in a form field
 
-			$redirect = $this->input->post('redirect');
+        if(!$redirect)
 
-		}
+        {
 
-		
+            $redirect = $this->input->post('redirect');
 
-		// see if we have an update for the cart
+        }
 
-		$item_keys		= $this->input->post('cartkey');
+        
 
-		$coupon_code	= $this->input->post('coupon_code');
+        // see if we have an update for the cart
 
-		$gc_code		= $this->input->post('gc_code');
+        $item_keys        = $this->input->post('cartkey');
 
-			
+        $coupon_code    = $this->input->post('coupon_code');
 
-			
+        $gc_code        = $this->input->post('gc_code');
 
-		//get the items in the cart and test their quantities
+            
 
-		$items			= $this->go_cart->contents();
+            
 
-		$new_key_list	= array();
+        //get the items in the cart and test their quantities
 
-		//first find out if we're deleting any products
+        $items            = $this->go_cart->contents();
 
-		foreach($item_keys as $key=>$quantity)
+        $new_key_list    = array();
 
-		{
+        //first find out if we're deleting any products
 
-			if(intval($quantity) === 0)
+        foreach($item_keys as $key=>$quantity)
 
-			{
+        {
 
-				//this item is being removed we can remove it before processing quantities.
+            if(intval($quantity) === 0)
 
-				//this will ensure that any items out of order will not throw errors based on the incorrect values of another item in the cart
+            {
 
-				$this->go_cart->update_cart(array($key=>$quantity));
+                //this item is being removed we can remove it before processing quantities.
 
-			}
+                //this will ensure that any items out of order will not throw errors based on the incorrect values of another item in the cart
 
-			else
+                $this->go_cart->update_cart(array($key=>$quantity));
 
-			{
+            }
 
-				//create a new list of relevant items
+            else
 
-				$new_key_list[$key]	= $quantity;
+            {
 
-			}
+                //create a new list of relevant items
 
-		}
+                $new_key_list[$key]    = $quantity;
 
-		$response	= array();
+            }
 
-		foreach($new_key_list as $key=>$quantity)
+        }
 
-		{
+        $response    = array();
 
-			$product	= $this->go_cart->item($key);
+        foreach($new_key_list as $key=>$quantity)
 
-			//if out of stock purchase is disabled, check to make sure there is inventory to support the cart.
+        {
 
-			if(!$this->config->item('allow_os_purchase') && (bool)$product['track_stock'])
+            $product    = $this->go_cart->item($key);
 
-			{
+            //if out of stock purchase is disabled, check to make sure there is inventory to support the cart.
 
-				$stock	= $this->Product_model->get_product($product['id']);
+            if(!$this->config->item('allow_os_purchase') && (bool)$product['track_stock'])
 
-			
+            {
 
-				//loop through the new quantities and tabluate any products with the same product id
+                $stock    = $this->Product_model->get_product($product['id']);
 
-				$qty_count	= $quantity;
+            
 
-				foreach($new_key_list as $item_key=>$item_quantity)
+                //loop through the new quantities and tabluate any products with the same product id
 
-				{
+                $qty_count    = $quantity;
 
-					if($key != $item_key)
+                foreach($new_key_list as $item_key=>$item_quantity)
 
-					{
+                {
 
-						$item	= $this->go_cart->item($item_key);
+                    if($key != $item_key)
 
-						//look for other instances of the same product (this can occur if they have different options) and tabulate the total quantity
+                    {
 
-						if($item['id'] == $stock->id)
+                        $item    = $this->go_cart->item($item_key);
 
-						{
+                        //look for other instances of the same product (this can occur if they have different options) and tabulate the total quantity
 
-							$qty_count = $qty_count + $item_quantity;
+                        if($item['id'] == $stock->id)
 
-						}
+                        {
 
-					}
+                            $qty_count = $qty_count + $item_quantity;
 
-				}
+                        }
 
-				if($stock->quantity < $qty_count)
+                    }
 
-				{
+                }
 
-					if(isset($response['error']))
+                if($stock->quantity < $qty_count)
 
-					{
+                {
 
-						$response['error'] .= '<p>'.sprintf(lang('not_enough_stock'), $stock->name, $stock->quantity).'</p>';
+                    if(isset($response['error']))
 
-					}
+                    {
 
-					else
+                        $response['error'] .= '<p>'.sprintf(lang('not_enough_stock'), $stock->name, $stock->quantity).'</p>';
 
-					{
+                    }
 
-						$response['error'] = '<p>'.sprintf(lang('not_enough_stock'), $stock->name, $stock->quantity).'</p>';
+                    else
 
-					}
+                    {
 
-				}
+                        $response['error'] = '<p>'.sprintf(lang('not_enough_stock'), $stock->name, $stock->quantity).'</p>';
 
-				else
+                    }
 
-				{
+                }
 
-					//this one works, we can update it!
+                else
 
-					//don't update the coupons yet
+                {
 
-					$this->go_cart->update_cart(array($key=>$quantity));
+                    //this one works, we can update it!
 
-				}
+                    //don't update the coupons yet
 
-			}
+                    $this->go_cart->update_cart(array($key=>$quantity));
 
-			else
+                }
 
-			{
+            }
 
-				$this->go_cart->update_cart(array($key=>$quantity));
+            else
 
-			}
+            {
 
-		}
+                $this->go_cart->update_cart(array($key=>$quantity));
 
-		
+            }
 
-		//if we don't have a quantity error, run the update
+        }
 
-		if(!isset($response['error']))
+        
 
-		{
+        //if we don't have a quantity error, run the update
 
-			//update the coupons and gift card code
+        if(!isset($response['error']))
 
-			$response = $this->go_cart->update_cart(false, $coupon_code, $gc_code);
+        {
 
-			// set any messages that need to be displayed
+            //update the coupons and gift card code
 
-		}
+            $response = $this->go_cart->update_cart(false, $coupon_code, $gc_code);
 
-		else
+            // set any messages that need to be displayed
 
-		{
+        }
 
-			$response['error'] = '<p>'.lang('error_updating_cart').'</p>'.$response['error'];
+        else
 
-		}
+        {
 
-		
+            $response['error'] = '<p>'.lang('error_updating_cart').'</p>'.$response['error'];
 
-		
+        }
 
-		//check for errors again, there could have been a new error from the update cart function
+        
 
-		if(isset($response['error']))
+        
 
-		{
+        //check for errors again, there could have been a new error from the update cart function
 
-			$this->session->set_flashdata('error', $response['error']);
+        if(isset($response['error']))
 
-		}
+        {
 
-		if(isset($response['message']))
+            $this->session->set_flashdata('error', $response['error']);
 
-		{
+        }
 
-			$this->session->set_flashdata('message', $response['message']);
+        if(isset($response['message']))
 
-		}
+        {
 
-		
+            $this->session->set_flashdata('message', $response['message']);
 
-		if($redirect)
+        }
 
-		{
+        
 
-			redirect($redirect);
+        if($redirect)
 
-		}
+        {
 
-		else
+            redirect($redirect);
 
-		{
+        }
 
-			redirect('cart/view_cart');
+        else
 
-		}
+        {
 
-	}
+            redirect('cart/view_cart');
 
+        }
 
+    }
 
-	
 
-	/***********************************************************
 
-			Gift Cards
+    
 
-			 - this function handles adding gift cards to the cart
+    /***********************************************************
 
-	***********************************************************/
+            Gift Cards
 
-	
+             - this function handles adding gift cards to the cart
 
-	function giftcard()
+    ***********************************************************/
 
-	{
+    
 
-		if(!$this->gift_cards_enabled) redirect('/');
+    function giftcard()
 
-		
+    {
 
-		// Load giftcard settings
+        if(!$this->gift_cards_enabled) redirect('/');
 
-		$gc_settings = $this->Settings_model->get_settings("gift_cards");
+        
 
-				
+        // Load giftcard settings
 
-		$this->load->library('form_validation');
+        $gc_settings = $this->Settings_model->get_settings("gift_cards");
 
-		
+                
 
-		$data['allow_custom_amount']	= (bool) $gc_settings['allow_custom_amount'];
+        $this->load->library('form_validation');
 
-		$data['preset_values']			= explode(",",$gc_settings['predefined_card_amounts']);
+        
 
-		
+        $data['allow_custom_amount']    = (bool) $gc_settings['allow_custom_amount'];
 
-		if($data['allow_custom_amount'])
+        $data['preset_values']            = explode(",",$gc_settings['predefined_card_amounts']);
 
-		{
+        
 
-			$this->form_validation->set_rules('custom_amount', 'lang:custom_amount', 'numeric');
+        if($data['allow_custom_amount'])
 
-		}
+        {
 
-		
+            $this->form_validation->set_rules('custom_amount', 'lang:custom_amount', 'numeric');
 
-		$this->form_validation->set_rules('amount', 'lang:amount', 'required');
+        }
 
-		$this->form_validation->set_rules('preset_amount', 'lang:preset_amount', 'numeric');
+        
 
-		$this->form_validation->set_rules('gc_to_name', 'lang:recipient_name', 'trim|required');
+        $this->form_validation->set_rules('amount', 'lang:amount', 'required');
 
-		$this->form_validation->set_rules('gc_to_email', 'lang:recipient_email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('preset_amount', 'lang:preset_amount', 'numeric');
 
-		$this->form_validation->set_rules('gc_from', 'lang:sender_email', 'trim|required');
+        $this->form_validation->set_rules('gc_to_name', 'lang:recipient_name', 'trim|required');
 
-		$this->form_validation->set_rules('message', 'lang:custom_greeting', 'trim|required');
+        $this->form_validation->set_rules('gc_to_email', 'lang:recipient_email', 'trim|required|valid_email');
 
-		
+        $this->form_validation->set_rules('gc_from', 'lang:sender_email', 'trim|required');
 
-		if ($this->form_validation->run() == FALSE)
+        $this->form_validation->set_rules('message', 'lang:custom_greeting', 'trim|required');
 
-		{
+        
 
-			$data['error']				= validation_errors();
+        if ($this->form_validation->run() == FALSE)
 
-			$data['page_title']			= lang('giftcard');
+        {
 
-			$data['gift_cards_enabled']	= $this->gift_cards_enabled;
+            $data['error']                = validation_errors();
 
-			$this->load->view('giftcards', $data);
+            $data['page_title']            = lang('giftcard');
 
-		}
+            $data['gift_cards_enabled']    = $this->gift_cards_enabled;
 
-		else
+            $this->load->view('giftcards', $data);
 
-		{
+        }
 
-			
+        else
 
-			// add to cart
+        {
 
-			
+            
 
-			$card['price'] = set_value(set_value('amount'));
+            // add to cart
 
-			
+            
 
-			$card['id']				= -1; // just a placeholder
+            $card['price'] = set_value(set_value('amount'));
 
-			$card['sku']			= lang('giftcard');
+            
 
-			$card['base_price']		= $card['price']; // price gets modified by options, show the baseline still...
+            $card['id']                = -1; // just a placeholder
 
-			$card['name']			= lang('giftcard');
+            $card['sku']            = lang('giftcard');
 
-			$card['code']			= generate_code(); // from the string helper
+            $card['base_price']        = $card['price']; // price gets modified by options, show the baseline still...
 
-			$card['excerpt']		= sprintf(lang('giftcard_excerpt'), set_value('gc_to_name'));
+            $card['name']            = lang('giftcard');
 
-			$card['weight']			= 0;
+            $card['code']            = generate_code(); // from the string helper
 
-			$card['quantity']		= 1;
+            $card['excerpt']        = sprintf(lang('giftcard_excerpt'), set_value('gc_to_name'));
 
-			$card['shippable']		= false;
+            $card['weight']            = 0;
 
-			$card['taxable']		= 0;
+            $card['quantity']        = 1;
 
-			$card['fixed_quantity'] = true;
+            $card['shippable']        = false;
 
-			$card['is_gc']			= true; // !Important
+            $card['taxable']        = 0;
 
-			$card['track_stock']	= false; // !Imporortant
+            $card['fixed_quantity'] = true;
 
-			
+            $card['is_gc']            = true; // !Important
 
-			$card['gc_info'] = array("to_name"	=> set_value('gc_to_name'),
+            $card['track_stock']    = false; // !Imporortant
 
-									 "to_email"	=> set_value('gc_to_email'),
+            
 
-									 "from"		=> set_value('gc_from'),
+            $card['gc_info'] = array("to_name"    => set_value('gc_to_name'),
 
-									 "personal_message"	=> set_value('message')
+                                     "to_email"    => set_value('gc_to_email'),
 
-									 );
+                                     "from"        => set_value('gc_from'),
 
-			
+                                     "personal_message"    => set_value('message')
 
-			// add the card data like a product
+                                     );
 
-			$this->go_cart->insert($card);
+            
 
-			
+            // add the card data like a product
 
-			redirect('cart/view_cart');
+            $this->go_cart->insert($card);
 
-		}
+            
 
-	}
+            redirect('cart/view_cart');
+
+        }
+
+    }
 
 }
-

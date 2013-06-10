@@ -13,6 +13,7 @@ class My_Router extends CI_Router
 	function _parse_routes()
 	{
        // $this->load->model('Routes_model');
+      // DebugBreak();
         $baseURL = $this->config;
         $url = $this->uri->segments;
         $db = & DB();
