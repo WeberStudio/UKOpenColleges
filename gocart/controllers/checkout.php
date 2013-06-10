@@ -616,7 +616,7 @@ class Checkout extends Front_Controller {
 			
 	   $order_id = $this->go_cart->save_order();
 	   $this->session->set_flashdata('message', "<div  class='woocommerce_message'>Your Order Have Been Submitted Successfully!</div>");
-      // $this->go_cart->destroy();
+       $this->go_cart->destroy();
        redirect('cart/view_cart');
 		
 		$data['order_id']			= $order_id;   		
