@@ -45,7 +45,8 @@ function areyousure()
 							<td><?php echo  $tutor_request['request_status']; ?></td>
 							
 							<td><select data-placeholder="Choose Multiple Courses" class="chzn-select" name="tutor[]"  tabindex="5" onChange="ajex_tutor_for_course('<?=$tutor_request['request_id']?>',this.value, '<?=$tutor_request['customer_id']?>', '<?=$tutor_request['subject_id']?>')">
-							 <?php  
+							    <option value="0">Select Tutor</option>
+                             <?php  
 							 foreach ($tutors as $tutor)
 							 {
 							 ?>

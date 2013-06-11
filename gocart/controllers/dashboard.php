@@ -121,18 +121,23 @@ class dashboard extends Front_Controller {
     
 	function file_manager()
 	{
-		//$customer_details             = $this->go_cart->customer();
+		$customer_details             = $this->go_cart->customer();
         //$data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('customer_id', $customer_details['id']);
         //print_r($data['file_directory']);
         
         //$this->session->set_userdata('file_data',$data['file_directory']);
         //DebugBreak();        
         
-        if($this->Tutor_model->is_logged_in(false, false)){
-            $this->load->view('dashboard_file_manager');    
-        }else if($this->Customer_model->is_logged_in(false, false)){
-            $this->load->view('dashboard_file_manager');            
-        }else{
+        if($this->Tutor_model->is_logged_in(false, false))
+        {
+            $data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('tutor_id', $customer_details['tutor_id']); 
+            $this->load->view('dashboard_file_manager', $data);       
+        }else if($this->Customer_model->is_logged_in(false, false))
+        {
+            $data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('customer_id', $customer_details['id']);
+            $this->load->view('dashboard_file_manager', $data);            
+        }else
+        {
             redirect('cart/');    
         }
 		
