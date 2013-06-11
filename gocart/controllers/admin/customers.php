@@ -163,7 +163,9 @@ class Customers extends Admin_Controller {
 		$this->form_validation->set_rules('firstname', 'lang:firstname', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('lastname', 'lang:lastname', 'trim|required|max_length[32]');
 		$this->form_validation->set_rules('email', 'lang:email', 'trim|required|valid_email|max_length[128]|callback_check_email');
-		$this->form_validation->set_rules('phone', 'lang:phone', 'trim|required|max_length[32]');
+		$this->form_validation->set_rules('phone', 'lang:phone', 'trim|required|max_length[32]|numeric');
+		$this->form_validation->set_rules('zip_code', 'Zip', 'trim|required|max_length[32]|numeric');
+		$this->form_validation->set_rules('city', 'City', 'trim|required');
 		$this->form_validation->set_rules('company', 'lang:company', 'trim|max_length[128]');
 		//$this->form_validation->set_rules('active', 'lang:active');
 		//$this->form_validation->set_rules('group_id', 'group_id', 'numeric');

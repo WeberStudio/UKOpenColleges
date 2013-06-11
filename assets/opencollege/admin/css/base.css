@@ -7050,6 +7050,8 @@ table td, table th {
 	padding:9px 10px;
 	text-align:left
 }
+
+
 @media only screen and (max-width: 767px) {
 table.responsive {
 margin-bottom:0
@@ -7097,6 +7099,7 @@ overflow:hidden
 table.responsive th:first-child, table.responsive td:first-child, table.responsive td:first-child, table.responsive.pinned td {
 display:none
 }
+
 }
 #sidebar {
 	position:fixed;
@@ -9743,30 +9746,37 @@ color:#333
 }
 #signup_page {
 	background:#262626;
-	position:fixed;
+/*	position:fixed;
 	top:-225px;
 	left:-500px;
 	width:200%;
 	height:200%;
+	*/
+	width:100%;
 	z-index:100;
-	overflow:hidden
+	overflow:hidden;
+	padding:100px 0 11% 0;
 }
 #signup_fields
 {
 	
 	
-	width:900px;
-	height:800px;
+	width:70%;
+/*	height:800px;
 	position:absolute;
 	top:0;
 	left:0;
 	right:0;
-	bottom:0;
-	margin:auto;
+	bottom:0;*/
+	margin:0 auto;
 	color:#fff;
 	z-index:999
 
 }
+
+#signup_fields .row-fluid .span7{ margin:0 0 0 20%;}
+#signup_fields .row-fluid .span7 .span7{ margin:0;}
+#signup_page #footer p{ text-align:center; float:none;}
 
 #login_page {
 	background:#262626;
@@ -10097,4 +10107,13 @@ a#clear-completed:hover {
 }
 #main_container .o2k7SkinSilver .mceExternalToolbar, #main_container .o2k7SkinSilver .mceListBox .mceText, #main_container .o2k7SkinSilver div.mceMenu, #main_container .o2k7SkinSilver table.mceLayout, #main_container .o2k7SkinSilver .mceMenuItemTitle a, #main_container .o2k7SkinSilver table.mceLayout tr.mceFirst td, #main_container .o2k7SkinSilver table.mceLayout, #main_container .o2k7SkinSilver .mceMenuItemTitle a, #main_container .o2k7SkinSilver table.mceLayout tr.mceLast td, #main_container .o2k7SkinSilver .mceIframeContainer {
 	border-color:transparent
+}
+
+
+@media only screen and (max-width: 979px) {
+	#signup_fields{ width:100%;}
+}
+
+@media only screen and (max-width: 480px) {
+	#signup_fields .row-fluid .span7.box.paint.color_0{ margin:0 0 0 10%; width:80%;}
 }

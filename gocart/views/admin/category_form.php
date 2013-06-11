@@ -1,14 +1,15 @@
 <div id="main" style="min-height:1000px">
   <div class="container">
     <? include_once('includes/admin_profile.php');?>
+<!--========  velidation error start    ==========-->
+<?php include('error.php');?>
+            
+<!--========  velidation error end   ==========-->
     <div id="main_container">
         <div class="row-fluid">
             <div class="span12">
               <div class="box paint color_5">
-            <!--========  velidation error start    ==========-->
             
-            
-            <!--========  velidation error end   ==========-->
                 <div class="title">
                   <div class="row-fluid">
                     <h4> Category Form</h4>

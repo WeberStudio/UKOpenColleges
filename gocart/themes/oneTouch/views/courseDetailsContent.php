@@ -87,7 +87,8 @@
 
                 <div class="simpleTabs">
 
-                    <ul class="tabs">
+                    <ul class="simpleTabsNavigation">
+                    
 
                         <li class="description_tab active"><a href="#tab-description">Description</a></li>
 

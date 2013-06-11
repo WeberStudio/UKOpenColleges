@@ -1,9 +1,13 @@
 <div id="main" style="min-height:1000px">
 <div class="container">
   <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
-  <!-- End top-right -->
-  <?php
-	//lets have the flashdata overright "$message" if it exists
+  <!--========  velidation error start    ==========-->
+<script type="text/javascript">
+function showStuff() {
+    document.getElementById('closee').style.display = 'none';
+}
+</script>
+       <?php 
 	if($this->session->flashdata('message'))
 	{
 		$message	= $this->session->flashdata('message');
@@ -13,18 +17,26 @@
 	{
 		$error	= $this->session->flashdata('error');
 	}
-	
+	if(validation_errors() != '')
+	{
+		$error	= validation_errors();
+	}
 	?>
-  <div id="js_error_container" class="alert alert-error" style="display:none;">
-    <p id="js_error"></p>
-  </div>
-  <div id="js_note_container" class="alert alert-note" style="display:none;"> </div>
-  <?php if (!empty($message)): ?>
-  <div class="alert alert-success"> <a class="close" data-dismiss="alert">*</a> <?php echo $message; ?> </div>
-  <?php endif; ?>
-  <?php if (!empty($error)): ?>
-  <div class="alert alert-error"> <a class="close" data-dismiss="alert">*</a> <?php echo $error; ?> </div>
-  <?php endif; ?>
+    
+   
+   
+    <?php if (!empty($error)): ?>
+          <div class="alert alert-error" id="closee"> <a href="javascript:void(0)"  class="close" data-dismiss="alert" onClick="showStuff(); return false;">x</a> <?php echo"<div style='margin-left: 70px;'>". $error. "</div>"; ?> </div>
+          <?php endif; ?>
+          
+      
+          <?php if (!empty($message)): ?>
+		<div class="alert alert-success">
+			<a class="close" data-dismiss="alert">×</a>
+			<?php echo $message; ?>
+		</div>
+	<?php endif; ?>
+<!--========  velidation error end   ==========-->
   <div id="main_container">
     <div class="row-fluid">
       <div class="span12">

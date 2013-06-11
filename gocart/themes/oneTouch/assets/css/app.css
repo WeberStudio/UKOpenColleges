@@ -936,15 +936,18 @@ a.back:hover {
 
 #header {
 
-    padding: 13px 0 0 0;
+    padding: 15px 0 0 0;
 
 }
 
 #header .logo {
 
     padding-right: 0;
+	
+	padding-left:0;
+	
+	top:-19px;
 
-    width: 25.66667%;
 
 }
 
@@ -961,8 +964,9 @@ a.back:hover {
     padding-bottom: 4px;
 
     padding-left: 0;
+	
+	padding-right:0;
 
-    width: 74%;
 
 }
 
@@ -972,13 +976,8 @@ a.back:hover {
 
   list-style-image: none;
 
-  padding: 0 0 0 16px ;
-
-  margin: 0 0 0 -4px;
-
   position: relative;
 
-  float: left;
 
 }
 
@@ -1371,6 +1370,8 @@ Alternative dropdown style
     padding-top:15px;
 
 	padding-bottom:15px;
+	
+	padding-right:0;
 
 }
 
@@ -1708,9 +1709,12 @@ Alternative dropdown style
 
 .promo {
 
-    padding: 23px 10px 25px 85px;
+    padding: 23px 0px 25px 0px;
+	
+	float:left;
+	
+	width:1185px;
 
-    min-height: 64px;
 
 /*	white-space:nowrap;*/
 
@@ -1720,21 +1724,20 @@ Alternative dropdown style
 
 .promo h1{
 
-
-
 	font-size:28px;
-
-
+	
+	padding:0 0 0 82px;
 
 }
 
 .promo .icon {
 
-    margin-left: -66px;
-
     position: relative;
 
-    top:9px;
+	margin:0 0 0 0px;
+	
+	top:5px;
+
 
 }
 
@@ -2399,6 +2402,8 @@ div.item, .item div{
     background: #4e616d !important;
 
     color: #b8d2e3;
+	float:left;
+	width:100%;
 
 }
 
@@ -3102,9 +3107,9 @@ a.back:hover {
 
     position: absolute;
 
-    top:15px;
+    top:7px;
 
-    left: 10px;
+    left: 0px;
 
 }
 
@@ -5116,7 +5121,7 @@ nav select {
 
     display: block;
 
-   /* background: url(../img/top.png) 0 0 no-repeat;*/
+   background: url(../images/img/top.png) 0 0 no-repeat;
 
     z-index: 99999999;
 
@@ -5712,3 +5717,14 @@ zoom: 1;
 
 }
 
+
+
+.promo .page-title span{ float:right; padding-right:0 !important;}
+.promo .page-title span span{ float:none;}
+
+.row{ width:1185px;}
+
+@media only screen and (max-width: 767px) {
+.row .row{ margin:0;}
+
+}

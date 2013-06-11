@@ -86,8 +86,8 @@ class Invoice_Groups extends Admin_Controller {
 			
 		}
 		
-		$this->form_validation->set_rules('invoice_group_name',  'group Titile', 'trim');
-		$this->form_validation->set_rules('invoice_group_prefix', 'Header html', 'trim');
+		$this->form_validation->set_rules('invoice_group_name',  'Name', 'trim|required');
+		$this->form_validation->set_rules('invoice_group_prefix', 'Prefix', 'trim|required');
 		
 		
 		 //echo "<pre>";print_r($_POST);exit;

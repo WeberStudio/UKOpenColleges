@@ -3,31 +3,9 @@
 <div id="main" style="min-height:1000px">
 <div class="container">
 <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
-
-  <?php
-	//lets have the flashdata overright "$message" if it exists
-	if($this->session->flashdata('message'))
-	{
-		$message	= $this->session->flashdata('message');
-	}
-	
-	if($this->session->flashdata('error'))
-	{
-		$error	= $this->session->flashdata('error');
-	}
-	
-	?>
-
-  <div id="js_error_container" class="alert alert-error" style="display:none;">
-    <p id="js_error"></p>
-  </div>
-  <div id="js_note_container" class="alert alert-note" style="display:none;"> </div>
-  <?php if (!empty($message)): ?>
-  <div class="alert alert-success"> <a class="close" data-dismiss="alert">*</a> <?php echo $message; ?> </div>
-  <?php endif; ?>
-  <?php if (!empty($error)): ?>
-  <div class="alert alert-error"> <a class="close" data-dismiss="alert">*</a> <?php echo $error; ?> </div>
-  <?php endif; ?>
+<!--========  velidation error start    ==========-->
+<?php include('error.php');?>
+<!--========  velidation error end   ==========-->
   
   
 <div id="main_container">

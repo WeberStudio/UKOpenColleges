@@ -46,7 +46,7 @@
 			<td>
 			<?
 				$tutor_name 	= $this->Tutor_model->get_tutor($forum->tutor_id);
-				echo $tutor_name->firstname.' '.$tutor_name->lastname;		
+				 if(!empty($tutor_name)){ echo $tutor_name->firstname.' '.$tutor_name->lastname;}		
 			?>
 			</td>
 			<td><?=$forum->forum_status?></td>

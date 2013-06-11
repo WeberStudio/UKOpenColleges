@@ -33,6 +33,7 @@ return false;
 	//$gender_m 	= array('id'=>'gender_m', 'class'=>'','name'=>'gender', 'value'=>'male' );
 	//$gender_f 	= array('id'=>'gender_f', 'class'=>'', 'name'=>'gender', 'value'=>'female' );
 ?>
+<div class="row">
 <h1 class="page-title" style="padding: -9px;"> <a class="all" href="javascript:void(0)">you can Rgister here</a> </h1>
 <div class="line"> </div>
  <script type="text/javascript">
@@ -70,7 +71,7 @@ function showStuff() {
 		</div>
 	<?php endif; ?>
 
-<!----- main content section start---->
+<!----- main content section start----></div>
 <div class="row">
   <div id="content" class="fifteen columns">
     <p class="woocommerce_info">Already registered? <a href="" class="" onclick="return toggle()">Click here to login</a></p>

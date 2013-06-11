@@ -500,7 +500,22 @@ class Checkout extends Front_Controller {
 	}
 
     function place_order_paypal_pro()
-    {        
+    { 
+		$data['address_form_prefix']	= 'bill';
+		$data['customer']	= $this->go_cart->customer();
+		$this->load->library('form_validation'); 
+		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required');
+		$this->form_validation->set_rules('select_card', 'Select Card', 'trim|required');
+		$this->form_validation->set_rules('card_num', 'Card Number', 'trim|required');
+		$this->form_validation->set_rules('select_month', 'Select Month', 'trim|required');
+		$this->form_validation->set_rules('select_year', 'Select Year', 'trim|required');
+		$this->form_validation->set_rules('cvv_num', 'CVV Number', 'trim|required');
+		if($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('confirm_address', $data);
+		}
+		else{
+		
     
          //echo "<pre>";print_r($_POST);exit;
             $firstname      =   $this->input->post('firstname');
@@ -555,7 +570,7 @@ class Checkout extends Front_Controller {
       $this->session->set_flashdata('message', "<div  class='woocommerce_message'>Your Order Have Been Submitted Successfully!</div>");
        $this->go_cart->destroy();
        redirect('cart/view_cart');
-            
+		}
        
     }   
     

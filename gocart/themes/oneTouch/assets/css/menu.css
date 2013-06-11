@@ -23,6 +23,8 @@
     position: relative;
 
     z-index: 1001; /* Needed for IE issue */
+	
+	display:none;
 
 }
 

@@ -114,9 +114,9 @@ class Invoice_Templates extends Admin_Controller {
 			
 		}
 		
-		$this->form_validation->set_rules('invoice_template_title',  'Template Titile', 'trim');
-		$this->form_validation->set_rules('invoice_template_header', 'Header html', 'trim');
-		$this->form_validation->set_rules('invoice_template_footer', 'Footer html', 'trim');
+		$this->form_validation->set_rules('invoice_template_title',  'Template Titile', 'trim|required');
+		$this->form_validation->set_rules('invoice_template_header', 'Header html', 'trim|required');
+		$this->form_validation->set_rules('invoice_template_footer', 'Footer html', 'trim|required');
 		//$this->form_validation->set_rules('invoice_template_level', 'lang:invoice_template_level', 'trim|required');
 		
 		 //echo "<pre>";print_r($_POST);exit;

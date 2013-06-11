@@ -383,7 +383,7 @@ class Products extends Admin_Controller {
 		$this->form_validation->set_rules('slug', 'lang:slug', 'trim');
 		$this->form_validation->set_rules('description', 'lang:description', 'trim');
 		$this->form_validation->set_rules('excerpt', 'lang:excerpt', 'trim');
-		$this->form_validation->set_rules('price', 'lang:price', 'trim|numeric|floatval');
+		$this->form_validation->set_rules('price', 'lang:price', 'trim|numeric|floatval|required');
 		$this->form_validation->set_rules('enabled', 'lang:enabled', 'trim');
 		$this->form_validation->set_rules('meta_key', 'meta_key', 'trim');
 		/*

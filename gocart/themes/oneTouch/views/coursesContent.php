@@ -1,6 +1,7 @@
 <!-- Fullscreen jQuery template -->
-    <div id="aq-block-5" class="aq-block aq-block-aq_recent_block fifteen columns aq-first cf" style="margin-top: -25px;"> 
-                                 <h1 class="page-title" style="padding: -9px;">
+     <div class="row">
+     <div id="aq-block-5" class="aq-block aq-block-aq_recent_block fifteen columns aq-first cf"> 
+                                 <h1 class="page-title">
                    <a href="javascript:void(0)" class="all">All Courses</a> 
                    <span style="float: right;"> 
                     <div class="sort-panel">  
@@ -158,6 +159,7 @@
                     }); // END OF DOCUMENT
                 </script>
             </div>
+     </div>
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
