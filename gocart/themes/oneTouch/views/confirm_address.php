@@ -378,14 +378,15 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 	     
      <p>
      <?php
-			$data = array('name'=>'pay_method',  'onClick'=>'show_block()');
+	 		 if (validation_errors()){ $checked='checked';} else{$checked='';}
+			$data = array('name'=>'pay_method',  'onClick'=>'show_block()', 'checked'=>$checked);
 		 	echo form_radio($data);
 	 ?>
     		<b>Checkout with PayPal </b>
             
      </p>
  <form action="<?=base_url()?>checkout/place_order_paypal_pro" method="post">        
-     <div id="card_info_block" style="display: none;">
+     <div id="card_info_block" style="display:<?php if (validation_errors()){ echo "";} else{echo "none;";}?>">
     <p class="form-row form-row-first" id="billing_first_name_field" style="padding-left: 120px;">
         <label for="billing_first_name" class="">Cards Accepted: 
         
@@ -553,6 +554,8 @@ $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','
 	</div>
 </div>
 <?php endif;?>
+</div>
+</div>
 </div>
 </div>
 <?php include_once('footer.php'); ?>
