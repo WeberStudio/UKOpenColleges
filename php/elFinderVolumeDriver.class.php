@@ -2067,22 +2067,36 @@ abstract class elFinderVolumeDriver {
 	protected function cacheDir($path) {
 		$this->dirsCache[$path] = array();
                 //  DebugBreak();   
-		  $customer_id =     $_GET['customer_id']; 
+		$customer_id     =     $_GET['id'];
+        $role            =     $_GET['role'];
+         //DebugBreak();     
         foreach ($this->_scandir($path) as $p) {
 
+           
             if (($stat = $this->stat($p)) && empty($stat['hidden'])) {
                  $folder_name = explode('_', $p);
-                  if($folder_name[1] == $customer_id )
+                 if(!empty($role) && $role == 'customer')
+                 {
+                    $folder_asign = $folder_name[1];    
+                 }
+                 else
+                 {
+                     $folder_asign = $folder_name[0];                     
+                 }
+                 
+                 //if($folder_asign == $customer_id )
+                 if(strpos($folder_asign, $customer_id)>=0)
                  {   
                     $this->dirsCache[$path][] = $p;
-                }
-                else if(strstr($folder_name[1],$customer_id."\\"))
-                {
-                        $this->dirsCache[$path][] = $p;
-                }
-                else{
-                     $this->dirsCache[$path][] = '';
-                }
+                 }
+                 else if(strstr($folder_asign,"\\".$customer_id))
+                 {
+                    $this->dirsCache[$path][] = $p;
+                 }
+                 else
+                 {
+                   $this->dirsCache[$path][] = '';
+                 }
             }
         }    
 	}
@@ -2274,25 +2288,35 @@ abstract class elFinderVolumeDriver {
 		$dirs = array();
 		
 		!isset($this->dirsCache[$path]) && $this->cacheDir($path);
-          $customer_id =     $_GET['customer_id']; 
+          $customer_id     =     $_GET['id'];
+          $role            =     $_GET['role'];  
         foreach ($this->_scandir($path) as $p) {
             if (($stat = $this->stat($p)) && empty($stat['hidden'])) {
                  
                 $folder_name = explode('_', $p);
-                  if($folder_name[1] == $customer_id )
-                 {   
+                
+                if(!empty($role) && $role == 'customer')
+                 {
+                    $folder_asign = $folder_name[1];    
+                 }
+                 else
+                 {
+                     $folder_asign = $folder_name[0];                     
+                 }
+                 
+                //if($folder_asign == $customer_id )
+                if(strpos($folder_asign, $customer_id)>=0)
+                {   
                     $this->dirsCache[$path][] = $p;
                 }
-                else if(strstr($folder_name[1],$customer_id."\\"))
+                else if(strstr($folder_asign,"\\".$customer_id))
                 {
                         $this->dirsCache[$path][] = $p;
                 }
-                else{
+                else
+                {
                      $this->dirsCache[$path][] = '';
                 }
-                
-                
-                  // $this->dirsCache[$path][] = $p;   
                
             }
         }    

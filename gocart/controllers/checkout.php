@@ -5,10 +5,11 @@ class Checkout extends Front_Controller {
 
 	function __construct()
 	{
-		parent::__construct();
+		
+        parent::__construct();
 
 		force_ssl();
-
+        //DebugBreak();
 		/*make sure the cart isnt empty*/
 		if($this->go_cart->total_items()==0)
 		{
@@ -562,7 +563,7 @@ class Checkout extends Front_Controller {
 	{		
             
 		// retrieve the payment method
-        //DebugBreak();
+        DebugBreak();
         $payment['module']                  = "paypal_express";
         $payment['description']             = "PayPal Express";		
         $paypal_express['name']             = "PayPal Express";

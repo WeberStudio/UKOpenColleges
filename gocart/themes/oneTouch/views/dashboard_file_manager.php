@@ -14,7 +14,19 @@
 		<!-- elFinder translation (OPTIONAL) -->
 		<script type="text/javascript" src="<?php echo theme_js('js/i18n/elfinder.ru.js');?>"></script>
           <?  
-                $customer_details             = $this->go_cart->customer(); 
+                $customer_details             = $this->go_cart->customer();
+                $role = '';
+                if(empty($customer_details['tutor_id']))
+                {
+                    $id     = $customer_details['id'];
+                    $role   = 'customer';                  
+                }
+                else
+                {
+                    $id     = $customer_details['tutor_id'];
+                    $role   = 'tutor';                   
+                }
+                //echo '<pre>';print_r($customer_details);
                 
           ?>
 		<!-- elFinder initialization (REQUIRED) -->
@@ -22,7 +34,7 @@
 		<script type="text/javascript" charset="utf-8">
 			$().ready(function() {
 				var elf = $('#elfinder').elfinder({
-					url : '<?=base_url('php')."/connector.php?customer_id=".$customer_details['id'];?>'  // connector URL (REQUIRED)					
+					url : '<?=base_url('php')."/connector.php?id=".$id.'&role='.$role;?>'  // connector URL (REQUIRED)					
 					// lang: 'ru',             // language (OPTIONAL)
 				}).elfinder('instance');
 			});
@@ -56,10 +68,15 @@
 		
 <div class="row">
 <div id="content" class="fifteen columns">
+<? if(!empty($file_directory)){ ?>
 <div class="col-1">
  	<h3>File Manager</h3>
           <div id="elfinder"></div>
 </div>
+<? } else{ ?>
+
+   <h3>Currently There is no any file shared with you.</h3>
+<? } ?>
 </div>
 </div>
           <!-- End .content --> 
