@@ -34,20 +34,44 @@ class Order extends Admin_Controller {
 		
 		$this->load->model('Order_model');
 		$this->load->model('Search_model');
-		$this->load->model('location_model');		
+		$this->load->model('location_model');
+		$this->load->model('Category_model');
+		$this->load->model('Product_model');
+		//$this->load->model('Product_model');		
 		$this->lang->load('order');
 		
 
     }
 	
-	 function index($sort_by='order_number',$sort_order='ASC', $code=0, $page=0 , $rows=3)
+	 function index($id = false)
 	 {
-	
+		$sort_by='order_number';
+		$sort_order='ASC';
+	 	$code=0;
+	 	$page=0;
+	   	$rows=0;
 		
        	$this->load->helper('form');
 		
         $data = array();
-		$data['orders']				= $this->Order_model->get_orders('',$sort_by,$sort_order,$rows,$page);
+		
+		$data['id'] 			= $id;
+		//print_r($data['id']);exit;
+		
+		$data['category'] 		= $this->Category_model->get_all_categories();
+		$data['courses'] 		= $this->Product_model->get_all_products_array();
+		$data['admins']			= $this->auth->get_admin_list();
+		
+		
+		if($id==2)
+		{$data['orders']				= $this->Order_model->get_delivered_oder();}
+		elseif($id==3)
+		{$data['orders']				= $this->Order_model->get_processing_order();}
+		elseif($id==6)
+		{$data['orders']				= $this->Order_model->get_cancelled_order();}
+		
+		else
+		{$data['orders']				= $this->Order_model->get_orders('',$sort_by,$sort_order,$rows,$page);}
 		
 		$this->load->library('pagination');	
 		

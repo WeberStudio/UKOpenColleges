@@ -351,5 +351,24 @@ Class order_model extends CI_Model
 		return $id = $this->db->insert_id();	
 		
 	}
+	function get_processing_order()
+	{	
+		$this->db->where('status','Processing');
+		$result	= $this->db->get('orders');
+		return $result->result();
+	}
+	function get_delivered_oder()
+	{
+		$this->db->where('status','Delivered');
+		$result = $this->db->get('orders');
+		return $result->result();
+	}
+	function get_cancelled_order()
+	{
+		$this->db->where('status','Cancelled');
+		$result = $this->db->get('orders');
+		return $result->result();
+		
+	}
 	
 }

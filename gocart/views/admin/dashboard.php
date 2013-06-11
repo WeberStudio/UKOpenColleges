@@ -43,10 +43,10 @@
             <div class="span6">
               <div class=" box color_2 height_medium paint_hover">
                 <div class="content numbers">
-                  <h3 class="value">219.103</h3>
-                  <div class="description mb5">Audience Reach</div>
-                  <h1 class="value">3.28<span class="percent">%</span></h1>
-                  <div class="description">Average CTR</div>
+                  <h3 class="value"><?php if($products!=""){echo $products;}else{echo"0";}?></h3>
+                  <div class="description mb5">Total Courses</div>
+                  <h3 class="value"><?php  echo $products_d;?></h3>
+                  <div class="description">Deactivated Courses</div>
                 </div>
               </div>
             </div>
@@ -66,31 +66,23 @@
           <!-- End .row-fluid -->
           <div class="row-fluid fluid">
             <div class="span6">
-              <div class=" box  height_medium title_big paint_hover">
-                <div class="title">
-                  <div class="row-fluid">
-                    <div class="span12">
-                      <h5> </i><span>Fundraisers</span> </h5>
-                    </div>
-                    <!-- End .span12 --> 
-                  </div>
-                  <!-- End .row-fluid --> 
-                </div>
-                <!-- End .title -->
-                <div class="content" style="padding-top:28px;">
-                  <div id="placeholder2" style="width:100%;height:85px;"></div>
-                  <div class="row-fluid description">
-                    <div class="pull-left">LAST 30 DAYS</div>
-                    <div class="pull-right">TODAY</div>
-                  </div>
+              <div class=" box color_22 height_medium paint_hover">
+                <div class="content numbers">
+                  <h3 class="value"><?php echo $customers_t;?></h3>
+                  <div class="description mb5">Total Customer</div>
+                  <h3 class="value"><?php echo $customers_d;?></h3>
+                  <div class="description">Deactivated Customer</div>
                 </div>
               </div>
             </div>
             <!-- End .span6 -->
             <div class="span6">
-              <div class=" box color_26 height_medium paint_hover">
-                <div class="content icon big_icon"> <a href="#" ><img align="center" src="<?=base_url().ASSETS_PATH?>img/general/contacts_icon.png" /></a>
-                  <div class="description">CONTACTS</div>
+              <div class=" box color_19 height_medium paint_hover">
+                <div class="content numbers">
+                  <h3 class="value"><?php echo $customers_n;?></h3>
+                  <div class="description mb5">Newsletter subscribers</div>
+                  <h3 class="value"></h3>
+                  <div class="description"></div>
                 </div>
               </div>
             </div>
@@ -252,12 +244,39 @@
            
               <li>
                 <div class="info row-fluid"><span class="number pull-left text_color_0">1</span>
-                  <h3 class="pull-left" style="margin-left: 5px; margin-top: -6px;">Enrolment Received</h3>
+                  <a href="<?php echo site_url($this->config->item('admin_folder')."/order");?>"><h3 class="pull-left" style="margin-left: 5px; margin-top: -6px;">Enrolment Received</h3></a>
+                  <div align="right"><h3><?php echo $enrolment_received;?></h3></div>
+                </div>
+              </li>
+              <li>
+                <div class="info row-fluid"><span class="number pull-left text_color_0">2</span>
+                  <a href="<?php echo site_url($this->config->item('admin_folder')."/order/index/2");?>"><h3 class="pull-left" style="margin-left: 5px; margin-top: -6px;">Payment Received</h3></a>
+                  <div align="right"><h3><?php echo $payment_received;?></h3></div>
+                </div>
+              </li>
+              <li>
+                <div class="info row-fluid"><span class="number pull-left text_color_0">3</span>
+                  <a href="<?php echo site_url($this->config->item('admin_folder')."/order/index/3");?>"><h3 class="pull-left" style="margin-left: 5px; margin-top: -6px;">Enrolment Processing</h3></a>
+                  <div align="right"><h3><?php echo $enrolment_processing;?></h3></div>
+                </div>
+              </li>
+              <li>
+                <div class="info row-fluid"><span class="number pull-left text_color_0">4</span>
+                  <h3 class="pull-left" style="margin-left: 5px; margin-top: -6px;">Despatched</h3>
                   <div align="right"><h3  >3434</h3></div>
                 </div>
-                <!--<div class="row-fluid">
-                  <div class="value"></div>
-                </div>-->
+              </li>
+              <li>
+                <div class="info row-fluid"><span class="number pull-left text_color_0">5</span>
+                  <h3 class="pull-left" style="margin-left: 5px; margin-top: -6px;">Invoiced</h3>
+                  <div align="right"><h3  >3434</h3></div>
+                </div>
+              </li>
+              <li>
+                <div class="info row-fluid"><span class="number pull-left text_color_0">6</span>
+                  <a href="<?php echo site_url($this->config->item('admin_folder')."/order/index/6");?>"><h3 class="pull-left" style="margin-left: 5px; margin-top: -6px;">Cancelled</h3></a>
+                  <div align="right"><h3><?php echo $cancelled_order;?></h3></div>
+                </div>
               </li>
               
               

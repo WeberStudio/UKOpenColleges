@@ -54,22 +54,33 @@ $rows=15;
 				?>
               </div>
               <div class="controls span3">
-                <?php 
-					$option = array( 'course'=>'course','1'=>'course1', '2'=>'course1','2'=>' course3');
-					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
-				?>
+                <select class="chzn-select" id="" name="categories">
+                <option> All Categories</option>
+                <?php foreach($category as $cat){?>
+                	
+                    <option value="<?php echo $cat['id'];?>"> <?php echo $cat['name'];?></option>
+                    <?php }?>
+                </select>
               </div>
               <div class="controls span3">
-                <?php 
-					$option = array( 'catagory'=>'catagory','1'=>'catagory1', '2'=>'catagory2','3'=>'catagory3 ');
-					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
-				?>
+              <select class="chzn-select" id="" name="courses">
+                <option> All Courses</option>
+                <?php foreach($courses as $cour){?>
+                	
+                    <option value="<?php echo $cour['id'];?>"> <?php echo $cour['name'];?></option>
+                    <?php }?>
+                </select>
               </div>
               <div class="controls span3">
-                <?php 
-					$option = array( 'course provider'=>'course provider','1'=>'course provider1', '2'=>'course provider2','3'=>'course provider3');
-					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
-				?>
+              
+               <select class="chzn-select" id="" name="courses_provider">
+                <option> Courses Provider</option>
+                 
+                	<?php
+					foreach($admins as $admin){?>
+                    <option value="<?php echo $admin->id;?>"> <?php echo $admin->firstname;?></option>
+                    <?php }?>
+                </select>
               </div>
             
          </div>
@@ -144,7 +155,7 @@ $rows=15;
 					
 					<tbody>
 					<?php echo (count($orders) < 1)?'<tr><td style="text-align:center;" colspan="8">'.lang('no_orders') .'</td></tr>':''?>
-					<?php foreach($orders as $order): ?>
+					<?php  foreach($orders as $order):?>
 						<tr>
 							<?php /*?><td class="to_hide_phone"><input name="order[]" type="checkbox" value="<?php echo $order->id; ?>" class="gc_check"/></td><?php */?>
 							<td class="to_hide_phone"><?php echo $order->order_number; ?></td>
@@ -153,7 +164,7 @@ $rows=15;
 							<td class="to_hide_phone" style="white-space:nowrap"><?php echo date('m/d/y h:i a', strtotime($order->ordered_on)); ?></td>
 							<td style="span2">
 							<div class="btn-group inline">
-							  <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Status <span class="caret"></span></button>
+							  <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><?php echo $order->status;?><span class="caret"></span></button>
 							  <ul class="dropdown-menu" style="text-align:left;">
 								<li><a href="<?=base_url().$this->config->item('admin_folder').'/order/order_paid_status/pending/'?>">Pending</a></li>
 								<li><a href="<?=base_url().$this->config->item('admin_folder').'/order/order_paid_status/processing/'?>">Processing</a></li>
@@ -164,10 +175,12 @@ $rows=15;
 							</td>
 							<td><?php echo format_currency($order->total); ?></td>
 							<td><a class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="<?php echo lang('delete');?>" href="<?=base_url().'admin/order/delete/'.$order->id?>" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"><i class="gicon-remove-circle"></i> Delete </a></td>
-							<td><a  class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="View Order Details" href="<?=base_url().'admin/order/view/'.$order->id?>"><i class="gicon-eye-open"></i>View</td>							
+							<td><a  class="btn btn-small"  rel="tooltip" data-placement="left" data-original-title="View Order Details" href="<?=base_url().'admin/order/view/'.$order->id?>"><i class="gicon-eye-open"></i>View</a></td>							
 						</tr>
-					<?php endforeach; ?>
+					<?php endforeach;    ?>
 					</tbody>
+                    
+                    
 				</table>
 				</div>
 				

@@ -24,22 +24,32 @@ function areyousure()
 				?>
               </div>
               <div class="controls span3">
-                <?php 
-					$option = array( 'course'=>'course','1'=>'course1', '2'=>'course1','2'=>' course3');
-					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
-				?>
+                <select class="chzn-select" id="" name="categories">
+                <option> All Categories</option>
+                <?php foreach($category as $cat){?>
+                	
+                    <option value="<?php echo $cat['id'];?>"> <?php echo $cat['name'];?></option>
+                    <?php }?>
+                </select>
               </div>
               <div class="controls span3">
-                <?php 
-					$option = array( 'catagory'=>'catagory','1'=>'catagory1', '2'=>'catagory2','3'=>'catagory3 ');
-					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
-				?>
+               <select class="chzn-select" id="" name="courses">
+                <option> All Courses</option>
+                <?php foreach($courses as $cour){?>
+                	
+                    <option value="<?php echo $cour['id'];?>"> <?php echo $cour['name'];?></option>
+                    <?php }?>
+                </select>
               </div>
               <div class="controls span3">
-                <?php 
-					$option = array( 'course provider'=>'course provider','1'=>'course provider1', '2'=>'course provider2','3'=>'course provider3');
-					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
-				?>
+               <select class="chzn-select" id="" name="courses_provider">
+                <option> Courses Provider</option>
+                 
+                	<?php
+					foreach($admins as $admin){?>
+                    <option value="<?php echo $admin->id;?>"> <?php echo $admin->firstname;?></option>
+                    <?php }?>
+                </select>
               </div>
             
          </div>

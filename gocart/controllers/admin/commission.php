@@ -40,7 +40,10 @@ class Commission extends Admin_Controller {
 
     function index()
     {
-       		
+       	$data['category'] 		= $this->Category_model->get_all_categories();
+		$data['courses'] 		= $this->Product_model->get_all_products_array();
+		$data['admins']			= $this->auth->get_admin_list();
+		
 		$data['commissions'] = $this->Commission_model->get_commissions($limit=0, $offset=0, $order_by='comm_level', $direction='ASC');
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
