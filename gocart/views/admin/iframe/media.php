@@ -159,7 +159,8 @@ if(function_exists('validation_errors') && validation_errors() != '')
 
 			<?php elseif(in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), $image_extensions)):?>
 				<td class="file-icon img">
-				<img onclick="session_for_image('<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>')" src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
+                <input id="insert-filename" name="insert-filename" type="hidden"> 
+				<img onclick="session_for_image('<?php echo $f;?>')" src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
 				</td>
 				<td><?php echo $f;?></td>
 				<td class="btns">
@@ -208,7 +209,8 @@ if(function_exists('validation_errors') && validation_errors() != '')
 						</div>
 
 						<input type="hidden" name="root" value="<?php echo $root;?>">
-						<input id="delete-filename" name="filename" type="hidden">
+                        <input id="delete-filename" name="filename" type="hidden">
+						
 						<button id="delbtn" type="button" class="btn btn-inverse" onclick="$('#delete-warning').show(); $('#delbtn').hide(); setTimeout('$(\'#delete-warning\').hide(); $(\'#delbtn\').show();', 5000);"> <i class="icon-trash icon-white"></i></button>
 					</div>
 				</div>
@@ -241,10 +243,7 @@ if(function_exists('validation_errors') && validation_errors() != '')
 		$('#upload-form').submit();
 	});
 	
-	$('.img').click(function(){
-		parent.redactor_instance.insertHtml($(this).html().trim());
-		parent.redactor_instance.modalClose();
-	});
+	
 	
 	function insert_link(filename)
 	{
@@ -253,10 +252,20 @@ if(function_exists('validation_errors') && validation_errors() != '')
 	}
     function session_for_image(img_name)
     {
-         $.post('<?=base_url('admin/media/set_session_for_image')?>', { input_field_name: "unique_image_id", image_name: img_name },
+            //global1 = 'shahid'   
+            document.getElementById('insert-filename').value = img_name
+            //alert(img_name)  
+        /* $.post('<?=base_url('admin/media/set_session_for_image')?>', { input_field_name: "unique_image_id", image_name: img_name },
           function(data){
                alert(data);
-          }, "POST");    
-    }    
+          }, "POST");    */
+    }  
+    
+    $('.img').click(function(){
+         //alert();
+         
+       // parent.redactor_instance.insertHtml($(this).html().trim());
+       // parent.redactor_instance.modalClose();
+    });
 </script>
 <?php include('footer.php');
