@@ -10,6 +10,7 @@ class Customers extends Admin_Controller {
 		parent::__construct();
 		$this->auth->check_access('Superadmin', true);
 		
+		
 		/*** Get User Info***/
 		//$admin_info = $this->admin_session->userdata('admin');
 		$user_info = $this->auth->admin_info();
@@ -20,7 +21,7 @@ class Customers extends Admin_Controller {
 		$this->last_name = $user_info['lastname'];
 		$this->image = $user_info['image'];
 		/*** Get User Info***/
-		
+		$this->auth->check_access('Superadmin', true);
 		/*** Left Menu Selection ***/
 		$this->session->set_userdata('active_module', 'sales');
 		/*** Left Menu Selection ***/
@@ -28,6 +29,7 @@ class Customers extends Admin_Controller {
 		$this->load->model(array('Customer_model', 'Location_model'));
 		$this->load->helper('formatting_helper');
 		$this->lang->load('customer');
+	
 	}
 	
 	function index($field='lastname', $by='ASC', $page=0, $row=5)

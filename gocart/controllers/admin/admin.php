@@ -7,7 +7,7 @@ class Admin extends Admin_Controller
 	function __construct()
 	{
 		parent::__construct();
-		
+		$this->auth->check_access('Superadmin', true);
 		/*** Get User Info***/
 		//$admin_info = $this->admin_session->userdata('admin');
 		$user_info = $this->auth->admin_info();
@@ -169,8 +169,10 @@ class Admin extends Admin_Controller
 			$data['zip_code']			= $admin->zip_code;
 			$data['country']			= $admin->country;
 			$data['telephone']			= $admin->telephone;
+			$data['access']				= $admin->access;
 		}
 		
+		$this->form_validation->set_rules('access', 'Access', 'required');
 		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]|required');
 		$this->form_validation->set_rules('firstname', 'lang:firstname', 'trim|max_length[32]|required');
 		$this->form_validation->set_rules('lastname', 'lang:lastname', 'trim|max_length[32]|required');
@@ -283,7 +285,7 @@ class Admin extends Admin_Controller
 			$save['firstname']			= $this->input->post('firstname');
 			$save['lastname']			= $this->input->post('lastname');
 			$save['email']				= $this->input->post('email');
-			$save['access']				= 'Admin';
+			$save['access']				= $this->input->post('access');
 			$save['phone']				= $this->input->post('phone');
 			$save['company']			= $this->input->post('company');
 			$save['url']				= $this->input->post('url');

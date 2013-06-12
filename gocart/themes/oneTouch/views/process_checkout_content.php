@@ -1,18 +1,20 @@
-    <h1 class="page-title" style="padding: -9px;">
-	<a class="all" href="javascript:void(0)">you can login here</a>
+<div class="row">
+    <h1 class="page-title" style="margin-left:85px;">
+	<a class="" href="javascript:void(0)">you can login here</a>
 	</h1>
+</div>
     <div class="line"> </div>
 	
 		
-	<h3>Welcome, Please Sign In</h3>
-	
 	<div class="row">
+        <h3>Welcome, Please Sign In</h3>
 <div id="content" class="fifteen columns">
 <div class="col2-set" id="customer_details">
 				<div class="col-1" >
+            
 				
     <div>
-	<p>
+    <p>
 	<b>Checkout Without An Account</b>
 	<p>
 	<i>For a faster checkout experience, we offer the option to checkout without creating an account.</i>
@@ -41,7 +43,7 @@
           </p>
           <p>
             <input class="submitbutton" name="submitted" id="wp-submit" value="Login ?" type="submit">
-            <a href="javascript:viod(0);">Lost password?</a></p>
+            <a href="<?php echo site_url('secure/forgot_password');?>">Lost password?</a></p>
           <div>
             <input name="redirect_to" class="redirect_to" value="" type="hidden">
             <input name="testcookie" value="1" type="hidden">

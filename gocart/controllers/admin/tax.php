@@ -7,7 +7,7 @@ class Tax extends Admin_Controller {
 	function __construct()
 	{		
 		parent::__construct();
-		$this->auth->check_access('Superadmin', true);
+		//$this->auth->check_access('Superadmin', true);
 		
 		/*** Get User Info***/
 		//$admin_info = $this->admin_session->userdata('admin');
@@ -19,6 +19,20 @@ class Tax extends Admin_Controller {
 		$this->last_name 	= $user_info['lastname'];
 		$this->image 		= $user_info['image'];
 		/*** Get User Info***/
+		
+		
+		// checking admin access start\\
+		if($user_info['access'] == "Superadmin")
+		{
+			$this->auth->check_access('Superadmin', true);
+		}
+		else
+		{
+			$this->auth->check_access('Invoice Admin', true);
+		}
+		
+		// checking admin access end\\
+		
 		
 		/*** Left Menu Selection ***/
 		$this->session->set_userdata('active_module', 'invoice');

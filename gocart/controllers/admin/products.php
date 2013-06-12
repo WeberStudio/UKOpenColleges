@@ -19,6 +19,22 @@ class Products extends Admin_Controller {
 		$this->image = $user_info['image'];
 		/*** Get User Info***/
 		
+		// checking admin access start\\
+		if($user_info['access'] == "Superadmin")
+		{
+			$this->auth->check_access('Superadmin', true);
+		}
+		elseif($user_info['access'] == "Site Admin")
+		{
+			$this->auth->check_access('Site Admin', true);
+		}
+		else
+		{
+			$this->auth->check_access('Course Provider', true);
+		}
+		// checking admin access end\\
+		
+		
 		/*** Left Menu Selection ***/
 		$this->session->set_userdata('active_module', 'categories');
 		/*** Left Menu Selection ***/

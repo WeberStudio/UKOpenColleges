@@ -7,6 +7,7 @@ class Orders extends Admin_Controller {
 		parent::__construct();
 
 		remove_ssl();
+		$this->auth->check_access('Superadmin', true);
 		$this->load->model('Order_model');
 		$this->load->model('Search_model');
 		$this->load->model('location_model');

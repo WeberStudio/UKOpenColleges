@@ -11,7 +11,7 @@ class Coupons extends Admin_Controller {
 		force_ssl();
 		 /*** Get User Info***/
        //$admin_info = $this->admin_session->userdata('admin'); 
-		
+		$this->auth->check_access('Superadmin', true);
         $user_info = $this->auth->admin_info();
         $this->admin_id = $user_info['id'];
         $this->admin_email = $user_info['email'];

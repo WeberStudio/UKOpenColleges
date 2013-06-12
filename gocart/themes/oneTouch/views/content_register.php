@@ -33,8 +33,12 @@ return false;
 	//$gender_m 	= array('id'=>'gender_m', 'class'=>'','name'=>'gender', 'value'=>'male' );
 	//$gender_f 	= array('id'=>'gender_f', 'class'=>'', 'name'=>'gender', 'value'=>'female' );
 ?>
+
 <div class="row">
-<h1 class="page-title"> <a class="all" href="javascript:void(0)">you can Rgister here</a> </h1>
+    <h1 class="page-title" style="margin-left:85px;">
+	<a class="" href="javascript:void(0)">you can login here</a>
+	</h1>
+</div>
 <div class="line"> </div>
  <script type="text/javascript">
 function showStuff() {
@@ -71,9 +75,10 @@ function showStuff() {
 		</div>
 	<?php endif; ?>
 
-<!----- main content section start----></div>
+<!----- main content section start---->
 <div class="row">
   <div id="content" class="fifteen columns">
+  <!---=======hidden form start--->
     <p class="woocommerce_info">Already registered? <a href="" class="" onclick="return toggle()">Click here to login</a></p>
     <form style="display:none;" id="obj" method="post" class="login" action="<?=base_url()?>secure/login">
       <p>If you have shopped with us before, please enter your details in the
@@ -96,6 +101,8 @@ function showStuff() {
         <a class="lost_password" href="<?php echo site_url('secure/forgot_password')?>">Lost Password?</a> </p>
       <div class="clear"></div>
     </form>
+   <!---=======hidden form end--->
+    
     <?php echo form_open('secure/register'); ?>
     <input type="hidden" name="submitted" value="submitted" />
     <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
@@ -109,10 +116,12 @@ function showStuff() {
           <label for="billing_last_name" class=""><?php echo lang('account_lastname');?> <abbr class="required" title="required">*</abbr> </label>
           <?php echo form_input($last);?> </p>
         <div class="clear"></div>
+        
         <p class="form-row " id="billing_company_field">
           <label for="billing_company" class=""><?php echo lang('account_company');?></label>
           <?php echo form_input($company);?> </p>
         <div class="clear"></div>
+        
         <p class="form-row form-row-first" id="billing_address_1_field">
           <label for="billing_address_1" class=""><?php echo lang('address');?><abbr class="required" title="required">*</abbr></label>
           <?php echo form_input($f_address1);?> </p>
@@ -120,6 +129,7 @@ function showStuff() {
           <label for="billing_address_2" class="hidden"><?php echo lang('address');?> 2</label>
           <?php echo form_input($f_address2);?> </p>
         <div class="clear"></div>
+        
         <p class="form-row form-row-first" id="billing_city_field">
           <label for="billing_city" class=""><?php echo lang('address_city');?><abbr class="required" title="required">*</abbr> </label>
           <?php echo form_input($f_city);?> </p>
@@ -131,12 +141,11 @@ function showStuff() {
         <p class="form-row form-row-first" id="billing_city_field">
           <label for="billing_city" class=""><?php echo lang('address_country');?><abbr class="required" title="required">*</abbr> </label>
           <?php echo form_dropdown('country_id', $countries_menu, set_value('country_id', $country_id), 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?> </p>
-          
         <p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
           <label for="billing_postcode" class=""><?php echo lang('address_state');?><abbr class="required" title="required">*</abbr> </label>
           <?php echo form_dropdown('zone_id', $zones_menu, set_value('zone_id', $zone_id), 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?> </p>
-          
         <div class="clear"></div>
+        
         <p class="form-row form-row-first" id="billing_city_field">
           <label for="billing_city" class=""><?php echo lang('account_phone');?><abbr class="required" title="required">*</abbr> </label>
           <?php echo form_input($phone);?> </p>
@@ -144,6 +153,7 @@ function showStuff() {
           <label for="billing_postcode" class=""><?php echo lang('account_email');?> <abbr class="required" title="required">*</abbr> </label>
           <?php echo form_input($email);?> </p>
         <div class="clear"></div>
+        
         <p class="form-row form-row-first" id="billing_city_field">
           <label for="billing_city" class=""><?php echo lang('account_password');?><abbr class="required" title="required">*</abbr> </label>
           <?php echo form_password($password);?> </p>
@@ -151,17 +161,20 @@ function showStuff() {
           <label for="billing_postcode" class=""><?php echo lang('account_confirm');?> <abbr class="required" title="required">*</abbr> </label>
           <?php echo form_password($con_password);?> </p>
         <div class="clear"></div>
-        <div class="row">
-          <div class="span7">
+        
+        <p class="form-row " id="billing_company_field">
             <label class="checkbox">
             <input type="checkbox" name="email_subscribe" value="1" <?php echo set_radio('email_subscribe', '1', TRUE); ?>/>
             <?php echo lang('account_newsletter_subscribe');?> </label>
-          </div>
-        </div>
+          </p>
+        <p class="form-row " id="billing_company_field">
         <input type="submit" value="<?php echo lang('form_register');?>" class="btn btn-primary" style="height: 34px; width: 74px;" />
+		</p>  
+            
       </div>
     </div>
     </form>
+    
     <section id="shopping_cart-2" class="widget-2 widget widget_shopping_cart"> </section>
   </div>
 </div>

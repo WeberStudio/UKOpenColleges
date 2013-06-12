@@ -7,13 +7,28 @@ class Pages extends Admin_Controller
 		parent::__construct();
 		
 		remove_ssl();
+		
 		$user_info = $this->auth->admin_info();
         $this->admin_id = $user_info['id'];
         $this->admin_email = $user_info['email'];
         $this->admin_access = $user_info['access'];
 		$this->first_name = $user_info['firstname'];
 		$this->last_name = $user_info['lastname'];
-		$this->image = $user_info['image'];		
+		$this->image = $user_info['image'];	
+		
+		// checking admin access start\\
+		if($user_info['access'] == "Superadmin")
+		{
+			$this->auth->check_access('Superadmin', true);
+		}
+		else
+		{
+			$this->auth->check_access('Site Admin', true);
+		}
+		
+		// checking admin access end\\
+		
+			
 		$this->load->helper('formatting_helper');
 		//$this->auth->check_access('Admin', true);
 		$this->load->model('Page_model');
