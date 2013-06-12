@@ -169,6 +169,7 @@ experience this site.
 		});
 	}
 </script>
+</section>
 <style>
 #sub-menu with-counts {
 	width: 100%;
@@ -237,10 +238,10 @@ experience this site.
 								</a>
 </span></div>
                 -->
-<div class="promo" style="padding-bottom: 0px;"><span class="icon info"></span>
+<div class="row"><div class="promo" style="padding-bottom: 0px;"><span class="icon info"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
-        <a href="http://localhost/OneTouch-sep/content.php" style="color:red;">Contact Us</a>
-        <span style="padding: 0 13px;">
+        <a href="#" style="color:red;">Contact Us</a>
+        <span>
         
         <?php if($this->Tutor_model->is_logged_in(false, false)):?>
         <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
@@ -256,7 +257,7 @@ experience this site.
         </span></h1>
         <?php endif; ?>
           
-</div> 
+</div></div> 
 <!---------php validation----->
 <?php /*if ($this->session->flashdata('message')):?>
 			<div class="alert alert-info">

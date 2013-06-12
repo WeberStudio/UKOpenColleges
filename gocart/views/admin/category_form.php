@@ -106,14 +106,11 @@
                                 <label for="image">Upload <?php echo lang('image');?> </label>
                                 <div class="form-row control-group row-fluid">
                                   <div class="controls span7">
-                                    <div class="input-append row-fluid">
-                                      <div class="uploader" id="uniform-search-input">
-                                        <div class="customfile">
-                                          	<div class="uneditable-input spa1n6 fileinput" aria-hidden="true"><span>choose a file...</span></div>
-                                        </div>
-                                        <input type="file" class="spa1n6 fileinput customfile-input" id="search-input"  name="image">
-                                      </div>
-                                   </div>
+                                    
+                                       <a class="various" style="color: white; background-color: white;" data-fancybox-type="iframe" href="http://localhost/UKOpenColleges/admin/media/">
+                                        <input type="text"  name="image" />
+                                       </a>                                       
+                                   
                                  </div>
                                </div>
                                 <?php if($id && $image != ''):?>
@@ -148,7 +145,8 @@
                             </fieldset>
                         </div>
                     </div>
-                   
+                     
+                         
                     <button type="submit" class="btn btn-inverse btn-block btn-large"><?php echo lang('form_save');?></button>
                   
                   </form>
@@ -160,7 +158,23 @@
 	</div>
 </div>
 <script type="text/javascript">
-$('form').submit(function() {
-	$('.btn').attr('disabled', true).addClass('disabled');
+
+j = jQuery.noConflict() ;
+j('form').submit(function() {
+	j('.btn').attr('disabled', true).addClass('disabled');
+});
+
+j(document).ready(function() {
+    j (".various").fancybox({
+        maxWidth    : 800,
+        maxHeight    : 600,
+        fitToView    : false,
+        width        : '70%',
+        height        : '70%',
+        autoSize    : false,
+        closeClick    : false,
+        openEffect    : 'none',
+        closeEffect    : 'none'
+    });
 });
 </script>

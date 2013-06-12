@@ -203,8 +203,8 @@ class Categories extends Admin_Controller {
 			$this->category_name	= $this->input->post('slug', $category->slug);
 			
 			//set values to db values
-			$data['id']				= $category->id;
-			$data['name']			= $category->name;
+			$data['id']				        = $category->id;
+			$data['name']			        = $category->name;
 			$data['publish_by_admin']		= $category->publish_by_admin;
 			$data['publish_by_super']		= $category->publish_by_super;
 			if(isset($category->admin_id) && $category->admin_id!='')
@@ -307,34 +307,34 @@ class Categories extends Admin_Controller {
 				$this->load->library('image_lib');
 				
 				//this is the larger image
-				$config['image_library'] = 'gd2';
-				$config['source_image'] = 'uploads/images/full/'.$save['image'];
-				$config['new_image']	= 'uploads/images/medium/'.$save['image'];
-				$config['maintain_ratio'] = TRUE;
-				$config['width'] = 600;
-				$config['height'] = 500;
+				$config['image_library']    = 'gd2';
+				$config['source_image']     = 'uploads/images/full/'.$save['image'];
+				$config['new_image']	    = 'uploads/images/medium/'.$save['image'];
+				$config['maintain_ratio']   = TRUE;
+				$config['width']            = 600;
+				$config['height']           = 500;
 				$this->image_lib->initialize($config);
 				$this->image_lib->resize();
 				$this->image_lib->clear();
 
 				//small image
-				$config['image_library'] = 'gd2';
-				$config['source_image'] = 'uploads/images/medium/'.$save['image'];
-				$config['new_image']	= 'uploads/images/small/'.$save['image'];
-				$config['maintain_ratio'] = FALSE;
-				$config['width'] = 356;
-				$config['height'] = 240;
+				$config['image_library']    = 'gd2';
+				$config['source_image']     = 'uploads/images/medium/'.$save['image'];
+				$config['new_image']	    = 'uploads/images/small/'.$save['image'];
+				$config['maintain_ratio']   = FALSE;
+				$config['width']            = 356;
+				$config['height']           = 240;
 				$this->image_lib->initialize($config); 
 				$this->image_lib->resize();
 				$this->image_lib->clear();
 
 				//cropped thumbnail
-				$config['image_library'] = 'gd2';
-				$config['source_image'] = 'uploads/images/small/'.$save['image'];
-				$config['new_image']	= 'uploads/images/thumbnails/'.$save['image'];
-				$config['maintain_ratio'] = TRUE;
-				$config['width'] = 150;
-				$config['height'] = 150;
+				$config['image_library']    = 'gd2';
+				$config['source_image']     = 'uploads/images/small/'.$save['image'];
+				$config['new_image']	    = 'uploads/images/thumbnails/'.$save['image'];
+				$config['maintain_ratio']   = FALSE;
+				$config['width']            = 275;
+				$config['height']           = 130;
 				$this->image_lib->initialize($config); 	
 				$this->image_lib->resize();	
 				$this->image_lib->clear();

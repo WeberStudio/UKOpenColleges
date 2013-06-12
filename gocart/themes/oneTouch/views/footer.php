@@ -48,8 +48,8 @@
                                     }
                                
                             } 
-
-                        ?>
+?>
+                        
 
 
                         <!--  Crumina: Check this! Great #themeforest item 'One Touch - Multifunctional Metro Stylish Theme'
@@ -102,7 +102,7 @@
                 </section>
             </div>
             <div class="five columns">
-                <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
+               <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
                     <div id="fb-root"></div>
                         <script>(function(d, s, id) {
                           var js, fjs = d.getElementsByTagName(s)[0];
