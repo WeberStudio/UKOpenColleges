@@ -16,7 +16,20 @@ class Invoices extends Admin_Controller {
         $this->admin_access = $user_info['access'];
 		$this->first_name = $user_info['firstname'];
 		$this->last_name = $user_info['lastname'];
-		$this->image = $user_info['image'];		
+		$this->image = $user_info['image'];	
+		
+		// checking admin access start\\
+		if($user_info['access'] == "Superadmin")
+		{
+			$this->auth->check_access('Superadmin', true);
+		}
+		else
+		{
+			$this->auth->check_access('Invoice Admin', true);
+		}
+		
+		// checking admin access end\\
+			
 		$this->load->helper('formatting_helper');
 		$this->load->library('form_validation');	
 		$this->load->library('mpdf/mpdf');

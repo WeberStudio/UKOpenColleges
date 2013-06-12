@@ -1,3 +1,5 @@
+
+
 <?php if ($this->go_cart->total_items()==0):?>
     <div class="alert alert-info">
         <a class="close" data-dismiss="alert">Ã—</a>
@@ -23,7 +25,42 @@
         <div class="fifteen columns"><div class="line"> </div></div>
 
     </div>
-
+<!--===============validation start=======-->
+ <script type="text/javascript">
+function showStuff() {
+    document.getElementById('closee').style.display = 'none';
+}
+</script>
+       <?php 
+	if($this->session->flashdata('message'))
+	{
+		$message	= $this->session->flashdata('message');
+	}
+	
+	if($this->session->flashdata('error'))
+	{
+		$error	= $this->session->flashdata('error');
+	}
+	if(validation_errors() != '')
+	{
+		$error	= validation_errors();
+	}
+	?>
+    
+   
+   
+    <?php if (!empty($error)): ?>
+          <div class="alert alert-error" id="closee"> <a href="javascript:void(0)"  class="close" data-dismiss="alert" onClick="showStuff(); return false;">x</a> <?php echo"<div style='margin-left: 70px;'>". $error. "</div>"; ?> </div>
+          <?php endif; ?>
+          
+      
+          <?php if (!empty($message)): ?>
+		<div class="alert alert-success">
+			<a class="close" data-dismiss="alert">×</a>
+			<?php echo $message; ?>
+		</div>
+	<?php endif; ?>
+<!--===============validation end=========-->
     <div class="row">
 
         <div id="content" class="fifteen columns">
@@ -91,11 +128,14 @@
 
 
                                         </div>
-
-                                      <input type="button" class="button" name="proceed" onclick ="window.location='<?=base_url()?>cart/allcourses/'" value="Continue to Shopping"> 
+										<a class="button" name="proceed" href="<?=base_url()?>cart/allcourses/" style="padding-bottom: 15px;"> Continue to Shopping</a>
+                                        
+                                      <!--<input type="button" class="button" name="proceed" onclick ="window.location='<?=base_url()?>cart/allcourses/'" value="Continue to Shopping">--> 
 									   <input type="submit" class="button" name="update_cart" value="Update Cart"> 
-									    <input type="button" class="checkout-button button alt" name="proceed" value="Proceed to Checkout →"  onclick='window.location="<?=base_url()?>checkout";'> 
-										<input type="button" class="button" name="proceed" onclick ="window.location='<?=base_url()?>checkout/place_order'" value="PayPal">     
+									    <!--<input type="button" class="checkout-button button alt" name="proceed" value="Proceed to Checkout →"  onclick='window.location="<?=base_url()?>checkout";'>-->
+                                        <a class="checkout-button button alt" name="proceed" href="<?=base_url()?>checkout" style="padding-bottom: 15px;">Proceed to Checkout →</a> 
+                                        <a class="button" name="proceed" href="<?=base_url()?>checkout/place_order" style="padding-bottom: 15px;">PayPal</a> 
+										<!--<input type="button" class="button" name="proceed" onclick ="window.location='<?=base_url()?>checkout/place_order'" value="PayPal">-->     
 
 
                                     <input type="hidden" id="_n" name="_n" value="727f0214be"><input type="hidden" name="_wp_http_referer" value="/onetouch/cart/">            </td>
@@ -112,18 +152,18 @@
 
 
 
-                                <h2>Cart Totals </h2>
+                                <h2>Cart Totals</h2>
                                 <table cellspacing="0" cellpadding="0">
                                     <tbody>
 
                                         <tr class="cart-subtotal">
-                                            <th><strong>Cart Subtotal</strong></th>
+                                            <th colspan="5"><strong>Cart Subtotal</strong></th>
                                             <td><strong><span class="amount"><?php echo format_currency($this->go_cart->subtotal()); ?></span></strong></td>
                                         </tr>
                                         <?php if($this->go_cart->coupon_discount() > 0) {?>
                                             <tr>
                                                 <td colspan="5"><strong><?php echo lang('coupon_discount');?></strong></td>
-                                                <td id="gc_coupon_discount">-<?php echo format_currency($this->go_cart->coupon_discount());?></td>
+                                                <td id="gc_coupon_discount"><strong><span class="amount">-<?php echo format_currency($this->go_cart->coupon_discount());?></span></strong></td>
                                             </tr>
                                             <?php if($this->go_cart->order_tax() != 0) { // Only show a discount subtotal if we still have taxes to add (to show what the tax is calculated from)?> 
                                                 <tr>
@@ -136,7 +176,7 @@
                                     ?>
 
                                     <tr class="total">
-                                        <th><strong>Order Total</strong></th>
+                                        <th colspan="5"><strong>Order Total</strong></th>
                                         <td><strong><span class="amount"><?php echo format_currency($this->go_cart->total()); ?></span></strong></td>
                                     </tr>
 
