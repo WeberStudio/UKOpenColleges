@@ -1,3 +1,38 @@
+ <script type="text/javascript">
+function showStuff() {
+    document.getElementById('closee').style.display = 'none';
+}
+</script>
+       <?php 
+	if($this->session->flashdata('message'))
+	{
+		$message	= $this->session->flashdata('message');
+	}
+	
+	if($this->session->flashdata('error'))
+	{
+		$error	= $this->session->flashdata('error');
+	}
+	if(validation_errors() != '')
+	{
+		$error	= validation_errors();
+	}
+	?>
+    
+   
+   
+    <?php if (!empty($error)): ?>
+          <div class="alert alert-error" id="closee"> <a href="javascript:void(0)"  class="close" data-dismiss="alert" onClick="showStuff(); return false;">x</a> <?php echo"<div style='margin-left: 70px;'>". $error. "</div>"; ?> </div>
+          <?php endif; ?>
+          
+      
+          <?php if (!empty($message)): ?>
+		<div class="alert alert-success">
+			<a class="close" data-dismiss="alert">×</a>
+			<?php echo $message; ?>
+		</div>
+	<?php endif; ?>
+
 <?php if ($this->go_cart->total_items()==0):?>
     <div class="alert alert-info">
         <a class="close" data-dismiss="alert">Ã—</a>
@@ -112,7 +147,7 @@
 
 
 
-                                <h2>Cart Totals </h2>
+                                <h2>Cart Totals  <?php echo"-". $this->go_cart->coupon_discount();?> </h2>
                                 <table cellspacing="0" cellpadding="0">
                                     <tbody>
 
@@ -123,7 +158,7 @@
                                         <?php if($this->go_cart->coupon_discount() > 0) {?>
                                             <tr>
                                                 <td colspan="5"><strong><?php echo lang('coupon_discount');?></strong></td>
-                                                <td id="gc_coupon_discount">-<?php echo format_currency($this->go_cart->coupon_discount());?></td>
+                                                <td id="gc_coupon_discount"><strong><span class="amount">-<?php echo format_currency($this->go_cart->coupon_discount());?></span></strong></td>
                                             </tr>
                                             <?php if($this->go_cart->order_tax() != 0) { // Only show a discount subtotal if we still have taxes to add (to show what the tax is calculated from)?> 
                                                 <tr>

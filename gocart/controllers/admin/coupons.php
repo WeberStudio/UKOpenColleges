@@ -44,6 +44,7 @@ class Coupons extends Admin_Controller {
 	
 	function form($id = false)
 	{
+		
 		$this->load->helper(array('form', 'date'));
 		$this->load->library('form_validation');
 		
