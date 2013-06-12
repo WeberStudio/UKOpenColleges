@@ -27,6 +27,20 @@ Class Customer_model extends CI_Model
 		return $result->result();
 	}
 	
+	function get_deactive_customers()
+	{	
+		$this->db->where('active',0);
+		$result	= $this->db->get('customers');
+		return $result->result();
+	}
+	
+	function get_newsletter_customers()
+	{	
+		$this->db->where('email_subscribe',1);
+		$result	= $this->db->get('customers');
+		return $result->result();
+	}
+	
 	function count_customers()
 	{
 		return $this->db->count_all_results('customers');
