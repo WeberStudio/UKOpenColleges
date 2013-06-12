@@ -34,7 +34,7 @@ return false;
 	//$gender_f 	= array('id'=>'gender_f', 'class'=>'', 'name'=>'gender', 'value'=>'female' );
 ?>
 <div class="row">
-<h1 class="page-title" style="padding: -9px;"> <a class="all" href="javascript:void(0)">you can Rgister here</a> </h1>
+<h1 class="page-title"> <a class="all" href="javascript:void(0)">you can Rgister here</a> </h1>
 <div class="line"> </div>
  <script type="text/javascript">
 function showStuff() {

@@ -52,7 +52,7 @@
 
             <h2><a href="<?php echo site_url(implode('/', $base_url).'/'.$product->slug); ?>"><?=$product->name?></a></h2>        
 
-            <p><?=$product->excerpt?></p>
+            <p><?=substr($product->excerpt,0,200)?></p>
 
           </div>		  
 

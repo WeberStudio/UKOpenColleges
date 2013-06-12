@@ -1,4 +1,5 @@
-    <h1 class="page-title" style="padding: -9px;">
+    <div class="row">
+	<h1 class="page-title">
 	<a class="all" href="javascript:void(0)">you can login here</a>
 	</h1>
     <div class="line"> </div>
@@ -35,7 +36,7 @@ function showStuff() {
 			<a class="close" data-dismiss="alert">×</a>
 			<?php echo $message; ?>
 		</div>
-	<?php endif; ?>
+	<?php endif; ?></div>
     <div class="four columns" style="left:30%;">
     <section id="woocommerce_login-2" class="widget-1 widget-first widget widget_login">
       <div class="widget-inner">

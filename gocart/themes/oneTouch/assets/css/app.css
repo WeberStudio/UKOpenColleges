@@ -1046,18 +1046,18 @@ a.back:hover {
     font-weight: 300;
 
 }
-
+.tiled-menu li{ padding-bottom:4px;}
 .tiled-menu li ul {
 
     position: absolute;
 
     top: 100%;
 
-    left: 0;
+    left: 4px;
 
     padding: 10px 0 0 10px;
 
-    margin: 1px 0 0 22px;
+    margin: 0px 0 0 0px;
 
     z-index: 100;
 
@@ -1068,6 +1068,13 @@ a.back:hover {
 	background-color:#58bae9;
 
 }
+
+.tiled-menu li ul ul {
+left: 0px;
+
+}
+
+.tiled-menu li:hover ul ul{ display:block !important;}
 
 .tiled-menu li ul li {
 
@@ -1399,7 +1406,7 @@ Alternative dropdown style
 
     -webkit-background-size: 42px 42px;
 
-    right: 10px;
+    right: 0px;
 
     position: relative;
 
@@ -1711,12 +1718,12 @@ Alternative dropdown style
 
     padding: 23px 0px 25px 0px;
 	
-	float:left;
 	
-	width:1185px;
+	
+/*	width:1185px;
 
 
-/*	white-space:nowrap;*/
+	white-space:nowrap;*/
 
 }
 
@@ -1740,6 +1747,8 @@ Alternative dropdown style
 
 
 }
+
+
 
 
 
@@ -2253,7 +2262,7 @@ div.item, .item div{
 
     padding: 0;
 
-    margin: 0;
+    margin: 0 -30px 0 0;
 
     list-style: none;
 
@@ -5019,11 +5028,13 @@ div.product span.price, div.product p.price, #content div.product span.price, #c
 
 #grid-posts article {
 
-    width: 275px;
+    width: 267px;
 
-    margin-left: 20px;
+    margin-right: 24px;
 
     float: left;
+	
+	min-height:400px;
 
 }
 

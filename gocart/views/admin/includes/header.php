@@ -20,9 +20,15 @@
 <link href="<?=base_url()?>assets/opencollege/admin/css/twitter/responsive.css" rel="stylesheet">
 <link href="<?=base_url()?>assets/opencollege/admin/css/jquery-ui-1.8.23.custom.css" rel="stylesheet">
 <link type="text/css" href="<?=base_url().ASSETS_PATH?>css/redactor.css" rel="stylesheet" />
-<link type="text/css" href="<?=base_url().ASSETS_PATH?>css/file-browser.css" rel="stylesheet" />
+<link type="text/css" href="<?=base_url().ASSETS_PATH?>css/file-browser.css" rel="stylesheet" /> 
 <script src="<?=base_url().ASSETS_PATH?>js/jquery.js" type="text/javascript"> </script> 
-<script src="<?=base_url()?>assets/opencollege/admin/js/plugins/modernizr.custom.32549.js"></script>   
+<script src="<?=base_url()?>assets/opencollege/admin/js/plugins/modernizr.custom.32549.js"></script> 
+  
+  <script src="<?=base_url().ASSETS_PATH?>js/jquery.fancybox.pack.js" type="text/javascript"> </script> 
+<link type="text/css" href="<?=base_url().ASSETS_PATH?>css/jquery.fancybox.css" rel="stylesheet" /> 
+<script src="<?=base_url().ASSETS_PATH?>js/jquery.fancybox.js" type="text/javascript"> </script> 
+
+  
 </head>
 <body>
 <div id="loading">

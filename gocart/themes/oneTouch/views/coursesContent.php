@@ -7,7 +7,7 @@
                     <div class="sort-panel">  
                    <ul class="filter clearfix">
                    <li>
-                   <a href="javascript:void(0)" rel="nofollow" data-product_id="868" class="button" style="padding: 75 75 75 75;">  All Courses </a>
+                   <a href="javascript:void(0)" rel="nofollow" data-product_id="868" class="button">  All Courses </a>
                     </li>
                    </ul>
                    </div>
@@ -31,6 +31,10 @@
                            
                         </ul>
                     </div>
+					
+					<style>
+						  	.item{ width:267px;}
+						  </style>
 
                     <div class="works-list">
                         <ul class="filterable-grid">
@@ -56,8 +60,9 @@
                             }
                              
                           ?>  
+						  
                             <a href="<?=base_url()?>cart/product/<?=$course['product_id']?>" class="all">
-                            <li class="item" style="height: 226px; width: 270px;"  data-id="id-1" data-type="<?php echo $course['category_id'];?>">
+                            <li class="item" style="height: 226px;"  data-id="id-1" data-type="<?php echo $course['category_id'];?>">
                              
                                 <div class="half <?=$class?>" style="height: 300px; width: 300px">
                                     <div class="pic" style="height: 300px; width: 300px"><img  src="<?php echo catogery_img('images/medium/'.$course['images']); ?>" style="margin:0 0 0 0;" alt="Watchers" title="Watchers" ></div>
