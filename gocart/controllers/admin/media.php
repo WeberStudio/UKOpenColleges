@@ -9,13 +9,13 @@ class Media extends Admin_Controller
 		$this->path	= 'uploads/wysiwyg';
 		//$this->auth->check_access('Admin', true);
 		$this->load->helper(array('file', 'form'));
-		
+		$this->load->helper('url');
 	}
 		
 	function index()
 	{
 		$data['root']	= trim(implode('/',array_slice($this->uri->segment_array(), 3)), '/');
-
+        
 		if(!is_dir($this->path.'/'.$data['root']))
 		{
 			redirect(config_item('admin_folder').'/media/index/');
@@ -33,10 +33,22 @@ class Media extends Admin_Controller
 		}
 		
 		natcasesort($data['files']);
-		
+		 if(isset($_POST['input_field_name']))
+         {
+             
+             $data['input_field_name'] = $_POST['input_field_name'];
+         }
 		$this->load->view(config_item('admin_folder').'/iframe/media', $data);
 	}
 	
+    function set_session_for_image()
+    {
+        
+        return $this->session->set_userdata('file_name',$_POST['image_name']);
+        //echo $this->session->userdata('file_name');
+        
+    }
+    
 	function embed()
 	{
 		//get the file path

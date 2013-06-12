@@ -106,10 +106,17 @@
                                 <label for="image">Upload <?php echo lang('image');?> </label>
                                 <div class="form-row control-group row-fluid">
                                   <div class="controls span7">
-                                    
-                                       <a class="various" style="color: white; background-color: white;" data-fancybox-type="iframe" href="http://localhost/UKOpenColleges/admin/media/">
-                                        <input type="text"  name="image" />
-                                       </a>                                       
+                                       <div class="input-append row-fluid">
+                                      <div class="uploader" id="uniform-search-input">
+                                        <div class="customfile">
+                                              <a class="various" class="spa1n6 fileinput customfile-input" data-fancybox-type="iframe" href="http://localhost/UKOpenColleges/admin/media/">
+                                              <div class="uneditable-input spa1n6 fileinput" aria-hidden="true"><span>choose a file...</span></div>
+                                              </a>
+                                        </div>
+                                        <input type="file" class="spa1n6 fileinput customfile-input" disabled="disabled" value="<? if($this->session->userdata('file_name')){ echo $this->session->userdata('file_name');  }?>"  name="image"  id="unique_image_id" />
+                                      </div>
+                                   </div>
+                                      
                                    
                                  </div>
                                </div>
