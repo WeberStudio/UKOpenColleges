@@ -72,6 +72,14 @@ a,.selector select:focus,.radio input:focus,.checker input:focus,.uploader input
 .nav1{margin-left:0;margin-bottom:20px;list-style:none}
 
 .gicon-user{background-position:-168px 0}
+.gicon-profile{background-position:-168px 0}
+.gicon-dashboard{background-position:0px -24px}
+.gicon-course{background-position:-50px -50px}
+.gicon-fourm{background-position:-73px 0}
+.gicon-logout{background-position:-385px 0}
+.gicon-filemanager{background-position:-193px 0}
+
+.nav-tabs > li > a > i{ margin:0 5px 0 0; display: inline-block; float:left;}
 .icon-white,.nav1>.active>a>[class^="icon-"],.nav1>.active>a>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^="icon-"],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>.active>a>[class^="icon-"],.dropdown-menu>.active>a>[class*=" icon-"]{background-image:url("http://localhost/UKOpenColleges/gocart/themes/oneTouch/assets/images/glyphicons-halflings-white.png")}
 [class^="gicon-"],[class*=" gicon-"]{display:inline-block;width:14px;height:14px;*margin-right:.3em;line-height:14px;vertical-align:text-top;background-image:url("http://localhost/UKOpenColleges/gocart/themes/oneTouch/assets/images/glyphicons-halflings.png");margin-top:2px}
 

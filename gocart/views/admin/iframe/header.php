@@ -11,6 +11,8 @@
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/global.js');?>"></script>
 
 <style type="text/css">
 
@@ -28,4 +30,4 @@
 
 <body>
 	
-	<div class="container-fluid">
+<div class="container-fluid">

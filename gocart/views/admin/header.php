@@ -16,6 +16,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/js/redactor.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/file-browser.js');?>"></script>
 
+
 <?php if($this->auth->is_logged_in(false, false)):?>
 	
 <style type="text/css">
@@ -60,6 +61,8 @@ $(document).ready(function(){
 		focus: true,
 		plugins: ['fileBrowser']
 	});
+    var imagePath = "shahid" ;
+    
 });
 </script>
 <?php endif;?>

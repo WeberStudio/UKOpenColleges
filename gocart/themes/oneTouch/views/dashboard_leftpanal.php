@@ -28,20 +28,20 @@
 			?>"> </div>
             <ul class="nav1 nav-tabs dark nav-stacked">
             <?php if($this->Tutor_model->is_logged_in(false, false)):?>
-			<li><a href="<?= base_url();?>dashboard/"><i class="gicon-user"></i>Dashboard</a></li>
+			<li><a href="<?= base_url();?>dashboard/"><i class="gicon-dashboard"></i>Dashboard</a></li>
               <li><a href="<?= base_url();?>dashboard/my_profile"><i class="gicon-user"></i>Profile</a></li>
-              <li><a href="<?= base_url();?>dashboard/course"><i class="gicon-wrench"></i>My Course</a></li>
-              <li><a href="<?= base_url();?>dashboard/fourm"><i class="gicon-globe"></i>Fourms</a></li>
-              <li><a href="<?= base_url();?>dashboard/file_manager"><i class="gicon-envelope"></i>File Manasger</a></li>
-              <li><a href="<?= base_url();?>tutor_login/logout"><i class="gicon-lock"></i>Log Out</a></li>
+              <li><a href="<?= base_url();?>dashboard/course"><i class="gicon-course"></i>My Course</a></li>
+              <li><a href="<?= base_url();?>dashboard/fourm"><i class="gicon-fourm"></i>Fourms</a></li>
+              <li><a href="<?= base_url();?>dashboard/file_manager"><i class="gicon-filemanager"></i>File Manasger</a></li>
+              <li><a href="<?= base_url();?>tutor_login/logout"><i class="gicon-logout"></i>Log Out</a></li>
               <?php else:?>
              
-              <li><a href="<?= base_url();?>dashboard/"><i class="gicon-user"></i>Dashboard</a></li>
+              <li><a href="<?= base_url();?>dashboard/"><i class="gicon-dashboard"></i>Dashboard</a></li>
               <li><a href="<?= base_url();?>secure/my_account"><i class="gicon-user"></i>Profile</a></li>
-              <li><a href="<?= base_url();?>dashboard/course"><i class="gicon-wrench"></i>My Course</a></li>
-              <li><a href="<?= base_url();?>dashboard/fourm"><i class="gicon-globe"></i>Fourms</a></li>
-              <li><a href="<?= base_url();?>dashboard/file_manager"><i class="gicon-envelope"></i>File Manasger</a></li>
-               <li><a href="<?= base_url();?>secure/logout"><i class="gicon-lock"></i>Log Out</a></li>
+              <li><a href="<?= base_url();?>dashboard/course"><i class="gicon-course"></i>My Course</a></li>
+              <li><a href="<?= base_url();?>dashboard/fourm"><i class="gicon-fourm"></i>Fourms</a></li>
+              <li><a href="<?= base_url();?>dashboard/file_manager"><i class="gicon-filemanager"></i>File Manasger</a></li>
+               <li><a href="<?= base_url();?>secure/logout"><i class="gicon-logout"></i>Log Out</a></li>
               <?php endif;?>
             </ul>
           </div>
