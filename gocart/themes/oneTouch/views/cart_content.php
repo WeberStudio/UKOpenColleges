@@ -9,15 +9,25 @@
 
 
     <div class="row">
-        <div class="fifteen columns" id="page-title" style="margin-left: 21px;">
+        <div class="fifteen columns" id="page-title" style="">
             <a class="back" href="javascript:history.back()"></a>
             <div class="subtitle">
             </div>
 
-            <h1 class="page-title">
-                Cart        </h1>
-
-            <div class="breadcrumbs"><a href="<?php echo base_url();?>">Home</a><!-- <span class="delim">/ </span>Cart--> </div>
+            <h1 class="page-title" style="margin-left: 10px;">
+                Cart 
+               <span style="float: right;"> 
+                    <div class="sort-panel">  
+                   <ul class="filter clearfix">
+                   <li>
+                   <a href="<?=base_url()?>cart/allcourses/" rel="nofollow" data-product_id="868" class="button" style=" width:180px;">  All Courses </a>
+                    </li>
+                   </ul>
+                   </div>
+                   </span> 
+           </h1>
+      
+            <div class="breadcrumbs"><!-- <span class="delim">/ </span>Cart--> </div>
 
 
         </div>

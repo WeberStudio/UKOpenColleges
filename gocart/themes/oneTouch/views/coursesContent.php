@@ -7,7 +7,7 @@
                     <div class="sort-panel">  
                    <ul class="filter clearfix">
                    <li>
-                   <a href="javascript:void(0)" rel="nofollow" data-product_id="868" class="button" style=" width:180px;">  All Courses </a>
+                   <a href="<?=base_url()?>cart/allcourses/" rel="nofollow" data-product_id="868" class="button" style=" width:180px;">  All Courses </a>
                     </li>
                    </ul>
                    </div>
