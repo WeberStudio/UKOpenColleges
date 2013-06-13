@@ -3068,15 +3068,15 @@ input.s-field {
 
 }
 
-.line {
+/*.line {
 
     border-bottom: 1px solid #f0f3f4;
 
-    margin: 0 -16px 16px 0px;
+    margin: 0 80px 35px;
 
     padding-top: 10px;
 
-}
+}*/
 
 
 
@@ -5304,8 +5304,8 @@ div.orbit-wrapper div.slider-nav span.left, div.orbit-wrapper div.slider-nav spa
 
     float: left;
 
-    /*margin: 25px 0;*/
-	
+    margin: 0px 0 25px 0;
+
 }
 
 .aq-block .slider-title {
@@ -5736,6 +5736,8 @@ zoom: 1;
 .promo .page-title span span{ float:none;}
 
 .row{ width:1185px;}
+
+
 
 @media only screen and (max-width: 767px) {
 .row .row{ margin:0;}
