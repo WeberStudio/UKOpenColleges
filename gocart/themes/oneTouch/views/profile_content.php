@@ -32,7 +32,7 @@ $address_form_prefix ="";
         <?php include('dashboard_leftpanal.php');?>
         <!-- End .span3 -->
         
-        <div class="span9">
+        <div class="span9"  style="width: 960px;">
           <?php echo form_open_multipart(base_url().'tutor_login/register/'.$tutor['tutor_id']); ?>
           <!-- End .legend -->
          <div class="row">

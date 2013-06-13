@@ -1,4 +1,4 @@
-<div class="span3" style="margin-left:45px; width:290px;">
+<div class="span3" style="margin-left:80px; width:245px;">
           <div class="title">
             <div class="row-fluid legend">
               <h1>

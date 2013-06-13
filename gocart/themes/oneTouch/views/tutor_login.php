@@ -21,7 +21,9 @@
 	<a class="" href="javascript:void(0)">you can login here</a>
 	</h1>
 </div>
+<div class="row">
     <div class="line"> </div>
+</div>
     <div class="container">
     <script type="text/javascript">
 function showStuff() {

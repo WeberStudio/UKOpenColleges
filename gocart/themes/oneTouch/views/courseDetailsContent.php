@@ -4,23 +4,31 @@
 
 <div class="row">
 
-    <div class="fifteen columns" id="page-title"> <a class="back" href="javascript:history.back()"></a>
+    <div class="fifteen columns" id="page-title" style="padding-left: 0px;"> 
 
-        <div class="breadcrumbs"><a href="<?php echo base_url();?>">Home</a> <span class="delim">/</span> <a href="<?=base_url()?>cart/allcourses/">Courses</a> <span class="delim">/</span> <?=$product->name?></div>
+        <div class="breadcrumbs"><!--<a href="<?php echo base_url();?>">Home</a>--> All Courses <span class="delim">/</span> <? echo $product->categories[0]->name;?><!--<a href="<?=base_url()?>cart/allcourses/">Courses</a>--> <span class="delim">/</span> <?=$product->name?>
+        <span style="float: right; margin-top: -10px;"> 
+                    <div class="sort-panel">  
+                   <ul class="filter clearfix">
+                   <li>
+                   <a href="javascript:void(0)" rel="nofollow" data-product_id="868" class="button" style=" width:180px;">  All Courses </a>
+                    </li>
+                   </ul>
+                   </div>
+                   </span>
+        </div>
 
     </div>
 
-    <div class="fifteen columns">
-
-        <div class="line"></div>
-
+    <div class="fifteen columns" id="page-title" style="padding-left: 0px;">
+		 <div class="line"></div>
     </div>
 
 </div>
 
 <div class="row">
 
-<div class="eleven columns">
+<div class="eleven columns" style="padding-left: 0px;">
 
     <div id="container">
 
@@ -85,7 +93,7 @@
 
                 <!-- .summary -->
 
-                <div class="simpleTabs">
+                <div class="simpleTabs" style="padding-left: 0px;">
 
                     <ul class="simpleTabsNavigation">
                     
@@ -156,74 +164,6 @@
 
                 </div>
 
-                <div class="line"></div>
-
-
-
-                <!--- Related Products Starts ---->
-
-                <?php if(!empty($product->related_products)):?>
-
-                    <div class="related_products">
-
-                    <div class="row">
-
-                    <div class="span4">
-
-                    <h2>Related Products</h2>
-
-                    <ul class="thumbnails">	
-
-                    <?php foreach($product->related_products as $relate):?>
-
-                        <li class="span2 product">
-
-                        <?php
-
-                            $photo	= theme_img('no_picture.png', lang('no_image_available'));
-
-                            $relate->images	= array_values((array)json_decode($relate->images));
-
-
-
-                            if(!empty($relate->images[0]))
-
-                            {
-
-                                $primary	= $relate->images[0];
-
-                                $photo	= '<img src="'.base_url('uploads/images/small/'.$primary).'" alt="'.$relate->seo_title.'"/>';
-
-                            }
-
-                        ?>
-
-                        <a  href="<?php  echo site_url(implode('/', $base_url).'/'.$relate->slug); ?>">
-
-                        <?php echo $photo; ?>
-
-                        </a>
-
-                        <h5 style="margin-top:5px;"><a href="<?php echo site_url($relate->slug); ?>"><?php echo $relate->name;?></a></h5>                   
-
-                        </li>
-
-                        <?php endforeach;?>
-
-                    </ul>
-
-                    </div>
-
-                    </div>
-
-                    </div>
-
-                    <?php endif;?>
-
-
-
-                <!--- Related Products Ends ---->
-
 
 
                 </div>
@@ -238,7 +178,7 @@
 
     </div>
 
-    <div class="four columns">
+<div class="four columns">
 
         <section id="woocommerce_login-2" class="widget-1 widget-first widget widget_login">
 
@@ -389,5 +329,76 @@
         </section>
 
     </div>
+
+</div>
+<div class="row">
+
+                <div class="line"></div>
+
+
+
+                <!--- Related Products Starts ---->
+
+                <?php if(!empty($product->related_products)):?>
+
+                    <div class="related_products">
+
+                    <div class="row">
+
+                    <div class="span4">
+
+                    <h2>Related Products</h2>
+
+                    <ul class="thumbnails">	
+
+                    <?php foreach($product->related_products as $relate):?>
+
+                        <li class="span2 product">
+
+                        <?php
+
+                            $photo	= theme_img('no_picture.png', lang('no_image_available'));
+
+                            $relate->images	= array_values((array)json_decode($relate->images));
+
+
+
+                            if(!empty($relate->images[0]))
+
+                            {
+
+                                $primary	= $relate->images[0];
+
+                                $photo	= '<img src="'.base_url('uploads/images/small/'.$primary).'" alt="'.$relate->seo_title.'" style="width: 270px; height: 200px;"/>';
+
+                            }
+
+                        ?>
+
+                        <a  href="<?php  echo site_url(implode('/', $base_url).'/'.$relate->slug); ?>">
+
+                        <?php echo $photo; ?>
+
+                        </a>
+
+                        <h5 style="margin-top:5px;" align="center"><a href="<?php echo site_url($relate->slug); ?>"><?php echo $relate->name;?></a></h5>                   
+
+                        </li>
+
+                        <?php endforeach;?>
+
+                    </ul>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    <?php endif;?>
+
+
+
+                <!--- Related Products Ends ---->
 
 </div>

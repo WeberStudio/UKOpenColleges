@@ -515,6 +515,8 @@ class Cart extends Front_Controller {
 		//get the product
 
 		$data['product']		= $this->Product_model->get_product($id);
+//$this->show->pe($data['product']);
+		
 
 		$data['product_tabs']	= $this->Product_model->get_all_products_tabs($id);
 

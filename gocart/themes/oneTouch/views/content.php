@@ -104,7 +104,7 @@
                             }
                             else if(scrollbox.data("boxed") == "1"){
                                 scrollbox.closest(".wrap").css("width","100%");
-                                scrollbox.css("width","100%");
+                                scrollbox.css("width","107%");
                             }
                             else if(scrollbox.data("boxed") == "2") {
 
@@ -122,7 +122,7 @@
       <?php $page_content =  $this->page_model->get_page_texts();
 	  //print_r($page_content); exit;
 	  ?>
-      <div class="fifteen columns">
+      <div class="fifteen columns" style="padding-left: 0px;">
         <div class="text-block clearing-container">
           <div class="row">
             <div id="aq-block-4" class="aq-block aq-block-aq_page_15_block fifteen aq-first cf">

@@ -15,8 +15,9 @@
                     <h1 class="page-title" style="padding: -9px;">
 	<a class="all" href="javascript:void(0)"></a>
 	</h1>
+    <div class="row">
     <div class="line"> </div>
-    
+ 	</div>   
     <div class="four columns" style="left:30%;">
     <section id="woocommerce_login-2" class="widget-1 widget-first widget widget_login">
       <div class="widget-inner">

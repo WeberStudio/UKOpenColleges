@@ -13,7 +13,9 @@
                 experience this site.
                 </div><![endif]-->
                  <?php include('header.php'); ?> 
-                 <div class="line"> </div>
+                  <div class="row">
+					<div class="line"></div>
+				</div>
                 <?php include_once('my_account_content.php'); ?> 
             </div>
         </div>

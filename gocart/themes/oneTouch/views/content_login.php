@@ -3,7 +3,9 @@
 	<a class="" href="javascript:void(0)">you can login here</a>
 	</h1>
 </div>
+<div class="row">
     <div class="line"> </div>
+</div>
       <script type="text/javascript">
 function showStuff() {
     document.getElementById('closee').style.display = 'none';

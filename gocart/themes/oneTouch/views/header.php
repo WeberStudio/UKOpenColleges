@@ -29,7 +29,7 @@ experience this site.
      <div class="clear"> </div>
     </div>
     <div class="clear"></div>	
-    <ul id="menu-primary-navigation" class="tiled-menu">
+    <ul id="menu-primary-navigation" class="tiled-menu" style="margin-left: 0px;">
         <li class="menu-portfolio">
             <span class="menu-item-wrap">
                 <a  href="<?=base_url()?>cart/allcourses/" style='background-color:#cecece; background-size:cover; background-image:none;' >
@@ -64,7 +64,7 @@ experience this site.
 			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>			  
 			  <li>
 			  	<div class="mm-data" id="subjectMenuItems">
-				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; ">
+				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%;">
 					<?
 					foreach($categories as $key => $cat_info)
 					   {
@@ -216,6 +216,11 @@ experience this site.
         </div>
     </div>
 
+</div>
+<div class="row">
+<div align="right">
+<a href="javascript:void(0)" class="button" style="width:130px;">checkOut</a>
+</div>
 </div> 
 <!--<div><span style="padding 15 15 15 15; float : right; margin-right:15px;"><a href="<?php echo site_url('cart/view_cart');?>" class="add_to_cart_button button product_type_simple" rel="nofollow" data-product_id="868">
 								<?php
@@ -238,7 +243,8 @@ experience this site.
 								</a>
 </span></div>
                 -->
-<div class="row"><div class="promo" style="padding-bottom: 0px;"><span class="icon info"></span>
+<div class="row" style="">
+<div class="promo" style="padding-bottom: 0px; padding-top: 0px;"><span class="icon info" style="color:red; top:-5px;"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
         <a href="#" style="color:red;">Contact Us</a>
         <span>
