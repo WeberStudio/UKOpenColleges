@@ -3068,15 +3068,15 @@ input.s-field {
 
 }
 
-/*.line {
+.line {
 
     border-bottom: 1px solid #f0f3f4;
-
-    margin: 0 80px 35px;
+	 margin: 0 -16px 16px 0px;
+    /*margin: 0 80px 35px;*/
 
     padding-top: 10px;
 
-}*/
+}
 
 
 
@@ -5808,7 +5808,8 @@ background: none repeat scroll 0 0 rgba(87, 186, 232, 1.0);
     -moz-transition: all 1.2s;
     -webkit-transition: all 1.2s;
     -o-transition: all 1.2s;
-    transition: all 1.2s;   
+    transition: all 1.2s;
+	
    
     
    
@@ -5820,6 +5821,7 @@ background: none repeat scroll 0 0 rgba(87, 186, 232, 1.0);
     -webkit-transition: all 1.2s;
     -o-transition: all 1.2s;
     transition: all 1.2s;
+	
 }
 .works-list.boxstyle1 .description h4{ color: #000; padding-left:60px; margin:1.5% 0 10px 0;}
 .works-list.boxstyle1 .description p{ color:#000; margin:0 0 0 0;}
@@ -5833,7 +5835,7 @@ background: none repeat scroll 0 0 rgba(87, 186, 232, 1.0);
 
 
 p.readmore{ text-align: center;}
-.works-list.boxstyle1 .item:hover .description p.readmore span{ background: none;}
+.works-list.boxstyle1 .item:hover .description p.readmore span{ background: none; }
 
 
 

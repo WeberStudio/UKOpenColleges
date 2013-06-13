@@ -25,14 +25,10 @@
 
     <div id="main">
 
-      <div id="grid-posts" style="position: relative;" class="masonry">
-
-	  
-
-	  <? $photo	= theme_img('no_picture.png', lang('no_image_available')); ?>
+      <? $photo	= theme_img('no_picture.png', lang('no_image_available')); ?>
 
 	  <!--- All Courses Start  ---->
-      <div class="row">
+     <!--<div class="row">
 
 	  <?php foreach($products as $product):?>
 
@@ -59,72 +55,41 @@
         </article>
 
 		<?php endforeach?>
-               </div>
+               </div>-->
 	 <!--- All Courses End  ---->		
      <!-- Static Code Start -->
-     <div class="row">  <div class="works-list boxstyle1">
-                        <ul class="filterable-grid">
+     <div class="row"> 
+     	<div class="works-list boxstyle1">
+        	<ul class="filterable-grid">
+             <?php foreach($products as $product):?>
+
+                <a class="all" href="<?php echo site_url(implode('/', $base_url).'/'.$product->slug); ?>">
+                            <li data-type="1" data-id="id-1" class="item">
+                             
+                                <div class="half even">
+                                    <div class="pic"><img title="Watchers" alt="Watchers" src="<?=base_url('uploads/images/medium/'.$product->images)?>"></div>
+                                    <div class="description">
+                                           <div class="title">
+                                                    
+                                                    <h4><?=$product->name?></h4>
+                                                    <p><?=substr($product->excerpt,0,100)?></p> 
+                                                    <p class="readmore"><span class="button">Read More</span></p>
+                                                    <div class="row">
+    												<div class="line"> </div>
+													</div>
+                                                </div>
+                                    </div>
+                                </div>
+                             
+                            </li>
                             
-                          
-                            <a class="all" href="http://localhost/UKOpenColleges/cart/product/5">
-                            <li data-type="1" data-id="id-1" class="item">
-                             
-                                <div class="half even">
-                                    <div class="pic"><img title="Watchers" alt="Watchers" src="http://localhost/UKOpenColleges/uploads/images/medium/7cc6082dee753e7166abf85a41f4e453.jpg"></div>
-                                    <div class="description">
-                                           <div class="title">
-                                                    
-                                                    <h4>junaidkhalil Course</h4>
-                                                    <p>Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris</p> 
-                                                    <p class="readmore"><span class="button">Read More</span></p>
-                                                    
-                                                </div>
-                                    </div>
-                                </div>
-                            </li>
-                            </a>   
-                                 
-                          
-                            <a class="all" href="http://localhost/UKOpenColleges/cart/product/5">
-                            <li data-type="1" data-id="id-1" class="item">
-                             
-                                <div class="half even">
-                                    <div class="pic"><img title="Watchers" alt="Watchers" src="http://localhost/UKOpenColleges/uploads/images/medium/7cc6082dee753e7166abf85a41f4e453.jpg"></div>
-                                    <div class="description">
-                                           <div class="title">
-                                                    
-                                                    <h4>junaidkhalil Course</h4>
-                                                    <p>Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris</p> 
-                                                    <p class="readmore"><span class="button">Read More</span></p>
-                                                    
-                                                </div>
-                                    </div>
-                                </div>
-                            </li>
-                            </a>
-                            <a class="all" href="http://localhost/UKOpenColleges/cart/product/5">
-                            <li data-type="1" data-id="id-1" class="item">
-                             
-                                <div class="half even">
-                                    <div class="pic"><img title="Watchers" alt="Watchers" src="http://localhost/UKOpenColleges/uploads/images/medium/7cc6082dee753e7166abf85a41f4e453.jpg"></div>
-                                    <div class="description">
-                                           <div class="title">
-                                                    
-                                                    <h4>junaidkhalil Course</h4>
-                                                    <p>Phasellus vitae leo turpis, vitae fringilla nulla. Donec ante risus, posuere eu tincidunt at, tincidunt sed quam. In gravida felis nec mauris porttitor sed sollicitudin mauris</p> 
-                                                    <p class="readmore"><span class="button">Read More</span></p>
-                                                    
-                                                </div>
-                                    </div>
-                                </div>
-                            </li>
-                            </a>   
-                                  
-                        </ul>
-                    </div>  
+                            </a> 
+               <?php endforeach?>
+            </ul>
+     	</div>  
      </div>  
      <!-- Stayic Code End --->
-      </div>
+     
 
     </div>
 
@@ -133,6 +98,8 @@
   </div>
 
 </div>
+
+
 
 </div>
 
