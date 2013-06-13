@@ -160,7 +160,7 @@ if(function_exists('validation_errors') && validation_errors() != '')
 			<?php elseif(in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), $image_extensions)):?>
 				<td class="file-icon img">
                 <input id="insert-filename" name="insert-filename" type="hidden"> 
-				<img onclick="session_for_image('<?php echo $f;?>')" src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
+				<img onclick="session_for_image('<?php echo $uri_root.$f;?>')" src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
 				</td>
 				<td><?php echo $f;?></td>
 				<td class="btns">

@@ -113,6 +113,7 @@
                                               <div class="uneditable-input spa1n6 fileinput" aria-hidden="true"><span>choose a file...</span></div>
                                               </a>  
                                         </div>
+                                        <input type="hidden" name="media_image" id="media_image">
                                         <input type="file" class="spa1n6 fileinput customfile-input" disabled="disabled" value="" id="unique_image_id" />
                                       </div>
                                    </div>
@@ -171,7 +172,7 @@ j = jQuery.noConflict() ;
 j('form').submit(function() {
 	j('.btn').attr('disabled', true).addClass('disabled');
 });
-
+ var funcNode = ''
 j(document).ready(function() {
     j (".various").fancybox({
         maxWidth    : 800,
@@ -184,11 +185,16 @@ j(document).ready(function() {
         closeEffect    : 'none',
         beforeClose:function(){
            
-         var funcNode = $(".fancybox-iframe").contents().find("#insert-filename").val();
+         funcNode = $(".fancybox-iframe").contents().find("#insert-filename").val();
           console.log(funcNode)
-          document.getElementById('unique_image_id').disabled = false;
-          document.getElementById('unique_image_id').value = funcNode;
+          $(".uneditable-input").html("<span>"+funcNode+"</span>")
+           document.getElementById('media_image').value = funcNode;
         },
+        afterClose:function(){
+           // alert("shahid")
+            //document.getElementById('unique_image_id').disabled = false;
+           
+        }
                        
        
     });
