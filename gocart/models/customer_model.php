@@ -340,13 +340,13 @@ Class Customer_model extends CI_Model
 			$customer['password']	= sha1($new_password);
 			$this->save($customer);
 			
-			$this->email->from($this->config->item('email'), $this->config->item('site_name'));
+			/*$this->email->from($this->config->item('email'), $this->config->item('site_name'));
 			$this->email->to($email);
 			$this->email->subject($this->config->item('site_name').': Password Reset');
 			$this->email->message('Your password has been reset to <strong>'. $new_password .'</strong>.');
-			$this->email->send();
+			$this->email->send();*/
 			
-			return true;
+			return $new_password;
 		}
 		else
 		{

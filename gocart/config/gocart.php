@@ -7,14 +7,16 @@ $config['theme']			= 'oneTouch';
 $config['ssl_support']		= false;
 
 // Business information
-$config['company_name']		= 'UK Open College';
+$config['company_name']		= 'UKOpenCollege';
 $config['address1']			= 'lahore';
 $config['address2']			= 'lahore';
 $config['country']			= 'Pakistan'; // use proper country codes only
 $config['city']				= 'lahore'; 
 $config['state']			= 'Alberta';
 $config['zip']				= '54000';
-$config['email']			= 'weproSol@gmail.com';
+$config['email']			= 'khalil.junaid@gmail.com';
+$config['bcc_email']		= 'khalil.junaid@gmail.com';
+
 
 // Store currency
 $config['currency']						= 'GBP';  // USD, EUR, etc
