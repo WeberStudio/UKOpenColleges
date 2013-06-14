@@ -54,7 +54,9 @@
                 </div><![endif]-->
                  <?php include('header.php'); ?> 
                  
-                 <div class="line"> </div>
+                 <div class="row">
+					<div class="line"></div>
+				</div>
                
 <div id="main">
   <div class="container">
@@ -64,7 +66,7 @@
         <?php include('dashboard_leftpanal.php');?>
         <!-- End .span3 -->
         
-        <div class="span9">
+        <div class="span9" style="width: 960px;">
 		
 <div class="row">
 <div id="content" class="fifteen columns">

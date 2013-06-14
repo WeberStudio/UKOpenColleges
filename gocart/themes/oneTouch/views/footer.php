@@ -1,3 +1,7 @@
+
+
+
+
 <div id="darkf" >
     <section id="footer" role="contentinfo">
         <div class="row">
@@ -10,19 +14,46 @@
                           
                             $userid = 'UKOpen'; //your handle
                             $count = '3';
-                            $responseJson = file_get_contents('http://api.twitter.com/1/statuses/user_timeline.json?screen_name='.$userid.'&include_rts=1&count='.$count);
+                         //();
+                           // $responseJson = file_get_contents('http://api.twitter.com/1/statuses/user_timeline.json?screen_name='.$userid.'&include_rts=1&count='.$count);
 
+                            require_once('TwitterAPIExchange.php');
+
+                            /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
+                            $settings = array(
+                            'oauth_access_token' => "1513184167-xtUDzVoO5ztCrkBI44Qd9KGJ9WX1QHe1dfYsrgc",
+                            'oauth_access_token_secret' => "KpEdVP6kO7UsSM9hKt3dQM4q4DnD9Y1W2s6AdWHkAY",
+                            'consumer_key' => "NKFo3oq7of6RN6t9IgQ",
+                            'consumer_secret' => "H85s1YgsEBnH2geJPRzCFn52Wy75RwLz5o3syazfc88"
+                            );
+                            /** Perform a GET request and echo the response **/
+                            /** Note: Set the GET field BEFORE calling buildOauth(); **/
+                            $url = 'http://api.twitter.com/1.1/statuses/user_timeline.json';
+                            $getfield = '?screen_name='.$userid.'&include_rts=1&count='.$count;
+                            $requestMethod = 'GET';
+                            $twitter = new TwitterAPIExchange($settings);
+                            $responseJson = $twitter->setGetfield($getfield)
+                            ->buildOauth($url, $requestMethod)
+                            ->performRequest();
+
+                            
                             if ($responseJson) {
                                 $response = json_decode($responseJson);
-                            }   
-                            // echo '<pre>'; print_r($response);echo '</pre>';
+                            } 
+                            else
+                            {
+                             $response = '';   
+                            }  
+                            //echo '<pre>'; print_r($responseJson);echo '</pre>';
                             function dateDiff ($d1, $d2) {
                                 // Return the number of days between the two dates:
 
                                   return round(abs(strtotime($d1)-strtotime($d2))/86400);
 
                                 }  // end function dateDiff
-                            foreach ($response as $tweet) {
+                            if(!empty($response))
+                            {
+                               foreach ($response as $tweet) {
 
                                 //$current = new DateTime(date('m/d/Y h:i:s a'));
                                 //$db_date = new DateTime($tweet->created_at);
@@ -47,7 +78,9 @@
                                         echo '</div>';  
                                     }
                                
-                            } 
+                            }   
+                            }
+                           
 ?>
                         
 

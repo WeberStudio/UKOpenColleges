@@ -361,8 +361,8 @@ img.header-image,
 .author-avatar img,
 img.wp-post-image {
 	/* Add fancy borders to all WordPress-added images but not things like badges and icons and the like */
-	border-radius: 3px;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+/*	border-radius: 3px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);*/
 }
 .wp-caption {
 	max-width: 100%; /* Keep wide captions from overflowing their container. */
@@ -493,10 +493,11 @@ body.custom-font-enabled {
 }
 a {
 	outline: none;
-	color: #21759b;
+	color: #57BAE8;
+	text-decoration:none;
 }
 a:hover {
-	color: #0f3647;
+	color:#41b1e5;
 }
 
 /* Assistive text */
@@ -539,8 +540,14 @@ a:hover {
 
 /* Header */
 .site-header {
-	padding: 24px 0;
-	padding: 1.714285714rem 0;
+/*	padding: 24px 0;
+	padding: 1.714285714rem 0;*/
+}
+.site-header hgroup{ width:290px; display:inline-block;}
+.site-header hgroup img{
+	position:relative;
+	left:-2px;
+	top:-4px;
 }
 .site-header h1,
 .site-header h2 {
@@ -577,13 +584,17 @@ a:hover {
 
 /* Navigation Menu */
 .main-navigation {
-	margin-top: 24px;
-	margin-top: 1.714285714rem;
+/*	margin-top: 24px;
+	margin-top: 1.714285714rem;*/
+	margin-top:15px;
+	margin-top:1.0714285714rem;
+	margin-right:-3px;
 	text-align: center;
+	float:right;
 }
 .main-navigation li {
-	margin-top: 24px;
-	margin-top: 1.714285714rem;
+	/*margin-top: 24px;
+	margin-top: 1.714285714rem;*/
 	font-size: 12px;
 	font-size: 0.857142857rem;
 	line-height: 1.42857143;
@@ -643,24 +654,26 @@ section[role="banner"] {
 	margin-left: 2.571428571rem;
 }
 .widget-area .widget a {
-	color: #757575;
+
 }
 .widget-area .widget a:hover {
-	color: #21759b;
 }
 .widget-area #s {
 	width: 53.66666666666%; /* define a width to avoid dropping a wider submit button */
 }
 
 /* Footer */
+.footer-wrap{ background:#4E616D;}
 footer[role="contentinfo"] {
-	border-top: 1px solid #ededed;
+	border-top: 0px solid #ededed;
 	clear: both;
 	font-size: 12px;
 	font-size: 0.857142857rem;
 	line-height: 2;
-	max-width: 960px;
-	max-width: 68.571428571rem;
+/*	max-width: 960px;	
+	max-width: 68.571428571rem;*/
+			max-width: 1185px;
+		max-width: 84.64285714rem;
 	margin-top: 24px;
 	margin-top: 1.714285714rem;
 	margin-left: auto;
@@ -669,11 +682,17 @@ footer[role="contentinfo"] {
 	padding: 1.714285714rem 0;
 }
 footer[role="contentinfo"] a {
-	color: #686868;
+
 }
 footer[role="contentinfo"] a:hover {
-	color: #21759b;
+
 }
+
+.footer-wrap .widget-area{ float:none; margin:0; width:100%;}
+.footer-wrap .widget-area .widget{ width:29%; display:inline-block; padding:0 20px; margin-bottom: 42px; margin-bottom: 3rem;}
+.footer-wrap .widget-area .widget h3{ color:#1F9ED9; font-size:24px; margin:0 0 5px 0;font-family: "Segoe UI", Frutiger, "Frutiger Linotype" , "dejavu sans", "helvetica neue", arial, sans-serif; font-weight:normal; text-transform:none;}
+.footer-wrap .widget-area .widget, .footer-wrap .widget-area .widget p{ color:#B8D2E3;}
+.tutorlink{ color:#FFF; font-size:12px;}
 
 
 /* =Main content and comment content
@@ -1430,8 +1449,10 @@ img#wpstats {
 	}
 	.site {
 		margin: 0 auto;
-		max-width: 960px;
-		max-width: 68.571428571rem;
+/*		max-width: 960px;
+		max-width: 68.571428571rem;*/
+		max-width: 1185px;
+		max-width: 84.64285714rem;		
 		overflow: hidden;
 	}
 	.site-content {
@@ -1459,8 +1480,8 @@ img#wpstats {
 	}
 	.main-navigation ul.nav-menu,
 	.main-navigation div.nav-menu > ul {
-		border-bottom: 1px solid #ededed;
-		border-top: 1px solid #ededed;
+		border-bottom: 0px solid #ededed;
+		border-top: 0px solid #ededed;
 		display: inline-block !important;
 		text-align: left;
 		width: 100%;
@@ -1476,18 +1497,25 @@ img#wpstats {
 	}
 	.main-navigation li a {
 		border-bottom: 0;
-		color: #6a6a6a;
+		color: #fff;
 		line-height: 3.692307692;
-		text-transform: uppercase;
+		text-transform:none;
 		white-space: nowrap;
+		padding:0px 13px 8px 13px;
+		display:block;
 	}
 	.main-navigation li a:hover {
-		color: #000;
+		color: #fff;
 	}
 	.main-navigation li {
-		margin: 0 40px 0 0;
-		margin: 0 2.857142857rem 0 0;
+/*		margin: 0 40px 0 0;
+		margin: 0 2.857142857rem 0 0;*/
+		margin: 0 0px 0 0;
+		margin: 0 0rem 0 0;
 		position: relative;
+		height:140px;
+		width:140px;
+		background:#cecece;
 	}
 	.main-navigation li ul {
 		display: none;
@@ -1586,16 +1614,16 @@ img#wpstats {
 /* Minimum width of 960 pixels. */
 @media screen and (min-width: 960px) {
 	body {
-		background-color: #e6e6e6;
+		background-color: #fff;
 	}
 	body .site {
 		padding: 0 40px;
 		padding: 0 2.857142857rem;
-		margin-top: 48px;
-		margin-top: 3.428571429rem;
+/*		margin-top: 15px;
+		margin-top: 1.07142851rem;*/
 		margin-bottom: 48px;
 		margin-bottom: 3.428571429rem;
-		box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+		/*box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);*/
 	}
 	body.custom-background-empty {
 		background-color: #fff;

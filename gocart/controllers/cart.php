@@ -515,6 +515,8 @@ class Cart extends Front_Controller {
 		//get the product
 
 		$data['product']		= $this->Product_model->get_product($id);
+//$this->show->pe($data['product']);
+		
 
 		$data['product_tabs']	= $this->Product_model->get_all_products_tabs($id);
 
@@ -841,7 +843,7 @@ class Cart extends Front_Controller {
 		{
 
 			$product	= $this->go_cart->item($key);
-
+			
 			//if out of stock purchase is disabled, check to make sure there is inventory to support the cart.
 
 			if(!$this->config->item('allow_os_purchase') && (bool)$product['track_stock'])
@@ -935,7 +937,8 @@ class Cart extends Front_Controller {
 		{
 
 			//update the coupons and gift card code
-
+			
+//echo "i ma in the error less section";
 			$response = $this->go_cart->update_cart(false, $coupon_code, $gc_code);
 
 			// set any messages that need to be displayed

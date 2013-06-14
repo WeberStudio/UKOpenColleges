@@ -42,6 +42,7 @@ class Dashboard extends Admin_Controller {
 		//$data['payment_module_installed']	= (bool)count($this->Settings_model->get_settings('payment_modules'));
 		//$data['shipping_module_installed']	= (bool)count($this->Settings_model->get_settings('shipping_modules'));
 		
+		
 		$data['page_title']					=  lang('dashboard');
 		
 		// get 5 latest orders

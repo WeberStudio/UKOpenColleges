@@ -1783,6 +1783,8 @@ Alternative dropdown style
     height: 545px;
 
     overflow: auto;
+    
+   
 
 }
 
@@ -3069,8 +3071,8 @@ input.s-field {
 .line {
 
     border-bottom: 1px solid #f0f3f4;
-
-    margin-bottom: 35px;
+	 margin: 0 -16px 16px 0px;
+    /*margin: 0 80px 35px;*/
 
     padding-top: 10px;
 
@@ -5028,7 +5030,7 @@ div.product span.price, div.product p.price, #content div.product span.price, #c
 
 #grid-posts article {
 
-    width: 267px;
+    width: 364px;
 
     margin-right: 24px;
 
@@ -5302,7 +5304,7 @@ div.orbit-wrapper div.slider-nav span.left, div.orbit-wrapper div.slider-nav spa
 
     float: left;
 
-    margin: 25px 0;
+    margin: 0px 0 25px 0;
 
 }
 
@@ -5735,7 +5737,106 @@ zoom: 1;
 
 .row{ width:1185px;}
 
+
+
 @media only screen and (max-width: 767px) {
 .row .row{ margin:0;}
 
 }
+
+/* works-list boxstyle1 */
+.works-list.boxstyle1{
+    
+}
+
+.works-list.boxstyle1 .item{
+overflow:hidden;
+height: 345px !important;
+margin-bottom:0;
+padding-bottom:0px;
+}
+
+.works-list.boxstyle1 .half{
+width: 372px !important;
+
+}
+.works-list.boxstyle1 .half:hover{
+border-top:10px solid rgba(87, 186, 232,);
+    border-left:10px solid rgba(87, 186, 232,);
+    border-right:10px solid rgba(87, 186, 232,);
+}
+
+
+.works-list.boxstyle1 .item:hover, .works-list.boxstyle1 .item:hover .half{
+}
+
+.works-list.boxstyle1 .item .description{ bottom: 0%; background: none;}
+.works-list.boxstyle1 .item:hover .description{ bottom:-33%; left:0px;
+background: none repeat scroll 0 0 rgba(87, 186, 232, 1.0);
+    -moz-transition: all 1.2s;
+    -webkit-transition: all 1.2s;
+    -o-transition: all 1.2s;
+    transition: all 1.2s;    
+}
+
+
+.works-list.boxstyle1 .item .description .title{
+    top:auto; bottom:0; background: url("../images/img/mini-icons/pencil.png") no-repeat 15px 0px;
+    -moz-transition: all 1.2s;
+    -webkit-transition: all 1.2s;
+    -o-transition: all 1.2s;
+    transition: all 1.2s;
+}
+
+.works-list.boxstyle1 .item:hover .description .title{ top:20%; }
+
+    
+
+.works-list.boxstyle1 .item .pic{ text-align:center;}
+.works-list.boxstyle1 .item .pic img,.works-list.boxstyle1 .item .pic:hover img{
+    height:165px !important; width:352px;
+    -moz-transform: scale(1.0);
+
+    -webkit-transform: scale(1.0);
+
+    -o-transform: scale(1.0);
+
+    -ms-transform: scale(1.0); 
+
+    transform: scale(1.0);
+    
+    -moz-transition: all 1.2s;
+    -webkit-transition: all 1.2s;
+    -o-transition: all 1.2s;
+    transition: all 1.2s;
+	
+   
+    
+   
+}
+
+.works-list.boxstyle1 .item .pic:hover{
+    
+    -moz-transition: all 1.2s;
+    -webkit-transition: all 1.2s;
+    -o-transition: all 1.2s;
+    transition: all 1.2s;
+	
+}
+.works-list.boxstyle1 .description h4{ color: #000; padding-left:60px; margin:1.5% 0 10px 0;}
+.works-list.boxstyle1 .description p{ color:#000; margin:0 0 0 0;}
+
+.works-list.boxstyle1 .item:hover .description h4{ color:#fff; -moz-transition: all 1.2s;
+    -webkit-transition: all 1.2s;
+    -o-transition: all 1.2s;
+    transition: all 1.2s;}
+    
+    .works-list.boxstyle1 .item:hover .description p{ color:#fff;}
+
+
+p.readmore{ text-align: center;}
+.works-list.boxstyle1 .item:hover .description p.readmore span{ background: none; }
+
+
+
+/* works-list boxstyle1 eND */

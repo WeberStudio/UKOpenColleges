@@ -1,6 +1,9 @@
 <?php
 
-class Categories extends Admin_Controller {	
+class Categories extends Admin_Controller {
+	
+	
+		
 	
 	function __construct()
 	{		
@@ -17,6 +20,21 @@ class Categories extends Admin_Controller {
 		$this->last_name = $user_info['lastname'];
 		$this->image = $user_info['image'];
 		/*** Get User Info***/
+		
+		// checking admin access start\\
+		if($user_info['access'] == "Superadmin")
+		{
+			$this->auth->check_access('Superadmin', true);
+		}
+		elseif($user_info['access'] == "Site Admin")
+		{
+			$this->auth->check_access('Site Admin', true);
+		}
+		else
+		{
+			$this->auth->check_access('Course Provider', true);
+		}
+		// checking admin access end\\
 		
 		/*** Left Menu Selection ***/
 		$this->session->set_userdata('active_module', 'categories');
@@ -257,7 +275,7 @@ class Categories extends Admin_Controller {
 		else
 		{
 			
-			
+			 
 			$uploaded	= $this->upload->do_upload('image');
 			
 			if ($id)
@@ -299,17 +317,17 @@ class Categories extends Admin_Controller {
 					}
 				}
 			}
-			
+			 $uploaded = $_POST['media_image'];
 			if($uploaded)
 			{
 				$image			= $this->upload->data();
-				$save['image']	= $image['file_name'];
+				$save['image']	= $uploaded;//$image['file_name'];
 				
 				$this->load->library('image_lib');
-				
+				//DebugBreak();
 				//this is the larger image
 				$config['image_library']    = 'gd2';
-				$config['source_image']     = 'uploads/images/full/'.$save['image'];
+				$config['source_image']     = 'uploads/wysiwyg/images/full/'.$save['image'];
 				$config['new_image']	    = 'uploads/images/medium/'.$save['image'];
 				$config['maintain_ratio']   = TRUE;
 				$config['width']            = 600;

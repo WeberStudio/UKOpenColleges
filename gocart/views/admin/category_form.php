@@ -111,9 +111,10 @@
                                         <div class="customfile">
                                               <a class="various" class="spa1n6 fileinput customfile-input" data-fancybox-type="iframe" href="http://localhost/UKOpenColleges/admin/media/">
                                               <div class="uneditable-input spa1n6 fileinput" aria-hidden="true"><span>choose a file...</span></div>
-                                              </a>
+                                              </a>  
                                         </div>
-                                        <input type="file" class="spa1n6 fileinput customfile-input" disabled="disabled" value="<? if($this->session->userdata('file_name')){ echo $this->session->userdata('file_name');  }?>"  name="image"  id="unique_image_id" />
+                                        <input type="hidden" name="media_image" id="media_image">
+                                        <input type="file" class="spa1n6 fileinput customfile-input" disabled="disabled" value="" id="unique_image_id" />
                                       </div>
                                    </div>
                                       
@@ -153,7 +154,6 @@
                         </div>
                     </div>
                      
-                         
                     <button type="submit" class="btn btn-inverse btn-block btn-large"><?php echo lang('form_save');?></button>
                   
                   </form>
@@ -164,13 +164,15 @@
         </div>
 	</div>
 </div>
+<script type="text/javascript" src="<?php echo base_url('assets/js/global.js');?>"></script>
+
 <script type="text/javascript">
 
 j = jQuery.noConflict() ;
 j('form').submit(function() {
 	j('.btn').attr('disabled', true).addClass('disabled');
 });
-
+ var funcNode = ''
 j(document).ready(function() {
     j (".various").fancybox({
         maxWidth    : 800,
@@ -179,9 +181,26 @@ j(document).ready(function() {
         width        : '70%',
         height        : '70%',
         autoSize    : false,
-        closeClick    : false,
         openEffect    : 'none',
-        closeEffect    : 'none'
+        closeEffect    : 'none',
+        beforeClose:function(){
+           
+         funcNode = $(".fancybox-iframe").contents().find("#insert-filename").val();
+          console.log(funcNode)
+          $(".uneditable-input").html("<span>"+funcNode+"</span>")
+           document.getElementById('media_image').value = funcNode;
+        },
+        afterClose:function(){
+           // alert("shahid")
+            //document.getElementById('unique_image_id').disabled = false;
+           
+        }
+                       
+       
     });
+    
+    
+    
+   // window.setInterval(function(){alert(greeting);},6000)
 });
 </script>

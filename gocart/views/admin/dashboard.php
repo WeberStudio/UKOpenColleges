@@ -19,6 +19,7 @@
       <!-- End top-right --> 
     </div><?php */?>
     <? include_once('includes/admin_profile.php');?>
+    
     <div id="main_container">
       <div class="row-fluid">
         <div class="span6 box color_3 title_big height_big paint_hover">

@@ -1,13 +1,13 @@
 <!-- Fullscreen jQuery template -->
      <div class="row">
      <div id="aq-block-5" class="aq-block aq-block-aq_recent_block fifteen columns aq-first cf"> 
-                                 <h1 class="page-title">
-                   <a href="javascript:void(0)" class="all">All Courses</a> 
+                    <h1 class="page-title">
+                   All Courses
                    <span style="float: right;"> 
                     <div class="sort-panel">  
                    <ul class="filter clearfix">
                    <li>
-                   <a href="javascript:void(0)" rel="nofollow" data-product_id="868" class="button">  All Courses </a>
+                   <a href="<?=base_url()?>cart/allcourses/" rel="nofollow" data-product_id="868" class="button" style=" width:180px;">  All Courses </a>
                     </li>
                    </ul>
                    </div>
