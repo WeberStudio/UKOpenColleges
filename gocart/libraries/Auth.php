@@ -200,12 +200,12 @@ class Auth
 			$new_password		= random_string('alnum', 8);
 			$admin['password']	= sha1($new_password);
 			$this->save($admin);			
-			$this->CI->email->from($this->CI->config->item('email'), $this->CI->config->item('site_name'));
+			/*$this->CI->email->from($this->CI->config->item('email'), $this->CI->config->item('site_name'));
 			$this->CI->email->to($email);
 			$this->CI->email->subject($this->CI->config->item('site_name').': Admin Password Reset');
 			$this->CI->email->message('Your password has been reset to '. $new_password .'.');
-			$this->CI->email->send();
-			return true;
+			$this->CI->email->send();*/
+			return $new_password;
 		}
 		else
 		{

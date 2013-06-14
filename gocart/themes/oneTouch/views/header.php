@@ -63,8 +63,8 @@ experience this site.
 			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">V</a></li>
 			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>			  
 			  <li>
-			  	<div class="mm-data" id="subjectMenuItems">
-				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%;">
+			  	<div class="mm-data cols_2" id="subjectMenuItems">
+				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; display:block !important;">
 					<?
 					foreach($categories as $key => $cat_info)
 					   {

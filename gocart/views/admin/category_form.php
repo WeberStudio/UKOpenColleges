@@ -114,6 +114,7 @@
                                               </a>  
                                         </div>
                                         <input type="hidden" name="media_image" id="media_image">
+                                        <input type="hidden" name="image_path" id="image_path">
                                         <input type="file" class="spa1n6 fileinput customfile-input" disabled="disabled" value="" id="unique_image_id" />
                                       </div>
                                    </div>
@@ -173,6 +174,7 @@ j('form').submit(function() {
 	j('.btn').attr('disabled', true).addClass('disabled');
 });
  var funcNode = ''
+ var foldername = ''
 j(document).ready(function() {
     j (".various").fancybox({
         maxWidth    : 800,
@@ -185,10 +187,12 @@ j(document).ready(function() {
         closeEffect    : 'none',
         beforeClose:function(){
            
-         funcNode = $(".fancybox-iframe").contents().find("#insert-filename").val();
+         funcNode    = $(".fancybox-iframe").contents().find("#insert-filename").val();
+         foldername  = $(".fancybox-iframe").contents().find("#folder-name").val();
           console.log(funcNode)
-          $(".uneditable-input").html("<span>"+funcNode+"</span>")
+          $(".uneditable-input").html("<span>"+foldername+"</span>")
            document.getElementById('media_image').value = funcNode;
+           document.getElementById('image_path').value  = foldername;
         },
         afterClose:function(){
            // alert("shahid")

@@ -3,6 +3,28 @@ function areyousure()
 {
 	return confirm('<?php echo lang('confirm_trash_category');?>');
 }
+
+function change_cat_status(cat_id)
+{
+		var path =  "<?=base_url().$this->config->item('admin_folder')?>/categories/change_cat_status/";
+		//alert($('#levels').val());
+		var status 		= $('#cat_id_'+cat_id).val();
+		//alert(status);
+		var dataString 	= 'status='+status+'&id='+cat_id;
+		//alert( path);
+		$.ajax({
+			url: path, 
+			data: dataString,
+			type:'POST', 
+			success: function(data){
+				//$("#dyn-fropdonw").html('');
+				//$("#dyn-fropdonw").html(data);			
+				//alert(data);
+				$('#message_status').show();
+			}
+		});
+
+}
 </script>
 <?php 
 define('ADMIN_FOLDER', $this->config->item('admin_folder'));
@@ -42,7 +64,12 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 				<td><?php echo  $cat['category']->id; ?></td>
 				<td><?php echo  $sub.$cat['category']->name; ?></td>
                 <td>10</td>
-                <td><?php if($cat['category']->publish_by_super=='1'){ echo  'Published'; }else { echo  'Unpublish'; } ?></td>
+                <td>
+					<select name="publish_by_admin" id="cat_id_<?=$cat['category']->id?>" onchange="change_cat_status(<?=$cat['category']->id?>)">						
+						<option <?php if($cat['category']->publish_by_super=='1'){ echo  'selected'; }?>  value="1">Published</option>
+						<option <?php if($cat['category']->publish_by_super=='0'){ echo  'selected'; }?>  value="0">Unpublished</option>
+					</select>				
+				</td>
                 <td></td>
                 <td><?php echo  date("Y-m-d", strtotime($cat['category']->publish_date)); ?></td>
                 <td>
@@ -92,7 +119,7 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
           </div>
           <div id="js_note_container" class="alert alert-note" style="display:none;"> </div>
           <?php if (!empty($message)): ?>
-          <div class="alert alert-success"> <a class="close" data-dismiss="alert">x</a> <?php echo $message; ?> </div>
+          <div id="message_status" class="alert alert-success"> <a class="close" data-dismiss="alert">x</a> <?php echo $message; ?> </div>
           <?php endif; ?>
           <?php if (!empty($error)): ?>
           <div class="alert alert-error"> <a class="close" data-dismiss="alert">x</a> <?php echo $error; ?> </div>

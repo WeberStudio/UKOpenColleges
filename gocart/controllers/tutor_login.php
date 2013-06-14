@@ -92,6 +92,9 @@ class Tutor_login extends Front_Controller {
 		$data['zip']		= '';
 		$data['country_id']	= '';
 		$data['zone_id']	= '';
+		$password			= '';
+		$password 			= $this->input->post('password');
+		
 		$data['categories']			= array();
 		$data['courses']			= array();	
 		$data['all_categories']		= $this->Category_model->get_categories_dropdown();
@@ -201,10 +204,34 @@ class Tutor_login extends Front_Controller {
 				$save['categories'] = '';
 			}
 			}
-			 $this->tutor_model->save($save);
-			 if($id!="")
+			 $save_tutor = $this->tutor_model->save($save);
+			 if($save_tutor!="")
 			 {
 				 
+				 	$email_attributes = $this->Settings_model->get_system_email('login');
+					$message = '';
+					$message .= $email_attributes[0]['email_header'];
+					$message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Dear '.$this->input->post('firstname').' '. $this->input->post('lastname').'!</singleline></p><div align="left" class="article-content"><multiline label="Description"></multiline> Thank  you for registering with UK Open College. This email is to certify that your  account has been registered with us. Please save the login information.<br><br>Username: '.$this->input->post('email').' <br>Password: '.$password.' <br><br> as you would require that for future coordination.</div></td></tr><tr>  <td class="w580" width="580" height="10"><div align="left" class="article-content">Please click the following link to confirm the registration process.</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+					
+					$message .= $email_attributes[0]['email_footer'];
+					
+					 
+					$this->load->library('email');
+					
+					$config['mailtype'] = 'html';
+					
+					$this->email->initialize($config);
+			
+					$this->email->from($this->config->item('email'), $this->config->item('company_name'));
+					//$this->email->from('info@ukopencollege.co.uk');
+					$this->email->to($save['email']);
+					$this->email->bcc($this->config->item('bcc_email'));
+					//$this->email->subject($row['subject']);
+					$this->email->subject('Tutor Registration');
+					$this->email->message(html_entity_decode($message));
+					
+					$this->email->send();
+					
 				 redirect('dashboard');
 				 //echo "found it"; exit;
 				// redirect('tutor_login/login');
@@ -213,6 +240,58 @@ class Tutor_login extends Front_Controller {
 			
 		}
 		
+	}
+	
+	function forgot_password()
+	{
+		$data['page_title']	= lang('forgot_password');		
+		$submitted = $this->input->post('submitted');
+		if ($submitted)
+		{
+			$this->load->helper('string');
+			$email = $this->input->post('email');
+			
+			$reset = $this->Tutor_model->reset_password($email);
+			
+			if ($reset)
+			{						
+				$this->session->set_flashdata('message', lang('message_new_password'));
+				$email_attributes = $this->Settings_model->get_system_email('login');
+			
+				//print_r($email_attributes);exit;
+				$message  = '';
+				$message .= $email_attributes[0]['email_header'];			
+				
+				$message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Password has been generated successfully!</singleline></p><div align="left" class="article-content">  <multiline label="Description"></multiline>In  order to set a new password, you need to provide your user name by clicking on  the following link to rest your password. We will send you a new user name and  password. If you have difficulty in resetting your password, please let us know  by describe the problem at </div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><b>New Password:</b>'.$reset.'</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+				
+				$message .= $email_attributes[0]['email_footer'];
+				$this->load->library('email');				
+				$config['mailtype'] = 'html';				
+				$this->email->initialize($config);		
+				$this->email->from($this->config->item('email'), $this->config->item('company_name'));
+				//$this->email->from('Uk Open College');
+				$this->email->to($this->config->item('email'));
+				$this->email->bcc($this->config->item('bcc_email'));
+				//$this->email->subject($row['subject']);
+				$this->email->subject('Student Forgot Password');
+				$this->email->message(html_entity_decode($message));
+				
+				$this->email->send();
+			}
+			else
+			{
+				$this->session->set_flashdata('error', lang('error_no_account_record'));
+			}
+			
+			
+			redirect('tutor_login');
+		}
+		
+		
+		$this->load->helper('directory');	
+		$data['categories']	= $this->Category_model->get_categories_tierd();
+		$data['tutor_view'] = 'tutor_view';	
+		$this->load->view('forgot_password', $data);
 	}
 	
 	
