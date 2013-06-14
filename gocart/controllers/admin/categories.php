@@ -274,8 +274,6 @@ class Categories extends Admin_Controller {
 		}
 		else
 		{
-			
-			 
 			$uploaded	= $this->upload->do_upload('image');
 			
 			if ($id)
@@ -317,17 +315,19 @@ class Categories extends Admin_Controller {
 					}
 				}
 			}
+          
 			 $uploaded = $_POST['media_image'];
 			if($uploaded)
 			{
 				$image			= $this->upload->data();
 				$save['image']	= $uploaded;//$image['file_name'];
-				
+				  
 				$this->load->library('image_lib');
-				//DebugBreak();
+                 // DebugBreak();
 				//this is the larger image
 				$config['image_library']    = 'gd2';
-				$config['source_image']     = 'uploads/wysiwyg/images/full/'.$save['image'];
+               // $config['source_image']     = 'uploads/wysiwyg/images/full/'.$save['image'];
+				$config['source_image']     = 'uploads/wysiwyg/'.$_POST['image_path'];
 				$config['new_image']	    = 'uploads/images/medium/'.$save['image'];
 				$config['maintain_ratio']   = TRUE;
 				$config['width']            = 600;
