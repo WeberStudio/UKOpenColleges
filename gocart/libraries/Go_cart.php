@@ -894,9 +894,11 @@ class go_cart {
 	 */
 	function insert($items = array())
 	{
+		
 		// Was any cart data passed? No? Bah...
 		if ( ! is_array($items) OR count($items) == 0)
 		{
+			
 			return FALSE;
 		}
 		
@@ -909,9 +911,12 @@ class go_cart {
 	
 		$save_cart = FALSE;		
 		if (isset($items['id']))
-		{			
+		{
+						
+		
 			if ($this->_insert($items) == TRUE)
 			{
+				
 				$save_cart = TRUE;
 			}
 		}
@@ -939,6 +944,7 @@ class go_cart {
 			$this->clear_shipping();
 			
 			return TRUE;
+		
 		}
 
 		return FALSE;

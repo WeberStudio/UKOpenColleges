@@ -1,11 +1,11 @@
 
 
-<?php if ($this->go_cart->total_items()==0):?>
+<?php //if ($this->go_cart->total_items()==0):?>
     <div class="alert alert-info">
         <a class="close" data-dismiss="alert">Ã—</a>
         <?php echo lang('empty_view_cart');?>
     </div>
-    <?php else: ?>
+    <?php //else: ?>
 
 
     <div class="row">
@@ -15,7 +15,10 @@
             </div>
 
             <h1 class="page-title" style="margin-left: 10px;">
-                Cart 
+                Cart <?php
+				//echo $this->show->pe($this->go_cart->contents());
+				
+				 echo $this->go_cart->total_items();?>
                <span style="float: right;"> 
                     <div class="sort-panel">  
                    <ul class="filter clearfix">
@@ -227,4 +230,4 @@ function showStuff() {
 		</div>
 	</div>     -->      
 
-<?php endif; ?>
+<?php //endif; ?>
