@@ -72,4 +72,12 @@ Class Settings_model extends CI_Model
 		$this->db->where('setting_key', $setting_key);
 		$this->db->delete('settings');
 	}
+	
+	
+	function get_system_email($mail_type)
+	{
+		$this->db->where('email_type', $mail_type);
+		$result	= $this->db->get('system_emails');
+		return $result->result_array();
+	}
 }

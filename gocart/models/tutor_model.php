@@ -256,23 +256,23 @@ Class Tutor_model extends CI_Model
     function reset_password($email)
     {
         $this->load->library('encrypt');
-        $customer = $this->get_customer_by_email($email);
-        if ($customer)
+        $tutor = $this->get_tutor_by_email($email);
+        if ($tutor)
         {
             $this->load->helper('string');
-            $this->load->library('email');
+            //$this->load->library('email');
             
             $new_password        = random_string('alnum', 8);
-            $customer['password']    = sha1($new_password);
-            $this->save($customer);
+            $tutor['password']    = sha1($new_password);
+            $this->save($tutor);
             
-            $this->email->from($this->config->item('email'), $this->config->item('site_name'));
+           /* $this->email->from($this->config->item('email'), $this->config->item('site_name'));
             $this->email->to($email);
             $this->email->subject($this->config->item('site_name').': Password Reset');
             $this->email->message('Your password has been reset to <strong>'. $new_password .'</strong>.');
-            $this->email->send();
+            $this->email->send();*/
             
-            return true;
+            return $new_password;
         }
         else
         {
@@ -280,9 +280,9 @@ Class Tutor_model extends CI_Model
         }
     }
     
-    function get_customer_by_email($email)
+    function get_tutor_by_email($email)
     {
-        $result    = $this->db->get_where('customers', array('email'=>$email));
+        $result    = $this->db->get_where('tutors', array('email'=>$email));
         return $result->row_array();
     }
     

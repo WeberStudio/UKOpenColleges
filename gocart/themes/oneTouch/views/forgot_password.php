@@ -23,8 +23,12 @@
         <h3>Reset Password</h3>
         
         <?php //echo form_open('secure/login', 'class="form-horizontal"'); ?>
-        <form class="bs-docs-example form-horizontal" accept-charset="utf-8" method="post" action="<?=base_url()?>secure/login">
-          <p>
+		<? if(isset($tutor_view) && $tutor_view =='tutor_view'){ ?>
+        <form class="bs-docs-example form-horizontal" accept-charset="utf-8" method="post" action="<?=base_url()?>tutor_login/forgot_password">
+		<? }else{ ?>
+		<form class="bs-docs-example form-horizontal" accept-charset="utf-8" method="post" action="<?=base_url()?>secure/forgot_password">
+		<? } ?>
+		  <p>
             <label for="user_login">Enter Username or email</label>
             <input name="email" class="input-text" id="user_login" type="text">
           </p>

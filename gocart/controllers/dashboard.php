@@ -275,9 +275,27 @@ class dashboard extends Front_Controller {
         //echo $customer_id.'---------'.$course_id; exit;
         if(!empty($customer_id) && !empty($product_id))
         {
-            
-            $data = array('customer_id' => $customer_id, 'subject_id' => $product_id, 'request_status' => 'Requested');            
-            $result = $this->Order_model->request_for_tutor($data);
+            $data 			= array('customer_id' => $customer_id, 'subject_id' => $product_id, 'request_status' => 'Requested');
+            $result 		= $this->Order_model->request_for_tutor($data);
+			$customer_data 	= $this->Customer_model->get_customer($customer_id);
+			//print_r($customer_data);
+			$this->session->set_flashdata('message', lang('message_new_password'));
+			$email_attributes = $this->Settings_model->get_system_email('login');
+			$message  = '';
+			$message .= $email_attributes[0]['email_header'];			
+			
+			$message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Student has requested for tutor!<br>Name: '.$customer_data->firstname.' '. $customer_data->lastname.'<br>E-mail: '.$customer_data->email.'<br>Phone: '.$customer_data->phone.'<br></singleline></p><div align="left" class="article-content"><multiline label="Description"></multiline>This  email is to let you know that we have received your request for tutor support  and we are working on it to find you an experienced tutor in accordance with  your needs. The next step is to decide what features you need in your tutor  support. Do you need a 24/7 online support or require partial support?</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><p>For further communication, you can contact  us at our email ID which is <a href="mailto:info@ukopencollege.co.uk">info@ukopencollege.co.uk</a> </p></div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';			
+			
+			$message .= $email_attributes[0]['email_footer'];
+			$this->load->library('email');				
+			$config['mailtype'] = 'html';				
+			$this->email->initialize($config);		
+			$this->email->from($this->config->item('email'), $this->config->item('company_name'));			
+			$this->email->to($this->config->item('email'));
+			$this->email->bcc($this->config->item('bcc_email'));			
+			$this->email->subject('Student request for tutor to admin');
+			$this->email->message(html_entity_decode($message));			
+			$this->email->send();			
         }
         
         redirect(base_url().'dashboard/course');

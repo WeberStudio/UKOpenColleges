@@ -431,7 +431,7 @@ class tutor extends Admin_Controller {
 		$save['customer_id']	= $_POST['customer_id']; 
 		$save['tutor_id']		= $_POST['tutor_id'];
 		$save['forum_title']	= 'Subject Forum';
-		$save['forum_comments']	= 'Please user forum to communicat with tutors.';
+		$save['forum_comments']	= 'Please use forum to communicat with tutors.';
 		$save['forum_status']	= '1';
 		$forum_id				= $this->Forum_model->save($save);
 		
@@ -445,11 +445,60 @@ class tutor extends Admin_Controller {
 		$data['folder_share']		= $_POST['tutor_id'].'_'.$_POST['customer_id'];
 		$data['forum_id']			= $forum_id;
 		
+		$customer_data 				= $this->Customer_model->get_customer($_POST['customer_id']);
+		$tutor_data					= $this->Tutor_model->get_tutor($_POST['tutor_id']);		
+		$email_attributes 			= $this->Settings_model->get_system_email('login');
+		$message 					= '';
+		
+		
+		$this->load->library('email');		
+		$config['mailtype'] 		= 'html';		
+		$this->email->initialize($config);
+		
+		$message_tutor_asseigned 	= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Tutor Assigned!<br>Name: '.$tutor_data->firstname.' '. $tutor_data->lastname.'<br>E-mail: '.$tutor_data->email.'<br>Phone: '.$tutor_data->phone.'<br></singleline></p><div align="left" class="article-content"><multiline label="Description"></multiline> We are glad to tell you that your request for tutor support has been granted and we have coordinated with one of our best tutors to assist you during your coursework. Further details will be addressed to you shortly. In case of any query regarding tutor support, you can contact us at.</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><p><a href="mailto:info@ukopencollege.co.uk">info@ukopencollege.co.uk</a> </p></div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+					
+				
+
+		$this->email->from($this->config->item('email'), $this->config->item('company_name'));		
+		$this->email->to($customer_data->email);
+		$this->email->bcc($this->config->item('bcc_email'));		
+		$this->email->subject('Tutor Assigned');
+		$this->email->message(html_entity_decode($email_attributes[0]['email_header'].$message_tutor_asseigned.$email_attributes[0]['email_footer']));		
+		$this->email->send();
+		
+		$message_forum 	= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Forum Assigned!<br>Forum Name: '.$save['forum_title'].'<br></singleline></p><div align="left" class="article-content"><multiline label="Description"></multiline>This email contains information regarding the forum where you and your prospective tutor will communicate. With the help of this forum, you can discuss your course material; you can ask questions and can build up a healthy study relationship.</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><p><a href="mailto:info@ukopencollege.co.uk">info@ukopencollege.co.uk</a> </p></div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+
+		
+		
+		$this->email->from($this->config->item('email'), $this->config->item('company_name'));		
+		$this->email->to($customer_data->email);
+		$this->email->bcc($this->config->item('bcc_email'));		
+		$this->email->subject('Forum Assigned');
+		$this->email->message(html_entity_decode($email_attributes[0]['email_header'].$message_forum.$email_attributes[0]['email_footer']));		
+		$this->email->send();
+		
+		$this->email->from($this->config->item('email'), $this->config->item('company_name'));		
+		$this->email->to($tutor_data->email);
+		$this->email->bcc($this->config->item('bcc_email'));		
+		$this->email->subject('Forum Assigned');
+		$this->email->message(html_entity_decode($email_attributes[0]['email_header'].$message_forum.$email_attributes[0]['email_footer']));		
+		$this->email->send();
+		
+		
+		$message_studnet_assigned = '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Student Assigned!<br>Name: '.$customer_data->firstname.' '. $customer_data->lastname.'<br>E-mail: '.$customer_data->email.'<br>Phone: '.$customer_data->phone.'<br></singleline></p><div align="left" class="article-content"><multiline label="Description"></multiline>We are glad to tell you that you have been assigned a student (name of the student if required). You will assist this student during his/her coursework. Further details will be addressed to you shortly.</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><p><a href="mailto:info@ukopencollege.co.uk">info@ukopencollege.co.uk</a> </p></div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+		
+		$this->email->from($this->config->item('email'), $this->config->item('company_name'));		
+		$this->email->to($tutor_data->email);
+		$this->email->bcc($this->config->item('bcc_email'));		
+		$this->email->subject('Student Assigned');
+		$this->email->message(html_entity_decode($email_attributes[0]['email_header'].$message_studnet_assigned.$email_attributes[0]['email_footer']));		
+		$this->email->send();
+					
 		if(!is_dir($folder_name))
 		{
 			mkdir($folder_name,0777,true);
-			$student 				= realpath('.').'/files/'.$_POST['tutor_id'].'_'.$_POST['customer_id'].'/student';
-			$tutor 				= realpath('.').'/files/'.$_POST['tutor_id'].'_'.$_POST['customer_id'].'/tutor';
+			$student 	= realpath('.').'/files/'.$_POST['tutor_id'].'_'.$_POST['customer_id'].'/student';
+			$tutor 		= realpath('.').'/files/'.$_POST['tutor_id'].'_'.$_POST['customer_id'].'/tutor';
 			mkdir($student,0777,true);
 			mkdir($tutor,0777,true);
 		}	

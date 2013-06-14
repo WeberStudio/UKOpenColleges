@@ -239,6 +239,8 @@ class Secure extends Front_Controller {
 		$data['zip']		= '';
 		$data['country_id']	= '';
 		$data['zone_id']	= '';
+		$password			= '';
+		$password 			= $this->input->post('password');
 
 		$this->form_validation->set_rules('company', 'Company', 'trim| required |max_length[128]');
 		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required|max_length[32]');
@@ -285,13 +287,13 @@ class Secure extends Front_Controller {
 			$save['email']				= $this->input->post('email');
 			$save['phone']				= $this->input->post('phone');
 			$save['company']			= $this->input->post('company');
-			$save['post_code']			=$this->input->post('zip');
-			$save['city']				=$this->input->post('city');
-			$save['address_street']		=$this->input->post('address1');
-			$save['address_line']		=$this->input->post('address2');
-			$save['country']		 	=$this->input->post('country_id');
-			$save['state']		 	 	=$this->input->post('zone_id');
-			$save['gender']				=$this->input->post('gender');
+			$save['post_code']			= $this->input->post('zip');
+			$save['city']				= $this->input->post('city');
+			$save['address_street']		= $this->input->post('address1');
+			$save['address_line']		= $this->input->post('address2');
+			$save['country']		 	= $this->input->post('country_id');
+			$save['state']		 	 	= $this->input->post('zone_id');
+			$save['gender']				= $this->input->post('gender');
 			$save['active']				= $this->config->item('new_customer_status');
 			$save['email_subscribe']	= intval((bool)$this->input->post('email_subscribe'));
 			
@@ -310,13 +312,15 @@ class Secure extends Front_Controller {
 
 			/* send an email */
 			// get the email template
-			$res = $this->db->where('id', '6')->get('canned_messages');
-			$row = $res->row_array();
+			/*$res = $this->db->where('id', '6')->get('canned_messages');
+			$row = $res->row_array();*/
 			
 			// set replacement values for subject & body
 			
 			// {customer_name}
-			$row['subject'] = str_replace('{customer_name}', $this->input->post('firstname').' '. $this->input->post('lastname'), $row['subject']);
+			
+			
+			/*$row['subject'] = str_replace('{customer_name}', $this->input->post('firstname').' '. $this->input->post('lastname'), $row['subject']);
 			$row['content'] = str_replace('{customer_name}', $this->input->post('firstname').' '. $this->input->post('lastname'), $row['content']);
 			
 			// {url}
@@ -325,22 +329,36 @@ class Secure extends Front_Controller {
 			
 			// {site_name}
 			$row['subject'] = str_replace('{site_name}', $this->config->item('company_name'), $row['subject']);
-			$row['content'] = str_replace('{site_name}', $this->config->item('company_name'), $row['content']);
+			$row['content'] = str_replace('{site_name}', $this->config->item('company_name'), $row['content']);*/
 			
+			$email_attributes = $this->Settings_model->get_system_email('login');
+			
+			//print_r($email_attributes);exit;
+			$message = '';
+			$message .= $email_attributes[0]['email_header'];
+			
+			
+			$message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Dear '.$this->input->post('firstname').' '. $this->input->post('lastname').'!</singleline></p><div align="left" class="article-content">  <multiline label="Description"></multiline> Thank  you for registering with UK Open College. This email is to certify that your  account has been registered with us. Please save the login information.<br><br>Username: '.$this->input->post('email').' <br>Password: '.$password.' <br><br> as you would require that for future coordination.</div></td></tr><tr>  <td class="w580" width="580" height="10"><div align="left" class="article-content">Please click the following link to confirm the registration process.</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+			
+			$message .= $email_attributes[0]['email_footer'];
+			
+			 
 			$this->load->library('email');
 			
 			$config['mailtype'] = 'html';
 			
 			$this->email->initialize($config);
 	
-			$this->email->from($this->config->item('email'), $this->config->item('company_name'));
+			//$this->email->from($this->config->item('email'), $this->config->item('company_name'));
+			$this->email->from('Uk Open College');
 			$this->email->to($save['email']);
-			$this->email->bcc($this->config->item('email'));
-			$this->email->subject($row['subject']);
-			$this->email->message(html_entity_decode($row['content']));
+			$this->email->bcc('khalil.junaid@gmail.com');
+			//$this->email->subject($row['subject']);
+			$this->email->subject('Student Registration');
+			$this->email->message(html_entity_decode($message));
 			
 			$this->email->send();
-			
+			//echo $this->email->print_debugger();exit;
 			$this->session->set_flashdata('message', sprintf( lang('registration_thanks'), $this->input->post('firstname') ) );
 			
 			//lets automatically log them in
@@ -390,11 +408,34 @@ class Secure extends Front_Controller {
 			if ($reset)
 			{						
 				$this->session->set_flashdata('message', lang('message_new_password'));
+				$email_attributes = $this->Settings_model->get_system_email('login');
+			
+				//print_r($email_attributes);exit;
+				$message  = '';
+				$message .= $email_attributes[0]['email_header'];			
+				
+				$message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Password has been generated successfully!</singleline></p><div align="left" class="article-content">  <multiline label="Description"></multiline>In  order to set a new password, you need to provide your user name by clicking on  the following link to rest your password. We will send you a new user name and  password. If you have difficulty in resetting your password, please let us know  by describe the problem at </div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><b>New Password:</b>'.$reset.'</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+				
+				$message .= $email_attributes[0]['email_footer'];		 
+				$this->load->library('email');				
+				$config['mailtype'] = 'html';				
+				$this->email->initialize($config);		
+				//$this->email->from($this->config->item('email'), $this->config->item('company_name'));
+				$this->email->from('Uk Open College');
+				$this->email->to($this->config->item('email'));
+				$this->email->bcc('khalil.junaid@gmail.com');
+				//$this->email->subject($row['subject']);
+				$this->email->subject('Student Forgot Password');
+				$this->email->message(html_entity_decode($message));
+				
+				$this->email->send();
 			}
 			else
 			{
 				$this->session->set_flashdata('error', lang('error_no_account_record'));
 			}
+			
+			
 			redirect('secure/forgot_password');
 		}
 		

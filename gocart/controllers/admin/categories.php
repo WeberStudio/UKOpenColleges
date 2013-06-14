@@ -490,4 +490,53 @@ class Categories extends Admin_Controller {
 		
 	}
 	
+	function change_cat_status()
+	{
+		
+		$status 			= $_POST['status'];
+		$id 				= $_POST['id'];
+		$category 			= array();
+		$category['id']		= $id;
+		$category_data		= $this->Category_model->get_category($id);
+		$email_attributes 	= $this->Settings_model->get_system_email('login');
+		
+		if($this->admin_access=='Superadmin')
+		{
+			$category['publish_by_super']	= $status;
+			if($status  == '1')
+			{
+					
+					$send_status 			= 'Published and Approved';	
+			}
+			else
+			{
+					
+					$send_status 			= 'Unpublished';
+			}
+			
+			$this->load->library('email');		
+			$config['mailtype'] 		= 'html';		
+			$this->email->initialize($config);
+			
+			$message_category_status 	= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Tutor Assigned!<br>Category Name: '.$category_data->name.'<br></singleline></p><div align="left" class="article-content"><multiline label="Description"></multiline> This email is to notify you that your requested course categories have been '.$send_status.' by the site admin. For more details, you can contact us at </div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><p><a href="mailto:info@ukopencollege.co.uk">info@ukopencollege.co.uk</a> </p></div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+			
+			$this->email->from($this->config->item('email'), $this->config->item('company_name'));		
+			$this->email->to($this->admin_email);
+			$this->email->bcc($this->config->item('bcc_email'));		
+			$this->email->subject('Category Approval Status');
+			$this->email->message(html_entity_decode($email_attributes[0]['email_header'].$message_category_status.$email_attributes[0]['email_footer']));		
+			$this->email->send();	
+		}
+		else
+		{
+			$category['publish_by_admin']	= $status;			
+		
+		}
+		
+		$this->session->set_flashdata('message', lang('message_category_saved'));
+		$category_id						= $this->Category_model->save($category);
+		return true;
+		
+	}
+	
 }
