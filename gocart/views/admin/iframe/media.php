@@ -160,7 +160,8 @@ if(function_exists('validation_errors') && validation_errors() != '')
 			<?php elseif(in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), $image_extensions)):?>
 				<td class="file-icon img">
                 <input id="insert-filename" name="insert-filename" type="hidden"> 
-				<img onclick="session_for_image('<?php echo $uri_root.$f;?>')" src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
+                <input id="folder-name" name="folder-name" type="hidden"> 
+				<img onclick="session_for_image('<?php echo $f;?>','<? echo $uri_root.$f;?>')" src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
 				</td>
 				<td><?php echo $f;?></td>
 				<td class="btns">
@@ -250,10 +251,11 @@ if(function_exists('validation_errors') && validation_errors() != '')
 		parent.redactor_instance.insertHtml(' <a href="<?php echo $this->path.'/'.$root;?>'+filename+'">'+filename+'</a> ');
 		parent.redactor_instance.modalClose();
 	}
-    function session_for_image(img_name)
+    function session_for_image(img_name,folderPath)
     {
             //global1 = 'shahid'   
             document.getElementById('insert-filename').value = img_name
+            document.getElementById('folder-name').value = folderPath
             //alert(img_name)  
         /* $.post('<?=base_url('admin/media/set_session_for_image')?>', { input_field_name: "unique_image_id", image_name: img_name },
           function(data){
