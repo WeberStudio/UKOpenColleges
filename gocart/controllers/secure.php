@@ -464,7 +464,6 @@ class Secure extends Front_Controller {
 		$this->Customer_model->is_logged_in('secure/my_account/');
 	
 		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
-		$customer_details 			= $this->go_cart->customer();		
 		$data['customer']			= (array)$this->Customer_model->get_customer($this->customer['id']);			
 		$data['addresses'] 			= $this->Customer_model->get_address_list($this->customer['id']);		
 		$data['page_title']			= 'Welcome '.$data['customer']['firstname'].' '.$data['customer']['lastname'];
