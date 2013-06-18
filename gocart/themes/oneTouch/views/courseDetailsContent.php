@@ -92,6 +92,48 @@
 
                 </div>
 
+				<!---====Review div start====-->
+                <div class="simpleTabs" style="padding-left: 0px;">
+                <script>
+function toggle() {
+
+	var el = document.getElementById('obj');
+
+	if ( el.style.display != 'none' ) {
+
+		el.style.display = 'none';
+
+	}
+
+	else {
+
+		el.style.display = '';
+
+	}
+return false;
+}
+
+</script>
+                <p class="woocommerce_info">Click Here To → <a href="" class="" onclick="return toggle()"> Ask A Question</a></p>
+    			<form style="display:none;" id="obj" method="post" class="login" >
+                      <ul class="simpleTabsNavigation">
+                      <li class="description_tab active"><a href="#question">Question</a></li>
+                      <li class="description_tab "><a href="#updates">Updates</a></li>
+                      <li class="description_tab active"><a href="#reviews">Reviews</a></li>
+                      </ul>
+                      <div  class="simpleTabsContent" id="question">
+                      	<h2> Question div</h2>
+                      </div>
+                      <div  class="simpleTabsContent 1" id="updates">
+                      	<h2> Updates div</h2>
+                      </div>
+                      <div  class="simpleTabsContent 2" id="updates">
+                      	<h2> Reviews div</h2>
+                      </div>
+                    
+    			</form>
+                </div>
+                <!---====Review div end=====-->
                 <!-- .summary -->
 
                 <div class="simpleTabs" style="padding-left: 0px;">
@@ -402,4 +444,4 @@
 
                 <!--- Related Products Ends ---->
 
-</div>
+</div>>>>>
