@@ -16,7 +16,9 @@ window.location="<?=base_url();?>secure/process_checkout";
 <!--<div class="page-header">
 	<h2><?php //echo lang('form_checkout');?></h2>
 </div>-->
+<div class="row">
 <div class="line"> </div>
+</div>
 <?php if (validation_errors()):?>
 	<div class="alert alert-error">
 		<a class="close" data-dismiss="alert">×</a>

@@ -5,7 +5,7 @@ function areyousure()
 }
 </script>
 <div id="main" style="min-height:1000px">
-  <div class="container">
+  <!--<div class="container">-->
     <? include_once(realpath('.').'/gocart/views/admin/includes/admin_profile.php');?>
      <div id="main_container">
       <div class="row-fluid ">
@@ -13,7 +13,8 @@ function areyousure()
           <div class="box paint color_10">
             <div class="title">
              <h4><i class=" icon-bar-chart"></i><span>Tutor Request Listing</span></h4>                
-				<div class="content top">
+				
+                <div class="content">
 				<table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
 					<thead>
 						<tr>
@@ -59,13 +60,14 @@ function areyousure()
 						?>
 					</tbody>
 				</table>
-							<div class="row-fluid control-group">
+                </div>
+				<div class="row-fluid control-group">
 								<div class="span6">
 								  <div class="pagination pull-right "> <?php //echo $this->pagination->create_links();?> &nbsp; </div>
 								  
 								</div>
 							</div>
-							</div>
+							
             <!-- End row-fluid -->
           </div>
           <!-- End .content -->
@@ -76,7 +78,7 @@ function areyousure()
     </div>
     <!-- End .row-fluid -->
   </div>
-  </div>
+  <!--</div>-->
 <script>
 function ajex_tutor_for_course(request_id, object, customer_id, subject_id)
 {

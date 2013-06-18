@@ -13,14 +13,16 @@
                 experience this site.
                 </div><![endif]-->
     <?php include('header.php'); ?>
+    <div class="row">
     <div class="line"> </div>
+    </div>
     <div id="main">
       <div class="container">
         <div id="main_container">
           <div class="row-fluid">
             <?php include('dashboard_leftpanal.php');?>
             <!-- End .span3 -->
-            <div class="span9">
+            <div class="span6">
               <div class="row">
                 <div id="content" class="fifteen columns">
                   <div class="col-1">
@@ -42,7 +44,7 @@
                         <?php 
     
     
-    
+    						//$this->show->pe($topics);exit;
                         foreach($topics as $topic):   
                         ?>
                             <tr>
@@ -52,9 +54,14 @@
                             <td><?=$topic->topic_time?></td>
                             <td><?=$topic->topic_status?></td>
                             <td>
-                            <div class="btn-group">                    
+                            <div class="btn-group">
+                            <?php
+							
+							 if($topic->topic_login_id == $user_id ){
+							 ?>                    
                             <a class="button"  href="<?=base_url().'topics/topic_form/'.$form_id.'/'.$topic->topic_id?>"> Edit </a>
-                            <a class="button" onclick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"  href="<?=base_url().'topics/topic_delete/'.$form_id.'/'.$topic->topic_id?>"> Remove </a>
+                            <a class="button" onClick="return confirm('If you delete this order you will not be able to recover it later. Are you sure you want to permanently delete this order?');"  href="<?=base_url().'topics/topic_delete/'.$form_id.'/'.$topic->topic_id?>"> Remove </a>	
+                            <?php }?>
                             </div>
                             </td>
                         </tr>

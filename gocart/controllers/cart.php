@@ -508,7 +508,7 @@ class Cart extends Front_Controller {
 
 	
 
-	function product($id)
+	function product($id , $quantity = false)
 
 	{
 
@@ -594,7 +594,10 @@ class Cart extends Front_Controller {
 
 		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
 
-		//$this->show->pe($data);			
+		//$this->show->pe($data);
+		
+		
+		$data['quantities'] = $quantity;		
 
 		$this->load->view('courseDetails', $data);
 
@@ -728,12 +731,16 @@ class Cart extends Front_Controller {
 			// Add the product item to the cart, also updates coupon discounts automatically
 
 			$this->go_cart->insert($product);
-
+			
+			
+			// this variable is to view the div of "view cart"
+			
+			$view_cart = $quantity;
 		
 
 			// go go gadget cart!
 
-			redirect('cart/view_cart');
+			redirect('cart/product/'.$product_id."/".$view_cart);
 
 		}
 
@@ -807,9 +814,7 @@ class Cart extends Front_Controller {
 		//get the items in the cart and test their quantities
 
 		$items			= $this->go_cart->contents();
-		//echo "session is distoryed";
-		//$this->show->pe($items);exit;
-
+		
 		$new_key_list	= array();
 
 		//first find out if we're deleting any products

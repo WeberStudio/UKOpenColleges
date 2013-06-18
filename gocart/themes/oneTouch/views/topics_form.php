@@ -13,14 +13,16 @@
                 experience this site.
                 </div><![endif]-->
     <?php include('header.php'); ?>
+    <div class="row">
     <div class="line"> </div>
+    </div>
     <div id="main">
       <div class="container">
         <div id="main_container">
           <div class="row-fluid">
             <?php include('dashboard_leftpanal.php');?>
             <!-- End .span3 -->
-            <div class="span9">
+            <div class="span6">
               <div class="row">
                 <div id="content" class="fifteen columns">
                   <div class="col-1">
@@ -31,7 +33,7 @@
                         <tr>
                             <td>
                                 <label class="control-label span1" for="hint-field">Title</label>
-                                <input type="text" class="span12" name="topic_title" value="<?=set_value('topic_title', $topic_title)?>">   
+                                <input type="text" class="redactor" name="topic_title" value="<?=set_value('topic_title', $topic_title)?>">   
                             </td>                 
                         </tr>
                         

@@ -89,7 +89,7 @@ $rows=15;
          <div class="controls span3">
          <label class="control-label "><h3> Form </h3></label>
                 <?php 
-					$data = array('id'=>'start_date','name'=>'start_date','placeholder'=>'Start Date','style'=>'margin-bottom: 0px;');
+					$data = array('id'=>'datepicker1','name'=>'start_date','placeholder'=>'Start Date','style'=>'margin-bottom: 0px;');
 					echo form_input($data);
 				?>
               </div>
@@ -100,7 +100,7 @@ $rows=15;
               <div class="controls span3">
                <label class="control-label"> <h3> To </h3></label>
                 <?php 
-				$data = array('id'=>'end_date','name'=>'end_date','placeholder'=>'End Date','style'=>'margin-bottom: 0px;');
+				$data = array('id'=>'datepicker2','name'=>'end_date','placeholder'=>'End Date','style'=>'margin-bottom: 0px;');
 					echo form_input($data);
 				?>
               </div>
@@ -120,9 +120,9 @@ $rows=15;
              <h4> <i class=" icon-bar-chart"></i>
 			 <span>Order Listing
 			
-			 <input type="text" id="start_date" placeholder="Start Date" value="" name="start_date" style=" margin-bottom: 0px;">
+			 <!--<input type="text" id="start_date" placeholder="Start Date" value="" name="start_date" style=" margin-bottom: 0px;">
 			 <input type="text" id="end_date" placeholder="End Date" value="" name="end_date" style=" margin-bottom: 0px;">
-			  <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/tutor/form'); ?>"><i class="gicon-search icon-white"></i><?php echo lang('search')?></a>
+			  <a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/tutor/form'); ?>"><i class="gicon-search icon-white"></i><?php echo lang('search')?></a>-->
 			 </span></h4>
                
 				<div class="content top">
@@ -201,21 +201,12 @@ $rows=15;
     </div>
     <!-- End .row-fluid -->
   </div>
-  </div>
+  
+  
 <script type="text/javascript">
 function areyousure()
 {
 	return confirm('<?php echo lang('confirm_delete_order');?>');
 }
-$(document).ready(function(){
 
-	
-
-	$('#start_date').datepicker({
-	  format: 'mm-dd-yyyy'
-	});
-	$('#end_date').datepicker({
-	  format: 'mm-dd-yyyy'
-	});
-});
 </script>

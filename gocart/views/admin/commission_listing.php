@@ -58,7 +58,7 @@ function areyousure()
          <div class="controls span3">
          <label class="control-label "><h3> Form </h3></label>
                 <?php 
-					$data = array('id'=>'start_date','name'=>'start_date','placeholder'=>'Start Date','style'=>'margin-bottom: 0px;');
+					$data = array('id'=>'datepicker1','name'=>'start_date','placeholder'=>'Start Date','style'=>'margin-bottom: 0px;');
 					echo form_input($data);
 				?>
               </div>
@@ -69,7 +69,7 @@ function areyousure()
               <div class="controls span3">
                <label class="control-label"> <h3> To </h3></label>
                 <?php 
-				$data = array('id'=>'end_date','name'=>'end_date','placeholder'=>'End Date','style'=>'margin-bottom: 0px;');
+				$data = array('id'=>'datepicker2','name'=>'end_date','placeholder'=>'End Date','style'=>'margin-bottom: 0px;');
 					echo form_input($data);
 				?>
               </div>
