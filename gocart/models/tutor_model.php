@@ -171,11 +171,11 @@ Class Tutor_model extends CI_Model
         {   
            if(!$remember)
            {
-            $customer['expire'] = time()+$this->session_expire;
+           // $customer['expire'] = time()+$this->session_expire;
            }
            else
            {
-            $customer['expire'] = false;
+           // $customer['expire'] = false;
            }
            
            // put our customer in the cart
@@ -198,7 +198,8 @@ Class Tutor_model extends CI_Model
           //$redirect allows us to choose where a customer will get redirected to after they login
           //$default_redirect points is to the login page, if you do not want this, you can set it to false and then redirect wherever you wish.
           
-          $customer = $this->go_cart->customer();
+          $customer = $this->go_cart->customer();     
+         
           if (!isset($customer['tutor_id']))
           {
            //this tells gocart where to go once logged in
@@ -239,12 +240,12 @@ Class Tutor_model extends CI_Model
 			   
 
             //update the session expiration to last more time if they are not remembered
-            if($customer['expire'])
+            /*if($customer['expire'])
             {
-             $customer['expire'] = time()+$this->session_expire;
-             $this->go_cart->save_customer($customer);
-            }
-
+            	$customer['expire'] = time()+$this->session_expire;
+				 $this->go_cart->save_customer($customer);
+            }*/     
+ 			$this->go_cart->save_customer($customer);
            
 		  // }
 
@@ -342,17 +343,17 @@ Class Tutor_model extends CI_Model
         return true;    
     }
 	
-	function get_address()
+	function get_address($tutor_id)
 	{
-	$tutor = $this->go_cart->customer();
-	$result =	$this->db->query("SELECT oc_tutors.*, oc_countries.name as country_name, oc_country_zones.code as state_code  FROM oc_tutors 
-	JOIN oc_countries 
-	ON oc_tutors.country = oc_countries.id 
-	JOIN oc_country_zones 
-	ON oc_tutors.state = oc_country_zones.id 
-	WHERE tutor_id = '".$tutor['tutor_id']."'");
-	// echo $this->db->last_query();
-	return $result->result();
+	   
+	    $result =	$this->db->query("SELECT oc_tutors.*, oc_countries.name as country_name, oc_country_zones.code as state_code  FROM oc_tutors 
+	    JOIN oc_countries 
+	    ON oc_tutors.country = oc_countries.id 
+	    JOIN oc_country_zones 
+	    ON oc_tutors.state = oc_country_zones.id 
+	    WHERE tutor_id = '".$tutor_id."'");
+	    // echo $this->db->last_query();
+	    return $result->result();
 	}
 
 }

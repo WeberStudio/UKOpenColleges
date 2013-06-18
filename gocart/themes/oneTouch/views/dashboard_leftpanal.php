@@ -3,28 +3,30 @@
             <div class="row-fluid legend">
               <h1>
 			  <?php
+			  //$this->show->pe($this->session->userdata('cart_contents'));
+			  $user_info 		=  $this->session->userdata('cart_contents');
 			  if($this->Tutor_model->is_logged_in(false, false)){
-			   $tutor_details = $this->go_cart->customer();
+			  
 			   //print_r($tutor_details);exit; 
-			  	$get_address = $this->Tutor_model->get_address();
-			   echo  $tutor_details['firstname']." ". $tutor_details['lastname'];
+			  	$get_address 	= $this->Tutor_model->get_address($user_info['customer']['tutor_id']);                
+			    echo  $user_info['customer']['firstname']." ". $user_info['customer']['lastname'];      
 			  }
 			  //if($this->Customer_model->is_logged_in(false, false))
 			  else
 			  {
-				  $customer_details = $this->go_cart->customer();
-				  $get_address_cus = $this->Customer_model->get_address_pro();
-				  echo  $customer_details['firstname']." ". $customer_details['lastname'];
+				  
+				  $get_address_cus  = $this->Customer_model->get_address_pro($user_info['customer']['id']);
+				  echo  $user_info['customer']['firstname']." ". $user_info['customer']['lastname'];
 			  }
+			  
+			  
 			   ?>
                 </h1>
             </div>
           </div>
           <!-- End .title -->
           <div class="content">
-            <div class="row-fluid well well-small"> <img class="row-fluid" src="<?php 
-			if(!empty($get_address)){ echo base_url().'uploads/images/full/'.$get_address[0]->avatar;}
-			if(!empty($get_address_cus)){ echo base_url().'uploads/images/full/'.$get_address_cus[0]->image;}
+            <div class="row-fluid well well-small"> <img class="row-fluid" src= "<?php if(!empty($get_address)){ echo base_url().'uploads/images/full/'.$get_address[0]->avatar;} if(!empty($get_address_cus)){ echo base_url().'uploads/images/full/'.$get_address_cus[0]->image;}
 			?>"> </div>
             <ul class="nav1 nav-tabs dark nav-stacked">
             <?php if($this->Tutor_model->is_logged_in(false, false)):?>

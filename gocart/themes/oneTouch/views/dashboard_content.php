@@ -15,10 +15,11 @@
        <?php
 	   if($this->Tutor_model->is_logged_in(false, false))
 	   {
-	    $get_address = $this->Tutor_model->get_address();
+	     $get_address = $this->Tutor_model->get_address($this->customer['tutor_id']);
 	   }
 	   if($this->Customer_model->is_logged_in(false, false)){
-			$get_address_cus = $this->Customer_model->get_address_pro();
+			
+			$get_address_cus = $this->Customer_model->get_address_pro($this->customer['id']);
 			//echo "<pre>" ;print_r($get_address_cus); exit;
 	   }
 		?>

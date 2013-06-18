@@ -109,7 +109,7 @@
                                        <div class="input-append row-fluid">
                                       <div class="uploader" id="uniform-search-input">
                                         <div class="customfile">
-                                              <a class="various" class="spa1n6 fileinput customfile-input" data-fancybox-type="iframe" href="http://localhost/UKOpenColleges/admin/media/">
+                                              <a class="various" class="spa1n6 fileinput customfile-input" data-fancybox-type="iframe" href="<?=base_url()?>admin/media/">
                                               <div class="uneditable-input spa1n6 fileinput" aria-hidden="true"><span>choose a file...</span></div>
                                               </a>  
                                         </div>
@@ -165,7 +165,7 @@
         </div>
 	</div>
 </div>
-<script type="text/javascript" src="<?php echo base_url('assets/js/global.js');?>"></script>
+
 
 <script type="text/javascript">
 
@@ -189,7 +189,7 @@ j(document).ready(function() {
            
          funcNode    = $(".fancybox-iframe").contents().find("#insert-filename").val();
          foldername  = $(".fancybox-iframe").contents().find("#folder-name").val();
-          console.log(funcNode)
+          //console.log(funcNode)
           $(".uneditable-input").html("<span>"+foldername+"</span>")
            document.getElementById('media_image').value = funcNode;
            document.getElementById('image_path').value  = foldername;

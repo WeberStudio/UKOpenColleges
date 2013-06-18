@@ -16,7 +16,7 @@
                 <?php include_once('dashboard_content.php'); ?> 
             </div>
         </div>
-        <?php include_once('footer.php'); ?> 
+        <?php //include_once('footer.php'); ?> 
         
        
     </body>

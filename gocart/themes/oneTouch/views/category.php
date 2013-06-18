@@ -86,6 +86,7 @@
                             </a> 
                <?php endforeach?>
             </ul>
+			<div class="category-bottom-gap" ></div>
      	</div>  
      </div>  
      <!-- Stayic Code End --->

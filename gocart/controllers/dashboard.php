@@ -10,52 +10,58 @@ class dashboard extends Front_Controller {
 		force_ssl();
 		
 		$this->load->model('Search_model');
-		$this->load->model('location_model');
-		$this->load->model(array('Customer_model', 'Product_model', 'Topic_model', 'Forum_model', 'Topic_model', 'Message_Forum_model'));
+		$this->load->model(array('location_model')); 
+		$this->load->model(array('Forum_model', 'Topic_model', 'Message_Forum_model'));
+        $this->load->model('Order_model');
+        $this->load->model('tutor_model');        
 		$this->load->helper(array('formatting'));
 		$this->lang->load('order');
+                 
+        $this->customer = $this->go_cart->customer();
+        //echo '<pre>';print_r($this->customer); 
 		
 	}
 	
 	function index()
 		{
-			if($this->Tutor_model->is_logged_in(false, false))
+           //DebugBreak();
+           
+          
+			/*if($this->Tutor_model->is_logged_in(false, false))
 			{
 				$this->load->view('dashboard');
-			}
-			elseif($this->Customer_model->is_logged_in(false, false))
+			}     
+			else if($this->Customer_model->is_logged_in(false, false)) */
+             if(isset($this->customer) && !empty($this->customer))
 			{
+				
+				//echo 'elseif';
 				$this->load->view('dashboard');
 			}
 			else
 			{
-		 	redirect('cart/');
+		 		//echo 'else';
+				redirect('cart/');
 			}
 		}
 	
 	function course()
 	{
-		if($this->Customer_model->is_logged_in(false, false))
-		{
-		$this->load->model('Order_model');
-
-		$this->load->model('customer_model');
-		$customer_details = $this->go_cart->customer();
-		$data['orderss']	= $this->Order_model->get_customer_orders($customer_details['id']);
-		$this->load->view('dashboard_course',$data);
+		//DebugBreak();
+        if($this->Customer_model->is_logged_in(false, false))
+		{		
+		    $data['orderss']	= $this->Order_model->get_customer_orders($this->customer['id']);
+		    $this->load->view('dashboard_course',$data);
 		//print_r($data['orderss']);exit;
 		}
 		else if($this->Tutor_model->is_logged_in(false, false))
-		{
-		$this->load->model('Order_model');
-		$this->load->model('tutor_model');
-		$customer_details = $this->go_cart->customer();
-		$data['orderss']	= $this->Order_model->get_customer_orders($customer_details['tutor_id']);
-        $this->load->view('dashboard_course',$data);
+		{ 		
+		    $data['orderss']	= $this->Order_model->get_customer_orders($this->customer['tutor_id']);
+            $this->load->view('dashboard_course',$data);
 		}
 		else
 		{
-		redirect('cart/');
+		    redirect('cart/');
 		}
 		
 		
@@ -74,14 +80,14 @@ class dashboard extends Front_Controller {
         if($this->Tutor_model->is_logged_in(false, false))
         {
             
-            $customer_details     = $this->go_cart->customer();
-            $data['forums']       = $this->Forum_model->get_forum_for_tutors($customer_details['tutor_id']);        
+           
+            $data['forums']       = $this->Forum_model->get_forum_for_tutors($this->customer['tutor_id']);        
             $this->load->view('dashboard_fourm',$data);
         }
         else if($this->Customer_model->is_logged_in(false, false))
         {              
-            $customer_details     = $this->go_cart->customer();
-            $data['forums']       = $this->Forum_model->get_forum_customer($customer_details['id']);        
+            
+            $data['forums']       = $this->Forum_model->get_forum_customer($this->customer['id']);        
             $this->load->view('dashboard_fourm',$data);
         }
         else
@@ -121,7 +127,7 @@ class dashboard extends Front_Controller {
     
 	function file_manager()
 	{
-		$customer_details             = $this->go_cart->customer();
+		
         //$data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('customer_id', $customer_details['id']);
         //print_r($data['file_directory']);
         
@@ -130,11 +136,11 @@ class dashboard extends Front_Controller {
         
         if($this->Tutor_model->is_logged_in(false, false))
         {
-            $data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('tutor_id', $customer_details['tutor_id']); 
+            $data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('tutor_id', $this->customer['tutor_id']); 
             $this->load->view('dashboard_file_manager', $data);       
         }else if($this->Customer_model->is_logged_in(false, false))
         {
-            $data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('customer_id', $customer_details['id']);
+            $data['file_directory']        = $this->Tutor_model->get_tutor_requests_by_id('customer_id', $this->customer['id']);
             $this->load->view('dashboard_file_manager', $data);            
         }else
         {
@@ -152,9 +158,9 @@ class dashboard extends Front_Controller {
 		if($this->Tutor_model->is_logged_in(false, false)):
 	
 		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
-		$customer_details 			= $this->go_cart->customer();
+		
 		$data['customer']			= ""; //(array)$this->Customer_model->get_customer($this->customer['id']);
-		$data['tutor']				= (array)$this->Tutor_model->get_tutor($customer_details['tutor_id']);
+		$data['tutor']				= (array)$this->Tutor_model->get_tutor($this->customer['tutor_id']);
 		
 		//print_r($this->go_cart->customer()); exit;			
 		//$data['addresses'] 			= $this->Customer_model->get_address_list($this->customer['id']);		
@@ -164,7 +170,7 @@ class dashboard extends Front_Controller {
 		
 		// load other page content 
 		//$this->load->model('banner_model');
-		$this->load->model('order_model');
+		
 		$this->load->helper('directory');
 		$this->load->helper('date');
 		
