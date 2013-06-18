@@ -183,6 +183,7 @@ class Auth
 	{
 		$this->CI->admin_session->unset_userdata('admin');
 		$this->CI->admin_session->sess_destroy();
+		$this->CI->admin_session->sess_create();
 	}
 
 	/*

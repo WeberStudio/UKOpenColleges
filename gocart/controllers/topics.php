@@ -4,7 +4,11 @@ class Topics extends Front_Controller {
     function __construct()
     {        
         parent::__construct();
-
+if($this->Tutor_model->is_logged_in(false, false)!=1 && $this->Customer_model->is_logged_in(false, false)!=1)
+{
+	 redirect('cart');
+	
+	}
         remove_ssl();        
         $this->load->model(array('Customer_model', 'Product_model', 'Tutor_model', 'Forum_model', 'Topic_model', 'Message_Forum_model'));
         $this->load->library('email');
@@ -60,21 +64,56 @@ class Topics extends Front_Controller {
         $this->form_validation->set_rules('topic_message', 'Topic Message', 'required');
         if($this->form_validation->run() == false)
         {
-            //echo validation_errors('<div class="error">', '</div>'); exit;             
-            $this->load->view('topics_form',$data); 
-            
+			
+			
+            //echo validation_errors('<div class="error">', '</div>'); exit;
+		if($id)
+		{	 
+				if($this->Tutor_model->is_logged_in(false, false))
+				{
+					$tutor_details 		= $this->go_cart->customer();
+					$data['user_id']	= $tutor_details['tutor_id'];
+				}
+				if($this->Customer_model->is_logged_in(false, false))
+				{
+					 $customer_details 	= $this->go_cart->customer();
+					 $data['user_id']	= $customer_details['id'];
+				}
+				
+				
+				if($topic->topic_login_id ==  $data['user_id'] )
+				{            
+					$this->load->view('topics_form',$data); 
+				}
+				else
+				{
+					 redirect('dashboard/topic_view/'.$forum_id);
+				}
+		}
+		else
+		{
+			$this->load->view('topics_form',$data);
+		}
+		
         }
         else
         {
+			
+			if($this->Tutor_model->is_logged_in(false, false)==1)
+			{$topic_user_role	= 'tutor';}
+			if($this->Customer_model->is_logged_in(false, false)==1)
+			{$topic_user_role	='customer';}
             $save['topic_id']            = $id;
             $save['topic_login_id']      = $this->login_id;
-            //$save['topic_user_role']     = strtolower($this->admin_access);    
+            $save['topic_user_role']     = $topic_user_role;    
             $save['topic_title']         = $this->input->post('topic_title');
             $save['topic_message']       = $this->input->post('topic_message');            
             $save['forum_id']            = $data['forum_id'];
             //$save['topic_time']        = date('Y-m-d H:i:s');
             //save the forum
+			//t$this->show->pe($save);exit;
             $topic_id                    = $this->Topic_model->save($save);
+			
             $this->session->set_flashdata('message', lang('message_saved_forum'));
             
             //go back to the forum list
@@ -98,15 +137,47 @@ class Topics extends Front_Controller {
     
     function topic_delete($forum_id, $topic_id)
     {
-        $data['topic_id'] = $this->Topic_model->topic_delete($topic_id);
-        redirect('dashboard/topic_view/'.$forum_id);
-    }
+		$topic                = $this->Topic_model->get_topic($topic_id);
+		
+		if($this->Tutor_model->is_logged_in(false, false))
+				{
+					$tutor_details 		= $this->go_cart->customer();
+					$data['user_id']	= $tutor_details['tutor_id'];
+				}
+				if($this->Customer_model->is_logged_in(false, false))
+				{
+					 $customer_details 	= $this->go_cart->customer();
+					 $data['user_id']	= $customer_details['id'];
+				}
+				
+				
+				if($topic->topic_login_id ==  $data['user_id'] )
+				{            
+					 $data['topic_id'] = $this->Topic_model->topic_delete($topic_id);
+					 redirect('dashboard/topic_view/'.$forum_id);
+				}
+				else
+				{
+					 redirect('dashboard/topic_view/'.$forum_id);
+				}
+        }
     
     function message_converstion($topic_id)
     {
         $data                     = array();
         $data['topic_id']         = $topic_id;
         $data['messages']         = $this->Message_Forum_model->get_messages_by_topic_id($topic_id);
+		
+		if($this->Tutor_model->is_logged_in(false, false))
+		{
+			$tutor_details 		= $this->go_cart->customer();
+			$data['user_id']	= $tutor_details['tutor_id'];
+		}
+		if($this->Customer_model->is_logged_in(false, false))
+		{
+			 $customer_details 	= $this->go_cart->customer();
+			 $data['user_id']	= $customer_details['id'];
+		}
         //echo "<pre>"; print_r($data['messages']);exit;
          $this->load->view('messages_listing',$data);   
     }
@@ -162,16 +233,51 @@ class Topics extends Front_Controller {
         if($this->form_validation->run() == false)
         {
                     
-            //echo validation_errors('<div class="error">', '</div>'); exit;           
-            $this->load->view('message_form',$data);
+            //echo validation_errors('<div class="error">', '</div>'); exit;
+		if($id)
+		{	
+				if($this->Tutor_model->is_logged_in(false, false))
+				{
+					$tutor_details 		= $this->go_cart->customer();
+					$data['user_id']	= $tutor_details['tutor_id'];
+				}
+				if($this->Customer_model->is_logged_in(false, false))
+				{
+					 $customer_details 	= $this->go_cart->customer();
+					 $data['user_id']	= $customer_details['id'];
+				}
+				
+				
+				if($message->message_login_id ==  $data['user_id'] )
+				{            
+				   $this->load->view('message_form',$data);
+				}
+				elseif(!empty($message_mode) && $message_mode = 'reply')
+				{
+					$this->load->view('message_form',$data);
+				}
+				else
+				{
+					redirect('/topics/message_converstion/'.$topic_id);
+				}
+		}
+		else
+		{
+			$this->load->view('message_form',$data);
+		}
+            
             
         }
         else
         {
+			if($this->Tutor_model->is_logged_in(false, false)==1)
+			{$message_user_role	= 'tutor';}
+			if($this->Customer_model->is_logged_in(false, false)==1)
+			{$message_user_role	='student';}
             $save['message_id']            = $id;
             $save['topic_id']              = $topic_id;
             $save['message_login_id']      = $this->login_id;
-            $save['message_user_role']     = '';
+            $save['message_user_role']     = $message_user_role;
             $save['message_title']         = $this->input->post('message_title');
             $save['message_message']       = $this->input->post('message_message');            
             
@@ -189,8 +295,30 @@ class Topics extends Front_Controller {
     
     function message_delete($topic_id, $message_id)
     {
-        $data['message_id'] = $this->Message_Forum_model->message_delete($message_id);
-        redirect($this->config->item('admin_folder').'/forums/message_converstion/'.$topic_id);
+		 $message                = $this->Message_Forum_model->get_message($message_id);
+		 if($this->Tutor_model->is_logged_in(false, false))
+				{
+					$tutor_details 		= $this->go_cart->customer();
+					$data['user_id']	= $tutor_details['tutor_id'];
+				}
+				if($this->Customer_model->is_logged_in(false, false))
+				{
+					 $customer_details 	= $this->go_cart->customer();
+					 $data['user_id']	= $customer_details['id'];
+				}
+				
+				
+				if($message->message_login_id ==  $data['user_id'] )
+				{            
+				   $data['message_id'] = $this->Message_Forum_model->message_delete($message_id);
+        redirect('topics/message_converstion/'.$topic_id);
+				}
+				else
+				{
+					 redirect('topics/message_converstion/'.$topic_id);
+				}
+		 
+       
     }
 }
 ?>

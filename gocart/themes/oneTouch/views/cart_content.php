@@ -134,7 +134,7 @@ function showStuff() {
 
                                         <div class="coupon">
 
-                                            <label for="coupon_code">Coupon:</label> <input name="coupon_code" class="input-text" id="coupon_code" value=""> <input type="submit" class="button" name="apply_coupon" value="Apply Coupon">
+                                            <label for="coupon_code">Coupon:</label> <input name="coupon_code" class="input-text" id="coupon_code" value="" style="height: 38px;"> <input type="submit" class="button" name="apply_coupon" value="Apply Coupon">
 
 
                                         </div>

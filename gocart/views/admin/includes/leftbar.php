@@ -166,7 +166,7 @@
                             <img src="<?=base_url().ASSETS_PATH?>img/menu_icons/widgets.png"><span>Commission</span></a>
                         <ul id="collapse5" class="accordion-body collapse <?php echo  $commisioin_links; ?>">
                             <!--<li><a href="<?=base_url().ADMIN_PATH?>orders">Orders</a></li>-->
-                            <li><a href="<?=base_url().ADMIN_PATH?>commission">commission</a></li>
+                            <li><a href="<?=base_url().ADMIN_PATH?>commission">Commission</a></li>
 						    <!-- <li><a href="<?=base_url().ADMIN_PATH?>customers/groups">Groups</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>reports">Reports</a></li>
                             <li><a href="<?=base_url().ADMIN_PATH?>coupons">Coupons</a></li>

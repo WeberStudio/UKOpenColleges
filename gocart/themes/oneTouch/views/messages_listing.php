@@ -13,14 +13,16 @@
                 experience this site.
                 </div><![endif]-->
     <?php include('header.php'); ?>
+    <div class="row">
     <div class="line"> </div>
+    </div>
     <div id="main">
       <div class="container">
         <div id="main_container">
           <div class="row-fluid">
             <?php include('dashboard_leftpanal.php');?>
             <!-- End .span3 -->
-            <div class="span9">
+            <div class="span6">
               <div class="row">
                 <div id="content" class="fifteen columns">
                   <div class="col-1">
@@ -36,8 +38,13 @@
                             <header class="comment-author vcard"><?=$this->first_name?> <cite class="fn">( <?=$message->message_user_role?> )</cite>
                               <time datetime="<?=$message->message_time?>"><?=$message->message_time?></time>
                               <a class="button" href="<?=base_url().'topics/message_form/'.$message->topic_id.'/'.$message->message_id.'/reply'?>">Reply</a> 
+                              <?php
+							
+							 if($message->message_login_id == $user_id ){
+							 ?>
                               <a class="button" href="<?=base_url().'topics/message_form/'.$message->topic_id.'/'.$message->message_id?>">Edit</a>
-                              <a class="button" href="<?=base_url().'topics/message_delete/'.$message->topic_id.'/'.$message->message_id?>">Delete</a>                              
+                              <a class="button" href="<?=base_url().'topics/message_delete/'.$message->topic_id.'/'.$message->message_id?>">Delete</a> 
+                              <?php }?>                             
                               </header>                              
                             <section class="comment">
                               <p><?=$message->message_title?><br>

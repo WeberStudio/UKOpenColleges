@@ -6,7 +6,11 @@ class dashboard extends Front_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		
+		if($this->Tutor_model->is_logged_in(false, false)!=1 && $this->Customer_model->is_logged_in(false, false)!=1)
+{
+	 redirect('cart');
+	
+	}
 		force_ssl();
 		
 		$this->load->model('Search_model');
@@ -109,6 +113,16 @@ class dashboard extends Front_Controller {
         $data['form_id']     = $forum_id;    
         $data['topics']        = $this->Topic_model->get_topic_by_form_id($forum_id);    
         //echo "<pre>"; print_r($data['topics']);exit;
+		if($this->Tutor_model->is_logged_in(false, false))
+		{
+			$tutor_details 		= $this->go_cart->customer();
+			$data['user_id']	= $tutor_details['tutor_id'];
+		}
+		if($this->Customer_model->is_logged_in(false, false))
+		{
+			 $customer_details 	= $this->go_cart->customer();
+			 $data['user_id']	= $customer_details['id'];
+		}
          $this->load->view('topics_listing',$data);
     }
     

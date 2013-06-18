@@ -36,13 +36,14 @@
 
         <div id="content" role="main">
 
-        <?  if ($this->go_cart->total_items()!=0)
+        <?  if ($quantities != "")
 
                     { ?>
 
             <div class="woocommerce_message"><a href="<?php echo site_url('cart/view_cart');?>" class="button">View Cart →</a> Course successfully added to your cart.</div>
 
-              <?}?>
+              <? }?>
+              
 
             <div itemscope="" itemtype="http://schema.org/Product" id="product-855" class="post-855 product type-product status-publish hentry">
 
@@ -186,13 +187,13 @@
 
                 <h3>Customer Login</h3>
 
-                <form method="post">
+                <form method="post" action="<?=base_url()?>secure/login">
 
                     <p>
 
                         <label for="user_login">Username or email</label>
 
-                        <input name="log" class="input-text" id="user_login" type="text">
+                        <input name="email" class="input-text" id="user_login" type="text">
 
                     </p>
 
@@ -200,19 +201,19 @@
 
                         <label for="user_pass">Password</label>
 
-                        <input name="pwd" class="input-text" id="user_pass" type="password">
+                        <input name="password" class="input-text" id="user_pass" type="password">
 
                     </p>
 
                     <p>
 
-                        <input class="submitbutton" name="wp-submit" id="wp-submit" value="Login →" type="submit">
+                        <input class="submitbutton" name="submitted" id="wp-submit" value="Login →" type="submit">
 
-                        <a href="">Lost password?</a></p>
+                        <a href="<?php echo site_url('secure/forgot_password')?>">Lost password?</a></p>
 
                     <div>
 
-                        <input name="redirect_to" class="redirect_to" value="" type="hidden">
+                        <!--<input name="redirect_to" class="redirect_to" value="" type="hidden">-->
 
                         <input name="testcookie" value="1" type="hidden">
 

@@ -48,9 +48,14 @@ class go_cart {
 		if ($this->CI->session->userdata('cart_contents') !== FALSE)
 		{
 			$this->_cart_contents = $this->CI->session->userdata('cart_contents');
+			//echo"<pre>";print_r($this->_cart_contents);
+			//echo "i am here"; exit;
 		}
 		else
 		{
+			//$this->_cart_contents = $this->CI->session->userdata('cart_contents');
+			//echo"<pre>";print_r($this->_cart_contents);
+			//echo "i am here"; exit;
 			// Or init a new session
 			$this->_init_properties();
 		}
@@ -90,12 +95,15 @@ class go_cart {
 		// We want to preserve the cart items and properties, but reset total values when recalculating
 		if( ! $totals_only) 
 		{
-		
-			// product items will live in here
-			$this->_cart_contents['items'] = array();
+			
+		 	$this->_cart_contents['items'] = array();
+			
+			
 			
 			if(!$preserve_customer)
 			{
+				
+			
 				// customer data container
 				$this->_cart_contents['customer'] = false;
 			}
@@ -894,9 +902,11 @@ class go_cart {
 	 */
 	function insert($items = array())
 	{
+		
 		// Was any cart data passed? No? Bah...
 		if ( ! is_array($items) OR count($items) == 0)
 		{
+			
 			return FALSE;
 		}
 		
@@ -909,9 +919,12 @@ class go_cart {
 	
 		$save_cart = FALSE;		
 		if (isset($items['id']))
-		{			
+		{
+						
+		
 			if ($this->_insert($items) == TRUE)
 			{
+				
 				$save_cart = TRUE;
 			}
 		}
@@ -939,6 +952,7 @@ class go_cart {
 			$this->clear_shipping();
 			
 			return TRUE;
+		
 		}
 
 		return FALSE;
@@ -1309,7 +1323,14 @@ class go_cart {
 	 */
 	function contents()
 	{
+		if($this->_cart_contents['items'])
+		{
 		return $this->_cart_contents['items'];
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	/**

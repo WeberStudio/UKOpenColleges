@@ -327,8 +327,13 @@
 			return {separator: separator, parts: parts};
 		},
 		parseDate: function(date, format) {
+			var		 d 	 = new Date();
+			var 	gd 	 = d.getDate();
+			var 	gy	 = d.getFullYear(); 
+			var 	gm 	 = d.getMonth();
 			var parts = date.split(format.separator),
-				date = new Date(1970, 1, 1, 0, 0, 0),
+				
+				date = new Date(gy, gm, gd, 0, 0, 0),
 				val;
 			if (parts.length == format.parts.length) {
 				for (var i=0, cnt = format.parts.length; i < cnt; i++) {
