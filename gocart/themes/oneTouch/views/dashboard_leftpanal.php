@@ -5,7 +5,8 @@
 			  <?php
 			  //$this->show->pe($this->session->userdata('cart_contents'));
 			  $user_info 		=  $this->session->userdata('cart_contents');
-			  if($this->Tutor_model->is_logged_in(false, false)){
+              
+			  if(!empty($this->customer['tutor_id'])){
 			  
 			   //print_r($tutor_details);exit; 
 			  	$get_address 	= $this->Tutor_model->get_address($user_info['customer']['tutor_id']);                
@@ -29,7 +30,7 @@
             <div class="row-fluid well well-small"> <img class="row-fluid" src= "<?php if(!empty($get_address)){ echo base_url().'uploads/images/full/'.$get_address[0]->avatar;} if(!empty($get_address_cus)){ echo base_url().'uploads/images/full/'.$get_address_cus[0]->image;}
 			?>"> </div>
             <ul class="nav1 nav-tabs dark nav-stacked">
-            <?php if($this->Tutor_model->is_logged_in(false, false)):?>
+            <?php if(!empty($this->customer['tutor_id'])):?>
 			<li><a href="<?= base_url();?>dashboard/"><i class="gicon-dashboard"></i>Dashboard</a></li>
               <li><a href="<?= base_url();?>dashboard/my_profile"><i class="gicon-user"></i>Profile</a></li>
               <li><a href="<?= base_url();?>dashboard/course"><i class="gicon-course"></i>My Course</a></li>
@@ -39,7 +40,7 @@
               <?php else:?>
              
               <li><a href="<?= base_url();?>dashboard/"><i class="gicon-dashboard"></i>Dashboard</a></li>
-              <li><a href="<?= base_url();?>secure/my_account"><i class="gicon-user"></i>Profile</a></li>
+              <li><a href="<?= base_url();?>dashboard/my_account"><i class="gicon-user"></i>Profile</a></li>
               <li><a href="<?= base_url();?>dashboard/course"><i class="gicon-course"></i>My Course</a></li>
               <li><a href="<?= base_url();?>dashboard/fourm"><i class="gicon-fourm"></i>Fourms</a></li>
               <li><a href="<?= base_url();?>dashboard/file_manager"><i class="gicon-filemanager"></i>File Manasger</a></li>

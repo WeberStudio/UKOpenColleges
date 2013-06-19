@@ -66,7 +66,7 @@
                 </div>
                 <div class="controls span4">
                   <?php
-					echo form_dropdown('status', $this->config->item('order_statuses'), $order->status, 'class="chzn-select"');
+					echo form_dropdown('status', $this->config->item('order_statuses'), ucfirst($order->status), 'class="chzn-select"');
 					?>
                 </div>				
               </div>

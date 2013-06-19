@@ -1,15 +1,6 @@
 <?php
 $address_form_prefix ="";
-$countries = $this->Location_model->get_countries_menu();
 
-if(!empty($tutor[$address_form_prefix.'_address']['country_id']))
-{
-	$zone_menu	= $this->Location_model->get_zones_menu($tutor[$address_form_prefix.'_address']['country_id']);
-}
-else
-{
-	$zone_menu = array(''=>'')+$this->Location_model->get_zones_menu(array_shift(array_keys($countries)));
-}
 
 //$company	= array('id'=>'company', 'class'=>'input-text', 'name'=>'company', 'value'=> set_value('company', $tutor['company']));
 $first		= array('id'=>'firstname', 'class'=>'input-text', 'name'=>'firstname', 'value'=> set_value('firstname', $tutor['firstname']));
@@ -84,13 +75,13 @@ $address_form_prefix ="";
 					<p class="form-row form-row-first" id="billing_city_field">
 						<label for="billing_city" class=""><?php echo lang('address_country');?><abbr class="required" title="required">*</abbr>
 						</label>
-						<?php echo form_dropdown('country',$countries, @$tutor['country'], 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+						<?php echo form_dropdown('country',$countries_menu, @$tutor['country'], 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 						
 					</p>
 					<p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
 						<label for="billing_postcode" class=""><?php echo lang('address_state');?><abbr class="required" title="required">*</abbr>
 						</label>
-						<?php echo form_dropdown('state',$zone_menu, @$tutor['state'], 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+						<?php echo form_dropdown('state',$zones_menu, @$tutor['state'], 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 						
 					</p>
 					<div class="clear"></div>
@@ -143,8 +134,6 @@ $address_form_prefix ="";
 				});
 				
 			});
-			j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
-				  j('#f_zone_id').html(data);
-				});
+			
 	});
 </script>

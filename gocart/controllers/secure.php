@@ -461,7 +461,7 @@ class Secure extends Front_Controller {
 		
 		//$this->show->pe($_REQUEST);
 		//make sure they're logged in
-		$this->Customer_model->is_logged_in('secure/my_account/');
+		//$this->Customer_model->is_logged_in('secure/my_account/');
 	
 		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
 		$data['customer']			= (array)$this->Customer_model->get_customer($this->customer['id']);			

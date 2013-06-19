@@ -371,4 +371,14 @@ Class order_model extends CI_Model
 		
 	}
 	
+	function get_order_by_order_number($order_number)
+	{
+		$this->db->where('order_number', $order_number);
+		$result 			= $this->db->get('orders');		
+		$order				= $result->row();
+		$order->contents	= $this->get_items($order->id);
+		
+		return $order;
+	}
+	
 }

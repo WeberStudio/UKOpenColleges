@@ -61,7 +61,7 @@
                              
                           ?>  
 						  
-                            <a href="<?=base_url()?>cart/product/<?=$course['product_id']?>" class="all">
+                            <a href="<?=base_url().$course['slug']?>" class="all">
                             <li class="item" style="height: 226px;"  data-id="id-1" data-type="<?php echo $course['category_id'];?>">
                              
                                 <div class="half <?=$class?>" style="height: 300px; width: 300px">
