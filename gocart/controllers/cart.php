@@ -508,7 +508,7 @@ class Cart extends Front_Controller {
 
 	
 
-	function product($id , $quantity = false)
+	function product($id , $quantity = false, $open = false)
 
 	{
 
@@ -597,7 +597,8 @@ class Cart extends Front_Controller {
 		//$this->show->pe($data);
 		
 		
-		$data['quantities'] = $quantity;		
+		$data['quantities'] = $quantity;
+		$data['open'] 		= $open;		
 
 		$this->load->view('courseDetails', $data);
 
@@ -1147,5 +1148,57 @@ class Cart extends Front_Controller {
 		}
 
 	}
+	
+	
+	function review()
+	{
+		$this->load->model('Product_model');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[128]');
+		$this->form_validation->set_rules('name', 'Name', 'trim|required');
+		//$this->form_validation->set_rules('rating', 'Rating', 'trim|required');
+		$this->form_validation->set_rules('review', 'Review', 'trim|required');
+		if($this->form_validation->run() == false)
+		{
+			echo "i am in there"; exit;
+			redirect('cart/product/'.$this->input->post('product_id'));
+		}
+		else
+		{
+			$save['name']			= $this->input->post('name');
+			$save['email']			= $this->input->post('email');
+			$save['product_id']		= $this->input->post('product_id');
+			$save['review']			= $this->input->post('review');
+			$save['rating']			= $this->input->post('rating');
+			$this->Product_model->save_rating($save);
+			redirect('cart/product/'.$this->input->post('product_id'));
+			
+		}
+		
+		
+	}
+	
+	function question()
+	{
+		//echo $this->input->post('product_id')."<br/>";
+		//echo $this->input->post('question'); exit;
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('question', 'Question', 'trim|required');
+		if($this->form_validation->run() == false)
+		{
+			redirect('cart/product/'.$this->input->post('product_id'));
+		}
+		else
+		{
+			$save['product_id']		= $this->input->post('product_id');
+			$save['question']			= $this->input->post('question');
+			$this->Product_model->save_question($save);
+			redirect('cart/product/'.$this->input->post('product_id'));
+			
+		}
+		
+	}
+	
+	
 
 }

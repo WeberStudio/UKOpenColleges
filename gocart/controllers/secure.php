@@ -134,9 +134,17 @@ class Secure extends Front_Controller {
 			$password	= $this->input->post('password');
 			$remember   = $this->input->post('remember');
 			$redirect	= $this->input->post('redirect');
+			$review 	= $this->input->post('review_login');
 			$login		= $this->Customer_model->login($email, $password, $remember);
 			if ($login)
 			{
+				if($review)
+				{
+					$open = 1;
+					
+					redirect('cart/product/'.$this->input->post('product_id')."/false/".$open);
+				}
+				
 				//echo " found it"; exit;
 				redirect('dashboard');
 				/*if ($redirect == '')
