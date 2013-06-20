@@ -1074,7 +1074,8 @@ left: 0px;
 
 }
 
-.tiled-menu li:hover ul ul{ display:block !important;}
+/*.tiled-menu li ul ul, .tiled-menu li:hover ul.sub-menu.with-counts{ display:block !important;}*/
+.tiled-menu li:hover ul.sub-menu.with-counts.lhome{ display:block !important;}
 
 .tiled-menu li ul li {
 
@@ -5758,21 +5759,23 @@ padding-bottom:0px;
 
 .works-list.boxstyle1 .half{
 width: 372px !important;
-
+	border-top:10px solid #fff;
+    border-left:10px solid #fff;
+    border-right:10px solid #fff;
 }
 .works-list.boxstyle1 .half:hover{
-border-top:10px solid rgba(87, 186, 232,);
-    border-left:10px solid rgba(87, 186, 232,);
-    border-right:10px solid rgba(87, 186, 232,);
+	border-top:10px solid #58bae9;
+    border-left:10px solid #58bae9;
+    border-right:10px solid #58bae9;
 }
 
 
 .works-list.boxstyle1 .item:hover, .works-list.boxstyle1 .item:hover .half{
 }
 
-.works-list.boxstyle1 .item .description{ bottom: 0%; background: none;}
-.works-list.boxstyle1 .item:hover .description{ bottom:-33%; left:0px;
-background: none repeat scroll 0 0 rgba(87, 186, 232, 1.0);
+.works-list.boxstyle1 .item .description{ bottom: 0%; background: none; top:auto;}
+.works-list.boxstyle1 .item:hover .description{ bottom:-43%; left:0px; top:auto;
+background: #58bae9;
     -moz-transition: all 1.2s;
     -webkit-transition: all 1.2s;
     -o-transition: all 1.2s;
@@ -5781,20 +5784,22 @@ background: none repeat scroll 0 0 rgba(87, 186, 232, 1.0);
 
 
 .works-list.boxstyle1 .item .description .title{
-    top:auto; bottom:0; background: url("../images/img/mini-icons/pencil.png") no-repeat 15px 0px;
+    background: url("../images/img/mini-icons/pencil.png") no-repeat 15px 0px;
     -moz-transition: all 1.2s;
     -webkit-transition: all 1.2s;
     -o-transition: all 1.2s;
     transition: all 1.2s;
+	bottom:-20px;	
 }
 
-.works-list.boxstyle1 .item:hover .description .title{ top:20%; }
+.works-list.boxstyle1 .item:hover .description .title{ bottom:120px}
 
     
 
 .works-list.boxstyle1 .item .pic{ text-align:center;}
 .works-list.boxstyle1 .item .pic img,.works-list.boxstyle1 .item .pic:hover img{
     height:165px !important; width:352px;
+	
     -moz-transform: scale(1.0);
 
     -webkit-transform: scale(1.0);
@@ -5837,6 +5842,12 @@ background: none repeat scroll 0 0 rgba(87, 186, 232, 1.0);
 p.readmore{ text-align: center;}
 .works-list.boxstyle1 .item:hover .description p.readmore span{ background: none; }
 
+.category-bottom-gap
+{
+	padding: 10px 0 0 10px;
+	float:left;
+	width:100%;
+}
 
 
 /* works-list boxstyle1 eND */

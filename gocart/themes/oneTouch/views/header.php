@@ -1,7 +1,7 @@
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
 <?php //include('leftPanel.php'); ?>
 <div id="body-wrapper" >
-<div id="body-wrapper-padding">
+<div id="body-wrapper-padding"   >
 <!--[if lt IE 7]>
 <div class="alert">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different
 browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to
@@ -17,7 +17,7 @@ experience this site.
 
 ?>
 
-<nav class="eleven columns" id="topmenu">
+<nav class="eleven columns" id="topmenu"  >
 
 
 <div class="clear"> </div>
@@ -30,15 +30,14 @@ experience this site.
     </div>
     <div class="clear"></div>	
     <ul id="menu-primary-navigation" class="tiled-menu" style="margin-left: 0px;">
-        <li class="menu-portfolio">
+        <li   class="menu-portfolio" >
             <span class="menu-item-wrap">
                 <a  href="<?=base_url()?>cart/allcourses/" style='background-color:#cecece; background-size:cover; background-image:none;' >
                     <span class="link-text">All Courses</span><span class="arrow">&nbsp;</span>                      
                     <span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/text_w@2x.png");?>)'></span>
-                </a>
-				
+                </a>				
 			</span> 	
-			<ul class="ltrs">
+			<ul class="ltrs" >
 			  
 			  <li><a href="#" onClick="#">View all - by location - by author - by subject</a></li>
 			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">A</a></li>
@@ -62,9 +61,9 @@ experience this site.
 			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">U</a></li>
 			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">V</a></li>
 			  <li><a href="" onClick="toggleSubjectLetter(this.innerHTML);return false;">W</a></li>			  
-			  <li>
-			  	<div class="mm-data cols_2" id="subjectMenuItems">
-				  <ul class="sub-menu with-counts lhome" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; display:block !important;">
+			  <li>   
+			  	<div class="mm-data cols_2" id="subjectMenuItems" > 
+				  <ul class="sub-menu with-counts lhome" id="home" style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; display:block ;">
 					<?
 					foreach($categories as $key => $cat_info)
 					   {
@@ -86,7 +85,7 @@ experience this site.
 						
 			  
 			  ?>					  
-					  <ul class="sub-menu with-counts l<?=$key?>"  style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; ">
+					  <ul class="sub-menu with-counts l<?=$key?>"  style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; display:none ;">
 					  <? foreach($cat_info as $cat)
 						{ ?>							  
 							<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (<?=$cat['count']?>)</span></a></li>									
@@ -155,15 +154,30 @@ experience this site.
 </nav>
   <script type="text/javascript">
 	jQuery(document).ready(function () {
-		toggleSubjectLetter('home');
+		toggleSubjectLetter('lhome');
 	});
-	function toggleSubjectLetter(letter) {
+	
+    
+    function toggleSubjectLetter(letter) {  
+        
 		jQuery('div#subjectMenuItems')
 		.children('ul').hide()
 		.parent().children('ul.l' + (letter == '#' ? '_' : letter))
 		.show();
+        if(letter != 'lhome')
+        {
+            jQuery("#home li").hide();
+         }
+         if(letter == 'showhome')
+        {
+           // alert('ds');
+            jQuery("#home li").show();
+            console.log('dddddd');
+         }
+                 
 		jQuery('div#subjectMenuTab ul.ltrs > li > a').each(function () {
 			var e = jQuery(this);
+           
 			if (e.html() === letter)
 				e.parent().addClass('cur').siblings('li.cur').removeClass('cur');
 		});
@@ -219,7 +233,7 @@ experience this site.
 </div>
 <div class="row">
 <div align="right">
-<a href="javascript:void(0)" class="button" style="width:130px;">checkOut</a>
+<a href="<?php echo site_url('cart/view_cart');?>" class="button" style="width:130px;">checkOut</a>
 </div>
 </div> 
 <!--<div><span style="padding 15 15 15 15; float : right; margin-right:15px;"><a href="<?php echo site_url('cart/view_cart');?>" class="add_to_cart_button button product_type_simple" rel="nofollow" data-product_id="868">
@@ -252,6 +266,8 @@ experience this site.
         <?php if($this->Tutor_model->is_logged_in(false, false)):?>
         <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a><!--<span style="color:red;">/</span>--> <!--<a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>--></span>
         <?php elseif($this->Customer_model->is_logged_in(false, false)):?>
+        <a href="<?php echo site_url('secure/logout');?>" style="color:red;"><?php echo lang('logout');?></a>
+        <span style="color:red;">/</span>  
          <a href="<?php echo  site_url('dashboard/');?>" style="color:red;">Dashboard</a>
 		</h1>
         

@@ -1,5 +1,4 @@
 <?php
-
 $f_id		= array('id'=>'f_id', 'style'=>'display:none;', 'name'=>'id', 'value'=> set_value('id',$id));
 $f_company	= array('id'=>'f_company', 'class'=>'span12', 'name'=>'company', 'value'=> set_value('company',$company));
 $f_address1	= array('id'=>'f_address1', 'class'=>'span12', 'name'=>'address1', 'value'=>set_value('address1',$address1));

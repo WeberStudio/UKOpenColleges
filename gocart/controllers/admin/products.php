@@ -467,10 +467,13 @@ class Products extends Admin_Controller {
 			}
 			
 			// Upload Image
-			if(!empty($_FILES['image']['name']))
+			//if(!empty($_FILES['image']['name']))
+            $uploaded = $_POST['media_image'];
+            if($uploaded)
 			{
 				
-				$save['images']	 = $this->product_image_upload();
+				$save['images']	 = $this->product_image_upload($_POST['image_path'], $uploaded);
+                $save['images']  = $uploaded;
 			}
 
 			$save['id']					= $id;
@@ -613,7 +616,7 @@ class Products extends Admin_Controller {
 		$this->load->view($this->config->item('admin_folder').'/iframe/product_image_uploader', $data);
 	}
 	
-	function product_image_upload()
+	function product_image_upload($path_image, $image_name)
 	{
 		
 		//$this->show->pe($_FILES);
@@ -626,7 +629,7 @@ class Products extends Admin_Controller {
 		$config['encrypt_name']		= true;
 		$this->load->library('upload', $config);
 		
-		if ($this->upload->do_upload('image'))
+		if ($path_image)
 		{
 			
 			$upload_data	= $this->upload->data();
@@ -647,8 +650,8 @@ class Products extends Admin_Controller {
 			
 			//this is the larger image
 			$config['image_library'] = 'gd2';
-			$config['source_image'] = 'uploads/images/full/'.$upload_data['file_name'];
-			$config['new_image']	= 'uploads/images/medium/'.$upload_data['file_name'];
+			$config['source_image'] = 'uploads/wysiwyg/'.$path_image;
+			$config['new_image']	= 'uploads/images/medium/'.$image_name;
 			$config['maintain_ratio'] = TRUE;
 			$config['width'] = 600;
 			$config['height'] = 500;
@@ -658,8 +661,8 @@ class Products extends Admin_Controller {
 
 			//small image
 			$config['image_library'] = 'gd2';
-			$config['source_image'] = 'uploads/images/medium/'.$upload_data['file_name'];
-			$config['new_image']	= 'uploads/images/small/'.$upload_data['file_name'];
+			$config['source_image'] = 'uploads/images/medium/'.$image_name;
+			$config['new_image']	= 'uploads/images/small/'.$image_name;
 			$config['maintain_ratio'] = FALSE;
 			$config['width'] = 300;
 			$config['height'] = 300;
@@ -669,8 +672,8 @@ class Products extends Admin_Controller {
 
 			//cropped thumbnail
 			$config['image_library'] = 'gd2';
-			$config['source_image'] = 'uploads/images/small/'.$upload_data['file_name'];
-			$config['new_image']	= 'uploads/images/thumbnails/'.$upload_data['file_name'];
+			$config['source_image'] = 'uploads/images/small/'.$image_name;
+			$config['new_image']	= 'uploads/images/thumbnails/'.$image_name;
 			$config['maintain_ratio'] = TRUE;
 			$config['width'] = 70;
 			$config['height'] = 70;

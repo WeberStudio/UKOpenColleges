@@ -1,25 +1,16 @@
 <?php
 $address_form_prefix ="";
-$countries = $this->Location_model->get_countries_menu();
 
-if(!empty($customer[$address_form_prefix.'_address']['country_id']))
-{
-	$zone_menu	= $this->Location_model->get_zones_menu($customer[$address_form_prefix.'_address']['country_id']);
-}
-else
-{
-	$zone_menu = array(''=>'')+$this->Location_model->get_zones_menu(array_shift(array_keys($countries)));
-}
 
-$company	= array('id'=>'company', 'class'=>'input-text', 'name'=>'company', 'value'=> set_value('company', $customer['company']));
-$first		= array('id'=>'firstname', 'class'=>'input-text', 'name'=>'firstname', 'value'=> set_value('firstname', $customer['firstname']));
-$f_city		= array('id'=>'f_city', 'class'=>'input-text', 'name'=>'city', 'value'=>set_value('city',$customer['city']));
-$f_zip		= array('id'=>'f_zip', 'maxlength'=>'10', 'class'=>'input-text', 'name'=>'zip', 'value'=> set_value('zip', $customer['post_code']));
-$f_address1	= array('id'=>'f_address1', 'class'=>'input-text', 'name'=>'address1', 'value'=>set_value('address1', $customer['address_street']));
-$f_address2	= array('id'=>'f_address2', 'class'=>'input-text', 'name'=>'address2', 'value'=> set_value('address2', $customer['address_line']));
-$last		= array('id'=>'lastname', 'class'=>'input-text', 'name'=>'lastname', 'value'=> set_value('lastname', $customer['lastname']));
-$email		= array('id'=>'email', 'class'=>'input-text', 'name'=>'email', 'value'=> set_value('email', $customer['email']));
-$phone		= array('id'=>'phone', 'class'=>'input-text', 'name'=>'phone', 'value'=> set_value('phone', $customer['phone']));
+$company	= array('id'=>'company', 'class'=>'input-text', 'name'=>'company', 'value'=> set_value('company', $customer_data['company']));
+$first		= array('id'=>'firstname', 'class'=>'input-text', 'name'=>'firstname', 'value'=> set_value('firstname', $customer_data['firstname']));
+$f_city		= array('id'=>'f_city', 'class'=>'input-text', 'name'=>'city', 'value'=>set_value('city',$customer_data['city']));
+$f_zip		= array('id'=>'f_zip', 'maxlength'=>'10', 'class'=>'input-text', 'name'=>'zip', 'value'=> set_value('zip', $customer_data['post_code']));
+$f_address1	= array('id'=>'f_address1', 'class'=>'input-text', 'name'=>'address1', 'value'=>set_value('address1', $customer_data['address_street']));
+$f_address2	= array('id'=>'f_address2', 'class'=>'input-text', 'name'=>'address2', 'value'=> set_value('address2', $customer_data['address_line']));
+$last		= array('id'=>'lastname', 'class'=>'input-text', 'name'=>'lastname', 'value'=> set_value('lastname', $customer_data['lastname']));
+$email		= array('id'=>'email', 'class'=>'input-text', 'name'=>'email', 'value'=> set_value('email', $customer_data['email']));
+$phone		= array('id'=>'phone', 'class'=>'input-text', 'name'=>'phone', 'value'=> set_value('phone', $customer_data['phone']));
 $password 	= array('id'=>'password','name'=>'password','class'=>'input-text','placeholder'=>'Password'); 
 $con_password 	= array('id'=>'confirm','name'=>'confirm','class'=>'input-text','placeholder'=>'Confirm'); 
 $address_form_prefix ="";
@@ -37,7 +28,7 @@ $address_form_prefix ="";
           <!-- End .legend -->
          <div class="row">
 		<div id="content" class="fifteen columns">
-		<?php echo form_open_multipart(base_url().'secure/my_account/0/'.$customer['id']); ?>
+		<?php echo form_open_multipart(base_url().'dashboard/my_account/0/'.$customer_data['id']); ?>
 		
 		<div class="col-1">
 				<h3>My Account</h3>
@@ -84,13 +75,13 @@ $address_form_prefix ="";
 					<p class="form-row form-row-first" id="billing_city_field">
 						<label for="billing_city" class=""><?php echo lang('address_country');?><abbr class="required" title="required">*</abbr>
 						</label>
-						<?php echo form_dropdown('country_id',$countries, @$customer['country'], 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+						<?php echo form_dropdown('country_id',$countries_menu, @$customer_data['country'], 'id="country_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 						
 					</p>
 					<p class="form-row form-row-last update_totals_on_change" id="billing_postcode_field">
 						<label for="billing_postcode" class=""><?php echo lang('address_state');?><abbr class="required" title="required">*</abbr>
 						</label>
-						<?php echo form_dropdown('zone_id',$zone_menu, @$customer['state'], 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
+						<?php echo form_dropdown('zone_id',$zones_menu, @$customer_data['state'], 'id="f_zone_id" class="country_to_state form-row-first update_totals_on_change country_select chzn-done"');?>
 						
 					</p>
 					<div class="clear"></div>				
@@ -141,8 +132,6 @@ $address_form_prefix ="";
 				});
 				
 			});
-			j.post('<?php echo site_url('locations/get_zone_menu');?>',{id:j('#country_id').val()}, function(data) {
-				  j('#f_zone_id').html(data);
-				});
+			
 	});
 </script>

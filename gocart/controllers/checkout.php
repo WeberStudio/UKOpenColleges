@@ -561,12 +561,38 @@ class Checkout extends Front_Controller {
                'card_no'        => $card_num,            
         );
         
-        $this->Order_model->save_order($update_array, $contents = false);
-           /* echo '<pre>';
-            print_r($response);
-           // print_r($update_array);
-           // print_r($customer);
-            exit;    */
+        $this->Order_model->save_order($update_array, $contents = false);         
+        
+        $email_attributes     = $this->Settings_model->get_system_email('login');
+        $order_info           = $this->Order_model->get_order_by_order_number($order_id);
+        $slip_html            = $this->create_slip($order_info);
+        $message  = '';
+        $message .= $email_attributes[0]['email_header'];        
+        $message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Order has been placed successfully!</singleline></p><div align="left" class="article-content">  <multiline label="Description"></multiline>We are pleased to tell you that your order has been placed with us under the details you provided. Any course/order related information would be directed to you on your registered ID. We wish you good luck for your study plan with UK Open College.</div></td></tr><tr><td class="w580" width="100%" height="10">'.$slip_html.'<br><br></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+        $message .= $email_attributes[0]['email_footer'];
+        $this->load->library('email');                
+        $config['mailtype'] = 'html';
+        // Send the user a confirmation email        
+       
+        $this->email->initialize($config);        
+        $this->email->from($this->config->item('email'), $this->config->item('company_name'));                
+        if($this->Customer_model->is_logged_in(false, false))
+        {
+            $to =           $data['customer']['email'];
+            $this->email->to($to);
+        }
+        else if(!empty($data['customer']['ship_address']['email']))
+        {
+            $to =           $data['customer']['ship_address']['email'];  
+            $this->email->to($to);
+        }              
+        
+        $this->email->bcc($this->config->item('bcc_email'));                
+        $this->email->subject('Student Order Placement E-mail');
+        $this->email->message(html_entity_decode($message));            
+        $this->email->send();
+        //echo $this->email->print_debugger(); exit; 
+          
       $this->session->set_flashdata('message', "<div  class='woocommerce_message'>Your Order Have Been Submitted Successfully!</div>");
        $this->go_cart->destroy();
        redirect('cart/view_cart');
@@ -578,7 +604,7 @@ class Checkout extends Front_Controller {
 	{		
             
 		// retrieve the payment method
-       // DebugBreak();
+        //DebugBreak();
         $payment['module']                  = "paypal_express";
         $payment['description']             = "PayPal Express";		
         $paypal_express['name']             = "PayPal Express";
@@ -587,10 +613,10 @@ class Checkout extends Front_Controller {
 		
 		
 		//make sure they're logged in if the config file requires it
-		if($this->config->item('require_login'))
+		/*if($this->config->item('require_login'))
 		{
 			$customer_data = $this->Customer_model->is_logged_in(false, false);           
-		}
+		}     */
         
         
         
@@ -629,15 +655,50 @@ class Checkout extends Front_Controller {
        }
       
 		
-			
+			                 
 	   $order_id = $this->go_cart->save_order();
 	   $this->session->set_flashdata('message', "<div  class='woocommerce_message'>Your Order Have Been Submitted Successfully!</div>");
+       
+       $data['order_id']           = $order_id;           
+       $data['payment']            = $this->go_cart->payment_method();
+       $data['customer']           = $this->go_cart->customer(); 
+       
+       
+        
+        $email_attributes     = $this->Settings_model->get_system_email('login');
+        $order_info           = $this->Order_model->get_order_by_order_number($order_id);
+        $slip_html            = $this->create_slip($order_info);
+        $message  = '';
+        $message .= $email_attributes[0]['email_header'];        
+        $message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Order has been placed successfully!</singleline></p><div align="left" class="article-content">  <multiline label="Description"></multiline>We are pleased to tell you that your order has been placed with us under the details you provided. Any course/order related information would be directed to you on your registered ID. We wish you good luck for your study plan with UK Open College.</div></td></tr><tr><td class="w580" width="100%" height="10">'.$slip_html.'<br><br></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+        $message .= $email_attributes[0]['email_footer'];
+        $this->load->library('email');                
+        $config['mailtype'] = 'html';
+        // Send the user a confirmation email        
+       
+        $this->email->initialize($config);        
+        $this->email->from($this->config->item('email'), $this->config->item('company_name'));                
+        if($this->Customer_model->is_logged_in(false, false))
+        {
+            $to =           $data['customer']['email'];
+            $this->email->to($to);
+        }
+        else if(!empty($data['customer']['ship_address']['email']))
+        {
+            $to =           $data['customer']['ship_address']['email'];  
+            $this->email->to($to);
+        }              
+        
+        $this->email->bcc($this->config->item('bcc_email'));                
+        $this->email->subject('Student Order Placement E-mail');
+        $this->email->message(html_entity_decode($message));            
+        $this->email->send();
+        //echo $this->email->print_debugger(); exit;
+       
        $this->go_cart->destroy();
        redirect('cart/view_cart');
 		
-		$data['order_id']			= $order_id;   		
-		$data['payment']			= $this->go_cart->payment_method();
-		$data['customer']			= $this->go_cart->customer();
+		
 		
 		// run the complete payment module method once order has been saved
 		if(!empty($payment))
@@ -649,33 +710,7 @@ class Checkout extends Front_Controller {
 			}
 		}
 	
-		// Send the user a confirmation email
 		
-		
-			
-		$this->load->library('email');
-		
-		$config['mailtype'] = 'html';
-		$this->email->initialize($config);
-
-		$this->email->from($this->config->item('email'), $this->config->item('company_name'));
-		
-		if($this->Customer_model->is_logged_in(false, false))
-		{
-			$this->email->to($data['customer']['email']);
-		}
-		else
-		{
-			$this->email->to($data['customer']['ship_address']['email']);
-		}
-		
-		//email the admin
-		$this->email->bcc($this->config->item('email'));
-		
-		$this->email->subject($row['subject']);
-		$this->email->message($row['content']);
-		
-		$this->email->send();
 		
 		$data['page_title'] = 'Thanks for shopping with '.$this->config->item('company_name');
 		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
@@ -697,4 +732,122 @@ class Checkout extends Front_Controller {
 		/*  show final confirmation page */
 		$this->load->view('order_placed', $data); 
 	} 
+    
+    function create_slip($order)
+    {
+        
+        
+        $slip_html = '<div style="font-size:12px; font-family:arial, verdana, sans-serif;">';
+        
+        if ($this->config->item("site_logo")) : 
+        $slip_html .= '<div class="article-title"><!--<img src="base_url($this->config->item("site_logo"))" />--><h2>Invoice Details</h2></div>';
+        endif;
+        
+        $slip_html .= '<table style="border:1px solid #eee; width:100%; font-size:13px;" cellpadding="5" cellspacing="0"> <tr> <td style="width:20%; vertical-align:top;" class="packing"> <h2 style="margin:0px">*'.$order->order_number.'*</h2>';
+                
+                    
+        
+        
+        $slip_html .= '</td><td style="width:40%; vertical-align:top;"><strong>Bill To Address</strong><br/>';                
+        $slip_html .= (!empty($order->bill_company))?$order->bill_company.'<br/>':'';
+        $slip_html .= $order->bill_firstname.' '.$order->bill_lastname.'<br/>'.$order->bill_address1.'<br>';
+        $slip_html .= (!empty($order->bill_address2))?$order->bill_address2.'<br/>':'';
+        $slip_html .= $order->bill_city.', '.$order->bill_zone.' '.$order->bill_zip.'<br/>'.$order->bill_country.'<br/>'.$order->bill_email.'<br/>'.$order->bill_phone.'</td><td style="width:40%; vertical-align:top;" class="packing"><strong>Status</strong>'.$order->status.'</td></tr><tr><td style="border-top:1px solid #eee;"></td><td style="border-top:1px solid #eee;"><strong>Payment Method</strong>'.$order->payment_info.'</td><td style="border-top:1px solid #eee;"><strong>Shipping Details</strong>'.$order->shipping_method.'</td></tr>';
+                    
+       
+        
+        if(!empty($order->notes)):
+        $slip_html .= '<tr><td colspan="3" style="border-top:1px solid #eee;"><strong>Notes</strong><br/>'.$order->notes.'</td></tr>';
+        endif;
+            
+        $slip_html .= '</table> <table border="1" style="width:100%; margin-top:10px; border-color:#eee; font-size:13px; border-collapse:collapse;" cellpadding="5" cellspacing="0"> <thead> <tr> <th width="5%" class="packing"> Quantity </th> <th width="20%" class="packing"> Name </th> <th class="packing" > Description </th> </tr> </thead>';
+        $items = $order->contents ;
+        foreach($order->contents as $orderkey=>$product):
+            $img_count = 1;
+        
+            $slip_html .= '<tr><td class="packing" style="font-size:20px; font-weight:bold;">'.$product['quantity'].'</td><td class="packing">'.$product['name'];
+            $slip_html .= (trim($product['sku']) != '')?'<br/><small>sku: '.$product['sku'].'</small>':''.'</td><td class="packing">';
+            
+                    if(isset($product['options']))
+                    {
+                        foreach($product['options'] as $name=>$value)
+                        {
+                            $name = explode('-', $name);
+                            $name = trim($name[0]);
+                            if(is_array($value))
+                            {
+                                $slip_html .= '<div>'.$name.':<br/>';
+                                foreach($value as $item)
+                                {
+                                    $slip_html .= '- '.$item.'<br/>';
+                                }    
+                                $slip_html .="</div>";
+                            }
+                            else
+                            {
+                                $slip_html .='<div>'.$name.': '.$value.'</div>';
+                            }
+                        }
+                    }
+                    
+            $slip_html .= '</td></tr>';
+            
+            endforeach;
+            
+            $slip_html .= '</table> <table border="1" style="width:100%; margin-top:10px; border-color:#eee; font-size:13px; border-collapse:collapse;" cellpadding="5" cellspacing="0"> <thead><tr><th>Name</th><th>Description</th><th>Price</th><th>Quantity</th><th>Total</th></tr></thead><tbody>';
+            
+            foreach($order->contents as $orderkey=>$product):
+            
+            $slip_html .= '<tr><td>'.$product['name'];
+            $slip_html .= (trim($product['sku']) != '')?'<br/><small>'.lang('sku').': '.$product['sku'].'</small>':'';
+            
+            $slip_html .= '</td><td>';
+            
+                   if(isset($product['options']))
+                    {
+                        foreach($product['options'] as $name=>$value)
+                        {
+                            $name = explode('-', $name);
+                            $name = trim($name[0]);
+                            if(is_array($value))
+                            {
+                                $slip_html .= '<div>'.$name.':<br/>';
+                                foreach($value as $item)
+                                {
+                                    $slip_html .=  '- '.$item.'<br/>';
+                                }    
+                                $slip_html .=  "</div>";
+                            }
+                            else
+                            {
+                                $slip_html .=  '<div>'.$name.': '.$value.'</div>';
+                            }
+                        }
+                    }
+                    
+                        if(isset($product['gc_status'])) $slip_html .=  $product['gc_status'];
+                
+                        $slip_html .=  '</td><td>'.format_currency($product['price']).'</td><td>'.$product['quantity'].'</td><td>'.format_currency($product['price']*$product['quantity']).'</td></tr>';
+                
+                    endforeach;
+            
+            $slip_html .=  '</tbody><tfoot>';
+            
+            if($order->coupon_discount > 0):
+            $slip_html .=  '<tr> <td><strong>Coupon Discount</strong></td> <td colspan="3"></td> <td>'.format_currency(0-$order->coupon_discount).'</td></tr>';
+            endif;
+            
+            $slip_html .=  '<tr><td><strong>Subtotal</strong></td><td colspan="3"></td><td>'.format_currency($order->subtotal).'</td></tr>';
+            $charges = @$order->custom_charges; 
+            if(!empty($charges)) 
+            { 
+                foreach($charges as $name=>$price) :
+                $slip_html .=  '<tr><td><strong>'.$name.'</strong></td> <td colspan="3"></td><td>'.format_currency($price).'</td></tr>';
+                endforeach;
+            }
+            $slip_html .=  '<tr><td><h3>Total</h3></td><td colspan="3"></td><td><strong>'.format_currency($order->total).'</strong></td></tr></tfoot></table></div>';
+            
+            return $slip_html;
+        
+    }
 }

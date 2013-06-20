@@ -3,12 +3,13 @@ Class Customer_model extends CI_Model
 {
 
 	//this is the expiration for a non-remember session
-	var $session_expire	= 7200;
+	//var $session_expire	= 7200;
 	
 	
 	function __construct()
 	{
 			parent::__construct();
+			$this->session_expire = 7200;
 	}
 	
 	/********************************************************************
@@ -195,137 +196,148 @@ Class Customer_model extends CI_Model
 	
 	function login($email, $password, $remember=false)
 	{
-		$this->db->select('*');
-		$this->db->where('email', $email);
-		$this->db->where('active', 1);
-		$this->db->where('password', sha1($password));
-		$this->db->limit(1);
-		$result = $this->db->get('customers');
-		$customer	= $result->row_array();
-		//print_r($customer); exit;
-		if ($customer)
-		{
-			
-			// Retrieve customer addresses
-			$this->db->where(array('customer_id'=>$customer['id'], 'id'=>$customer['default_billing_address']));
-			$address = $this->db->get('customers_address_bank')->row_array();
-			if($address)
-			{
-				$fields = unserialize($address['field_data']);
-				$customer['bill_address'] = $fields;
-				$customer['bill_address']['id'] = $address['id']; // save the addres id for future reference
-			}
-			
-			$this->db->where(array('customer_id'=>$customer['id'], 'id'=>$customer['default_shipping_address']));
-			$address = $this->db->get('customers_address_bank')->row_array();
-			if($address)
-			{
-				$fields = unserialize($address['field_data']);
-				$customer['ship_address'] = $fields;
-				$customer['ship_address']['id'] = $address['id'];
-			} else {
-				 $customer['ship_to_bill_address'] = 'true';
-			}
-			
-			
-			// Set up any group discount 
-			if($customer['group_id']!=0) 
-			{
-				$group = $this->get_group($customer['group_id']);
-				if($group) // group might not exist
-				{
-					if($group->discount_type == "fixed")
-					{
-						$customer['group_discount_formula'] = "- ". $group->discount; 
-					}
-					else
-					{
-						$percent	= (100-(float)$group->discount)/100;
-						$customer['group_discount_formula'] = '* ('.$percent.')';
-					}
-				}
-			}
-			
-			if(!$remember)
-			{
-				$customer['expire'] = time()+$this->session_expire;
-			}
-			else
-			{
-				$customer['expire'] = false;
-			}
-			
-			// put our customer in the cart
-			$this->go_cart->save_customer($customer);
+        
+      // DebugBreak(); 
+        $this->db->select('*');
+        $this->db->where('email', $email);
+        $this->db->where('active', 1);
+        $this->db->where('password',  sha1($password));
+        $this->db->limit(1);
+        $result = $this->db->get('customers');
+        $customer    = $result->row_array();
+        
+        if ($customer)
+        {
+            
+            // Retrieve customer addresses
+            $this->db->where(array('customer_id'=>$customer['id'], 'id'=>$customer['default_billing_address']));
+            $address = $this->db->get('customers_address_bank')->row_array();
+            if($address)
+            {
+                $fields = unserialize($address['field_data']);
+                $customer['bill_address'] = $fields;
+                $customer['bill_address']['id'] = $address['id']; // save the addres id for future reference
+            }
+            
+            $this->db->where(array('customer_id'=>$customer['id'], 'id'=>$customer['default_shipping_address']));
+            $address = $this->db->get('customers_address_bank')->row_array();
+            if($address)
+            {
+                $fields = unserialize($address['field_data']);
+                $customer['ship_address'] = $fields;
+                $customer['ship_address']['id'] = $address['id'];
+            } else {
+                 $customer['ship_to_bill_address'] = 'true';
+            }
+            
+            
+            // Set up any group discount 
+            if($customer['group_id']!=0) 
+            {
+                $group = $this->get_group($customer['group_id']);
+                if($group) // group might not exist
+                {
+                    if($group->discount_type == "fixed")
+                    {
+                        $customer['group_discount_formula'] = "- ". $group->discount; 
+                    }
+                    else
+                    {
+                        $percent    = (100-(float)$group->discount)/100;
+                        $customer['group_discount_formula'] = '* ('.$percent.')';
+                    }
+                }
+            }
+            
+            if(!$remember)
+            {
+                $customer['expire'] = time()+$this->session_expire;
+            }
+            else
+            {
+                $customer['expire'] = false;
+            }
+            
+            // put our customer in the cart
+            $this->go_cart->save_customer($customer);
 
-		
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
+        
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    } 	
 	function is_logged_in($redirect = false, $default_redirect = 'secure/login/')
-	{
-		
-		//$redirect allows us to choose where a customer will get redirected to after they login
-		//$default_redirect points is to the login page, if you do not want this, you can set it to false and then redirect wherever you wish.
-		
-		$customer = $this->go_cart->customer();
-		if (!isset($customer['id']))
-		{
-			//this tells gocart where to go once logged in
-			if ($redirect)
-			{
-				$this->session->set_flashdata('redirect', $redirect);
-			}
-			
-			if ($default_redirect)
-			{	
-				redirect($default_redirect);
-			}
-			
-			return false;
-		}
-		else
-		{
-		
-			//check if the session is expired if not reset the timer
-			/*if($customer['expire'] && $customer['expire'] < time())
-			{
+    {
+        
+        //$redirect allows us to choose where a customer will get redirected to after they login
+        //$default_redirect points is to the login page, if you do not want this, you can set it to false and then redirect wherever you wish.
+        
+        $user_info         =  $this->session->userdata('cart_contents');
+        
+        if(empty($user_info['customer']))
+        {
+             $customer = $this->go_cart->customer();
+        }
+        else
+        {
+            
+             $customer = $user_info['customer'];
+        }
+        
+            
+        if (!isset($customer['id']))
+        {
+            //this tells gocart where to go once logged in
+            if ($redirect)
+            {
+                $this->session->set_flashdata('redirect', $redirect);
+            }
+            
+            if ($default_redirect)
+            {    
+                redirect($default_redirect);
+            }
+            
+            return false;
+        }
+        else
+        {
+        
+            //check if the session is expired if not reset the timer
+            if($customer['expire'] && $customer['expire'] < time())
+            {
 
-				$this->logout();
-				if($redirect)
-				{
-					$this->session->set_flashdata('redirect', $redirect);
-				}
+                $this->logout();
+                if($redirect)
+                {
+                    $this->session->set_flashdata('redirect', $redirect);
+                }
 
-				if($default_redirect)
-				{
-					redirect('secure/login');
-				}
+                if($default_redirect)
+                {
+                    redirect('secure/login');
+                }
 
-				return false;
-			}
-			else
-			{*/
-				
+                return false;
+            }
+            else
+            {
 
-				//update the session expiration to last more time if they are not remembered
-				if($customer['expire'])
-				{
-					$customer['expire'] = time()+$this->session_expire;
-					$this->go_cart->save_customer($customer);
-				}
+                //update the session expiration to last more time if they are not remembered
+                if($customer['expire'])
+                {
+                    $customer['expire'] = time()+$this->session_expire;
+                    $this->go_cart->save_customer($customer);
+                }
 
-			
-			//}
+            }
 
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 	
 	function reset_password($email)
 	{
@@ -391,17 +403,17 @@ Class Customer_model extends CI_Model
 		}
 	}
 	
-	function get_address_pro()
+	function get_address_pro($id)
 	{
-	$customer = $this->go_cart->customer();
-	$result =	$this->db->query("SELECT oc_customers.*, oc_countries.name as country_name, oc_country_zones.code as state_code  FROM oc_customers 
-	JOIN oc_countries 
-	ON oc_customers.country = oc_countries.id 
-	JOIN oc_country_zones 
-	ON oc_customers.state = oc_country_zones.id 
-	WHERE oc_customers.id = '".$customer['id']."'");
-	// echo $this->db->last_query();
-	return $result->result();
-	}
+	          
+	    $result 	=	$this->db->query("SELECT oc_customers.*, oc_countries.name as country_name, oc_country_zones.code as state_code  FROM oc_customers 
+	    JOIN oc_countries 
+	    ON oc_customers.country = oc_countries.id 
+	    JOIN oc_country_zones 
+	    ON oc_customers.state = oc_country_zones.id 
+	    WHERE oc_customers.id = '".$id."'");
+	    // echo $this->db->last_query();
+	    return $result->result();
+	}                  
     
 }

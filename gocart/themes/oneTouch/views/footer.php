@@ -1,7 +1,3 @@
-
-
-
-
 <div id="darkf" >
     <section id="footer" role="contentinfo">
         <div class="row">
@@ -106,7 +102,8 @@
                     </div>
                 </section>
             </div>
-            <div class="five columns">
+			
+            <div class="five columns">   
                 <section id="recent_posts-2" class="widget-1 widget-first widget recent-posts-widget">
                     <div class="widget-inner">
                         <div class="subtitle"> Some latest news</div>
@@ -143,6 +140,7 @@
                     </div>
                 </section>
             </div>
+			
             <div class="five columns">
                 <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
                     <div id="fb-root"></div>
@@ -207,6 +205,7 @@
     </section>
 
 </div>
+
 <a href="#" id="linkTop" class="backtotop"> <span></span> </a> 
 <?php echo theme_css('farbtastic1.3.css', true); ?>
 <?php echo theme_css('grid.css', true); ?>

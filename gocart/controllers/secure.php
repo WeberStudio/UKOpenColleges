@@ -21,7 +21,7 @@ class Secure extends Front_Controller {
 		
 	}
 	//login2 content start
-		function process_checkout($ajax = false)
+	function process_checkout($ajax = false)
 	{
 		//find out if they're already logged in, if they are redirect them to the my account page
 		$redirect	= $this->Customer_model->is_logged_in(false, false);
@@ -100,10 +100,11 @@ class Secure extends Front_Controller {
 	// login 2 content end
 	function login($ajax = false)
 	{
-		//$data['seo_title']		= "Custormer Login";
+		 //   DebugBreak();
+        //$data['seo_title']		= "Custormer Login";
 		//find out if they're already logged in, if they are redirect them to the my account page
-		//$redirect	= $this->Customer_model->is_logged_in(false, false);
-		$redirect	= "";
+		$redirect    = $this->Customer_model->is_logged_in(false, false);     
+		
 		//if they are logged in, we send them back to the my_account by default, if they are not logging in
 		$this->load->library('form_validation');
 		if ($redirect)
@@ -112,7 +113,7 @@ class Secure extends Front_Controller {
 		}
 		
 		$data['page_title']	= 'Login';
-		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
+		//$data['gift_cards_enabled'] = $this->gift_cards_enabled;
 		
 		$this->load->helper('form');
 		$data['redirect']	= $this->session->flashdata('redirect');
@@ -146,17 +147,20 @@ class Secure extends Front_Controller {
 				}
 				
 				//echo " found it"; exit;
-				redirect('dashboard');
-				/*if ($redirect == '')
-				{
-					
-					//if there is not a redirect link, send them to the my account page
-					 
-				//echo "<pre>"; print_r($this->go_cart->customer());exit;
-    // $customer_details = $this->go_cart->customer();
-    // echo $customer_details['firstname'];exit;
-					$redirect = '';
-				}*/
+               // DebugBreak() ;
+                //echo '<pre>';print_r($this->customer);'</pre>'; exit();
+                if ($redirect == '')
+                {
+                    //if there is not a redirect link, send them to the my account page
+                    
+                    //echo "<pre>"; print_r($this->go_cart->customer());exit;
+                    //$customer_details = $this->go_cart->customer();
+                    //echo $customer_details['firstname']..;exit;
+                     //echo '<pre>';print_r($this->customer);'</pre>'; exit();  
+                    $redirect = 'dashboard';
+                }
+                
+                
 				//to login via ajax
 				if($ajax)
 				{
@@ -465,10 +469,9 @@ class Secure extends Front_Controller {
 		
 		//$this->show->pe($_REQUEST);
 		//make sure they're logged in
-		$this->Customer_model->is_logged_in('secure/my_account/');
+		//$this->Customer_model->is_logged_in('secure/my_account/');
 	
 		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
-		$customer_details 			= $this->go_cart->customer();		
 		$data['customer']			= (array)$this->Customer_model->get_customer($this->customer['id']);			
 		$data['addresses'] 			= $this->Customer_model->get_address_list($this->customer['id']);		
 		$data['page_title']			= 'Welcome '.$data['customer']['firstname'].' '.$data['customer']['lastname'];

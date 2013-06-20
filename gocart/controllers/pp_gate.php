@@ -26,12 +26,14 @@ class pp_gate extends CI_Controller {
 	{
 				
 		// Verify the transaction with paypal
+        
 		$final = $this->paypal->doPayment();
-
+        //echo '<pre>';  print_r($final);exit;
 		// Process the results
+        
 		if ($final['ACK'] == 'Success') {
 			// The transaction is good. Finish order
-			 //DebugBreak();
+			// DebugBreak();
 			// set a confirmed flag in the gocart payment property
 			$this->go_cart->set_payment_confirmed();
 			
