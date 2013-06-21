@@ -14,9 +14,9 @@ $config['country']			= 'Pakistan'; // use proper country codes only
 $config['city']				= 'lahore'; 
 $config['state']			= 'Alberta';
 $config['zip']				= '54000';
-$config['email']			= 'khalil.junaid@gmail.com';
+$config['email']			= 'weprosol@gmail.com';
 $config['bcc_email']		= 'khalil.junaid@gmail.com';
-
+$config['email_template']	= 'default';
 
 // Store currency
 $config['currency']						= 'GBP';  // USD, EUR, etc

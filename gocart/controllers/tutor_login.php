@@ -215,10 +215,11 @@ class Tutor_login extends Front_Controller {
 			 if($save_tutor!="")
 			 {
 				 
-				 	$email_attributes = $this->Settings_model->get_system_email('login');
+				 	$email_attributes = $this->Settings_model->get_system_email($this->config->item('email_template'));
 					$message = '';
 					$message .= $email_attributes[0]['email_header'];
-					$message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Dear '.$this->input->post('firstname').' '. $this->input->post('lastname').'!</singleline></p><div align="left" class="article-content"><multiline label="Description"></multiline> Thank  you for registering with UK Open College. This email is to certify that your  account has been registered with us. Please save the login information.<br><br>Username: '.$this->input->post('email').' <br>Password: '.$password.' <br><br> as you would require that for future coordination.</div></td></tr><tr>  <td class="w580" width="580" height="10"><div align="left" class="article-content">Please click the following link to confirm the registration process.</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+					
+					$message .= '<tr><td style="font:12px Normal Arial, Helvetica, sans-serif; color:#3e3f40; line-height:18px;padding-bottom:16px;"><br><p align="left" class="article-title"><singleline label="Title"> Dear '.$this->input->post('firstname').' '. $this->input->post('lastname').'!</singleline></p><div align="left" ><multiline label="Description"></multiline>Thank you for registering with UK Open College. This email is to certify that your account has been registered with us. Please save the login information.<br><br>Username: '.$this->input->post('email').' <br>Password: '.$password.' <br><br>as you would require that for future coordination.</div></td></tr><tr><td ><div align="left" >Please let us know by describe the problem at <a href="mailto:support@ukopencollege.co.uk"> support@ukopencollege.co.uk</a>.</div></td></tr></tbody></table></td></tr>';
 					
 					$message .= $email_attributes[0]['email_footer'];
 					
@@ -263,13 +264,14 @@ class Tutor_login extends Front_Controller {
 			if ($reset)
 			{						
 				$this->session->set_flashdata('message', lang('message_new_password'));
-				$email_attributes = $this->Settings_model->get_system_email('login');
+				$email_attributes = $this->Settings_model->get_system_email($this->config->item('email_template'));
 			
 				//print_r($email_attributes);exit;
 				$message  = '';
 				$message .= $email_attributes[0]['email_header'];			
 				
-				$message .= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Password has been generated successfully!</singleline></p><div align="left" class="article-content">  <multiline label="Description"></multiline>In  order to set a new password, you need to provide your user name by clicking on  the following link to rest your password. We will send you a new user name and  password. If you have difficulty in resetting your password, please let us know  by describe the problem at </div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><b>New Password:</b>'.$reset.'</div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+				$message .= '<tr><td style="font:12px Normal Arial, Helvetica, sans-serif; color:#3e3f40; line-height:18px;padding-bottom:16px;"><br><b>Password has been generated successfully!</b><br> In order to set a new password, you need to provide your user name by clicking on the following link to rest your password. We will send you a new user name and password. If you have difficulty in resetting your password, please let us know by describe the problem at <a href="mailto:support@ukopencollege.co.uk
+"> support@ukopencollege.co.uk</a>.</td></tr><tr><td ><div align="left" class="article-content"><b>New Password:</b>'.$reset.'</div></td></tr></tbody></table></td></tr>';
 				
 				$message .= $email_attributes[0]['email_footer'];
 				$this->load->library('email');				

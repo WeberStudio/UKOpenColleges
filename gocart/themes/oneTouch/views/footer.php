@@ -16,15 +16,15 @@
                             require_once('TwitterAPIExchange.php');
 
                             /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
-                            $settings = array(
+                           /* $settings = array(
                             'oauth_access_token' => "1513184167-xtUDzVoO5ztCrkBI44Qd9KGJ9WX1QHe1dfYsrgc",
                             'oauth_access_token_secret' => "KpEdVP6kO7UsSM9hKt3dQM4q4DnD9Y1W2s6AdWHkAY",
                             'consumer_key' => "NKFo3oq7of6RN6t9IgQ",
                             'consumer_secret' => "H85s1YgsEBnH2geJPRzCFn52Wy75RwLz5o3syazfc88"
-                            );
+                            );*/
                             /** Perform a GET request and echo the response **/
                             /** Note: Set the GET field BEFORE calling buildOauth(); **/
-                            $url = 'http://api.twitter.com/1.1/statuses/user_timeline.json';
+                           /* $url = 'http://api.twitter.com/1.1/statuses/user_timeline.json';
                             $getfield = '?screen_name='.$userid.'&include_rts=1&count='.$count;
                             $requestMethod = 'GET';
                             $twitter = new TwitterAPIExchange($settings);
@@ -39,9 +39,9 @@
                             else
                             {
                                 $response = '';   
-                            }  
+                            }  */
                             //echo '<pre>'; print_r($responseJson);echo '</pre>';
-                            function dateDiff ($d1, $d2) {
+                            /*?>function dateDiff ($d1, $d2) {
                                 // Return the number of days between the two dates:
 
                                 return round(abs(strtotime($d1)-strtotime($d2))/86400);
@@ -84,9 +84,9 @@
                                     } 
                                 }
 
-                            }
+                            }<?php */?>
 
-                        ?>
+                       
 
 
 
@@ -103,7 +103,7 @@
                 </section>
             </div>
 			
-            <div class="five columns">   
+            <?php /*?><div class="five columns">   
                 <section id="recent_posts-2" class="widget-1 widget-first widget recent-posts-widget">
                     <div class="widget-inner">
                         <div class="subtitle"> Some latest news</div>
@@ -139,9 +139,9 @@
                             <? } ?>
                     </div>
                 </section>
-            </div>
+            </div><?php */?>
 			
-            <div class="five columns">
+            <?php /*?><div class="five columns">
                 <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
                     <div id="fb-root"></div>
                     <script>(function(d, s, id) {
@@ -157,7 +157,7 @@
                         <div class="fb-like-box" data-href="https://www.facebook.com/pages/UK-Open-College/411574175557181" data-width="292" data-show-faces="true" data-colorscheme="dark" data-stream="false" data-show-border="false" data-header="false"></div>            
                     </div>
                 </section>
-            </div>
+            </div><?php */?>
         </div>
 
         <div class="row dop-row">
