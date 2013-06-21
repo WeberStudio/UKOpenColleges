@@ -344,7 +344,7 @@ class Secure extends Front_Controller {
 			
 			$email_attributes = $this->Settings_model->get_system_email($this->config->item('email_template'));
 			
-			//print_r($email_attributes);exit;
+			print_r($email_attributes);exit;
 			$message = '';
 			$message .= $email_attributes[0]['email_header'];
 			
