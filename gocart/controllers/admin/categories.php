@@ -516,7 +516,7 @@ class Categories extends Admin_Controller {
 		$category 			= array();
 		$category['id']		= $id;
 		$category_data		= $this->Category_model->get_category($id);
-		$email_attributes 	= $this->Settings_model->get_system_email('login');
+		$email_attributes 	= $this->Settings_model->get_system_email($this->config->item('email_template'));
 		
 		if($this->admin_access=='Superadmin')
 		{
@@ -536,7 +536,7 @@ class Categories extends Admin_Controller {
 			$config['mailtype'] 		= 'html';		
 			$this->email->initialize($config);
 			
-			$message_category_status 	= '<tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff"><table class="w640" width="640" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w30" width="30"></td><td class="w580" width="580"><repeater><layout label="Text only"><table class="w580" width="580" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="w580" width="580"><p align="left" class="article-title"><singleline label="Title"> Tutor Assigned!<br>Category Name: '.$category_data->name.'<br></singleline></p><div align="left" class="article-content"><multiline label="Description"></multiline> This email is to notify you that your requested course categories have been '.$send_status.' by the site admin. For more details, you can contact us at </div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content"><p><a href="mailto:info@ukopencollege.co.uk">info@ukopencollege.co.uk</a> </p></div></td></tr><tr><td class="w580" width="580" height="10"><div align="left" class="article-content">Regards,<br><br>Student support office<br>UK Open College Limited<br> 4, Copthall House<br> The Meridian<br> Station Square<br> Coventry<br> West Midlands<br> CV1 2FL<br>Tell: 0121 288 0181<br>Fax: 01827 288298</div></td></tr></tbody></table></layout></repeater></td><td class="w30" width="30"></td></tr></tbody></table></td></tr>';
+			$message_category_status .= '<tr><td style="font:12px Normal Arial, Helvetica, sans-serif; color:#3e3f40; line-height:18px;padding-bottom:16px;"><br><p align="left" class="article-title"><singleline label="Title"> Tutor Assigned!</singleline></p><div align="left" ><multiline label="Description"></multiline><br>Category Name: '.$category_data->name.'<br></div></td></tr><tr><td ><div align="left" > This email is to let you know that we have received your request for tutor support and we are working on it to find you an experienced tutor in accordance with your needs. The next step is to decide what features you need in your tutor support. Do you need a 24/7 online support or require partial support?</a>.</div></td></tr><tr><td ><div align="left" >This email is to notify you that your requested course categories have been '.$send_status.' by the site admin. For more details, you can contact us at <a href="mailto:info@ukopencollege.co.uk">info@ukopencollege.co.uk</a>.</div></td></tr></tbody></table></td></tr>';
 			
 			$this->email->from($this->config->item('email'), $this->config->item('company_name'));		
 			$this->email->to($this->admin_email);
