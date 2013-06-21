@@ -176,12 +176,12 @@ class dashboard extends Front_Controller {
         $this->load->helper('date');
         
 		//$data['gift_cards_enabled']    = $this->gift_cards_enabled;
-        $data['customer_data']          = (array)$this->Customer_model->get_customer($this->customer['id']);
+        $data['customer']          = (array)$this->Customer_model->get_customer($this->customer['id']);
         
         //$this->show->pe($_REQUEST);                             
         $data['addresses']             	= $this->Customer_model->get_address_list($this->customer['id']);        
         //$data['page_title']            	= 'Welcome '.$data['customer']['firstname'].' '.$data['customer']['lastname'];
-		$data['zones_menu']         	= $this->Location_model->get_zones_menu($data['customer_data']['country']);
+		$data['zones_menu']         	= $this->Location_model->get_zones_menu($data['customer']['country']);
 		$data['countries_menu']     	= $this->Location_model->get_countries_menu();     
         
        

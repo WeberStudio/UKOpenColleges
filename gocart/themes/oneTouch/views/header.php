@@ -114,43 +114,13 @@ experience this site.
 					<?php else:?>
 					<a style='background-color:#cecece; background-size:cover; background-image:none;' href="<?php echo site_url($menu_page->slug);?>"><?php echo $menu_page->menu_title;?>
                     <?php //echo $menu_page->image;?>
-                     <span class='tile-icon' style='background-image:url(<?php echo base_url('uploads/images/full/'.$menu_page->image);?>)'></span>
+                    <?php /*?> <span class='tile-icon' style='background-image:url(<?php echo base_url('images/icons/'.$menu_page->image);?>)'></span><?php */?>
                     </a>
 					<?php endif;?>
 			</span>           
         </li>
 		<?php endforeach;?>
-        <?php /*?><li class="menu-shop"><span class="menu-item-wrap">
-                <a  href="#" <a  href="#" style='background-color:#cecece; background-size:cover; background-image:none;' >
-                    <span class="link-text">FAQs</span><span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/people_w@2x.png");?>);'></span>
-                </a>
-            </span>
-        </li>
-        <li class="menu-shortcodes">
-            <span class="menu-item-wrap">
-                <a  href="#" style='background-color:#cecece; background-size:cover; background-image:none;'>
-                    <span class="link-text">Qualification</span><span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/pencil_w@2x.png");?>)'></span>
-                </a>
-            </span>
-        </li>
-        <li class="menu-features">
-            <span class="menu-item-wrap">
-                 <a  href="#" style='background-color:#cecece; background-size:cover; background-image:none;'>
-                    <span class="link-text">Tutors</span>
-                    <span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/category_w@2x.png");?>);'></span>
-                </a>
-            </span>
-			
-        </li>
-        <li class="menu-contacts">
-            <span class="menu-item-wrap">
-                <a  href="#" style='background-color:#cecece; background-size:cover; background-image:none;'>
-                    <span class="link-text">Contact Us</span><span class='tile-icon' style='background-image:url(<?php echo theme_img("icons/tags_w@2x.png");?>);'></span>
-                </a>
-            </span>
-        </li><?php */?>
-
-    </ul> 
+	</ul> 
 </nav>
   <script type="text/javascript">
 	jQuery(document).ready(function () {
@@ -301,41 +271,5 @@ experience this site.
 				<?php //echo $error;?>
 			</div>
 		<?php endif;*/?>
-<script type="text/javascript" src="http://localhost/UKOpenColleges/gocart/themes/oneTouch/lib/jquery-1.9.0.min.js"></script>
-
-	<!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="http://localhost/UKOpenColleges/gocart/themes/oneTouch/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-
-	<!-- Add fancyBox main JS and CSS files -->
-	<script type="text/javascript" src="http://localhost/UKOpenColleges/gocart/themes/oneTouch/source/jquery.fancybox.js?v=2.1.4"></script>
-	<link rel="stylesheet" type="text/css" href="http://localhost/UKOpenColleges/gocart/themes/oneTouch/source/jquery.fancybox.css?v=2.1.4" media="screen" />
-
-	<!-- Add Button helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="http://localhost/UKOpenColleges/gocart/themes/oneTouch/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
-	<script type="text/javascript" src="http://localhost/UKOpenColleges/gocart/themes/oneTouch/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-
-	<!-- Add Thumbnail helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="http://localhost/UKOpenColleges/gocart/themes/oneTouch/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
-	<script type="text/javascript" src="http://localhost/UKOpenColleges/gocart/themes/oneTouch/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-
-	<!-- Add Media helper (this is optional) -->
-	<script type="text/javascript" src="http://localhost/UKOpenColleges/gocart/themes/oneTouch/source/helpers/jquery.fancybox-media.js?v=1.0.5"></script>
-    <script type="text/javascript">
-
-		$(document).ready(function() {
-			/*
-			 *  Simple image gallery. Uses default settings
-			 */
-
-			$('.fancybox').fancybox();
-
-
-
-		});
-	</script>
-    <style type="text/css">
-		.fancybox-custom .fancybox-skin {
-			box-shadow: 0 0 50px #222;
-		}
-	</style>
-     
+	
+    
