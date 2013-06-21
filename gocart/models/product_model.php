@@ -535,4 +535,32 @@ Class Product_model extends CI_Model
 		$this->db->delete('product_tabs');
 		return true;
 	}
+	function save_rating($data)
+	{
+		$this->db->insert('course_rating', $data);
+		
+	}
+	function get_reviews($product_id)
+	{
+		$this->db->where('product_id',$product_id);
+		
+		$result		= $this->db->get('course_rating');
+		
+		return $result->result();
+	}
+	function save_question($data)
+	{
+		$this->db->insert('course_question', $data);
+		
+	}
+	
+	function get_question($product_id)
+	{
+		$this->db->where('product_id',$product_id);
+		
+		$result		= $this->db->get('course_question');
+		
+		return $result->result();
+	}
+	
 }
