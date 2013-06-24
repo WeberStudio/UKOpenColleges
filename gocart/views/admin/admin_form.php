@@ -18,10 +18,10 @@
           <div class="content"> <?php echo form_open_multipart($this->config->item('admin_folder').'/admin/form/'.$id, array('class' => '', 'id' => 'validateForm')); ?>
           
           	<div class="form-row control-group row-fluid">
-              <label class="control-label span1" for="hint-field">Rules<span class="help-block"></span></label>
+              <label class="control-label span1" for="hint-field">Admin Access<span class="help-block"></span></label>
               <div class="controls span7">
                 <?php
-        		$option    = array(''=>'Select Rules','Course Provider'=>'Course Provider','Invoice Admin'=>'Invoice Admin', 'Site Admin'=>'Site Admin');
+        		$option    = array(''=>' Admin Access','Course Provider'=>'Course Provider','Invoice Admin'=>'Invoice Admin', 'Site Admin'=>'Site Admin');
         		echo form_dropdown('access',$option,set_value('access', $access),'class="chzn-select" id=""');
         		?>
               </div>
@@ -214,11 +214,11 @@ j(function(){
 		});
 });
 </script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 if ($.browser.webkit) {
     $('input').attr('autocomplete', 'off');
 }
 $('form').submit(function() {
     $('.btn').attr('disabled', true).addClass('disabled');
 });
-</script>
+</script>-->

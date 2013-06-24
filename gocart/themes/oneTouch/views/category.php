@@ -72,8 +72,8 @@
                                            <div class="title">
                                                     
                                                     <h4><?=$product->name?></h4>
-                                                    <p><?=substr($product->excerpt,0,100)?></p> 
-                                                    <p class="readmore"><span class="button">Read More</span></p>
+                                                    <p><?php echo substr($product->excerpt,0,100)?></p> 
+                                                    <p><span class="button" style="margin:0px auto 0px 90px;">Read More</span></p>
                                                     <div class="row">
     												<div class="line"> </div>
 													</div>

@@ -13,19 +13,19 @@ function areyousure()
       <div class="title">
         <h4> <i class="icon-book"></i><span>Search Orders</span> </h4>
       </div>
-      <div class="content"> <?php //echo form_open($this->config->item('admin_folder').'/products/index', 'class="" ');?>
+      <div class="content"> <?php echo form_open($this->config->item('admin_folder').'/commission/search_commisssion', 'class="" ');?>
       
          <div class="form-row control-group row-fluid">
         
-              <div class="controls span3">
+              <!--<div class="controls span3">
                 <?php 
-					$option = array( 'select_frequently'=>'select frequently','per_week'=>'Per Week', 'per_month'=>'Per Month','per_year'=>'Per Year');
+					$option = array( ''=>'select frequently','per_week'=>'Per Week', 'per_month'=>'Per Month','per_year'=>'Per Year');
 					echo form_dropdown('date',$option,set_value('someValue'),'class="chzn-select"','id="default-select"', 'placeholder="select frequently"');
 				?>
-              </div>
+              </div>-->
               <div class="controls span3">
                 <select class="chzn-select" id="" name="categories">
-                <option> All Categories</option>
+                <option value=""> All Categories</option>
                 <?php foreach($category as $cat){?>
                 	
                     <option value="<?php echo $cat['id'];?>"> <?php echo $cat['name'];?></option>
@@ -34,7 +34,7 @@ function areyousure()
               </div>
               <div class="controls span3">
                <select class="chzn-select" id="" name="courses">
-                <option> All Courses</option>
+                <option value=""> All Courses</option>
                 <?php foreach($courses as $cour){?>
                 	
                     <option value="<?php echo $cour['id'];?>"> <?php echo $cour['name'];?></option>
@@ -43,7 +43,7 @@ function areyousure()
               </div>
               <div class="controls span3">
                <select class="chzn-select" id="" name="courses_provider">
-                <option> Courses Provider</option>
+                <option value=""> Courses Provider</option>
                  
                 	<?php
 					foreach($admins as $admin){?>
@@ -55,24 +55,24 @@ function areyousure()
          </div>
          <div class="form-row control-group row-fluid">
          
-         <div class="controls span3">
+         <!--<div class="controls span3">
          <label class="control-label "><h3> Form </h3></label>
                 <?php 
 					$data = array('id'=>'datepicker1','name'=>'start_date','placeholder'=>'Start Date','style'=>'margin-bottom: 0px;');
 					echo form_input($data);
 				?>
-              </div>
+              </div>-->
             
              
             
              
-              <div class="controls span3">
+              <!--<div class="controls span3">
                <label class="control-label"> <h3> To </h3></label>
                 <?php 
 				$data = array('id'=>'datepicker2','name'=>'end_date','placeholder'=>'End Date','style'=>'margin-bottom: 0px;');
 					echo form_input($data);
 				?>
-              </div>
+              </div>-->
               </div>
          <div class="form-row control-group row-fluid">
               <div class="controls span12" align="right">

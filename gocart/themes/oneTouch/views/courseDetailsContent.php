@@ -312,12 +312,19 @@
 							</div><!-- #respond -->
 						</div>
 				</div>
-                <div id="inline2" style="width:750px;display: none;">
-                    <div class="seven columns">
-    
-                    <section id="woocommerce_login-2" class="widget-1 widget-first widget widget_login">
-            
-                        <div class="widget-inner">
+                <div id="inline2" style=" width:335px; display: none;">
+                
+                  <div class="simpleTabs" style="padding-left: 0px;">
+                 <ul class="simpleTabsNavigation">
+                  <li class="description_tab active"><a href="#question">Customer Login</a></li>
+                  <li class="description_tab active"><a href="#updates">Tutor Login</a></li>
+                  
+                 
+                 </ul>
+                  <div  class="simpleTabsContent" id="question">
+                  
+                  	
+    					<div class="widget-inner">
             
                             <h3>Customer Login</h3>
             					
@@ -365,14 +372,12 @@
                             </ul>
             
                         </div>
-            
-                    </section>
-            	</div>
-                	<div class="seven columns">
-    
-                    <section id="woocommerce_login-2" class="widget-1 widget-first widget widget_login">
-            
-                        <div class="widget-inner">
+            		
+                  </div>
+                  
+                  <div  class="simpleTabsContent" id="updates">
+                  	
+    					<div class="widget-inner">
                                     <h3>Tutor Login</h3>
                                     <form class="bs-docs-example form-horizontal" accept-charset="utf-8" method="post" action="<?=base_url()?>tutor_login/login">
                                       <p style="width: 325px;">
@@ -402,9 +407,12 @@
                                     <ul class="pagenav">
                                     </ul>
      					 </div>
-            
-                    </section>
-            	</div>
+            		
+                  </div>
+                  
+                  
+                </div>
+                
                 </div>
             
                 <!--<div class="simpleTabs" style="padding-left: 0px;">
