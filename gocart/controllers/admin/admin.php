@@ -172,7 +172,7 @@ class Admin extends Admin_Controller
 			$data['access']				= $admin->access;
 		}
 		
-		$this->form_validation->set_rules('access', 'Access', 'required');
+		$this->form_validation->set_rules('access', 'Admin Access', 'required');
 		$this->form_validation->set_rules('company', 'Company', 'trim|max_length[128]|required');
 		$this->form_validation->set_rules('firstname', 'lang:firstname', 'trim|max_length[32]|required');
 		$this->form_validation->set_rules('lastname', 'lang:lastname', 'trim|max_length[32]|required');

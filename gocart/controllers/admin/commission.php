@@ -44,7 +44,9 @@ class Commission extends Admin_Controller {
 		$data['courses'] 		= $this->Product_model->get_all_products_array();
 		$data['admins']			= $this->auth->get_admin_list();
 		
+		
 		$data['commissions'] = $this->Commission_model->get_commissions($limit=0, $offset=0, $order_by='comm_level', $direction='ASC');
+		
         $this->load->view($this->config->item('admin_folder').'/includes/header');
         $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
         $this->load->view($this->config->item('admin_folder').'/commission_listing', $data);
@@ -180,6 +182,35 @@ class Commission extends Admin_Controller {
 		$this->Commission_model->delete($id);
 		//go back to the commission list
 		redirect($this->config->item('admin_folder').'/commission/');
+	}
+	function search_commisssion()
+	{
+		$data['category'] 				= $this->Category_model->get_all_categories();
+		$data['courses'] 				= $this->Product_model->get_all_products_array();
+		$data['admins']					= $this->auth->get_admin_list();
+		
+		$search = array();
+		$search['date'] 				= $this->input->post('date');
+		$search['categories'] 			= $this->input->post('categories');
+		$search['courses'] 				= $this->input->post('courses');
+		$search['courses_provider'] 	= $this->input->post('courses_provider');
+		$search['start_date'] 			= $this->input->post('start_date');
+		$search['end_date'] 			= $this->input->post('end_date');
+		
+		$data['commissions']  = $this->Commission_model->search_commission($search);
+		
+		
+		//$this->show->pe($data['commissions']);
+		//exit;
+		$this->load->view($this->config->item('admin_folder').'/includes/header');
+        $this->load->view($this->config->item('admin_folder').'/includes/leftbar');
+        $this->load->view($this->config->item('admin_folder').'/commission_listing', $data);
+        $this->load->view($this->config->item('admin_folder').'/includes/inner_footer');
+		
+		//$this->show->pe($search);
+		
+		// exit;
+		
 	}
 }
 ?>

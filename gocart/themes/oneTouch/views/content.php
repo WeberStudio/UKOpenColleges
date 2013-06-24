@@ -23,7 +23,9 @@
 						<div class="description disp">
 						  <time><? echo $cat_info['category']->publish_date?></time>
 						  <h4><? echo $cat_info['category']->name." Courses"?></h4>
-						  <p><? echo $cat_info['category']->description?></p>
+						  <p><? echo str_replace(substr(substr($cat_info['category']->description, 0,150), -5),"..." ,substr($cat_info['category']->description, 0,150));?>
+                          </p>
+                         
 						</div>
 						<a href="<?=base_url().$cat_info['category']->slug?>"></a> 
 						</div>
@@ -33,7 +35,8 @@
 						<div class="description hided">
 						  <time><? echo $cat_info['category']->publish_date?></time>
 						  <h4><? echo $cat_info['category']->name." Courses"?></h4>
-						  <p><? echo $cat_info['category']->description?></p>
+						  <p><? echo str_replace(substr(substr($cat_info['category']->description, 0,150), -6),"..." ,substr($cat_info['category']->description, 0,150));?>
+                          </p>
 						</div>
 						<a href="<?=base_url().$cat_info['category']->slug?>"></a> 
 						</div>

@@ -80,5 +80,31 @@ Class Commission_model extends CI_Model
 		$this->db->delete('oc_commission', array('comm_id' => $id));
 		return true;	
 	}
+	function search_commission ($search= array())
+	{
+		if(!empty($search['categories']))
+		{
+			$this->db->where('comm_level_id',$search['categories']);
+			$this->db->where('comm_level','cat_level');
+			
+		}
+		elseif(!empty($search['courses']))
+		{
+			$this->db->where('comm_level_id',$search['courses']);
+			$this->db->where('comm_level','course_level');
+			
+		}
+		elseif(!empty($search['courses_provider']))
+		{
+			$this->db->where('comm_level_id', $search['courses_provider']);
+			$this->db->where('comm_level','course_provider');
+		}
+		
+		$result 	= $this->db->get('commission');
+		//$this->show->pe($result->result());exit;
+		return $result->result();
+		
+		
+	}
 	
 }
