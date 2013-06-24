@@ -12,12 +12,14 @@
 		});
 	</script>
 
-
+<? //$this->show->pe($product);
+//DebugBreak();
+?>
 <div class="row">
 
     <div class="fifteen columns" id="page-title" style="padding-left: 0px;"> 
 
-        <div class="breadcrumbs"><!--<a href="<?php echo base_url();?>">Home</a>--> All Courses <span class="delim">/</span> <? echo $product->categories[0]->name;?><!--<a href="<?=base_url()?>cart/allcourses/">Courses</a>--> <span class="delim">/</span> <?=$product->name?>
+        <div class="breadcrumbs"><!--<a href="<?php  echo base_url();?>">Home</a>--> All Courses <span class="delim">/</span> <? echo $product->categories[0]->name;?><!--<a href="<?=base_url()?>cart/allcourses/">Courses</a>--> <span class="delim">/</span> <?=$product->name?>
         <span style="float: right; margin-top: -10px;"> 
                     <div class="sort-panel">  
                    <ul class="filter clearfix">
@@ -595,17 +597,17 @@
 
                   
 
-                   foreach ($this->go_cart->contents() as $cartkey=>$product)
+                   foreach ($this->go_cart->contents() as $cartkey=>$product_data)
 
                    {
 
-                         $productName = $product['name'] ;
+                         $productName = $product_data['name'] ;
 
-                         $price = $product['price'];
+                         $price = $product_data['price'];
 
-                         $qty = $product['quantity'] ;
+                         $qty = $product_data['quantity'] ;
 
-                         $imgpath = $product['images'] ;
+                         $imgpath = $product_data['images'] ;
 
 
 
@@ -671,7 +673,7 @@
 
 
                 <!--- Related Products Starts ---->
-
+<? //$this->show->pe($product->related_products); ?>
                 <?php if(!empty($product->related_products)):?>
 
                     <div class="related_products">
