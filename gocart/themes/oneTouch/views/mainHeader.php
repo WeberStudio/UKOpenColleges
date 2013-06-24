@@ -41,7 +41,7 @@
      
     <!--   End search     -->
     <?php echo theme_js('js/jquery-1-8-3.js?c-v=24739', true);?>
-    <?php echo theme_js('js/ready2.js?c-v=24739', true);?>
+    <?php //echo theme_js('js/ready2.js?c-v=24739', true);?>
     <?php echo theme_js('js/jquery.plugins.min.js', true);?>
     <?php echo theme_js('js/jquery.themepunch.plugins.min.js', true);?>
     <?php echo theme_js('js/jquery.themepunch.revolution.min.js', true);?>

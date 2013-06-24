@@ -510,7 +510,7 @@ class Cart extends Front_Controller {
 	{
 
 		//get the product
-
+         // DebugBreak();
 		$data['product']		= $this->Product_model->get_product($id);
 //$this->show->pe($data['product']);
 		
@@ -568,28 +568,7 @@ class Cart extends Front_Controller {
 		$data['meta_key']			= $data['product']->meta_key;
 		
 		$data['seo_title']			= (!empty($data['product']->seo_title))?$data['product']->seo_title:$data['product']->name;
-
-			
-
-		/*if($data['product']->images == 'false')
-
-		{
-
-			$data['product']->images = array();
-
-		}
-
-		else
-
-		{
-
-			$data['product']->images	= array_values((array)json_decode($data['product']->images));
-
-		}*/
-
-
-
-		
+        
 
 		//$this->show->pe($data);
 		
@@ -610,11 +589,9 @@ class Cart extends Front_Controller {
 	{
 
 		// Get our inputs
-
+            // DebugBreak();
 		$product_id		= $this->input->post('id');
-
 		$quantity 		= $this->input->post('quantity');
-
 		$post_options 	= $this->input->post('option');
 
 		
@@ -628,16 +605,9 @@ class Cart extends Front_Controller {
 		//if out of stock purchase is disabled, check to make sure there is inventory to support the cart.
 
 		if(!$this->config->item('allow_os_purchase') && (bool)$product['track_stock'])
-
 		{
-			
-
-			$stock	= $this->Product_model->get_product($product_id);
-
-			
-
+			$stock		= $this->Product_model->get_product($product_id);
 			//loop through the products in the cart and make sure we don't have this in there already. If we do get those quantities as well
-
 			$items		= $this->go_cart->contents();
 			
 

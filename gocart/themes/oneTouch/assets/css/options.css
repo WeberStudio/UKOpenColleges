@@ -58,36 +58,44 @@ body {
    background-color:#FF9B40 !important;
 }
 
-.tiled-menu>.menu-blog>span>a{
+.tiled-menu>.menu_over_color_1>span>a{
   background-color:#57BAE8;
 }
 
-.tiled-menu>.menu-blog>span>a:hover {
+.tiled-menu>.menu_over_color_1>span>a:hover {
   background-color:#FF0000 !important;
 }
 
-.tiled-menu>.menu-shop>span>a{
+.tiled-menu>.menu_over_color_2>span>a{
    background-color:#6CBE42;
  }
  
- .tiled-menu>.menu-shop>span>a:hover {
+ .tiled-menu>.menu_over_color_2>span>a:hover {
    background-color:#0066FF !important;
  }
  
-.tiled-menu>.menu-shortcodes>span>a {
+.tiled-menu>.menu_over_color_3>span>a {
     background-color:#FFAA31;
 }
 
-.tiled-menu>.menu-shortcodes>span>a:hover {
+.tiled-menu>.menu_over_color_3>span>a:hover {
      background-color:#FF9B40 !important;
 }
 
-.tiled-menu>.menu-features>span>a{
+.tiled-menu>.menu_over_color_4>span>a{
     background-color:#57BAE8;
 }
-.tiled-menu>.menu-contacts>span>a:hover {
+.tiled-menu>.menu_over_color_4>span>a:hover {
     background-color:#009900 !important;
 }
+
+.tiled-menu>.menu_over_color_5>span>a{
+    background-color:#57BAE8;
+}
+.tiled-menu>.menu_over_color_5>span>a:hover {
+    background-color:#DFD237 !important;
+}
+
 #director-page{
 	background-color:;
 	background-image:url();

@@ -102,9 +102,11 @@ experience this site.
 			 		
 	 		
         </li>
-        <?php //print_r($this->top_page);exit;?>
+        <?php //print_r($this->top_page);exit;
+		$counter = 1;
+		?>
 		<?php foreach($this->pages as $menu_page):?>
-        <li class="menu-blog">
+        <li class="menu_over_color_<?=$counter?>">
 			<span class="menu-item-wrap">
 			<?php if(empty($menu_page->content)):?>
 					<a style='background-color:#cecece; background-size:cover; background-image:none;' href="<?php echo $menu_page->url;?>" <?php if($menu_page->new_window ==1){echo 'target="_blank"';} ?>>
@@ -114,12 +116,12 @@ experience this site.
 					<?php else:?>
 					<a style='background-color:#cecece; background-size:cover; background-image:none;' href="<?php echo site_url($menu_page->slug);?>"><?php echo $menu_page->menu_title;?>
                     <?php //echo $menu_page->image;?>
-                    <?php /*?> <span class='tile-icon' style='background-image:url(<?php echo base_url('images/icons/'.$menu_page->image);?>)'></span><?php */?>
+                    <span class='tile-icon' style='background-image:url(<?php echo theme_img('icons/'.$menu_page->image);?>)'></span>
                     </a>
 					<?php endif;?>
 			</span>           
         </li>
-		<?php endforeach;?>
+		<?php $counter++; endforeach;?>
 	</ul> 
 </nav>
   <script type="text/javascript">
@@ -203,9 +205,11 @@ experience this site.
 </div>
 <div class="row">
 <div align="right">
-<a href="<?php echo site_url('cart/view_cart');?>" class="button" style="width:130px;">checkOut</a>
+
+
+<a href="<?php echo site_url('cart/view_cart');?>" style='background-image:url(<?php echo theme_img('icons/cart.png');?>); background-repeat:no-repeat; padding-bottom:15px;' ><strong style="padding-left:40px;">There are (<?=$this->go_cart->total_items()?>) items in your cart.</strong></a>
 </div>
-</div> 
+</div>
 <!--<div><span style="padding 15 15 15 15; float : right; margin-right:15px;"><a href="<?php echo site_url('cart/view_cart');?>" class="add_to_cart_button button product_type_simple" rel="nofollow" data-product_id="868">
 								<?php
 								if ($this->go_cart->total_items()==0)

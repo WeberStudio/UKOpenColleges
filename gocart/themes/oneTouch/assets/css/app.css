@@ -484,7 +484,7 @@ a.back:hover {
 
 .widget.widget_login {
 
-    background: url("../images/icons/login@2x.png") 0 0 no-repeat;
+   /* background: url("../images/icons/login@2x.png") 0 0 no-repeat;*/
 
     background-size: 32px 32px;
 

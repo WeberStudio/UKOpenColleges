@@ -1,11 +1,12 @@
 <?php echo theme_css('simpletabs.css', true); ?>	
 <script type="text/javascript">
-		$(document).ready(function() {
+        jQuery =    jQuery.noConflict();
+		jQuery(document).ready(function() {
 			/*
 			 *  Simple image gallery. Uses default settings
 			 */
 
-			$('.fancybox').fancybox();
+			jQuery('.fancybox').fancybox();
 
 
 
