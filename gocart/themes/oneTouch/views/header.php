@@ -1,5 +1,4 @@
 <body class="home page page-template page-template-page-no_top-php theme-onetouch wpb-js-composer js-comp-ver-3.4.12 vc_responsive">
-<?php //include('leftPanel.php'); ?>
 <div id="body-wrapper" >
 <div id="body-wrapper-padding"   >
 <!--[if lt IE 7]>
@@ -105,7 +104,7 @@ experience this site.
         <?php //print_r($this->top_page);exit;
 		$counter = 1;
 		?>
-		<?php foreach($this->pages as $menu_page):?>
+		<?php foreach($this->menu_pages as $menu_page):?>
         <li class="menu_over_color_<?=$counter?>">
 			<span class="menu-item-wrap">
 			<?php if(empty($menu_page->content)):?>
@@ -234,7 +233,7 @@ experience this site.
 <div class="row" style="">
 <div class="promo" style="padding-bottom: 0px; padding-top: 0px;"><span class="icon info" style="color:red; top:-5px;"></span>
     <h1 class="page-title">Call us on 1221 288 0181 now to talk to course advisor - 
-        <a href="#" style="color:red;">Contact Us</a>
+        <a href="<?=base_url()?>contact-us1" style="color:red;">Contact Us</a>
         <span>
         
         <?php if($this->Tutor_model->is_logged_in(false, false)):?>

@@ -1,7 +1,4 @@
-<?php
-
-
-
+<?php 
 class Cart extends Front_Controller {
 
 
@@ -611,8 +608,6 @@ class Cart extends Front_Controller {
 			$stock		= $this->Product_model->get_product($product_id);
 			//loop through the products in the cart and make sure we don't have this in there already. If we do get those quantities as well
 			$items		= $this->go_cart->contents();
-			
-
 			$qty_count	= $quantity;
 
 			foreach($items as $item)
