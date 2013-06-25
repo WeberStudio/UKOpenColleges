@@ -164,12 +164,14 @@
                     </div>
                   </div>
                   <div class="wpb_content_element span4 pad-r20 column_container">
-                    <div class="wpb_wrapper">                     
+                    <div class="wpb_wrapper">
+                    <?php
+					 $page_url = $this->page_model->get_homepage_link();?>                     
                       <div class='tile mini' style='background-color:#ffa531; padding-top:0px; padding-left:40px;'>
-					  	<a href='#'></a>
+					  	<a href='<?php echo $page_url[0]->slug?>'></a>
                         <div class='text-tile text-big-left' >FAQs</div>
                       </div>
-					  <div class='tile mini' style='background-color:#57bae8'> <a href='#'></a>
+					  <div class='tile mini' style='background-color:#57bae8'> <a href='<?php echo $page_url[1]->slug?>'></a>
 					  	<div class='icon icon_center' > <img src="<?php echo theme_img("img/tile-icons/clock.png")?>" alt="OneTouch"> </div>
                         <div  style=" padding-top:6px; padding-left:30px;" class='text-tile text-big-left'  > Payments </div>
                       </div>

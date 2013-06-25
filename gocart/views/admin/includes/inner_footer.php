@@ -126,7 +126,9 @@
         // Datepicker
 		      
         $('#datepicker1').datepicker({format: 'yyyy-mm-dd',});
-        $('#datepicker2').datepicker({format: 'yyyy-mm-dd',});                          
+        $('#datepicker2').datepicker({format: 'yyyy-mm-dd',}); 
+		$('#datepicker3').datepicker({format: 'yyyy-mm-dd',});
+		$('#datepicker4').datepicker({format: 'yyyy-mm-dd',});                         
         $('.colorpicker').colorpicker()
         $('#colorpicker3').colorpicker();
 		$('.redactor').redactor({

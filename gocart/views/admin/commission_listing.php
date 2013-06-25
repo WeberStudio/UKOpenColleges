@@ -11,7 +11,7 @@ function areyousure()
      <div id="main_container">
      <div class="box paint color_0">
       <div class="title">
-        <h4> <i class="icon-book"></i><span>Search Orders</span> </h4>
+        <h4> <i class="icon-book"></i><span>Search Commisssion</span> </h4>
       </div>
       <div class="content"> <?php echo form_open($this->config->item('admin_folder').'/commission/search_commisssion', 'class="" ');?>
       
@@ -47,7 +47,7 @@ function areyousure()
                  
                 	<?php
 					foreach($admins as $admin){?>
-                    <option value="<?php echo $admin->id;?>"> <?php echo $admin->firstname;?></option>
+                    <option value="<?php echo $admin->id;?>"> <?php echo $admin->firstname.' '.$admin->lastname;?></option>
                     <?php }?>
                 </select>
               </div>
@@ -108,15 +108,10 @@ function areyousure()
 			}
 			?>
 			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/lastname/');?>/<?php //echo ($field == 'lastname')?$by:'';?>"><?php //echo lang('lastname');?>
-				<?php //if($field == 'lastname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?> Commision Level</a></th>
-			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/firstname/');?>/<?php //echo ($field == 'firstname')?$by:'';?>"><?php //echo lang('firstname');?>
-				<?php //if($field == 'firstname'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?>Commision Rate</a></th>
-			
-			<th><a href="<?php //echo site_url($this->config->item('admin_folder').'/customers/index/email/');?>/<?php //echo ($field == 'email')?$by:'';?>"><?php //echo lang('email');?>
-				<?php //if($field == 'email'){ echo ($by == 'ASC')?'<i class="icon-chevron-up"></i>':'<i class="icon-chevron-down"></i>';} ?> Persentage</a></th>
-			<th> Active<?php //echo lang('active');?></th>
+			<th>Commision Level</th>
+			<th>Commision Rate</th>
+			<th>Persentage</th>
+			<th> Active</th>
 			<th>Actions</th>
 			
 		</tr>
@@ -124,7 +119,8 @@ function areyousure()
 	
 	<tbody>
 		
-		<?php echo (count($commissions) < 1)?'<tr><td style="text-align:center;" colspan="5">'.lang('no_customers').'</td></tr>':''?>
+		<?php echo (count($commissions) < 1)?'<tr><td style="text-align:center;" colspan="5">No Commission Applied</td></tr>':''?>
+        
 <?php foreach ($commissions as $commission):?>
 		<tr>
 			<?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
@@ -142,7 +138,7 @@ function areyousure()
 <?php endforeach;
 		//if($page_links != ''):?>
 		<tr><td colspan="5" style="text-align:center"><?php //echo $page_links;?></td></tr>
-		<?php //endif;?>
+		
 	</tbody>
 </table>
 </div>

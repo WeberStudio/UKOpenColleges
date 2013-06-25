@@ -99,9 +99,9 @@
                 <label class="control-label"><?php echo lang('invoice_id'); ?> #</label>
                 <input type="text" id="invoice_number" class="span10" value="<?php echo $invoice_data->invoice_id; ?>" />
                 <label class="control-label"><?php echo lang('creation_date'); ?></label>
-                <input type="text" id="invoice_date_created" class="span10" value="<?php echo date("Y-d-m", strtotime($invoice_data->invoice_date_created)); ?>" />
+                <input type="text" id="datepicker1" class="span10" value="<?php echo date("Y-d-m", strtotime($invoice_data->invoice_date_created)); ?>" />
                 <label class="control-label"><?php echo lang('due_date'); ?></label>
-                <input type="text" id="invoice_date_due" class="span10" value="<?php echo date("Y-d-m", strtotime($invoice_data->invoice_date_due));  ?>"/>
+                <input type="text" id="datepicker2" class="span10" value="<?php echo date("Y-d-m", strtotime($invoice_data->invoice_date_due));  ?>"/>
               </div>
             </div>
           </div>
@@ -154,17 +154,19 @@
 </textarea></td>
                         <td style="vertical-align: top;"><input type="text" class="input-mini" id="item_quantity" name="item_quantity[]" style="width: 90%;" value="<?=$invoice_item['item_quantity']?>"></td>
                         <td style="vertical-align: top;"><input type="text" class="input-mini" id="item_price" name="item_price[]" style="width: 90%;" value="<?=$invoice_item['item_price']?>"></td>
-                       <td><?php /*?><?=$invoice_item['comm_rate'].'-'.$invoice_item['comm_rate_mode']?>
+                        <?php /*?><?=$invoice_item['comm_rate'].'-'.$invoice_item['comm_rate_mode']?>
 					   	  <input type="hidden"  name="comm_rate[]"  value="<?=$invoice_item['comm_rate']?>">
 						  <input type="hidden"  name="comm_rate_mode[]"  value="<?=$invoice_item['comm_rate_mode']?>"><?php */?>
 						  <? //echo "<pre>"; print_r($comm_rates); ?>
-						  <select name="comm_rate[]"  class="input-small">						  
+                       <td style="vertical-align: top;">
+						  <select name="comm_rate[]"  class="chzn-select input-small">						  
 							<?php foreach ($comm_rates as $comm_rate) { ?>
+                            
 							<option <?php if ($comm_rate->comm_id == $invoice_item['comm_id']) { ?>selected="selected"<?php } ?>  value="<?php echo $comm_rate->comm_id; ?>"><?php echo $comm_rate->comm_rate .' ('. $comm_rate->comm_rate_mode .') '. $comm_rate->comm_level; ?></option>
 							<?php } ?>
 						  </select>		
 					   </td>
-					    <td style="vertical-align: top;"><select name="item_tax_rate_id[]" id="item_tax_rate_id" class="input-small">
+					    <td style="vertical-align: top;"><select name="item_tax_rate_id[]"  class=" chzn-select input-small">
                             <option value="0">
                             <?php  echo lang('none'); ?>
                             </option>
@@ -191,18 +193,20 @@
 								<td style="vertical-align: top;"><input type="text" id="item_name" name="item_name[]" style="width: 90%;" value="<?=$item_content['name']?>">
 								 <input type="hidden" name="product_id[]" value="<?=$item_content['id']?>">
 								</td>
-								<td><textarea id="item_description" name="item_description[]" rows="1"  cols="5"><?=$item_content['excerpt']?>
+								<td style="vertical-align: top;"><textarea id="item_description" name="item_description[]" rows="1"  cols="5"><?=$item_content['excerpt']?>
 		</textarea></td>
 								<td style="vertical-align: top;"><input type="text" class="input-mini" id="item_quantity" name="item_quantity[]" style="width: 90%;" value="<?=$invoice_item['q_sum']?>"></td>
 								<td style="vertical-align: top;"><input type="text" class="input-mini" id="item_price" name="item_price[]" style="width: 90%;" value="<?=$item_content['price']?>"></td>
-								<td>
-									<select name="comm_rate[]"  class="input-small">						  
+								<td style="vertical-align: top;">
+									<select name="comm_rate[]"  class="chzn-select input-small">
+                                    <option> Commission</option>						  
 									<?php foreach ($comm_rates as $comm_rate) { ?>
 										<option <?php if ($comm_rate->comm_id == $invoice_item['comm_id']) { ?>selected="selected"<?php } ?>  value="<?php echo $comm_rate->comm_id; ?>"><?php echo $comm_rate->comm_rate .' ('. $comm_rate->comm_rate_mode .') '. $comm_rate->comm_level; ?></option>
 									<?php } ?>
 									</select>				  			
 								</td>
-								<td style="vertical-align: top;"><select name="item_tax_rate_id[]" id="item_tax_rate_id" class="input-small">
+								<td style="vertical-align: top;">
+                                <select name="item_tax_rate_id[]"  class="chzn-select input-small">
 									<option value="0">
 									<?php  echo lang('none'); ?>
 									</option>
@@ -233,7 +237,7 @@
 								<td style="vertical-align: top;"><input type="text" class="input-mini" id="item_quantity" name="item_quantity[]" style="width: 90%;" value=""></td>
 								<td style="vertical-align: top;"><input type="text" class="input-mini" id="item_price" name="item_price[]" style="width: 90%;" value=""></td>
 								<td style="vertical-align: top;">
-								<select name="item_tax_rate_id[]" id="item_tax_rate_id" class="input-small">
+								<select name="item_tax_rate_id[]" class="chzn-select  input-small">
 									<option value="0">
 									<?php  echo lang('none'); ?>
 									</option>
@@ -288,7 +292,7 @@
 				
 					<div class="controls span10">
 					    <label class="label">Recurring Frequency</label>
-						<select name="recur_frequency" id="recur_frequency" class="input-small">
+						<select name="recur_frequency" id="recur_frequency" class="chzn-select input-small">
 							<option value="weekly">Weekly</option>
 							<option value="bi-weekly">Bi-Monthly</option>
 							<option value="monthly">Monthly</option>
@@ -298,14 +302,14 @@
 					<div class="controls span10">
 					   <label for="date"> Start Date (M-D-Y) </label>
 						<?php
-							$recur_start_date    = array('name'=>'recur_start_date', 'id'=>'recur_start_date', 'value'=>date('Y-m-d'), 'class'=>'span6');
+							$recur_start_date    = array('name'=>'recur_start_date', 'id'=>'datepicker3', 'value'=>date('Y-m-d'), 'class'=>'span6');
 							echo form_input($recur_start_date);					
 						?>
 					</div>
 					<div class="controls span10">
 						<label for="date"> End Date (M-D-Y) </label>
 						<?php
-							$recur_end_date    	= array('name'=>'recur_end_date', 'id'=>'recur_end_date', 'value'=>date('Y-m-d'), 'class'=>'span6');
+							$recur_end_date    	= array('name'=>'recur_end_date', 'id'=>'datepicker4', 'value'=>date('Y-m-d'), 'class'=>'span6');
 							echo form_input($recur_end_date);					
 						?>
 					</div>
@@ -321,9 +325,9 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 
- $(document).ready(function () {
+ $(document).ready(function () { 
     $('form').submit(function() {
         $('.btn').attr('disabled', true).addClass('disabled');
     });
@@ -345,4 +349,4 @@
 	});
 	
 });	
-</script>
+</script>-->

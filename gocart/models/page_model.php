@@ -118,5 +118,18 @@ Class Page_model extends CI_Model
 		$this->db->delete('page_text');
 	
 	}
+	
 	//========== end ====this is for froentend home page text =========//
+	
+	function get_homepage_link()
+	{
+		
+		//print_r($ids); exit;
+		//$restlt = mysql_query('SELECT * FROM oc_pages WHERE id IN (1,2)');
+		$ids = array(1,2);
+		$this->db->where_in('id',$ids);
+		
+		$result = $this->db->get('pages')->result();
+		return $result;
+	}
 }
