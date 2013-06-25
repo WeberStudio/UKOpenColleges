@@ -10,7 +10,7 @@
     <div class="span12">
       <div class="box paint color_18">
         <div class="title">
-          <h4> <i class=" icon-bar-chart"></i>Add Commision</h4>        
+          <h4> <i class=" icon-bar-chart"></i>Add Commisssion</h4>        
         <!-- End .title -->
         <div class="content">		
 		<div class="tab-pane fade in active" id="form">
@@ -31,7 +31,9 @@
             <label class="control-label span1">Options<?php echo lang('group');?><span class="help-block"></span></label>
             <div class="controls span7" id="dyn-fropdonw">
               <select data-placeholder="Choose Multiple Categories" class="chzn-select span12" name="comm_level_id"  tabindex="5">
+             
                 <option>Select Option</option>
+                
               </select>			  
             </div>
 		 </div>
