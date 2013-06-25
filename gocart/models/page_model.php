@@ -19,10 +19,11 @@ Class Page_model extends CI_Model
 		
 		return $return;
 	}
+	
 	function get_pages_top()
 	{
 		$this->db->order_by('id', 'ASC');
-		$this->db->limit(4);
+		$this->db->limit(5);
 		$result = $this->db->get('pages')->result();
 		//echo $this->db->last_query();exit;
 		$return	= array();
