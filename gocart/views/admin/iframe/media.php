@@ -161,7 +161,7 @@ if(function_exists('validation_errors') && validation_errors() != '')
 				<td class="file-icon img">
                 <input id="insert-filename" name="insert-filename" type="hidden"> 
                 <input id="folder-name" name="folder-name" type="hidden"> 
-				<img onclick="session_for_image('<?php echo $f;?>','<? echo $uri_root.$f;?>')" src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
+				<img onclick="session_for_image('<?php echo $f;?>','<? echo $uri_root.$f;?>')"  onclick="insert_link('<?php echo $f;?>')"  src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
 				</td>
 				<td><?php echo $f;?></td>
 				<td class="btns">
