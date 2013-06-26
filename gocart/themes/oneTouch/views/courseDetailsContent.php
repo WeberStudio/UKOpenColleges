@@ -15,9 +15,7 @@
     
       
 
-<? //$this->show->pe($product);
-//DebugBreak();
-?>
+
 <div class="row">
     <div class="fifteen columns" id="page-title" style="padding-left: 0px;">
         <div class="breadcrumbs"><a href="<?=base_url()?>">All Courses</a> <span class="delim">/</span><a href="<?=base_url().$product->categories[0]->slug?>"> <? echo $product->categories[0]->name;?></a><span class="delim">/</span> <a href="<?=base_url().$product->slug?>"><?=$product->name?></a>
@@ -49,7 +47,7 @@
 
 
         <div id="content" role="main">
-<?php //echo $this->show->pe($this->session->userdata);exit; ?>
+
 
         <?  if ($quantities != "")
 			{
@@ -93,13 +91,127 @@
                     <input type="hidden" name="cartkey" value="<?php echo $this->session->flashdata('cartkey');?>" />
 
                     <input type="hidden" name="id" value="<?php echo $product->id?>"/>
-                    
                     <input type="hidden" name="slug" value="<?php if($this->uri->segment(2)==""){echo $this->uri->segment(1);}
 					if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
-
                     <div class="quantity buttons_added"><input type="button" value="-" class="minus"><input name="quantity" data-min="1" data-max="0" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12"><input type="button" value="+" class="plus"></div>
+					<button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
+                    <br/>
+                    <div>
+                    <!--<fieldset>
+					<?php if(count($options) > 0): ?>
+						<?php foreach($options as $option):
+							$required	= '';
+							if($option->required)
+							{
+								$required = ' <p class="help-block">Required</p>';
+							}
+							?>
+							<div class="control-group">
+								<label class="control-label"><?php echo $option->name;?></label>
+								<?php
+								/*
+								this is where we generate the options and either use default values, or previously posted variables
+								that we either returned for errors, or in some other releases of Go Cart the user may be editing
+								and entry in their cart.
+								*/
 
-                    <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
+								//if we're dealing with a textfield or text area, grab the option value and store it in value
+								if($option->type == 'checklist')
+								{
+									$value	= array();
+									if($posted_options && isset($posted_options[$option->id]))
+									{
+										$value	= $posted_options[$option->id];
+									}
+								}
+								else
+								{
+									if(isset($option->values[0]))
+									{
+										$value	= $option->values[0]->value;
+										if($posted_options && isset($posted_options[$option->id]))
+										{
+											$value	= $posted_options[$option->id];
+										}
+									}
+									else
+									{
+										$value = false;
+									}
+								}
+
+								if($option->type == 'textfield'):?>
+									<div class="controls">
+										<input type="text" name="option[<?php echo $option->id;?>]" value="<?php echo $value;?>" class="span4"/>
+										<?php echo $required;?>
+									</div>
+								<?php elseif($option->type == 'textarea'):?>
+									<div class="controls">
+										<textarea class="span4" name="option[<?php echo $option->id;?>]"><?php echo $value;?></textarea>
+										<?php echo $required;?>
+									</div>
+								<?php elseif($option->type == 'droplist'):?>
+									<div class="controls">
+										<select name="option[<?php echo $option->id;?>]">
+											<option value=""><?php echo lang('choose_option');?></option>
+
+										<?php foreach ($option->values as $values):
+											$selected	= '';
+											if($value == $values->id)
+											{
+												$selected	= ' selected="selected"';
+											}?>
+
+											<option<?php echo $selected;?> value="<?php echo $values->id;?>">
+												<?php echo($values->price != 0)?'('.format_currency($values->price).') ':''; echo $values->name;?>
+											</option>
+
+										<?php endforeach;?>
+										</select>
+										<?php echo $required;?>
+									</div>
+								<?php elseif($option->type == 'radiolist'):?>
+									<div class="controls">
+										<?php foreach ($option->values as $values):
+
+											$checked = '';
+											if($value == $values->id)
+											{
+												$checked = ' checked="checked"';
+											}?>
+											<label class="radio">
+												<input<?php echo $checked;?> type="radio" name="option[<?php echo $option->id;?>]" value="<?php echo $values->id;?>"/>
+												<?php echo $option->name;?> <?php echo($values->price != 0)?'('.format_currency($values->price).') ':''; echo $values->name;?>
+											</label>
+										<?php endforeach;?>
+										<?php echo $required;?>
+									</div>
+								<?php elseif($option->type == 'checklist'):?>
+									<div class="controls">
+										<?php foreach ($option->values as $values):
+
+											$checked = '';
+											if(in_array($values->id, $value))
+											{
+												$checked = ' checked="checked"';
+											}?>
+											<label class="checkbox">
+												<input<?php echo $checked;?> type="checkbox" name="option[<?php echo $option->id;?>][]" value="<?php echo $values->id;?>"/>
+												<?php echo($values->price != 0)?'('.format_currency($values->price).') ':''; echo $values->name;?>
+											</label>
+											
+										<?php endforeach; ?>
+									</div>
+									<?php echo $required;?>
+								<?php endif;?>
+								</div>
+						<?php endforeach;?>
+					<?php endif;?>
+					
+					
+					
+					</fieldset>-->
+                    </div>
 
                     </form>
 
@@ -135,7 +247,7 @@
 				}
 
 			</script>
-           <div class="eleven columns" style="padding-left: 0px; width: 854px;">
+           		<div class="eleven columns" style="padding-left: 0px; width: 854px;">
                 <p class="woocommerce_info">Click Here To → <a href="javascript:void(0)" class="" onClick="return toggle()"> Ask A Question</a></p>
 				<div <?php if($open==""){echo 'style="display:none;"';}?> id="obj" method="post" class="login">
                 <?php if($open!="")
@@ -456,13 +568,14 @@
                    		<h2> Reviews div</h2>
                    </div>
                 </div>-->
-
+                
+				<?php if(!empty($product_tabs)){?>
                 <div class="simpleTabs" style="padding-left: 0px;">
 
-                    <ul class="simpleTabsNavigation">
+                    <ul class="simpleTabsNavigation" >
                     
 
-                        <li class="description_tab active"><a href="#tab-description">Description</a></li>
+                        <!--<li class="description_tab active"><a href="#tab-description">Description</a></li>-->
 
                        <!-- <li class="reviews_tab"><a href="#tab-reviews">Reviews (0)</a></li>-->
 
@@ -488,20 +601,17 @@
 
                     </ul>
 
-                    <div  class="simpleTabsContent" id="tab-description">
+                    <!--<div  class="simpleTabsContent" id="tab-description">
 
                         <h2>Product Description</h2>
 
                         <p><?=$product->description?></p>
 
-                    </div>
+                    </div>-->
 
-                    <div  class="simpleTabsContent" id="tab-reviews">
-
-
-
-                    </div>
-
+                   
+						<br/>
+                        <br/>
                     <? if(!empty($product_tabs)){
 
                             foreach($product_tabs as $tabs)
@@ -512,7 +622,7 @@
 
                             <div  class="simpleTabsContent" id="<?php echo str_replace(' ', '-', strtolower($tabs['tab_title']))?>">
 
-                                <h2>Product Description</h2>
+                                <h2><?=$tabs['tab_title'];?></h2>
 
                                 <p><?=$tabs['tab_content']?></p>
 
@@ -527,7 +637,7 @@
                     ?>			
 
                 </div>
-
+				<?php }?>
 
 
                 </div>
