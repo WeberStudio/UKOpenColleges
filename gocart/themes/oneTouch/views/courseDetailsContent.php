@@ -610,8 +610,11 @@
                     </div>-->
 
                    
-						<br/>
+						<br style="margin-top: 40px;"/>
                         <br/>
+                        
+                        
+                        
                     <? if(!empty($product_tabs)){
 
                             foreach($product_tabs as $tabs)
@@ -620,7 +623,7 @@
 
                             ?>			
 
-                            <div  class="simpleTabsContent" id="<?php echo str_replace(' ', '-', strtolower($tabs['tab_title']))?>">
+                            <div  class="simpleTabsContent" id="<?php echo str_replace(' ', '-', strtolower($tabs['tab_title']))?>" >
 
                                 <h2><?=$tabs['tab_title'];?></h2>
 
