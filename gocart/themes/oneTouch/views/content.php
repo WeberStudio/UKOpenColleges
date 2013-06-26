@@ -175,9 +175,9 @@
 					  	<div class='icon icon_center' > <img src="<?php echo theme_img("img/tile-icons/clock.png")?>" alt="OneTouch"> </div>
                         <div  style=" padding-top:6px; padding-left:30px;" class='text-tile text-big-left'  > Payments </div>
                       </div>
-					  <div class='tile mini' style='background-color:#57bae8'> <a href='#'></a> 
+					  <div class='tile mini' style='background-color:#57bae8'> <a href='<?php echo base_url().'about-us'?>'></a>
 					  	<div class='icon icon_center' > <img src="<?php echo theme_img("img/tile-icons/comp.png")?>" alt="OneTouch"></div>
-					  	<div class='text-tile text-big-left' style="padding-top:0px; padding-left:25px;" >Live Chat</div>
+					  	<div class='text-tile text-big-left' style="padding-top:0px; padding-left:25px;" >About Us</div>
 					  </div>
                       <div class='tile mini' style='background-color:#90a7b1'> <a href='<?php echo site_url('cart/allcourses/');?>'></a>
                         
