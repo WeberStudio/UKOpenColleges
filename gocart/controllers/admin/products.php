@@ -237,6 +237,7 @@ class Products extends Admin_Controller {
 	
 	function form($id = false, $duplicate = false, $tab_id = false)
 	{
+		$data['active_tabid'] = $tab_id; 
 		
 		//echo"<pre>";print_r($_POST);exit;
 		$this->product_id	= $id;		
@@ -605,7 +606,15 @@ class Products extends Admin_Controller {
 			$this->session->set_flashdata('message', lang('message_saved_product'));
 
 			//go back to the product list
-			redirect($this->config->item('admin_folder').'/products');
+			if($id!="")
+			{
+				redirect($this->config->item('admin_folder').'/products/form/'.$id);
+			}
+			if($id=="")
+			{
+				redirect($this->config->item('admin_folder').'/products/form/');
+			}
+			
 		}
 	}
 	
