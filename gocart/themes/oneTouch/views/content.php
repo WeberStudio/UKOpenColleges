@@ -107,7 +107,7 @@
                             }
                             else if(scrollbox.data("boxed") == "1"){
                                 scrollbox.closest(".wrap").css("width","100%");
-                                scrollbox.css("width","107%");
+                                scrollbox.css("width","99.2%");
                             }
                             else if(scrollbox.data("boxed") == "2") {
 

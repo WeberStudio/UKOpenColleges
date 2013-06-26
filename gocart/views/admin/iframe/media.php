@@ -136,7 +136,7 @@ if(function_exists('validation_errors') && validation_errors() != '')
 <table class="table">
 	<?php
 
-	$image_extensions	= array('jpg', 'jpeg', 'gif', 'png');
+	$image_extensions	= array('jpg', 'jpeg', 'gif', 'png','pdf');
 
 	foreach($files as $f):?>
 		<?php
@@ -169,7 +169,7 @@ if(function_exists('validation_errors') && validation_errors() != '')
 				</td>
 			<?php else:?>
 				<td class="file-icon file">
-					<img class="img-thumbnail" src="<?php echo base_url('assets/img/file.png');?>" onclick="insert_link('<?php echo $f;?>')">
+					<img class="img-thumbnail" src="<?php echo base_url('assets/img/file.png');?>">
 				</td>
 				<td><?php echo $f;?></td>
 				<td class="btns">
@@ -231,6 +231,7 @@ if(function_exists('validation_errors') && validation_errors() != '')
 ?>
 <script type="text/javascript">
 	/* new folder action */
+    var insert_img = 0;
 	function rename(filename)
 	{
 		$('#original-filename').val(filename);
@@ -254,20 +255,20 @@ if(function_exists('validation_errors') && validation_errors() != '')
     function session_for_image(img_name,folderPath)
     {
             //global1 = 'shahid'   
+            insert_img = 1;
             document.getElementById('insert-filename').value = img_name
             document.getElementById('folder-name').value = folderPath
-            //alert(img_name)  
-        /* $.post('<?=base_url('admin/media/set_session_for_image')?>', { input_field_name: "unique_image_id", image_name: img_name },
-          function(data){
-               alert(data);
-          }, "POST");    */
+            
     }  
     
     $('.img').click(function(){
-         //alert();
+           
          
-       // parent.redactor_instance.insertHtml($(this).html().trim());
-       // parent.redactor_instance.modalClose();
+                
+             parent.redactor_instance.insertHtml($(this).html().trim());
+            parent.redactor_instance.modalClose();
+        
+       
     });
 </script>
 <?php include('footer.php');
