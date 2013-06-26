@@ -64,9 +64,10 @@ class Tutor_login extends Front_Controller {
 			{
 				if($review)
 				{
-					$open = 1;
+					$open = array('open'=>'1');
+					$this->session->set_userdata($open);
 					
-					redirect('cart/product/'.$this->input->post('product_id')."/false/".$open);
+					redirect($this->input->post('slug'));
 				}
 				redirect('dashboard');	
 			}

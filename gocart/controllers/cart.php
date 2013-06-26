@@ -502,7 +502,7 @@ class Cart extends Front_Controller {
 
 	
 
-	function product($id , $quantity = false, $open = false)
+	function product($id)
 
 	{
 
@@ -570,8 +570,9 @@ class Cart extends Front_Controller {
 		//$this->show->pe($data);
 		
 		
-		$data['quantities'] = $quantity;
-		$data['open'] 		= $open;		
+		$data['quantities'] 		= $this->session->userdata('quantitty');
+		$data['open'] 				= $this->session->userdata('open');
+		
 
 		$this->load->view('courseDetails', $data);
 
@@ -590,6 +591,7 @@ class Cart extends Front_Controller {
 		$product_id		= $this->input->post('id');
 		$quantity 		= $this->input->post('quantity');
 		$post_options 	= $this->input->post('option');
+		$slug 			= $this->input->post('slug');
 
 		
 
@@ -698,12 +700,13 @@ class Cart extends Front_Controller {
 			
 			// this variable is to view the div of "view cart"
 			
-			$view_cart = $quantity;
+			$show_things = array('quantitty'=>'1');
+			$this->session->set_userdata($show_things);
 		
-
+			
 			// go go gadget cart!
-
-			redirect('cart/product/'.$product_id."/".$view_cart);
+			//echo $this->uri->segment(1);
+			redirect($slug);
 
 		}
 
@@ -1122,8 +1125,10 @@ class Cart extends Front_Controller {
 		$this->form_validation->set_rules('review', 'Review', 'trim|required');
 		if($this->form_validation->run() == false)
 		{
-			echo "i am in there"; exit;
-			redirect('cart/product/'.$this->input->post('product_id'));
+			//echo "i am in there"; exit;
+					$open = array('open'=>'1');
+					$this->session->set_userdata($open);
+			redirect($this->input->post('slug'));
 		}
 		else
 		{
@@ -1133,7 +1138,9 @@ class Cart extends Front_Controller {
 			$save['review']			= $this->input->post('review');
 			$save['rating']			= $this->input->post('rating');
 			$this->Product_model->save_rating($save);
-			redirect('cart/product/'.$this->input->post('product_id'));
+					$open = array('open'=>'1');
+					$this->session->set_userdata($open);
+			redirect($this->input->post('slug'));
 			
 		}
 		
@@ -1148,14 +1155,19 @@ class Cart extends Front_Controller {
 		$this->form_validation->set_rules('question', 'Question', 'trim|required');
 		if($this->form_validation->run() == false)
 		{
-			redirect('cart/product/'.$this->input->post('product_id'));
+			$open = array('open'=>'1');
+			$this->session->set_userdata($open);
+			redirect($this->input->post('slug'));
 		}
 		else
 		{
-			$save['product_id']		= $this->input->post('product_id');
+			$save['product_id']			= $this->input->post('product_id');
 			$save['question']			= $this->input->post('question');
 			$this->Product_model->save_question($save);
-			redirect('cart/product/'.$this->input->post('product_id'));
+			
+			$open = array('open'=>'1');
+			$this->session->set_userdata($open);
+			redirect($this->input->post('slug'));
 			
 		}
 		

@@ -140,9 +140,11 @@ class Secure extends Front_Controller {
 			{
 				if($review)
 				{
-					$open = 1;
 					
-					redirect('cart/product/'.$this->input->post('product_id')."/false/".$open);
+					$open = array('open'=>'1');
+					$this->session->set_userdata($open);
+					
+					redirect($this->input->post('slug'));
 				}
 				
 				//echo " found it"; exit;

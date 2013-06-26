@@ -12,6 +12,8 @@
 
 		});
 	</script>
+    
+      
 
 <? //$this->show->pe($product);
 //DebugBreak();
@@ -23,7 +25,7 @@
                     <div class="sort-panel">  
                    <ul class="filter clearfix">
                    <li>
-                   <a href="<?=base_url()?>cart/allcourses/" rel="nofollow" data-product_id="868" class="button" style=" width:180px;">  All Courses </a>
+                   <a href="<?=base_url()?>cart/allcourses/" rel="nofollow" data-product_id="868" class="button" style=" width:180px;">  All Courses</a>
                     </li>
                    </ul>
                    </div>
@@ -47,12 +49,16 @@
 
 
         <div id="content" role="main">
-<?php //echo $quantities." ".$open; exit; ?>
-        <?  if ($quantities != "" && $quantities != "false")
+<?php //echo $this->show->pe($this->session->userdata);exit; ?>
 
-                    { ?>
+        <?  if ($quantities != "")
+			{
+			$show_things = array('quantitty'=>'1');
+			$this->session->unset_userdata($show_things); 
+			?>
 
-            <div class="woocommerce_message"><a href="<?php echo site_url('cart/view_cart');?>" class="button">View Cart →</a> Course successfully added to your cart.</div>
+            <div class="woocommerce_message">
+            <a href="<?php echo site_url('cart/view_cart');?>" class="button">View Cart →</a> Course successfully added to your cart.</div>
 
               <? }?>
               
@@ -87,6 +93,9 @@
                     <input type="hidden" name="cartkey" value="<?php echo $this->session->flashdata('cartkey');?>" />
 
                     <input type="hidden" name="id" value="<?php echo $product->id?>"/>
+                    
+                    <input type="hidden" name="slug" value="<?php if($this->uri->segment(2)==""){echo $this->uri->segment(1);}
+					if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
 
                     <div class="quantity buttons_added"><input type="button" value="-" class="minus"><input name="quantity" data-min="1" data-max="0" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12"><input type="button" value="+" class="plus"></div>
 
@@ -129,6 +138,11 @@
            <div class="eleven columns" style="padding-left: 0px; width: 854px;">
                 <p class="woocommerce_info">Click Here To → <a href="javascript:void(0)" class="" onClick="return toggle()"> Ask A Question</a></p>
 				<div <?php if($open==""){echo 'style="display:none;"';}?> id="obj" method="post" class="login">
+                <?php if($open!="")
+				{	
+					$open = array('open'=>'1');
+					$this->session->unset_userdata($open);
+				}?>
                  <div class="simpleTabs"  style="padding-left: 0px; ">
                  <ul class="simpleTabsNavigation">
                   <li class="description_tab active"><a href="#question">Question</a></li>
@@ -144,6 +158,8 @@
                             <textarea id="comment" name="question" cols="45" rows="8" aria-required="true"></textarea>
                             <div align="right">
                             <input type="hidden" id="" name="product_id" value="<?php echo $product->id;?>">
+                            <input type="hidden" name="slug" value="<?php if($this->uri->segment(2)==""){echo $this->uri->segment(1);}
+					if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
                             <input id="wp-submit" class="submitbutton" type="submit" value="Submit Question" name="submitted">
                             </div>
                         </form>
@@ -299,6 +315,8 @@
                         </p>
                        
                         <input type="hidden" id="" name="product_id" value="<?php echo $product->id;?>">
+                        <input type="hidden" name="slug" value="<?php if($this->uri->segment(2)==""){echo $this->uri->segment(1);}
+					if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
                         <p class="form-submit">
                         
                         <input name="submit" type="submit" id="submit" value="Submit Review" >
@@ -311,7 +329,7 @@
 							</div><!-- #respond -->
 						</div>
 				</div>
-                <div id="inline2" style=" width:335px; display: none;">
+                <div id="inline2" style=" width:337px; display: none;">
                 
                   <div class="simpleTabs" style="padding-left: 0px;">
                  <ul class="simpleTabsNavigation">
@@ -348,6 +366,8 @@
                                 <p>
             						<input type="hidden" name="review_login" value="customer_review"/>
                                     <input type="hidden" id="" name="product_id" value="<?php echo $product->id;?>">
+                                    <input type="hidden" name="slug" value="<?php if($this->uri->segment(2)==""){echo $this->uri->segment(1);}
+					if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
                                     <input class="submitbutton" name="submitted" id="wp-submit" value="Login →" type="submit" />
             						<a class="button" href="<?php echo site_url('secure/register')?>"> Register</a>
                                     <a href="<?php echo site_url('secure/forgot_password')?>">Lost password?</a></p>
@@ -389,6 +409,8 @@
                                       </p>
                                       <p style="width: 325px;">
                                       <input type="hidden" id="" name="product_id" value="<?php echo $product->id;?>">
+                                      <input type="hidden" name="slug" value="<?php if($this->uri->segment(2)==""){echo $this->uri->segment(1);}
+					if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
                                       <input type="hidden" name="review_login" value="tutor_review"/>
                                         <input class="submitbutton" name="submitted" id="wp-submit" value="Login →" type="submit">
                                         <a class="button" href="<?php echo site_url('tutor_login/register')?>"> Register</a>
