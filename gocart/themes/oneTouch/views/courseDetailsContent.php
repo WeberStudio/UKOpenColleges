@@ -17,10 +17,8 @@
 
 
 <div class="row">
-
-    <div class="fifteen columns" id="page-title" style="padding-left: 0px;"> 
-
-        <div class="breadcrumbs"><!--<a href="<?php  echo base_url();?>">Home</a>--> All Courses <span class="delim">/</span> <? echo $product->categories[0]->name;?><!--<a href="<?=base_url()?>cart/allcourses/">Courses</a>--> <span class="delim">/</span> <?=$product->name?>
+    <div class="fifteen columns" id="page-title" style="padding-left: 0px;">
+        <div class="breadcrumbs"><a href="<?=base_url()?>">All Courses</a> <span class="delim">/</span><a href="<?=base_url().$product->categories[0]->slug?>"> <? echo $product->categories[0]->name;?></a><span class="delim">/</span> <a href="<?=base_url().$product->slug?>"><?=$product->name?></a>
         <span style="float: right; margin-top: -10px;"> 
                     <div class="sort-panel">  
                    <ul class="filter clearfix">
