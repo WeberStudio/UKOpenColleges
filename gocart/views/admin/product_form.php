@@ -23,16 +23,16 @@ $GLOBALS['option_value_count']        = 0;
             <!-- End .title -->
             <div class="content">
               <ul id="tabExample1" class="nav nav-tabs">
-                <li class="active"><a href="#details" data-toggle="tab"><?php echo lang('details');?></a></li>
+                <li <?php if($active_tabid == ""){echo 'class="active"';}?>><a href="#details" data-toggle="tab"><?php echo lang('details');?></a></li>
                 <li><a href="#categories" data-toggle="tab"><?php echo lang('categories');?></a></li>
                 <li><a href="#options" data-toggle="tab"><?php echo lang('course_registration_form');?></a></li>
                 <li><a href="#related-products" data-toggle="tab"><?php echo lang('related_courses');?></a></li>
                 <li><a href="#images" data-toggle="tab"><?php echo lang('images');?></a></li>
-                <li><a href="#tabs" data-toggle="tab"><?php echo lang('tabs');?></a></li>
+                <li <?php if($active_tabid != ""){echo 'class="active"';}?>><a href="#tabs" data-toggle="tab"><?php echo lang('tabs');?></a></li>
               </ul>
               <div class="tab-content">
                 <!--TAB ONE START-->
-                <div class="tab-pane fade in active" id="details">
+                <div <?php if($active_tabid == ""){echo'class="tab-pane fade in active"';}else{echo 'class="tab-pane fade"';}?>   id="details">
                   <div class="content">
                     <div class="form-row control-group row-fluid">
                       <div class="controls span8">
@@ -225,7 +225,7 @@ $GLOBALS['option_value_count']        = 0;
                       <div class="controls span7">
                         <div class="input-append row-fluid">
                           <!--<input type="file" class="spa1n6 fileinput" name="image" id="search-input">     -->
-                          <a class="various" class="spa1n6 fileinput customfile-input" data-fancybox-type="iframe" href="<?=base_url()?>admin/media/">
+                          <a class="various spa1n6 fileinput customfile-input" data-fancybox-type="iframe" href="<?=base_url()?>admin/media/">
                             <div class="uneditable-input spa1n6 fileinput" aria-hidden="true"><span>choose a file...</span></div>
                           </a>
                          </div>
@@ -244,7 +244,7 @@ $GLOBALS['option_value_count']        = 0;
                 <!-- TAB FIVE END-->
                 
                 <!-- TAB SIX START-->
-                <div class="tab-pane fade" id="tabs">
+                <div  <?php if($active_tabid != ""){echo'class="tab-pane fade in active"';}else{echo 'class="tab-pane fade"';}?>  id="tabs">
                   <div class="content">
                     <div class="form-row control-group row-fluid">                      
                      <div class="controls span8">
