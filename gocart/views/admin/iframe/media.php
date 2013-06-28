@@ -134,8 +134,8 @@ if(function_exists('validation_errors') && validation_errors() != '')
 <?php endif; ?>
 
 <table class="table">
-	<?php
-
+	<?php  
+    
 	$image_extensions	= array('jpg', 'jpeg', 'gif', 'png','pdf');
 
 	foreach($files as $f):?>
@@ -159,9 +159,24 @@ if(function_exists('validation_errors') && validation_errors() != '')
 
 			<?php elseif(in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), $image_extensions)):?>
 				<td class="file-icon img">
-                <input id="insert-filename" name="insert-filename" type="hidden"> 
-                <input id="folder-name" name="folder-name" type="hidden"> 
-				<img onclick="session_for_image('<?php echo $f;?>','<? echo $uri_root.$f;?>')"  onclick="insert_link('<?php echo $f;?>')"  src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
+                <input id="insert-filename"     name="insert-filename"  type="hidden"/>
+                <input id="folder-name"         name="folder-name"      type="hidden"/>
+                <input id="insert-file_path"    name="insert-file_path" type="hidden" value="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>"/>
+                <? 
+                if(strtolower(pathinfo($f, PATHINFO_EXTENSION) == 'pdf'))
+                {
+                ?>
+                    <img onclick="session_for_image('<?php echo $f;?>','<? echo $uri_root.$f;?>')"  onclick="insert_link('<?php echo $f;?>')"  src="<?php echo base_url('/assets/img/pdf-icon.png');?>" alt="<?php echo htmlentities($f);?>">
+                    <br/>
+                   <?php echo $f;?> 
+               <? }
+                else
+                {
+               ?>
+                   <img onclick="session_for_image('<?php echo $f;?>','<? echo $uri_root.$f;?>')"   onclick="insert_link('<?php echo $f;?>')"  src="<?php echo base_url('/uploads/wysiwyg/'.$uri_root.$f);?>" alt="<?php echo htmlentities($f);?>">
+               <? }
+               ?> 
+				
 				</td>
 				<td><?php echo $f;?></td>
 				<td class="btns">
@@ -249,15 +264,21 @@ if(function_exists('validation_errors') && validation_errors() != '')
 	
 	function insert_link(filename)
 	{
-		parent.redactor_instance.insertHtml(' <a href="<?php echo $this->path.'/'.$root;?>'+filename+'">'+filename+'</a> ');
+		parent.redactor_instance.insertHtml(' <a target="_blank" href="<?php echo $this->path.'/'.$root;?>'+filename+'">'+filename+'</a> ');
 		parent.redactor_instance.modalClose();
 	}
     function session_for_image(img_name,folderPath)
     {
-            //global1 = 'shahid'   
+            //global1 = 'shahid'
+               
             insert_img = 1;
-            document.getElementById('insert-filename').value = img_name
-            document.getElementById('folder-name').value = folderPath
+            document.getElementById('insert-filename').value    = img_name ;
+            //document.getElementById('insert-file_path').value    = folderPath   ;         
+            document.getElementById('folder-name').value        = folderPath;
+            
+            //alert(document.getElementById('insert-file_path').value);
+            
+           
             
     }  
     

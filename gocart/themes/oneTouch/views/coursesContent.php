@@ -14,17 +14,22 @@
                    </span>
                    
                    </h1>
-                   <div class="line"> </div>
+                   <div class="line"> </div>                       
                 <div id="recent" class="section-block clearing-container">
                     <div class="sort-panel">
                         <ul class="filter clearfix">
                            <!-- <li class="active">
                                 <a href="javascript:void(0)" class="all">All /</a>
                             </li>  -->
+                            
+                            <? 
+                                $last_cat =  end($this->categories);
+                                
+                            ?>
                             <?php foreach($this->categories as $cat_menu):?> 
 
                             <li class="active">
-                                <a href="javascript:void(0)" class="<?php echo str_replace(' ','',$cat_menu['category']->id);?>" style="color: black";> <?php echo $cat_menu['category']->name;?>   / </a>
+                                <a href="javascript:void(0)" class="<?php echo str_replace(' ','',$cat_menu['category']->id);?>" style="color: black";> <?php echo $cat_menu['category']->name;?><? if(!empty($last_cat['category']->name) && $last_cat['category']->name != $cat_menu['category']->name){ echo '/'; }?>   </a>
                             </li>
 
                               <?php  endforeach;?>
@@ -79,6 +84,7 @@
                             </a>   
                                <?php $counter++; endforeach; ?>   
                         </ul>
+                        <div style="display: none;" id="show_empty_message"><p class="woocommerce_info">Currently there is no any product in this category.</p> </div>
                     </div> 
                 </div>
 
@@ -103,7 +109,7 @@
 
                             // Set Our Filter
                             $filter = $('.filter li.active a').attr('class');
-
+                               
                             // Set Our Filter Link
                             $filterLink = $('.filter li a');
 
@@ -136,7 +142,17 @@
                                     $filteredItems = $containerClone.find('li[data-type~=' + $filter + ']');
                                   
                                 }
-
+                                 //console.log($filteredItems.length);
+                                 if($filteredItems.length == 0)
+                                 {
+                                      $('#show_empty_message').show();                          
+                                 }
+                                 else
+                                 {
+                                     
+                                        $('#show_empty_message').hide();  
+                                 }
+                                  
                                 // Finally call the Quicksand function
                                 $container.quicksand($filteredItems,
                                 {
@@ -149,10 +165,10 @@
                                 });
 
                                 //Initalize our PrettyPhoto Script When Filtered
-                                $container.quicksand($filteredItems,
+                                /*$container.quicksand($filteredItems,
                                 function () { lightbox(); 
                                 }
-                                );
+                                );  */
                             });
                         }
 

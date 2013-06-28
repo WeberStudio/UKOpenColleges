@@ -53,6 +53,8 @@ class Front_Controller extends Base_Controller
 		
 		//fill in our variables
 		$this->categories	= $this->Category_model->get_categories_tierd(0);
+        
+        //$this->show->pe($this->categories);
 		$this->pages		= $this->Page_model->get_pages();
 		$this->menu_pages	= $this->Page_model->get_pages_top();
 		
