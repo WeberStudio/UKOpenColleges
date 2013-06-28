@@ -11,7 +11,7 @@
 
 
 		});
-	</script>
+</script>
     
       
 
@@ -96,8 +96,8 @@
                     <div class="quantity buttons_added"><input type="button" value="-" class="minus"><input name="quantity" data-min="1" data-max="0" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12"><input type="button" value="+" class="plus"></div>
 					<button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
                     <br/>
-                    <div>
-                    <!--<fieldset>
+                    <?php if(!empty($options)){?>
+                    <fieldset>
 					<?php if(count($options) > 0): ?>
 						<?php foreach($options as $option):
 							$required	= '';
@@ -210,10 +210,15 @@
 					
 					
 					
-					</fieldset>-->
-                    </div>
-
+					</fieldset>
+                    <?php }?>
                     </form>
+                    
+                    <div>
+                   
+                    
+                    
+                    </div>
 
 
 
@@ -587,7 +592,7 @@
 
                                 ?>
 
-                                <li class="reviews_tab"><a href="#<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>"><?=$tabs['tab_title']?></a></li>
+                                <li class="reviews_tab" style="margin-bottom: 0px;"><a href="#<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>"><?=$tabs['tab_title']?></a></li>
 
 
 

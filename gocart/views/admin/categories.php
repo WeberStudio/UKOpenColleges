@@ -58,7 +58,7 @@ define('ADMIN_FOLDER', $this->config->item('admin_folder'));
 		}
 
 		function list_categories($cats, $sub='') {
-			
+			//echo $this->show->pe($cats); exit;
 			foreach ($cats as $cat):?>
 			<tr>
 				<td><?php echo  $cat['category']->id; ?></td>
