@@ -11,6 +11,7 @@
 
                 
                   <?php
+<<<<<<< HEAD
                  // DebugBreak()  ;
 				  $count = 0;
 				  foreach($this->categories as $cat_info){
@@ -25,28 +26,66 @@
 						  <time><? echo $cat_info['category']->publish_date?></time>
 						  <h4><? echo $cat_info['category']->name?></h4>
 						  <p><? echo str_replace(substr(substr($cat_info['category']->description, 0,150), -5),"..." ,substr($cat_info['category']->description, 0,150));?>
+=======
+                  
+                  //$this->show->pe($this->categories);
+                  $count = 0;
+                  foreach($this->categories as $cat_info){
+                 //echo '<pre>' ;print_r($cat_info);
+                  $count = $count + 1; 
+                  if($count%2==0)
+                  {
+                  ?>
+                      <div class="item half even"> 
+                        <img src="<?php echo catogery_img('images/small/'.$cat_info['category']->image); ?>" style="margin:0 0;" alt="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" title="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" >
+                        <div class="description disp">
+                          <time><? echo $cat_info['category']->publish_date?></time>
+                          <h4><? echo $cat_info['category']->name?></h4>
+                          <p><? //echo str_replace(substr(substr($cat_info['category']->description, 0,150), -6),"..." ,substr($cat_info['category']->description, 0,150));
+						  		if(isset($cat_info['category']->excerpt) && !empty($cat_info['category']->excerpt))
+								{
+									echo word_limiter($cat_info['category']->excerpt, 150);
+						  		}
+						  ?>
+>>>>>>> b5731c0e3522fd2d8d6951dcb9f50b5636831c32
                           </p>
                          
-						</div>
-						<a href="<?=base_url().$cat_info['category']->slug?>"></a> 
-						</div>
+                        </div>
+                        <a href="<?=base_url().$cat_info['category']->slug?>"></a> 
+                        </div>
                   <? } else { ?>
+<<<<<<< HEAD
 					   <div class="item half odd">
 						<img src="<?php echo catogery_img('images/small/'.$cat_info['category']->image); ?>" style="margin:0 0;" alt="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" title="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" >
 						<div class="description hided">
 						  <time><? echo $cat_info['category']->publish_date?></time>
 						  <h4><? echo $cat_info['category']->name?></h4>
 						  <p><? echo str_replace(substr(substr($cat_info['category']->description, 0,150), -6),"..." ,substr($cat_info['category']->description, 0,150));?>
+=======
+                       <div class="item half odd">
+                        <img src="<?php echo catogery_img('images/small/'.$cat_info['category']->image); ?>" style="margin:0 0;" alt="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" title="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" >
+                        <div class="description hided">
+                          <time><? echo $cat_info['category']->publish_date?></time>
+                          <h4><? echo $cat_info['category']->name?></h4>
+                          <p><? //echo str_replace(substr(substr($cat_info['category']->description, 0,150), -6),"..." ,substr($cat_info['category']->description, 0,150));
+						  		if(isset($cat_info['category']->excerpt) && !empty($cat_info['category']->excerpt))
+								{
+									echo word_limiter($cat_info['category']->excerpt, 150);
+						  		}
+						  ?>
+>>>>>>> b5731c0e3522fd2d8d6951dcb9f50b5636831c32
                           </p>
-						</div>
-						<a href="<?=base_url().$cat_info['category']->slug?>"></a> 
-						</div>
-				  <? }  
-					  if($count%4==0)
-					  {
-						echo '</div><div class = "gr-box">';
-					  }
-				  } ?>
+                        </div>
+                        <a href="<?=base_url().$cat_info['category']->slug?>"></a> 
+                        </div>
+                  <? }  
+                      if($count%4==0)
+                      {
+                        echo '</div><div class = "gr-box">';
+                      }
+                       
+                     
+                  } ?>
                 
                 
               </div>
@@ -108,7 +147,7 @@
                             }
                             else if(scrollbox.data("boxed") == "1"){
                                 scrollbox.closest(".wrap").css("width","100%");
-                                scrollbox.css("width","107%");
+                                scrollbox.css("width","99.2%");
                             }
                             else if(scrollbox.data("boxed") == "2") {
 
@@ -124,8 +163,8 @@
         </div>
       </div>
       <?php $page_content =  $this->page_model->get_page_texts();
-	  //print_r($page_content); exit;
-	  ?>
+      //print_r($page_content); exit;
+      ?>
       <div class="fifteen columns" style="padding-left: 0px;">
         <div class="text-block clearing-container">
           <div class="row">
@@ -151,7 +190,7 @@
                             <h6></h6>
                            <?php if(!empty($page_content)){?> <h2><a><?php echo $page_content[0]->title;?></a></h2>
                              <?php echo $page_content[0]->content;?>
-							<img class="icon_post" title="settings" alt=""  src="<?php echo theme_img("icons/check.png")?>" width="32" height="32" /><?php }?> </div>
+                            <img class="icon_post" title="settings" alt=""  src="<?php echo theme_img("icons/check.png")?>" width="32" height="32" /><?php }?> </div>
                         </div>
                       </div>
                       <div class="row-fluid">
@@ -167,19 +206,19 @@
                   <div class="wpb_content_element span4 pad-r20 column_container">
                     <div class="wpb_wrapper">
                     <?php
-					 $page_url = $this->page_model->get_homepage_link();?>                     
+                     $page_url = $this->page_model->get_homepage_link();?>                     
                       <div class='tile mini' style='background-color:#ffa531; padding-top:0px; padding-left:40px;'>
-					  	<a href='<?php echo $page_url[0]->slug?>'></a>
+                          <a href='<?php echo $page_url[0]->slug?>'></a>
                         <div class='text-tile text-big-left' >FAQs</div>
                       </div>
-					  <div class='tile mini' style='background-color:#57bae8'> <a href='<?php echo $page_url[1]->slug?>'></a>
-					  	<div class='icon icon_center' > <img src="<?php echo theme_img("img/tile-icons/clock.png")?>" alt="OneTouch"> </div>
+                      <div class='tile mini' style='background-color:#57bae8'> <a href='<?php echo $page_url[1]->slug?>'></a>
+                          <div class='icon icon_center' > <img src="<?php echo theme_img("img/tile-icons/clock.png")?>" alt="OneTouch"> </div>
                         <div  style=" padding-top:6px; padding-left:30px;" class='text-tile text-big-left'  > Payments </div>
                       </div>
-					  <div class='tile mini' style='background-color:#57bae8'> <a href='<?php echo base_url().'about-us'?>'></a>
-					  	<div class='icon icon_center' > <img src="<?php echo theme_img("img/tile-icons/comp.png")?>" alt="OneTouch"></div>
-					  	<div class='text-tile text-big-left' style="padding-top:0px; padding-left:25px;" >About Us</div>
-					  </div>
+                      <div class='tile mini' style='background-color:#57bae8'> <a href='<?php echo base_url().'about-us'?>'></a>
+                          <div class='icon icon_center' > <img src="<?php echo theme_img("img/tile-icons/comp.png")?>" alt="OneTouch"></div>
+                          <div class='text-tile text-big-left' style="padding-top:0px; padding-left:25px;" >About Us</div>
+                      </div>
                       <div class='tile mini' style='background-color:#90a7b1'> <a href='<?php echo site_url('cart/allcourses/');?>'></a>
                         
                         <div class='text-tile text-big-left' style="padding-left:20px;" >All Courses</div>

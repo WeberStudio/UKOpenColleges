@@ -242,10 +242,10 @@ Class Category_model extends CI_Model
         //return $this->db->get('wp_posts')->result(); 
         $sql    =  "SELECT * FROM wp_posts where post_status='publish' order by post_date DESC Limit 0,3";
         $result = $this->db->query($sql);
-		//echo "<pre>";print_r($result->result());
+        //echo "<pre>";print_r($result->result());
         return $result->result();       
     }
-	
-	
-	
+    
+    
+    
 }

@@ -47,7 +47,7 @@ class Categories extends Admin_Controller {
 		
 	}
 	
-	function index($order_by="name", $sort_order="ASC", $code=0, $page=0, $rows=5)
+	function index($order_by="name", $sort_order="ASC", $code=0, $page=0, $rows=15)
 	{
 		
 		//Store the sort term

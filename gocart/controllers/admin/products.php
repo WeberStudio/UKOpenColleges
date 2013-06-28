@@ -48,7 +48,7 @@ class Products extends Admin_Controller {
 		
 	}
 
-	function index($order_by="name", $sort_order="ASC", $code=0, $page=0, $rows=5)
+	function index($order_by="name", $sort_order="ASC", $code=0, $page=0, $rows=30)
 	{
 		
 		$data['page_title']	= lang('products');
@@ -76,8 +76,7 @@ class Products extends Admin_Controller {
 		//store the search term
 		$data['term']		= $term;
 		$data['order_by']	= $order_by;
-		$data['sort_order']	= $sort_order;
-		
+		$data['sort_order']	= $sort_order;		
 		$data['products']	= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
 		
 		//echo $this->db->last_query();exit;
