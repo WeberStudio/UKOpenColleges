@@ -1,7 +1,18 @@
 <?php 
 $GLOBALS['option_value_count']        = 0;
 ?>
+<script type="text/javascript">
+//<![CDATA[
+function remove_option(id)
+{
+	if(confirm('<?php echo lang('confirm_remove_option');?>'))
+	{
+		$('#option-'+id).remove();
+	}
+}
 
+//]]>
+</script>
 <div id="main">
   <div class="container">
     <? include_once('includes/admin_profile.php');?>
@@ -225,7 +236,7 @@ $GLOBALS['option_value_count']        = 0;
                       <div class="controls span7">
                         <div class="input-append row-fluid">
                           <!--<input type="file" class="spa1n6 fileinput" name="image" id="search-input">     -->
-                          <a class="various spa1n6 fileinput customfile-input" data-fancybox-type="iframe" href="<?=base_url()?>admin/media/">
+                          <a class="various" data-fancybox-type="iframe" href="<?=base_url()?>admin/media/">
                             <div class="uneditable-input spa1n6 fileinput" aria-hidden="true"><span>choose a file...</span></div>
                           </a>
                          </div>

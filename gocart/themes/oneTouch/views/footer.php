@@ -176,8 +176,9 @@
 						<? $page_data = $this->Page_model->get_page('6'); 
 							//$this->show->pe($page_data);
 						?>
-                        <h3><a href="<?=$page_data->slug?>">About company</a></h3>
-                        <p>I'm not sure that anyone saw this comming,but now that its here, its make goood sense:Parents have smart phones. Some of their chil-</p>
+                        <h3><a href="<?=base_url().$page_data->slug?>">About company</a></h3>                        
+						<? echo str_replace(substr(substr($page_data->content, 0,150), -6),"..." ,substr($page_data->content, 0,150));?>
+						</p>						
                     </div>
                 </section>
             </div>

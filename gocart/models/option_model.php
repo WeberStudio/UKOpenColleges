@@ -156,6 +156,7 @@ Class Option_model extends CI_Model
 	function validate_product_options(&$product, $post_options)
 	{
 		
+		
 		if( ! isset($product['id'])) return false;
 		
 		// set up to catch option errors
@@ -171,10 +172,11 @@ Class Option_model extends CI_Model
 		{
 			// Use the product option to see if we have matching data from the product form
 			$option_value = @$post_options[$option->id];
-						
+					
 			// are we missing any required values?
 			if((int) $option->required && empty($option_value)) 
 			{
+				
 				// Set our error flag and add to the user message
 				//  then continue processing the other options to built a full list of missing requirements
 				$error = true;
@@ -187,12 +189,14 @@ Class Option_model extends CI_Model
 			if($option->type == 'checklist')
 			{
 
+	
 				$opts = array();				
 				// tally our adjustments
 				
 				//check to make sure this is an array before looping
 				if(is_array($option_value))
 				{
+					
 					
 					foreach($option_value as $check_value) 
 					{
@@ -221,11 +225,13 @@ Class Option_model extends CI_Model
 				// If only one option was checked, add it as a single value
 				if(count($opts)==1) 
 				{
+					echo"<pre>"; print_r($opts);exit;
 					$product['options'][$option->name] = $opts[0];
 				}
 				// otherwise, add it as an array of values
 				else if(!empty($opts)) 
 				{ 
+				
 					$product['options'][$option->name] = $opts;
 				}
 				
@@ -238,6 +244,7 @@ Class Option_model extends CI_Model
 				
 				if($option_value)
 				{
+					
 					//get the potential price and weight of this field
 					$val	= $option->values[0];
 										

@@ -39,7 +39,7 @@ class Cart extends Front_Controller {
         $data['allProduct']         = $this->Product_model->get_products_catogery_wise();
 		  
 
-	   // echo '<pre>';print_r($data['allProduct']);
+	    //echo '<pre>';print_r($data['allProduct']);
 
        $this->load->view('index', $data);
 
@@ -591,6 +591,7 @@ class Cart extends Front_Controller {
 		$product_id		= $this->input->post('id');
 		$quantity 		= $this->input->post('quantity');
 		$post_options 	= $this->input->post('option');
+		//echo "<pre>"; print_r($post_options);
 		$slug 			= $this->input->post('slug');
 
 		
@@ -653,6 +654,11 @@ class Cart extends Front_Controller {
 		// this returns a status array, with product item array automatically modified and options added
 
 		//  Warning: this method receives the product by reference
+//echo "i am there";
+// print_r($this->input->post('option')) ."<br/>";
+//echo $this->show->pe($product)."<br/>";
+//echo $this->show->pe($post_options)."<br/>";
+	
 
 		$status = $this->Option_model->validate_product_options($product, $post_options);
 

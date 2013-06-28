@@ -85,10 +85,11 @@ Class Category_model extends CI_Model
 		
 		
 		//this will alphabetize them if there is no sequence
-		//$this->db->where('publish_by_super', '1');
+		
+		$this->db->where('delete', '0');
 		
 		$result	= $this->db->get('categories');
-		
+		//echo $this->db->last_query();exit;
 		$categories	= array();
 		foreach($result->result() as $cat)
 		{
@@ -119,7 +120,7 @@ Class Category_model extends CI_Model
 		{
 			$categories[$category->id]['category']	= $category;
 			$categories[$category->id]['children']	= $this->get_categories_tierd($category->id);
-		}
+		} 
 		return $categories;
 	}
 	
@@ -214,12 +215,24 @@ Class Category_model extends CI_Model
 	
 	function trash($id)
 	{
-		$data = array('publish_by_admin' => '0');
-		if(!empty($this->admin_access) && $this->admin_access == 'Superadmin')
+		$user_info		= $this->auth->admin_info();
+		  
+		$get_cat 		= $this->get_category($id);
+		
+		if($get_cat->admin_id == $user_info['id'] || $user_info['access']=='Superadmin')
 		{
-			$data = array('publish_by_super' => '0');
+			$data = array('publish_by_super' => '0' , 'publish_by_admin' => '0' , 'delete' => '1' );
+		}
+		else
+		{
+			$data = array('publish_by_admin' => '0' , 'delete' => '1' );
 		}
 		
+		//$data = array('publish_by_admin' => '0');
+		//if($this->admin_access!="" && $this->admin_access == 'Superadmin')
+		//{//$data = array('publish_by_super' => '0');
+			
+		//}
 		$this->db->where('id', $id);
 		$this->db->update('categories', $data);
 		return true;
@@ -229,10 +242,10 @@ Class Category_model extends CI_Model
         //return $this->db->get('wp_posts')->result(); 
         $sql    =  "SELECT * FROM wp_posts where post_status='publish' order by post_date DESC Limit 0,3";
         $result = $this->db->query($sql);
-		//echo "<pre>";print_r($result->result());
+        //echo "<pre>";print_r($result->result());
         return $result->result();       
     }
-	
-	
-	
+    
+    
+    
 }

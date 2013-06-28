@@ -181,7 +181,7 @@ class Media extends Admin_Controller
 		$root	= trim($this->input->post('root'), '/');
 		
 		$config['upload_path']		= 'uploads/wysiwyg/'.$root;
-		$config['allowed_types']	= 'gif|jpg|png';
+		$config['allowed_types']	= 'gif|jpg|png|pdf';
 		$config['max_size']			= $this->config->item('size_limit');
 		$config['max_width']		= '1024';
 		$config['max_height']		= '768';
