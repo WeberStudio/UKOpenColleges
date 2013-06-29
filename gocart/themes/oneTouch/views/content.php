@@ -15,7 +15,8 @@
                   //$this->show->pe($this->categories);
                   $count = 0;
                   foreach($this->categories as $cat_info){
-                 //echo '<pre>' ;print_r($cat_info);
+                 //echo '<pre>' ;print_r($cat_info); exit;
+                    if($cat_info['category']->publish_by_super==1){
                   $count = $count + 1; 
                   if($count%2==0)
                   {
@@ -57,7 +58,7 @@
                       {
                         echo '</div><div class = "gr-box">';
                       }
-                       
+                    }  
                      
                   } ?>
                 

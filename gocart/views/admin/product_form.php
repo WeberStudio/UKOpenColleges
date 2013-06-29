@@ -1,7 +1,18 @@
 <?php 
 $GLOBALS['option_value_count']        = 0;
 ?>
+<script type="text/javascript">
+//<![CDATA[
+function remove_option(id)
+{
+	if(confirm('<?php echo lang('confirm_remove_option');?>'))
+	{
+		$('#option-'+id).remove();
+	}
+}
 
+//]]>
+</script>
 <div id="main">
   <div class="container">
     <? include_once('includes/admin_profile.php');?>
@@ -83,10 +94,10 @@ $GLOBALS['option_value_count']        = 0;
                     <div class="row-fluid">
                       <div class="pull-left">
                         <label class="radio off">
-                          <input type="radio" name="enabled" id="toggle1-off" value="off" >
+                          <input type="radio" name="enabled" id="toggle1-off" value="off" <?php if($publish_by_super== 0){echo 'checked="true"';}?> >
                         </label>
                         <label class="radio on">
-                          <input type="radio" name="enabled" id="toggle1-on" value="on" checked="true">
+                          <input type="radio" name="enabled" id="toggle1-on" value="on" <?php if($publish_by_super== 1){echo 'checked="true"';}?>  >
                         </label>
                         <div class="toggle">
                           <div class="yes"> ON </div>

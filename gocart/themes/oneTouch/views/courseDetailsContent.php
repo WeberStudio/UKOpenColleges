@@ -10,8 +10,13 @@
 
 
 
+
+		});
+</script>
+
         });
     </script>
+
     
       
 
@@ -94,8 +99,12 @@
                     <div class="quantity buttons_added"><input type="button" value="-" class="minus"><input name="quantity" data-min="1" data-max="0" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12"><input type="button" value="+" class="plus"></div>
                     <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
                     <br/>
+
+                    
+                     
+                     <?php if(!empty($options)){?>
                     <div>
-                    <!--<fieldset>
+                    <fieldset>
                     <?php if(count($options) > 0): ?>
                         <?php foreach($options as $option):
                             $required    = '';
@@ -208,10 +217,17 @@
                     
                     
                     
-                    </fieldset>-->
+                    </fieldset>
                     </div>
+                     <?php }?>  
 
                     </form>
+                    
+                    <div>
+                   
+                    
+                    
+                    </div>
 
 
 
@@ -426,7 +442,7 @@
                        
                         <input type="hidden" id="" name="product_id" value="<?php echo $product->id;?>">
                         <input type="hidden" name="slug" value="<?php if($this->uri->segment(2)==""){echo $this->uri->segment(1);}
-                    if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
+                        if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
                         <p class="form-submit">
                         
                         <input name="submit" type="submit" id="submit" value="Submit Review" >
@@ -585,7 +601,9 @@
 
                                 ?>
 
-                                <li style="margin-bottom: 0px;" class="reviews_tab"><a href="#<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>"><?=$tabs['tab_title']?></a></li>
+
+                                <li class="reviews_tab" style="margin-bottom: 0px;"><a href="#<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>"><?=$tabs['tab_title']?></a></li>
+
 
 
 
