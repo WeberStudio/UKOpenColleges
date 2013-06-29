@@ -14,7 +14,8 @@
                    </span>
                    
                    </h1>
-                   <div class="line"> </div>                       
+                   <div class="line"> </div> 
+                                        
                 <div id="recent" class="section-block clearing-container">
                     <div class="sort-panel">
                         <ul class="filter clearfix">
@@ -26,12 +27,13 @@
                                 $last_cat =  end($this->categories);
                                 
                             ?>
+                            <?php //echo print_r($this->categories);exit;?>
                             <?php foreach($this->categories as $cat_menu):?> 
-
+                              <?php if($cat_menu['category']->publish_by_super == 1){ ?>
                             <li class="active">
                                 <a href="javascript:void(0)" class="<?php echo str_replace(' ','',$cat_menu['category']->id);?>" style="color: black";> <?php echo $cat_menu['category']->name;?><? if(!empty($last_cat['category']->name) && $last_cat['category']->name != $cat_menu['category']->name){ echo '/'; }?>   </a>
                             </li>
-
+                               <?php }?> 
                               <?php  endforeach;?>
                            
                         </ul>
@@ -44,10 +46,11 @@
                     <div class="works-list">
                         <ul class="filterable-grid">
                           <?php  
-                         // echo '<pre>'; print_r($allProduct);
+                         
                           $counter = 0;
                           $class = '';
                           $marginleft = '';
+                          if(!empty($allProduct)){
                           foreach($allProduct as $course):
                             if($counter%2 == 0)
                             {
@@ -67,6 +70,8 @@
                           ?>  
 						  
                             <a href="<?=base_url().$course['slug']?>" class="all">
+                            
+                            
                             <li class="item" style="height: 226px;"  data-id="id-1" data-type="<?php echo $course['category_id'];?>">
                              
                                 <div class="half <?=$class?>" style="height: 300px; width: 300px">
@@ -74,7 +79,7 @@
                                     <div class="description">
                                            <div class="title" align="center">
                                                     
-                                                    <h4><?php echo $course['name'].' Course';?></h4>
+                                                    <h4><?php echo $course['name'];?></h4>
                                                      <h4 align="center" style="color: black;"><?php echo 'Detail';?></h4>
                                                     
                                                 </div>
@@ -82,7 +87,10 @@
                                 </div>
                             </li>
                             </a>   
-                               <?php $counter++; endforeach; ?>   
+                               <?php $counter++; endforeach; 
+                          }
+                          else{echo'<div><p class="woocommerce_info">Currently there is no  product.</p></div>';}
+                               ?>   
                         </ul>
                         <div style="display: none;" id="show_empty_message"><p class="woocommerce_info">Currently there is no any product in this category.</p> </div>
                     </div> 

@@ -10,13 +10,13 @@
 
 
 
-<<<<<<< HEAD
+
 		});
 </script>
-=======
+
         });
     </script>
->>>>>>> b5731c0e3522fd2d8d6951dcb9f50b5636831c32
+
     
       
 
@@ -99,126 +99,12 @@
                     <div class="quantity buttons_added"><input type="button" value="-" class="minus"><input name="quantity" data-min="1" data-max="0" value="1" size="4" title="Qty" class="input-text qty text" maxlength="12"><input type="button" value="+" class="plus"></div>
                     <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
                     <br/>
-<<<<<<< HEAD
-                    <?php if(!empty($options)){?>
-                    <fieldset>
-					<?php if(count($options) > 0): ?>
-						<?php foreach($options as $option):
-							$required	= '';
-							if($option->required)
-							{
-								$required = ' <p class="help-block">Required</p>';
-							}
-							?>
-							<div class="control-group">
-								<label class="control-label"><?php echo $option->name;?></label>
-								<?php
-								/*
-								this is where we generate the options and either use default values, or previously posted variables
-								that we either returned for errors, or in some other releases of Go Cart the user may be editing
-								and entry in their cart.
-								*/
 
-								//if we're dealing with a textfield or text area, grab the option value and store it in value
-								if($option->type == 'checklist')
-								{
-									$value	= array();
-									if($posted_options && isset($posted_options[$option->id]))
-									{
-										$value	= $posted_options[$option->id];
-									}
-								}
-								else
-								{
-									if(isset($option->values[0]))
-									{
-										$value	= $option->values[0]->value;
-										if($posted_options && isset($posted_options[$option->id]))
-										{
-											$value	= $posted_options[$option->id];
-										}
-									}
-									else
-									{
-										$value = false;
-									}
-								}
-
-								if($option->type == 'textfield'):?>
-									<div class="controls">
-										<input type="text" name="option[<?php echo $option->id;?>]" value="<?php echo $value;?>" class="span4"/>
-										<?php echo $required;?>
-									</div>
-								<?php elseif($option->type == 'textarea'):?>
-									<div class="controls">
-										<textarea class="span4" name="option[<?php echo $option->id;?>]"><?php echo $value;?></textarea>
-										<?php echo $required;?>
-									</div>
-								<?php elseif($option->type == 'droplist'):?>
-									<div class="controls">
-										<select name="option[<?php echo $option->id;?>]">
-											<option value=""><?php echo lang('choose_option');?></option>
-
-										<?php foreach ($option->values as $values):
-											$selected	= '';
-											if($value == $values->id)
-											{
-												$selected	= ' selected="selected"';
-											}?>
-
-											<option<?php echo $selected;?> value="<?php echo $values->id;?>">
-												<?php echo($values->price != 0)?'('.format_currency($values->price).') ':''; echo $values->name;?>
-											</option>
-
-										<?php endforeach;?>
-										</select>
-										<?php echo $required;?>
-									</div>
-								<?php elseif($option->type == 'radiolist'):?>
-									<div class="controls">
-										<?php foreach ($option->values as $values):
-
-											$checked = '';
-											if($value == $values->id)
-											{
-												$checked = ' checked="checked"';
-											}?>
-											<label class="radio">
-												<input<?php echo $checked;?> type="radio" name="option[<?php echo $option->id;?>]" value="<?php echo $values->id;?>"/>
-												<?php echo $option->name;?> <?php echo($values->price != 0)?'('.format_currency($values->price).') ':''; echo $values->name;?>
-											</label>
-										<?php endforeach;?>
-										<?php echo $required;?>
-									</div>
-								<?php elseif($option->type == 'checklist'):?>
-									<div class="controls">
-										<?php foreach ($option->values as $values):
-
-											$checked = '';
-											if(in_array($values->id, $value))
-											{
-												$checked = ' checked="checked"';
-											}?>
-											<label class="checkbox">
-												<input<?php echo $checked;?> type="checkbox" name="option[<?php echo $option->id;?>][]" value="<?php echo $values->id;?>"/>
-												<?php echo($values->price != 0)?'('.format_currency($values->price).') ':''; echo $values->name;?>
-											</label>
-											
-										<?php endforeach; ?>
-									</div>
-									<?php echo $required;?>
-								<?php endif;?>
-								</div>
-						<?php endforeach;?>
-					<?php endif;?>
-					
-					
-					
-					</fieldset>
-                    <?php }?>
-=======
+                    
+                     
+                     <?php if(!empty($options)){?>
                     <div>
-                    <!--<fieldset>
+                    <fieldset>
                     <?php if(count($options) > 0): ?>
                         <?php foreach($options as $option):
                             $required    = '';
@@ -331,10 +217,10 @@
                     
                     
                     
-                    </fieldset>-->
+                    </fieldset>
                     </div>
+                     <?php }?>  
 
->>>>>>> b5731c0e3522fd2d8d6951dcb9f50b5636831c32
                     </form>
                     
                     <div>
@@ -556,7 +442,7 @@
                        
                         <input type="hidden" id="" name="product_id" value="<?php echo $product->id;?>">
                         <input type="hidden" name="slug" value="<?php if($this->uri->segment(2)==""){echo $this->uri->segment(1);}
-                    if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
+                        if($this->uri->segment(2)!=""){echo $this->uri->segment(1)."/".$this->uri->segment(2);}?>"/>
                         <p class="form-submit">
                         
                         <input name="submit" type="submit" id="submit" value="Submit Review" >
@@ -715,11 +601,9 @@
 
                                 ?>
 
-<<<<<<< HEAD
+
                                 <li class="reviews_tab" style="margin-bottom: 0px;"><a href="#<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>"><?=$tabs['tab_title']?></a></li>
-=======
-                                <li style="margin-bottom: 0px;" class="reviews_tab"><a href="#<?=str_replace(' ', '-', strtolower($tabs['tab_title']))?>"><?=$tabs['tab_title']?></a></li>
->>>>>>> b5731c0e3522fd2d8d6951dcb9f50b5636831c32
+
 
 
 

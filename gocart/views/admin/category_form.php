@@ -46,11 +46,12 @@
                               <div class="controls span3">
                                 <div class="row-fluid">
                                   <div class="pull-left">
+                                  
                                     <label class="radio off">
-                                      <input type="radio" name="enabled" id="toggle1-off" value="off" >
+                                      <input type="radio" name="enabled" id="toggle1-off" value="off" <?php if($publish_by_super== 0){echo 'checked="true"';}?> >
                                     </label>
                                     <label class="radio on">
-                                      <input type="radio" name="enabled" id="toggle1-on" value="on" checked="true">
+                                      <input type="radio" name="enabled" id="toggle1-on" value="on" <?php if($publish_by_super== 1){echo 'checked="true"';}?>  >
                                     </label>
                                     <div class="toggle off">
                                       <div class="yes"> Yes </div>

@@ -12,7 +12,7 @@ experience this site.
         <img src="<?php echo theme_img("custom-slider-img/logouk.png")?>" alt="OneTouch"></a>
 </div>
 <? $categories = $this->dropdown_menu->get_all_categories(); 
-//echo"<pre>";print_r($categories);
+
 
 ?>
 
@@ -69,13 +69,16 @@ experience this site.
 							if(count($cat_info)>0)
 							{
 								foreach($cat_info as $cat)
-								{ ?>							  
-									<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (<?=$cat['count']?>)</span></a></li>									
+								{ ?>	
+                                	 <?php if($cat['publish_by_super'] ==1){?>  					  
+									<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (<?=$cat['count']?>)</span></a></li>	
+                                     	<? } ?> 					
 								<? } 
 							} 
 						}							
 					?>
 				  </ul>
+
 			  	<?php					  
 			   foreach($categories as $key => $cat_info)
 			   {
@@ -86,8 +89,10 @@ experience this site.
 			  ?>					  
 					  <ul class="sub-menu with-counts l<?=$key?>"  style="margin:0px !important; padding:10px 0 5px 10px !important; width:100%; display:none ;">
 					  <? foreach($cat_info as $cat)
-						{ ?>							  
-							<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (<?=$cat['count']?>)</span></a></li>									
+						{ ?>
+                        <?php if($cat['publish_by_super'] ==1){?>							  
+							<li><a href="<?=base_url().$cat['slug']?>"><?=$cat['name']?><span> (<?=$cat['count']?>)</span></a></li>
+                            <?}?>									
 						<? } ?>
 					  </ul>
 				<? } 

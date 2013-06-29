@@ -108,7 +108,10 @@ Class Product_model extends CI_Model
         $this->db->where('enabled', '1');
         $this->db->where('delete', '0');
         $result    = $this->db->get('products');
+        
         $return = $result->result_array();
+        //echo $this->show->pe($return);
+        //echo $this->db->last_query();exit;
         if(count($return))
         {
             return $return;
@@ -155,14 +158,17 @@ Class Product_model extends CI_Model
 		//$this->db->where('enabled', '1');
 		$this->db->where('publish_by_admin', '1');
 		$result	= $this->db->get('products');
+        
 		//apply group discount
 		$return = $result->result();
+        echo'<pre>'; print_r($return);echo'<br/>' ;
 		if($this->group_discount_formula) 
 		{
 			foreach($return as &$product) {
 				eval('$product->price=$product->price'.$this->group_discount_formula.';');
 			}
 		}
+         echo'<pre>'; print_r($return);exit; 
 		return $return;
 	}
 	

@@ -11,27 +11,12 @@
 
                 
                   <?php
-<<<<<<< HEAD
-                 // DebugBreak()  ;
-				  $count = 0;
-				  foreach($this->categories as $cat_info){
-				 
-				  $count = $count + 1;
-				  if($count%2==0)
-				  {
-				  ?>
-					  <div class="item half even"> 
-						<img src="<?php echo catogery_img('images/small/'.$cat_info['category']->image); ?>" style="margin:0 0;" alt="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" title="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" >
-						<div class="description disp">
-						  <time><? echo $cat_info['category']->publish_date?></time>
-						  <h4><? echo $cat_info['category']->name?></h4>
-						  <p><? echo str_replace(substr(substr($cat_info['category']->description, 0,150), -5),"..." ,substr($cat_info['category']->description, 0,150));?>
-=======
                   
                   //$this->show->pe($this->categories);
                   $count = 0;
                   foreach($this->categories as $cat_info){
-                 //echo '<pre>' ;print_r($cat_info);
+                 //echo '<pre>' ;print_r($cat_info); exit;
+                    if($cat_info['category']->publish_by_super==1){
                   $count = $count + 1; 
                   if($count%2==0)
                   {
@@ -47,21 +32,12 @@
 									echo word_limiter($cat_info['category']->excerpt, 150);
 						  		}
 						  ?>
->>>>>>> b5731c0e3522fd2d8d6951dcb9f50b5636831c32
                           </p>
                          
                         </div>
                         <a href="<?=base_url().$cat_info['category']->slug?>"></a> 
                         </div>
                   <? } else { ?>
-<<<<<<< HEAD
-					   <div class="item half odd">
-						<img src="<?php echo catogery_img('images/small/'.$cat_info['category']->image); ?>" style="margin:0 0;" alt="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" title="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" >
-						<div class="description hided">
-						  <time><? echo $cat_info['category']->publish_date?></time>
-						  <h4><? echo $cat_info['category']->name?></h4>
-						  <p><? echo str_replace(substr(substr($cat_info['category']->description, 0,150), -6),"..." ,substr($cat_info['category']->description, 0,150));?>
-=======
                        <div class="item half odd">
                         <img src="<?php echo catogery_img('images/small/'.$cat_info['category']->image); ?>" style="margin:0 0;" alt="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" title="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" >
                         <div class="description hided">
@@ -73,7 +49,6 @@
 									echo word_limiter($cat_info['category']->excerpt, 150);
 						  		}
 						  ?>
->>>>>>> b5731c0e3522fd2d8d6951dcb9f50b5636831c32
                           </p>
                         </div>
                         <a href="<?=base_url().$cat_info['category']->slug?>"></a> 
@@ -83,7 +58,7 @@
                       {
                         echo '</div><div class = "gr-box">';
                       }
-                       
+                    }  
                      
                   } ?>
                 

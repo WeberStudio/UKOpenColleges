@@ -23,11 +23,11 @@ Class Category_model extends CI_Model
 	
 	function get_categories_dropdown()
 	{
-		$this->db->select('id,name,slug');
+		$this->db->select('id,name,slug,publish_by_super');
 		$this->db->order_by('name', 'ASC');
 		$this->db->where('delete', '0');
-		$this->db->where('publish_by_admin', '1');
-		//$this->db->where('publish_by_super', '1');
+		//$this->db->where('publish_by_admin', '1');
+		$this->db->where('publish_by_super', '1');
 		$result	= $this->db->get('categories');
 		if(count($result)>0)
 		{
@@ -95,7 +95,7 @@ Class Category_model extends CI_Model
 		{
 			$categories[]	= $this->get_category($cat->id);
 		}
-		
+		 //echo $this->show->pe($categories);exit;
 		return $categories;
 	}
 	
