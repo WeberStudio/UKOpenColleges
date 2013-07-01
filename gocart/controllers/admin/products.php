@@ -236,6 +236,7 @@ class Products extends Admin_Controller {
 	
 	function form($id = false, $duplicate = false, $tab_id = false)
 	{
+        //echo $this->input->post('google_follow'); exit; 
 		$data['active_tabid'] = $tab_id; 
 		
 		//echo"<pre>";print_r($_POST);exit;
@@ -277,6 +278,7 @@ class Products extends Admin_Controller {
 		$data['fixed_quantity']		= '';
 		$data['quantity']			= '';
 		$data['enabled']			= '';
+        $data['google_follow']      = '0';
 		$data['related_products']	= array();
 		$data['product_categories']	= array();
 		$data['images']				= '';
@@ -363,6 +365,7 @@ class Products extends Admin_Controller {
 			$data['taxable']			= $product->taxable;
 			$data['fixed_quantity']		= $product->fixed_quantity;
 			$data['enabled']			= $product->enabled;
+            $data['google_follow']      = $product->google_follow;
 			$data['images']				= $product->images;
 			$data['publish_by_admin']	= $product->publish_by_admin;
 			$data['publish_by_super']	= $product->publish_by_super;
@@ -514,6 +517,9 @@ class Products extends Admin_Controller {
 						$save['publish_by_super']	= '0';
 				}
 			}
+            
+            if($this->input->post('google_follow')==""){$google ='0';}
+             else{$google = trim($this->input->post('google_follow'));}
 			$save['sku']				= $this->input->post('sku');
 			$save['name']				= $this->input->post('name');
 			$save['seo_title']			= $this->input->post('seo_title');
@@ -529,6 +535,7 @@ class Products extends Admin_Controller {
 			$save['quantity']			= $this->input->post('quantity');
 			$save['shippable']			= $this->input->post('shippable');
 			$save['taxable']			= $this->input->post('taxable');
+            $save['google_follow']      = $google;
 			$save['old_route']			= $old_slug;
 			$post_images				= $this->input->post('images');
 			

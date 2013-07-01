@@ -134,7 +134,7 @@
                         </div>
                         
                         <div class="tab-pane" id="seo_tab">
-                            <fieldset>
+                             <fieldset>
                                 <label for="seo_title"><?php echo lang('seo_title');?> </label>
                                 <?php
                                 $data	= array('name'=>'seo_title', 'value'=>set_value('seo_title', $seo_title), 'class'=>'span12');
@@ -153,6 +153,31 @@
                                 ?>
                                <i>ex. &lt;meta name="description" content="comma Separated Keywords" /&gt;</i>
                             </fieldset>
+                            
+                               <?php //echo $google_follow; exit; ?>
+                            <div class="form-row control-group row-fluid ">
+                              <h3>Google Follow this page?</h3>
+                              <div class="controls span3">
+                                <div class="row-fluid">
+                                  <div class="pull-left">
+                                      
+                                    <label class="radio off">
+                                    <input type="radio" name="google_follow" id="toggle1-on" value="0"  >
+                                      
+                                    </label>
+                                    <label class="radio on">
+                                     <input type="radio" name="google_follow" id="toggle1-off" value="1" >  
+                                    </label>
+                                    <div <?php if($google_follow==0){echo 'class="toggle on"';} if($google_follow==1){echo 'class="toggle on"';}?>>
+                                      <div class="no" > Yes </div>
+                                      <div class="switch"> </div>
+                                      <div class="yes"> No </div>
+                                    </div>
+                                  </div>                      
+                                </div>
+                              </div>
+                            </div>
+                                                                             
                         </div>
                     </div>
                      

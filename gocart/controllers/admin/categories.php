@@ -153,6 +153,7 @@ class Categories extends Admin_Controller {
 	
 	function form($id = false)
 	{
+       //echo $this->input->post('google_follow'); exit;
 		
 		
 		/*$this->show->pe($_FILES);
@@ -175,24 +176,25 @@ class Categories extends Admin_Controller {
 		$data['page_title']		= lang('category_form');
 		
 		//default values are empty if the customer is new
-		$data['id']				= '';
-		$data['admin_id']		= '';
+		$data['id']				        = '';
+		$data['admin_id']		        = '';
 		$data['publish_by_admin']		= '0';
 		$data['publish_by_super']		= '0';
-		$data['name']			= '';
-		$data['old_slug']		= '';
-		$data['slug']			= '';
-		$data['description']	= '';
-		$data['excerpt']		= '';
-		$data['sequence']		= '';
-		$data['image']			= '';
-		$data['seo_title']		= '';
-		$data['meta']			= '';
-		$data['meta_key']		= '';
-		$data['parent_id']		= 0;
-		$data['error']			= '';
-		$data['publish_date']	= '';	
-		$data['delete']			= '';
+		$data['name']			        = '';
+		$data['old_slug']		        = '';
+		$data['slug']			        = '';
+		$data['description']	        = '';
+		$data['excerpt']		        = '';
+		$data['sequence']		        = '';
+		$data['image']			        = '';
+		$data['seo_title']		        = '';
+		$data['meta']			        = '';
+		$data['meta_key']		        = '';
+		$data['parent_id']		        = 0;
+		$data['error']			        = '';
+		$data['publish_date']	        = '';
+        $data['google_follow']          = '0';
+		$data['delete']			        = '';
 		
 		
 		//create the photos array for later use
@@ -245,6 +247,7 @@ class Categories extends Admin_Controller {
 			$data['meta']			= $category->meta;
 			$data['meta_key']		= $category->meta_key;
 			$data['publish_date']	= date('Y-m-d H:h:i');	
+            $data['google_follow']  = $category->google_follow;
 			$data['delete']			= $category->delete;	
 			
 		}
@@ -401,6 +404,9 @@ class Categories extends Admin_Controller {
 			}
 			/*$save['publish_by_admin']		= '0';
 			$save['publish_by_super']		= '0';*/
+             if($this->input->post('google_follow')==""){$google ='0';}
+             else{$google = trim($this->input->post('google_follow'));}
+               
 			$save['description']	= $this->input->post('description');
 			$save['excerpt']		= $this->input->post('excerpt');
 			$save['parent_id']		= intval($this->input->post('parent_id'));
@@ -412,6 +418,7 @@ class Categories extends Admin_Controller {
 			$save['slug']			= $slug;
 			$save['old_route']		= $old_slug;
 			$save['publish_date']	= date('Y-m-d H:h:i');
+            $save['google_follow']  =  $google;
 			$save['delete']			= '0';
 			if($this->admin_access=='Admin')
 			{

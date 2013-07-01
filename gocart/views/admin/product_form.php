@@ -83,8 +83,33 @@ function remove_option(id)
                         <label for="meta">Meta Keywords </label>
                         <textarea name="meta_key"  cols="10" rows="3" class="row-fluid autogrow" id="elastic-textarea"><?=set_value('meta_key', html_entity_decode($meta_key))?></textarea>
                         <i>ex. &lt;meta name="description" content="comma Separated Keywords" /&gt;</i>
+                        <fieldset>
                         
-                      </div>
+                         <div class="form-row control-group row-fluid ">
+                              <h3>Google Follow this page?</h3>
+                              <div class="controls span3">
+                                <div class="row-fluid">
+                                  <div class="pull-left">
+                                      
+                                    <label class="radio off">
+                                    <input type="radio" name="google_follow" id="toggle1-on" value="0"  >
+                                      
+                                    </label>
+                                    <label class="radio on">
+                                     <input type="radio" name="google_follow" id="toggle1-off" value="1" >  
+                                    </label>
+                                    <div class="toggle off">
+                                      <div class="no" > Yes </div>
+                                      <div class="switch"> </div>
+                                      <div class="yes"> No </div>
+                                    </div>
+                                  </div>                      
+                                </div>
+                              </div>
+                            </div>
+                        </fieldset>
+                                            
+                            </div>
                     </div>
                     
                   </div>
