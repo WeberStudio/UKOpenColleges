@@ -3,7 +3,7 @@ Class Topic_model extends CI_Model
 {
 
 	//this is the expiration for a non-remember session
-	//var $session_expire	= 7200;
+	var $session_expire	= 7200;
 	
 	
 	

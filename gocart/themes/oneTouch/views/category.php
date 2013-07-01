@@ -59,7 +59,7 @@
                                            <div class="title">
                                                     
                                                     <h4><?=$subcategory->name?></h4>
-                                                    <p><?php echo substr($subcategory->excerpt,0,100)?></p> 
+                                                    <p><?php  echo word_limiter($subcategory->excerpt,30);?></p> 
                                                     <p><span class="button" style="margin:0px auto 0px 90px;">Read More</span></p>
                                                     <div class="row">
                                                     <div class="line"> </div>
@@ -87,7 +87,7 @@
                                            <div class="title">
                                                     
                                                     <h4><?=$product->name?></h4>
-                                                    <p><?php echo substr($product->excerpt,0,100)?></p> 
+                                                    <p><?php echo word_limiter($subcategory->excerpt,30);?></p> 
                                                     <p><span class="button" style="margin:0px auto 0px 90px;">Read More</span></p>
                                                     <div class="row">
                                                     <div class="line"> </div>
