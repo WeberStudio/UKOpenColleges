@@ -143,12 +143,12 @@
 			
             <div class="five columns">
                 <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
-                    <div id="fb-root"></div>
+                    <div id="fb-root"></div> 
                     <script>(function(d, s, id) {
                             var js, fjs = d.getElementsByTagName(s)[0];
                             if (d.getElementById(id)) return;
                             js = d.createElement(s); js.id = id;
-                            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+                            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&status=0";
                             fjs.parentNode.insertBefore(js, fjs);
                         }(document, 'script', 'facebook-jssdk'));</script>
                     <div class="widget-inner">
@@ -236,6 +236,6 @@
 <?php echo theme_js('js/scrolling.js', true);?>
 <?php echo theme_js('js/woocommerce.min.js?ver=1.6.6', true);?>
 
-
+ 
 </body>
 </html>
