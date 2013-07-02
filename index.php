@@ -27,7 +27,8 @@ if(!file_exists(dirname($_SERVER['SCRIPT_FILENAME']).'/gocart/config/gocart.php'
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+	//define('ENVIRONMENT', 'development');
+	define('ENVIRONMENT', 'production');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -42,12 +43,15 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
+			
+			ini_set('display_errors', 'On');
 			error_reporting(E_ALL);
-		break;
-	
-		case 'testing':
+			define('MP_DB_DEBUG', true); 
+		break;	
 		case 'production':
+			ini_set('display_errors', 'Off');
 			error_reporting(0);
+			define('MP_DB_DEBUG', false); 
 		break;
 
 		default:

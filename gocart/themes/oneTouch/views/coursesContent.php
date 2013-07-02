@@ -80,7 +80,7 @@
                                            <div class="title" >
                                                     
                                                     <h4><?php echo $course['name'];?></h4>
-                                                    <p><?php echo word_limiter($course['excerpt'],20);?></p> 
+                                                    <p><?php echo word_limiter($course['excerpt'],15);?></p> 
                                                     
                                                 </div>
                                     </div>

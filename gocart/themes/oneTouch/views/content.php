@@ -29,7 +29,7 @@
                           <p><? //echo str_replace(substr(substr($cat_info['category']->description, 0,150), -6),"..." ,substr($cat_info['category']->description, 0,150));
 						  		if(isset($cat_info['category']->excerpt) && !empty($cat_info['category']->excerpt))
 								{
-									echo word_limiter($cat_info['category']->excerpt, 30);
+									echo word_limiter($cat_info['category']->excerpt, 25);
 						  		}
 						  ?>
                           </p>
