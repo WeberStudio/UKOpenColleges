@@ -8,6 +8,18 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
+    <?php
+    if(isset($category)) {
+    if($category->google_follow==1)
+    {
+    echo '<meta name="robots" content="noindex,nofollow">';   
+    }
+    } if(isset($product)){
+    if($product->google_follow==1)
+    {
+    echo '<meta name="robots" content="noindex,nofollow">';   
+    } }
+    ?>
     <meta charset="utf-8">
     <title><?php echo (!empty($seo_title)) ? $seo_title .' - ' : ''; echo $this->config->item('company_name'); ?></title>
     <meta name="keywords" content="<?php echo (!empty($meta_key)) ? $meta_key .'' : ''; echo ""; ?>">

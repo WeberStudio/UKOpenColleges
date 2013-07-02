@@ -36,7 +36,7 @@ Class Product_model extends CI_Model
 		{
 			if($this->admin_access!='Superadmin')
 			{
-				//$this->db->where('admin_id', $this->admin_id);
+				$this->db->where('admin_id', $this->admin_id);
 			}
 			
 			
