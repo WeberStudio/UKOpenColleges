@@ -503,7 +503,7 @@ class Cart extends Front_Controller {
 	{
 
 		//get the product
-         // DebugBreak();
+          //DebugBreak();
 		$data['product']		= $this->Product_model->get_product($id);
 //$this->show->pe($data['product']);
 		
@@ -583,7 +583,7 @@ class Cart extends Front_Controller {
 	{
 
 		// Get our inputs
-            // DebugBreak();
+         // DebugBreak();
 		$product_id		= $this->input->post('id');
 		$quantity 		= $this->input->post('quantity');
 		$post_options 	= $this->input->post('option');
@@ -722,13 +722,9 @@ class Cart extends Front_Controller {
 
 		
 
-		$data['page_title']	= 'View Cart';
-
-		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
-
-		
-
-		$this->load->view('view_cart', $data);
+		$data['page_title']	= 'View Cart'; 
+		//$data['gift_cards_enabled'] = $this->gift_cards_enabled; 
+        $this->load->view('view_cart', $data);
 
 	}
 

@@ -5,6 +5,7 @@ class Auth
 	var $CI;
 	
 	//this is the expiration for a non-remember session
+	
 	var $session_expire	= 7200;
 
 	function __construct()

@@ -77,10 +77,10 @@
                                 <div class="half <?=$class?>" style="height: 300px; width: 300px">
                                     <div class="pic" style="height: 300px; width: 300px"><img  src="<?php echo catogery_img('images/medium/'.$course['images']); ?>" style="margin:0 0 0 0;" alt="Watchers" title="Watchers" ></div>
                                     <div class="description">
-                                           <div class="title" align="center">
+                                           <div class="title" >
                                                     
                                                     <h4><?php echo $course['name'];?></h4>
-                                                     <h4 align="center" style="color: black;"><?php echo 'Detail';?></h4>
+                                                    <p><?php echo word_limiter($course['excerpt'],20);?></p> 
                                                     
                                                 </div>
                                     </div>
