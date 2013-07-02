@@ -48,13 +48,17 @@ Class Category_model extends CI_Model
 			
 		}
 		
-		$this->db->select('id');		
-		     
-		if($this->admin_access != "" && $this->admin_access!='Superadmin')
-		{
-       			
-			$this->db->where('admin_id', $this->admin_id);			
-		}
+		$this->db->select('id');	
+        	
+		
+            if($this->admin_access!='Superadmin' && $this->admin_access !='')
+            {
+                   //echo '---------------';exit;
+                $this->db->where('admin_id', $this->admin_id);            
+            }    
+           
+    
+		
         
 		//$this->db->where('publish_by', 'Admin');
 		//$this->db->where('status', '1');

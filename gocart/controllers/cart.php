@@ -12,7 +12,7 @@ class Cart extends Front_Controller {
 		
 
 		//make sure we're not always behind ssl
-
+              
 		remove_ssl();
 
 	}
@@ -24,9 +24,9 @@ class Cart extends Front_Controller {
 	{
 
         //DebugBreak();
-
+                
 		//$this->load->model(array('Banner_model', 'box_model'));
-
+        
 		$this->load->helper('directory');
 
 

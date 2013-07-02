@@ -12,6 +12,7 @@ class Categories extends Admin_Controller {
 		remove_ssl();
 		/*** Get User Info***/
 		//$admin_info = $this->admin_session->userdata('admin');
+        
 		$user_info = $this->auth->admin_info();
 		$this->admin_id = $user_info['id'];
 		$this->admin_email = $user_info['email'];

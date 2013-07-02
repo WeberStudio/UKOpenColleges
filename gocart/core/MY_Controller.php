@@ -52,11 +52,14 @@ class Front_Controller extends Base_Controller
 		$this->load->helper(array('form_helper', 'formatting_helper'));
 		
 		//fill in our variables
+        $this->admin_access = '';
+        $this->admin_id   = '';                                                                                                             
 		$this->categories	= $this->Category_model->get_categories_tierd(0);
         
         //$this->show->pe($this->categories);
 		$this->pages		= $this->Page_model->get_pages();
 		$this->menu_pages	= $this->Page_model->get_pages_top();
+        
 		
 		// check if giftcards are enabled
 		$gc_setting = $this->Settings_model->get_settings('gift_cards');
