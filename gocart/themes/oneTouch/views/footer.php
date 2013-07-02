@@ -102,20 +102,23 @@
                     </div>
                 </section>
             </div>
-			
+            
             <div class="five columns">   
-                <section id="recent_posts-2" class="widget-1 widget-first widget recent-posts-widget">
+                     <section id="recent_posts-2" class="widget-1 widget-first widget recent-posts-widget">
                     <div class="widget-inner">
                         <div class="subtitle"> Some latest news</div>
                         <h3>Recent posts</h3>
                         <?
                             $recent_blog_post = $this->Category_model->get_blog_posts(); 
+                            
+                          //  echo '<pre>'; print_r($recent_blog_post);
                             for($i=0; $i<count($recent_blog_post);$i++)    
                             {
-                                $date = new DateTime($recent_blog_post[$i]->post_date_gmt);
-                                $newFormate = $date->format('F j, Y, g:i a');
+/*                                $date =         $recent_blog_post[$i]->post_date_gmt;  
+                                $newFormate =  $date->format('F j, Y, g:i a');
+                                echo   $newFormate;
                                 $newFormate =   explode(',',$newFormate);
-                                $monthDay =  explode(' ', $newFormate[0]);
+                                $monthDay =     explode(' ', $newFormate[0]);  */
 
                                 //DebugBreak();
                                 $length = strlen($recent_blog_post[$i]->post_content);
@@ -131,7 +134,7 @@
 
                             ?>
                             <article class="mini date">
-                                <time datetime="<?=$recent_blog_post[$i]->post_date_gmt?>"> <span class="day"><?=$monthDay[1]?></span> <span class="mounth"><?=substr($monthDay[0], 0, 3);?>.</span> <span class="time"><?=$newFormate[2]?></span> </time>
+                                <time datetime="<?=$recent_blog_post[$i]->post_date_gmt?>"> <span class="day"><?='20'?></span> <span class="mounth"><?='May';?>.</span> <span class="time"><?='5:48'?></span> </time>
                                 <div class="entry-content"> <a href='<?=$recent_blog_post[$i]->guid?>' class="title" target="_blank"><?=$recent_blog_post[$i]->post_title?></a>
                                     <p> <?=$post_content?> </p>
                                 </div>
@@ -140,10 +143,10 @@
                     </div>
                 </section>
             </div>
-			
+            
             <div class="five columns">
                 <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
-                    <div id="fb-root"></div>
+                    <div id="fb-root"></div> 
                     <script>(function(d, s, id) {
                             var js, fjs = d.getElementsByTagName(s)[0];
                             if (d.getElementById(id)) return;
@@ -173,16 +176,12 @@
                 <section class="widget widget_info">
                     <div class="info-widget">
                         <div class="subtitle">IT IS REALLY INTERESTING</div>
-						<? $page_data = $this->Page_model->get_page('6'); 
-							//$this->show->pe($page_data);
-						?>
+                        <? $page_data = $this->Page_model->get_page('6'); 
+                            //$this->show->pe($page_data);
+                        ?>
                         <h3><a href="<?=base_url().$page_data->slug?>">About company</a></h3>                        
-						<? 
-							$footer_page = strip_tags($page_data->content);
-							echo word_limiter($footer_page, 30);
-						
-						?>
-						</p>						
+                        <? echo str_replace(substr(substr($page_data->content, 0,150), -6),"..." ,substr($page_data->content, 0,150));?>
+                        </p>                        
                     </div>
                 </section>
             </div>
@@ -208,7 +207,6 @@
                 <a href="<?php echo site_url('tutor_login');?>"  style="color:#FFF; font-size:12px;"><?php echo "Tutor Login"; ?></a>
             </div>
         </div>
-
 
     </section>
 
@@ -240,6 +238,6 @@
 <?php echo theme_js('js/scrolling.js', true);?>
 <?php echo theme_js('js/woocommerce.min.js?ver=1.6.6', true);?>
 
-
+ 
 </body>
 </html>

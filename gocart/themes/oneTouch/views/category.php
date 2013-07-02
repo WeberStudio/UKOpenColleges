@@ -10,7 +10,7 @@
 <?php include('header.php'); ?>
 
 <? //Content Area Start ?>
-
+<?php //echo $category->google_follow; exit;?>
 <div class="row">
 <div class="page-header">
 

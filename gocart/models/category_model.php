@@ -23,7 +23,7 @@ Class Category_model extends CI_Model
 	
 	function get_categories_dropdown()
 	{
-		$this->db->select('id,name,slug,publish_by_super');
+		$this->db->select('id,name,slug,publish_by_super,google_follow');
 		$this->db->order_by('name', 'ASC');
 		$this->db->where('delete', '0');
 		//$this->db->where('publish_by_admin', '1');
@@ -49,11 +49,13 @@ Class Category_model extends CI_Model
 		}
 		
 		$this->db->select('id');		
-		
-		if(!empty($this->admin_access) && $this->admin_access!='Superadmin')
-		{			
+		     
+		if($this->admin_access != "" && $this->admin_access!='Superadmin')
+		{
+       			
 			$this->db->where('admin_id', $this->admin_id);			
 		}
+        
 		//$this->db->where('publish_by', 'Admin');
 		//$this->db->where('status', '1');
 		//$this->db->where('delete', '0');

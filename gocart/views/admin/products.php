@@ -174,7 +174,7 @@ function selectGroup(childs)
                 <? $i++;?>
               <tr>
                 <td><label class="checkbox ">
-                  <input type="checkbox" id="child_<?=$i?>" name="courses[]"  value="<?=$product->id?>">
+                  <input type="checkbox" id="child_<?=$i?>" name="courses[]"  value="<?=$product->id?>" >
                   </label>
                 </td>
                  <td>

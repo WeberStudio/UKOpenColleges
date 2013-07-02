@@ -57,9 +57,9 @@ class Categories extends Admin_Controller {
 		$term				= false;
 		//we're going to use flash data and redirect() after form submissions to stop people from refreshing and duplicating submissions
 		//$this->session->set_flashdata('message', 'this is our message');
-		$data['page_title']	= lang('categories');
+		$data['page_title']	= lang('categories');   
 		$data['categories']	= $this->Category_model->get_categories_tierd($parent = false, array('order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
-		
+		 
 		$data['total']		= count($this->Category_model->get_all_categories());
 		
 		$this->load->library('pagination');		
