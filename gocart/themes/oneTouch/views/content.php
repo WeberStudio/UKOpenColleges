@@ -40,7 +40,7 @@
                   <? } else { ?>
                        <div class="item half odd">
                         <img src="<?php echo catogery_img('images/small/'.$cat_info['category']->image); ?>" style="margin:0 0;" alt="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" title="The Clover Trail (Atom Z2760) Review: Acer&#8217;s W510 Tested" >
-                        <div class="description hided">
+                        <div class="description disp">
                           <time><? echo $cat_info['category']->publish_date?></time>
                           <h4><? echo $cat_info['category']->name?></h4>
                           <p><? //echo str_replace(substr(substr($cat_info['category']->description, 0,150), -6),"..." ,substr($cat_info['category']->description, 0,150));

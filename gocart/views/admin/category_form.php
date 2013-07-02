@@ -162,13 +162,14 @@
                                   <div class="pull-left">
                                       
                                     <label class="radio off">
-                                    <input type="radio" name="google_follow" id="toggle1-on" value="0"  >
+                                    <input type="radio" name="google_follow" id="toggle1-off" value="1" > 
+                                   
                                       
                                     </label>
                                     <label class="radio on">
-                                     <input type="radio" name="google_follow" id="toggle1-off" value="1" >  
+                                      <input type="radio" name="google_follow" id="toggle1-on" value="0"  >  
                                     </label>
-                                    <div <?php if($google_follow==0){echo 'class="toggle on"';} if($google_follow==1){echo 'class="toggle on"';}?>>
+                                    <div <?php if($google_follow==0){echo 'class="toggle on"';} if($google_follow==1){echo 'class="toggle off"';}?>>
                                       <div class="no" > Yes </div>
                                       <div class="switch"> </div>
                                       <div class="yes"> No </div>
