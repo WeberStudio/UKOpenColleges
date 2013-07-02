@@ -59,7 +59,7 @@
                                            <div class="title">
                                                     
                                                     <h4><?=$subcategory->name?></h4>
-                                                    <p><?php  echo word_limiter($subcategory->excerpt,30);?></p> 
+                                                    <p><?php  echo word_limiter($subcategory->excerpt,15);?></p> 
                                                     <p><span class="button" style="margin:0px auto 0px 90px;">Read More</span></p>
                                                     <div class="row">
                                                     <div class="line"> </div>
@@ -87,7 +87,7 @@
                                            <div class="title">
                                                     
                                                     <h4><?=$product->name?></h4>
-                                                    <p><?php echo word_limiter($subcategory->excerpt,30);?></p> 
+                                                    <p><?php echo word_limiter($product->excerpt,15);?></p> 
                                                     <p><span class="button" style="margin:0px auto 0px 90px;">Read More</span></p>
                                                     <div class="row">
                                                     <div class="line"> </div>

@@ -143,7 +143,7 @@
 			
             <div class="five columns">
                 <section id="facebook_widget-2" class="widget-1 widget-first widget widget_facebook_widget">
-                    <div id="fb-root"></div> 
+                    <div id="fb-root"></div>
                     <script>(function(d, s, id) {
                             var js, fjs = d.getElementsByTagName(s)[0];
                             if (d.getElementById(id)) return;
@@ -177,7 +177,11 @@
 							//$this->show->pe($page_data);
 						?>
                         <h3><a href="<?=base_url().$page_data->slug?>">About company</a></h3>                        
-						<? echo str_replace(substr(substr($page_data->content, 0,150), -6),"..." ,substr($page_data->content, 0,150));?>
+						<? 
+							$footer_page = strip_tags($page_data->content);
+							echo word_limiter($footer_page, 30);
+						
+						?>
 						</p>						
                     </div>
                 </section>
@@ -236,6 +240,6 @@
 <?php echo theme_js('js/scrolling.js', true);?>
 <?php echo theme_js('js/woocommerce.min.js?ver=1.6.6', true);?>
 
- 
+
 </body>
 </html>
